@@ -7,12 +7,15 @@ import { MotionEffects } from "./MotionEffects";
 import { DATA_SOURCE, getLibraryStats } from "../services/papers";
 import { GLASS_PRESETS, useStudio } from "../App";
 import { useAuth } from "../services/AuthContext";
+import { RESEARCH_ENABLED } from "../services/research";
 
 const MAIN_NAV = [
   {to:"/",label:"首页",Icon:Home}, {to:"/search",label:"论文检索",Icon:Search},
   {to:"/explore",label:"探索论文",Icon:Compass}, {to:"/library",label:"我的文献",Icon:BookOpen}
 ] as const;
+const researchEntry = RESEARCH_ENABLED ? [{to:"/research",label:"深度研究",Icon:Layers}] : [];
 const ALL_TOOLS = [
+  ...researchEntry,
   {to:"/upload",label:"PDF 工作区",Icon:FilePlus2},
   {to:"/assistant",label:"证据助手",Icon:Sparkles},
   {to:"/evaluation",label:"检索评测",Icon:BarChart3},
@@ -21,6 +24,7 @@ const ALL_TOOLS = [
 
 // 顶部下拉菜单展示的核心工具（按用户要求暂不显示检索评测与审核工作台）
 const TOOL_NAV = [
+  ...researchEntry,
   {to:"/upload",label:"PDF 工作区",Icon:FilePlus2},
   {to:"/assistant",label:"证据助手",Icon:Sparkles}
 ] as const;

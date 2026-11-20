@@ -4,6 +4,12 @@ ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读�
 
 在线访问：[scholarlens.lingion.cc.cd](https://scholarlens.lingion.cc.cd/)。华为云运行，经 Cloudflare Tunnel 提供 HTTPS，个人电脑关机后仍可访问。
 
+## 本地 EvoResearch 工作台
+
+在隔离开发版中可创建深度研究任务，查看逐轮补检、带字符定位的证据与逐条结论，并导出 Markdown 报告。启动示例使用本机账户库和回环地址。
+
+[演示启动与操作](docs/agent-v2/USER_GUIDE.md) · [本地交付说明](docs/agent-v2/FINAL_HANDOFF.md) · [基线和消融结果](docs/agent-v2/EXPERIMENT_RESULTS.md)
+
 ## 从这里了解项目
 
 | 你要做什么 | 阅读入口 |

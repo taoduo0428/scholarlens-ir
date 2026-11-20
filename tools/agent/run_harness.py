@@ -5,8 +5,20 @@ import subprocess
 import sys
 from datetime import UTC, datetime
 from pathlib import Path
+from xml.etree import ElementTree
 
 ROOT = Path(__file__).resolve().parents[2]
+
+
+def case_verdict(report_path: Path, exit_code: int) -> tuple[bool, int]:
+    """Require executed, passing tests even when pytest treats skipped cases as success."""
+    try:
+        cases = ElementTree.parse(report_path).findall(".//testcase")
+    except (OSError, ElementTree.ParseError):
+        return False, 0
+    passed = sum(all(case.find(tag) is None for tag in ("skipped", "error", "failure"))
+                 for case in cases)
+    return exit_code == 0 and bool(cases) and passed == len(cases), passed
 
 
 def main():
@@ -26,14 +38,16 @@ def main():
         node = case["pytest"]
         if not node.startswith("backend/tests/test_agent.py::test_agent_") or ".." in node:
             raise ValueError("Harness test must belong to the registered agent test module")
+        junit_path = out / (case["id"] + ".xml")
         result = subprocess.run([str(interpreter), "-m", "pytest", node, "-q",
                                  "--basetemp", str(out / (case["id"] + "-temp")),
-                                 "--junitxml", str(out / (case["id"] + ".xml"))],
+                                 "--junitxml", str(junit_path)],
                                 cwd=ROOT, text=True, capture_output=True, check=False)
         (out / (case["id"] + ".txt")).write_text(result.stdout + result.stderr, encoding="utf-8")
+        passed, passed_count = case_verdict(junit_path, result.returncode)
         results.append({"id": case["id"], "exit_code": result.returncode,
-                        "passed": result.returncode == 0, "provider": "controlled_fixture"})
-        print(case["id"] + ": " + ("PASS" if result.returncode == 0 else "FAIL"), flush=True)
+                        "passed": passed, "passed_tests": passed_count, "provider": "controlled_fixture"})
+        print(case["id"] + ": " + ("PASS" if passed else "FAIL"), flush=True)
     report = {"cases": results, "passed": bool(results) and all(c["passed"] for c in results),
               "real_provider": "not_tested", "production_mutations": False}
     (out / "summary.json").write_text(json.dumps(report, indent=2), encoding="utf-8")

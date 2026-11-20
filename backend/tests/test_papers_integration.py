@@ -157,6 +157,9 @@ def test_search_frontend_shape(papers_api):
         "paper_id",
         "title",
         "authors",
+        "date",
+        "affiliation",
+        "address",
         "year",
         "abstract_snippet",
         "highlights",
@@ -165,6 +168,8 @@ def test_search_frontend_shape(papers_api):
         "explanation",
     }
     assert hit["paper_id"] == "mock-0002" and hit["authors"] == ["Mock Author C"]
+    assert hit["date"] == "2025-06-01"
+    assert hit["affiliation"] == ["Mock Institute"] and hit["address"] == ["Mock City"]
     assert isinstance(hit["score"], float) and hit["score"] > 0
     assert hit["matched_fields"] == ["title"]
     assert hit["highlights"]["title"] == ["Mock <em>Computer</em> Vision Survey"]

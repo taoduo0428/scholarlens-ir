@@ -1,0 +1,59 @@
+{
+  "candidate_hash": "d0faff14847f0e44ac976f55012c72cce0d585c4ff23451c3285e2e2fbd5952d",
+  "configs": [
+    [
+      "B0",
+      {
+        "technique": "default",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      }
+    ],
+    [
+      "B1",
+      {
+        "technique": "default",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      }
+    ],
+    [
+      "B2",
+      {
+        "technique": "default",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      }
+    ],
+    [
+      "B3",
+      {
+        "technique": "method-first",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      }
+    ],
+    [
+      "B4",
+      {
+        "technique": "metric-conditions",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      }
+    ],
+    [
+      "B5",
+      {
+        "technique": "metric-conditions",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 1,
+        "evidence_per_subtask": 2
+      }
+    ]
+  ]
+}

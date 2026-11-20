@@ -1,0 +1,134 @@
+{
+  "corpus": {
+    "papers": 859,
+    "vector_chunks": 49420,
+    "generation": "scholarlens-papers-real-5a3d535543e4",
+    "vector_generation": "scholarlens-vectors-real-3c0f6ca1420f"
+  },
+  "transport": "in-process FastAPI TestClient, normal routes, actual single worker and independently checked Elasticsearch",
+  "environment": "Windows-10-10.0.26200-SP0",
+  "python": "3.11.15",
+  "model_mode": "evidence_only",
+  "poll_interval_ms": 75,
+  "workers": 1,
+  "queue_submitters": 4,
+  "total_seconds": 3.344,
+  "memory": {
+    "sampled_app_rss_min_mb": 116.95,
+    "sampled_app_rss_max_mb": 120.63,
+    "es_heap_before_mb": 193.29,
+    "es_heap_after_mb": 257.29
+  },
+  "tasks": [
+    {
+      "label": "burst-0",
+      "scoped": true,
+      "status": "completed",
+      "stop_reason": "complete",
+      "submit_ms": 109.0,
+      "end_to_end_ms": 2016.0,
+      "events": 5,
+      "sources": 2,
+      "verified_claims": 1,
+      "verified_statement_names_both_sites_and_exceedance": true,
+      "tools": 6,
+      "model_calls": 0
+    },
+    {
+      "label": "burst-1",
+      "scoped": false,
+      "status": "completed",
+      "stop_reason": "complete",
+      "submit_ms": 47.0,
+      "end_to_end_ms": 547.0,
+      "events": 5,
+      "sources": 2,
+      "verified_claims": 1,
+      "verified_statement_names_both_sites_and_exceedance": true,
+      "tools": 6,
+      "model_calls": 0
+    },
+    {
+      "label": "burst-2",
+      "scoped": true,
+      "status": "completed",
+      "stop_reason": "complete",
+      "submit_ms": 63.0,
+      "end_to_end_ms": 859.0,
+      "events": 5,
+      "sources": 2,
+      "verified_claims": 1,
+      "verified_statement_names_both_sites_and_exceedance": true,
+      "tools": 6,
+      "model_calls": 0
+    },
+    {
+      "label": "burst-3",
+      "scoped": false,
+      "status": "completed",
+      "stop_reason": "complete",
+      "submit_ms": 94.0,
+      "end_to_end_ms": 1281.0,
+      "events": 5,
+      "sources": 2,
+      "verified_claims": 1,
+      "verified_statement_names_both_sites_and_exceedance": true,
+      "tools": 6,
+      "model_calls": 0
+    },
+    {
+      "label": "seq-0",
+      "scoped": true,
+      "status": "completed",
+      "stop_reason": "complete",
+      "submit_ms": 125.0,
+      "end_to_end_ms": 500.0,
+      "events": 5,
+      "sources": 2,
+      "verified_claims": 1,
+      "verified_statement_names_both_sites_and_exceedance": true,
+      "tools": 6,
+      "model_calls": 0
+    },
+    {
+      "label": "seq-1",
+      "scoped": false,
+      "status": "completed",
+      "stop_reason": "complete",
+      "submit_ms": 32.0,
+      "end_to_end_ms": 328.0,
+      "events": 5,
+      "sources": 2,
+      "verified_claims": 1,
+      "verified_statement_names_both_sites_and_exceedance": true,
+      "tools": 6,
+      "model_calls": 0
+    },
+    {
+      "label": "seq-2",
+      "scoped": true,
+      "status": "completed",
+      "stop_reason": "complete",
+      "submit_ms": 31.0,
+      "end_to_end_ms": 328.0,
+      "events": 5,
+      "sources": 2,
+      "verified_claims": 1,
+      "verified_statement_names_both_sites_and_exceedance": true,
+      "tools": 6,
+      "model_calls": 0
+    }
+  ],
+  "metrics": {
+    "seq": {
+      "n": 3,
+      "median_ms": 328.0,
+      "p95_nearest_rank_ms": 500.0
+    },
+    "burst": {
+      "n": 4,
+      "median_ms": 1070.0,
+      "p95_nearest_rank_ms": 2016.0
+    }
+  }
+}

@@ -68,10 +68,29 @@ class PublicAITransport(httpx.BaseTransport):
             raise problem(400, "unsafe_ai_endpoint", "个人 API 地址不能指向本机、内网或保留网络")
         headers = httpx.Headers(request.headers)
         headers["Host"] = request.url.netloc.decode("ascii")
-        pinned = httpx.Request(request.method, request.url.copy_with(host=addresses[0]),
-                               headers=headers, stream=request.stream,
-                               extensions={**request.extensions, "sni_hostname": hostname})
-        return self.inner.handle_request(pinned)
+        first = addresses[0]
+        first_version = ipaddress.ip_address(first).version
+        alternative = next(
+            (address for address in addresses[1:]
+             if ipaddress.ip_address(address).version != first_version),
+            addresses[1] if len(addresses) > 1 else None,
+        )
+
+        def dial(address):
+            pinned = httpx.Request(
+                request.method, request.url.copy_with(host=address),
+                headers=headers, stream=request.stream,
+                extensions={**request.extensions, "sni_hostname": hostname},
+            )
+            return self.inner.handle_request(pinned)
+
+        try:
+            return dial(first)
+        except (httpx.ConnectError, httpx.ConnectTimeout):
+            # These failures happen before the HTTP request is sent.
+            if alternative is None:
+                raise
+            return dial(alternative)
 
     def close(self):
         self.inner.close()

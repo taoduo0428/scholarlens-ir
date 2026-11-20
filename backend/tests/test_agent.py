@@ -105,11 +105,15 @@ def test_agent_unscoped_natural_question_can_get_labelled_general_answer(agent_a
     assert 'general_answer' in [s['tool'] for s in data['agent']['steps']]
 
 
-def test_scoped_missing_evidence_never_becomes_unscoped_general_answer(agent_api, monkeypatch):
-    monkeypatch.setattr(rag, 'retrieve_evidence', lambda *args: [])
-    data=run(agent_api, paper_ids=['fixture-paper']).json()
-    assert data['evidence_status']=='insufficient_evidence' and not data['answer']
-    assert not any(name=='generate' for name,_ in agent_api.calls)
+def test_agent_endpoint_does_not_generate_when_no_evidence(agent_api, monkeypatch):
+    """A scoped request must not fall back to an ungrounded general answer."""
+    monkeypatch.setattr(rag, "retrieve_evidence", lambda *args: [])
+    response = run(agent_api, paper_ids=["fixture-paper"])
+    assert response.status_code == 200
+    data = response.json()
+    assert data["evidence_status"] == "insufficient_evidence" and not data["answer"]
+    assert not data["citations"] and not data["evidence"] and not data["agent"]["grounded"]
+    assert all(name != "generate" for name, _ in agent_api.calls)
 
 
 def test_no_evidence_provider_error_is_not_reported_as_bad_question(agent_api, monkeypatch):

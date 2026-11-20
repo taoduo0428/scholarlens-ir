@@ -19,6 +19,8 @@ import { AuthProvider, useAuth } from "./services/AuthContext";
 import { accountApi, sessionToken } from "./services/backend";
 import { AccountPage } from "./pages/AccountPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { ResearchPage } from "./pages/ResearchPage";
+import { RESEARCH_ENABLED } from "./services/research";
 
 /** Surface transparency presets. Purely visual; stored per browser. */
 export type GlassLevel = "clear" | "soft" | "solid";
@@ -361,6 +363,7 @@ function AppRoutes() {
       <Route path="/library" element={<LibraryPage />} />
       <Route path="/account" element={<AccountPage />} />
       <Route path="/assistant" element={<AssistantPage />} />
+      {RESEARCH_ENABLED && <Route path="/research" element={<ResearchPage />} />}
       <Route path="/evaluation" element={<EvaluationPage />} />
       <Route path="/upload" element={<UploadPage />} />
       <Route path="/admin" element={<AdminPage />} />

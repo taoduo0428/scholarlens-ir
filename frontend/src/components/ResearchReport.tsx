@@ -1,0 +1,88 @@
+import {useState} from "react";
+import {evidenceHref, evidenceLocatorLabel} from "../lib/evidenceLocation";
+import {slotLabels, type ResearchClaim, type ResearchReport, type ResearchSource, type ResearchSubtask} from "../services/research";
+
+const supportLabels:Record<string,string>={verified:"已核验",unverified:"待核验",uncertain:"待核验",
+  insufficient:"证据不足",contradicted:"存在矛盾",not_comparable:"实验条件不可比"};
+const conditions:Record<string,string>={dataset:"数据集",metric_name:"指标",metric_value:"数值",
+  unit:"单位",experiment_setup:"实验设置",evaluation_protocol:"评测协议"};
+const kinds:Record<string,string>={indexed_fulltext:"索引正文",abstract:"摘要",metadata:"元数据",
+  private_upload:"本人上传",external_abstract:"外部摘要"};
+
+function Source({source}:{source:ResearchSource}){
+  return <details className="research-source">
+    <summary>{source.paper_title || source.paper_id} · {evidenceLocatorLabel(source.locator)}</summary>
+    <p>{kinds[source.source_kind]||source.source_kind} · {source.pdf_available===true?"可读 PDF":source.pdf_available===false?"PDF 未提供":"PDF 状态待确认"}
+      {source.fulltext_available===false?" · 正文缺失":""}</p>
+    <blockquote>{source.quote}</blockquote>
+    <a href={evidenceHref(source)} target="_blank" rel="noreferrer">定位到论文原文</a>
+  </details>;
+}
+
+function Claim({claim,sources,conflicts}:{claim:ResearchClaim;sources:Map<string,ResearchSource>;conflicts:ResearchClaim[]}){
+  return <article className="research-claim" data-claim={claim.claim_id} tabIndex={-1}>
+    <p><strong>{claim.statement}</strong></p>
+    <span className="research-state">{supportLabels[claim.support_status]||claim.support_status}</span>
+    {Object.entries(claim.conditions||{}).some(([,value])=>value) &&
+      <dl>{Object.entries(claim.conditions||{}).filter(([,v])=>v).map(([key,v])=>
+        <div key={key}><dt>{conditions[key]||key}</dt><dd>{v}</dd></div>)}</dl>}
+    {claim.check_notes?.map((note,i)=><p key={i}>{note}</p>)}
+    {conflicts.length>0&&<details className="research-conflicts"><summary>冲突结论 · {conflicts.length}</summary>
+      <ul>{conflicts.map(peer=><li key={peer.claim_id}>{peer.statement}
+        {peer.evidence_ids.map(id=>{const src=sources.get(id);return src?<Source key={id} source={src}/>:null;})}</li>)}</ul></details>}
+    {claim.evidence_ids.map(id=>{const src=sources.get(id);return src?<Source key={id} source={src}/>:<p key={id}>该来源未通过报告回验</p>;})}
+    {claim.evidence_ids.length===0&&<p>证据缺口 · 此结论尚无可定位的原文。</p>}
+  </article>;
+}
+
+function exportMarkdown(id:string, markdown:string){
+  const url=URL.createObjectURL(new Blob([markdown],{type:"text/markdown;charset=utf-8"}));
+  const a=document.createElement("a");
+  a.href=url; a.download="ScholarLens-"+id+".md"; a.click();
+  window.setTimeout(()=>URL.revokeObjectURL(url), 1000);
+}
+
+export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;taskId:string;subtasks:ResearchSubtask[]}){
+  const [showFull,setShowFull]=useState(false);
+  const claims=new Map(report.claims.map(c=>[c.claim_id,c]));
+  const sources=new Map(report.sources.map(s=>[s.evidence_id,s]));
+  const plan=report.graph?.subtasks??subtasks;
+  const edges=new Map((report.graph?.subtask_claim??[]).map(edge=>[edge.claim_id,edge.subtask_id]));
+  const owner=(claim:ResearchClaim)=>edges.get(claim.claim_id)??claim.subtask_id;
+  const rows=plan.map(sub=>({id:sub.id,goal:sub.goal,missing:sub.missing_slots,
+    claims:report.claims.filter(claim=>owner(claim)===sub.id)}));
+  const planIds=new Set(plan.map(sub=>sub.id));
+  const other=report.claims.filter(claim=>!planIds.has(owner(claim)??""));
+  if(other.length) rows.push({id:"unassigned",goal:"其他结论",missing:[],claims:other});
+  const peers=(id:string)=>{
+    const peerIds=new Set((report.graph?.conflicts??[]).filter(edge=>edge.claim_ids.includes(id)).flatMap(edge=>edge.claim_ids));
+    peerIds.delete(id);
+    return [...peerIds].map(peer=>claims.get(peer)).filter((claim):claim is ResearchClaim=>Boolean(claim));
+  };
+  const experiments=report.claims.filter(claim=>["method","metric","comparison"].includes(claim.claim_type));
+  return <section className="research-panel" aria-label="研究报告">
+    <div className="research-panel-heading"><h2>研究报告</h2>
+      <button className="button button-secondary" onClick={()=>exportMarkdown(taskId,report.markdown)}>导出 Markdown</button></div>
+    <p>{report.summary}</p>
+    {experiments.length>0&&<details className="research-comparison"><summary>方法与实验对照 · {experiments.length} 条</summary>
+      <div className="research-table-scroll" tabIndex={0} role="region" aria-label="方法与实验对照表"><table>
+        <thead><tr><th>方法或结果</th><th>数据集</th><th>指标及数值</th><th>协议或设置</th><th>核验结果</th></tr></thead>
+        <tbody>{experiments.map(c=><tr key={c.claim_id}><th scope="row">{c.statement}</th><td>{c.conditions?.dataset||"未报告"}</td>
+          <td>{[c.conditions?.metric_name,c.conditions?.metric_value,c.conditions?.unit].filter(Boolean).join(" ")||"未报告"}</td>
+          <td>{c.conditions?.evaluation_protocol||c.conditions?.experiment_setup||"未报告"}</td>
+          <td>{supportLabels[c.support_status]||c.support_status}</td></tr>)}</tbody></table></div></details>}
+    <section aria-label="结论与证据矩阵"><h3>结论与证据矩阵</h3>
+      {rows.map(row=><details key={row.id} open className="research-matrix-row" data-matrix-subtask={row.id}>
+        <summary>{row.goal} · {row.claims.length} 条结论</summary>
+        {row.missing.length>0&&<p>子任务缺口 · {row.missing.map(slot=>slotLabels[slot]||slot).join("、")}</p>}
+        {row.claims.length===0&&<p>此子任务尚无已发布的结论。</p>}
+        {row.claims.map(claim=><Claim key={claim.claim_id} claim={claim} sources={sources} conflicts={peers(claim.claim_id)}/>)}
+      </details>)}</section>
+    {report.unresolved.length>0&&<section><h3>待解决问题</h3><ul>{report.unresolved.map((v,i)=><li key={i}>{v}</li>)}</ul></section>}
+    {report.sources.length>0&&<section><h3>全部来源</h3>{report.sources.map(s=><Source key={s.evidence_id} source={s}/>)}</section>}
+    <button className="button button-secondary" aria-expanded={showFull} onClick={()=>setShowFull(v=>!v)}>
+      {showFull?"收起 Markdown 原稿":"查看 Markdown 原稿"}</button>
+    {showFull&&<pre className="research-markdown">{report.markdown}</pre>}
+  </section>;
+}
+export {Source as ResearchSourceDetail};
