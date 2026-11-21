@@ -1,0 +1,759 @@
+{
+  "platform": "linux/amd64, disposable WSL2, Docker 29.5.2, Compose 2.40.3",
+  "application_source": "db8d34f",
+  "previous_source": "27eb874",
+  "previous_image": "sha256:baa38f3bbc7d9010ca11cf5957bc007240aa4fb117cebfff9710200c96f92368",
+  "candidate_image": "sha256:dc388d3fba6e9089220d7ac56eda9bafb1a10e15c730706d1a471877239eb60b",
+  "elasticsearch": "8.19.23",
+  "elasticsearch_linux_amd64_config": "sha256:c8ec58306c7c7b426362a2feb04cc42652e71483b8601591132ef9d583e303b7",
+  "corpus": "1 synthetic paper in a real Elasticsearch container",
+  "empty_alias_ready_status": 503,
+  "read_only_rootfs": true,
+  "pip_check_exit": 0,
+  "container_regression": {"suites": ["test_health_probes", "test_pdf_layout", "test_budget_enforcement"], "passed": 8, "failed": 0, "skipped": 0, "seconds": 1.73, "exit": 0},
+  "stages": [
+    {
+      "stage": "initialize",
+      "uid": 10001,
+      "health": 200,
+      "ready": 200,
+      "frontend": 200,
+      "other_owner_report": 404,
+      "report_restored": true,
+      "verified_claims": 1
+    },
+    {
+      "stage": "upgrade",
+      "uid": 10001,
+      "health": 200,
+      "ready": 200,
+      "frontend": 200,
+      "other_owner_report": 404,
+      "report_restored": true,
+      "verified_claims": 1
+    },
+    {
+      "stage": "rollback",
+      "uid": 10001,
+      "health": 200,
+      "ready": 200,
+      "frontend": 200,
+      "other_owner_report": 404,
+      "report_restored": true,
+      "verified_claims": 1
+    }
+  ],
+  "scanner": "Grype 0.122.1",
+  "advisories": {
+    "bookworm": {
+      "total": 419,
+      "severity": {
+        "Critical": 4,
+        "High": 106,
+        "Low": 29,
+        "Medium": 165,
+        "Negligible": 91,
+        "Unknown": 24
+      },
+      "db_built": "2026-11-21T06:20:06Z",
+      "report_sha256": "4accf9b25d331c8c2a074e779154884e906dac855b6431fc359c8850b851418c"
+    },
+    "trixie": {
+      "total": 312,
+      "severity": {
+        "Critical": 2,
+        "High": 110,
+        "Low": 29,
+        "Medium": 113,
+        "Negligible": 58
+      },
+      "db_built": "2026-11-21T06:20:06Z",
+      "report_sha256": "d145c0d81fc66c193dc1da7855f985b44860a2a7c59a13a1365de2bc4572d5e3"
+    },
+    "updated_trixie": {
+      "total": 283,
+      "severity": {
+        "High": 96,
+        "Low": 24,
+        "Medium": 105,
+        "Negligible": 58
+      },
+      "db_built": "2026-11-21T06:20:06Z",
+      "report_sha256": "513521b44bf1d847f50e2705375011fee3ef6ae20ead36ecd3d257600be1a1c1",
+      "high_findings": [
+        {
+          "package": "perl-base",
+          "version": "5.40.1-6+deb13u1",
+          "advisory": "CVE-2026-82560",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "gzip",
+          "version": "1.13",
+          "advisory": "CVE-2026-41992",
+          "namespace": "nvd:cpe",
+          "fix_status": ""
+        },
+        {
+          "package": "libssl3t64",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-124709",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-124709",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-124709",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl-provider-legacy",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-124709",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "libncursesw6",
+          "version": "6.5+20250216-2",
+          "advisory": "CVE-2025-69720",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libtinfo6",
+          "version": "6.5+20250216-2",
+          "advisory": "CVE-2025-69720",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "ncurses-base",
+          "version": "6.5+20250216-2",
+          "advisory": "CVE-2025-69720",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "ncurses-bin",
+          "version": "6.5+20250216-2",
+          "advisory": "CVE-2025-69720",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "perl-base",
+          "version": "5.40.1-6+deb13u1",
+          "advisory": "CVE-2026-9538",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "gcc-14",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-95619",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "gcc-14-base",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-95619",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libgcc-s1",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-95619",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libstdc++6",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-95619",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libssl3t64",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-95692",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-95692",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-95692",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl-provider-legacy",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-95692",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "gcc-14",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-102010",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "gcc-14-base",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-102010",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libgcc-s1",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-102010",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libstdc++6",
+          "version": "14.2.0-19",
+          "advisory": "CVE-2026-102010",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libssl3t64",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-107496",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-107496",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-107496",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl-provider-legacy",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-107496",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "libc-bin",
+          "version": "2.41-12+deb13u4",
+          "advisory": "CVE-2026-19499",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libc6",
+          "version": "2.41-12+deb13u4",
+          "advisory": "CVE-2026-19499",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libsqlite3-0",
+          "version": "3.46.1-7+deb13u2",
+          "advisory": "CVE-2026-119379",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libssl3t64",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-95691",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-95691",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-95691",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl-provider-legacy",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-95691",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-107494",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "libc-bin",
+          "version": "2.41-12+deb13u4",
+          "advisory": "CVE-2026-84243",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libc6",
+          "version": "2.41-12+deb13u4",
+          "advisory": "CVE-2026-84243",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libssl3t64",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-88823",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-88823",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-88823",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl-provider-legacy",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-88823",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-121482",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "libsqlite3-0",
+          "version": "3.46.1-7+deb13u2",
+          "advisory": "CVE-2026-119374",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "bsdutils",
+          "version": "1:2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libblkid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "liblastlog2-2",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libmount1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libsmartcols1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libuuid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "login",
+          "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "mount",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78408",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libc-bin",
+          "version": "2.41-12+deb13u4",
+          "advisory": "CVE-2026-5435",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libc6",
+          "version": "2.41-12+deb13u4",
+          "advisory": "CVE-2026-5435",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "bsdutils",
+          "version": "1:2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libblkid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "liblastlog2-2",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libmount1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libsmartcols1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libuuid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "login",
+          "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "mount",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-76642",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "bsdutils",
+          "version": "1:2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libblkid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "liblastlog2-2",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libmount1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libsmartcols1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libuuid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "login",
+          "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "mount",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78410",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "bsdutils",
+          "version": "1:2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libblkid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "liblastlog2-2",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libmount1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libsmartcols1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libuuid1",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "login",
+          "version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "mount",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "util-linux",
+          "version": "2.41.5-0+deb13u1",
+          "advisory": "CVE-2026-78409",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libssl3t64",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-84786",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-84786",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-84786",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl-provider-legacy",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-84786",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "libsqlite3-0",
+          "version": "3.46.1-7+deb13u2",
+          "advisory": "CVE-2026-119373",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libacl1",
+          "version": "2.3.2-2+b1",
+          "advisory": "CVE-2026-54369",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        },
+        {
+          "package": "libssl3t64",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-107493",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9",
+          "advisory": "CVE-2026-107493",
+          "namespace": "nvd:cpe",
+          "fix_status": "fixed"
+        },
+        {
+          "package": "openssl",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-107493",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "openssl-provider-legacy",
+          "version": "3.5.9-1~deb13u1",
+          "advisory": "CVE-2026-107493",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "not-fixed"
+        },
+        {
+          "package": "libacl1",
+          "version": "2.3.2-2+b1",
+          "advisory": "CVE-2026-54370",
+          "namespace": "debian:distro:debian:13",
+          "fix_status": "wont-fix"
+        }
+      ]
+    }
+  }
+}

@@ -16,7 +16,28 @@ curl -fsS http://127.0.0.1:18001/healthz
 curl -fsS http://127.0.0.1:18001/readyz
 ```
 
-Compose 使用命名卷保存应用数据和 Elasticsearch，主机映射默认仅回环可访问。使用真实模型时从部署环境的秘密存储注入项目凭证并设预算。生产运维记录应保存应用镜像摘要、ES 快照名称及数据库备份校验和。本次已静态解析 Compose，并在本机 API 上实测探针。容器命令仍待有 Docker 的环境验收。
+Compose 使用命名卷保存应用数据和 Elasticsearch，主机映射默认仅回环可访问。使用真实模型时从部署环境的秘密存储注入项目凭证并设预算。生产运维记录应保存应用镜像摘要、ES 快照名称及数据库备份校验和。
+
+## 在临时卷演练升级和回退
+
+在空的独立 Compose 项目中运行以下命令。先用对应 Git 提交的 Dockerfile 构建两个镜像，将其标签或摘要分别填入 `PREVIOUS` 和 `CANDIDATE`。在同一个 shell 中执行，三个阶段复用同一项目名和命名卷。
+
+```sh
+export COMPOSE_PROJECT_NAME="scholarlens-check-$(date +%s)"
+export COMPOSE_FILE=infra/product.compose.yml
+export SCHOLARLENS_INDEX=scholarlens-fixture SCHOLARLENS_PORT=0 SCHOLARLENS_E11_ENABLED=true
+export SCHOLARLENS_IMAGE="$PREVIOUS"
+docker compose up --wait --no-build
+docker compose exec -T api python - initialize < tools/research_eval/container_probe.py
+export SCHOLARLENS_IMAGE="$CANDIDATE"
+docker compose up --wait --no-build
+docker compose exec -T api python - upgrade < tools/research_eval/container_probe.py
+export SCHOLARLENS_IMAGE="$PREVIOUS"
+docker compose up --wait --no-build
+docker compose exec -T api python - rollback < tools/research_eval/container_probe.py
+```
+
+初始化时，脚本检查空索引返回 503，随后写入一篇合成论文，创建两个测试账号和一份研究报告。每次切换后复核账号登录、报告内容、跨账号隔离和 SQLite 快照恢复。演练结束后，在同一个测试 shell 中运行 `docker compose down --volumes` 清理本次测试项目。
 
 ## 恢复演练
 
