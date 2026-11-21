@@ -1,11 +1,11 @@
 """Freeze grouped public tasks before iterating on workspace policy. No model or network."""
 import argparse
-from hashlib import sha256
 import json
+from hashlib import sha256
 from pathlib import Path
 
-from tools.research_eval.inputs import BENCH, GENERATION, OID, git, read_jsonl
 from tools.research_eval.freeze_quality import canonical
+from tools.research_eval.inputs import BENCH, GENERATION, OID, git, read_jsonl
 
 TOPICS = {"train": ("wavelet", "ontology"), "dev": ("fluid", "translation"), "independent": ("thermal", "automata")}
 CASES = ("direct", "comparison", "multihop", "alignment", "controversy", "absent", "distractor")
@@ -67,7 +67,7 @@ def freeze():
 def load_split(split):
     path = BENCH / "workspace-v4-frozen.json"
     data = json.loads(path.read_bytes())
-    if sha256(canonical(data["dataset"])).hexdigest() != data["sha256"]:
+    if data["sha256"] != "7f5014b844aa57e308ea3fc0b439a0368dfc5dfa609ce79c1a3a0ac95435ae63" or sha256(canonical(data["dataset"])).hexdigest() != data["sha256"]:
         raise ValueError("invalid suite digest")
     groups = [g for g in data["dataset"]["groups"] if g["split"] == split]
     wanted = {p["row"]:p for g in groups for p in g["papers"]}
