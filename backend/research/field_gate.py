@@ -135,9 +135,12 @@ def matches(field, claim, row, state, suggestions):
     goal = field.request
     if field.operation == "quote":
         names = re.findall(r'["“《]([^"”》]+)["”》]', goal)
-        return (
-            not names or all(n.casefold() == row.get("paper_title", "").casefold() for n in names)
-        ) and opening(row, state.task.scope.paper_ids) == statement
+        scope=state.task.scope.paper_ids
+        if names and row["paper_id"] in scope and all(n.casefold()==row.get("paper_title","").casefold() for n in names):
+            scope=[row["paper_id"]]
+        elif names:
+            return False
+        return opening(row,scope)==statement
     if not typed_value(field, statement):
         return False
     semantic = suggestions.get(claim.claim_id) == "responsive"

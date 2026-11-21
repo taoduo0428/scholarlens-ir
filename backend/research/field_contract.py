@@ -185,6 +185,7 @@ def requests(goal):
         return f"@TITLE{len(quoted) - 1}@"
 
     masked = TITLES.sub(mask, goal)
+    masked = re.sub(r"[，,]?\s*(?:并据此|再|然后|并)(?=解释|分析|推断)", "；", masked)
     parts = re.split(
         r"\s+(?:and|then)\s+(?=(?:give|provide|identify|state|list|report|name|what|which|how|find|quote)\b)|[?？;；]\s*(?=\S)|(?:并且|并)(?=给出|提供|列出|报告|说明)",
         masked,
@@ -253,7 +254,7 @@ def field_for(node, contract, request, ordinal):
         if layout:
             data_type, cap = layout
             operation = "layout"
-        elif re.search(r"first (?:complete )?sentence|opening sentence|首句|第一句", goal):
+        elif re.search(r"first (?:complete )?sentence|opening sentence|首句|第一句|开篇原句|开头一句", goal):
             operation = "quote"
         else:
             data_type = next((t for pattern, t in PATTERNS if re.search(pattern, goal)), "text")
