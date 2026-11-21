@@ -1,5 +1,7 @@
 # ScholarLens 工程交付记录
 
+2026-11-22 在独立 WSL2 环境构建并运行了 Linux 应用镜像和 Elasticsearch 8.19.23。用旧版的两个账号、一篇合成论文和一份研究报告验证了升级和回退。容器内三次恢复 SQLite 快照，报告哈希一致，另一个账号读取该报告均返回 404。更新 Python 3.11 的 Debian 运行环境后，应用镜像的 Critical 匹配从 4 降至 0，High 从 106 降至 96。[容器验收和镜像发现](container-acceptance.json) · [复核步骤](OPERATIONS.md)
+
 最新代码验收针对提交 `7cc417d`。这次改动修正了具名论文在复合问题中的绑定和部分作答。新的 16 对论文中，7 题给出了带原文定位的目标论文陈述。原有 28 组跨论文综合成功 2 组。[本轮研究质量](RESEARCH_QUALITY_REPORT.md) · [逐题迁移结果](study-brief/transfer-new.json)
 
 本次完整后端 715 项全部通过，0 跳过，pytest 用时 437.12 秒。隔离实例含 859 篇论文、49,420 条向量，原索引文件清单一致且测试端口已释放。前端 45 项通过，类型、结构与生产构建通过。浏览器以两个账号验证了 PDF 选格、4 组引文和定位、报告下载、刷新恢复及隔离。真实出版社 PDF 第 6 页表 1 的 23,133 与 JATS 单元格一致。1、4、12 个并发用户的 17 个任务均从 SQLite 备份恢复了报告。78 个锁定 Python 包与前端 npm 审计均报告 0 条已知漏洞。[验收记录](study-brief/acceptance.json) · [运行数据](study-brief/runtime.json)
