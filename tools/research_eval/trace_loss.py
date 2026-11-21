@@ -80,7 +80,7 @@ class ObservedGraph(ResearchGraph):
         return result
 
 
-def execute(goal, paper_ids, docs, generation, directory, policy=None, skill=None, tuning=None, *, adapters=None):
+def execute(goal, paper_ids, docs, generation, directory, policy=None, skill=None, tuning=None, *, adapters=None, model_id=None):
     """Only public input crosses this boundary. Post-hoc targets stay outside the graph."""
     events, phase = [], ["research"]
     corpus = LocalCorpus(docs, generation)
@@ -88,7 +88,7 @@ def execute(goal, paper_ids, docs, generation, directory, policy=None, skill=Non
     mode = "personal_model" if adapters else "evidence_only"
     task = TaskInput(goal=goal, scope=Scope(paper_ids=paper_ids), mode=mode, depth="deep" if adapters else "standard")
     state, revision, _ = store.create(1, "trace", task, generation, retrieval_policy=policy or "V1",
-                                     model_id="controlled-http/1" if adapters else "none")
+                                     model_id=(model_id or "controlled-http/1") if adapters else "none")
     state.status = "running"
     state.budget.max_tool_calls = state.budget.max_evidence = 10
     state.budget.max_duration_seconds = 120

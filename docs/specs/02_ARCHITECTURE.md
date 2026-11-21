@@ -93,3 +93,6 @@ sequenceDiagram
 
 主要风险：GROBID 解析质量、英文/中文模型适配、ES 向量能力版本、LLM 网络和额度、Windows Docker 资源、1000 篇索引耗时。每项风险在 [07_TEST_DEMO](../operations/07_TEST_DEMO.md) 登记触发条件与退化方案。
 
+## E10 开发分支（2026-11-21）
+
+E10 在既有 Question DAG 内按论文产生主题、方法、结果和可比较维度，再由字段门禁核查来源。具体证据和局限见[失败分析](../agent-v6/FAILURE_ANALYSIS.md)。

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import {randomBytes, randomUUID} from "node:crypto";
-import {mkdirSync} from "node:fs";
+import {mkdirSync,readFileSync} from "node:fs";
 import {createRequire} from "node:module";
 import path from "node:path";
 
@@ -44,6 +44,12 @@ try{
   const report=await(await ctx.request.get(origin+"/api/research/tasks/"+id+"/report",{headers:{Authorization:"Bearer "+access_token}})).json();
   assert.equal(report.answerability.status,"partially_answerable");
   assert.equal(report.answerability.bindings.length,1);
+  const downloaded=page.waitForEvent("download");
+  await page.getByRole("button",{name:"导出 Markdown"}).click();
+  const md=await downloaded;
+  assert.equal(md.suggestedFilename(),"ScholarLens-"+id+".md");
+  assert.equal(readFileSync(await md.path(),"utf8"),report.markdown);
+
   if (process.env.SCHOLARLENS_TEST_E91 === "true") {
     const work = page.url();
     await page.reload();

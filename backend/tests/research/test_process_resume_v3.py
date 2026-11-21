@@ -47,5 +47,6 @@ def test_hard_process_exit_and_resume(tmp_path):
         graph.close()
     assert previous and previous.items() <= {e.evidence_id: e.quote_hash for e in final.evidence_refs}.items()
     assert final.status in {"partial", "completed"} and final.budget.model_calls_used == 0
+    assert store.graph_attempts(1, final.run_id) == 2
     events = store.events(1, final.run_id)
     assert [e["seq"] for e in events] == list(range(1, len(events)+1))

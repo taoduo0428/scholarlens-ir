@@ -1,0 +1,1478 @@
+{
+  "E9.1": [
+    {
+      "case": 0,
+      "scope": [
+        "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+        "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+      ],
+      "sources": [
+        [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "abstract:chars:0-895",
+          "ae5cb4b22291a4d382f6211df1b8d8ff8eeadfac2b8b0f1f7b748bcb9b38a16f"
+        ],
+        [
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd",
+          "abstract:chars:0-893",
+          "5af9d64b93e86ee6cc4f50bf943e14b0435df1b6c94c01bd6080a530ae8673f4"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-17e19394a59d76709d53fd61"
+        ],
+        [
+          "q1",
+          "c-dfb46b28b59247418459d50c"
+        ],
+        [
+          "q1",
+          "c-6514b03d3744ccadc261aaea"
+        ],
+        [
+          "q1",
+          "c-dfb46b28b59247418459d50c"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 1,
+          "paper_id": "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd",
+          "topic": 1
+        },
+        {
+          "finding": 1,
+          "method": 1,
+          "paper_id": "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "topic": 2
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b"
+          ],
+          "information_not_found"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "information_not_found"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 1,
+      "scope": [
+        "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+        "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 研究主题 · source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374 主要结果 · source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374 主要结果 · source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 研究主题 · source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374 主要结果 · source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374 主要结果 · source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+      ],
+      "sources": [
+        [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "abstract:chars:0-898",
+          "b12fc9aeb14bf6805eacf2ec2aa732605e4d18caed12fa38f21d07786a7bf8ae"
+        ],
+        [
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc",
+          "abstract:chars:0-199",
+          "7572d074f61df0f61fe4902032e2a7d949fb5b0784f04994e2b9bf39ddb1c0a0"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-36deea8ec5780fa4ed6978bc"
+        ],
+        [
+          "q1",
+          "c-daafa17768d6dcfe642791db"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 0,
+          "paper_id": "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "topic": 0
+        },
+        {
+          "finding": 0,
+          "method": 1,
+          "paper_id": "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc",
+          "topic": 2
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374"
+          ],
+          "information_not_found"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "information_not_found"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 2,
+      "scope": [
+        "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+        "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 研究主题 · source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb 主要结果 · source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 研究主题 · source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb 主要结果 · source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+      ],
+      "sources": [
+        [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "abstract:chars:0-899",
+          "64631b4adf7e661fdc7a9284def4482e7cd6284a9a0f405fcca40913cdc5be7f"
+        ],
+        [
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b",
+          "abstract:chars:0-891",
+          "186c6edf675bb7c1eaf124673c95391f5bec0f266469f29ee7d92effa5b24720"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-eacf0e5e5f061817a756c342"
+        ],
+        [
+          "q1",
+          "c-eacf0e5e5f061817a756c342"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 0,
+          "paper_id": "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "topic": 0
+        },
+        {
+          "finding": 1,
+          "method": 0,
+          "paper_id": "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b",
+          "topic": 1
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "verified"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+          ],
+          "information_not_found"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "information_not_found"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 3,
+      "scope": [
+        "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+        "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e 主要结果 · source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e 主要结果 · source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+      ],
+      "sources": [
+        [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "abstract:chars:0-897",
+          "8846545a90a0ee9483395bf5abb34c805ec3209593cc1fb643d944d004f7b525"
+        ],
+        [
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6",
+          "abstract:chars:0-899",
+          "4a5a4efb65d6a3b4725d40fd7e31c142c4ac5219ed69b59dc6c5b0e3fbbf41b3"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-a1cbb42ab49a3e50666f4993"
+        ],
+        [
+          "q1",
+          "c-c9e15fd0cf001572ca28dbb8"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 0,
+          "paper_id": "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6",
+          "topic": 1
+        },
+        {
+          "finding": 0,
+          "method": 0,
+          "paper_id": "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "topic": 1
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e"
+          ],
+          "information_not_found"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "information_not_found"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 4,
+      "scope": [
+        "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+        "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105 主要结果 · source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105 主要结果 · source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+      ],
+      "sources": [
+        [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "abstract:chars:0-893",
+          "27cc41ed72a41fa6705327b9b99b07faa9eb3af3c61f18c0b23f366bccec32bb"
+        ],
+        [
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166",
+          "abstract:chars:0-507",
+          "ad977b0f0274f6eb8897873a31dad7abdfb26cb6bb4a4d3d2def9ec88b807ce9"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-ab36a44922c34dcb87cc666d"
+        ],
+        [
+          "q1",
+          "c-b468d8bbbe54551f4a8c8d31"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 1,
+          "paper_id": "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "topic": 1
+        },
+        {
+          "finding": 0,
+          "method": 1,
+          "paper_id": "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166",
+          "topic": 1
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105"
+          ],
+          "information_not_found"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "information_not_found"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 5,
+      "scope": [
+        "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+        "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580 主要结果 · source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580 主要结果 · source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+      ],
+      "sources": [
+        [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "abstract:chars:0-898",
+          "0093a6fe7504700ecdf79d56d81b32a3404faaa6bb436e3095170b130509f344"
+        ],
+        [
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8",
+          "abstract:chars:0-892",
+          "dc83156e25f65e139a07d4b0431d20c5048b4fc51d540585ef2ae113c10a54a7"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-d0b0f2439adfa96e099f92a8"
+        ],
+        [
+          "q1",
+          "c-b1dccdb52755336d2e87fe23"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 0,
+          "paper_id": "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "topic": 1
+        },
+        {
+          "finding": 0,
+          "method": 1,
+          "paper_id": "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8",
+          "topic": 1
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580"
+          ],
+          "information_not_found"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "information_not_found"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    }
+  ],
+  "E10": [
+    {
+      "case": 0,
+      "scope": [
+        "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+        "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。"
+      ],
+      "sources": [
+        [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "abstract:chars:0-895",
+          "ae5cb4b22291a4d382f6211df1b8d8ff8eeadfac2b8b0f1f7b748bcb9b38a16f"
+        ],
+        [
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd",
+          "abstract:chars:0-893",
+          "5af9d64b93e86ee6cc4f50bf943e14b0435df1b6c94c01bd6080a530ae8673f4"
+        ],
+        [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "abstract:chars:795-1261",
+          "0fd450216b9ae27093c80320b99e231b936a3946f07dffcf63782d4814723906"
+        ],
+        [
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd",
+          "abstract:chars:793-1110",
+          "31b5f669d909fa5d5288357c3585203b1872108cc1992a8ceed75609e5aa75c1"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-17e19394a59d76709d53fd61"
+        ],
+        [
+          "q1",
+          "c-dfb46b28b59247418459d50c"
+        ],
+        [
+          "q1",
+          "c-6514b03d3744ccadc261aaea"
+        ],
+        [
+          "q1",
+          "c-57324ca5f286e7c4b198db77"
+        ],
+        [
+          "q1",
+          "c-a62bdea710f3c0979770f0a2"
+        ],
+        [
+          "q1",
+          "c-dfb46b28b59247418459d50c"
+        ],
+        [
+          "q1",
+          "c-a62bdea710f3c0979770f0a2"
+        ],
+        [
+          "q2",
+          "c-d3a39e181d725b80cc55065c"
+        ],
+        [
+          "q2",
+          "c-95f4b285bf3dc01bd118b491"
+        ],
+        [
+          "q2",
+          "c-cfcf5c9fa667dea6a5cf07d7"
+        ],
+        [
+          "q3",
+          "c-85d9b68bf091dbced73ff9a8"
+        ],
+        [
+          "q3",
+          "c-5db71b0155ae35388f80173a"
+        ],
+        [
+          "q3",
+          "c-c513ac4fa5899bd05c4794eb"
+        ],
+        [
+          "q3",
+          "c-b8856f1d33d3a55a4e7a8b91"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 2,
+          "method": 2,
+          "paper_id": "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd",
+          "topic": 2
+        },
+        {
+          "finding": 2,
+          "method": 2,
+          "paper_id": "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "topic": 2
+        }
+      ],
+      "findings": [
+        {
+          "level": "derived_synthesis",
+          "premises": [
+            "c-85d9b68bf091dbced73ff9a8",
+            "c-5db71b0155ae35388f80173a",
+            "c-c513ac4fa5899bd05c4794eb",
+            "c-b8856f1d33d3a55a4e7a8b91"
+          ]
+        }
+      ],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "verified"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b"
+          ],
+          "verified"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "verified"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "verified"
+        ],
+        [
+          "limitations",
+          [
+            "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+            "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+          ],
+          "insufficient_evidence"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 1,
+      "scope": [
+        "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+        "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 研究主题 · source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374 主要结果 · source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374 主要结果 · source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+      ],
+      "sources": [
+        [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "abstract:chars:0-898",
+          "b12fc9aeb14bf6805eacf2ec2aa732605e4d18caed12fa38f21d07786a7bf8ae"
+        ],
+        [
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc",
+          "abstract:chars:0-199",
+          "7572d074f61df0f61fe4902032e2a7d949fb5b0784f04994e2b9bf39ddb1c0a0"
+        ],
+        [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "abstract:chars:798-1481",
+          "4075904b84d765fb38774a4a3318b3bb881883785db477b1c1565d41d665e2b6"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-36deea8ec5780fa4ed6978bc"
+        ],
+        [
+          "q1",
+          "c-daafa17768d6dcfe642791db"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 0,
+          "paper_id": "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "topic": 0
+        },
+        {
+          "finding": 0,
+          "method": 2,
+          "paper_id": "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc",
+          "topic": 2
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374"
+          ],
+          "dependency_open"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "dependency_open"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "dependency_open"
+        ],
+        [
+          "limitations",
+          [
+            "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+            "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 2,
+      "scope": [
+        "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+        "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 哪些原文把前提和结果连起来? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 研究方法 · source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+      ],
+      "sources": [
+        [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "abstract:chars:0-899",
+          "64631b4adf7e661fdc7a9284def4482e7cd6284a9a0f405fcca40913cdc5be7f"
+        ],
+        [
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b",
+          "abstract:chars:0-891",
+          "186c6edf675bb7c1eaf124673c95391f5bec0f266469f29ee7d92effa5b24720"
+        ],
+        [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "abstract:chars:799-1375",
+          "ecb6d1de2d3bcdd44d8b6fcf63420b3ff927ef970780037298a71038baa20aee"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-8392ab5f25c439131bfaaf2d"
+        ],
+        [
+          "q1",
+          "c-eacf0e5e5f061817a756c342"
+        ],
+        [
+          "q1",
+          "c-8392ab5f25c439131bfaaf2d"
+        ],
+        [
+          "q1",
+          "c-eacf0e5e5f061817a756c342"
+        ],
+        [
+          "q2",
+          "c-e3a334f0cf10a74bc7c53a2e"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 1,
+          "method": 0,
+          "paper_id": "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "topic": 1
+        },
+        {
+          "finding": 2,
+          "method": 2,
+          "paper_id": "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b",
+          "topic": 2
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "verified"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "verified"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "dependency_open"
+        ],
+        [
+          "limitations",
+          [
+            "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+            "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 3,
+      "scope": [
+        "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+        "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。"
+      ],
+      "sources": [
+        [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "abstract:chars:797-1188",
+          "5c2077f7c93230f1922b5a94fa2467a0607eafdbb27f932609464e48dda9354b"
+        ],
+        [
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6",
+          "abstract:chars:0-899",
+          "4a5a4efb65d6a3b4725d40fd7e31c142c4ac5219ed69b59dc6c5b0e3fbbf41b3"
+        ],
+        [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "abstract:chars:0-897",
+          "8846545a90a0ee9483395bf5abb34c805ec3209593cc1fb643d944d004f7b525"
+        ],
+        [
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6",
+          "abstract:chars:799-925",
+          "29628d31b2e4f114b6175cb4683edf5a5c6a4cd759618b031e2da3584dab99ea"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-8becc95db54066e65380d667"
+        ],
+        [
+          "q1",
+          "c-c9e15fd0cf001572ca28dbb8"
+        ],
+        [
+          "q1",
+          "c-6f207a8b68113c779e94d1dd"
+        ],
+        [
+          "q1",
+          "c-8becc95db54066e65380d667"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 2,
+          "paper_id": "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6",
+          "topic": 2
+        },
+        {
+          "finding": 1,
+          "method": 0,
+          "paper_id": "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "topic": 1
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e"
+          ],
+          "dependency_open"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "dependency_open"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "dependency_open"
+        ],
+        [
+          "limitations",
+          [
+            "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+            "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 4,
+      "scope": [
+        "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+        "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。",
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 主要结果 · source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105 主要结果 · source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+      ],
+      "sources": [
+        [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "abstract:chars:0-893",
+          "27cc41ed72a41fa6705327b9b99b07faa9eb3af3c61f18c0b23f366bccec32bb"
+        ],
+        [
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166",
+          "abstract:chars:0-507",
+          "ad977b0f0274f6eb8897873a31dad7abdfb26cb6bb4a4d3d2def9ec88b807ce9"
+        ],
+        [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "abstract:chars:793-1501",
+          "b3e9e41012cc8b5c3b7f5e022575d6059fe4c50bda48708bb2c1343c1de8b9e3"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-ab36a44922c34dcb87cc666d"
+        ],
+        [
+          "q1",
+          "c-b1755b9df73ef027be9d0dee"
+        ],
+        [
+          "q1",
+          "c-b468d8bbbe54551f4a8c8d31"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 0,
+          "method": 2,
+          "paper_id": "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "topic": 2
+        },
+        {
+          "finding": 0,
+          "method": 1,
+          "paper_id": "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166",
+          "topic": 1
+        }
+      ],
+      "findings": [],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "insufficient_evidence"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105"
+          ],
+          "dependency_open"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "dependency_open"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "dependency_open"
+        ],
+        [
+          "limitations",
+          [
+            "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+            "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+          ],
+          "dependency_open"
+        ]
+      ],
+      "status": "partially_answerable"
+    },
+    {
+      "case": 5,
+      "scope": [
+        "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+        "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+      ],
+      "queries": [
+        "在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。 原文直接说明了哪些相关事实? — 在这两篇论文的范围内写一段研究综述，梳理各自的方法、主要结果、差异和仍待解决的问题。"
+      ],
+      "sources": [
+        [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "abstract:chars:0-898",
+          "0093a6fe7504700ecdf79d56d81b32a3404faaa6bb436e3095170b130509f344"
+        ],
+        [
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8",
+          "abstract:chars:792-1397",
+          "efc9ae535cbde1ef960b508efce8c6e82dd8bae0a62d65e101ce0172dea3f0fa"
+        ],
+        [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "abstract:chars:798-1356",
+          "05f7b42e8cce92150fc4acb95323178f4e7d49715b79c67e607b4d42de04becd"
+        ],
+        [
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8",
+          "abstract:chars:0-892",
+          "dc83156e25f65e139a07d4b0431d20c5048b4fc51d540585ef2ae113c10a54a7"
+        ]
+      ],
+      "bindings": [
+        [
+          "q1",
+          "c-d0b0f2439adfa96e099f92a8"
+        ],
+        [
+          "q1",
+          "c-76652ec27f3fdfae97605cb3"
+        ],
+        [
+          "q1",
+          "c-58d643e07c8cbe7299a7ef0e"
+        ],
+        [
+          "q1",
+          "c-8af442edc8c6c4f644b1e24f"
+        ],
+        [
+          "q1",
+          "c-486756898d73fe047c15f3e6"
+        ],
+        [
+          "q1",
+          "c-87fafdf559fb7df097eb3720"
+        ],
+        [
+          "q1",
+          "c-b1dccdb52755336d2e87fe23"
+        ],
+        [
+          "q1",
+          "c-58d643e07c8cbe7299a7ef0e"
+        ],
+        [
+          "q1",
+          "c-486756898d73fe047c15f3e6"
+        ],
+        [
+          "q2",
+          "c-788ba7fbc63e5fa2f1aa062f"
+        ],
+        [
+          "q2",
+          "c-696e36bdbb21478b6509a71f"
+        ],
+        [
+          "q2",
+          "c-22cbaf8bb79866328bc96a8e"
+        ],
+        [
+          "q2",
+          "c-fd87db231b0c7a84d3be4fbf"
+        ],
+        [
+          "q2",
+          "c-fd3581515fd2d958854b8364"
+        ],
+        [
+          "q3",
+          "c-5db06f8d97e98fcbd0617d4c"
+        ],
+        [
+          "q3",
+          "c-f5d1ded71a635cffec0ddb41"
+        ],
+        [
+          "q3",
+          "c-7270bb35c472a3b14244107d"
+        ],
+        [
+          "q3",
+          "c-9bece8ea282e28d42edeef90"
+        ]
+      ],
+      "profiles": [
+        {
+          "finding": 2,
+          "method": 2,
+          "paper_id": "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "topic": 2
+        },
+        {
+          "finding": 2,
+          "method": 2,
+          "paper_id": "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8",
+          "topic": 2
+        }
+      ],
+      "findings": [
+        {
+          "level": "derived_synthesis",
+          "premises": [
+            "c-5db06f8d97e98fcbd0617d4c",
+            "c-f5d1ded71a635cffec0ddb41",
+            "c-7270bb35c472a3b14244107d",
+            "c-9bece8ea282e28d42edeef90"
+          ]
+        }
+      ],
+      "fields": [
+        [
+          "topic",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580"
+          ],
+          "verified"
+        ],
+        [
+          "topic",
+          [
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580"
+          ],
+          "verified"
+        ],
+        [
+          "finding",
+          [
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "verified"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580"
+          ],
+          "verified"
+        ],
+        [
+          "method",
+          [
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "verified"
+        ],
+        [
+          "overview",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "verified"
+        ],
+        [
+          "limitations",
+          [
+            "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+            "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+          ],
+          "insufficient_evidence"
+        ]
+      ],
+      "status": "partially_answerable"
+    }
+  ]
+}

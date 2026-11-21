@@ -70,7 +70,11 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         try:
             versions = bind_versions(registry_dir)
             retrieval_policy = os.getenv("SCHOLARLENS_RETRIEVAL_POLICY", "V1")
-            if os.getenv("SCHOLARLENS_E91_ENABLED", "").lower() == "true":
+            if os.getenv("SCHOLARLENS_E10_ENABLED", "").lower() == "true":
+                retrieval_policy = "E10"
+            elif retrieval_policy == "E10":
+                raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
+            elif os.getenv("SCHOLARLENS_E91_ENABLED", "").lower() == "true":
                 retrieval_policy = "E9.1"
             elif retrieval_policy == "E9.1":
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
@@ -82,7 +86,7 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 retrieval_policy = "W4"
             elif retrieval_policy == "W4":
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
-            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1"}:
+            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             with worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,
@@ -106,8 +110,10 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
     @api.get("/tasks/{tid}")
     def detail(tid: UUID, user=Depends(accounts.current)):
         state, rev = lookup(user["id"], tid)
-        return {"state": state, "revision": rev, "plan_metadata": store.plan_metadata(user["id"], tid),
-                "provider_usage": store.usage(user["id"], tid)}
+        attempts = store.graph_attempts(user["id"], tid)
+        return {"graph_attempts": attempts, "graph_reentries": None if attempts is None else attempts - 1,
+                "state": state, "revision": rev, "plan_metadata": store.plan_metadata(user["id"], tid),
+                "provider_usage": store.usage(user["id"], tid), "trace_ids": store.trace_ids(user["id"], tid)}
 
     @api.get("/tasks/{tid}/events")
     def events(tid: UUID, after_seq: int = 0, user=Depends(accounts.current)):

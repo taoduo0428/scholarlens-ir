@@ -4,6 +4,18 @@ ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读�
 
 在线访问：[scholarlens.lingion.cc.cd](https://scholarlens.lingion.cc.cd/)。华为云运行，经 Cloudflare Tunnel 提供 HTTPS，个人电脑关机后仍可访问。
 
+## E10 开发分支验收
+
+|状态|范围|
+|---|---|
+|已实现并测过|隔离 ES 检索、任务恢复、账号隔离、原句核验、浏览器创建和 Markdown 导出。|
+|已实现，依赖外部环境|真实供应方验收脚本及 GitHub Actions 工作流模板，分别需要项目模型配置和 workflow 写权限。|
+|实验中|带双篇原文前提的研究综述。未见论文组 E10 为 2/12。|
+|尚未实现|面向任意研究问题的可靠综合。E13–E16 仍属设计范围。|
+|需要人工独立验证|111 题已完成 AI Silver 裁定。人工 Gold 当前为 0。|
+
+[本轮报告和复现入口](docs/agent-v6/FINAL_CLOSURE_REPORT.md)
+
 ## E9.1 研究工作台与 E10 评审
 
 集成分支 `zjl` 提供按论文和问题节点核验的研究报告。服务端可用 `SCHOLARLENS_E91_ENABLED=true` 选择该策略。报告公开了独立组的成功与失败样例、人工评审进度、浏览器回归记录和运行时变更。

@@ -1,0 +1,54 @@
+{
+  "corpus": "49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "salt": "scholar-v6-independent-1",
+  "pairs": [
+    [
+      "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+      "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+    ],
+    [
+      "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+      "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+    ],
+    [
+      "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+      "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+    ],
+    [
+      "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+      "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+    ],
+    [
+      "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+      "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+    ],
+    [
+      "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+      "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+    ],
+    [
+      "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+      "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+    ],
+    [
+      "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+      "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+    ],
+    [
+      "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+      "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+    ],
+    [
+      "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+      "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+    ],
+    [
+      "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+      "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+    ],
+    [
+      "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+      "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+    ]
+  ]
+}

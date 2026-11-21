@@ -222,7 +222,7 @@ class ResearchState(Contract):
     actions: list[ActionRecord] = Field(default_factory=list, max_length=30)
     decisions: list[Decision] = Field(default_factory=list, max_length=30)
     budget: Budget = Field(default_factory=Budget)
-    retrieval_policy: Literal["V1", "V2", "V3", "V4", "V5", "V6", "V7", "W4", "E9", "E9.1"] = "V1"
+    retrieval_policy: Literal["V1", "V2", "V3", "V4", "V5", "V6", "V7", "W4", "E9", "E9.1", "E10"] = "V1"
     field_requirements: list[AnswerRequirement] = Field(default_factory=list, max_length=6)
     evidence_questions: dict[Id, Id] = Field(default_factory=dict, max_length=30)
     question_reads: dict[Id,list[Id]] = Field(default_factory=dict,max_length=6)
