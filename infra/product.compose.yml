@@ -1,6 +1,7 @@
 name: scholarlens-product
 services:
   api:
+    image: ${SCHOLARLENS_IMAGE:-scholarlens:local}
     build:
       context: ..
       dockerfile: infra/ScholarLens.Dockerfile

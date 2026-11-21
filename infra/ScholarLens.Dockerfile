@@ -6,10 +6,14 @@ COPY frontend/ ./
 ENV VITE_RESEARCH_ENABLED=true
 RUN npm run build:production
 
-FROM python:3.11-slim-bookworm
+FROM python:3.11-slim-trixie
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     SCHOLARLENS_RUNTIME_DIR=/var/lib/scholarlens FRONTEND_DIST=/srv/frontend
 WORKDIR /srv
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends --only-upgrade openssl libssl3t64 zlib1g \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir --upgrade setuptools==84.2.1 wheel==0.48.0
 COPY backend/requirements-lock.txt backend/requirements-lock.txt
 COPY backend/research/requirements.txt backend/research/constraints-tested.txt backend/research/pdf-layout-requirements.txt backend/research/
 RUN pip install --no-cache-dir -r backend/requirements-lock.txt -r backend/research/requirements.txt -r backend/research/pdf-layout-requirements.txt \
