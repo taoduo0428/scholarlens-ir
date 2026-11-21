@@ -58,7 +58,7 @@ jobs:
         run: |
           python -m venv "$RUNNER_TEMP/auditor"
           "$RUNNER_TEMP/auditor/bin/pip" install -r tools/audit/requirements.txt
-          sed '/^#/d;/^-c/d;/^$/d' backend/requirements-lock.txt backend/research/requirements.txt backend/research/constraints-tested.txt > "$RUNNER_TEMP/audit-locked.txt"
+          sed '/^#/d;/^-c/d;/^$/d' backend/requirements-lock.txt backend/research/requirements.txt backend/research/constraints-tested.txt backend/research/pdf-layout-requirements.txt | sort -u > "$RUNNER_TEMP/audit-locked.txt"
           "$RUNNER_TEMP/auditor/bin/pip-audit" --no-deps --disable-pip -r "$RUNNER_TEMP/audit-locked.txt"
       - name: Publish test counts
         if: always()

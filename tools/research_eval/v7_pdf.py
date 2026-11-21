@@ -63,7 +63,8 @@ def evaluate(pdf, xml):
                 matches.append(dict(record, jats_id=exact[0], cells=sum(map(len, grid))))
             else:
                 unmatched.append(record)
-    return dict(doi=DOI, license="CC BY 4.0", pdf_sha256=PDF_HASH, jats_sha256=XML_HASH,
+    return dict(doi=DOI, license="CC BY 4.0", engine="pdfplumber/"+pdfplumber.__version__,
+                pdf_sha256=PDF_HASH, jats_sha256=XML_HASH,
                 pages=pages, jats_tables=len(tables), jats_figures=len(root.findall(".//fig")),
                 kinds=dict(kinds), exact_tables=matches, unmatched_candidates=unmatched,
                 unmatched_references=sorted(set(tables) - seen), elapsed_seconds=round(time.monotonic()-started, 3))

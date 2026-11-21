@@ -1,6 +1,7 @@
 {
   "doi": "10.1371/journal.pone.0102799",
   "license": "CC BY 4.0",
+  "engine": "pdfplumber/0.11.11",
   "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
   "jats_sha256": "dacebe67fcabd7057895bd587a96c5ebbcc272163a1a4bd61879ddd0583ef49d",
   "pages": 12,
@@ -58,5 +59,5 @@
     }
   ],
   "unmatched_references": [],
-  "elapsed_seconds": 2.86
+  "elapsed_seconds": 3.047
 }
