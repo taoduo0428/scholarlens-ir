@@ -89,8 +89,13 @@ def attribution(text, previous=""):
         fields.add("research_objective")
     if owned and re.search(r"\b(?:posed? the question|examined? whether|investigated here|to address (?:this|the) (?:issue|problem)|we (?:also )?consider)\b", text, re.I):
         fields.add("research_objective")
-    if owned and re.search(r"\b(?:propos\w*|introduc\w*|develop\w*)\b.{1,150}\b(?:to|for)\s+\w+", text, re.I):
+    if owned and re.search(r"\b(?:propos\w*|introduc\w*|develop\w*)\b.{1,150}\b(?:in order to|to)\s+"
+                           r"(?:address|enable|evaluate|explain|extract|identify|improve|investigate|measure|minimi[sz]e|"
+                           r"model|predict|reduce|resolve|solve|study|test|understand)\b", text, re.I):
         fields.add("research_objective")
+    if owned and re.search(r"\bwe (?:also )?(?:address|tackle|investigate) (?:the |an? )?(?:problem|challenge|question) of\b|"
+                           r"(?:本文|本研究|我们)(?:聚焦|探讨|研究|解决).{2,45}(?:问题|难题)", text, re.I):
+        fields.add("research_problem")
     if "method" in legacy or PASSIVE.search(text):
         fields.add("methods")
     if "finding" in legacy or MEASURED.search(text):
@@ -171,7 +176,7 @@ def profiles(state, sources, candidates=()):
 
 
 PROFILE_FACETS = {
-    "objective": ("research_objective",),
+    "objective": ("research_objective",), "problem": ("research_problem",),
     "topic": ("research_objective", "research_problem", "methods", "reported_findings"),
     "method": ("methods",), "finding": ("reported_findings",), "dataset": ("datasets",),
     "metric": ("metrics",), "setting": ("experiment_settings",), "limitations": ("limitations", "future_work"),

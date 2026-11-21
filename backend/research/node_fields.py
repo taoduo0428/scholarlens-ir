@@ -78,7 +78,24 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
         from backend.research.descriptive_plan import comparison_subjects, requested_dimensions
         subjects = comparison_subjects(contract.goal) if independent and one and research_type == "description" else []
         typed = requested_dimensions(intent_goal)
-        if subjects and typed and not any(f.operation == "layout" for f in
+        from backend.research.study_brief import brief_remainder, named_problem_method
+        title = named_problem_method(contract.goal) if independent and scope else None
+        if (title and len(title) <= 500 and node.requirement.kind == "source_fact"
+                and (contract.answer_type == "causal_chain" or (one and research_type == "description"))
+                and not any(field_for(node, contract, part, 1).operation in {"layout", "quote"}
+                            for part in requests(contract.goal))):
+            for facet in ("problem", "method"):
+                label = {"problem": "研究问题", "method": "研究方法"}[facet] if chinese else facet
+                request = f"《{title}》 · {label}"
+                field = field_for(node, contract, request, len(fields) + 1)
+                fields.append(field.model_copy(update={"required_title": title, "facet": facet,
+                    "operation": "fact", "min_evidence": 1, "min_papers": 1,
+                    "acceptance": f"Source explicitly states the {facet} of this study."}))
+            if one:
+                for request in brief_remainder(contract.goal):
+                    field = field_for(node, contract, request, len(fields) + 1)
+                    fields.append(field.model_copy(update={"required_title": title, "min_evidence": 1}))
+        elif subjects and typed and not any(f.operation == "layout" for f in
                 [field_for(node, contract, part, 1) for part in requests(contract.goal)]):
             for subject in subjects:
                 for dim in typed:
