@@ -21,7 +21,7 @@ E11 的 2/28 对应 Wilson 95% 区间 2.0%–22.7%，27/28 对应 82.3%–99.4%�
 
 ## 复核
 
-重查本轮 E11 Silver 轨迹。在 65 道没有给出直接答案的正例中，共有 224 个待回答字段。服务记录的第一个受阻环节，218 个为 `attribution_or_responsiveness`（原句归属或与问题的相关性），6 个为 `binding`（证据绑定）。可用 `scores.json` 选取 `expected` 为 `answerable` 或 `partially_answerable` 且 `direct_count` 为 0 的任务，逐项统计任务报告 `answerability.fields[*].first_observed_loss`。这些数字按字段计数，归因来自服务自身的运行记录。
+重查本轮 E11 Silver 轨迹。在 65 道没有给出直接答案的正例中，共有 220 个待回答字段。服务记录的第一个受阻环节，213 个为 `attribution_or_responsiveness`（原句归属或与问题的相关性），6 个为 `binding`（证据绑定），1 个为 `conflict`（证据冲突）。可用 `scores.json` 选取 `expected` 为 `answerable` 或 `partially_answerable` 且 `direct_count` 为 0 的任务，逐项统计任务报告 `answerability.fields[*].first_observed_loss`。运行 `python -m tools.research_eval.v7_refusal_audit <E11 回放目录>` 可逐题比对已发布评分并复核统计。上一版误用了较早一轮的字段数。这里按最终回放中的字段计数，归因来自服务运行记录。[机器审计结果](refusal-audit.json)
 
 五题中，两道研究目标比较分别给出了两篇论文的出处。三道设计评审只给出了一侧的研究陈述，未覆盖两侧全部分析单位、数据表示和目标。其中一题的提取句带有上一句的文献引用尾部。这解释了为什么 5/70 适合衡量直接回答出现率，仍需按字段评审回答完整性。
 

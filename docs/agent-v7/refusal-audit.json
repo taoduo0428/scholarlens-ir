@@ -1,0 +1,13 @@
+{
+  "evaluation": "E11 AI Silver",
+  "tasks": 111,
+  "positive_tasks_without_direct_answer": 65,
+  "fields_in_these_tasks": 220,
+  "first_observed_loss": {
+    "attribution_or_responsiveness": 213,
+    "binding": 6,
+    "conflict": 1
+  },
+  "labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
+  "scores_sha256": "a31290331ed7849b77c12090789f33b7ef3ff4cb73444163361504075717ff64"
+}
