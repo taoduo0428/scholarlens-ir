@@ -3,8 +3,8 @@
 Run only after freezing a candidate. Never expose expected answers to the graph.
 """
 import argparse
-from hashlib import sha256
 import json
+from hashlib import sha256
 from pathlib import Path
 from tempfile import TemporaryDirectory
 

@@ -1,7 +1,7 @@
 """Second-family confirmation of named-paper excerpts within a multi-paper scope."""
 import argparse
-from hashlib import sha256
 import json
+from hashlib import sha256
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
@@ -44,9 +44,11 @@ def main():
                     report=t["report"]
                     released=[c for c in report["claims"] if c["claim_id"] in report["sections"]["verified"]]
                     exact=any(c["statement"]==sentences(p["abstract"])[0] and c["paper_ids"]==[p["paper_id"]] for c in released)
-                    rows.append(dict(case=i,scope=list(docs),kind=kind,correct_excerpt=exact,
-                                partial=report.get("answerability",{}).get("status")=="partially_answerable",
-                                released=bool(released),tools=t["budget"]["tool_calls_used"],ms=t["elapsed_ms"]))
+                    rows.append({
+                        "case": i, "scope": list(docs), "kind": kind, "correct_excerpt": exact,
+                        "partial": report.get("answerability", {}).get("status") == "partially_answerable",
+                        "released": bool(released), "tools": t["budget"]["tool_calls_used"], "ms": t["elapsed_ms"],
+                    })
             (args.output/(policy+".json")).write_text(json.dumps(rows,indent=2),encoding="utf8")
             print(policy,len(rows),flush=True)
 
