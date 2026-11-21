@@ -1,7 +1,7 @@
 name: ScholarLens agent verification
 on:
   push:
-    branches: [codex/e10-research-closure]
+    branches: [zjl, codex/evo-full-product]
   pull_request:
     branches: [zjl]
   workflow_dispatch:
@@ -35,11 +35,12 @@ jobs:
           python -m tools.research_eval.v6_silver --public-only
       - name: Locked Python dependencies
         run: |
-          python -m pip install -r backend/requirements-lock.txt -r backend/research/requirements.txt
+          python -m pip install -r backend/requirements-lock.txt -r backend/research/requirements.txt -r backend/research/pdf-layout-requirements.txt
           python -m pip check
       - name: Python checks
         run: |
           python -m ruff check backend tools/research_eval --select E9,F63,F7,F82
+          python -m pytest -q backend/tests/test_health_probes.py backend/tests/research/test_budget_enforcement.py backend/tests/research/test_pdf_layout.py backend/tests/research/test_e11_intelligence.py backend/tests/research/test_project_memory.py backend/tests/research/test_descriptive_plan.py
           python -m pytest -q backend/tests/test_agent.py backend/tests/test_ai_responses.py backend/tests/test_agent_harness_reporting.py backend/tests/research/test_e10_profiles.py backend/tests/research/test_e10_operational.py backend/tests/research/test_e10_boundaries.py backend/tests/research/test_runtime_receipts.py backend/tests/research/test_workspace_recovery.py backend/tests/research/test_research_tools.py --junitxml=unit-results.xml
       - name: Frontend checks
         working-directory: frontend
@@ -49,6 +50,10 @@ jobs:
           npm run verify:structure
           npm run build
           npm audit --audit-level=moderate
+      - name: Validate local service packaging
+        run: |
+          docker compose -f infra/product.compose.yml config -q
+          docker build -f infra/ScholarLens.Dockerfile -t scholarlens-ci .
       - name: Python dependency advisories
         run: |
           python -m venv "$RUNNER_TEMP/auditor"
