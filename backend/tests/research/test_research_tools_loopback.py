@@ -1,6 +1,8 @@
 """Opt-in read-only integration for the isolated local ScholarLens ES deployment."""
 
 import os
+import json
+from pathlib import Path
 import time
 
 import pytest
@@ -15,7 +17,17 @@ from backend.research.tools import EsCorpus, ToolRegistry
 def test_real_readonly_keyword_and_original_passage():
     with Elasticsearch("http://127.0.0.1:9200", request_timeout=5, max_retries=0) as es:
         info = es.info()
-        assert (info["cluster_name"], info["version"]["number"]) == ("scholarlens-local", "8.19.23")
+        assert info["version"]["number"] == "8.19.23"
+        if isolated := os.getenv("SCHOLARLENS_ISOLATED_UPLOAD_CONFIG"):
+            path = Path(isolated).resolve(strict=True)
+            assert path.is_relative_to(Path("tools/audit/reports").resolve(strict=True))
+            identity = json.loads(path.read_bytes())
+            assert path.parent.name == "full-backend-" + identity["nonce"]
+            assert info["cluster_name"] == identity["cluster"] == "scholarlens-acceptance-" + identity["nonce"]
+            assert info["cluster_uuid"] == identity["cluster_uuid"]
+            assert es.transport.node_pool.all()[0].base_url == identity["url"]
+        else:
+            assert info["cluster_name"] == "scholarlens-local"
         source = EsCorpus(es, Settings())
         tools = ToolRegistry(source, owner_id=1, scope=Scope(), generation=source.generation)
         t0 = time.perf_counter()
