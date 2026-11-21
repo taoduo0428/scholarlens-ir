@@ -10,7 +10,7 @@ from uuid import uuid4
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import END, START, StateGraph
 from langsmith import tracing_context
-from backend.research.telemetry import metering, traced
+from backend.research.telemetry import metering, span, traced
 
 from backend.research.context import working_context
 from backend.research import workspace_model
@@ -103,9 +103,11 @@ class ResearchGraph:
     def close(self):
         self.conn.close()
 
-    @traced("task")
     def run(self, owner: int, uid: str):
-        with tracing_context(enabled=False), metering(lambda row: self.store.record_usage(owner, uid, row)):
+        with span("task") as active, tracing_context(enabled=False), metering(lambda row: self.store.record_usage(owner, uid, row)):
+            self.store.enter_graph(owner, uid)
+            if active is not None and active.is_recording():
+                self.store.record_trace(owner, uid, format(active.get_span_context().trace_id, "032x"))
             self.graph.invoke(
                 {"owner": owner, "task": str(uid), "route": "retrieve"},
                 {"configurable": {"thread_id": str(uid)}, "recursion_limit": 32},

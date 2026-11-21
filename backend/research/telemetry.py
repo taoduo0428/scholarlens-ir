@@ -36,7 +36,7 @@ def span(phase):
         "research." + phase, record_exception=False, set_status_on_exception=False
     ) as active:
         try:
-            yield
+            yield active
         except Exception as exc:
             active.set_attribute("outcome", "error")
             category = (

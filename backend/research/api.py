@@ -110,8 +110,10 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
     @api.get("/tasks/{tid}")
     def detail(tid: UUID, user=Depends(accounts.current)):
         state, rev = lookup(user["id"], tid)
-        return {"state": state, "revision": rev, "plan_metadata": store.plan_metadata(user["id"], tid),
-                "provider_usage": store.usage(user["id"], tid)}
+        attempts = store.graph_attempts(user["id"], tid)
+        return {"graph_attempts": attempts, "graph_reentries": None if attempts is None else attempts - 1,
+                "state": state, "revision": rev, "plan_metadata": store.plan_metadata(user["id"], tid),
+                "provider_usage": store.usage(user["id"], tid), "trace_ids": store.trace_ids(user["id"], tid)}
 
     @api.get("/tasks/{tid}/events")
     def events(tid: UUID, after_seq: int = 0, user=Depends(accounts.current)):

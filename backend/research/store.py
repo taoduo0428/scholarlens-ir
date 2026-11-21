@@ -91,6 +91,12 @@ class ResearchStore:
                 task TEXT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE, provider TEXT NOT NULL,
                 input_tokens INTEGER, output_tokens INTEGER, cached_tokens INTEGER, latency_ms INTEGER)""")
             db.execute("CREATE INDEX IF NOT EXISTS usage_task ON provider_usage(task)")
+            db.execute("""CREATE TABLE IF NOT EXISTS task_traces(
+                task TEXT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE, trace_id TEXT NOT NULL,
+                PRIMARY KEY(task, trace_id))""")
+            db.execute("""CREATE TABLE IF NOT EXISTS graph_attempts(
+                task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
+                attempts INTEGER NOT NULL CHECK(attempts > 0))""")
             db.execute("""CREATE TABLE IF NOT EXISTS worker_requests(
                 task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
                 command TEXT NOT NULL CHECK(command IN ('cancelled','paused')))""")
@@ -182,6 +188,32 @@ class ResearchStore:
         if seal and revision >= seal["first_revision"]:
             if cls._plan_digest(state.question_plan, state.retrieval_policy) != seal["plan_sha256"]:
                 raise Conflict("question_plan_integrity")
+
+    def enter_graph(self, owner, task_id):
+        """Count graph admissions, including restarts, separately from tool and provider calls."""
+        with self._db(write=True) as db:
+            if self._owned(db, owner, task_id)["status"] in {"running", "queued"}:
+                db.execute("""INSERT INTO graph_attempts VALUES(?,1)
+                              ON CONFLICT(task) DO UPDATE SET attempts=attempts+1""", (str(task_id),))
+
+    def graph_attempts(self, owner, task_id):
+        with self._db() as db:
+            self._owned(db, owner, task_id)
+            row = db.execute("SELECT attempts FROM graph_attempts WHERE task=?", (str(task_id),)).fetchone()
+            return row[0] if row else None
+
+    def record_trace(self, owner, task_id, trace_id):
+        if len(trace_id) != 32 or any(c not in "0123456789abcdef" for c in trace_id) or int(trace_id, 16) == 0:
+            raise ValueError("invalid_trace_id")
+        with self._db(write=True) as db:
+            self._owned(db, owner, task_id)
+            db.execute("INSERT OR IGNORE INTO task_traces VALUES(?,?)", (str(task_id), trace_id))
+
+    def trace_ids(self, owner, task_id):
+        with self._db() as db:
+            self._owned(db, owner, task_id)
+            return [r[0] for r in db.execute(
+                "SELECT trace_id FROM task_traces WHERE task=? ORDER BY rowid", (str(task_id),))]
 
     def record_usage(self, owner, task_id, receipt):
         with self._db(write=True) as db:
