@@ -1,0 +1,2 @@
+{"paper_id":"fixture:cedar","title":"Cedar ranking trial","abstract":"Cedar used a lexical retriever on the Orchard benchmark. Under protocol A, it measured precision at five of 0.62.","fulltext":"","year":2020}
+{"paper_id":"fixture:birch","title":"Birch ranking trial","abstract":"Birch used a dense retriever on the Valley benchmark. Under protocol B, it measured recall at ten of 0.71.","fulltext":"","year":2021}

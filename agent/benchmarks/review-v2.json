@@ -1,0 +1,3288 @@
+{
+  "schema": "scholarlens-review-v2",
+  "source_commit": "82a3a083a07833892a2d7bd8d2436e6cee644b60",
+  "source_path": "data/kaggle_arxiv_papers_jsonl/arxiv_papers_final.jsonl",
+  "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "papers": [
+    {
+      "paper_id": "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+      "title": "A UNIFIED ALGORITHM FOR ACCELERATING EDIT-DISTANCE COMPUTATION VIA TEXT-COMPRESSION",
+      "source_row": 6,
+      "source_row_sha256": "cee6baba6adb898220dd5eb72ecea926bbc538f6c3347127c4fbfb2d1c51042b",
+      "abstract_sha256": "7cb1fb232b553ca78673e349706457590bd4f4cb6dd370f3361daf91996e38e2",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "chunk_id": "chunk:3245409f940504decf80cfa5307163c5905ecc789ec0ef78ab676a1fc9b514c6",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "029bedf8f5b2c28cf77b5683dd21cac11f1c48a4b16c56f11815aa2007d64f3a"
+        },
+        {
+          "paper_id": "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "chunk_id": "chunk:84be7a6089f1fb90c39257c703c798668269672f0e51dbc9c4d8bda4919ea739",
+          "field": "abstract",
+          "locator": "abstract:chars:1588-1854",
+          "start": 1654,
+          "end": 1854,
+          "quote_sha256": "9042976f40c67ae7bf0a7b6f7f2bd99c7c4b8f56a6c054e9b5a4304ec99d91df"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+      "title": "A Multipath Energy-Aware On demand Source Routing Protocol for Mobile Ad-Hoc Networks",
+      "source_row": 8,
+      "source_row_sha256": "b854b050d043a25afcfc5acea3ecfd68d45676ad6ff55e6e2c44ffde6e20335d",
+      "abstract_sha256": "ea2c77a9883d50f9a6b7d2ee9408a592c47bea0e8f3fb2129d342b245a02054b",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "chunk_id": "chunk:f1b13f2b01cf91aeb056a5dc3b1e876bf457ca89c3512996b07c89677f1f888d",
+          "field": "abstract",
+          "locator": "abstract:chars:0-746",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "8baaaeaa1f8b3af8a7ec65aff3936e946cb59d661ecfd3bf60c5a4e6d899ee6a"
+        },
+        {
+          "paper_id": "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "chunk_id": "chunk:f1b13f2b01cf91aeb056a5dc3b1e876bf457ca89c3512996b07c89677f1f888d",
+          "field": "abstract",
+          "locator": "abstract:chars:0-746",
+          "start": 546,
+          "end": 746,
+          "quote_sha256": "56e384dc0260c9f620948227fdc70cb55dc26728aca43a223627774d2a9b300c"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+      "title": "Enhancing XML Data Warehouse Query Performance by Fragmentation",
+      "source_row": 25,
+      "source_row_sha256": "88c375a9db3d3b3282adc6aa4fd0b96bfb8f206eb08a147bc4ac6de50fa371d8",
+      "abstract_sha256": "7d71e96f5124c8958ad6f14e28884832d1b4ba571c9e92e0a3ff9c461178df4b",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "chunk_id": "chunk:dbe90c60551e4357409576aae2670f0750222a1c8de4b96f31bb0b784359e7eb",
+          "field": "abstract",
+          "locator": "abstract:chars:0-877",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "39fcac505faaa99e74f88ebb8dc5f6007fd745c48baf0b81542564f4fbd17fe3"
+        },
+        {
+          "paper_id": "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "chunk_id": "chunk:dbe90c60551e4357409576aae2670f0750222a1c8de4b96f31bb0b784359e7eb",
+          "field": "abstract",
+          "locator": "abstract:chars:0-877",
+          "start": 677,
+          "end": 877,
+          "quote_sha256": "95018e0b7a192fb4cd2b9343b5233e4568ad3760dd17bececf9441e0df3f5e64"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+      "title": "Network Conduciveness with Application to the Graph-Coloring and Independent-Set Optimization Transitions",
+      "source_row": 56,
+      "source_row_sha256": "d7099ffc6f3881f048bbf66994ada9d06679ed6a537360a77f7f45e7d7a0c8de",
+      "abstract_sha256": "969b538339c99440c15c319189130daa0d3f442e11316704980cd5ef4506bbc6",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "chunk_id": "chunk:c5677eb6ef6e5824767a1e8d77e13571cc5eb215c9c0518b21fe888b7c1e9fbc",
+          "field": "abstract",
+          "locator": "abstract:chars:0-892",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "7676c1e960761883b121826800c5a384cf28bda32846eb6cefea829da7c148e3"
+        },
+        {
+          "paper_id": "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "chunk_id": "chunk:ee1e03a555e9ee93a0a350c3e8d7741c79a37fcc21636febbfc628b0ac9b6959",
+          "field": "abstract",
+          "locator": "abstract:chars:792-1319",
+          "start": 1119,
+          "end": 1319,
+          "quote_sha256": "31b09c8d5ccb7a0f52f9cb44786aa0d941129568b37565c721e74a7251b8e9c0"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+      "title": "Hierarchical information clustering by means of topologically embedded graphs",
+      "source_row": 187,
+      "source_row_sha256": "b71bdb1825e9abfcdf14a23f3614c7d0c840b31d2b1f88fab92254d9ec59f0fe",
+      "abstract_sha256": "781750e2824b5ea09eed36662490b9bfd668e9d5ea5ff5f50111d8479e58340c",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "chunk_id": "chunk:23f04aae62b2786f375f95bfc1907e32f065068578fe995e1a9624a2ebe1265d",
+          "field": "abstract",
+          "locator": "abstract:chars:0-899",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "c01781cd296a4615e4c22e303b6f62d4af84047b54c6d5dcaece6bdab3eb892e"
+        },
+        {
+          "paper_id": "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "chunk_id": "chunk:4723041bb28db69bf10cf65dde2be82104b03552ef42731ab643285d893f1ef2",
+          "field": "abstract",
+          "locator": "abstract:chars:799-1114",
+          "start": 914,
+          "end": 1114,
+          "quote_sha256": "d922b092c7507ea06115300cb58151804124029fe91c573304523251d8ce6e9e"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+      "title": "Putting Lipstick on Pig: Enabling Database-style Workflow Provenance",
+      "source_row": 204,
+      "source_row_sha256": "df5364f568811ca078765f4e0222d7a38f86b510fd8b94081bd782173811d835",
+      "abstract_sha256": "430e4e4a1ff15496b7f75966b7b47654d9087ba3355a7e2bf59850ba0ce26ea1",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "chunk_id": "chunk:98e7c3c04d87ad2d3841fee7c68cdcb884079c223824d3d38f27d69058f9fdf5",
+          "field": "abstract",
+          "locator": "abstract:chars:0-896",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "369f277c030bfb673f25dee4644cb65c3fec3a2e54b2b42c3c92b85af4fb21c0"
+        },
+        {
+          "paper_id": "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "chunk_id": "chunk:10b1996b0cf44938ac6ed59bc35b94f9d862c5d88de11fe627614f1c5ec48bbc",
+          "field": "abstract",
+          "locator": "abstract:chars:796-1260",
+          "start": 1060,
+          "end": 1260,
+          "quote_sha256": "33b5ea515fb790792b6ab9ce7389fff069f9fca1e5bea3c23976ea4670bf3110"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+      "title": "Clustering Dynamic Web Usage Data",
+      "source_row": 206,
+      "source_row_sha256": "b45518690e3ebda8145970ef5563a36007b9bdb44351d0533558bcb3487678bc",
+      "abstract_sha256": "20c6487b3e5b59472652bee6bdd58eb7b19139b6d57bc737e0d562caaed2247e",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "chunk_id": "chunk:bdc321f7d7707c2979ae7ae9696e5b00f5dd9e742ae30a43aeb2fb49ab875fd2",
+          "field": "abstract",
+          "locator": "abstract:chars:0-895",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "7304abd81ffc1906c05de52de830a061b3d299511ad9e19fb6f7410b980bdcc6"
+        },
+        {
+          "paper_id": "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "chunk_id": "chunk:78440605e215dbd1fc2410ee508224dd09894453a538356beec2c7708a9748ae",
+          "field": "abstract",
+          "locator": "abstract:chars:795-1267",
+          "start": 1067,
+          "end": 1267,
+          "quote_sha256": "72335aa92a878cae9bacf6d1520258f6030e27c48ea3434df092a35a56557ffd"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+      "title": "LogBase: A Scalable Log-structured Database System in the Cloud",
+      "source_row": 228,
+      "source_row_sha256": "a3bca38ca3003caad1e81072509dfdde4f1a19c0074b5c76187d50edb63bcf42",
+      "abstract_sha256": "8b100dd1634141ebedd76bbe885230641e7dd83b4dcb02e0e28b99e71f97f485",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "chunk_id": "chunk:513c2015ac049af521c7a0f60514b14ccdf1e9389071bf245a9138cdecb6e1e1",
+          "field": "abstract",
+          "locator": "abstract:chars:0-891",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "cdcd96f898578bece9d82dfc9f69af8447ddb594dc77877432ffb8d3fe3f9783"
+        },
+        {
+          "paper_id": "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "chunk_id": "chunk:cd90ac7592a0517a53ac2cf82c380b389d505df47369afff10c0ac084d7d9c66",
+          "field": "abstract",
+          "locator": "abstract:chars:791-1348",
+          "start": 1148,
+          "end": 1348,
+          "quote_sha256": "42c94b9963444ecfd227b6d0e94896845b2eaf488231c77279316507bd748b09"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+      "title": "Mining Frequent Itemsets over Uncertain Databases",
+      "source_row": 235,
+      "source_row_sha256": "bf51cef4ba2e7582bd971368cad20f3ccb9c924c9840c64fffd080ef54e51b2b",
+      "abstract_sha256": "f244fdcbb10d2c67e928ef510600a03622d4f07267720649d29a6840e35da3a1",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "chunk_id": "chunk:0d8d92092b716faba44db9349e2271b9d2ab9b590598a955e037f4763a77da24",
+          "field": "abstract",
+          "locator": "abstract:chars:0-894",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "bbed756a6c5c0590cc22ed002f2542edecea03ea4fabf783acb49be372047ef7"
+        },
+        {
+          "paper_id": "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "chunk_id": "chunk:c8c9ae764ac6afe441cf7d9b096471b37361f39e178fdb10e8fedb8ddc39e492",
+          "field": "abstract",
+          "locator": "abstract:chars:1587-1697",
+          "start": 1587,
+          "end": 1697,
+          "quote_sha256": "562fd43708a61aa1fcf64a4b961f760aae702b8fca399918f5007f4a9e57f78c"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+      "title": "Graph-Based Approaches to Clustering Network-Constrained Trajectory Data",
+      "source_row": 251,
+      "source_row_sha256": "13fd9bb05323ca5cfb054de1b13d41a420490e1553ee23fe80ffb3ee66ef523e",
+      "abstract_sha256": "0849fe83bf08b8d60d6dcd546cf7bb82561186a484d37ddffc1dec18203d1bfd",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "chunk_id": "chunk:a66f5ef6e7df41173bd774c712758fee64253058855decc306169db42e45ccef",
+          "field": "abstract",
+          "locator": "abstract:chars:0-898",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "55dd9219d3adee5b14f2ab26f0ee548f19b9d0469a910f76b992eb23f3070947"
+        },
+        {
+          "paper_id": "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "chunk_id": "chunk:a6c86c13b55b16865bcf5d1d77f983a12ded2098c7a13935f641fdd22e947fed",
+          "field": "abstract",
+          "locator": "abstract:chars:798-925",
+          "start": 798,
+          "end": 925,
+          "quote_sha256": "ab4e31af4881b6c5d53d69ed229ca827044a999b21ab7109bd8a1e13ea919440"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+      "title": "Using Differential Evolution for the Graph Coloring",
+      "source_row": 259,
+      "source_row_sha256": "ab61306db768bf5ab5445b80a19d7853e1dc39511ac3e46ddbcbe2e62ebaabd8",
+      "abstract_sha256": "1b8de5360c1c805c0301ecab798d9fb2031eb9f48817d31f166aded5cb9411bb",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "chunk_id": "chunk:5dc17feb450e05c0c1c15da75b4abd79bd79f30ebaac3fab74a6b037299fcb9d",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "cecb1927f7b17bd4c38a1f044d509b7828a045252fc2fe308921bcff653ca36a"
+        },
+        {
+          "paper_id": "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "chunk_id": "chunk:e42973d2a77b022ddf4a0fcc58cfee09c3c8bec96205e1d7614531c72542ebaa",
+          "field": "abstract",
+          "locator": "abstract:chars:797-1193",
+          "start": 993,
+          "end": 1193,
+          "quote_sha256": "9c8c0d28577b45619f625fe272cab6413556267f3e0cf38f613539cfdd6672ff"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+      "title": "Normalized Compression Distance of Multisets with Applications",
+      "source_row": 270,
+      "source_row_sha256": "21aed8f770a4efc192e0715ef488fdfc67acb82b32ab84a887d12715a0a5a85f",
+      "abstract_sha256": "001f793d419291d06bc006a0a91f1de91902ba5e2702617224355fc66f80acce",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "chunk_id": "chunk:a4c53d425a588ab58f531e9e25739cc16b1a2465f81b786f73f50e4208ca1fb5",
+          "field": "abstract",
+          "locator": "abstract:chars:0-898",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "96acb7fca82cbea67c98a21c398cb3e5c6a03e74e728afb34a0c1e1e2c24380d"
+        },
+        {
+          "paper_id": "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "chunk_id": "chunk:5e045939e17b47a30e6352e0ea903228fc55875572017bd1149e281f10e8ca80",
+          "field": "abstract",
+          "locator": "abstract:chars:798-1172",
+          "start": 972,
+          "end": 1172,
+          "quote_sha256": "e2df72c7f005690b2cbd41f47827add84b8d4de10b0dd1a1b5ac41443bfa6136"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+      "title": "A Triclustering Approach for Time Evolving Graphs",
+      "source_row": 273,
+      "source_row_sha256": "cd46792625cdd1212d750ffbdbcc3dc10c56dd6f20f5f6929977f50cdfc03cee",
+      "abstract_sha256": "3c3e3269b8733752c630459f99c08db92c5d4769b629273aaf10deb3e03c9a4f",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "chunk_id": "chunk:cfd85019bf2d31e58e2d7c053b5cea9d76caec9a2f3e84bd02472711f5d8e4f9",
+          "field": "abstract",
+          "locator": "abstract:chars:0-841",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "cc386ab95b21e7ee751939f2fc2367ba8ef9c65730acecc90f37fda6fa93e52f"
+        },
+        {
+          "paper_id": "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "chunk_id": "chunk:cfd85019bf2d31e58e2d7c053b5cea9d76caec9a2f3e84bd02472711f5d8e4f9",
+          "field": "abstract",
+          "locator": "abstract:chars:0-841",
+          "start": 641,
+          "end": 841,
+          "quote_sha256": "2a25fb6a3a51bfa21e8992b60c0c45adcb218dedff20cdb27cc32669e0b26339"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+      "title": "Exploring the limits of community detection strategies in complex networks",
+      "source_row": 321,
+      "source_row_sha256": "92a11ce7a64e3d3e9bd079aebc0b11fc2536f27ffd7851d9a52d966c1bfc58bc",
+      "abstract_sha256": "68c47b00398c47a7f4c979a3423af72595546c79dc8b97b5c87c6609ee814851",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "chunk_id": "chunk:c538614f96abfd99e30b30f757c0afe230bc40d8dad7e2bd54827b9017677057",
+          "field": "abstract",
+          "locator": "abstract:chars:0-887",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "ff9227ca0bbfe0e2f03e151acc6d62d080bf45ec44aaa2d226856b8e541c3fa9"
+        },
+        {
+          "paper_id": "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "chunk_id": "chunk:871932c9f83caea2e77f1b92bb319f56f6809e793c55fb285572c960bdc06424",
+          "field": "abstract",
+          "locator": "abstract:chars:787-1073",
+          "start": 873,
+          "end": 1073,
+          "quote_sha256": "de48c5d3916a1c10619d2d57a64c476fd59f6f744fed709f2ce8a2e6e5fc48dd"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+      "title": "Highly comparative feature-based time-series classification",
+      "source_row": 366,
+      "source_row_sha256": "235e17f88701ee1d38f20cf584acabade5af0361674fcd9a6ac5be8e36fa7d90",
+      "abstract_sha256": "38cabb075da4378dc34a66f2e071615779bc71a8509c7044eee61423f6a0cdd6",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "chunk_id": "chunk:20803921af075b12aa9df910245fdbc0c22352aa48f4e5493489135787a52c0f",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "fd49631886a9287a38f09ee5e6e1adc168c1f9f78ee66d1600f3f05fa441ad28"
+        },
+        {
+          "paper_id": "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "chunk_id": "chunk:28096cde40c119f432f85c0d290e9c01642fd9e45a8ab630c0743957918bc76e",
+          "field": "abstract",
+          "locator": "abstract:chars:1593-2243",
+          "start": 2043,
+          "end": 2243,
+          "quote_sha256": "fff1db4b17fb7bdf5e65363b5b7d19fb4edff38eb74a01c8b6d85877e00ca0d9"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+      "title": "Community detection in networks: Structural communities versus ground truth",
+      "source_row": 414,
+      "source_row_sha256": "738cc78858b98f5cc33974d9ad8f94b046fc3b3ebbccef98116c5297e3d2ac46",
+      "abstract_sha256": "34f0d2b4afe59f76c994398820fbaa74d8c2b38856c452183837b1211e494cbd",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "chunk_id": "chunk:1ca7d1dcef3b2ff28bab00f2d3827135a6baeaf6ade8970205d75d53eb9080ca",
+          "field": "abstract",
+          "locator": "abstract:chars:0-847",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "83858328a9e5d7b47e7068680888108bf1e58da09da65ca43458d9140c026952"
+        },
+        {
+          "paper_id": "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "chunk_id": "chunk:1ca7d1dcef3b2ff28bab00f2d3827135a6baeaf6ade8970205d75d53eb9080ca",
+          "field": "abstract",
+          "locator": "abstract:chars:0-847",
+          "start": 647,
+          "end": 847,
+          "quote_sha256": "c53b733cc80978b015cb3d7629984f4b496a3e99f4d255479711715fe86bab3c"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+      "title": "COMMUNITY DETECTION IN SPARSE NETWORKS VIA GROTHENDIECK'S INEQUALITY",
+      "source_row": 465,
+      "source_row_sha256": "fe9c74403bf050dc0f21ce957ff441ab9a58f7f8e56f52a0d75bcba6ec03ce5e",
+      "abstract_sha256": "fae948cd23235d77e7636fd1236ab3eed3bddfb49c5ffca877137b5fd995c44b",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "chunk_id": "chunk:5d04c6eb9704a1c372727d0ab8e2a8fd6fe91525a0763b3f14b563f36c9f28b2",
+          "field": "abstract",
+          "locator": "abstract:chars:0-751",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "cff3fa28437c15454289a17827688d57d14a1ae97f2d1aa4af6e6726bbb6dc63"
+        },
+        {
+          "paper_id": "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "chunk_id": "chunk:5d04c6eb9704a1c372727d0ab8e2a8fd6fe91525a0763b3f14b563f36c9f28b2",
+          "field": "abstract",
+          "locator": "abstract:chars:0-751",
+          "start": 551,
+          "end": 751,
+          "quote_sha256": "d94a2775b03af2dde3acbd9c9a05902a55759dcaae896ab94d82048705b2bd00"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+      "title": "LARGE DEVIATION, BASIC INFORMATION THEORY FOR WIRELESS SENSOR NETWORKS",
+      "source_row": 573,
+      "source_row_sha256": "a03c5b6a928d0c4b82a51df7db174b57b4510015831738e0d58a8d9004c4b1d1",
+      "abstract_sha256": "64008a0fa80939321fa35001511423abd77d7721129967c6f6cb936290375268",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "chunk_id": "chunk:d0736f4959a7bcc867bf5d06ee7e3c6f3d323ccb1f268ac0c31bc557b980831e",
+          "field": "abstract",
+          "locator": "abstract:chars:0-551",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "ed5066ee17b6b113cc3d7075dd33f0fb7ebc81507415a96e1404bf0dddddb579"
+        },
+        {
+          "paper_id": "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "chunk_id": "chunk:d0736f4959a7bcc867bf5d06ee7e3c6f3d323ccb1f268ac0c31bc557b980831e",
+          "field": "abstract",
+          "locator": "abstract:chars:0-551",
+          "start": 351,
+          "end": 551,
+          "quote_sha256": "56947bee8e310c4f4d469831b86cda1b38f3404656fb9557559d8f1b5020dba9"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+      "title": "Quantum Query as a State Decomposition",
+      "source_row": 588,
+      "source_row_sha256": "8d7d102767f3b3e066c9ffa844cc5be5137200097de2221be667c2392b47c169",
+      "abstract_sha256": "18a4c84024338b902c8a8cb4b8ef70dd649dee860975c246305879d21d1851c5",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "chunk_id": "chunk:f51e2be71c6bb21b209bfa4a41c817d208ad5cdb5d8add8bed1357eed8354840",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "7337f06dae65ce82fd6dbffcd742f4bc871fe31ca7ab938e3b0eb8125ffa5953"
+        },
+        {
+          "paper_id": "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "chunk_id": "chunk:ef7e795e9b2a3e4419423b865cf84a93554db7e3ed9264072de160459945d4ea",
+          "field": "abstract",
+          "locator": "abstract:chars:797-1080",
+          "start": 880,
+          "end": 1080,
+          "quote_sha256": "e57a9bbdba4c289420a7b4cbf73c1543ed915c2ae7a9111eff78a99173ae5d42"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+      "title": "Community detection in networks: Modularity optimization and maximum likelihood are equivalent",
+      "source_row": 623,
+      "source_row_sha256": "9830722d470c922f095243a903b5bdd4b88c0cf6c4ec79a4675b6df13113e5d6",
+      "abstract_sha256": "32751e808203056d95ffebbbbfd5732ad36d40d68d5664cd22fada00adf7b61c",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "chunk_id": "chunk:5c5e0327f1e76a9cb2e05e2d13c2fc6c5a88d3a576c44325c721da58491fd249",
+          "field": "abstract",
+          "locator": "abstract:chars:0-731",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "f3e1c512142b53ab565ad8529c4b2d5cde19d87bc2c9d255d0b0d60a2773db46"
+        },
+        {
+          "paper_id": "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "chunk_id": "chunk:5c5e0327f1e76a9cb2e05e2d13c2fc6c5a88d3a576c44325c721da58491fd249",
+          "field": "abstract",
+          "locator": "abstract:chars:0-731",
+          "start": 531,
+          "end": 731,
+          "quote_sha256": "fdfe6ec804c95c67ba7dcc58ae09f8784e0ebedae5e019eea075951fb512acb0"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+      "title": "Application of Wireless Sensor Networks for Indoor Temperature Regulation",
+      "source_row": 629,
+      "source_row_sha256": "fcd5c567fe0f18f9b22d10bbe125cefda4b50da3903fe99f0a441860d326705a",
+      "abstract_sha256": "325a5224736c555ae5eaee3d223595af8dcd2ba87e447a73424d85cf0d0303f1",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "chunk_id": "chunk:90e74f1e6b82d5675367784b530b870b054e8fb9db31e8800f41385b6221de69",
+          "field": "abstract",
+          "locator": "abstract:chars:0-850",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "356f52b1fdfec602df50207b5df79be34d09cc79116e2d4a683c99729ac643ed"
+        },
+        {
+          "paper_id": "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "chunk_id": "chunk:90e74f1e6b82d5675367784b530b870b054e8fb9db31e8800f41385b6221de69",
+          "field": "abstract",
+          "locator": "abstract:chars:0-850",
+          "start": 650,
+          "end": 850,
+          "quote_sha256": "6ccadadc81a1904f2d8b3ff824fc8adb94db896cf289d46263bb8f3b81c5c274"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+      "title": "Classification with the pot-pot plot",
+      "source_row": 647,
+      "source_row_sha256": "c4ac956af6e99a464dee74a19715d906ebf2e5017ac048ef1d094b38edd0a013",
+      "abstract_sha256": "30b1ef9a49b8a781332bd3525c2b34cc9266fb7f8597dbb600a1a1d4b048eb9a",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "chunk_id": "chunk:44a126dd8d999abec62bf5ebf972a7af613994d3c69e6f0af70581592732afd9",
+          "field": "abstract",
+          "locator": "abstract:chars:0-896",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "6abfd87ed65b687ec2ea58a6b45044e245755d00845de2ac88c863a876d350e5"
+        },
+        {
+          "paper_id": "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "chunk_id": "chunk:f42637b22a39811a230b2a485d631afdf2592fe841b6e37d8828644dda64db01",
+          "field": "abstract",
+          "locator": "abstract:chars:796-1133",
+          "start": 933,
+          "end": 1133,
+          "quote_sha256": "ebfbe64a2ccfeb7099fe2842b2119ad0e4d5bf21d134bf367bae0401165b3d66"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+      "title": "A dynamic multi-level collaborative filtering method for improved recommendations",
+      "source_row": 717,
+      "source_row_sha256": "c7fb35186df114ab8ed02e47cbd0db5246d74884ff9e044c18cd56a26b7e0780",
+      "abstract_sha256": "6588f8b3840ffc08002011d15a26c747143d5d2744c859d6f348e8c69c394beb",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "chunk_id": "chunk:8b0952eed990d76432f0ee2afe3de7cd6e4f752450de78f7acabc4dd619c1b0d",
+          "field": "abstract",
+          "locator": "abstract:chars:0-718",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "0622afdc02f03d444c156d99b3d79c109ff933615964c2f728016dcba84f8b1f"
+        },
+        {
+          "paper_id": "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "chunk_id": "chunk:8b0952eed990d76432f0ee2afe3de7cd6e4f752450de78f7acabc4dd619c1b0d",
+          "field": "abstract",
+          "locator": "abstract:chars:0-718",
+          "start": 518,
+          "end": 718,
+          "quote_sha256": "ed3c56f7da81c308e0fb7153f09182c65376adaf6e094641875b253813b1a420"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+      "title": "The Polynomial Method Strikes Back: Tight Quantum Query Bounds via Dual Polynomials",
+      "source_row": 816,
+      "source_row_sha256": "2b35b4ada9635fd7e6bb1d9c9ca98e125356569075001ab166c3d94025cbdb31",
+      "abstract_sha256": "e2cc1156b83bc1ae60803e9df96176cab4df1a5ec9b6e774cf332401179938d0",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "chunk_id": "chunk:672ac222e32eceb7f82768ded8e59468deeaaa72292b23ee67cf01212ab4f937",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "6ca537ba46016880307f9efb778ff50ab8546361b0c69fd7ef3e87c6677a0f88"
+        },
+        {
+          "paper_id": "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "chunk_id": "chunk:11c6120e29252fc544238e7f1e364f279280f9b5b345a00f2caec67c1a3ef35b",
+          "field": "abstract",
+          "locator": "abstract:chars:1593-2234",
+          "start": 2034,
+          "end": 2234,
+          "quote_sha256": "50ecc764f37744d8106fba7b2975b917638db7461b3c1141937b0d7fbbeba772"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+      "title": "Solving the Resource Constrained Project Scheduling Problem Using the Parallel Tabu Search Designed for the CUDA Platform 1",
+      "source_row": 823,
+      "source_row_sha256": "0ab40ed4f5082c34a6fbcba7840f7bdd11f0dc49d5b39dcd41ec2681f9958f93",
+      "abstract_sha256": "116fc9d902fcbb4be6f1930ce5c7b84f6fb64add6c6fadfc5391f28dedd50970",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "chunk_id": "chunk:6fab7ba5f69814ff89984e546bbf937eeee37547a00dd823074eff023fe290bc",
+          "field": "abstract",
+          "locator": "abstract:chars:0-787",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "121c61ea7a173590026d12fe2fc994c6cec60414afa7e05b791f42c90b81218f"
+        },
+        {
+          "paper_id": "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "chunk_id": "chunk:6fab7ba5f69814ff89984e546bbf937eeee37547a00dd823074eff023fe290bc",
+          "field": "abstract",
+          "locator": "abstract:chars:0-787",
+          "start": 587,
+          "end": 787,
+          "quote_sha256": "2e1c39421f40022b3d6967123b7f12c0b8d3d4c87f1df1aaf1a74b5437357080"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+      "title": "Adaptive strategy for superpixel-based region-growing image segmentation",
+      "source_row": 873,
+      "source_row_sha256": "7c4fdba38935f8d9041581ca3a408fc9f16bbb43fef1c1556064de121f4864f6",
+      "abstract_sha256": "bea5964ac418942942ef9445d5e1055bf6c05842c4a1704fc03be74d41ff542d",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "chunk_id": "chunk:d98485e639c9b0755e62d2e080ca118b4ba1514823552e91c29aeef5e7e96558",
+          "field": "abstract",
+          "locator": "abstract:chars:0-892",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "3f9b43cecc6adc6031bc278f886767ee72a403895f7cf985067dc45eed2a8e2c"
+        },
+        {
+          "paper_id": "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "chunk_id": "chunk:cb82da5ea3adf292d230fda7c30da8d9dd4454712ba82c8a2146ccbea86556b9",
+          "field": "abstract",
+          "locator": "abstract:chars:792-1193",
+          "start": 993,
+          "end": 1193,
+          "quote_sha256": "28847e57a3fba9a2a5aa43615348d85af145bb73f54b29d509a14058f524af63"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+      "title": "TED Talk Recommender Using Speech Transcripts",
+      "source_row": 961,
+      "source_row_sha256": "49ad921d9b964c3012ea8fee2be4543be511edb8c3930e2c324fe7aa6ea53ace",
+      "abstract_sha256": "0bc676aa4212ef7489aa9465391f4fa72ba769ca9d0e89b701ba2e04863805d0",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "chunk_id": "chunk:aed7d05ed045bdea83925babd9b79ba7c4a021052da84642fc067fab75a700c5",
+          "field": "abstract",
+          "locator": "abstract:chars:0-617",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "566184eade122da01c73b75e9cc335101fb26a6fd2cd06e1f55e23d000d621c6"
+        },
+        {
+          "paper_id": "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "chunk_id": "chunk:aed7d05ed045bdea83925babd9b79ba7c4a021052da84642fc067fab75a700c5",
+          "field": "abstract",
+          "locator": "abstract:chars:0-617",
+          "start": 417,
+          "end": 617,
+          "quote_sha256": "f291bbde1a2643301fca8c2717b153e6af80fdd448921cc8dc1926156f38a035"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+      "title": "Resource-constrained multi-project scheduling with activity and time flexibility",
+      "source_row": 1066,
+      "source_row_sha256": "c17399398a2bc4f759ea6f00b1de769567ac29443ad35d328da29ad09ea29200",
+      "abstract_sha256": "2aae48ac5233ef4a1e923fc5b602a8d8e590a0e91ceec9a5a4a42256fc840024",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "chunk_id": "chunk:8b63c591982285552e31d322cd378e11f254f831c3c8ada175dec9c6e446cadc",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "a5944e765736ded2dd987a9f6d41141a14fe3c8579b67a2f344906d071a0c5d7"
+        },
+        {
+          "paper_id": "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "chunk_id": "chunk:ab8b9f73abb04d3528b59badea088c6ae844b53305d8daaab9a7ba339198619b",
+          "field": "abstract",
+          "locator": "abstract:chars:797-1043",
+          "start": 843,
+          "end": 1043,
+          "quote_sha256": "456ae9052076293e57c45cdf50ab44d79ccd31d848cef93dbeb03307beaf42bd"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+      "title": "Mitigating Network Noise on Dragonfly Networks through Application-Aware Routing",
+      "source_row": 1204,
+      "source_row_sha256": "043a0d88d4513c1e182162a8cda579957f9dcc6303b42015248ed1e5c1eb9669",
+      "abstract_sha256": "b8f8555c9feb2854bbe2b28c2795fcad45f1d794a7819df0c5c2a14122eb9146",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "chunk_id": "chunk:5e92124357153cf466c2232298b178b4e2ee1a65b5d6427cba99cabbf31a7c70",
+          "field": "abstract",
+          "locator": "abstract:chars:0-889",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "b97780d9959c2685e8bed8dbc1afee6b47e8b0aed4a351920f5cdc9ba47dff37"
+        },
+        {
+          "paper_id": "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "chunk_id": "chunk:ea7e3b2eeb748e4d9208f05a1414e5edf8b81e9ff6f69a9cd4ed004e6d9ee918",
+          "field": "abstract",
+          "locator": "abstract:chars:789-1029",
+          "start": 829,
+          "end": 1029,
+          "quote_sha256": "f720c9ab48b71ac9a2092a81d15447ba18491dc8701640e7d8bbb3486549ff19"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+      "title": "Disentangle, align and fuse for multimodal and semi-supervised image segmentation",
+      "source_row": 1249,
+      "source_row_sha256": "ae871f07675b80425afdbce5d775724b2d1497ed9f24375e856e9d5c3785d247",
+      "abstract_sha256": "f0fbecdc13de53a2117347f82f4f280c28ebbe5dbea27f034a1c27bdc99d0cc6",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "chunk_id": "chunk:4543a20f9b3ed231e266a1f875ae3892cd489b55536d3d208fb30c5f75efcd2e",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "6b1c4ddfd93ddf1685e161078b697a36ef51cd30b2166e4875eb04a9b930516d"
+        },
+        {
+          "paper_id": "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "chunk_id": "chunk:f219c9ebab9b1287d448872e55e6b1957036f5a32460a97024caae5488b34ad9",
+          "field": "abstract",
+          "locator": "abstract:chars:797-1616",
+          "start": 1416,
+          "end": 1616,
+          "quote_sha256": "15e8f4cca6d4fbd57ff2cb7293ab70c4c81cdff15bc8949bf988511586c61acf"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+      "title": "Quadratic and Higher-Order Unconstrained Binary Optimization of Railway Rescheduling for Quantum Computing",
+      "source_row": 1723,
+      "source_row_sha256": "1fa795b2f3cf6f5d46c014d5820de5cafb8d18cc82f879c3552d4171cc36e1e7",
+      "abstract_sha256": "b5ad032111e8cb5252812f1e7e85033a34de7a5ee5221a23f6f9ea76a7318b90",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "chunk_id": "chunk:9e115589d57bf241819e672704d087086c39c2fd51f268057b21c28c0446349b",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "a372263e7960db0ee654d2f1dcd80aa429afc957be68227b9d1c602c341e2f20"
+        },
+        {
+          "paper_id": "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "chunk_id": "chunk:4cf6e8a1f4c230c2bb54f6a6ba5e8faf3cc00553ee2b3f7210d1b67357ebf33f",
+          "field": "abstract",
+          "locator": "abstract:chars:797-1237",
+          "start": 1037,
+          "end": 1237,
+          "quote_sha256": "d33b427bc7c32c9da4273df3b15e8897dc51e95a6b87a9ebe9546bc1bbecf99f"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+      "title": "An actor-critic algorithm with policy gradients to solve the job shop scheduling problem using deep double recurrent agents",
+      "source_row": 1770,
+      "source_row_sha256": "9051c4dcac3c5531422425a53a7b6235b96b2e329512b1921c4d0f3ca7f29a88",
+      "abstract_sha256": "7eef46585f71a5287f791bf91288a16886500b2142e2928557963983a37c88a0",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "chunk_id": "chunk:b6226de0deb3c177726edc93dcbce6f64f850485f018ba51aa3990f036421557",
+          "field": "abstract",
+          "locator": "abstract:chars:0-897",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "eccf044468f88c6d5aeed9ac1b9356810d54661427f972acd2a35c4f712d6b77"
+        },
+        {
+          "paper_id": "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "chunk_id": "chunk:5b960abeca8251600088b51f1567ed8d1e30d1a82b9bf20f5a2b985c2ca23f0d",
+          "field": "abstract",
+          "locator": "abstract:chars:797-1608",
+          "start": 1408,
+          "end": 1608,
+          "quote_sha256": "850cf92bae6032c93880974da78b4ee35a744fba1f64ef30e85d17f874c78eff"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+      "title": "CSSR: A Context-Aware Sequential Software Service Recommendation Model",
+      "source_row": 1804,
+      "source_row_sha256": "c85f13bf4cc17b21d6d1ff0cf61a17e1e6c567d5bd8ce3b9857b00760412886c",
+      "abstract_sha256": "f31e43bf0cce65bac1b31a007b94926c1924b398488e9dc96e1f65f37091b9ac",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "chunk_id": "chunk:d41b362c1c378253922ed18956eaa42ed7908b2f804e27295e953fd67525a0a7",
+          "field": "abstract",
+          "locator": "abstract:chars:0-777",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "a4575fbe07c2e1ccec56f4c7a9e03ae6c1c89af23bfab33938caab30fea5660b"
+        },
+        {
+          "paper_id": "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "chunk_id": "chunk:d41b362c1c378253922ed18956eaa42ed7908b2f804e27295e953fd67525a0a7",
+          "field": "abstract",
+          "locator": "abstract:chars:0-777",
+          "start": 577,
+          "end": 777,
+          "quote_sha256": "1983e1b6c307b72f1c4ca0349bd0f8c5232524acb5d6b5f1265a51ab6b03e484"
+        }
+      ]
+    },
+    {
+      "paper_id": "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+      "title": "Perceptron Collaborative Filtering",
+      "source_row": 2536,
+      "source_row_sha256": "8d3cc77526a32bd2dfb711318c0b50015c34c2a813d7551da2844afb6041e4cd",
+      "abstract_sha256": "7003fc32717289f6469d15f8138fc0dee59c5f6c38ac839ebc7418a7881802d6",
+      "navigation_anchors": [
+        {
+          "paper_id": "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "chunk_id": "chunk:8be2be7aff1d08474b43673b2a2144649915e2c46b059f8c00d793f94505f9c5",
+          "field": "abstract",
+          "locator": "abstract:chars:0-892",
+          "start": 0,
+          "end": 200,
+          "quote_sha256": "d11f610e529ca81be1f758b2dbe2ebc4c2a0e5ea3dae3320acd82bf8e9c3ca68"
+        },
+        {
+          "paper_id": "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "chunk_id": "chunk:d07341a94144c9b5330f6db77e40736411930f8f0a938933003248182503dccf",
+          "field": "abstract",
+          "locator": "abstract:chars:792-1120",
+          "start": 920,
+          "end": 1120,
+          "quote_sha256": "2fafd97c69e49b72e4e14409f82031a29a2fbc4e3b0868072392fcc2ac533d67"
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "task_id": "review-01-fact",
+      "category": "fact",
+      "task": "For collaborative filtering, what problem does neighbour selection address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-01-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing neighbour selection with preference prediction. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-01-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for neighbour selection affects the proposed method, then relate that dependency to preference prediction. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-01-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for preference prediction? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-01-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for neighbour selection and preference prediction decide what to use for cold-start users? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-01-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for cold-start users with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-02-fact",
+      "category": "fact",
+      "task": "For adaptive routing, what problem does battery-powered nodes address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-02-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing battery-powered nodes with application traffic on a Dragonfly interconnect. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-02-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for battery-powered nodes affects the proposed method, then relate that dependency to application traffic on a Dragonfly interconnect. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-02-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for application traffic on a Dragonfly interconnect? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-02-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for battery-powered nodes and application traffic on a Dragonfly interconnect decide what to use for a congested network? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-02-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a congested network with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-03-fact",
+      "category": "fact",
+      "task": "For database design, what problem does dependency tracking in workflows address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-03-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing dependency tracking in workflows with write-heavy workloads. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-03-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for dependency tracking in workflows affects the proposed method, then relate that dependency to write-heavy workloads. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-03-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for write-heavy workloads? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-03-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for dependency tracking in workflows and write-heavy workloads decide what to use for a multi-tenant transaction system? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-03-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a multi-tenant transaction system with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-04-fact",
+      "category": "fact",
+      "task": "For data warehouse design, what problem does fragmenting XML warehouses address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-04-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing fragmenting XML warehouses with uncertain itemset support. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-04-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for fragmenting XML warehouses affects the proposed method, then relate that dependency to uncertain itemset support. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-04-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for uncertain itemset support? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-04-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for fragmenting XML warehouses and uncertain itemset support decide what to use for an uncertain XML workload? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-04-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for an uncertain XML workload with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-05-fact",
+      "category": "fact",
+      "task": "For network communities, what problem does evaluation of network partitions address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-05-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing evaluation of network partitions with ground-truth communities. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-05-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for evaluation of network partitions affects the proposed method, then relate that dependency to ground-truth communities. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-05-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for ground-truth communities? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-05-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for evaluation of network partitions and ground-truth communities decide what to use for a network without labels? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-05-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a network without labels with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-06-fact",
+      "category": "fact",
+      "task": "For project scheduling, what problem does parallel tabu search address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-06-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing parallel tabu search with activity and time flexibility. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-06-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for parallel tabu search affects the proposed method, then relate that dependency to activity and time flexibility. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-06-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for activity and time flexibility? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-06-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for parallel tabu search and activity and time flexibility decide what to use for a manufacturing line with variable lot sizes? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-06-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a manufacturing line with variable lot sizes with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-07-fact",
+      "category": "fact",
+      "task": "For image segmentation, what problem does superpixel region merging address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-07-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing superpixel region merging with cross-modal alignment. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-07-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for superpixel region merging affects the proposed method, then relate that dependency to cross-modal alignment. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-07-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for cross-modal alignment? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-07-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for superpixel region merging and cross-modal alignment decide what to use for a partially labelled imaging dataset? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-07-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a partially labelled imaging dataset with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-08-fact",
+      "category": "fact",
+      "task": "For compression and similarity, what problem does edit-distance computation address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-08-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing edit-distance computation with distances between multisets. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-08-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for edit-distance computation affects the proposed method, then relate that dependency to distances between multisets. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-08-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for distances between multisets? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-08-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for edit-distance computation and distances between multisets decide what to use for a repeated-string workload? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-08-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a repeated-string workload with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-09-fact",
+      "category": "fact",
+      "task": "For data clustering, what problem does topologically embedded graphs address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-09-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing topologically embedded graphs with changes in web usage. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-09-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for topologically embedded graphs affects the proposed method, then relate that dependency to changes in web usage. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-09-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for changes in web usage? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-09-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for topologically embedded graphs and changes in web usage decide what to use for an evolving clickstream? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-09-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for an evolving clickstream with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-10-fact",
+      "category": "fact",
+      "task": "For wireless sensor networks, what problem does information-theoretic limits address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-10-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing information-theoretic limits with indoor temperature regulation. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-10-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for information-theoretic limits affects the proposed method, then relate that dependency to indoor temperature regulation. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-10-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for indoor temperature regulation? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-10-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for information-theoretic limits and indoor temperature regulation decide what to use for a network with intermittent sensors? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-10-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a network with intermittent sensors with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-11-fact",
+      "category": "fact",
+      "task": "For quantum queries, what problem does state decomposition address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-11-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing state decomposition with dual polynomials. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-11-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for state decomposition affects the proposed method, then relate that dependency to dual polynomials. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-11-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for dual polynomials? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-11-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for state decomposition and dual polynomials decide what to use for a new Boolean oracle? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-11-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a new Boolean oracle with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-12-fact",
+      "category": "fact",
+      "task": "For graph colouring, what problem does differential evolution address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-12-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing differential evolution with network conduciveness. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-12-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for differential evolution affects the proposed method, then relate that dependency to network conduciveness. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-12-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for network conduciveness? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-12-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for differential evolution and network conduciveness decide what to use for a new class of sparse graphs? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-12-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a new class of sparse graphs with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-13-fact",
+      "category": "fact",
+      "task": "For recommendations, what problem does video transcripts address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-13-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing video transcripts with repository context. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-13-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for video transcripts affects the proposed method, then relate that dependency to repository context. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-13-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for repository context? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-13-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for video transcripts and repository context decide what to use for an unseen software repository? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-13-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for an unseen software repository with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-14-fact",
+      "category": "fact",
+      "task": "For community estimation, what problem does sparse networks address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-14-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing sparse networks with modularity and likelihood. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-14-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for sparse networks affects the proposed method, then relate that dependency to modularity and likelihood. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-14-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for modularity and likelihood? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-14-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for sparse networks and modularity and likelihood decide what to use for a graph with unknown community sizes? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-14-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a graph with unknown community sizes with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-15-fact",
+      "category": "fact",
+      "task": "For graph-based clustering, what problem does network-constrained trajectories address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-15-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing network-constrained trajectories with edge structure over time. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-15-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for network-constrained trajectories affects the proposed method, then relate that dependency to edge structure over time. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-15-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for edge structure over time? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-15-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for network-constrained trajectories and edge structure over time decide what to use for a time-varying road network? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-15-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a time-varying road network with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:af9e97b778417177bf0ad932e738ea4eb2bfcc3930d850b7bd9eee80da6e98ee",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-16-fact",
+      "category": "fact",
+      "task": "For discrete scheduling, what problem does railway rescheduling constraints address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:d8efc63923d3a2e6cc108636ccdac77c45778508b0c2eda905d8e1ed279655d3",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-16-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing railway rescheduling constraints with job-shop policy gradients. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:7e4d865c0ca86a81eaf6799329773da5ed2b41085105e23f5939749e6949c38a",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-16-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for railway rescheduling constraints affects the proposed method, then relate that dependency to job-shop policy gradients. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-16-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for job-shop policy gradients? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-16-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for railway rescheduling constraints and job-shop policy gradients decide what to use for an unplanned disruption? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "source-sha256:159dd9b89e78322c2e3ebada938ff16be144a54c14de4757764db2616e5f776b",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:8c9ce7286f4c2ae814be45ec206261da5bfcb4f367ebb817149500a81112b568",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-16-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for an unplanned disruption with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+          "source-sha256:8a9b4aa25ae7f1bb971901839759afcf94fb63658f479e54537b7eccd471956e",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-17-fact",
+      "category": "fact",
+      "task": "For supervised classification, what problem does time-series features address and which input does it require? Quote the supporting passage and flag any unstated assumption.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:102cafeb0525eb29c0260c2c584b8378f098422b4514247d6bfdf043d8c02331",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:01a4b1536dd09fe923a003b481d8c0a6eb0c4a1cc112f329ba5aa3ac96357230",
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-17-comparison",
+      "category": "comparison",
+      "task": "Prepare a design review comparing time-series features with class potential functions. Give the unit of analysis, data representation and objective for each. Identify which statements are explicit.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:06b11301de5517bd31dd048c2b4c2742d1447112ede0e662ad627979fb98af88",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-17-multihop",
+      "category": "multihop",
+      "task": "Trace how the input for time-series features affects the proposed method, then relate that dependency to class potential functions. Cite each link and mark the cross-paper inference.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:4f4cb669ccb29cecb897d32a98b6562bb76679234af1a89724d9d8f1b1b58e7a",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:3ae8fe2942479dbfd0ee5dda186399756f34abdc424aafce2acc64e3a664dd88",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:ed9c8e662ba2736268c20972aa92889a283e61b40e3ac8e02dbad6cef596ebec",
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:3e8e1c25a61b0b2c64f1c2a3d118b3f3412a8980a0e91f79547f861098902e2e"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-17-metrics",
+      "category": "metrics",
+      "task": "Which quantitative evidence, bound or evaluation measure is actually reported for class potential functions? Record its value or definition, units, comparator and conditions, leaving missing fields unknown.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:6c876c317735777f7154a78a92c6e9e1ab879b13d12858529d13ad37f2f3246e",
+          "source-sha256:953418436d41978961138995d39f4c537648e66a2ce38706c99686f7e84c3ad1",
+          "source-sha256:5bd990fb4d95651a0db1a0ea93a0b7a49b4aa9c6bc095d2d355962acff160668",
+          "source-sha256:fc75f0187e83f038debe28b9ade46da2b14dad75cba2c0c9276e213266923ba3",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-17-comparability",
+      "category": "comparability",
+      "task": "Can measurements or bounds for time-series features and class potential functions decide what to use for a dataset with shifted class frequencies? Compare inputs, objectives and evaluation protocols. Give a ranking only if the comparison is supported.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:7f15a9599d65cf32b32598e57077ef187289b1c6b73ecbe8bf51be5ec2fc9ac4",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:0f580212a49da4e3ffbbe1afb3a48006c88efaad981fade7c33be718f7be1f2f",
+          "source-sha256:d4ca163ef14a990608eea6c939fee03a307712f01b68c2811bf7569587ae48f2",
+          "source-sha256:2ec52ee8d62aceadfa0d2fa26e734ed4e03524926ece9a15c8bbf69e6b7e015b",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:e1992dbd357f047934fd4862148948456eacd9979f882cc6bd7e6ed54c99bb8a",
+          "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    },
+    {
+      "task_id": "review-17-insufficient",
+      "category": "insufficient",
+      "task": "Does the available evidence guarantee deployment performance for a dataset with shifted class frequencies with a 20% relative gain over its current baseline? Identify the denominator, baseline and external-validity evidence needed to justify the guarantee.",
+      "scope": {
+        "paper_ids": [
+          "source-sha256:c7710c8f346447efa743290cb2dbd56b476bb3b47416c52915a1f6ce8db253c6",
+          "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "source-sha256:a0c9931c795a6f0ab3f1f97e944047610880c7fd053667446ec80ee5707d8b6c",
+          "source-sha256:e238d9c3e86968dd4bf8f62d45997f9e8f4718ec330f855551aa2723838028d0",
+          "source-sha256:09df7e348fcd202fc2c7539d4aeb70c4294fb1beba7cb7043272f051afceaa6f",
+          "source-sha256:bcb6f47d7e20eefaf178d83acecbb8e108196975c1940ab983992f908de7311a",
+          "source-sha256:02e20f2a21fd681bdab1fd35261b70f9bd03d98b4dc3414e30b6d104a0501beb",
+          "source-sha256:13540ee791d83dcb22ffa4351367d28e8d6ba7aeb7d434e83cdd601e9c152b5f"
+        ],
+        "fields": [
+          "abstract"
+        ]
+      },
+      "annotation_status": "pending_human_review",
+      "human_qrels": null,
+      "human_claim_judgments": null
+    }
+  ],
+  "annotation_template": {
+    "relevance_scale": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "claim_labels": [
+      "supported",
+      "contradicted",
+      "insufficient"
+    ],
+    "human_signoff": null
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "relevant_papers": {
+      "additionalProperties": {
+        "maximum": 3,
+        "minimum": 0,
+        "type": "integer"
+      },
+      "title": "Relevant Papers",
+      "type": "object"
+    },
+    "relevant_passages": {
+      "items": {
+        "maxItems": 2,
+        "minItems": 2,
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "string"
+          }
+        ],
+        "type": "array"
+      },
+      "title": "Relevant Passages",
+      "type": "array"
+    },
+    "required_fields": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Required Fields",
+      "type": "object"
+    },
+    "entailment_gold": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "enum": [
+              "verified",
+              "contradicted",
+              "unsupported"
+            ],
+            "type": "string"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Entailment Gold"
+    },
+    "gold_answer": {
+      "title": "Gold Answer",
+      "type": "string"
+    },
+    "expected_claims": {
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "title": "Expected Claims",
+      "type": "object"
+    },
+    "claim_support": {
+      "additionalProperties": {
+        "enum": [
+          "supported",
+          "unsupported",
+          "contradicted"
+        ],
+        "type": "string"
+      },
+      "title": "Claim Support",
+      "type": "object"
+    },
+    "evidence_alignment": {
+      "additionalProperties": {
+        "type": "boolean"
+      },
+      "title": "Evidence Alignment",
+      "type": "object"
+    },
+    "answerability": {
+      "enum": [
+        "answerable",
+        "partially_answerable",
+        "conflicted",
+        "not_comparable",
+        "insufficient_evidence",
+        "source_capability_mismatch",
+        "blocked_by_permission",
+        "unavailable_in_scope"
+      ],
+      "title": "Answerability",
+      "type": "string"
+    },
+    "contradiction": {
+      "title": "Contradiction",
+      "type": "boolean"
+    },
+    "comparability": {
+      "enum": [
+        "comparable",
+        "not_comparable",
+        "not_applicable"
+      ],
+      "title": "Comparability",
+      "type": "string"
+    },
+    "refusal_correctness": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Refusal Correctness"
+    },
+    "decomposition_correct": {
+      "title": "Decomposition Correct",
+      "type": "boolean"
+    },
+    "tool_selection_correct": {
+      "title": "Tool Selection Correct",
+      "type": "boolean"
+    },
+    "overall_task_success": {
+      "title": "Overall Task Success",
+      "type": "boolean"
+    },
+    "rationale": {
+      "minLength": 3,
+      "title": "Rationale",
+      "type": "string"
+    }
+  },
+  "required": [
+    "relevant_papers",
+    "relevant_passages",
+    "required_fields",
+    "gold_answer",
+    "expected_claims",
+    "claim_support",
+    "evidence_alignment",
+    "answerability",
+    "contradiction",
+    "comparability",
+    "refusal_correctness",
+    "decomposition_correct",
+    "tool_selection_correct",
+    "overall_task_success",
+    "rationale"
+  ],
+  "title": "Judgment",
+  "type": "object"
+}

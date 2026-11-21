@@ -1,0 +1,912 @@
+{
+  "dataset": {
+    "generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+    "groups": [
+      {
+        "family": "auction",
+        "papers": [
+          {
+            "abstract_sha256": "7a1fafb44cbe78a6ec90e07223821333c69ce307db1db3ca46719617d18f7785",
+            "opening": {
+              "chunk_id": "chunk:f4f0b12654f809eb1a0daa8323dc2779b0a984d564f48ff33df1616a117b22dd",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-899",
+              "paper_id": "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "quote_sha256": "a87df899ec83b3f9df5daa7803002eaf354c89fee0f1dd51cce6b9d44510ff42",
+              "start": 0
+            },
+            "paper_id": "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+            "source_row": 2265,
+            "title": "Machine Learning-Powered Combinatorial Clock Auction"
+          },
+          {
+            "abstract_sha256": "b58561bcf24b3d6067f0fd8b1b7021153da3b18ef008cd0ed984042752d45281",
+            "opening": {
+              "chunk_id": "chunk:f78d55f19f21898e763ea83ca242654b6a758eb905dbc7aefab3e14c897dcd88",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-836",
+              "paper_id": "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1",
+              "quote_sha256": "40ea4cccc35c9150b6b7986d69a2211fff624cc550b0049a3ddd62a1abb79aef",
+              "start": 0
+            },
+            "paper_id": "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1",
+            "source_row": 156,
+            "title": "Equilibrium strategy and population-size effects in lowest unique bid auctions"
+          }
+        ],
+        "split": "train",
+        "tasks": [
+          {
+            "category": "locate",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:f4f0b12654f809eb1a0daa8323dc2779b0a984d564f48ff33df1616a117b22dd",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-899",
+              "paper_id": "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "quote_sha256": "a87df899ec83b3f9df5daa7803002eaf354c89fee0f1dd51cce6b9d44510ff42",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1"
+            ],
+            "task": "在许可摘要中找到《Machine Learning-Powered Combinatorial Clock Auction》的开篇原句，定位到原文，并据此解释作者要解决什么问题。",
+            "task_id": "v3-auction-locate"
+          },
+          {
+            "category": "compare",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1"
+            ],
+            "task": "Compare the research objectives of “Machine Learning-Powered Combinatorial Clock Auction” and “Equilibrium strategy and population-size effects in lowest unique bid auctions”. What evidence from each abstract establishes its objective?",
+            "task_id": "v3-auction-compare"
+          },
+          {
+            "category": "conditions",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1"
+            ],
+            "task": "仅凭这两篇关于 auction 的英文摘要，能否判定同一实验条件下谁更好？分别说明可核对的条件与缺失项。",
+            "task_id": "v3-auction-conditions"
+          },
+          {
+            "category": "multihop",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1"
+            ],
+            "task": "For “Equilibrium strategy and population-size effects in lowest unique bid auctions”, trace the stated problem to the proposed approach. Which links across the two papers would require additional evidence?",
+            "task_id": "v3-auction-multihop"
+          },
+          {
+            "category": "noise",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:f78d55f19f21898e763ea83ca242654b6a758eb905dbc7aefab3e14c897dcd88",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-836",
+              "paper_id": "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1",
+              "quote_sha256": "40ea4cccc35c9150b6b7986d69a2211fff624cc550b0049a3ddd62a1abb79aef",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1"
+            ],
+            "task": "忽略这句无关的购物提醒。请给出《Equilibrium strategy and population-size effects in lowest unique bid auctions》摘要首句的原文和位置，再解释这句话。",
+            "task_id": "v3-auction-noise"
+          },
+          {
+            "category": "absent",
+            "human_judgment": null,
+            "known_missing": [
+              "typeset_coordinates",
+              "acknowledgements_page"
+            ],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:8f7bd8091118021a428de60fc035c71d292c0f9e3c8b02c773e6bd37b9ad2faf",
+              "source-sha256:e13f3f0469a7dabba162fa0f40a6ff18cfe76771e3745076342ae7faa8b735a1"
+            ],
+            "task": "Give the page number and typeset coordinates of both papers’ acknowledgements using only the two supplied plain-text abstracts.",
+            "task_id": "v3-auction-absent"
+          }
+        ]
+      },
+      {
+        "family": "scheduling",
+        "papers": [
+          {
+            "abstract_sha256": "ab7db01c487a4f38825329d7230d25d3400a5d9536e39c491f7315ecb247da40",
+            "opening": {
+              "chunk_id": "chunk:13adaebd027aa99a85c609087299b49ffffa5a11cc3a45a4f110fbb0c4fb61ca",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-890",
+              "paper_id": "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "quote_sha256": "489fafa80e0e9e4d38c41c5b98e304f5e67bc87b25fa6c26337832d54b5aa5bf",
+              "start": 0
+            },
+            "paper_id": "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+            "source_row": 3112,
+            "title": "Deep RL for Fast Long-Horizon Operations Scheduling on NASA's Carruthers Geocorona Observatory Mission"
+          },
+          {
+            "abstract_sha256": "05449bb64e1bff7e3ec820243ba8af60ae5e030b695898b9dd62679f37a2843c",
+            "opening": {
+              "chunk_id": "chunk:95922816babd7bc4479f8c96b77d92cf739474fa054001710fc2ccb8758162a1",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-892",
+              "paper_id": "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2",
+              "quote_sha256": "1bfe6c7ae27e5bdd6de742a9327f260d7f3875487211a9e2aad01dae2ebe0e19",
+              "start": 0
+            },
+            "paper_id": "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2",
+            "source_row": 3017,
+            "title": "A Study on Constraint Extraction and Exception Exclusion in Care Worker Scheduling"
+          }
+        ],
+        "split": "train",
+        "tasks": [
+          {
+            "category": "locate",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:13adaebd027aa99a85c609087299b49ffffa5a11cc3a45a4f110fbb0c4fb61ca",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-890",
+              "paper_id": "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "quote_sha256": "489fafa80e0e9e4d38c41c5b98e304f5e67bc87b25fa6c26337832d54b5aa5bf",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2"
+            ],
+            "task": "在许可摘要中找到《Deep RL for Fast Long-Horizon Operations Scheduling on NASA's Carruthers Geocorona Observatory Mission》的开篇原句，定位到原文，并据此解释作者要解决什么问题。",
+            "task_id": "v3-scheduling-locate"
+          },
+          {
+            "category": "compare",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2"
+            ],
+            "task": "Compare the research objectives of “Deep RL for Fast Long-Horizon Operations Scheduling on NASA's Carruthers Geocorona Observatory Mission” and “A Study on Constraint Extraction and Exception Exclusion in Care Worker Scheduling”. What evidence from each abstract establishes its objective?",
+            "task_id": "v3-scheduling-compare"
+          },
+          {
+            "category": "conditions",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2"
+            ],
+            "task": "仅凭这两篇关于 scheduling 的英文摘要，能否判定同一实验条件下谁更好？分别说明可核对的条件与缺失项。",
+            "task_id": "v3-scheduling-conditions"
+          },
+          {
+            "category": "multihop",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2"
+            ],
+            "task": "For “A Study on Constraint Extraction and Exception Exclusion in Care Worker Scheduling”, trace the stated problem to the proposed approach. Which links across the two papers would require additional evidence?",
+            "task_id": "v3-scheduling-multihop"
+          },
+          {
+            "category": "noise",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:95922816babd7bc4479f8c96b77d92cf739474fa054001710fc2ccb8758162a1",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-892",
+              "paper_id": "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2",
+              "quote_sha256": "1bfe6c7ae27e5bdd6de742a9327f260d7f3875487211a9e2aad01dae2ebe0e19",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2"
+            ],
+            "task": "忽略这句无关的购物提醒。请给出《A Study on Constraint Extraction and Exception Exclusion in Care Worker Scheduling》摘要首句的原文和位置，再解释这句话。",
+            "task_id": "v3-scheduling-noise"
+          },
+          {
+            "category": "absent",
+            "human_judgment": null,
+            "known_missing": [
+              "typeset_coordinates",
+              "acknowledgements_page"
+            ],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ed2375b2a1d045474b4b87b1da870219f5cc3659563a35abfd2754ee2f5c96e8",
+              "source-sha256:0e93ba0aae314d671c5363957f44bbcbcca57703ffd91dacd2c6b599c7f513e2"
+            ],
+            "task": "Give the page number and typeset coordinates of both papers’ acknowledgements using only the two supplied plain-text abstracts.",
+            "task_id": "v3-scheduling-absent"
+          }
+        ]
+      },
+      {
+        "family": "compression",
+        "papers": [
+          {
+            "abstract_sha256": "d3f226e8e143adf369e9502ef8f1d548fcfb049b20d0d645347a5067447a0bfe",
+            "opening": {
+              "chunk_id": "chunk:dd158850bbffb6ffa35313fa086060b380c2958df218753afad8e4e21e7f673a",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-893",
+              "paper_id": "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "quote_sha256": "4c3e7d92662cd8a1623704fba8caa488010228e98a08d9335520cc6b1f929ab8",
+              "start": 0
+            },
+            "paper_id": "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+            "source_row": 3054,
+            "title": "ProGIC: Progressive and Lightweight Generative Image Compression with Residual Vector Quantization"
+          },
+          {
+            "abstract_sha256": "23d04479396a12936a9459c5a15a563cf762ca6c4c34aa52eb131c2ea162b9d0",
+            "opening": {
+              "chunk_id": "chunk:5871434605152f103dcefba8ea6b0692e16548d6169450c715f65ab0cbad804c",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-718",
+              "paper_id": "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64",
+              "quote_sha256": "18fcec405a48aad330b4d1071dc5539d32cd559c16b1ac21caf82f0a0a92785a",
+              "start": 0
+            },
+            "paper_id": "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64",
+            "source_row": 2799,
+            "title": "Successive randomized compression: A randomized algorithm for the compressed MPO-MPS product"
+          }
+        ],
+        "split": "dev",
+        "tasks": [
+          {
+            "category": "locate",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:dd158850bbffb6ffa35313fa086060b380c2958df218753afad8e4e21e7f673a",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-893",
+              "paper_id": "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "quote_sha256": "4c3e7d92662cd8a1623704fba8caa488010228e98a08d9335520cc6b1f929ab8",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64"
+            ],
+            "task": "在许可摘要中找到《ProGIC: Progressive and Lightweight Generative Image Compression with Residual Vector Quantization》的开篇原句，定位到原文，并据此解释作者要解决什么问题。",
+            "task_id": "v3-compression-locate"
+          },
+          {
+            "category": "compare",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64"
+            ],
+            "task": "Compare the research objectives of “ProGIC: Progressive and Lightweight Generative Image Compression with Residual Vector Quantization” and “Successive randomized compression: A randomized algorithm for the compressed MPO-MPS product”. What evidence from each abstract establishes its objective?",
+            "task_id": "v3-compression-compare"
+          },
+          {
+            "category": "conditions",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64"
+            ],
+            "task": "仅凭这两篇关于 compression 的英文摘要，能否判定同一实验条件下谁更好？分别说明可核对的条件与缺失项。",
+            "task_id": "v3-compression-conditions"
+          },
+          {
+            "category": "multihop",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64"
+            ],
+            "task": "For “Successive randomized compression: A randomized algorithm for the compressed MPO-MPS product”, trace the stated problem to the proposed approach. Which links across the two papers would require additional evidence?",
+            "task_id": "v3-compression-multihop"
+          },
+          {
+            "category": "noise",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:5871434605152f103dcefba8ea6b0692e16548d6169450c715f65ab0cbad804c",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-718",
+              "paper_id": "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64",
+              "quote_sha256": "18fcec405a48aad330b4d1071dc5539d32cd559c16b1ac21caf82f0a0a92785a",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64"
+            ],
+            "task": "忽略这句无关的购物提醒。请给出《Successive randomized compression: A randomized algorithm for the compressed MPO-MPS product》摘要首句的原文和位置，再解释这句话。",
+            "task_id": "v3-compression-noise"
+          },
+          {
+            "category": "absent",
+            "human_judgment": null,
+            "known_missing": [
+              "typeset_coordinates",
+              "acknowledgements_page"
+            ],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:28e2f24568b78c5c154de43cb62dcc3e8b152b78a28a6cb8a084f4a916d27efd",
+              "source-sha256:af05a78c82520e40f957a3a973fca205845084677ca0fd07902389799675fa64"
+            ],
+            "task": "Give the page number and typeset coordinates of both papers’ acknowledgements using only the two supplied plain-text abstracts.",
+            "task_id": "v3-compression-absent"
+          }
+        ]
+      },
+      {
+        "family": "segmentation",
+        "papers": [
+          {
+            "abstract_sha256": "dcd00021c15f1b8a9ab44f603b13499c84909581bfcd86a2ef67f6e6e3da874c",
+            "opening": {
+              "chunk_id": "chunk:517998f04758ecbc5fa67bab6b1bee2b6170bddb7eabd29326126b9c92249643",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-894",
+              "paper_id": "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "quote_sha256": "014077e587ede153df212839fa019128e93af09d574ccf4cb4188f0737718f3c",
+              "start": 0
+            },
+            "paper_id": "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+            "source_row": 2607,
+            "title": "MambaEviScrib: Mamba and Evidence-Guided Consistency Enhance CNN Robustness for Scribble-Based Weakly Supervised Ultrasound Image Segmentation"
+          },
+          {
+            "abstract_sha256": "5130c6702ee56af714699d4ed97fb3c953d56c73e3e77cadacf6d9356d8fe14c",
+            "opening": {
+              "chunk_id": "chunk:50972e0fd7d73d4e657a0ccd2b40d7f489a435788d563eb056cd1263a8c13f86",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-894",
+              "paper_id": "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85",
+              "quote_sha256": "43216c4e744762299b032b8852809dc96bf00471d752061573655b78dd96efbe",
+              "start": 0
+            },
+            "paper_id": "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85",
+            "source_row": 2798,
+            "title": "WoundAmbit: Bridging State-of-the-Art Semantic Segmentation and Real-World Wound Care ⋆"
+          }
+        ],
+        "split": "dev",
+        "tasks": [
+          {
+            "category": "locate",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:517998f04758ecbc5fa67bab6b1bee2b6170bddb7eabd29326126b9c92249643",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-894",
+              "paper_id": "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "quote_sha256": "014077e587ede153df212839fa019128e93af09d574ccf4cb4188f0737718f3c",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85"
+            ],
+            "task": "在许可摘要中找到《MambaEviScrib: Mamba and Evidence-Guided Consistency Enhance CNN Robustness for Scribble-Based Weakly Supervised Ultrasound Image Segmentation》的开篇原句，定位到原文，并据此解释作者要解决什么问题。",
+            "task_id": "v3-segmentation-locate"
+          },
+          {
+            "category": "compare",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85"
+            ],
+            "task": "Compare the research objectives of “MambaEviScrib: Mamba and Evidence-Guided Consistency Enhance CNN Robustness for Scribble-Based Weakly Supervised Ultrasound Image Segmentation” and “WoundAmbit: Bridging State-of-the-Art Semantic Segmentation and Real-World Wound Care ⋆”. What evidence from each abstract establishes its objective?",
+            "task_id": "v3-segmentation-compare"
+          },
+          {
+            "category": "conditions",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85"
+            ],
+            "task": "仅凭这两篇关于 segmentation 的英文摘要，能否判定同一实验条件下谁更好？分别说明可核对的条件与缺失项。",
+            "task_id": "v3-segmentation-conditions"
+          },
+          {
+            "category": "multihop",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85"
+            ],
+            "task": "For “WoundAmbit: Bridging State-of-the-Art Semantic Segmentation and Real-World Wound Care ⋆”, trace the stated problem to the proposed approach. Which links across the two papers would require additional evidence?",
+            "task_id": "v3-segmentation-multihop"
+          },
+          {
+            "category": "noise",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:50972e0fd7d73d4e657a0ccd2b40d7f489a435788d563eb056cd1263a8c13f86",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-894",
+              "paper_id": "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85",
+              "quote_sha256": "43216c4e744762299b032b8852809dc96bf00471d752061573655b78dd96efbe",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85"
+            ],
+            "task": "忽略这句无关的购物提醒。请给出《WoundAmbit: Bridging State-of-the-Art Semantic Segmentation and Real-World Wound Care ⋆》摘要首句的原文和位置，再解释这句话。",
+            "task_id": "v3-segmentation-noise"
+          },
+          {
+            "category": "absent",
+            "human_judgment": null,
+            "known_missing": [
+              "typeset_coordinates",
+              "acknowledgements_page"
+            ],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:1cfb29c678046289fed1248412d77ac66171c8f868981206f08f9da3ae3197fb",
+              "source-sha256:c7ccab50a1c810fdc1346bb7b5dc2c73e7bf02ff682d5b6c96c06d5a4cd44d85"
+            ],
+            "task": "Give the page number and typeset coordinates of both papers’ acknowledgements using only the two supplied plain-text abstracts.",
+            "task_id": "v3-segmentation-absent"
+          }
+        ]
+      },
+      {
+        "family": "quantum",
+        "papers": [
+          {
+            "abstract_sha256": "684ed1b966373bc18ee0729c7c4583573e49551e29165076a40b1062e2574ac7",
+            "opening": {
+              "chunk_id": "chunk:dceb5775fc86e63572f17a9a63fa11718b8c3dae03c6241d227c010e6997a83e",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-897",
+              "paper_id": "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "quote_sha256": "40ee6aecd29a0e8f0195b06cb0274926ec9de01d2a4f0b76ed942ffa61575fcb",
+              "start": 0
+            },
+            "paper_id": "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+            "source_row": 447,
+            "title": "Quantum Filtering for Multiple Input Multiple Output Systems Driven by Arbitrary Zero-Mean Jointly Gaussian Input Fields *"
+          },
+          {
+            "abstract_sha256": "eaf3361d7a62227c14585e6eff5f934a4aa54a74222f74ab069e7e60d924825e",
+            "opening": {
+              "chunk_id": "chunk:ef328cc0cc973f4632366dcd3365add806547828c514511ad33fe6e861fef2ef",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-895",
+              "paper_id": "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5",
+              "quote_sha256": "26adc190b5a0a868976695bb5f0f2305c1beb0b484023dd447b5a4d50fae3265",
+              "start": 0
+            },
+            "paper_id": "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5",
+            "source_row": 2153,
+            "title": "The cross-sectional stock return predictions via quantum neural network and tensor network"
+          }
+        ],
+        "split": "unseen",
+        "tasks": [
+          {
+            "category": "locate",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:dceb5775fc86e63572f17a9a63fa11718b8c3dae03c6241d227c010e6997a83e",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-897",
+              "paper_id": "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "quote_sha256": "40ee6aecd29a0e8f0195b06cb0274926ec9de01d2a4f0b76ed942ffa61575fcb",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5"
+            ],
+            "task": "在许可摘要中找到《Quantum Filtering for Multiple Input Multiple Output Systems Driven by Arbitrary Zero-Mean Jointly Gaussian Input Fields *》的开篇原句，定位到原文，并据此解释作者要解决什么问题。",
+            "task_id": "v3-quantum-locate"
+          },
+          {
+            "category": "compare",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5"
+            ],
+            "task": "Compare the research objectives of “Quantum Filtering for Multiple Input Multiple Output Systems Driven by Arbitrary Zero-Mean Jointly Gaussian Input Fields *” and “The cross-sectional stock return predictions via quantum neural network and tensor network”. What evidence from each abstract establishes its objective?",
+            "task_id": "v3-quantum-compare"
+          },
+          {
+            "category": "conditions",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5"
+            ],
+            "task": "仅凭这两篇关于 quantum 的英文摘要，能否判定同一实验条件下谁更好？分别说明可核对的条件与缺失项。",
+            "task_id": "v3-quantum-conditions"
+          },
+          {
+            "category": "multihop",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5"
+            ],
+            "task": "For “The cross-sectional stock return predictions via quantum neural network and tensor network”, trace the stated problem to the proposed approach. Which links across the two papers would require additional evidence?",
+            "task_id": "v3-quantum-multihop"
+          },
+          {
+            "category": "noise",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:ef328cc0cc973f4632366dcd3365add806547828c514511ad33fe6e861fef2ef",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-895",
+              "paper_id": "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5",
+              "quote_sha256": "26adc190b5a0a868976695bb5f0f2305c1beb0b484023dd447b5a4d50fae3265",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5"
+            ],
+            "task": "忽略这句无关的购物提醒。请给出《The cross-sectional stock return predictions via quantum neural network and tensor network》摘要首句的原文和位置，再解释这句话。",
+            "task_id": "v3-quantum-noise"
+          },
+          {
+            "category": "absent",
+            "human_judgment": null,
+            "known_missing": [
+              "typeset_coordinates",
+              "acknowledgements_page"
+            ],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:eaae9792bae8f616ea68d5c8feea72c2dd1c77bf4dfce270d8c6941d17eed720",
+              "source-sha256:df8e2b9c3845bc1cf4ad254b738dd9ef99fb9f8ed1a6e560de9a188d717f59c5"
+            ],
+            "task": "Give the page number and typeset coordinates of both papers’ acknowledgements using only the two supplied plain-text abstracts.",
+            "task_id": "v3-quantum-absent"
+          }
+        ]
+      },
+      {
+        "family": "routing",
+        "papers": [
+          {
+            "abstract_sha256": "79caeb74daa0e6f3771ebee6c913e7176fbebbd3064c0499052976da62f2d412",
+            "opening": {
+              "chunk_id": "chunk:eb93e9d3cd33c372ffe3fc56a61910e6fd16cc2b3070b47e4df956df769d7a85",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-896",
+              "paper_id": "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "quote_sha256": "4d202be31a50c70eb3787c11768865af070a411ac025fe276a20884e79647bbf",
+              "start": 0
+            },
+            "paper_id": "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+            "source_row": 2977,
+            "title": "On Enhancing Delay SLAs in TCP Networks through Joint Routing and Transport Assistant Deployment"
+          },
+          {
+            "abstract_sha256": "e503b36ecb960b2184c5cc5dea9f2a6ec27b0ed9cd99820007239153e47c7194",
+            "opening": {
+              "chunk_id": "chunk:d847496f4dab2eb0891612d5e2d2567bd8f223bb4135f515eabf12537741e4c6",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-891",
+              "paper_id": "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028",
+              "quote_sha256": "ed6bfc2642a175511adf4b456c865ca368463f2a7b7b4a6191eba19e92b55dc9",
+              "start": 0
+            },
+            "paper_id": "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028",
+            "source_row": 3021,
+            "title": "Post-Earthquake Restoration of Electricity-Gas Distribution Systems with Damage Information Collection and Repair Vehicle Routing"
+          }
+        ],
+        "split": "unseen",
+        "tasks": [
+          {
+            "category": "locate",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:eb93e9d3cd33c372ffe3fc56a61910e6fd16cc2b3070b47e4df956df769d7a85",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-896",
+              "paper_id": "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "quote_sha256": "4d202be31a50c70eb3787c11768865af070a411ac025fe276a20884e79647bbf",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028"
+            ],
+            "task": "在许可摘要中找到《On Enhancing Delay SLAs in TCP Networks through Joint Routing and Transport Assistant Deployment》的开篇原句，定位到原文，并据此解释作者要解决什么问题。",
+            "task_id": "v3-routing-locate"
+          },
+          {
+            "category": "compare",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028"
+            ],
+            "task": "Compare the research objectives of “On Enhancing Delay SLAs in TCP Networks through Joint Routing and Transport Assistant Deployment” and “Post-Earthquake Restoration of Electricity-Gas Distribution Systems with Damage Information Collection and Repair Vehicle Routing”. What evidence from each abstract establishes its objective?",
+            "task_id": "v3-routing-compare"
+          },
+          {
+            "category": "conditions",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028"
+            ],
+            "task": "仅凭这两篇关于 routing 的英文摘要，能否判定同一实验条件下谁更好？分别说明可核对的条件与缺失项。",
+            "task_id": "v3-routing-conditions"
+          },
+          {
+            "category": "multihop",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028"
+            ],
+            "task": "For “Post-Earthquake Restoration of Electricity-Gas Distribution Systems with Damage Information Collection and Repair Vehicle Routing”, trace the stated problem to the proposed approach. Which links across the two papers would require additional evidence?",
+            "task_id": "v3-routing-multihop"
+          },
+          {
+            "category": "noise",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:d847496f4dab2eb0891612d5e2d2567bd8f223bb4135f515eabf12537741e4c6",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-891",
+              "paper_id": "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028",
+              "quote_sha256": "ed6bfc2642a175511adf4b456c865ca368463f2a7b7b4a6191eba19e92b55dc9",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028"
+            ],
+            "task": "忽略这句无关的购物提醒。请给出《Post-Earthquake Restoration of Electricity-Gas Distribution Systems with Damage Information Collection and Repair Vehicle Routing》摘要首句的原文和位置，再解释这句话。",
+            "task_id": "v3-routing-noise"
+          },
+          {
+            "category": "absent",
+            "human_judgment": null,
+            "known_missing": [
+              "typeset_coordinates",
+              "acknowledgements_page"
+            ],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:ffade048f17466903d4c9c491395bc337f6e42160f1a0b84386bbf8e6fc18403",
+              "source-sha256:5799f9efc5086eeaf04159a4d2545042c8bd2f81ba25eb8aa26ceef9943db028"
+            ],
+            "task": "Give the page number and typeset coordinates of both papers’ acknowledgements using only the two supplied plain-text abstracts.",
+            "task_id": "v3-routing-absent"
+          }
+        ]
+      },
+      {
+        "family": "privacy",
+        "papers": [
+          {
+            "abstract_sha256": "2e6d6ae2f892a90783c01c17a7940ea4a7b8b4e127f8b5873852d9ce6a112484",
+            "opening": {
+              "chunk_id": "chunk:c566b0c342f2963707acf6f1367afa0f37a39a17729184c061464205434b749d",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-892",
+              "paper_id": "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "quote_sha256": "7681c46233825fe3a53d21946b193c63565dbaf618236b3353ece21cfe3bc23b",
+              "start": 0
+            },
+            "paper_id": "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+            "source_row": 2779,
+            "title": "Would You Mind Being Watched by Machines? Privacy Concerns in Data Mining"
+          },
+          {
+            "abstract_sha256": "5809b8e854c6988c59986e581bf5899fa9e07599ae3eb21aa55dd0ec2de70b22",
+            "opening": {
+              "chunk_id": "chunk:dc299eb21e5f0f5f78354435ee1bd0d7f5ab828663a9686ef97f556a4f9b9273",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-889",
+              "paper_id": "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1",
+              "quote_sha256": "1af3515aaefbedce5ae12eb3d088147d342725019415007fb181af7bde8e4b74",
+              "start": 0
+            },
+            "paper_id": "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1",
+            "source_row": 2909,
+            "title": "FROM PRIVACY TO TRUST IN THE AGENTIC ERA: A TAXONOMY OF CHALLENGES IN TRUSTWORTHY FEDERATED LEARNING THROUGH THE LENS OF TRUST REPORT 2.0"
+          }
+        ],
+        "split": "unseen",
+        "tasks": [
+          {
+            "category": "locate",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:c566b0c342f2963707acf6f1367afa0f37a39a17729184c061464205434b749d",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-892",
+              "paper_id": "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "quote_sha256": "7681c46233825fe3a53d21946b193c63565dbaf618236b3353ece21cfe3bc23b",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1"
+            ],
+            "task": "在许可摘要中找到《Would You Mind Being Watched by Machines? Privacy Concerns in Data Mining》的开篇原句，定位到原文，并据此解释作者要解决什么问题。",
+            "task_id": "v3-privacy-locate"
+          },
+          {
+            "category": "compare",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1"
+            ],
+            "task": "Compare the research objectives of “Would You Mind Being Watched by Machines? Privacy Concerns in Data Mining” and “FROM PRIVACY TO TRUST IN THE AGENTIC ERA: A TAXONOMY OF CHALLENGES IN TRUSTWORTHY FEDERATED LEARNING THROUGH THE LENS OF TRUST REPORT 2.0”. What evidence from each abstract establishes its objective?",
+            "task_id": "v3-privacy-compare"
+          },
+          {
+            "category": "conditions",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1"
+            ],
+            "task": "仅凭这两篇关于 privacy 的英文摘要，能否判定同一实验条件下谁更好？分别说明可核对的条件与缺失项。",
+            "task_id": "v3-privacy-conditions"
+          },
+          {
+            "category": "multihop",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1"
+            ],
+            "task": "For “FROM PRIVACY TO TRUST IN THE AGENTIC ERA: A TAXONOMY OF CHALLENGES IN TRUSTWORTHY FEDERATED LEARNING THROUGH THE LENS OF TRUST REPORT 2.0”, trace the stated problem to the proposed approach. Which links across the two papers would require additional evidence?",
+            "task_id": "v3-privacy-multihop"
+          },
+          {
+            "category": "noise",
+            "human_judgment": null,
+            "known_missing": [],
+            "locator_target": {
+              "chunk_id": "chunk:dc299eb21e5f0f5f78354435ee1bd0d7f5ab828663a9686ef97f556a4f9b9273",
+              "end": 120,
+              "field": "abstract",
+              "locator": "abstract:chars:0-889",
+              "paper_id": "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1",
+              "quote_sha256": "1af3515aaefbedce5ae12eb3d088147d342725019415007fb181af7bde8e4b74",
+              "start": 0
+            },
+            "scope": [
+              "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1"
+            ],
+            "task": "忽略这句无关的购物提醒。请给出《FROM PRIVACY TO TRUST IN THE AGENTIC ERA: A TAXONOMY OF CHALLENGES IN TRUSTWORTHY FEDERATED LEARNING THROUGH THE LENS OF TRUST REPORT 2.0》摘要首句的原文和位置，再解释这句话。",
+            "task_id": "v3-privacy-noise"
+          },
+          {
+            "category": "absent",
+            "human_judgment": null,
+            "known_missing": [
+              "typeset_coordinates",
+              "acknowledgements_page"
+            ],
+            "locator_target": null,
+            "scope": [
+              "source-sha256:88aecb0914ec204d30f36d2766bcd558771789568c77b8e32fab42ca408771f3",
+              "source-sha256:3301149441ddb28a434220d6df31a280eaefaba64854e5fa6b66411d288882f1"
+            ],
+            "task": "Give the page number and typeset coordinates of both papers’ acknowledgements using only the two supplied plain-text abstracts.",
+            "task_id": "v3-privacy-absent"
+          }
+        ]
+      }
+    ],
+    "schema": "quality-suite-v3.1"
+  },
+  "sha256": "d76949631ceb1b903bfd507eab8f64f16ff63448f9c3cb35162b143dbbbb7be6"
+}

@@ -1,0 +1,161 @@
+{
+  "split": "dev",
+  "material": "public abstracts",
+  "dataset_sha256": "92577aca7727cbdacdd515064fa26ca5ab259d94b04be7a4b25667cc6b37ce7b",
+  "configuration": "default research graph and publisher, offline store budget",
+  "terminal_counts": {
+    "partial": 6
+  },
+  "source_count": 9,
+  "matched_chunks": 5,
+  "expected_chunks": 7,
+  "human_claim_support": null,
+  "tasks": [
+    {
+      "task": "graph-learning-fact",
+      "goal": "Which operation incorporates symbolic domain knowledge into graph neural networks?",
+      "status": "partial",
+      "stop": "plateau",
+      "source_count": 3,
+      "matched_chunks": 1,
+      "expected_chunks": 1,
+      "sections": {
+        "contradicted": 0,
+        "not_comparable": 0,
+        "uncertain": 0,
+        "verified": 1
+      },
+      "statements": [
+        "Here we investigate this aspect of GNNs empirically by employing an operation we term vertex-enrichment and denote the corresponding GNNs as V EGN N s."
+      ],
+      "unresolved": [
+        "s1: fact",
+        "No verified passage for requested paper source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304."
+      ],
+      "source_checks": "all passed",
+      "model_calls": 0
+    },
+    {
+      "task": "graph-learning-comparison",
+      "goal": "Compare vertex-enrichment and path reweighting as ways to modify GNNs.",
+      "status": "partial",
+      "stop": "plateau",
+      "source_count": 1,
+      "matched_chunks": 1,
+      "expected_chunks": 2,
+      "sections": {
+        "contradicted": 0,
+        "not_comparable": 0,
+        "uncertain": 0,
+        "verified": 1
+      },
+      "statements": [
+        "Using over 70 real-world datasets and substantial amounts of symbolic domain-knowledge, we examine the result of vertex-enrichment across 5 different variants of GNNs."
+      ],
+      "unresolved": [
+        "Insufficient verified cross-paper measurement pairs for the requested comparison.",
+        "s1: no verified claim for method",
+        "s3: no verified claim for metric",
+        "s4: no verified claim for protocol",
+        "No verified passage for requested paper source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304."
+      ],
+      "source_checks": "all passed",
+      "model_calls": 0
+    },
+    {
+      "task": "graph-learning-multihop",
+      "goal": "Trace the vertex-enrichment evaluation from its scale to the authors' conclusion.",
+      "status": "partial",
+      "stop": "plateau",
+      "source_count": 0,
+      "matched_chunks": 0,
+      "expected_chunks": 1,
+      "sections": {
+        "contradicted": 0,
+        "not_comparable": 0,
+        "uncertain": 0,
+        "verified": 0
+      },
+      "statements": [],
+      "unresolved": [
+        "s1: no verified claim for protocol",
+        "No verified passage for requested paper source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221.",
+        "No verified passage for requested paper source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304.",
+        "No passages passed publication-time source verification."
+      ],
+      "source_checks": "all passed",
+      "model_calls": 0
+    },
+    {
+      "task": "graph-learning-metrics",
+      "goal": "How many dataset and architecture variants were used to examine vertex enrichment?",
+      "status": "partial",
+      "stop": "plateau",
+      "source_count": 1,
+      "matched_chunks": 1,
+      "expected_chunks": 1,
+      "sections": {
+        "contradicted": 0,
+        "not_comparable": 0,
+        "uncertain": 0,
+        "verified": 1
+      },
+      "statements": [
+        "Using over 70 real-world datasets and substantial amounts of symbolic domain-knowledge, we examine the result of vertex-enrichment across 5 different variants of GNNs."
+      ],
+      "unresolved": [
+        "s1: no verified claim for method",
+        "No verified passage for requested paper source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304."
+      ],
+      "source_checks": "all passed",
+      "model_calls": 0
+    },
+    {
+      "task": "graph-learning-incomparable",
+      "goal": "Can empirical results from vertex-enrichment and CustomGNN be ranked on one common leaderboard?",
+      "status": "partial",
+      "stop": "plateau",
+      "source_count": 4,
+      "matched_chunks": 2,
+      "expected_chunks": 2,
+      "sections": {
+        "contradicted": 0,
+        "not_comparable": 0,
+        "uncertain": 0,
+        "verified": 0
+      },
+      "statements": [],
+      "unresolved": [
+        "Insufficient verified cross-paper measurement pairs for the requested comparison.",
+        "s1: no verified claim for fact",
+        "s2: no verified claim for metric"
+      ],
+      "source_checks": "all passed",
+      "model_calls": 0
+    },
+    {
+      "task": "graph-learning-unsupported",
+      "goal": "Which on-device battery current did CustomGNN draw during commercial deployment?",
+      "status": "partial",
+      "stop": "plateau",
+      "source_count": 0,
+      "matched_chunks": 0,
+      "expected_chunks": 0,
+      "sections": {
+        "contradicted": 0,
+        "not_comparable": 0,
+        "uncertain": 0,
+        "verified": 0
+      },
+      "statements": [],
+      "unresolved": [
+        "s1: no verified claim for fact",
+        "No verified passage for requested paper source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221.",
+        "No verified passage for requested paper source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304.",
+        "No passages passed publication-time source verification."
+      ],
+      "source_checks": "all passed",
+      "model_calls": 0
+    }
+  ]
+}

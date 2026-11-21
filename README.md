@@ -1,60 +1,94 @@
-﻿# ScholarLens — 智能学术论文检索与分析平台
+# ScholarLens — 学术论文检索与研究工作台
 
-ScholarLens 是《信息检索》课程大作业的规划项目，目标是将约 1000 篇学术论文处理为可检索、可解释、可问答的学术搜索系统。项目名称与课程要求中的 **Scholar IR System** 对应，最终以真实论文数据驱动课堂演示。
+ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读、收藏笔记、账户、受审核上传与证据助手连接成完整研究流程。
 
-## 当前状态（2026-10-22，开发第七周）
+在线访问：[scholarlens.lingion.cc.cd](https://scholarlens.lingion.cc.cd/)。华为云运行，经 Cloudflare Tunnel 提供 HTTPS，个人电脑关机后仍可访问。
 
-- 当前 Git 分支：`zjl`（组长个人开发分支）。
-- 本次仅完成项目规划、协议文档和目录初始化；尚未安装依赖、启动服务、下载 PDF、解析数据或创建索引。
-- GROBID、Elasticsearch、Sentence Transformers、模型 API、SQLite 以及 Lucene 调用方式均为拟议方案，须在会议中确认。
-- 文档中的 Mock 数据只用于前后端并行开发，不能作为真实检索结果或实验结论。
+## E11 研究工作台
 
-## 目标与范围
+研究报告支持逐篇展开原文及位置，按问题展示可答字段、缺失证据和比较依据。开发集成分支为 `zjl`。在 28 组独立测试中，有 27 组正确摘录指定原句，2 组生成有跨篇依据的综合。版本状态、使用入口、部署方法和复核命令见[工程交付记录](docs/agent-v7/FINAL_PRODUCT_ENGINEERING_REPORT.md)。
 
-1. 批量解析约 1000 篇 PDF，提取标题、作者、日期、机构、地址、页数、摘要和正文，生成可追溯的 XML/JSONL 数据。
-2. 基于 Elasticsearch（Lucene）建立六字段倒排索引，提供字段检索、BM25、分页、高亮、筛选和排序。
-3. 在数据和依赖条件满足后增加标题/摘要语义检索、BM25+向量的 RRF 混合检索，以及带来源引用的 RAG 问答。
-4. 提供 React 现代化 Web 界面和真实数据演示，并用 Precision@5、nDCG@10、延迟等指标比较检索方法。
+## E10 历史验收
 
-## 拟议技术栈（均待会议确认）
+|状态|范围|
+|---|---|
+|已实现并测过|隔离 ES 检索、任务恢复、账号隔离、原句核验、浏览器创建和 Markdown 导出。|
+|已实现，依赖外部环境|真实供应方验收脚本及 GitHub Actions 工作流模板，分别需要项目模型配置和 workflow 写权限。|
+|实验中|带双篇原文前提的研究综述。未见论文组 E10 为 2/12。|
+|尚未实现|面向任意研究问题的可靠综合。E13–E16 仍属设计范围。|
+|需要人工独立验证|111 题已完成 AI Silver 裁定。人工 Gold 当前为 0。|
 
-| 层次 | 方案 | 选择理由 | 关键条件/风险 |
-|---|---|---|---|
-| 数据处理 | Python + GROBID + XML/JSONL | GROBID 对学术 PDF 结构化解析成熟，Python 便于批处理和统计 | PDF 版式差异、GROBID 服务资源占用、字段缺失 |
-| 关键词检索 | Elasticsearch（基于 Lucene）+ BM25 | 提供倒排索引、字段权重、高亮和分页，满足课程要求 | 版本兼容、内存、是否必须直接调用 Java Lucene API待确认 |
-| 语义检索 | Sentence Transformers + Elasticsearch 向量能力 | 复用现有索引基础，支持标题/摘要和分块向量 | 模型下载与中文/英文效果、向量维度和存储成本 |
-| 混合检索 | BM25 + 向量 + RRF | 无需手工标定分数，便于对比实验 | 候选集大小与融合参数需通过验证集确定 |
-| API/RAG | FastAPI + 可配置大模型 API | 类型约束清晰、适合异步接口和 Python RAG 编排 | API Key、网络可用性、幻觉与引用完整性 |
-| 用户数据 | SQLite | 课程项目部署简单、零额外服务 | 并发与迁移能力有限 |
-| 前端 | React + Vite + Tailwind CSS + shadcn/ui | 组件化、响应式和快速原型 | 需要统一设计令牌和 API Mock 契约 |
-| 部署 | Docker | 固化运行条件，便于课堂复现 | 镜像体积、Windows 资源分配、服务编排待确认 |
+[本轮报告和复现入口](docs/agent-v6/FINAL_CLOSURE_REPORT.md)
 
-## 目录
+## E9.1 研究工作台与 E10 评审
 
-```text
-.
-├── AGENTS.md                 # 持续执行规则与协作约束
-├── README.md
-├── docs/                     # 需求、架构、协议、UI、计划和验收文档
-├── backend/                  # 组长：FastAPI、检索、RAG（当前仅占位）
-├── frontend/                 # 组员 B：React UI（当前仅占位）
-├── scripts/                  # 组员 A：解析、清洗、评测脚本（当前仅占位）
-├── infra/                    # 组长：Docker/Elasticsearch/GROBID 配置（当前仅占位）
-└── data/
-    └── sample/               # 可提交的少量 Mock JSONL（当前仅占位）
+集成分支 `zjl` 提供按论文和问题节点核验的研究报告。服务端可用 `SCHOLARLENS_E91_ENABLED=true` 选择该策略。报告公开了独立组的成功与失败样例、人工评审进度、浏览器回归记录和运行时变更。
+
+- [评测报告与逐题数据](docs/agent-v5/EVALUATION_REPORT.md)
+- [工程交付与验证命令](docs/agent-v5/FINAL_ENGINEERING_REPORT.md)
+- [人工评审填写说明](docs/agent-v5/ANNOTATION_GUIDE.md)
+- [后续实施规格](docs/agent-v5/IMPLEMENTATION_SPECS.md)
+
+## 本地 EvoResearch 工作台
+
+本开发分支的 [E9 评测报告](docs/agent-v4/EVALUATION_REPORT.md) 记录了 V1、V5、E9 的逐组结果、已知局限和复现命令。
+
+在隔离开发版中可创建深度研究任务，查看逐轮补检、带字符定位的证据与逐条结论，并导出 Markdown 报告。启动示例使用本机账户库和回环地址。
+
+[演示启动与操作](docs/agent-v2/USER_GUIDE.md) · [本地交付说明](docs/agent-v2/FINAL_HANDOFF.md) · [基线和消融结果](docs/agent-v2/EXPERIMENT_RESULTS.md)
+
+第二阶段演示支持依赖问题、证据缺口和跨论文条件对照。默认策略沿用 V1，在本地选择 V5 可体验实验版本。[启动与交接](docs/agent-v3/FINAL_HANDOFF.md) · [独立评测](docs/agent-v3/EXPERIMENT_RESULTS.md)
+
+## 从这里了解项目
+
+| 你要做什么 | 阅读入口 |
+| --- | --- |
+| 了解项目做了什么、有什么、原理和边界 | [项目总报告](docs/PROJECT_REPORT.md) |
+| 做课堂 PPT、准备讲稿和答辩 | [PPT 逐页底稿](docs/PPT_OUTLINE.md) |
+| 找技术规范、运行手册和历史记录 | [文档中心](docs/README.md) |
+| 核对当前线上版本和证据时间 | [当前状态](docs/operations/STATUS.md) |
+
+## 当前事实（2026-10-29）
+
+| 项目 | 已核对内容 |
+| --- | --- |
+| 数据 | 859 篇正式论文、49,420 个向量片段；正式库原 PDF 已接通 |
+| 检索 | 六字段 BM25、MiniLM CPU ONNX、RRF 混合与筛选高亮 |
+| 用户功能 | 注册/登录/退出、收藏分类、笔记、历史、对话、上传审核 |
+| 研究助手 | 原文检索、引用核验、个人 API 两协议、模型列表与连接测试 |
+| 最新外观 | 冰川白玻璃、顶部 Dock、三档材质、3D 最近阅读与大对话区 |
+| 在线应用 | `20261029T022557Z-d7cfc56`；同源 `/api` 正式构建 |
+| 接口 | FastAPI 0.2.1，公网 OpenAPI 65 路径、81 操作 |
+| 已有外部验收 | 指定个人模型真实生成与引用链已验收；全站共享 AI 仍默认未配置 |
+| 待办 | 邮件、XML、正式中文导入/多语言向量、相关性金标准、托管 CI 和容量验证 |
+
+原包 999 份 PDF 与正式元数据存于独立[数据 Release](https://github.com/Scarlett-web/scholarlens-ir/releases/tag/papers-originals-2026-10-28)。原包数量、正式库数量、向量片段数是不同概念。
+
+## 开发和运行
+
+### 本地4000篇扩容（2026-10-30）
+
+仅本地：4000篇关键词/向量索引已接通，新增3141份PDF全量哈希通过；旧859份PDF仍在服务器，本机不提供旧原件。
+首次执行 `backend/.venv/Scripts/python.exe -m backend.real_data_checks1 --prepare-expansion` 生成被忽略的本地配置。
+之后使用 `powershell -NoProfile -ExecutionPolicy Bypass -File infra/start-scholarlens1.ps1` 启动；API地址 http://127.0.0.1:8000/docs 。
+真实只读验证命令：`backend/.venv/Scripts/python.exe -m backend.real_data_checks1 --verify-expansion`。
+配置和报告见 `output/corpus-expansion/api-05/`；PID见 `backend/.runtime/api.pid`，日志/独立用户库见 `backend/.runtime/expansion-api/`。
+核心模块已按本地扩容要求改名为app1/pdf_access1/real_data_checks1，旧启动文件改为start-backend1/start-scholarlens1；调用引用已同步。
+本次不更新线上，以下859篇线上基线仍保留其原证据时间。后续前端适配和页面验收另行执行。
+
+已有数据、模型和依赖的 Windows 克隆根目录：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File infra/start-scholarlens1.ps1
+Invoke-RestMethod 'http://127.0.0.1:8000/api/stats'
 ```
 
-## 文档入口
+首次准备环境看[后端启动手册](docs/development/backend/BACKEND_STARTUP.md)，前端命令看[前端入口](frontend/README.md)。克隆代码不会自动得到用户库、索引、模型和原论文。
 
-- [需求清单与验收标准](docs/01_REQUIREMENTS.md)
-- [技术架构与流程](docs/02_ARCHITECTURE.md)
-- [统一论文数据格式](docs/03_DATA_SCHEMA.md)
-- [HTTP API 契约](docs/04_API_CONTRACT.md)
-- [UI 规范](docs/05_UI_SPEC.md)
-- [团队计划与 GitHub 规则](docs/06_TEAM_PLAN.md)
-- [测试、指标与课堂演示](docs/07_TEST_DEMO.md)
-- [会议决策表](docs/08_MEETING_DECISIONS.md)
+正式应用发布使用 `npm run build:production`，同源 `/api` 并核对 `build-info.json`；普通 build 可能生成明确标记的 18 篇演示包。文档修改不需要重新构建或重启应用。
 
-## 本次初始化边界
+## 目录与维护
 
-本次提交范围只包含文档、`.gitkeep` 占位文件和 `.gitignore` 规则。不要把原始 PDF、数据库、模型缓存、依赖目录、密钥或临时输出加入仓库；不自动执行安装、Docker、Git commit、push 或 merge。
+`frontend/` 为页面与浏览器交互，`backend/` 为 API/检索/账户/上传，`agent/` 为运行工作流，`infra/` 为启动和部署示例，`tools/` 为限定范围验证，`docs/` 为统一文档中心。模块 README 和少量兼容入口只负责指路，正文集中维护。
+
+持续使用 `zjl` 分支，不自动合并其他分支。用户库、原件、模型、索引、密钥、日志和运行报告不进入源码提交。个人 API key 仅在标签页会话中使用，不能放进 Vite 变量。发布、恢复和文档同步见[操作手册](docs/operations/11_SERVER_DEPLOYMENT.md)与[文档维护](docs/operations/DOCUMENTATION.md)。

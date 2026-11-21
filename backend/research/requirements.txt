@@ -1,0 +1,5 @@
+# Install alongside the existing backend lock for the optional deep research worker.
+-c ../requirements-lock.txt
+-c constraints-tested.txt
+langgraph==1.2.24
+langgraph-checkpoint-sqlite==3.1.3
