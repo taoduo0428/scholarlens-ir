@@ -1,0 +1,88 @@
+"""Read a bounded PDF page from an already authorized document. Coordinates are PDF points."""
+from hashlib import sha256
+import io
+import math
+import re
+
+MAX_BYTES = 16 * 1024 * 1024
+
+
+def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
+    """Extract physical regions. Unlabelled numerical series cannot become measurements."""
+    if not 1 <= page_number <= 500 or len(pdf_bytes) > MAX_BYTES or not pdf_bytes.startswith(b"%PDF-"):
+        raise ValueError("invalid_document_or_page")
+    import pdfplumber
+
+    version = sha256(pdf_bytes).hexdigest()
+    items = []
+
+    def add(kind, box, quote="", **attrs):
+        bbox = tuple(round(float(x), 3) for x in box)
+        if (len(items) >= 1200 or not all(math.isfinite(x) for x in bbox)
+                or bbox[2] <= bbox[0] or bbox[3] <= bbox[1]):
+            return
+        content = quote[:1500]
+        locator = f"pdf:{version}:p{page_number}:{kind}:" + ",".join(map(str, bbox))
+        items.append(dict(kind=kind, locator=locator, bbox=bbox, quote=content,
+                          quote_sha256=sha256(content.encode()).hexdigest(), **attrs))
+
+    with pdfplumber.open(io.BytesIO(pdf_bytes), pages=[page_number]) as doc:
+        if not doc.pages:
+            raise ValueError("page_out_of_range")
+        page = doc.pages[0]
+        for idx, table in enumerate(page.find_tables()[:20], 1):
+            add("table", table.bbox, table_id=idx)
+            values = table.extract()
+            for row, record in enumerate(table.rows[:100]):
+                for col, cell in enumerate(record.cells[:40]):
+                    if cell:
+                        add("cell", cell, values[row][col] or "", table_id=idx, row=row + 1, column=col + 1,
+                            header_candidate=(values[0][col] or "")[:120])
+        for entry in page.images[:100]:
+            add("figure", (entry["x0"], entry["top"], entry["x1"], entry["bottom"]),
+                interpretation="region_only")
+        for line in page.extract_text_lines(return_chars=False)[:600]:
+            text = line["text"]
+            kind = ("caption" if re.match(r"^(?:figure|fig\.|table|图|表)\s*\d+", text, re.I)
+                    else "formula" if re.search(r"=\s*[^=].{0,130}\(\d+[a-z]?\)\s*$", text)
+                    else "reference" if re.match(r"^\[\d+\]\s+\S", text)
+                    else "text")
+            add(kind, (line["x0"], line["top"], line["x1"], line["bottom"]), text)
+        return {"paper_id": paper_id, "page": page.page_number, "source_version": version,
+                "width": float(page.width), "height": float(page.height), "coordinate_system": "pt_top_left",
+                "items": items, "ocr": "unavailable", "cross_page_table_links": "unverified",
+                "chart_series": "unverified", "engine": "pdfplumber/" + pdfplumber.__version__}
+
+
+def from_path(path, paper_id, page):
+    """Parse in a short-lived process to enforce a deadline on document decoding."""
+    import json
+    import subprocess
+    import sys
+    from pathlib import Path
+
+    with path.open("rb") as stream:
+        raw = stream.read(MAX_BYTES + 1)
+    if len(raw) > MAX_BYTES:
+        raise ValueError("document_too_large")
+    result = subprocess.run([sys.executable, "-m", "backend.research.pdf_layout", paper_id, str(page)],
+                            input=raw, capture_output=True, timeout=12, check=False,
+                            cwd=Path(__file__).resolve().parents[2])
+    if result.returncode == 3:
+        raise RuntimeError("layout_dependency_unavailable")
+    if result.returncode or len(result.stdout) > 4_000_000:
+        raise ValueError("layout_unavailable")
+    return json.loads(result.stdout)
+
+
+if __name__ == "__main__":
+    import json
+    import sys
+
+    try:
+        extracted = page_evidence(sys.stdin.buffer.read(MAX_BYTES + 1), sys.argv[1], int(sys.argv[2]))
+        sys.stdout.buffer.write(json.dumps(extracted, ensure_ascii=False).encode("utf8"))
+    except ImportError:
+        sys.exit(3)
+    except Exception:
+        sys.exit(2)

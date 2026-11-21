@@ -405,6 +405,25 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
             ) from exc
         return hit["_source"], meta
 
+    @app.get("/api/papers/{paper_id:path}/pdf/layout/{page}")
+    def paper_layout(paper_id: str, page: int):
+        from subprocess import TimeoutExpired
+        from backend.accounts import problem
+        from backend.research.pdf_layout import from_path
+
+        doc, _ = read_paper(paper_id)
+        pdf = document_pdf(doc)
+        if pdf is None:
+            raise problem(404, "pdf_not_available", "原始 PDF 尚未交付或暂不可访问")
+        if not 1 <= page <= 500:
+            raise problem(422, "invalid_page", "页码超出解析范围")
+        try:
+            return from_path(pdf, paper_id, page)
+        except RuntimeError:
+            raise problem(503, "layout_dependency_unavailable", "PDF 布局解析依赖未安装") from None
+        except (OSError, TimeoutExpired, ValueError):
+            raise problem(422, "layout_unavailable", "无法在本页定位可读证据") from None
+
     # Register the PDF route before the path-converter detail route.
     @app.get(
         "/api/papers/{paper_id:path}/pdf",
