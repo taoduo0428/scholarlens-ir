@@ -182,5 +182,22 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 return json.loads(store.artifact(user["id"], tid, aid)["content"])
         raise problem(409, "report_not_ready", "研究报告仍在准备中")
 
+    @api.get("/workspaces/{workspace_id}/projects/{project_id}/memory")
+    def memory_feed(workspace_id: str, project_id: str, before: int | None = None,
+                    user=Depends(accounts.current)):
+        from backend.research.project_memory import page
+        from backend.research.schemas import Scope
+        try:
+            generation = corpus_factory(Scope()).generation
+        except (ToolError, OSError, HTTPException, TransportError, ApiError):
+            raise problem(503, "dependency_unavailable", "研究语料尚未就绪") from None
+        return page(store, user["id"], workspace_id, project_id, generation, before=before)
+
+    @api.delete("/workspaces/{workspace_id}/projects/{project_id}/memory/{tid}", status_code=204)
+    def forget_memory(workspace_id: str, project_id: str, tid: UUID, user=Depends(accounts.current)):
+        from backend.research.project_memory import invalidate
+        invalidate(store, user["id"], workspace_id, project_id, tid)
+        return Response(status_code=204)
+
     app.include_router(api)
     return worker

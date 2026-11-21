@@ -32,7 +32,13 @@ class Scope(Contract):
     library_only: Literal[True] = True
 
 
+class ResearchProject(Contract):
+    workspace: Annotated[str, StringConstraints(pattern=r"^[a-zA-Z0-9_-]{1,64}$")]
+    project: Annotated[str, StringConstraints(pattern=r"^[a-zA-Z0-9_-]{1,64}$")]
+
+
 class TaskInput(Contract):
+    research_project: ResearchProject | None = Field(default=None, exclude_if=lambda v: v is None)
     goal: Annotated[str, StringConstraints(strip_whitespace=True, min_length=2, max_length=3000)]
     scope: Scope = Field(default_factory=Scope)
     depth: Literal["standard", "deep"] = "standard"

@@ -264,4 +264,7 @@ def generate_report(state, store, registry, *, semantic=None):
         aid = store.put_artifact(state.user_id, state.run_id, kind, data, state.corpus_generation)
         if aid not in state.artifact_refs:
             state.artifact_refs.append(aid)
+        if kind == "report" and state.retrieval_policy == "E11" and state.task.research_project:
+            from backend.research.project_memory import index_report
+            index_report(store, state, aid)
     return report
