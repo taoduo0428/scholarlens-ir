@@ -10,6 +10,7 @@ from uuid import uuid4
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import END, START, StateGraph
 from langsmith import tracing_context
+from backend.research.telemetry import metering, traced
 
 from backend.research.context import working_context
 from backend.research import workspace_model
@@ -102,8 +103,9 @@ class ResearchGraph:
     def close(self):
         self.conn.close()
 
+    @traced("task")
     def run(self, owner: int, uid: str):
-        with tracing_context(enabled=False):
+        with tracing_context(enabled=False), metering(lambda row: self.store.record_usage(owner, uid, row)):
             self.graph.invoke(
                 {"owner": owner, "task": str(uid), "route": "retrieve"},
                 {"configurable": {"thread_id": str(uid)}, "recursion_limit": 32},
@@ -129,6 +131,7 @@ class ResearchGraph:
             return True
         return False
 
+    @traced("plan")
     def _plan(self, cur):
         state, rev = self._load(cur)
         if state.status not in {"queued", "running"} or self._control(state, rev):
@@ -359,6 +362,7 @@ class ResearchGraph:
         state.evidence_refs.append(ref)
         state.artifact_refs.append(bound)
 
+    @traced("retrieve")
     def _retrieve(self, cur):
         state, rev = self._load(cur)
         if self._control(state, rev):
@@ -569,6 +573,7 @@ class ResearchGraph:
         self._save(state, rev, "round")
         return {"route": "critique"}
 
+    @traced("critique")
     def _critique(self, cur):
         state, rev = self._load(cur)
         if self._control(state, rev):
@@ -648,6 +653,7 @@ class ResearchGraph:
         self._save(state, rev, "step")
         return {"route": "finish" if state.stop_reason else "retrieve"}
 
+    @traced("publication")
     def _finish(self, cur):
         state, rev = self._load(cur)
         if self._control(state, rev):

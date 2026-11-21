@@ -38,6 +38,9 @@ class Judgment(Strict):
     required_fields: dict[
         str, str | None
     ]  # gold field -> satisfied system field ID, or null
+    entailment_gold: (
+        dict[str, Literal["verified", "contradicted", "unsupported"]] | None
+    ) = None
     gold_answer: str
     expected_claims: dict[
         str, str | None
@@ -101,6 +104,10 @@ def validated(raw, task, pred, docs):
             or not 0 <= int(m[1]) < int(m[2]) <= len(docs[pid])
         ):
             raise ValueError("invalid original source locator")
+    if label.entailment_gold is not None and set(label.entailment_gold) != set(
+        pred.get("entailment_candidates", {})
+    ):
+        raise ValueError("incomplete entailment annotations")
     return label
 
 
@@ -212,7 +219,13 @@ def score(pack, run, docs, reviews=(), adjudication=None):
                 unsupported_claim_rate=ratio(
                     len(pred["claims"]) - supported, len(pred["claims"])
                 ),
-                entailment_accuracy=None,  # No independent model entailment classification in this run.
+                entailment_accuracy=ratio(
+                    sum(
+                        pred["entailment_candidates"][cid]["prediction"] == value
+                        for cid, value in (gold.entailment_gold or {}).items()
+                    ),
+                    len(gold.entailment_gold or {}),
+                ),
                 contradiction_detection=(predicted == "conflicted")
                 == gold.contradiction,
                 comparability_accuracy=(

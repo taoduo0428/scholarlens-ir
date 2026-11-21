@@ -240,7 +240,7 @@ def generate_report(state, store, registry, *, semantic=None):
         from backend.research.accounting import spending
 
         integrate(report, state, verified)
-        report["spending"] = spending(state)
+        report["spending"] = spending(state, store.usage(state.user_id, state.run_id))
     if state.answer_contract:
         from backend.research.workspace_proof import publish
         from backend.research.accounting import spending
@@ -255,7 +255,7 @@ def generate_report(state, store, registry, *, semantic=None):
         else:
             publish(state, report, verified, proposals, order)
         report["answer_contract"] = state.answer_contract.model_dump()
-        report["spending"] = spending(state)
+        report["spending"] = spending(state, store.usage(state.user_id, state.run_id))
     report["markdown"] = render_markdown(report)
     if state.field_requirements:
         from backend.research.field_publication import markdown

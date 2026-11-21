@@ -84,6 +84,13 @@ class ResearchStore:
                 task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
                 first_revision INTEGER NOT NULL, plan_version INTEGER NOT NULL,
                 created_at TEXT NOT NULL, plan_sha256 TEXT NOT NULL)""")
+            db.execute("""CREATE TABLE IF NOT EXISTS task_quarantine(
+                task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
+                detected_at TEXT NOT NULL, reason TEXT NOT NULL)""")
+            db.execute("""CREATE TABLE IF NOT EXISTS provider_usage(
+                task TEXT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE, provider TEXT NOT NULL,
+                input_tokens INTEGER, output_tokens INTEGER, cached_tokens INTEGER, latency_ms INTEGER)""")
+            db.execute("CREATE INDEX IF NOT EXISTS usage_task ON provider_usage(task)")
             db.execute("""CREATE TABLE IF NOT EXISTS worker_requests(
                 task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
                 command TEXT NOT NULL CHECK(command IN ('cancelled','paused')))""")
@@ -176,6 +183,24 @@ class ResearchStore:
             if cls._plan_digest(state.question_plan, state.retrieval_policy) != seal["plan_sha256"]:
                 raise Conflict("question_plan_integrity")
 
+    def record_usage(self, owner, task_id, receipt):
+        with self._db(write=True) as db:
+            self._owned(db, owner, task_id)
+            db.execute("INSERT INTO provider_usage VALUES(?,?,?,?,?,?)", (str(task_id), *receipt))
+
+    def usage(self, owner, task_id):
+        with self._db() as db:
+            self._owned(db, owner, task_id)
+            return [dict(row) for row in db.execute(
+                "SELECT provider,input_tokens,output_tokens,cached_tokens,latency_ms FROM provider_usage WHERE task=? ORDER BY rowid",
+                (str(task_id),))]
+
+    def quarantine(self, owner, task_id):
+        with self._db(write=True) as db:
+            self._owned(db, owner, task_id)
+            db.execute("INSERT OR IGNORE INTO task_quarantine VALUES(?,?,?)",
+                       (str(task_id), timestamp(), "research_state_integrity"))
+
     def plan_metadata(self, owner, task_id):
         with self._db() as db:
             self._owned(db, owner, task_id)
@@ -186,6 +211,8 @@ class ResearchStore:
     def get(self, owner: int, task_id: str | UUID):
         with self._db() as db:
             row = self._owned(db, owner, task_id)
+            if db.execute("SELECT 1 FROM task_quarantine WHERE task=?", (row["id"],)).fetchone():
+                raise Conflict("research_state_integrity")
             state = ResearchState.model_validate_json(row["state_json"])
             self._validate_plan(db, row["id"], state, row["revision"])
             return state, row["revision"]
@@ -195,7 +222,9 @@ class ResearchStore:
             raise ValueError("invalid task window")
         with self._db() as db:
             return [dict(row) for row in db.execute(
-                """SELECT id,status,revision,created_at,updated_at,json_extract(state_json,'$.task.goal') AS goal
+                """SELECT id,status,revision,created_at,updated_at,
+                        EXISTS(SELECT 1 FROM task_quarantine q WHERE q.task=tasks.id) AS quarantined,
+                        CASE WHEN json_valid(state_json) THEN json_extract(state_json,'$.task.goal') END AS goal
                    FROM tasks WHERE owner=? ORDER BY created_at DESC,id LIMIT ? OFFSET ?""",
                 (owner, limit, offset))]
 
@@ -338,7 +367,7 @@ class ResearchStore:
         marks = ",".join("?" for _ in statuses)
         with self._db() as db:
             return [dict(row) for row in db.execute(
-                f"SELECT owner,id,status FROM tasks WHERE status IN ({marks}) ORDER BY created_at,id",
+                f"SELECT owner,id,status FROM tasks WHERE status IN ({marks}) AND id NOT IN (SELECT task FROM task_quarantine) ORDER BY created_at,id",
                 statuses)]
 
     def backup(self, destination: Path):

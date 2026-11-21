@@ -78,7 +78,7 @@ export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;task
           not_comparable:"不可直接比较",blocked_by_permission:"权限受限"};
         return <details key={f.field_id}><summary>{f.request} · {labels[d.status]||d.status}</summary>
           <p>{f.datatype} · {d.reason} · {d.next_action}</p>
-          {d.bindings.map(b=><p key={b.evidence_id+":"+b.locator.raw}>{b.locator.paper_id} · {b.locator.raw}</p>)}</details>;
+          {d.bindings.map(b=><p key={JSON.stringify([b.claim_id,b.evidence_id,b.locator.raw])}>{b.locator.paper_id} · {b.locator.raw}</p>)}</details>;
       })}</section>}
     {report.overview&&<section aria-label="综合研究"><h3>综合研究</h3>
       {report.overview.findings.map((f,i)=><details key={i}><summary>{f.statement}</summary>

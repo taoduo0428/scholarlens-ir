@@ -4,6 +4,15 @@ ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读�
 
 在线访问：[scholarlens.lingion.cc.cd](https://scholarlens.lingion.cc.cd/)。华为云运行，经 Cloudflare Tunnel 提供 HTTPS，个人电脑关机后仍可访问。
 
+## E9.1 研究工作台与 E10 评审
+
+集成分支 `zjl` 提供按论文和问题节点核验的研究报告。服务端可用 `SCHOLARLENS_E91_ENABLED=true` 选择该策略。报告公开了独立组的成功与失败样例、人工评审进度、浏览器回归记录和运行时变更。
+
+- [评测报告与逐题数据](docs/agent-v5/EVALUATION_REPORT.md)
+- [工程交付与验证命令](docs/agent-v5/FINAL_ENGINEERING_REPORT.md)
+- [人工评审填写说明](docs/agent-v5/ANNOTATION_GUIDE.md)
+- [后续实施规格](docs/agent-v5/IMPLEMENTATION_SPECS.md)
+
 ## 本地 EvoResearch 工作台
 
 本开发分支的 [E9 评测报告](docs/agent-v4/EVALUATION_REPORT.md) 记录了 V1、V5、E9 的逐组结果、已知局限和复现命令。

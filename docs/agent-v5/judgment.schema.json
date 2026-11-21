@@ -41,6 +41,26 @@
       "title": "Required Fields",
       "type": "object"
     },
+    "entailment_gold": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "enum": [
+              "verified",
+              "contradicted",
+              "unsupported"
+            ],
+            "type": "string"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Entailment Gold"
+    },
     "gold_answer": {
       "title": "Gold Answer",
       "type": "string"
