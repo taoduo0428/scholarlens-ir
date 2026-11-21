@@ -9,6 +9,7 @@ from backend.ai_responses import provider_request, provider_content, model_json_
 from backend.personal_ai import PublicAITransport
 from backend.research.schemas import NextAction
 from backend.research.telemetry import record_usage, traced
+from backend.research.model_gateway import CAPACITY, CapacityError
 
 
 class ProviderError(RuntimeError):
@@ -40,6 +41,14 @@ def plan_questions(settings, view, remaining, transport=None):
 
 @traced("model")
 def _structured(settings, view, remaining, transport, schema, instruction, limit):
+    try:
+        with CAPACITY.acquire(settings.ai_base_url):
+            return _request(settings, view, remaining, transport, schema, instruction, limit)
+    except CapacityError:
+        raise ProviderError("provider_rate_limited") from None
+
+
+def _request(settings, view, remaining, transport, schema, instruction, limit):
     content = json.dumps(view, ensure_ascii=False, separators=(",", ":"))
     if len(content.encode()) > 24000:
         raise ProviderError("context_limit")

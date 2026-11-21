@@ -63,6 +63,9 @@ export interface ResearchReport {
     conflicts?:{claim_ids:string[];relation:string;basis?:string}[]};
 }
 type Receipt = {task_id:string;status:TaskStatus;revision:number};
+export type ProjectMetrics = {tasks:number;more:boolean;states:Partial<Record<TaskStatus,number>>;
+  model_calls:number;measured_tokens:number;tokens_complete:boolean;known_cost_estimate:number;
+  tasks_missing_cost:number;p50_seconds:number|null;p95_seconds:number|null};
 const base="/research/tasks";
 const item=(id:string)=>base+"/"+encodeURIComponent(id);
 export const research={
@@ -70,7 +73,9 @@ export const research={
   create:(body:TaskInput,key:string,personal:PersonalAi|null)=>backend<Receipt>(base,{
     method:"POST",headers:{"Idempotency-Key":key,...personalAiHeaders(personal)},body
   }),
-  detail:(id:string,signal?:AbortSignal)=>backend<{state:ResearchState;revision:number}>(item(id),{signal}),
+  detail:(id:string,signal?:AbortSignal)=>backend<{state:ResearchState;revision:number;trace_ids?:string[]}>(item(id),{signal}),
+  metrics:(workspace:string,project:string,signal?:AbortSignal)=>backend<ProjectMetrics>(
+    "/research/workspaces/"+encodeURIComponent(workspace)+"/projects/"+encodeURIComponent(project)+"/metrics",{signal}),
   events:(id:string,cursor:number,signal?:AbortSignal)=>backend<{events:ResearchEvent[]}>(item(id)+"/events?after_seq="+cursor,{signal}),
   control:(id:string,cmd:Command,personal:PersonalAi|null=null)=>backend<Receipt>(item(id)+"/"+cmd,{
     method:"POST",headers:personalAiHeaders(personal)

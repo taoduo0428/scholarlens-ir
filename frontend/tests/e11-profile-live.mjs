@@ -49,7 +49,18 @@ try {
     }
   }
   assert.ok(verified > 0);
+  await page.getByText("项目运行统计", {exact:true}).click();
+  const dashboard = page.getByRole("region", {name:"项目运行统计"});
+  await dashboard.waitFor();
+  assert.match(await dashboard.innerText(), /profile-qa · 最近 1 个任务/);
+  assert.match(await dashboard.innerText(), /模型调用 0 次/);
+  await page.getByText("任务追踪", {exact:true}).click();
+  assert.match(await page.locator("details[open]").allTextContents().then(x=>x.join(" ")), /任务 ID /);
   const other = await account();
+  const otherMetrics = await context.request.get(origin + "/api/research/workspaces/personal/projects/profile-qa/metrics",
+    {headers:{Authorization:"Bearer " + other}});
+  assert.equal(otherMetrics.status(), 200);
+  assert.equal((await otherMetrics.json()).tasks, 0);
   assert.equal((await context.request.get(reportURL, {headers:{Authorization:"Bearer " + other}})).status(), 404);
   await page.reload();
   await region.waitFor();

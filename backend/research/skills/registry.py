@@ -59,10 +59,18 @@ def _approved(db, kind, version):
     if not re.fullmatch(kind + "-[0-9a-f]{20}", version):
         raise ValueError("unknown pinned research version")
     row = db.execute(
-        "SELECT config FROM approved WHERE kind=? AND version=?", (kind, version)
+        "SELECT config,review_hash FROM approved WHERE kind=? AND version=?", (kind, version)
     ).fetchone()
     if row is None or kind + "-" + hashlib.sha256(row[0].encode()).hexdigest()[:20] != version:
         raise ValueError("missing or corrupt approved version")
+    if not isinstance(row[1], str) or not re.fullmatch(r"[0-9a-f]{64}", row[1]):
+        raise ValueError("invalid approval receipt")
+    reviews = db.execute(
+        "SELECT reviewer FROM audit WHERE kind=? AND version=? AND evaluation=? AND action='sandbox_approve'",
+        (kind, version, row[1]),
+    )
+    if not any(isinstance(name, str) and re.fullmatch(r"[A-Za-z0-9_-]{2,40}", name) for (name,) in reviews):
+        raise ValueError("missing approval receipt")
     return json.loads(row[0])
 
 
