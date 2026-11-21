@@ -261,6 +261,24 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
             )
         return next(iter(mappings)), meta
 
+    @app.get("/healthz", include_in_schema=False)
+    def liveness():
+        return {"status": "alive"}
+
+    @app.get("/readyz", include_in_schema=False)
+    def readiness():
+        import sqlite3
+        from elastic_transport import TransportError
+        from elasticsearch import ApiError
+
+        try:
+            metadata()
+            with store.connect() as db:
+                db.execute("SELECT 1 FROM users LIMIT 1").fetchone()
+        except (ApiError, TransportError, HTTPException, sqlite3.Error):
+            return JSONResponse({"status": "unavailable"}, status_code=503)
+        return {"status": "ready"}
+
     def upload_indices():
         if settings.index.endswith("-real") and es.indices.exists_alias(
             name=settings.uploads_index
