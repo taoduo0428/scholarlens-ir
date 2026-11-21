@@ -16,6 +16,7 @@ def main():
     cli.add_argument("--fixture-lab", type=Path, required=True)
     cli.add_argument("--dist", type=Path, required=True)
     cli.add_argument("--output", type=Path, required=True)
+    cli.add_argument("--e11", action="store_true", help="Verify the per-paper profile journey on E11")
     args = cli.parse_args()
     if not (args.dist / "index.html").is_file():
         cli.error("Build the demo frontend first")
@@ -30,16 +31,20 @@ def main():
            "SCHOLARLENS_RESEARCH_ENABLED":"true", "SCHOLARLENS_EVOLUTION_LAB":"true",
            "SCHOLARLENS_TEST_RUNTIME":runtime, "SCHOLARLENS_LAB_DB":str(local_copy),
            "SCHOLARLENS_PYTHON":sys.executable, "SCHOLARLENS_RESEARCH_OUTPUT":str(out/"captures")}
+    if args.e11:
+        env["SCHOLARLENS_E11_ENABLED"] = "true"
     with (out/"server.log").open("w", encoding="utf8") as errors:
         proc = subprocess.Popen([sys.executable,"-u","-m","tools.research_demo","--runtime",runtime,
-                                 "--frontend",str(args.dist.resolve()),"--port","0","--corpus","fixture"],
+                                 "--frontend",str(args.dist.resolve()),"--port","0","--corpus",
+                                 "profile-fixture" if args.e11 else "fixture"],
                                 env=env,stdout=subprocess.PIPE,stderr=errors,text=True,encoding="utf8")
         try:
             url = re.search(r"http://127\.0\.0\.1:\d+", proc.stdout.readline())
             if not url:
                 raise RuntimeError("fixture_service_unavailable")
             env["SCHOLARLENS_URL"] = url[0]
-            for name in ("e9-field-release","workspace-v4-live"):
+            journeys = ("e11-profile-live",) if args.e11 else ("e9-field-release", "workspace-v4-live")
+            for name in journeys:
                 with (out/(name+".log")).open("w",encoding="utf8") as log:
                     subprocess.run([shutil.which("node") or "node","frontend/tests/"+name+".mjs"],env=env,
                                    stdout=log,stderr=subprocess.STDOUT,timeout=180,check=True)
