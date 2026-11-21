@@ -39,6 +39,7 @@ class SearchRequest(SearchFilter):
 class PassageRequest(SearchRequest):
     slot: Slot | None = None
     abstract_opening: bool = False
+    abstract_profile: bool = False
 
 
 class PaperRequest(Contract):
@@ -167,6 +168,25 @@ class ToolRegistry:
                 continue
             for row in passages_for(doc):
                 rows[row["chunk_id"]] = (doc, row)
+        if req.abstract_profile:
+            if not req.paper_ids or req.abstract_opening:
+                raise ToolError("explicit_paper_required")
+            # Select a window per paper for each round, reserving space for
+            # other papers before offering additional windows.
+            from backend.research.paper_findings import roles
+            from backend.research.claim_verifier import sentences
+
+            by_paper = {}
+            for doc, row in rows.values():
+                if row["field"] == "abstract":
+                    facets = [roles(sentence) for sentence in sentences(row["text"])]
+                    score = (len(set().union(*facets)), sum(bool(f) for f in facets))
+                    by_paper.setdefault(doc["paper_id"], []).append((score, row["offset_start"], doc, row))
+            lists = [sorted(windows, key=lambda w: (-w[0][0], -w[0][1], w[1]))
+                     for windows in by_paper.values()]
+            ranked = [group[i] for i in range(max(map(len, lists), default=0))
+                      for group in lists if i < len(group)]
+            return {"passages": [passage(doc, row, self.generation) for _, _, doc, row in ranked[:req.limit]]}
         if req.abstract_opening:
             # _candidates already uses the same account, scope and document access checks.
             if not req.paper_ids:

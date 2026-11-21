@@ -166,16 +166,19 @@ def qualified(field, claims, sources, state, suggestions):
             valid = [c for c in valid if (c.conditions.metric_name or "").casefold() == metric]
         from backend.research.overview import evidence_for, synthesize
 
+        if field.facet == "limitations" and state.retrieval_policy == "E10":
+            from backend.research.overview import GAP
+            return [c for c in valid if GAP.search(c.statement)], "insufficient_evidence"
         if field.facet == "overview":
-            overview, by_id = synthesize(valid, sources, field.paper_ids)
+            overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy == "E10")
             linked = [entry for entry in overview["findings"] if entry["kind"] == "method_findings"]
             if linked and not overview["incomplete_papers"]:
                 return [by_id[k] for k in linked[0]["premise_claim_ids"]], "insufficient_evidence"
             return [], "insufficient_evidence"
         if field.facet in {"topic", "finding", "method", "dataset", "metric", "conditions"}:
-            return evidence_for(field.facet, valid, field.requested_metric), "insufficient_evidence"
+            return evidence_for(field.facet, valid, field.requested_metric, attributed=state.retrieval_policy == "E10"), "insufficient_evidence"
         if field.facet == "comparison" and state.answer_contract.answer_type == "methods":
-            return evidence_for("method", valid), "insufficient_evidence"
+            return evidence_for("method", valid, attributed=state.retrieval_policy == "E10"), "insufficient_evidence"
     if field.operation in {"method", "chain", "synthesize", "disagreement"}:
         conflicts, differences = compare_premises(valid, sources)
         ids = (
@@ -327,9 +330,9 @@ def evaluate(state, sources, suggestions=None, warnings=()):
                 and any(c.claim_id in conflict_ids for c in proof)
             )
             b = []
-            if state.retrieval_policy == "E9.1" and coverage.permission_denied:
+            if state.retrieval_policy in {"E9.1", "E10"} and coverage.permission_denied:
                 status, reason, action = "blocked_by_permission", "blocked_by_permission", "request_permission"
-            elif state.retrieval_policy == "E9.1" and f.operation == "layout" and not capable:
+            elif state.retrieval_policy in {"E9.1", "E10"} and f.operation == "layout" and not capable:
                 status, reason, action = "source_capability_mismatch", "source_capability_mismatch", "stop"
             elif conflict_seen:
                 status, reason, action = "conflicted", "conflicted", "resolve_conflict"

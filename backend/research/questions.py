@@ -140,9 +140,9 @@ def contract_for(state):
     task = state.task
     goal = " ".join(task.goal.split())
     # Titles identify sources. Their wording does not specify the requested operation.
-    intent_text = re.sub(r'["“《][^"”》]+["”》]', " ", goal) if state.retrieval_policy in {"W4","E9","E9.1"} else goal
+    intent_text = re.sub(r'["“《][^"”》]+["”》]', " ", goal) if state.retrieval_policy in {"W4","E9","E9.1", "E10"} else goal
     intent = classify(intent_text)
-    if state.retrieval_policy == "E9.1" and re.search(r"综述|全景|概览|\b(?:overview|landscape|survey)\b", intent_text, re.I):
+    if state.retrieval_policy in {"E9.1", "E10"} and re.search(r"综述|全景|概览|\b(?:overview|landscape|survey)\b", intent_text, re.I):
         intent = "landscape"
     budget = state.budget.model_dump(include={"max_rounds", "max_tool_calls", "max_model_calls", "max_evidence", "max_duration_seconds"})
     return ResearchTaskContract(goal_original=task.goal, goal_normalized=goal, intent=intent,
@@ -153,11 +153,16 @@ def contract_for(state):
                                 policy_version=state.harness_policy_version)
 
 
-def fallback(contract):
+def fallback(contract, *, profiles=False):
     lang = ZH if re.search(r"[\u3400-\u9fff]", contract.goal_normalized) else EN
     nodes = []
     for i, (kind, deps) in enumerate(PATHS[contract.intent], 1):
         accept, failure = REQUIREMENTS[kind]
+        if profiles and contract.intent == "landscape" and kind == "mechanism":
+            deps = [1]
+            accept = "Identify the method each author used in the material read for the paper profile."
+            failure = "One or more papers lack an attributed method in the accessible source."
+
         question = contract.goal_normalized[:495] if len(PATHS[contract.intent]) == 1 else (
             f"{lang[kind]}? — {contract.goal_normalized}"[:500])
         nodes.append(ResearchQuestionNode(id=f"q{i}", question=question,
@@ -199,7 +204,7 @@ def make_plan(state, propose=None):
                                                "invalid_decision", "provider_unavailable", "provider_rate_limited"} else "invalid_plan")
                 if errors[-1] in {"budget", "provider_timeout", "provider_unavailable", "provider_rate_limited"}:
                     break
-    return QuestionPlan(contract=contract, graph=graph or fallback(contract), origin=origin,
+    return QuestionPlan(contract=contract, graph=graph or fallback(contract, profiles=state.retrieval_policy == "E10"), origin=origin,
                         input_hash=digest, prompt_hash=sha256(PROMPT.encode()).hexdigest(), validation_errors=errors)
 
 

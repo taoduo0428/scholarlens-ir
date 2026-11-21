@@ -30,7 +30,7 @@ def inspect_round(state, texts):
                 "supporting_evidence_ids":list(dict.fromkeys(b["evidence_id"] for d in decisions for b in d["bindings"])),
                 "opposing_evidence_ids":[]}
             executable = [d for d in gaps if d["next_action"] not in {"stop", "request_permission"}]
-            sub.missing_slots=[] if done or (state.retrieval_policy == "E9.1" and not executable) else list(sub.required_slots)
+            sub.missing_slots=[] if done or (state.retrieval_policy in {"E9.1", "E10"} and not executable) else list(sub.required_slots)
             sub.status="satisfied" if done else "active"
         missing=[fid for fid,d in result["fields"].items() if d["status"]!="answerable"]
         return {"sufficient":not missing,"missing":missing}
@@ -53,7 +53,7 @@ def record(state, proof):
     if proof["sufficient"]:
         state.stop_reason = "complete"
         action, reason = "publish", "all_required_relations_supported"
-    elif state.retrieval_policy == "E9.1" and not next_q:
+    elif state.retrieval_policy in {"E9.1", "E10"} and not next_q:
         state.stop_reason = "blocked"
         action, reason = "stop_insufficient", "no_executable_source_action"
     elif state.stop_reason or remaining - len(state.evidence_refs) < 2:

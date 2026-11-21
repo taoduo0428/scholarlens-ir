@@ -14,9 +14,12 @@ SPEC = re.compile(r"\b(?:hypothesi[sz]e|hypothesis|speculat\w*|conjectur\w*|migh
 OUTCOME = re.compile(r"(?:show|demonstrate|indicate|find) that (.{2,75}?) (improves?|declines?|increases?|decreases?)\b(.*?)[.!]?$", re.I)
 
 
-def evidence_for(facet, claims, metric=None):
+def evidence_for(facet, claims, metric=None, *, attributed=False):
     """Return source-attributed observations satisfying a particular dimension."""
     eligible = [c for c in claims if c.support_status == "verified" and not GUARDS.search(c.statement)]
+    if attributed and facet in {"topic", "method", "finding"}:
+        from backend.research.paper_findings import roles
+        return [c for c in eligible if facet in roles(c.statement)]
     if facet == "method":
         return [c for c in eligible if METHOD.search(c.statement) and not SPEC.search(c.statement)]
     if facet == "dataset":
@@ -36,7 +39,7 @@ def evidence_for(facet, claims, metric=None):
     return []
 
 
-def synthesize(claims, sources, requested):
+def synthesize(claims, sources, requested, *, attributed=False):
     """Link within-paper methods and results before producing between-paper findings."""
     pool = [c for c in claims if c.support_status == "verified" and not GUARDS.search(c.statement)
             and c.evidence_ids and all(e in sources for e in c.evidence_ids) and len(c.paper_ids) == 1]
@@ -58,7 +61,7 @@ def synthesize(claims, sources, requested):
         profile = {"paper_id": pid}
         observations = {}
         for facet in ("topic", "method", "finding"):
-            hits = evidence_for(facet, rows)[:2]
+            hits = evidence_for(facet, rows, attributed=attributed)[:2]
             observations[facet] = hits
             profile[facet] = [c.claim_id for c in hits]
             referenced.update((c.claim_id, c) for c in hits)
@@ -76,8 +79,18 @@ def synthesize(claims, sources, requested):
         # not causality or performance superiority.
         premises = [c for _, method, result in complete for c in (method, result)]
         add("method_findings", "derived_synthesis", f"{len(complete)} 篇论文分别报告了研究方法和结果。", premises)
+        if attributed:
+            findings[-1]["paper_observations"] = [
+                {"paper_id": pid, "method_claim_id": method.claim_id, "result_claim_id": result.claim_id}
+                for pid, method, result in complete
+            ]
+            findings[-1]["statement"] = "\n".join(
+                f"{sources[method.evidence_ids[0]].get('paper_title') or pid} — {method.statement}"
+                + (f" {result.statement}" if result.claim_id != method.claim_id else "")
+                for pid, method, result in complete
+            )
         methods = sorted({c.statement.casefold().strip() for _, c, _ in complete})
-        if len(methods) > 1:
+        if len(methods) > 1 and not attributed:
             add("method_descriptions", "derived_synthesis", "各论文给出不同的方法表述。", [m for _, m, _ in complete])
         outcomes = defaultdict(list)
         for _, _, c in complete:

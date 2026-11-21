@@ -7,7 +7,7 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
     gate, accepted = evaluate(state, sources, suggestions, warnings)
     all_claims = {c.claim_id: c for c in state.claims}
     all_claims.update(accepted)
-    if state.retrieval_policy == "E9.1":
+    if state.retrieval_policy in {"E9.1", "E10"}:
         all_claims = {
             cid: c.model_copy(update={"support_status": "insufficient"})
             if cid not in accepted and c.support_status == "verified" else c
@@ -42,17 +42,17 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         ]
         + list(warnings),
     )
-    if state.retrieval_policy == "E9.1" and state.answer_contract.answer_type == "overview":
+    if state.retrieval_policy in {"E9.1", "E10"} and state.answer_contract.answer_type == "overview":
         from backend.research.overview import synthesize
 
         # Partial reports keep the paper profiles supported by completed nodes.
         # A cross-paper inference additionally requires the final DAG decision.
-        overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids)
+        overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids, attributed=state.retrieval_policy == "E10")
         if not final_ids:
             overview["findings"] = [entry for entry in overview["findings"] if entry["level"] != "derived_synthesis"]
         else:
             final_claims = [c for cid, c in accepted.items() if cid in final_ids]
-            final_overview, _ = synthesize(final_claims, sources, state.task.scope.paper_ids)
+            final_overview, _ = synthesize(final_claims, sources, state.task.scope.paper_ids, attributed=state.retrieval_policy == "E10")
             overview["findings"] = final_overview["findings"]
         report["overview"] = overview
     sections = report["sections"]

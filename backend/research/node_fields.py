@@ -7,6 +7,7 @@ from backend.research.field_contract import AnswerRequirement, TITLES, field_for
 # Requirements are projected from node roles and paper scope. Lexical hints only
 # select dimensions inside an existing role. They never create permissions.
 LABELS = {
+    "limitations": ("原文明确指出的局限或开放问题", "limitations or open questions stated by the authors"),
     "method": ("研究方法", "reported method"),
     "dataset": ("实验数据集", "evaluation dataset"),
     "metric": ("评价指标", "evaluation metric"),
@@ -50,7 +51,7 @@ def dimensions(plan, node, contract):
     return ["chain" if role == "mechanism" else "finding"]
 
 
-def compile_fields(plan, contract):
+def compile_fields(plan, contract, *, profile_gaps=False):
     scope = list(dict.fromkeys(contract.scope["paper_ids"]))
     chinese = bool(re.search(r"[\u3400-\u9fff]", contract.goal))
     one = len(plan.graph.nodes) == 1
@@ -64,6 +65,10 @@ def compile_fields(plan, contract):
                 fields.append(f.model_copy(update={"min_evidence": 1}))
         else:
             facets = dimensions(plan, node, contract)
+            if profile_gaps and contract.answer_type == "overview" and "overview" in facets and re.search(
+                r"open questions?|limitations?|future (?:work|research)|仍待|待解决|局限|不足", contract.goal, re.I
+            ):
+                facets = [*facets, "limitations"]
             for facet in facets:
                 per_paper = facet in {"method", "dataset", "metric", "finding", "topic"}
                 targets = [[p] for p in scope] if per_paper and 0 < len(scope) <= 4 else [scope]
