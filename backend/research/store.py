@@ -157,14 +157,23 @@ class ResearchStore:
             return state, 0, True
 
     @staticmethod
-    def _plan_digest(plan):
-        return digest(canonical(plan.model_dump(mode="json"))) if plan else None
+    def _plan_digest(plan, policy=None):
+        if not plan:
+            return None
+        data = plan.model_dump(mode="json")
+        if policy in {"V4", "V5", "V6", "V7", "W4"}:
+            # Historical controllers record queue scheduling as plan revisions.
+            # The nodes, criteria and dependency edges remain immutable.
+            data["graph"]["nodes"].sort(key=lambda n: n["id"])
+            data.pop("revisions")
+            data.pop("plan_version")
+        return digest(canonical(data))
 
     @classmethod
     def _validate_plan(cls, db, uid, state, revision):
         seal = db.execute("SELECT * FROM plan_seals WHERE task=?", (str(uid),)).fetchone()
         if seal and revision >= seal["first_revision"]:
-            if cls._plan_digest(state.question_plan) != seal["plan_sha256"]:
+            if cls._plan_digest(state.question_plan, state.retrieval_policy) != seal["plan_sha256"]:
                 raise Conflict("question_plan_integrity")
 
     def plan_metadata(self, owner, task_id):
@@ -213,7 +222,7 @@ class ResearchStore:
             old = self._owned(db, owner, uid)
             previous = ResearchState.model_validate_json(old["state_json"])
             self._validate_plan(db, uid, previous, old["revision"])
-            if previous.question_plan and self._plan_digest(previous.question_plan) != self._plan_digest(state.question_plan):
+            if previous.question_plan and self._plan_digest(previous.question_plan, previous.retrieval_policy) != self._plan_digest(state.question_plan, state.retrieval_policy):
                 raise Conflict("immutable question plan")
             if previous.field_requirements and previous.field_requirements != state.field_requirements:
                 raise Conflict("immutable field requirements")
@@ -263,11 +272,11 @@ class ResearchStore:
                         (uid, revision)).fetchone()
                     if not snap or digest(canonical([snap["kind"], digest(snap["state_json"].encode())])) != snap["state_digest"]:
                         raise Conflict("legacy_plan_checkpoint_integrity")
-                    if self._plan_digest(ResearchState.model_validate_json(snap["state_json"]).question_plan) != self._plan_digest(state.question_plan):
+                    if self._plan_digest(ResearchState.model_validate_json(snap["state_json"]).question_plan, state.retrieval_policy) != self._plan_digest(state.question_plan, state.retrieval_policy):
                         raise Conflict("legacy_plan_integrity")
                 db.execute("INSERT OR IGNORE INTO plan_seals VALUES(?,?,?,?,?)",
                            (uid, revision if previous.question_plan else next_rev, state.question_plan.plan_version,
-                            timestamp(), self._plan_digest(state.question_plan)))
+                            timestamp(), self._plan_digest(state.question_plan, state.retrieval_policy)))
             db.execute("INSERT INTO checkpoints VALUES(?,?,?,?,?)",
                        (uid, next_rev, execution_id, fingerprint, payload.decode()))
             db.execute("UPDATE tasks SET state_json=?,status=?,revision=?,updated_at=? WHERE id=?",
