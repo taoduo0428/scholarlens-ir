@@ -59,6 +59,9 @@ class AnswerField(StrictRecord):
     field_id: str
     question_id: str
     request: str = Field(min_length=1, max_length=2200)
+    facet: Literal["method", "dataset", "metric", "finding", "topic", "conditions", "overview", "comparison", "chain", "conflict"] | None = None
+    paper_ids: list[str] = Field(default_factory=list, max_length=50)
+    requested_metric: str | None = None
     datatype: AnswerFieldType
     capability: RequiredSourceCapability
     operation: Literal[
@@ -84,9 +87,11 @@ class AnswerField(StrictRecord):
 class AnswerRequirement(StrictRecord):
     version: Literal["answer-field/1"] = "answer-field/1"
     contract_binding: str
+    original_goal: str | None = None
+    node_question: str | None = None
     question_id: str
     dependencies: list[str]
-    fields: list[AnswerField] = Field(min_length=1, max_length=16)
+    fields: list[AnswerField] = Field(min_length=1, max_length=64)
 
     @model_validator(mode="after")
     def ownership(self):

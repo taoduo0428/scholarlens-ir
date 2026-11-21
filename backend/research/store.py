@@ -80,6 +80,10 @@ class ResearchStore:
                 db.execute("PRAGMA user_version=1")
             elif version != 1:
                 raise RuntimeError("unsupported research schema")
+            db.execute("""CREATE TABLE IF NOT EXISTS plan_seals(
+                task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
+                first_revision INTEGER NOT NULL, plan_version INTEGER NOT NULL,
+                created_at TEXT NOT NULL, plan_sha256 TEXT NOT NULL)""")
             db.execute("""CREATE TABLE IF NOT EXISTS worker_requests(
                 task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
                 command TEXT NOT NULL CHECK(command IN ('cancelled','paused')))""")
@@ -124,7 +128,9 @@ class ResearchStore:
                 return None
             if row["input_hash"] != digest(canonical(task.model_dump(mode="json"))):
                 raise Conflict("idempotency_conflict")
-            return ResearchState.model_validate_json(row["state_json"]), row["revision"]
+            state = ResearchState.model_validate_json(row["state_json"])
+            self._validate_plan(db, row["id"], state, row["revision"])
+            return state, row["revision"]
 
     def create(self, owner: int, idem: str, task: TaskInput, generation: str, *,
                initial_budget: Budget | None = None, **versions):
@@ -139,7 +145,9 @@ class ResearchStore:
             if row:
                 if row["input_hash"] != hashed:
                     raise Conflict("idempotency_conflict")
-                return ResearchState.model_validate_json(row["state_json"]), row["revision"], False
+                state = ResearchState.model_validate_json(row["state_json"])
+                self._validate_plan(db, row["id"], state, row["revision"])
+                return state, row["revision"], False
             state = ResearchState(run_id=uuid4(), user_id=owner, task=task,
                                   corpus_generation=generation, budget=initial_budget or Budget(), **versions)
             uid, now = str(state.run_id), timestamp()
@@ -148,10 +156,39 @@ class ResearchStore:
             self._event(db, uid, "created", state.status)
             return state, 0, True
 
+    @staticmethod
+    def _plan_digest(plan, policy=None):
+        if not plan:
+            return None
+        data = plan.model_dump(mode="json")
+        if policy in {"V4", "V5", "V6", "V7", "W4"}:
+            # Historical controllers record queue scheduling as plan revisions.
+            # The nodes, criteria and dependency edges remain immutable.
+            data["graph"]["nodes"].sort(key=lambda n: n["id"])
+            data.pop("revisions")
+            data.pop("plan_version")
+        return digest(canonical(data))
+
+    @classmethod
+    def _validate_plan(cls, db, uid, state, revision):
+        seal = db.execute("SELECT * FROM plan_seals WHERE task=?", (str(uid),)).fetchone()
+        if seal and revision >= seal["first_revision"]:
+            if cls._plan_digest(state.question_plan, state.retrieval_policy) != seal["plan_sha256"]:
+                raise Conflict("question_plan_integrity")
+
+    def plan_metadata(self, owner, task_id):
+        with self._db() as db:
+            self._owned(db, owner, task_id)
+            row = db.execute("SELECT first_revision,plan_version,created_at,plan_sha256 FROM plan_seals WHERE task=?",
+                             (str(task_id),)).fetchone()
+            return dict(row) if row else None
+
     def get(self, owner: int, task_id: str | UUID):
         with self._db() as db:
             row = self._owned(db, owner, task_id)
-            return ResearchState.model_validate_json(row["state_json"]), row["revision"]
+            state = ResearchState.model_validate_json(row["state_json"])
+            self._validate_plan(db, row["id"], state, row["revision"])
+            return state, row["revision"]
 
     def list_tasks(self, owner: int, limit: int = 50, offset: int = 0):
         if not 1 <= limit <= 100 or offset < 0:
@@ -184,6 +221,9 @@ class ResearchStore:
         with self._db(write=True) as db:
             old = self._owned(db, owner, uid)
             previous = ResearchState.model_validate_json(old["state_json"])
+            self._validate_plan(db, uid, previous, old["revision"])
+            if previous.question_plan and self._plan_digest(previous.question_plan, previous.retrieval_policy) != self._plan_digest(state.question_plan, state.retrieval_policy):
+                raise Conflict("immutable question plan")
             if previous.field_requirements and previous.field_requirements != state.field_requirements:
                 raise Conflict("immutable field requirements")
             if any(not set(ids)<=set(state.question_reads.get(q,[])) for q,ids in previous.question_reads.items()):
@@ -225,6 +265,18 @@ class ResearchStore:
             ):
                 raise Conflict("budget deadline cannot be extended")
             next_rev = revision + 1
+            if state.question_plan:
+                if previous.question_plan and not db.execute("SELECT 1 FROM plan_seals WHERE task=?", (uid,)).fetchone():
+                    snap = db.execute("""SELECT c.state_json,c.state_digest,e.kind FROM checkpoints c
+                        JOIN events e ON e.task=c.task AND e.seq=c.revision+1 WHERE c.task=? AND c.revision=?""",
+                        (uid, revision)).fetchone()
+                    if not snap or digest(canonical([snap["kind"], digest(snap["state_json"].encode())])) != snap["state_digest"]:
+                        raise Conflict("legacy_plan_checkpoint_integrity")
+                    if self._plan_digest(ResearchState.model_validate_json(snap["state_json"]).question_plan, state.retrieval_policy) != self._plan_digest(state.question_plan, state.retrieval_policy):
+                        raise Conflict("legacy_plan_integrity")
+                db.execute("INSERT OR IGNORE INTO plan_seals VALUES(?,?,?,?,?)",
+                           (uid, revision if previous.question_plan else next_rev, state.question_plan.plan_version,
+                            timestamp(), self._plan_digest(state.question_plan, state.retrieval_policy)))
             db.execute("INSERT INTO checkpoints VALUES(?,?,?,?,?)",
                        (uid, next_rev, execution_id, fingerprint, payload.decode()))
             db.execute("UPDATE tasks SET state_json=?,status=?,revision=?,updated_at=? WHERE id=?",
@@ -249,7 +301,9 @@ class ResearchStore:
             hashed = digest(canonical([row["kind"], digest(row["state_json"].encode())]))
             if hashed != row["state_digest"]:
                 raise Conflict("checkpoint_integrity")
-            return ResearchState.model_validate_json(row["state_json"])
+            state = ResearchState.model_validate_json(row["state_json"])
+            self._validate_plan(db, uid, state, revision)
+            return state
 
     def put_artifact(self, owner: int, task_id: str | UUID, kind: str, content: bytes, generation: str):
         if kind not in {"evidence", "report", "markdown", "tool_result", "notes"}:

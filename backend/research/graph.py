@@ -143,13 +143,13 @@ class ResearchGraph:
                 seconds=state.budget.max_duration_seconds
             )
         if not state.subtasks:
-            if state.retrieval_policy in {"V3", "V4", "V5", "V6", "V7", "W4","E9"}:
+            if state.retrieval_policy in {"V3", "V4", "V5", "V6", "V7", "W4","E9","E9.1"}:
                 from backend.research.questions import legacy_subtasks, make_plan
 
                 def propose(contract, errors):
                     if state.budget.model_calls_used >= state.budget.max_model_calls or self._remaining(state) <= 0:
                         raise ValueError("budget")
-                    if state.retrieval_policy in {"W4","E9"}:
+                    if state.retrieval_policy in {"W4","E9","E9.1"}:
                         if not workspace_model.reserve(self.store,state,"planning"):
                             raise ValueError("budget")
                     else:
@@ -162,7 +162,7 @@ class ResearchGraph:
                     except ToolError:
                         raise ValueError("provider_timeout") from None
                     result = graph.model_dump() if hasattr(graph, "model_dump") else graph
-                    if state.retrieval_policy in {"W4","E9"}:
+                    if state.retrieval_policy in {"W4","E9","E9.1"}:
                         from backend.research.questions import Blueprint, PATHS
                         parsed = Blueprint.model_validate(result)
                         required = PATHS[contract["intent"]]
@@ -179,12 +179,16 @@ class ResearchGraph:
                 personal = state.task.mode == "personal_model" and self.question_planner is not None
                 state.question_plan = make_plan(state, propose if personal else None)
                 state.subtasks = legacy_subtasks(state.question_plan)
-                if state.retrieval_policy in {"W4","E9"}:
+                if state.retrieval_policy in {"W4","E9","E9.1"}:
                     from backend.research.answer_contract import bind_answer
                     state.answer_contract = bind_answer(state.question_plan)
-                    if state.retrieval_policy=="E9":
+                    if state.retrieval_policy in {"E9", "E9.1"}:
                         from backend.research.field_contract import requirements
-                        state.field_requirements=requirements(state.question_plan,state.answer_contract)
+                        if state.retrieval_policy == "E9.1":
+                            from backend.research.node_fields import compile_fields
+                            state.field_requirements = compile_fields(state.question_plan, state.answer_contract)
+                        else:
+                            state.field_requirements = requirements(state.question_plan, state.answer_contract)
             else:
                 state.subtasks = plan(state)
         self._save(state, rev, "started")
@@ -365,6 +369,12 @@ class ResearchGraph:
             state.stop_reason = "complete" if sub is None else "budget"
             self._save(state, rev, "step")
             return {"route": "finish"}
+        if state.retrieval_policy == "E9.1" and state.field_requirements and all(
+            f.operation == "layout" for req in state.field_requirements for f in req.fields
+        ):
+            state.stop_reason = "blocked"
+            self._save(state, rev, "step")
+            return {"route": "finish"}
         slot = sub.missing_slots[0]
         if self._remaining(state) <= 0:
             state.stop_reason = "budget"
@@ -427,6 +437,8 @@ class ResearchGraph:
                 limit = min(4, self._tuning(state).evidence_per_subtask)
                 question_fields=next((r.fields for r in state.field_requirements if r.question_id==sub.id),[])
                 directed=bool(state.task.scope.paper_ids and any(f.operation in {"quote","layout"} for f in question_fields))
+                if state.retrieval_policy == "E9.1" and state.task.scope.paper_ids and len(state.subtasks) > 1:
+                    directed = True
                 if directed:
                     ids=list(state.task.scope.paper_ids)
                     targets=[]
