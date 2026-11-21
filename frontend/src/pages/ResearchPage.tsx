@@ -5,6 +5,7 @@ import {BackendError} from "../services/backend";
 import {loadPersonalAi} from "../services/personalAi";
 import {research, slotLabels, subtaskLabels, type Command, type ResearchEvent, type ResearchReport, type ResearchSource,
   type ResearchState, type TaskInput, type TaskItem} from "../services/research";
+import {PdfCellPicker} from "../components/PdfCellPicker";
 import {QuestionPlan} from "../components/QuestionPlan";
 import {ReportPanel, ResearchSourceDetail} from "../components/ResearchReport";
 
@@ -31,6 +32,8 @@ function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}
     if(ids.length>40){setError("论文范围最多 40 篇。");return;}
     if(mode==="personal_model"&&!personal){setError("请先在证据助手中配置个人模型。");return;}
     const body:TaskInput={goal:goal.trim(),scope:{paper_ids:ids,include_own_uploads:own,library_only:true},depth,mode};
+    const cell=new FormData(e.currentTarget as HTMLFormElement).get("pdf_cell");
+    if(typeof cell==="string") body.pdf_cell=JSON.parse(cell);
     if(project.trim()) body.research_project={workspace:"personal",project:project.trim()};
     const value=JSON.stringify(body);
     if(previous.current.input!==value)previous.current={input:value,key:crypto.randomUUID()};
@@ -58,6 +61,7 @@ function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}
       <label>限定论文 ID<input value={paperIds} onChange={e=>setPapers(e.target.value)} placeholder="用逗号分隔，留空搜索本库"/></label>
       <label className="research-check"><input type="checkbox" checked={own} onChange={e=>setOwn(e.target.checked)}/>包括本账户已入库上传</label>
     </details>
+    <PdfCellPicker key={paperIds} papers={[...new Set(paperIds.split(/[\s,，]+/u).filter(Boolean))]}/>
     {error&&<p role="alert">{error}</p>}
     <button className="button button-primary" disabled={busy||goal.trim().length<2||(mode==="personal_model"&&!personal)}>{busy?"正在创建…":"开始研究"}</button>
   </form>;
@@ -68,6 +72,7 @@ function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
   const [report,setReport]=useState<ResearchReport|null>(null),[error,setError]=useState(""),[network,setNetwork]=useState("");
   const [pending,setPending]=useState(false),[requested,setRequested]=useState<Command|null>(null);
   const [source,setSource]=useState<ResearchSource|null>(null);
+  const [traces,setTraces]=useState<string[]>([]);
   const [reload,setReload]=useState(0);
   const cursor=useRef(0), lastRev=useRef(-1), lastStatus=useRef("");
   const updateList=useRef(onUpdate);
@@ -90,7 +95,7 @@ function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
         }
         const status=latest.state.status;
         if(latest.revision>=lastRev.current){
-          lastRev.current=latest.revision;setState(latest.state);
+          lastRev.current=latest.revision;setState(latest.state);setTraces(latest.trace_ids??[]);
           if(status!==lastStatus.current){lastStatus.current=status;setRequested(null);updateList.current();}
         }
         setNetwork("");
@@ -136,6 +141,9 @@ function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
       <section className="research-panel"><div className="research-panel-heading"><h2>{state.task.goal}</h2><span className="research-state">{statusLabel[state.status]}</span></div>
         <p>研究轮次 {state.budget.rounds_used}/{state.budget.max_rounds} · 工具调用 {state.budget.tool_calls_used}/{state.budget.max_tool_calls}</p>
         <details><summary>任务版本</summary><p>语料 {state.corpus_generation} · 模型 {state.model_id}</p></details>
+        <details><summary>任务追踪</summary><p>任务 ID {id}</p>{traces.length?traces.map(t=><p key={t}>{t}</p>):<p>运行环境尚无追踪记录</p>}</details>
+        {state.task.research_project&&<ProjectDashboard workspace={state.task.research_project.workspace}
+          project={state.task.research_project.project} revision={lastRev.current}/>}
         {state.status==="awaiting_credentials"&&<p>恢复前请重新配置个人模型。 <Link to="/assistant">配置个人模型</Link></p>}
         {state.stop_reason&&<p>停止原因 · {state.stop_reason}</p>}
         {state.warnings.map((w,i)=><p key={i}>{w}</p>)}
@@ -175,6 +183,28 @@ function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
       {report&&<ReportPanel report={report} taskId={id} subtasks={state.subtasks}/>}
     </>}
   </div>;
+}
+
+function ProjectDashboard({workspace,project,revision}:{workspace:string;project:string;revision:number}){
+  const [opened,setOpened]=useState(false);
+  const [data,setData]=useState<Awaited<ReturnType<typeof research.metrics>>|null>(null);
+  const [error,setError]=useState("");
+  useEffect(()=>{
+    if(!opened)return;
+    const ctrl=new AbortController();
+    research.metrics(workspace,project,ctrl.signal).then(value=>{
+      if(!ctrl.signal.aborted){setData(value);setError("");}
+    }).catch(e=>{if(!ctrl.signal.aborted){setData(null);setError(message(e));}});
+    return ()=>ctrl.abort();
+  },[opened,workspace,project,revision]);
+  return <details onToggle={e=>setOpened(e.currentTarget.open)}><summary>项目运行统计</summary>
+    {error?<p role="alert">{error}</p>:data?<section aria-label="项目运行统计">
+      <p>{project} · 最近 {data.tasks} 个任务{data.more?"（还有更早记录）":""}</p>
+      <p>{Object.entries(data.states).map(([key,n])=>statusLabel[key as keyof typeof statusLabel]+" "+n).join(" · ")}</p>
+      <p>完成及部分完成任务 p50 {data.p50_seconds??"—"} 秒，p95 {data.p95_seconds??"—"} 秒</p>
+      <p>模型调用 {data.model_calls} 次 · 已计量 {data.measured_tokens} tokens{data.tokens_complete?"":"（部分用量缺失）"}</p>
+      <p>已知费用估计 {data.known_cost_estimate} · 费用缺失 {data.tasks_missing_cost} 项</p>
+    </section>:opened?<p>正在读取项目统计…</p>:null}</details>;
 }
 
 function Workspace({owner}:{owner:number}){

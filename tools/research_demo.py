@@ -42,7 +42,17 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
     else:
         version = FIXTURE if corpus_name == "fixture" else GENERATION
         docs = {pid: dict(row, pdf_available=False) for pid, row in documents(version).items()}
+    if corpus_name == "profile-fixture":
+        docs["ui:wave"]["pdf_available"] = True
     corpus = LocalCorpus(docs, version)
+    if corpus_name == "profile-fixture":
+        from backend.tests.research.test_pdf_layout import specimen
+
+        sample = runtime / "synthetic-wave-table.pdf"
+        if not sample.exists():
+            with sample.open("xb") as stream:
+                stream.write(specimen())
+        corpus.pdf_resolver = lambda doc: sample if doc["paper_id"] == "ui:wave" else None
     accounts = Store(str(runtime))
     config = Settings(runtime_dir=str(runtime), frontend_dir=str(frontend))
 
@@ -86,18 +96,26 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
             "parse_status",
         )
         paper = {key: row.get(key) for key in permitted}
-        return dict(paper, pdf_available=False), version
+        return dict(paper, pdf_available=row["pdf_available"]), version
 
     @app.get("/api/papers/{pid}")
     def paper_detail(pid: str):
         return read_paper(pid)[0]
+
+    if corpus_name == "profile-fixture":
+        @app.get("/api/papers/{pid}/pdf/layout/{page}")
+        def fixture_layout(pid: str, page: int):
+            from backend.research.pdf_layout import from_path
+            if pid != "ui:wave" or page != 1:
+                raise HTTPException(404, "fixture_page_unavailable")
+            return from_path(sample, pid, page)
 
     @app.get("/api/stats")
     def stats():
         return {
             "papers": len(docs),
             "indexed": len(docs),
-            "status": "mock" if corpus_name == "fixture" else "real",
+            "status": "real" if corpus_name == "seed" else "mock",
         }
 
     @app.get("/api/capabilities")

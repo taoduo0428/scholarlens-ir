@@ -1,0 +1,66 @@
+{
+  "code_revision": "4656d2a",
+  "backend": {
+    "tests_exit": 0,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true,
+    "total": 706,
+    "passed": 706,
+    "skipped": 0,
+    "errors": 0,
+    "failed": 0,
+    "pytest_seconds": 482.93
+  },
+  "frontend": {
+    "tests": 45,
+    "passed": 45,
+    "skipped": 0,
+    "failed": 0,
+    "seconds": 0.6298868999999999,
+    "structure_exit": 0,
+    "production_build_with_typecheck_exit": 0,
+    "browser_exit": 0,
+    "browser": "PASS 2 profiles; 6 quote/locator pairs; selected cell; report downloaded; restored; access isolated"
+  },
+  "licensed_pdf_publication": {
+    "doi": "10.1371/journal.pone.0102799",
+    "status": "PASS",
+    "publisher_table": "pone-0102799-t001",
+    "row_label": "ca-CondMat",
+    "column_label": "Number of nodes",
+    "cell": {
+      "paper_id": "10.1371/journal.pone.0102799",
+      "source_version": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+      "page": 6,
+      "table_id": 1,
+      "row": 3,
+      "column": 2,
+      "source_scope": "public_corpus",
+      "quote": "23,133",
+      "quote_sha256": "4b174377f0c1dfec6388d7fdc525643ca725661952c1b1e17785457bb661d36d",
+      "locator": "pdf:da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa:p6:cell:201.316,107.467,377.745,116.561",
+      "bbox": [
+        201.316,
+        107.467,
+        377.745,
+        116.561
+      ]
+    },
+    "jats_sha256": "dacebe67fcabd7057895bd587a96c5ebbcc272163a1a4bd61879ddd0583ef49d",
+    "tool_calls": 1
+  },
+  "managed_ci": {
+    "runs": 0,
+    "workflow_install": "blocked_missing_workflow_scope"
+  },
+  "provider_acceptance": {
+    "status": "blocked_missing_project_configuration",
+    "live_calls": 0
+  },
+  "docker_build": {
+    "status": "blocked_no_engine"
+  }
+}

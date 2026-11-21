@@ -37,7 +37,17 @@ class ResearchProject(Contract):
     project: Annotated[str, StringConstraints(pattern=r"^[a-zA-Z0-9_-]{1,64}$")]
 
 
+class PdfCellRequest(Contract):
+    paper_id: Id
+    source_version: Digest
+    page: int = Field(ge=1, le=500, strict=True)
+    table_id: int = Field(ge=1, le=20, strict=True)
+    row: int = Field(ge=1, le=100, strict=True)
+    column: int = Field(ge=1, le=40, strict=True)
+
+
 class TaskInput(Contract):
+    pdf_cell: PdfCellRequest | None = Field(default=None, exclude_if=lambda v: v is None)
     research_project: ResearchProject | None = Field(default=None, exclude_if=lambda v: v is None)
     goal: Annotated[str, StringConstraints(strip_whitespace=True, min_length=2, max_length=3000)]
     scope: Scope = Field(default_factory=Scope)
@@ -48,6 +58,12 @@ class TaskInput(Contract):
     requested_deliverables: list[Literal["report", "matrix", "sources"]] = Field(
         default_factory=lambda: ["report", "matrix", "sources"], max_length=3
     )
+
+    @model_validator(mode="after")
+    def validate_pdf_scope(self):
+        if self.pdf_cell and self.pdf_cell.paper_id not in self.scope.paper_ids:
+            raise ValueError("PDF cell requires an explicitly scoped paper")
+        return self
 
 
 class SearchFilter(Contract):

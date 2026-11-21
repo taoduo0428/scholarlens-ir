@@ -29,6 +29,17 @@ try {
   await page.getByLabel("研究项目（可选）").fill("profile-qa");
   await page.getByText("本库论文范围", {exact:true}).click();
   await page.getByLabel("限定论文 ID").fill(info.example_paper_ids.join(","));
+  await page.getByText("引用 PDF 表格单元格（可选）", {exact:true}).click();
+  await page.getByLabel("表格所属论文").selectOption("ui:wave");
+  const layoutResponse = page.waitForResponse(r=>r.url().includes("/pdf/layout/"));
+  await page.getByRole("button", {name:"读取本页表格"}).click();
+  const layout = await layoutResponse;
+  assert.equal(layout.status(), 200);
+  assert.ok((await layout.json()).items.some(item=>item.kind==="cell" && item.quote==="87"));
+  const picker = page.getByRole("combobox", {name:/^引用单元格/});
+  await picker.waitFor();
+  const target = picker.locator("option").filter({hasText:/行 2 · 列 2 · 87/});
+  await picker.selectOption(await target.getAttribute("value"));
   await page.getByRole("button", {name:"开始研究",exact:true}).click();
   const region = page.getByRole("region", {name:"逐篇研究档案"});
   await region.waitFor({timeout:60000});
@@ -38,6 +49,23 @@ try {
   assert.equal(reportResponse.status(), 200);
   const report = await reportResponse.json();
   assert.deepEqual(report.research_profiles.map(p => p.paper_id).sort(), [...info.example_paper_ids].sort());
+  const selected = report.pdf_cell_evidence;
+  assert.equal(selected.status, "source_verified");
+  assert.equal(selected.cell.quote, "87");
+  assert.equal(selected.cell.page, 1);
+  assert.equal(selected.cell.row, 2);
+  assert.equal(selected.cell.column, 2);
+  const published = page.getByRole("region", {name:"指定 PDF 单元格"});
+  assert.ok((await published.innerText()).includes(selected.cell.locator));
+  const downloadPromise = page.waitForEvent("download");
+  await page.getByRole("button", {name:"导出 Markdown"}).click();
+  const download = await downloadPromise;
+  const stream = await download.createReadStream();
+  const buffers = [];
+  for await (const chunk of stream) buffers.push(chunk);
+  const markdown = Buffer.concat(buffers).toString("utf8");
+  assert.equal(markdown, report.markdown);
+  assert.ok(markdown.includes("87") && markdown.includes("指定 PDF 单元格"));
   let verified = 0;
   for (const profile of report.research_profiles) {
     const section = region.locator("details").filter({has:page.getByText(profile.title, {exact:true})});
@@ -49,13 +77,24 @@ try {
     }
   }
   assert.ok(verified > 0);
+  await page.getByText("项目运行统计", {exact:true}).click();
+  const dashboard = page.getByRole("region", {name:"项目运行统计"});
+  await dashboard.waitFor();
+  assert.match(await dashboard.innerText(), /profile-qa · 最近 1 个任务/);
+  assert.match(await dashboard.innerText(), /模型调用 0 次/);
+  await page.getByText("任务追踪", {exact:true}).click();
+  assert.match(await page.locator("details[open]").allTextContents().then(x=>x.join(" ")), /任务 ID /);
   const other = await account();
+  const otherMetrics = await context.request.get(origin + "/api/research/workspaces/personal/projects/profile-qa/metrics",
+    {headers:{Authorization:"Bearer " + other}});
+  assert.equal(otherMetrics.status(), 200);
+  assert.equal((await otherMetrics.json()).tasks, 0);
   assert.equal((await context.request.get(reportURL, {headers:{Authorization:"Bearer " + other}})).status(), 404);
   await page.reload();
   await region.waitFor();
   assert.equal(await region.locator("summary").count(), report.research_profiles.length);
   assert.deepEqual(errors, []);
-  console.log("PASS", report.research_profiles.length, "profiles;", verified, "quote/locator pairs; restored; access isolated");
+  console.log("PASS", report.research_profiles.length, "profiles;", verified, "quote/locator pairs; selected cell; report downloaded; restored; access isolated");
 } finally {
   await browser.close();
 }

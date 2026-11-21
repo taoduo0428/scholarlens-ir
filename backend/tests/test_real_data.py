@@ -241,7 +241,7 @@ def test_own_api_restart_preserves_real_index(delivery, request, tmp_path):
     try:
         with httpx.Client(base_url="http://127.0.0.1:8002", timeout=15, trust_env=False) as api:
             before = api.get("/api/stats").json()
-        stopped = subprocess.run(stop, capture_output=True, text=True)
+        stopped = subprocess.run(stop, capture_output=True, timeout=90)
         assert stopped.returncode == 0, stopped.stderr
         start_owned()
         with httpx.Client(base_url="http://127.0.0.1:8002", timeout=15, trust_env=False) as api:
@@ -250,5 +250,5 @@ def test_own_api_restart_preserves_real_index(delivery, request, tmp_path):
         assert before == after and after["status"] == "real" and after["indexed"] == 859
         assert found.status_code == 200
     finally:
-        stopped = subprocess.run(stop, capture_output=True, text=True)
+        stopped = subprocess.run(stop, capture_output=True, timeout=90)
         assert stopped.returncode == 0, stopped.stderr

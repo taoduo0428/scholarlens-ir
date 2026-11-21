@@ -131,7 +131,8 @@ def account_upload_acl(store):
 class EsCorpus:
     """Use concrete indices for every query; historical vector helpers expand upload aliases."""
 
-    def __init__(self, es, settings, *, upload_acl=None, keyword_builder=None, embedder=None):
+    def __init__(self, es, settings, *, upload_acl=None, keyword_builder=None, embedder=None, pdf_resolver=None):
+        self.pdf_resolver = pdf_resolver
         self.es, self.settings = es, settings
         self.public = _concrete(es, settings.index)
         self.upload_acl, self.upload = upload_acl, None
