@@ -125,6 +125,11 @@ class ToolRegistry:
             raise ToolError("invalid_tool_input") from error
         self.corpus.guard_generation(self.generation)
         result = getattr(self, "_" + name)(req)
+        from backend.research.tools.manifest import OUTPUTS
+        try:
+            OUTPUTS[name].model_validate(result)
+        except ValidationError as error:
+            raise ToolError("invalid_tool_output") from error
         if len(json.dumps(result, ensure_ascii=False).encode("utf-8")) > 128_000:
             raise ToolError("tool_output_limit")
         return result

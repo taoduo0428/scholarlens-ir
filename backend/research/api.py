@@ -199,5 +199,10 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         invalidate(store, user["id"], workspace_id, project_id, tid)
         return Response(status_code=204)
 
+    @api.get("/tools")
+    def tool_catalog(user=Depends(accounts.current)):
+        from backend.research.tools.manifest import describe
+        return {"tools": describe()}
+
     app.include_router(api)
     return worker
