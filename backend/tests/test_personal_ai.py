@@ -94,6 +94,29 @@ def test_dns_is_pinned_with_host_sni_and_no_redirect(monkeypatch):
     assert observed[0].extensions["sni_hostname"]=="provider.example"
 
 
+def test_public_transport_falls_back_after_connect_error(monkeypatch):
+    monkeypatch.setattr(socket, "getaddrinfo", lambda *a, **k: [
+        (socket.AF_INET6, 1, 6, "", ("2606:4700::1111", 443, 0, 0)),
+        (socket.AF_INET, 1, 6, "", ("1.1.1.1", 443)),
+    ])
+    attempts = []
+
+    def connect(request):
+        attempts.append(request.url.host)
+        assert request.headers["Host"] == "provider.example"
+        assert request.extensions["sni_hostname"] == "provider.example"
+        if request.url.host == "2606:4700::1111":
+            raise httpx.ConnectError("unreachable", request=request)
+        return httpx.Response(401)
+
+    transport = PublicAITransport()
+    transport.inner.close()
+    transport.inner = httpx.MockTransport(connect)
+    with httpx.Client(transport=transport) as client:
+        assert client.get("https://provider.example/v1/models").status_code == 401
+    assert attempts == ["2606:4700::1111", "1.1.1.1"]
+
+
 def test_upstream_errors_do_not_disclose_personal_credentials(tmp_path):
     config=personal_settings(replace(Settings(),runtime_dir=str(tmp_path)),headers(),lambda:None)
     seen=[]

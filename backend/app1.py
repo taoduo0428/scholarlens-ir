@@ -155,9 +155,16 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(app):
-        yield
-        if owns_client:
-            es.close()
+        worker = getattr(app.state, "research_worker", None)
+        if worker:
+            worker.start()
+        try:
+            yield
+        finally:
+            if worker:
+                worker.close()
+            if owns_client:
+                es.close()
 
     app = FastAPI(
         title="ScholarLens",
@@ -175,7 +182,11 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
             CORSMiddleware,
             allow_origins=[v.strip() for v in settings.cors_origins.split(",") if v.strip()],
             allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-            allow_headers=["Authorization", "Content-Type"],
+            allow_headers=[
+                "Authorization", "Content-Type", "Idempotency-Key",
+                "X-ScholarLens-AI-URL", "X-ScholarLens-AI-Model", "X-ScholarLens-AI-Key",
+                "X-ScholarLens-AI-Token-Parameter", "X-ScholarLens-AI-Protocol",
+            ],
             expose_headers=["X-ScholarLens-Data-Status"],
         )
 
@@ -562,6 +573,17 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
         return schema
 
     app.openapi = openapi
+    from backend.research.flags import ResearchFlags
+    if ResearchFlags.from_env().research:
+        from backend.research.api import attach
+        from backend.research.tools import EsCorpus, account_upload_acl
+        from backend.research.reports import generate_report
+
+        def research_corpus(scope):
+            acl = account_upload_acl(store) if scope.include_own_uploads else None
+            return EsCorpus(es, settings, upload_acl=acl)
+
+        attach(app, settings, store, research_corpus, report=generate_report)
     mount_frontend(app, settings.frontend_dir)
     return app
 

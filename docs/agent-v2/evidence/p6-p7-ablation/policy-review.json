@@ -1,0 +1,843 @@
+[
+  [
+    {
+      "suite": "smoke",
+      "split": "fixture",
+      "level": "B4",
+      "dataset_sha256": "f770fa2f896e95d843a21f3726ebb0b75ab6005886500aac29367f4dc417d167",
+      "corpus_generation": "fixture:scholarlens-research-smoke-v1",
+      "config": {
+        "technique": "metric-conditions",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      },
+      "tasks": [
+        {
+          "task_id": "smoke-fact",
+          "category": "fact",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 3,
+          "evidence_ids": [
+            "chunk:9de09c351cd5a88b93cf21782373bf9119c61bf2916440165400428d5d813ff5"
+          ],
+          "source_checks": [
+            true
+          ],
+          "public_papers": [
+            "fixture:cedar"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 319.53
+        },
+        {
+          "task_id": "smoke-comparison",
+          "category": "comparison",
+          "split": "fixture",
+          "status": "completed",
+          "stop_reason": "complete",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 4,
+          "evidence_ids": [
+            "chunk:48271def842430f7923ba6d5dc3b065f95434930041ba66411cbb7f177330796",
+            "chunk:9de09c351cd5a88b93cf21782373bf9119c61bf2916440165400428d5d813ff5"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "fixture:birch",
+            "fixture:cedar"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 299.194
+        },
+        {
+          "task_id": "smoke-multihop",
+          "category": "multihop",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 3,
+          "evidence_ids": [
+            "chunk:9de09c351cd5a88b93cf21782373bf9119c61bf2916440165400428d5d813ff5"
+          ],
+          "source_checks": [
+            true
+          ],
+          "public_papers": [
+            "fixture:cedar"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 272.607
+        },
+        {
+          "task_id": "smoke-metrics",
+          "category": "metrics",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 3,
+          "evidence_ids": [
+            "chunk:48271def842430f7923ba6d5dc3b065f95434930041ba66411cbb7f177330796"
+          ],
+          "source_checks": [
+            true
+          ],
+          "public_papers": [
+            "fixture:birch"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 270.804
+        },
+        {
+          "task_id": "smoke-incomparable",
+          "category": "incomparable",
+          "split": "fixture",
+          "status": "completed",
+          "stop_reason": "complete",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 4,
+          "evidence_ids": [
+            "chunk:48271def842430f7923ba6d5dc3b065f95434930041ba66411cbb7f177330796",
+            "chunk:9de09c351cd5a88b93cf21782373bf9119c61bf2916440165400428d5d813ff5"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "fixture:birch",
+            "fixture:cedar"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 280.143
+        },
+        {
+          "task_id": "smoke-unsupported",
+          "category": "unsupported",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "fact"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 0,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 313.552
+        }
+      ],
+      "metrics": {
+        "anchor_hits": 7,
+        "anchor_total": 7,
+        "negative_with_evidence": 0,
+        "tool_calls": 21,
+        "source_failures": 0,
+        "budget_violations": 0,
+        "tool_errors": 0,
+        "model_calls": 0,
+        "tokens": 0,
+        "model_cost": 0,
+        "quality_human": null,
+        "p95_ms": 319.53
+      }
+    },
+    {
+      "suite": "smoke",
+      "split": "fixture",
+      "level": "B5",
+      "dataset_sha256": "f770fa2f896e95d843a21f3726ebb0b75ab6005886500aac29367f4dc417d167",
+      "corpus_generation": "fixture:scholarlens-research-smoke-v1",
+      "config": {
+        "technique": "metric-conditions",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 1,
+        "evidence_per_subtask": 2
+      },
+      "tasks": [
+        {
+          "task_id": "smoke-fact",
+          "category": "fact",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "method"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 1,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 344.676
+        },
+        {
+          "task_id": "smoke-comparison",
+          "category": "comparison",
+          "split": "fixture",
+          "status": "completed",
+          "stop_reason": "complete",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 4,
+          "evidence_ids": [
+            "chunk:48271def842430f7923ba6d5dc3b065f95434930041ba66411cbb7f177330796",
+            "chunk:9de09c351cd5a88b93cf21782373bf9119c61bf2916440165400428d5d813ff5"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "fixture:birch",
+            "fixture:cedar"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 290.426
+        },
+        {
+          "task_id": "smoke-multihop",
+          "category": "multihop",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 3,
+          "evidence_ids": [
+            "chunk:9de09c351cd5a88b93cf21782373bf9119c61bf2916440165400428d5d813ff5"
+          ],
+          "source_checks": [
+            true
+          ],
+          "public_papers": [
+            "fixture:cedar"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 258.42
+        },
+        {
+          "task_id": "smoke-metrics",
+          "category": "metrics",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 3,
+          "evidence_ids": [
+            "chunk:48271def842430f7923ba6d5dc3b065f95434930041ba66411cbb7f177330796"
+          ],
+          "source_checks": [
+            true
+          ],
+          "public_papers": [
+            "fixture:birch"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 258.69
+        },
+        {
+          "task_id": "smoke-incomparable",
+          "category": "incomparable",
+          "split": "fixture",
+          "status": "completed",
+          "stop_reason": "complete",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 2,
+          "tool_calls": 6,
+          "evidence_ids": [
+            "chunk:48271def842430f7923ba6d5dc3b065f95434930041ba66411cbb7f177330796",
+            "chunk:9de09c351cd5a88b93cf21782373bf9119c61bf2916440165400428d5d813ff5"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "fixture:birch",
+            "fixture:cedar"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 380.221
+        },
+        {
+          "task_id": "smoke-unsupported",
+          "category": "unsupported",
+          "split": "fixture",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "fact"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 0,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 299.276
+        }
+      ],
+      "metrics": {
+        "anchor_hits": 6,
+        "anchor_total": 7,
+        "negative_with_evidence": 0,
+        "tool_calls": 24,
+        "source_failures": 0,
+        "budget_violations": 0,
+        "tool_errors": 0,
+        "model_calls": 0,
+        "tokens": 0,
+        "model_cost": 0,
+        "quality_human": null,
+        "p95_ms": 380.221
+      }
+    }
+  ],
+  [
+    {
+      "suite": "seed",
+      "split": "dev",
+      "level": "B4",
+      "dataset_sha256": "92577aca7727cbdacdd515064fa26ca5ab259d94b04be7a4b25667cc6b37ce7b",
+      "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "config": {
+        "technique": "metric-conditions",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      },
+      "tasks": [
+        {
+          "task_id": "graph-learning-fact",
+          "category": "fact",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 5,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:1926689e55632574038c6d07c4bbd260619f491df6d71df5805e521f033f9c0e",
+            "chunk:85abb855c74067b6d16e640a0dbed36fee940561a8f994a9545406ebf498c748"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 366.723
+        },
+        {
+          "task_id": "graph-learning-comparison",
+          "category": "comparison",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "method",
+            "dataset",
+            "metric",
+            "protocol"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 2,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 325.262
+        },
+        {
+          "task_id": "graph-learning-multihop",
+          "category": "multihop",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "protocol"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 1,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 302.493
+        },
+        {
+          "task_id": "graph-learning-metrics",
+          "category": "metrics",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "method",
+            "dataset"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 1,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 354.8
+        },
+        {
+          "task_id": "graph-learning-incomparable",
+          "category": "incomparable",
+          "split": "dev",
+          "status": "completed",
+          "stop_reason": "complete",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 6,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6",
+            "chunk:85abb855c74067b6d16e640a0dbed36fee940561a8f994a9545406ebf498c748"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 350.579
+        },
+        {
+          "task_id": "graph-learning-unsupported",
+          "category": "unsupported",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 4,
+          "evidence_ids": [
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304"
+          ],
+          "expected_chunks": 0,
+          "matched_chunks": 0,
+          "unexpected_evidence": true,
+          "tool_errors": 0,
+          "elapsed_ms": 332.493
+        }
+      ],
+      "metrics": {
+        "anchor_hits": 3,
+        "anchor_total": 7,
+        "negative_with_evidence": 1,
+        "tool_calls": 27,
+        "source_failures": 0,
+        "budget_violations": 0,
+        "tool_errors": 0,
+        "model_calls": 0,
+        "tokens": 0,
+        "model_cost": 0,
+        "quality_human": null,
+        "p95_ms": 366.723
+      }
+    },
+    {
+      "suite": "seed",
+      "split": "dev",
+      "level": "B5",
+      "dataset_sha256": "92577aca7727cbdacdd515064fa26ca5ab259d94b04be7a4b25667cc6b37ce7b",
+      "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "config": {
+        "technique": "metric-conditions",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 1,
+        "evidence_per_subtask": 2
+      },
+      "tasks": [
+        {
+          "task_id": "graph-learning-fact",
+          "category": "fact",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 3,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4"
+          ],
+          "source_checks": [
+            true
+          ],
+          "public_papers": [
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 374.921
+        },
+        {
+          "task_id": "graph-learning-comparison",
+          "category": "comparison",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "method",
+            "dataset",
+            "metric",
+            "protocol"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 2,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 316.923
+        },
+        {
+          "task_id": "graph-learning-multihop",
+          "category": "multihop",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "protocol"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 1,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 327.321
+        },
+        {
+          "task_id": "graph-learning-metrics",
+          "category": "metrics",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "method",
+            "dataset"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 1,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 324.685
+        },
+        {
+          "task_id": "graph-learning-incomparable",
+          "category": "incomparable",
+          "split": "dev",
+          "status": "completed",
+          "stop_reason": "complete",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 4,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 312.378
+        },
+        {
+          "task_id": "graph-learning-unsupported",
+          "category": "unsupported",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 4,
+          "evidence_ids": [
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304"
+          ],
+          "expected_chunks": 0,
+          "matched_chunks": 0,
+          "unexpected_evidence": true,
+          "tool_errors": 0,
+          "elapsed_ms": 295.49
+        }
+      ],
+      "metrics": {
+        "anchor_hits": 3,
+        "anchor_total": 7,
+        "negative_with_evidence": 1,
+        "tool_calls": 23,
+        "source_failures": 0,
+        "budget_violations": 0,
+        "tool_errors": 0,
+        "model_calls": 0,
+        "tokens": 0,
+        "model_cost": 0,
+        "quality_human": null,
+        "p95_ms": 374.921
+      }
+    }
+  ]
+]

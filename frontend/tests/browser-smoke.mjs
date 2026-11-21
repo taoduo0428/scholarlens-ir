@@ -90,8 +90,8 @@ async function navigate(url) {
 
 const q=(str)=>JSON.stringify(str);
 async function click(selector){
-  const value=await evaluate("(()=>{const el=document.querySelector("+q(selector)+");if(!el)return false;el.click();return true})()");
-  assert.equal(value,true,"Could not click "+selector);
+  // Query and click in the same poll: a pending search can replace its result grid.
+  await waitFor("(()=>{const el=document.querySelector("+q(selector)+");if(!el||el.disabled)return false;el.click();return true})()");
 }
 
 async function fill(selector,value){
@@ -497,10 +497,11 @@ async function run(){
   assert.equal(await evaluate("document.querySelector('.ai-compose form button:not([type=button])').disabled"),true);
   assert.equal(await evaluate("document.querySelectorAll('.ai-chat-message').length"),0);
   console.log("PASS AI intentionally disabled until user configures an endpoint");
-  assert.equal(await evaluate("document.querySelectorAll('.sidebar-tools .tool-item').length"),4);
-  await click(".tool-item[href='/evaluation']");
+  const coreTools = await evaluate("Array.from(document.querySelectorAll('.sidebar-tools .tool-item'), link => link.getAttribute('href'))");
+  assert.deepEqual(coreTools, ["/upload", "/assistant"]);
+  await click(".footer-links a[href='/evaluation']");
   await waitFor("location.pathname==='/evaluation'");
-  console.log("PASS sidebar exposes all secondary workflows");
+  console.log("PASS sidebar exposes core tools and evaluation is reachable from the footer");
   await navigate("/a-page-that-does-not-exist");
   await waitFor("document.querySelector('.missing-page') !== null");
   assert.ok(await evaluate("document.querySelector('.missing-page h1').textContent.includes('找')"));
