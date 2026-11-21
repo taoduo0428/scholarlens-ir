@@ -149,7 +149,10 @@ def contract_for(state):
         intent = "landscape"
     if state.retrieval_policy == "E11":
         from backend.research.research_intent import plan_intent, research_intent
-        intent = plan_intent(research_intent(intent_text), intent)
+        category = research_intent(intent_text)
+        intent = plan_intent(category, intent)
+        if category == "description" and re.search(r"objectives?|research goals?|研究目标|研究目的", intent_text, re.I):
+            intent = "fact"
     budget = state.budget.model_dump(include={"max_rounds", "max_tool_calls", "max_model_calls", "max_evidence", "max_duration_seconds"})
     return ResearchTaskContract(goal_original=task.goal, goal_normalized=goal, intent=intent,
                                 scope=task.scope.model_dump(), corpus_generation=state.corpus_generation,

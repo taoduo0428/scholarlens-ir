@@ -450,7 +450,7 @@ class ResearchGraph:
                 if state.retrieval_policy in {"E9.1", "E10", "E11"} and state.task.scope.paper_ids and len(state.subtasks) > 1:
                     directed = True
                 profile_read = state.retrieval_policy == "E11" and any(
-                    f.facet in {"topic", "method", "finding", "setting", "metric", "dataset", "limitations"}
+                    f.facet in {"objective", "topic", "method", "finding", "setting", "metric", "dataset", "limitations"}
                     for f in question_fields
                 )
                 directed = directed or bool(profile_read and state.task.scope.paper_ids)

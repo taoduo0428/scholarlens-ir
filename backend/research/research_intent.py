@@ -31,6 +31,8 @@ def research_intent(goal: str) -> ResearchIntent:
     for intent, pattern in PATTERNS:
         if re.search(pattern, text, re.I):
             return intent
+    if COMPARE.search(text) and re.search(r"objectives?|research goals?|研究目标|研究目的", text, re.I):
+        return "description"
     if COMPARE.search(text):
         for intent, pattern in DIMENSIONS:
             if re.search(pattern, text, re.I):

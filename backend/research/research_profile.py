@@ -83,6 +83,8 @@ def attribution(text, previous=""):
         return "background", set()
     legacy = roles(text)
     fields = {k for k, pattern in FACETS.items() if re.search(pattern, text, re.I)}
+    if re.search(r"\b(?:we|this (?:study|paper|work)) (?:also )?(?:treats?|investigat\w*|examin\w*|stud(?:y|ies)|focus(?:es)? on|address(?:es)?)\b|(?:本文|我们|本研究)(?:研究|探讨|旨在解决)", text, re.I):
+        fields.add("research_objective")
     if "method" in legacy or PASSIVE.search(text):
         fields.add("methods")
     if "finding" in legacy or MEASURED.search(text):
@@ -163,6 +165,7 @@ def profiles(state, sources, candidates=()):
 
 
 PROFILE_FACETS = {
+    "objective": ("research_objective",),
     "topic": ("research_objective", "research_problem", "methods", "reported_findings"),
     "method": ("methods",), "finding": ("reported_findings",), "dataset": ("datasets",),
     "metric": ("metrics",), "setting": ("experiment_settings",), "limitations": ("limitations", "future_work"),

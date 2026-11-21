@@ -70,6 +70,11 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
             "gap_discovery": ["limitations"],
         }
         independent_facets = dimensions_by_intent.get(research_type)
+        intent_goal = TITLES.sub(" ", contract.goal)
+        if research_type == "description" and re.search(r"objectives?|research goals?|研究目标|研究目的", intent_goal, re.I):
+            # Mixed objectives, representation and units still need independent proofs.
+            if not re.search(r"unit of analysis|representation|分析单位|数据表示", intent_goal, re.I):
+                independent_facets = ["objective"]
         if one and independent_facets and len(scope) <= 4 and not any(
             field_for(node, contract, part, 1).operation in {"layout", "quote"} for part in requests(contract.goal)
         ):
