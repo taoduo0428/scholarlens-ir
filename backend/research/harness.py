@@ -2,6 +2,8 @@
 
 from concurrent.futures import ThreadPoolExecutor, TimeoutError
 from datetime import datetime, timezone
+from contextvars import copy_context
+from backend.research.telemetry import span
 from threading import BoundedSemaphore
 from time import monotonic
 
@@ -22,7 +24,7 @@ def bounded_read(fn, *args, deadline=None, limit=10):
     if seconds <= 0 or not _SLOTS.acquire(blocking=False):
         raise ToolError("tool_timeout")
     try:
-        future = _POOL.submit(fn, *args)
+        future = _POOL.submit(copy_context().run, fn, *args)
     except BaseException:
         _SLOTS.release()
         raise
@@ -40,4 +42,5 @@ def bounded_read(fn, *args, deadline=None, limit=10):
 
 def call_tool(registry, name, args, deadline):
     limits = {"search_papers": 20, "search_passages": 25}
-    return bounded_read(registry.call, name, args, deadline=deadline, limit=limits.get(name, 10))
+    with span("verify" if name == "verify_source_quote" else "tool"):
+        return bounded_read(registry.call, name, args, deadline=deadline, limit=limits.get(name, 10))

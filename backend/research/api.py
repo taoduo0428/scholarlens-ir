@@ -49,6 +49,8 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
             return store.get(owner, tid)
         except NotFound:
             raise problem(404, "task_not_found", "找不到研究任务") from None
+        except Conflict:
+            raise problem(409, "research_state_integrity", "研究任务需恢复后再读取") from None
 
     @api.post("/tasks", status_code=202)
     def create(body: TaskInput, request: Request, user=Depends(accounts.current),
@@ -104,7 +106,8 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
     @api.get("/tasks/{tid}")
     def detail(tid: UUID, user=Depends(accounts.current)):
         state, rev = lookup(user["id"], tid)
-        return {"state": state, "revision": rev}
+        return {"state": state, "revision": rev, "plan_metadata": store.plan_metadata(user["id"], tid),
+                "provider_usage": store.usage(user["id"], tid)}
 
     @api.get("/tasks/{tid}/events")
     def events(tid: UUID, after_seq: int = 0, user=Depends(accounts.current)):

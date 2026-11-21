@@ -44,6 +44,46 @@ try{
   const report=await(await ctx.request.get(origin+"/api/research/tasks/"+id+"/report",{headers:{Authorization:"Bearer "+access_token}})).json();
   assert.equal(report.answerability.status,"partially_answerable");
   assert.equal(report.answerability.bindings.length,1);
+  if (process.env.SCHOLARLENS_TEST_E91 === "true") {
+    const work = page.url();
+    await page.reload();
+    await region.waitFor();
+    assert.equal(page.url(), work);
+    const bound = region.locator("details").filter({hasText:"已核验"}).first();
+    await bound.locator("summary").click();
+    assert.match(await bound.innerText(), /fixture:cedar/);
+    const plan = page.getByRole("region", {name:"研究计划"});
+    await plan.waitFor();
+    await page.goto(origin+"/research");
+    await page.getByLabel("研究问题",{exact:true}).fill("比较两篇论文的方法、数据集、accuracy 和 recall 指标，并解释结果差异。");
+    await page.getByText("本库论文范围",{exact:true}).click();
+    await page.getByLabel("限定论文 ID").fill(info.example_paper_ids.join(","));
+    await page.getByRole("button",{name:"开始研究",exact:true}).click();
+    await page.waitForURL("**/research?task=*");
+    await plan.waitFor({timeout:60000});
+    const taskId = new URL(page.url()).searchParams.get("task");
+    assert.notEqual(taskId, id);
+    await region.waitFor({timeout:60000});
+    const opts = {headers:{Authorization:"Bearer "+access_token}};
+    const api = async suffix => {
+      const res = await ctx.request.get(origin+"/api/research/tasks/"+taskId+suffix, opts);
+      assert.equal(res.status(), 200);
+      return res.json();
+    };
+    const before = await api("");
+    assert.ok(before.plan_metadata.plan_sha256.length === 64);
+    assert.ok(before.state.question_plan.graph.nodes.length >= 3);
+    const final = await api("/report");
+    assert.ok(Object.keys(final.answerability.fields).length >= 3);
+    assert.ok(Object.values(final.answerability.fields).some(field => field.status !== "answerable"));
+    assert.ok(final.sources.every(s => info.example_paper_ids.includes(s.paper_id)));
+    await page.reload();
+    await region.waitFor();
+    assert.equal((await api("")).plan_metadata.plan_sha256, before.plan_metadata.plan_sha256);
+    await region.locator("summary").first().click();
+    assert.ok(await region.locator("details[open] p").first().isVisible());
+    console.log("PASS: compound two-paper task, DAG, scoped evidence, visible gaps, restored report");
+  }
   assert.deepEqual(errors,[]);
   console.log("PASS: actual authenticated task, two fields, original-source binding, desktop and phone");
 }finally{await browser.close();}

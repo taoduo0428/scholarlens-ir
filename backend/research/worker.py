@@ -4,11 +4,12 @@ from collections import deque
 from threading import Condition, Thread
 
 from filelock import FileLock, Timeout
+from pydantic import ValidationError
 
 from backend.research.graph import ResearchGraph
 from backend.research.provider_adapter import choose_action, plan_questions
 from backend.research.workspace_model import propose
-from backend.research.store import Conflict
+from backend.research.store import Conflict, NotFound
 from backend.research.tools import ToolRegistry
 
 
@@ -100,9 +101,9 @@ class Worker:
             if not self.queue:
                 with self.store._db() as db:
                     rows = db.execute(
-                        """SELECT owner,id FROM tasks WHERE status IN ('queued','running')
+                        """SELECT owner,id FROM tasks WHERE id NOT IN (SELECT task FROM task_quarantine) AND (status IN ('queued','running')
                         OR (id IN (SELECT task FROM worker_requests) AND
-                            status IN ('paused','awaiting_input','awaiting_credentials'))
+                            status IN ('paused','awaiting_input','awaiting_credentials')))
                         ORDER BY created_at,id LIMIT ?""",
                         (self.max_queue,),
                     ).fetchall()
@@ -122,13 +123,28 @@ class Worker:
                 continue
             try:
                 self._execute(*key)
-            except Exception:
-                # External exception text can contain request or provider data.
-                state, rev = self.store.get(*key)
-                if state.status in {"queued", "running"}:
-                    state.status = "failed"
-                    state.warnings.append("worker_dependency_or_execution_error")
-                    self.store.save(key[0], state, rev, "failed", f"worker-error-{rev}")
+            except Exception as exc:
+                with self.cv:
+                    if key not in self.queue:
+                        self.credentials.pop(key, None)
+                try:
+                    if isinstance(exc, (Conflict, NotFound)) and str(exc) in {
+                        "question_plan_integrity", "checkpoint_integrity", "checkpoint_not_found"
+                    }:
+                        self.store.quarantine(*key)
+                    else:
+                        state, rev = self.store.get(*key)
+                        if state.status in {"queued", "running"}:
+                            state.status = "failed"
+                            state.warnings.append("worker_dependency_or_execution_error")
+                            self.store.save(key[0], state, rev, "failed", f"worker-error-{rev}")
+                except ValidationError:
+                    self.store.quarantine(*key)
+                except NotFound:
+                    pass
+                except Conflict as conflict:
+                    if str(conflict) == "question_plan_integrity":
+                        self.store.quarantine(*key)
             finally:
                 with self.cv:
                     self.active = None

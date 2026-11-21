@@ -8,6 +8,7 @@ from pydantic import TypeAdapter
 from backend.ai_responses import provider_request, provider_content, model_json_object
 from backend.personal_ai import PublicAITransport
 from backend.research.schemas import NextAction
+from backend.research.telemetry import record_usage, traced
 
 
 class ProviderError(RuntimeError):
@@ -37,11 +38,14 @@ def plan_questions(settings, view, remaining, transport=None):
     return _structured(settings, view, remaining, transport, schema, instruction, 1900)
 
 
+@traced("model")
 def _structured(settings, view, remaining, transport, schema, instruction, limit):
     content = json.dumps(view, ensure_ascii=False, separators=(",", ":"))
     if len(content.encode()) > 24000:
         raise ProviderError("context_limit")
-    deadline = time.monotonic() + remaining
+    started = time.monotonic()
+    deadline = started + remaining
+    envelope = None
     url, payload = provider_request(settings, [{"role": "system", "content": instruction},
                                               {"role": "user", "content": content}],
                                     min(settings.ai_max_tokens or limit, limit))
@@ -61,9 +65,12 @@ def _structured(settings, view, remaining, transport, schema, instruction, limit
                         raise ProviderError("provider_limit")
             if settings.ai_api_key.encode() in raw:
                 raise ProviderError("invalid_decision")
+            envelope = json.loads(raw)
             decision = model_json_object(provider_content(raw, settings.ai_protocol))
             return schema.validate_python(decision)
         except httpx.TimeoutException:
             raise ProviderError("provider_timeout") from None
         except (ValueError, KeyError, TypeError, httpx.HTTPError):
             raise ProviderError("invalid_decision") from None
+        finally:
+            record_usage(settings, envelope, round(1000 * (time.monotonic() - started)))
