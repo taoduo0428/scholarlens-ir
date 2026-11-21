@@ -16,4 +16,4 @@ python -m tools.research_eval.e10_score output/v5/review-new --output output/v5/
 python -m tools.research_eval.e10_score output/v5/review-new --reviews output/v5/review-new/reviewer-a.json output/v5/review-new/reviewer-b.json --adjudication output/v5/review-new/adjudication.json --output output/v5/review-scored.json
 ```
 
-仅在发生裁定并填写裁定人信息后传入 `--adjudication`。`ranking` 按研究阶段实际检索结果中论文首次出现排序，另保留论文发现和段落检索各自的顺序。`claim_support_precision` 统计已发布命题获得原文支持的比例。缺少独立蕴含分类预测时 `entailment_accuracy` 留空。技术执行成功和人类判定任务成功分别计数。`pending-review.json` 列有本批次 102 道 Review 题和 9 道优先复核题。
+仅在发生裁定并填写裁定人信息后传入 `--adjudication`。`ranking` 按研究阶段实际检索结果中论文首次出现排序，另保留论文发现和段落检索各自的顺序。`claim_support_precision` 统计已发布命题获得原文支持的比例。`entailment_gold` 收集对候选命题与引用证据的独立判断，评分时逐条与服务端的 `verified`、`contradicted` 判定对齐。它统计已有明确分类的候选子集。跳过该组判断时 `entailment_accuracy` 留空。技术执行成功和人类判定任务成功分别计数。`pending-review.json` 列有本批次 102 道 Review 题和 9 道优先复核题。

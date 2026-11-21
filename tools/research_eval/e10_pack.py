@@ -94,6 +94,15 @@ def build(output, include_run=False):
             direct = set(report["sections"]["verified"])
             predictions[tid] = {
                 **retrieval_rankings(t["events"]),
+                "entailment_candidates": {
+                    c["claim_id"]: {
+                        "statement": c["statement"],
+                        "evidence": c["evidence_ids"],
+                        "prediction": c["support_status"],
+                    }
+                    for c in report["claims"]
+                    if c["support_status"] in {"verified", "contradicted"}
+                },
                 "passages": {
                     s["evidence_id"]: [s["paper_id"], s["locator"]] for s in sources
                 },

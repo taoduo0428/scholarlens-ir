@@ -96,6 +96,16 @@ def test_invalid_review_receipts(change):
         score(pack, run, docs, [a, dict(a, **({"reviewer_id": "b"} | change))])
 
 
+def test_entailment_is_agreement_on_explicit_judgments():
+    pack, run, docs, a = packet()
+    run["tasks"]["q"]["entailment_candidates"] = {"c": {"prediction": "verified"}}
+    a["run_hash"] = canonical_sha(run)
+    a["tasks"]["q"]["entailment_gold"] = {"c": "contradicted"}
+    final = score(pack, run, docs, [a, dict(a, reviewer_id="b")])
+    assert final["metrics"]["claim_support_precision"] == 1
+    assert final["metrics"]["entailment_accuracy"] == 0
+
+
 def test_source_coordinates_and_candidate_order():
     pack, run, docs, a = packet()
     a["tasks"]["q"]["relevant_passages"] = [["p", "abstract:chars:0-200"]]
