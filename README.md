@@ -4,7 +4,11 @@ ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读�
 
 在线访问：[scholarlens.lingion.cc.cd](https://scholarlens.lingion.cc.cd/)。华为云运行，经 Cloudflare Tunnel 提供 HTTPS，个人电脑关机后仍可访问。
 
-## E10 开发分支验收
+## E11 研究工作台
+
+研究报告支持逐篇展开原文及位置，按问题展示可答字段、缺失证据和比较依据。开发集成分支为 `zjl`。在 28 组独立测试中，有 27 组正确摘录指定原句，2 组生成有跨篇依据的综合。版本状态、使用入口、部署方法和复核命令见[工程交付记录](docs/agent-v7/FINAL_PRODUCT_ENGINEERING_REPORT.md)。
+
+## E10 历史验收
 
 |状态|范围|
 |---|---|

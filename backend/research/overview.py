@@ -39,7 +39,7 @@ def evidence_for(facet, claims, metric=None, *, attributed=False):
     return []
 
 
-def synthesize(claims, sources, requested, *, attributed=False):
+def synthesize(claims, sources, requested, *, attributed=False, profile_index=None):
     """Link within-paper methods and results before producing between-paper findings."""
     pool = [c for c in claims if c.support_status == "verified" and not GUARDS.search(c.statement)
             and c.evidence_ids and all(e in sources for e in c.evidence_ids) and len(c.paper_ids) == 1]
@@ -61,7 +61,11 @@ def synthesize(claims, sources, requested, *, attributed=False):
         profile = {"paper_id": pid}
         observations = {}
         for facet in ("topic", "method", "finding"):
-            hits = evidence_for(facet, rows, attributed=attributed)[:2]
+            if profile_index is None:
+                hits = evidence_for(facet, rows, attributed=attributed)[:2]
+            else:
+                from backend.research.research_profile import responsive_claims
+                hits = responsive_claims(facet, rows, profile_index)[:2]
             observations[facet] = hits
             profile[facet] = [c.claim_id for c in hits]
             referenced.update((c.claim_id, c) for c in hits)

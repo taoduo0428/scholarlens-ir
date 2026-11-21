@@ -32,10 +32,16 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
         )
     runtime.mkdir(parents=True, exist_ok=True)
     marker.touch(exist_ok=True)
-    version = FIXTURE if corpus_name == "fixture" else GENERATION
-    docs = {
-        pid: dict(row, pdf_available=False) for pid, row in documents(version).items()
-    }
+    if corpus_name == "profile-fixture":
+        version = "fixture:scholarlens-ui-profiles-v1"
+        docs = {pid: dict(paper_id=pid, title=title, abstract=abstract, fulltext="", pdf_available=False)
+                for pid, title, abstract in [
+                    ("ui:wave", "Synthetic wave study", "We developed a wave sensor for depth measurements."),
+                    ("ui:lens", "Synthetic lens study", "We developed a lens for optical measurements."),
+                ]}
+    else:
+        version = FIXTURE if corpus_name == "fixture" else GENERATION
+        docs = {pid: dict(row, pdf_available=False) for pid, row in documents(version).items()}
     corpus = LocalCorpus(docs, version)
     accounts = Store(str(runtime))
     config = Settings(runtime_dir=str(runtime), frontend_dir=str(frontend))
@@ -151,7 +157,7 @@ def main():
         "--runtime", type=Path, default=ROOT / "output" / "research-demo"
     )
     parser.add_argument("--frontend", type=Path, default=ROOT / "frontend" / "dist")
-    parser.add_argument("--corpus", choices=["fixture", "seed"], default="fixture")
+    parser.add_argument("--corpus", choices=["fixture", "profile-fixture", "seed"], default="fixture")
     parser.add_argument("--port", type=int, default=8765)
     args = parser.parse_args()
     if not (args.frontend / "index.html").is_file():

@@ -15,6 +15,7 @@ LABELS = {
     "topic": ("研究主题", "study topic"),
     "conditions": ("实验条件是否对齐", "alignment of experimental conditions"),
     "comparison": ("结果差异", "supported difference in results"),
+    "trend": ("原文支持的时间趋势", "documented time trend"),
     "overview": ("综合研究发现", "cross-paper synthesis"),
     "chain": ("原文支持的因果关系", "source-supported causal link"),
     "conflict": ("相反结论及其适用条件", "opposing conclusions and their conditions"),
@@ -32,6 +33,9 @@ def dimensions(plan, node, contract):
     role = node.requirement.kind
     goal = TITLES.sub("", contract.goal)
     text = node.question if plan.origin == "personal_model" else goal
+    if plan.contract.intent in {"literature_synthesis", "trend_analysis"}:
+        return (["topic", "method", "finding"] if role == "source_fact" else
+                ["trend"] if plan.contract.intent == "trend_analysis" else ["overview"])
     if contract.answer_type == "overview":
         return {"source_fact": ["topic", "finding"], "mechanism": ["method"],
                 "synthesis": ["overview"]}.get(role, ["finding"])
@@ -51,14 +55,49 @@ def dimensions(plan, node, contract):
     return ["chain" if role == "mechanism" else "finding"]
 
 
-def compile_fields(plan, contract, *, profile_gaps=False):
+def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
     scope = list(dict.fromkeys(contract.scope["paper_ids"]))
     chinese = bool(re.search(r"[\u3400-\u9fff]", contract.goal))
     one = len(plan.graph.nodes) == 1
     result = []
     for node in plan.graph.nodes:
         fields = []
-        if one:
+        from backend.research.research_intent import research_intent
+        research_type = research_intent(contract.goal) if independent else None
+        dimensions_by_intent = {
+            "method_comparison": ["method"], "metric_comparison": ["metric"],
+            "condition_comparison": ["dataset" if re.search(HINTS["dataset"], contract.goal, re.I) else "setting"],
+            "gap_discovery": ["limitations"],
+        }
+        independent_facets = dimensions_by_intent.get(research_type)
+        intent_goal = TITLES.sub(" ", contract.goal)
+        if research_type == "description" and re.search(r"objectives?|research goals?|研究目标|研究目的", intent_goal, re.I):
+            # Mixed objectives, representation and units still need independent proofs.
+            if not re.search(r"unit of analysis|representation|分析单位|数据表示", intent_goal, re.I):
+                independent_facets = ["objective"]
+        from backend.research.descriptive_plan import comparison_subjects, requested_dimensions
+        subjects = comparison_subjects(contract.goal) if independent and one and research_type == "description" else []
+        typed = requested_dimensions(intent_goal)
+        if subjects and typed and not any(f.operation == "layout" for f in
+                [field_for(node, contract, part, 1) for part in requests(contract.goal)]):
+            for subject in subjects:
+                for dim in typed:
+                    request = f"{subject} · {dim}"
+                    f = field_for(node, contract, request, len(fields) + 1)
+                    fields.append(f.model_copy(update={"facet": dim, "subject": subject, "operation": "fact",
+                        "min_evidence": 1, "min_papers": 1, "acceptance": f"Source states {dim} for {subject}."}))
+        elif one and independent_facets and len(scope) <= 4 and not any(
+            field_for(node, contract, part, 1).operation in {"layout", "quote"} for part in requests(contract.goal)
+        ):
+            for paper in scope or [None]:
+                for facet in independent_facets:
+                    f = field_for(node, contract, contract.goal, len(fields) + 1)
+                    metric_names = list(dict.fromkeys(m.casefold() for m in METRICS.findall(intent_goal)))
+                    for metric in metric_names if facet == "metric" and metric_names else [None]:
+                        fields.append(f.model_copy(update={"field_id": f"{node.id}.f{len(fields)+1}",
+                            "facet": facet, "paper_ids": [paper] if paper else [], "requested_metric": metric,
+                            "min_evidence": 1, "min_papers": 1}))
+        elif one:
             question = node.question if plan.origin == "personal_model" else contract.goal
             for i, request in enumerate(requests(question), 1):
                 f = field_for(node, contract, request, i)
@@ -82,7 +121,7 @@ def compile_fields(plan, contract, *, profile_gaps=False):
                         if len(targets) > 1:
                             request = f"{request} · {papers[0]}"
                         f = field_for(node, contract, request, len(fields) + 1)
-                        count = 2 if facet in {"comparison", "overview", "conflict"} else 1
+                        count = 2 if facet in {"comparison", "overview", "conflict", "trend"} else 1
                         changes = dict(facet=facet, paper_ids=papers, requested_metric=metric,
                                        min_evidence=2 if facet in {"chain", "overview"} else 1,
                                        min_papers=count, acceptance=f"{request}: {node.requirement.acceptance}")

@@ -5,6 +5,7 @@ export const RESEARCH_ENABLED = import.meta.env.VITE_RESEARCH_ENABLED === "true"
 export type TaskStatus = "queued"|"running"|"paused"|"awaiting_credentials"|"awaiting_input"|"completed"|"partial"|"cancelled"|"failed";
 export type Command = "pause"|"resume"|"cancel";
 export interface TaskInput {
+  research_project?:{workspace:string;project:string};
   goal:string;
   scope:{paper_ids:string[];include_own_uploads:boolean;library_only:true};
   depth:"standard"|"deep";
@@ -43,7 +44,14 @@ export interface ResearchState {
   budget:{rounds_used:number;max_rounds:number;tool_calls_used:number;max_tool_calls:number};
   stop_reason:string|null;
 }
+export interface ProfileQuote {
+  evidence_id:string;field:string;origin:string;quote:string;locator:string;quote_hash:string;
+  source_version:string;extraction_method:string;verification_status:string;
+}
 export interface ResearchReport {
+  research_intent?:string;
+  research_profiles?:{paper_id:string;title:string;fields:Record<string,ProfileQuote[]>}[];
+  spending?:{tools:number;model_calls:number;cost:number|null;input_tokens:number|null;output_tokens:number|null};
   overview?:{findings:{kind:string;level:string;statement:string;premise_claim_ids:string[];evidence_ids:string[];paper_ids:string[]}[];incomplete_papers:string[]};
   summary:string;claims:ResearchClaim[];sources:ResearchSource[];unresolved:string[];markdown:string;
   sections:{verified:string[];uncertain:string[];not_comparable:string[];contradicted:string[]};

@@ -70,7 +70,11 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         try:
             versions = bind_versions(registry_dir)
             retrieval_policy = os.getenv("SCHOLARLENS_RETRIEVAL_POLICY", "V1")
-            if os.getenv("SCHOLARLENS_E10_ENABLED", "").lower() == "true":
+            if os.getenv("SCHOLARLENS_E11_ENABLED", "").lower() == "true":
+                retrieval_policy = "E11"
+            elif retrieval_policy == "E11":
+                raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
+            elif os.getenv("SCHOLARLENS_E10_ENABLED", "").lower() == "true":
                 retrieval_policy = "E10"
             elif retrieval_policy == "E10":
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
@@ -86,7 +90,7 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 retrieval_policy = "W4"
             elif retrieval_policy == "W4":
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
-            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10"}:
+            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10", "E11"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             with worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,
@@ -177,6 +181,28 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
             if aid.startswith("report-"):
                 return json.loads(store.artifact(user["id"], tid, aid)["content"])
         raise problem(409, "report_not_ready", "研究报告仍在准备中")
+
+    @api.get("/workspaces/{workspace_id}/projects/{project_id}/memory")
+    def memory_feed(workspace_id: str, project_id: str, before: int | None = None,
+                    user=Depends(accounts.current)):
+        from backend.research.project_memory import page
+        from backend.research.schemas import Scope
+        try:
+            generation = corpus_factory(Scope()).generation
+        except (ToolError, OSError, HTTPException, TransportError, ApiError):
+            raise problem(503, "dependency_unavailable", "研究语料尚未就绪") from None
+        return page(store, user["id"], workspace_id, project_id, generation, before=before)
+
+    @api.delete("/workspaces/{workspace_id}/projects/{project_id}/memory/{tid}", status_code=204)
+    def forget_memory(workspace_id: str, project_id: str, tid: UUID, user=Depends(accounts.current)):
+        from backend.research.project_memory import invalidate
+        invalidate(store, user["id"], workspace_id, project_id, tid)
+        return Response(status_code=204)
+
+    @api.get("/tools")
+    def tool_catalog(user=Depends(accounts.current)):
+        from backend.research.tools.manifest import describe
+        return {"tools": describe()}
 
     app.include_router(api)
     return worker

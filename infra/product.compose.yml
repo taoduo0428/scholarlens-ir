@@ -1,0 +1,43 @@
+name: scholarlens-product
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: infra/ScholarLens.Dockerfile
+    ports:
+      - "127.0.0.1:${SCHOLARLENS_PORT:-18001}:8000"
+    environment:
+      ELASTICSEARCH_URL: http://search:9200
+      ELASTICSEARCH_INDEX: ${SCHOLARLENS_INDEX:-scholarlens-papers-real}
+      SCHOLARLENS_RESEARCH_ENABLED: "true"
+      SCHOLARLENS_E11_ENABLED: ${SCHOLARLENS_E11_ENABLED:-false}
+    depends_on:
+      search:
+        condition: service_healthy
+    volumes:
+      - research-data:/var/lib/scholarlens
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop: [ALL]
+    security_opt: ["no-new-privileges:true"]
+    restart: unless-stopped
+  search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.23@sha256:4d0724bb8d78d7a2330693623e26ca4d621079d062ecc8a30b3e1fc180ec14c1
+    environment:
+      discovery.type: single-node
+      xpack.security.enabled: "false"
+      xpack.ml.enabled: "false"
+      ingest.geoip.downloader.enabled: "false"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    volumes:
+      - search-data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL","curl -fsS 'http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=4s' >/dev/null"]
+      interval: 15s
+      timeout: 6s
+      retries: 10
+    restart: unless-stopped
+volumes:
+  research-data: {}
+  search-data: {}

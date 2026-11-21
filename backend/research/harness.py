@@ -41,6 +41,6 @@ def bounded_read(fn, *args, deadline=None, limit=10):
 
 
 def call_tool(registry, name, args, deadline):
-    limits = {"search_papers": 20, "search_passages": 25}
+    from backend.research.tools.manifest import timeout_for
     with span("verify" if name == "verify_source_quote" else "tool"):
-        return bounded_read(registry.call, name, args, deadline=deadline, limit=limits.get(name, 10))
+        return bounded_read(registry.call, name, args, deadline=deadline, limit=timeout_for(name))

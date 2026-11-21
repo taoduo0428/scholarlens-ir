@@ -22,6 +22,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--es-home", type=Path, required=True)
     parser.add_argument("--offline-fixture", type=Path, required=True)
+    parser.add_argument("--full-suite", action="store_true", help="Run all backend tests on two isolated index namespaces")
     args = parser.parse_args()
     spec = importlib.util.spec_from_file_location("native", ROOT/"tools/audit/run-upload-integration.py")
     native = importlib.util.module_from_spec(spec)
@@ -31,7 +32,8 @@ def main():
     if source != expected.resolve(strict=True) or native.listening(9200):
         raise ValueError("expected stopped local test fixture")
     nonce = uuid4().hex[:12]
-    out = ROOT/"output/v6"/("vector-fixture-"+nonce)
+    out = ((ROOT/"tools/audit/reports"/("full-backend-"+nonce)) if args.full_suite else
+           ROOT/"output/v6"/("vector-fixture-"+nonce))
     out.mkdir(exist_ok=False)
     before = signature(source)
     if any(f.is_symlink() for f in source.rglob("*")):
@@ -54,6 +56,7 @@ def main():
             "ingest.geoip.downloader.enabled":False}
     (config/"elasticsearch.yml").write_text("".join(k+": "+json.dumps(v)+"\n" for k,v in values.items()),encoding="utf8")
     env=native.isolated_environment(out,config,home,ROOT/"backend/.runtime/minilm",port,other,nonce)
+    upload_aliases = {key: env[key] for key in ("ELASTICSEARCH_INDEX", "VECTOR_INDEX")}
     env.update(ELASTICSEARCH_INDEX="scholarlens-papers-real",VECTOR_INDEX="scholarlens-vectors-real")
     url=env["ELASTICSEARCH_URL"]
     result={"tests_exit":None,"scope":"offline copied fixture","source_unchanged":None}
@@ -91,8 +94,20 @@ def connect(client,hosts=None,*args,**kwargs):
     return original(client,os.environ['ELASTICSEARCH_URL'] if hosts=='http://127.0.0.1:9200' else hosts,*args,**kwargs)
 with patch.object(Elasticsearch,'__init__',connect):
     sys.exit(pytest.main(sys.argv[1:]))"""
-            with (out/"tests.log").open("w",encoding="utf8") as tests:
-                result["tests_exit"]=native.run_tests([sys.executable,"-c",code,"-q","--tb=short",
+            if args.full_suite:
+                info = native.get_json(url)
+                assert info["cluster_name"] == name and info["cluster_uuid"] not in {"_na_", ""}
+                identity = {"url": url, "cluster": name, "cluster_uuid": info["cluster_uuid"], "nonce": nonce,
+                            "output": str(out), "base_alias": upload_aliases["ELASTICSEARCH_INDEX"],
+                            "vector_alias": upload_aliases["VECTOR_INDEX"], "synthetic_data": True}
+                (out/"isolation.json").write_text(json.dumps(identity), encoding="utf8")
+                print("starting full backend suite", flush=True)
+                with (out/"tests.log").open("w",encoding="utf8") as tests:
+                    result["tests_exit"] = native.run_tests([sys.executable, "-m",
+                        "tools.research_eval.v7_backend", str(out/"isolation.json")], env, tests, timeout=2400)
+            else:
+                with (out/"tests.log").open("w",encoding="utf8") as tests:
+                    result["tests_exit"]=native.run_tests([sys.executable,"-c",code,"-q","--tb=short",
                     "backend/tests/test_v2_vectors.py","backend/tests/test_v21.py::test_upload_vectorization_is_independent",
                     "--basetemp="+str(out/"pytest-runtime"),"--junitxml="+str(out/"junit.xml")],env,tests,timeout=480)
         finally:

@@ -91,6 +91,13 @@ class ResearchStore:
                 task TEXT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE, provider TEXT NOT NULL,
                 input_tokens INTEGER, output_tokens INTEGER, cached_tokens INTEGER, latency_ms INTEGER)""")
             db.execute("CREATE INDEX IF NOT EXISTS usage_task ON provider_usage(task)")
+            db.execute("""CREATE TABLE IF NOT EXISTS project_memory(
+                task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
+                owner INTEGER NOT NULL, workspace TEXT NOT NULL, project TEXT NOT NULL,
+                generation TEXT NOT NULL, artifact TEXT NOT NULL, updated TEXT NOT NULL,
+                expires TEXT NOT NULL, invalidated INTEGER NOT NULL DEFAULT 0)""")
+            db.execute("""CREATE INDEX IF NOT EXISTS memory_owner_project
+                ON project_memory(owner,workspace,project,generation,updated)""")
             db.execute("""CREATE TABLE IF NOT EXISTS task_traces(
                 task TEXT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE, trace_id TEXT NOT NULL,
                 PRIMARY KEY(task, trace_id))""")

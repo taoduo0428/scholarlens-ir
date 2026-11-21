@@ -18,6 +18,7 @@ const message=(e:unknown)=>e instanceof Error ? e.message : "服务暂时不可�
 const labels=(values:string[])=>values.map(value=>slotLabels[value]||value).join("、");
 
 function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}){
+  const [project,setProject]=useState("");
   const [goal,setGoal]=useState(""),[paperIds,setPapers]=useState(""),[own,setOwn]=useState(false);
   const [depth,setDepth]=useState<TaskInput["depth"]>("standard"),[mode,setMode]=useState<TaskInput["mode"]>("evidence_only");
   const [busy,setBusy]=useState(false),[error,setError]=useState("");
@@ -30,6 +31,7 @@ function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}
     if(ids.length>40){setError("论文范围最多 40 篇。");return;}
     if(mode==="personal_model"&&!personal){setError("请先在证据助手中配置个人模型。");return;}
     const body:TaskInput={goal:goal.trim(),scope:{paper_ids:ids,include_own_uploads:own,library_only:true},depth,mode};
+    if(project.trim()) body.research_project={workspace:"personal",project:project.trim()};
     const value=JSON.stringify(body);
     if(previous.current.input!==value)previous.current={input:value,key:crypto.randomUUID()};
     setBusy(true);setError("");
@@ -42,6 +44,8 @@ function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}
     <h2>创建研究任务</h2>
     <label>研究问题<textarea required minLength={2} maxLength={3000} rows={3} value={goal} onChange={e=>setGoal(e.target.value)}
       placeholder="比较几篇论文的实验方法、数据集和指标，列出缺少的证据。"/></label>
+    <label>研究项目（可选）<input value={project} maxLength={64} pattern="[a-zA-Z0-9_\-]{1,64}"
+      onChange={e=>setProject(e.target.value)} placeholder="项目标识，如 optics-review"/></label>
     <div className="research-fields">
       <label>研究深度<select value={depth} onChange={e=>setDepth(e.target.value as TaskInput["depth"])}>
         <option value="standard">标准</option><option value="deep">深入</option></select></label>

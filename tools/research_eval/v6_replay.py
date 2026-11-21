@@ -47,7 +47,7 @@ def measure(tid, trace, truth):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--policy", choices=["V1", "V5", "E9", "E9.1", "E10"], required=True
+        "--policy", choices=["V1", "V5", "E9", "E9.1", "E10", "E11"], required=True
     )
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()

@@ -9,6 +9,7 @@ from backend.research.harness import bounded_read
 from backend.research.tools.passages import ToolError
 from backend.research.provider_adapter import _structured
 from backend.research.questions import Strict
+from backend.research.research_profile import Candidate
 
 
 class SemanticLabel(Strict):
@@ -20,6 +21,7 @@ class SemanticLabel(Strict):
 
 class Review(Strict):
     labels: list[SemanticLabel] = Field(max_length=14)
+    profiles: list[Candidate] = Field(default_factory=list, max_length=24)
 
 
 class Narrative(Strict):
@@ -33,6 +35,9 @@ def propose(settings, phase, view, remaining, transport=None):
         "analysis": "Assess whether each extractive claim answers the goal. Cite an exact supporting span and the provided evidence ID.",
         "synthesis": "Organize only the supplied claim IDs for a report. Prioritize uncertainties when proof is incomplete.",
     }[phase]
+    if phase == "analysis" and "passages" in view:
+        prompt += (" Extract structured paper profile candidates from the passages. Supply the verbatim "
+                   "complete sentence, zero-based offsets in each passage, source IDs, field and attribution.")
     schema = TypeAdapter(model)
     import json
 
@@ -102,7 +107,7 @@ def semantic_call(store, state, callback, phase, view):
 
 def publication_suggestions(store, state, report, sources, callback):
     claims = {c.claim_id: c for c in state.claims}
-    if callback and state.retrieval_policy == "E10" and state.task.mode == "personal_model":
+    if callback and state.retrieval_policy in {"E10", "E11"} and state.task.mode == "personal_model":
         # Supply already scope-checked field facts to both advisory model stages.
         # Publication below independently reruns the full gate on its own sources.
         from backend.research.field_gate import evaluate
@@ -124,9 +129,17 @@ def publication_suggestions(store, state, report, sources, callback):
             for c in reviewable[:10]
         ],
     }
-    labels = semantic_call(store, state, callback, "analysis", payload) if claims else None
+    if state.retrieval_policy == "E11" and callback:
+        from backend.research.field_gate import capability
+        payload["passages"] = [
+            {"paper_id": r["paper_id"], "evidence_id": i, "text": r["quote"][:1000]}
+            for i, r in sources.items() if capability(r, state)
+        ][:10]
+    labels = semantic_call(store, state, callback, "analysis", payload) if claims or payload.get("passages") else None
     valid = {}
     if labels:
+        if state.retrieval_policy == "E11":
+            valid["_profile_candidates"] = labels.profiles
         for label in labels.labels:
             c = claims.get(label.claim_id)
             row = sources.get(label.evidence_id)
