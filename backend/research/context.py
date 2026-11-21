@@ -3,6 +3,10 @@ from backend.research.schemas import ResearchState
 
 
 def working_context(state: ResearchState, threshold: int = 8) -> dict:
+    if state.retrieval_policy in {"V5", "V6", "V7"}:
+        from backend.research.context_layers import layered
+
+        return layered(state)
     recent = max(1, min(threshold, 12))
     return {
         "goal": state.task.goal,

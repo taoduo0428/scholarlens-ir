@@ -5,6 +5,7 @@ import {BackendError} from "../services/backend";
 import {loadPersonalAi} from "../services/personalAi";
 import {research, slotLabels, subtaskLabels, type Command, type ResearchEvent, type ResearchReport, type ResearchSource,
   type ResearchState, type TaskInput, type TaskItem} from "../services/research";
+import {QuestionPlan} from "../components/QuestionPlan";
 import {ReportPanel, ResearchSourceDetail} from "../components/ResearchReport";
 
 const statusLabel:Record<string,string>={queued:"排队中",running:"运行中",paused:"已暂停",awaiting_credentials:"等待模型凭据",
@@ -141,6 +142,7 @@ function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
           {!terminal.has(state.status)&&<button className="button button-secondary" disabled={pending||requested!==null} onClick={()=>void control("cancel")}>取消任务</button>}
         </div>
       </section>
+      <QuestionPlan state={state}/>
       <section className="research-panel" aria-label="研究计划"><h2>研究计划</h2>
         {state.subtasks.length===0?<p>等待执行器生成计划。</p>:<details className="research-tree" open>
           <summary>任务树 · {state.subtasks.length} 个子任务</summary>

@@ -6,7 +6,7 @@ from threading import Condition, Thread
 from filelock import FileLock, Timeout
 
 from backend.research.graph import ResearchGraph
-from backend.research.provider_adapter import choose_action
+from backend.research.provider_adapter import choose_action, plan_questions
 from backend.research.store import Conflict
 from backend.research.tools import ToolRegistry
 
@@ -21,10 +21,6 @@ class Worker:
         self.cv, self.queue, self.credentials = Condition(), deque(), {}
         self.thread, self.closing, self.active = None, False, None
         self.lease = FileLock(str(store.path.with_suffix(".worker.lock")), thread_local=False)
-        with store._db(write=True) as db:
-            db.execute("""CREATE TABLE IF NOT EXISTS worker_requests(
-                task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
-                command TEXT NOT NULL CHECK(command IN ('cancelled','paused')))""")
 
     def start(self):
         with self.cv:
@@ -65,7 +61,7 @@ class Worker:
                 return
             # A full in-memory queue leaves the task durable without retaining its secret.
             # The worker will ask for fresh credentials when a slot becomes available.
-            if self.active != key and key not in self.queue and len(self.queue) < self.max_queue:
+            if (self.active != key or state.status == "queued") and key not in self.queue and len(self.queue) < self.max_queue:
                 self.queue.append(key)
             if settings is not None and state.status == "queued" and key in self.queue:
                 self.credentials[key] = settings
@@ -95,10 +91,6 @@ class Worker:
                 "SELECT command FROM worker_requests WHERE task=?", (str(uid),)
             ).fetchone()
             return row[0] if row else None
-
-    def _clear_command(self, uid):
-        with self.store._db(write=True) as db:
-            db.execute("DELETE FROM worker_requests WHERE task=?", (str(uid),))
 
     def _next(self):
         with self.cv:
@@ -149,7 +141,9 @@ class Worker:
             if command != state.status:
                 state.status = command
                 self.store.save(owner, state, rev, command, f"ack-{rev}-{command}")
-            self._clear_command(uid)
+            else:
+                with self.store._db(write=True) as db:
+                    db.execute("DELETE FROM worker_requests WHERE task=? AND command=?", (str(uid), command))
             return
         if state.status not in {"queued", "running"}:
             return
@@ -190,12 +184,12 @@ class Worker:
             choose=(lambda view, remaining: choose_action(settings, view, remaining))
             if settings is not None
             else None,
+            question_planner=(lambda view, remaining: plan_questions(settings, view, remaining))
+            if settings is not None else None,
             control=guard,
             report=self.report,
         )
         try:
-            final = graph.run(owner, uid)
-            if final.status in {"paused", "cancelled"}:
-                self._clear_command(uid)
+            graph.run(owner, uid)
         finally:
             graph.close()

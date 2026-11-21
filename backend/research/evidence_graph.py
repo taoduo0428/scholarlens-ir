@@ -283,4 +283,12 @@ def build_graph(state, sources):
             for pair in sorted(opposites)
         ],
     }
+    if getattr(state, "retrieval_policy", "V1") in {"V4", "V5", "V6", "V7"}:
+        from backend.research.premises import compare_premises
+
+        graph["conflicts"], graph["conditional_differences"] = compare_premises(claims, sources)
+        comparison_gaps.extend(
+            f"Opposite observations require separate interpretation ({row['basis']}): "
+            + ", ".join(row["claim_ids"]) for row in graph["conditional_differences"]
+        )
     return claims, graph, comparison_gaps

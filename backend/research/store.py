@@ -80,6 +80,9 @@ class ResearchStore:
                 db.execute("PRAGMA user_version=1")
             elif version != 1:
                 raise RuntimeError("unsupported research schema")
+            db.execute("""CREATE TABLE IF NOT EXISTS worker_requests(
+                task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
+                command TEXT NOT NULL CHECK(command IN ('cancelled','paused')))""")
 
     @contextmanager
     def _db(self, *, write: bool = False):
@@ -128,7 +131,7 @@ class ResearchStore:
         """Return (state, revision, created). The owner comes from trusted authentication."""
         if not isinstance(idem, str) or not idem.strip() or len(idem) > 120:
             raise ValueError("invalid idempotency key")
-        if set(versions) - {"model_id", "skill_version", "harness_policy_version"}:
+        if set(versions) - {"model_id", "skill_version", "harness_policy_version", "retrieval_policy"}:
             raise ValueError("invalid version field")
         hashed = digest(canonical(task.model_dump(mode="json")))
         with self._db(write=True) as db:
@@ -181,7 +184,7 @@ class ResearchStore:
         with self._db(write=True) as db:
             old = self._owned(db, owner, uid)
             previous = ResearchState.model_validate_json(old["state_json"])
-            frozen = ("user_id", "task", "corpus_generation", "skill_version",
+            frozen = ("user_id", "task", "corpus_generation", "skill_version", "retrieval_policy",
                       "harness_policy_version")
             first_model_binding = (previous.model_id == "personal-pending"
                                    and previous.status == "awaiting_credentials"
@@ -218,6 +221,8 @@ class ResearchStore:
                        (uid, next_rev, execution_id, fingerprint, payload.decode()))
             db.execute("UPDATE tasks SET state_json=?,status=?,revision=?,updated_at=? WHERE id=?",
                        (payload.decode(), state.status, next_rev, timestamp(), uid))
+            if kind == state.status and kind in {"paused", "cancelled"}:
+                db.execute("DELETE FROM worker_requests WHERE task=? AND command=?", (uid, kind))
             self._event(db, uid, kind, state.status)
             return next_rev
 

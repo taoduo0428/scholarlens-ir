@@ -1,9 +1,9 @@
 """Read back full reports on the six public development tasks. No holdout switch."""
 
 import argparse
+import json
 from collections import Counter
 from hashlib import sha256
-import json
 from pathlib import Path
 from tempfile import TemporaryDirectory
 

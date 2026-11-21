@@ -10,6 +10,8 @@ ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读�
 
 [演示启动与操作](docs/agent-v2/USER_GUIDE.md) · [本地交付说明](docs/agent-v2/FINAL_HANDOFF.md) · [基线和消融结果](docs/agent-v2/EXPERIMENT_RESULTS.md)
 
+第二阶段演示支持依赖问题、证据缺口和跨论文条件对照。默认策略沿用 V1，在本地选择 V5 可体验实验版本。[启动与交接](docs/agent-v3/FINAL_HANDOFF.md) · [独立评测](docs/agent-v3/EXPERIMENT_RESULTS.md)
+
 ## 从这里了解项目
 
 | 你要做什么 | 阅读入口 |

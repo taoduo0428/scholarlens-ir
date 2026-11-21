@@ -1,6 +1,6 @@
 # P0 源码、语料与历史性能审计
 
-2026-11-20。在隔离 worktree 读取 Git 对象和本地 LFS 实物。以下源码行号固定到 `3e130b0`。四个分支的完整 SHA、资产计数和语料摘要见 [原始统计](evidence/p0-source.json)。
+2026-11-20。在隔离 worktree 读取 Git 对象和本地 LFS 实物。以下源码行号固定到 `3e130b0`。四个分支的完整 SHA、资产计数和语料摘要见 [原始统计（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-830e3682cffd)。
 
 ## 四分支基线
 

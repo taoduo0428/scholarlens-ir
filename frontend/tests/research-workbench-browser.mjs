@@ -36,6 +36,10 @@ function append(id,kind,status){
 function add(body){
   const id="task-"+(++created);
   const state={run_id:id,user_id:user,task:body,status:"running",corpus_generation:"test-gen",model_id:"none",
+    question_plan:{origin:"deterministic_fallback",plan_version:1,revisions:[],graph:{nodes:[
+      {id:"q1",question:"哪些实验使用相同协议？",dependencies:[],requirement:{kind:"conditions",acceptance:"核对实验协议",failure:"缺少条件",min_papers:1}}
+    ]}},
+    question_assessments:{q1:{status:"partial",next_action:"align_conditions",missing_requirements:["第二项实验缺少协议"],supporting_evidence_ids:["e1"],opposing_evidence_ids:[]}},
     subtasks:[{id:"s1",goal:"提取指标及协议",required_slots:["metric","protocol"],missing_slots:["protocol"],status:"active"},
       {id:"s2",goal:"复核局限",required_slots:["limitation"],missing_slots:["limitation"],status:"blocked"}],
     actions:[{seq:1,tool:"search_passages",elapsed_ms:22,status:"done",error_code:null}],
@@ -134,7 +138,13 @@ try{
   assert.equal(await article.locator("#paper-evidence-match").innerText(),quote);await article.close();
   const save=page.waitForEvent("download");await one("导出 Markdown").click();
   assert.equal(readFileSync(await (await save).path(),"utf8"), report.markdown);
+  const questions=page.getByRole("region",{name:"研究问题与证据"});
+  await questions.locator("summary").first().click();
+  assert.ok((await questions.innerText()).includes("第二项实验缺少协议"));
   await assertNoOverflow();await page.screenshot({path:path.join(output,"desktop-report.png"),fullPage:true});
+  await page.setViewportSize({width:820,height:1180});await assertNoOverflow();
+  assert.ok(await questions.isVisible());
+  await page.screenshot({path:path.join(output,"ipad-plan.png"),fullPage:true});
   await page.setViewportSize({width:390,height:844});await assertNoOverflow();
   await page.getByRole("region",{name:"研究报告"}).scrollIntoViewIfNeeded();
   await page.screenshot({path:path.join(output,"mobile-report.png")});

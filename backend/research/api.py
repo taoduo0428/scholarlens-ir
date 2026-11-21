@@ -67,9 +67,13 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
             raise problem(503, "dependency_unavailable", "研究语料尚未就绪") from None
         try:
             versions = bind_versions(registry_dir)
+            retrieval_policy = os.getenv("SCHOLARLENS_RETRIEVAL_POLICY", "V1")
+            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5"}:
+                raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             with worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,
                                                    initial_budget=task_budget(body),
+                                                   retrieval_policy=retrieval_policy,
                                                    skill_version=versions[0], harness_policy_version=versions[1],
                                                    model_id=config.ai_model if config else
                                                    ("personal-pending" if body.mode == "personal_model" else "none"))

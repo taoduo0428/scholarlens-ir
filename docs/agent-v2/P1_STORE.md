@@ -1,6 +1,6 @@
 # P1 任务存储与结构契约验证
 
-2026-11-20 在 Windows 10.0.26200 上使用 worktree 内的 Python 3.11.15、SQLite 3.53.1、Pydantic 2.14.1、pytest 9.1.1 执行。测试分别创建本地临时数据库。完整输出位于 [evidence/p1-store](evidence/p1-store/)。
+2026-11-20 在 Windows 10.0.26200 上使用 worktree 内的 Python 3.11.15、SQLite 3.53.1、Pydantic 2.14.1、pytest 9.1.1 执行。测试分别创建本地临时数据库。完整输出位于 [evidence/p1-store（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-650e8d7f1b0a)。
 
 | 检查 | 退出码 | 结果 |
 |---|---:|---|

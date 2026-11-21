@@ -18,13 +18,21 @@ export interface ResearchSource {
   pdf_available?:boolean|null;fulltext_available?:boolean|null;
 }
 export interface ResearchClaim {
+  provenance_valid?:boolean;semantic_support?:string;comparison_status?:string;
   claim_id:string;subtask_id?:string;statement:string;claim_type:string;support_status:string;
   evidence_ids:string[];conditions?:Record<string,string|null>;check_notes?:string[];
 }
 export interface ResearchSubtask {id:string;goal:string;required_slots:string[];missing_slots:string[];status:string}
 export const slotLabels:Record<string,string>={method:"方法",dataset:"数据集",metric:"指标",protocol:"实验协议",limitation:"局限",comparison:"比较",fact:"事实"};
 export const subtaskLabels:Record<string,string>={pending:"待执行",active:"执行中",satisfied:"已满足",blocked:"有缺口"};
+export interface PlanQuestion {
+  id:string; question:string; dependencies:string[];
+  requirement:{kind:string;acceptance:string;failure:string;min_papers:number};
+}
 export interface ResearchState {
+  retrieval_policy?:string;
+  question_plan?:{origin:string;plan_version:number;graph:{nodes:PlanQuestion[]};revisions:string[]} | null;
+  question_assessments?:Record<string,{status:string;next_action:string;missing_requirements:string[];supporting_evidence_ids:string[];opposing_evidence_ids:string[]}>;
   run_id:string;user_id:number;status:TaskStatus;task:TaskInput;corpus_generation:string;model_id:string;
   subtasks:ResearchSubtask[];
   actions:{seq:number;tool:string;status:string;elapsed_ms:number;error_code:string|null}[];

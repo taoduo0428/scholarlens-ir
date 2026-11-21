@@ -4,9 +4,9 @@
 
 ## 任务与并发
 
-同一个真实问题以指定论文和全库检索交替运行，3 项顺序执行，4 项并发提交。问题询问台湾哪些地下水集水区的砷浓度高。第一轮的核验结论只给出“这两个地区”及测量值。第一版修正给出调查地点，但遗漏砷浓度超标。最终 7 项均在同一条已核验陈述中列出浊水溪冲积扇南部（southern Choushui river alluvial fan）和嘉南平原（Chianan plain），并写出前者约 70%、后者超过 95% 的监测井超过 WHO 指南值 0.01 mg/L。每项都对结论本身执行名称和超标关系的断言。[初始报告](evidence/p8-native/859-r2/seq-0.json) · [中间报告](evidence/p8-native/859-r3/seq-0.json) · [最终指定论文报告](evidence/p8-native/859-r4/seq-0.json) · [最终全库报告](evidence/p8-native/859-r4/seq-1.json)
+同一个真实问题以指定论文和全库检索交替运行，3 项顺序执行，4 项并发提交。问题询问台湾哪些地下水集水区的砷浓度高。第一轮的核验结论只给出“这两个地区”及测量值。第一版修正给出调查地点，但遗漏砷浓度超标。最终 7 项均在同一条已核验陈述中列出浊水溪冲积扇南部（southern Choushui river alluvial fan）和嘉南平原（Chianan plain），并写出前者约 70%、后者超过 95% 的监测井超过 WHO 指南值 0.01 mg/L。每项都对结论本身执行名称和超标关系的断言。[初始报告（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-2431f04430d5) · [中间报告（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-fd9c4e4fce64) · [最终指定论文报告（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-9567dc069d4c) · [最终全库报告（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-6351709c4f4f)
 
-每项任务完成，返回两个来源和一个已核验陈述，执行六次工具调用。独立读回 ES 核对所有来源的字符区间及 SHA-256。事件序号连续，跨账户读取报告返回 404。模型调用数为零。[七项记录](evidence/p8-native/859-r4/summary.json)
+每项任务完成，返回两个来源和一个已核验陈述，执行六次工具调用。独立读回 ES 核对所有来源的字符区间及 SHA-256。事件序号连续，跨账户读取报告返回 404。模型调用数为零。[七项记录（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-89832c3c4125)
 
 | 负载 | 样本 | 提交至客户端观察终态的 P50 | P95 |
 |---|---:|---:|---:|
@@ -17,7 +17,7 @@ P50 按中位数计算，P95 采用 nearest-rank。客户端轮询间隔为 75 m
 
 ## 依赖切换与恢复
 
-故障试验为正常应用创建一次性本地 ES alias。两个证据的事务提交后，将此 alias 切换到空索引。任务检测到语料代变化，进入 paused，报告接口返回 409。通过原用户凭据读取已保存证据并核对原文哈希。恢复 alias 后调用 resume，任务达到 completed，两个来源均重新验证。事件中可以看到 pause、resume、completed 的完整过程。临时 alias 和临时索引已清理，基准库仍为 859 篇。[本轮故障复测](evidence/p8-native/drift-r4.json)
+故障试验为正常应用创建一次性本地 ES alias。两个证据的事务提交后，将此 alias 切换到空索引。任务检测到语料代变化，进入 paused，报告接口返回 409。通过原用户凭据读取已保存证据并核对原文哈希。恢复 alias 后调用 resume，任务达到 completed，两个来源均重新验证。事件中可以看到 pause、resume、completed 的完整过程。临时 alias 和临时索引已清理，基准库仍为 859 篇。[本轮故障复测（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-465a78a7792e)
 
 ## 复现
 
@@ -32,7 +32,7 @@ P50 按中位数计算，P95 采用 nearest-rank。客户端轮询间隔为 75 m
 
 ## 多篇范围修复后的复测
 
-沿用同一问题、账户隔离校验和语料版本。3 次顺序执行 P50/P95 为 515/656 ms，4 次并发提交为 906/1,453 ms，全程 3.297 秒。Python 进程采样 RSS 为 116.43–120.52 MiB。七份报告的已核验陈述都列出了两个地区与超标关系，每项模型调用数为零。故障复测在两个来源保存后切换语料代，暂停状态恢复后完成，两份来源哈希均保持一致，清理后基础索引仍有 859 篇。[最终七项记录](evidence/p8-native/859-final/summary.json) · [最终故障切换](evidence/p8-native/drift-final.json)
+沿用同一问题、账户隔离校验和语料版本。3 次顺序执行 P50/P95 为 515/656 ms，4 次并发提交为 906/1,453 ms，全程 3.297 秒。Python 进程采样 RSS 为 116.43–120.52 MiB。七份报告的已核验陈述都列出了两个地区与超标关系，每项模型调用数为零。故障复测在两个来源保存后切换语料代，暂停状态恢复后完成，两份来源哈希均保持一致，清理后基础索引仍有 859 篇。[最终七项记录（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-54fe9650e372) · [最终故障切换（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-0b06565cff94)
 
 ## 结论核验发布版复测
 

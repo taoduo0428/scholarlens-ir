@@ -1,6 +1,6 @@
 # P0 旧前端基线
 
-2026-11-20 在 Windows 隔离 worktree、基线 `3e130b0` 上执行。Node 24.18.0，npm 11.16.0，Vite 6.4.5，Chrome 157.0.8103.79，Playwright 1.63.0。本次依赖锁文件 SHA-256 为 `17c69d4705f6e12af0a4490ef0e9a077c12623d650bdde27520825f291467691`。所有命令的输出及桌面、390px 引用弹窗截图在 [evidence/p0-frontend](evidence/p0-frontend/)。
+2026-11-20 在 Windows 隔离 worktree、基线 `3e130b0` 上执行。Node 24.18.0，npm 11.16.0，Vite 6.4.5，Chrome 157.0.8103.79，Playwright 1.63.0。本次依赖锁文件 SHA-256 为 `17c69d4705f6e12af0a4490ef0e9a077c12623d650bdde27520825f291467691`。所有命令的输出及桌面、390px 引用弹窗截图在 [evidence/p0-frontend（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-b4ea9989d3a6)。
 
 | 命令 | 退出码 | 本次结果 | 原始输出 |
 |---|---:|---|---|

@@ -26,6 +26,11 @@ function Claim({claim,sources,conflicts}:{claim:ResearchClaim;sources:Map<string
     {Object.entries(claim.conditions||{}).some(([,value])=>value) &&
       <dl>{Object.entries(claim.conditions||{}).filter(([,v])=>v).map(([key,v])=>
         <div key={key}><dt>{conditions[key]||key}</dt><dd>{v}</dd></div>)}</dl>}
+    {claim.semantic_support&&<dl>
+      <dt>来源定位</dt><dd>{claim.provenance_valid?"原文已核对":"缺少可核对来源"}</dd>
+      <dt>结论支持</dt><dd>{{supported:"证据支持",insufficient:"证据不足",contradicted:"与证据矛盾"}[claim.semantic_support]??"尚未评估"}</dd>
+      <dt>比较条件</dt><dd>{claim.comparison_status==="comparable"?"条件已对齐":claim.comparison_status==="not_comparable"?"条件不可比":"不涉及比较"}</dd>
+    </dl>}
     {claim.check_notes?.map((note,i)=><p key={i}>{note}</p>)}
     {conflicts.length>0&&<details className="research-conflicts"><summary>冲突结论 · {conflicts.length}</summary>
       <ul>{conflicts.map(peer=><li key={peer.claim_id}>{peer.statement}

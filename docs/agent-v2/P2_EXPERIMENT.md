@@ -1,6 +1,6 @@
 # P2 本地真实检索实验
 
-从固定的 859 篇旧批数据按 paper_id 加盐哈希排序，选出 100 篇标题和摘要完整的论文，向 MiniLM 输入标题与摘要。使用一组固定的 8 个历史查询、每路预热一次、串行 3 轮。ES 8.19.23 接收 100 条相同的 384 维向量。两个独立索引分别使用精确余弦扫描和 float HNSW，M=16，ef_construction=100，num_candidates=30。RRF(k=60) 融合两路前 20 名，TinyBERT 对融合前 10 篇成对打分。两种编码均使用 ONNX CPU 两线程。24 次每路径的原始排名、时间、索引和全部 paper_id 已保存。[原始报告](evidence/p2-experiment/retrieval.json)
+从固定的 859 篇旧批数据按 paper_id 加盐哈希排序，选出 100 篇标题和摘要完整的论文，向 MiniLM 输入标题与摘要。使用一组固定的 8 个历史查询、每路预热一次、串行 3 轮。ES 8.19.23 接收 100 条相同的 384 维向量。两个独立索引分别使用精确余弦扫描和 float HNSW，M=16，ef_construction=100，num_candidates=30。RRF(k=60) 融合两路前 20 名，TinyBERT 对融合前 10 篇成对打分。两种编码均使用 ONNX CPU 两线程。24 次每路径的原始排名、时间、索引和全部 paper_id 已保存。[原始报告（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-5284203f1dd3)
 
 | 路径 | P50 ms | P95 ms |
 |---|---:|---:|
@@ -29,7 +29,7 @@ HNSW 相对精确 top 10 找回 237/240，平均 Recall@10 为 0.9875。三个�
 | 子问题 hybrid + TinyBERT | 6/7 | 1 / 3 | 28 | 54.37 | 5/7 |
 | 上述组合 + 缺口补检 | 6/7 | 3 / 5 | 38 | 75.24 | 5/7 |
 
-新增量按题与单轮 keyword 的集合求差再求和。一篇论文在不同任务中可分别计数。dev 上 TinyBERT 多命中 1 个参考块，继续补检带来了更多可读的来源，目标块命中数维持 6/7。这里的分母取冻结任务的预置锚点。人工标注为 0，相关性和事实支持率均为 null。命令为 `python -m tools.research_eval.retrieval_ablation --output <新实验结果.json>`。[逐题来源增量、工具、重排及延迟](evidence/p2-experiment/retrieval-ablation.json)
+新增量按题与单轮 keyword 的集合求差再求和。一篇论文在不同任务中可分别计数。dev 上 TinyBERT 多命中 1 个参考块，继续补检带来了更多可读的来源，目标块命中数维持 6/7。这里的分母取冻结任务的预置锚点。人工标注为 0，相关性和事实支持率均为 null。命令为 `python -m tools.research_eval.retrieval_ablation --output <新实验结果.json>`。[逐题来源增量、工具、重排及延迟（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-2b15c7e7aa2e)
 
 在项目虚拟环境中使用仅绑定 loopback 的独立测试 ES。对从实例负责人取得的 UUID、集群名、版本执行核验后，程序新建两个带 UUID 的专用索引，保留结果供核查。选取新的本地 JSON 输出文件。
 
@@ -39,4 +39,4 @@ python -m tools.research_eval.retrieval_experiment --cluster-uuid <本地测试�
 python -m pytest backend/tests/research/test_retrieval_experiment.py -q
 ```
 
-MiniLM revision 为 `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`，TinyBERT revision 为 `81d1926f67cb8eee2c2be17ca9f793c7c3bd20cc`。首次下载后者出现 httpx 读超时，带下载参数的固定发布 URL 成功，文件通过上游 LFS SHA-256 和 tokenizer Git blob 校验。首次 bulk 请求超时，allocation explain 显示 ES 的 90% 高水位使新主分片无法分配。实例负责人恢复本地测试分片分配后，重试使用全新索引通过。实验测试 6 passed，退出 0。[首次导入日志](evidence/p2-experiment/run.txt) · [成功运行](evidence/p2-experiment/run-final.txt) · [测试](evidence/p2-experiment/pytest.txt)
+MiniLM revision 为 `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`，TinyBERT revision 为 `81d1926f67cb8eee2c2be17ca9f793c7c3bd20cc`。首次下载后者出现 httpx 读超时，带下载参数的固定发布 URL 成功，文件通过上游 LFS SHA-256 和 tokenizer Git blob 校验。首次 bulk 请求超时，allocation explain 显示 ES 的 90% 高水位使新主分片无法分配。实例负责人恢复本地测试分片分配后，重试使用全新索引通过。实验测试 6 passed，退出 0。[首次导入日志（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-ef1e8428a9db) · [成功运行（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-f92f7a098cd4) · [测试（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-403634796168)

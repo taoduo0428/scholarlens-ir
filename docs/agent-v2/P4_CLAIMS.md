@@ -8,9 +8,9 @@
 - `evidence_graph.py` 建立 Subtask–Claim–Evidence–Paper 关系。计算两个数值的大小关系需要明确匹配数据集、指标、单位、设置和协议。实验条件不同则输出不可比。句子极性相反时保留双方来源。
 - `reports.py` 发布前再次核对所有者、scope、artifact 哈希、语料代和 locator。回读消耗工具和时间预算。报告支持部分结果、账户隔离和两种导出。PDF 与全文可用性从各自的布尔状态读取。
 
-`.venv/Scripts/python.exe -m pytest backend/tests/research/test_claim_report.py -q --basetemp .venv/p4-claims-post-drift` 在 Windows、Python 3.11.15 上退出 0，20 项通过，耗时 4.06 秒。测试覆盖字符与数值篡改、来源伪造、否定语义、不同协议、时间和工具限额、账户隔离以及资料状态。[测试记录](evidence/p4-claims/pytest-drift-window.txt)
+`.venv/Scripts/python.exe -m pytest backend/tests/research/test_claim_report.py -q --basetemp .venv/p4-claims-post-drift` 在 Windows、Python 3.11.15 上退出 0，20 项通过，耗时 4.06 秒。测试覆盖字符与数值篡改、来源伪造、否定语义、不同协议、时间和工具限额、账户隔离以及资料状态。[测试记录（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-debd809494e5)
 
-冻结的 Cedar 和 Birch 经过完整 LangGraph 流程。报告复核 2 篇摘要产生 8 个子任务陈述，标出 1 个不可比项。Cedar 的结果为 Orchard、protocol A、precision@5=0.62。Birch 的结果为 Valley、protocol B、recall@10=0.71。[完整 JSON](evidence/p4-claims/cedar-birch-fullgraph.json) · [Markdown](evidence/p4-claims/cedar-birch-fullgraph.md)
+冻结的 Cedar 和 Birch 经过完整 LangGraph 流程。报告复核 2 篇摘要产生 8 个子任务陈述，标出 1 个不可比项。Cedar 的结果为 Orchard、protocol A、precision@5=0.62。Birch 的结果为 Valley、protocol B、recall@10=0.71。[完整 JSON（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-a2bf48e6f324) · [Markdown（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-4822836de41d)
 
 复杂释义、未结构化表格和隐含实验条件仍需人工判断。该核验器采用确定性抽取与有限语义规则。面向未见真实问题的人工 Claim 支持率尚未评测。
 
@@ -21,4 +21,4 @@
 
 英文 which/what 命名实体问题应对同篇论文内所有已核验片段择句。验收要求陈述本身包含所问对象的名称和证据关系。遇到所指对象时可引用同一片段内逐字连续的两句。原文缺少可绑定名称时保留未解决项。负责人为研究报告后端维护者。
 
-本轮回归覆盖同篇不同片段择句、同段指代解析、片段拼接、原始空格、否定与缺少名称的情况。初版在四个重点用例均失败。修正后，结论核验测试 27 项通过，研究后端测试 136 项通过、1 项跳过。实体识别使用有限的英文问句、名称形态和谓语线索，其他语言与隐含关系仍需评估。[原失败](evidence/p4-claims/entity-before.txt) · [专项测试](evidence/p4-claims/entity-after.txt) · [研究后端回归](evidence/p4-claims/entity-research-suite.txt)
+本轮回归覆盖同篇不同片段择句、同段指代解析、片段拼接、原始空格、否定与缺少名称的情况。初版在四个重点用例均失败。修正后，结论核验测试 27 项通过，研究后端测试 136 项通过、1 项跳过。实体识别使用有限的英文问句、名称形态和谓语线索，其他语言与隐含关系仍需评估。[原失败（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-ebdb19ae8d60) · [专项测试（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-bd56af0a920e) · [研究后端回归（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-691b6a784b49)

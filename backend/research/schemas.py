@@ -7,6 +7,8 @@ from uuid import UUID
 
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
+from backend.research.questions import QuestionPlan
+
 Id = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=192)]
 Summary = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=500)]
 Digest = Annotated[str, StringConstraints(pattern=r"^[a-f0-9]{64}$")]
@@ -218,6 +220,12 @@ class ResearchState(Contract):
     actions: list[ActionRecord] = Field(default_factory=list, max_length=30)
     decisions: list[Decision] = Field(default_factory=list, max_length=30)
     budget: Budget = Field(default_factory=Budget)
+    retrieval_policy: Literal["V1", "V2", "V3", "V4", "V5", "V6", "V7"] = "V1"
+    question_plan: QuestionPlan | None = None
+    planning_calls: int = Field(default=0, ge=0, le=20)
+    question_assessments: dict[Id, dict] = Field(default_factory=dict, max_length=6)
+    skill_steps: list[Id] = Field(default_factory=list, max_length=4)
+    candidate_papers: list[Id] = Field(default_factory=list, max_length=40)
     checkpoint_ref: Id | None = None
     artifact_refs: list[Id] = Field(default_factory=list, max_length=120)
     warnings: list[Summary] = Field(default_factory=list, max_length=20)

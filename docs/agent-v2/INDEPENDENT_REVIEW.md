@@ -12,7 +12,7 @@
 
 审查时，最后一次 `verify_source_quote` 同步占用唯一 Worker，只在调用返回后检查截止时间。一次独立局部检查给报告留下 50 ms，并让测试语料调用耗时 200 ms。报告约 250 ms 后返回 `partial / budget`，公开来源为 0。超时引文已被过滤，排在后面的任务仍须等调用结束。
 
-修复后，最终回查与常规工具调用使用同一超时处理。相同的 50 ms 预算和 200 ms 模拟等待下，报告在 109 ms 内完成 SQLite 写入并返回 `partial / budget`，发布来源为 0。这个观测包含预算结算后生成、序列化和保存报告的时间。[发布超时回归](../../backend/tests/research/test_publication_deadline.py) · [任务预算规范](IMPLEMENTATION_SPEC.md#34-初始预算仅研究模式默认值评测后可调整)
+修复后，最终回查与常规工具调用使用同一超时处理。相同的 50 ms 预算和 200 ms 模拟等待下，报告在 109 ms 内完成 SQLite 写入并返回 `partial / budget`，发布来源为 0。这个观测包含预算结算后生成、序列化和保存报告的时间。[发布超时回归](../../backend/tests/research/test_publication_deadline.py) · [任务预算规范（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-ffd26c59d51c)
 
 ## 来源、模型和评测证据的范围
 

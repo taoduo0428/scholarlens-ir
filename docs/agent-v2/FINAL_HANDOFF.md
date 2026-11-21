@@ -36,4 +36,4 @@ Set-Location 'C:/Users/lenovo/Desktop/ScholarLens-EvoResearch'
 
 ## 恢复与回滚
 
-终止本地演示后使用相同启动参数和 runtime 可查看原任务。恢复任务时保留原预算截止时间、账户、索引代次和审核版本，个人模型任务按界面提示重新绑定。需要备份研究任务时，在 Worker 停止后用 `ResearchStore.backup(new_path)` 生成备份，使用 `ResearchStore.restore(snapshot, fresh_runtime)` 恢复到全新运行目录。回退 V2 时关闭后端 `SCHOLARLENS_RESEARCH_ENABLED`，前端关闭 `VITE_RESEARCH_ENABLED` 后重建。离线技能按审核记录切回上一批准版本。生产部署、代码推送、合并和收费模型调用均需单独授权。[恢复操作](RECOVERY_AND_ROLLBACK.md) · [版本回滚命令与试验](evidence/p6-p7-ablation/README.md)
+终止本地演示后使用相同启动参数和 runtime 可查看原任务。恢复任务时保留原预算截止时间、账户、索引代次和审核版本，个人模型任务按界面提示重新绑定。需要备份研究任务时，在 Worker 停止后用 `ResearchStore.backup(new_path)` 生成备份，使用 `ResearchStore.restore(snapshot, fresh_runtime)` 恢复到全新运行目录。回退 V2 时关闭后端 `SCHOLARLENS_RESEARCH_ENABLED`，前端关闭 `VITE_RESEARCH_ENABLED` 后重建。离线技能按审核记录切回上一批准版本。生产部署、代码推送、合并和收费模型调用均需单独授权。[恢复操作](RECOVERY_AND_ROLLBACK.md) · [版本回滚命令与试验（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-b26c8d7fb009)

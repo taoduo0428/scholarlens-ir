@@ -223,6 +223,13 @@ def generate_report(state, store, registry):
         "graph": graph,
         "verifier": "deterministic extractive entailment, no human quality score",
     }
+    if state.retrieval_policy in {"V5", "V6", "V7"} and state.question_plan:
+        from backend.research.synthesis import integrate
+
+        from backend.research.accounting import spending
+
+        integrate(report, state, verified)
+        report["spending"] = spending(state)
     report["markdown"] = render_markdown(report)
     for kind, data in (("report", canonical(report)), ("markdown", report["markdown"].encode())):
         aid = store.put_artifact(state.user_id, state.run_id, kind, data, state.corpus_generation)

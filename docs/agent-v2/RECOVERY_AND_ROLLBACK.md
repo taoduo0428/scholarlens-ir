@@ -4,4 +4,4 @@
 
 进程中断后使用相同的运行目录和版本重新启动。业务检查点带输入世代、步骤 ID、事件版本和哈希。已经提交的整轮检索会从覆盖检查继续。故障发生在轮事务提交之前时，该轮只读搜索可以重放。重新绑定个人模型凭据后恢复任务。不可再读的原 generation 会使任务暂停。
 
-在维护窗口关闭 Worker 后，使用 `ResearchStore.backup(new_path)` 将研究库复制到全新的本地路径，用 `ResearchStore.restore(snapshot, fresh_runtime)` 在新运行目录校验恢复。该方法备份研究任务、证据和事件。旧版账户库拥有独立的备份流程。部署前需要再次验证两者的用户 ID 对应关系。关闭后端和前端的研究开关即可退回已有工作台。离线技能和策略的版本回滚仅更改后续任务读取的活动版本。[恢复测试](P1_STORE.md) · [版本回滚命令](evidence/p6-p7-ablation/README.md)
+在维护窗口关闭 Worker 后，使用 `ResearchStore.backup(new_path)` 将研究库复制到全新的本地路径，用 `ResearchStore.restore(snapshot, fresh_runtime)` 在新运行目录校验恢复。该方法备份研究任务、证据和事件。旧版账户库拥有独立的备份流程。部署前需要再次验证两者的用户 ID 对应关系。关闭后端和前端的研究开关即可退回已有工作台。离线技能和策略的版本回滚仅更改后续任务读取的活动版本。[恢复测试](P1_STORE.md) · [版本回滚命令（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-b26c8d7fb009)

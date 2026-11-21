@@ -1,6 +1,6 @@
 # 实施与验收顺序
 
-原始规格的字节级副本为 [IMPLEMENTATION_SPEC.md](IMPLEMENTATION_SPEC.md)，SHA-256 为 `2fac800c6ca06c943cb4f4650aecae5c63e88aef2fbd61b7c7e97d225df71e80`。以下索引用于定位交付，详细字段、20 个最低用例和授权边界见原件。
+原始规格的字节级副本为 [IMPLEMENTATION_SPEC.md（历史归档索引）](../agent-v3/artifacts/LEGACY_INDEX.md#ref-ffd26c59d51c)，SHA-256 为 `2fac800c6ca06c943cb4f4650aecae5c63e88aef2fbd61b7c7e97d225df71e80`。以下索引用于定位交付，详细字段、20 个最低用例和授权边界见原件。
 
 | 阶段 | 必须证明的行为 | 验收入口 |
 |---|---|---|
