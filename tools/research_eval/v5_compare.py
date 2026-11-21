@@ -28,12 +28,14 @@ def score(case, kind, docs, trace):
         if cited and cited <= sources.keys() and {sources[e]["paper_id"] for e in cited} == set(docs):
             linked.append(f)
     budget = trace["budget"]
-    return dict(case=case, kind=kind, papers=list(docs), claims=len(direct),
-                exact=correct if kind == "quote" else None, false_release=bool(direct) if kind == "layout" else None,
-                linked_overview=bool(linked) if kind == "overview" else None,
-                scope_errors=sum(s["paper_id"] not in docs for s in sources.values()),
-                status=report.get("answerability", {}).get("status"),
-                tools=budget["tool_calls_used"], model_calls=budget["model_calls_used"], ms=trace["elapsed_ms"])
+    return {
+        "case": case, "kind": kind, "papers": list(docs), "claims": len(direct),
+        "exact": correct if kind == "quote" else None, "false_release": bool(direct) if kind == "layout" else None,
+        "linked_overview": bool(linked) if kind == "overview" else None,
+        "scope_errors": sum(s["paper_id"] not in docs for s in sources.values()),
+        "status": report.get("answerability", {}).get("status"),
+        "tools": budget["tool_calls_used"], "model_calls": budget["model_calls_used"], "ms": trace["elapsed_ms"],
+    }
 
 
 def main():

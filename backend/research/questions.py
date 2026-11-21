@@ -140,8 +140,10 @@ def contract_for(state):
     task = state.task
     goal = " ".join(task.goal.split())
     # Titles identify sources. Their wording does not specify the requested operation.
-    intent_text = re.sub(r'["“《][^"”》]+["”》]', " ", goal) if state.retrieval_policy in {"W4","E9"} else goal
+    intent_text = re.sub(r'["“《][^"”》]+["”》]', " ", goal) if state.retrieval_policy in {"W4","E9","E9.1"} else goal
     intent = classify(intent_text)
+    if state.retrieval_policy == "E9.1" and re.search(r"综述|全景|概览|\b(?:overview|landscape|survey)\b", intent_text, re.I):
+        intent = "landscape"
     budget = state.budget.model_dump(include={"max_rounds", "max_tool_calls", "max_model_calls", "max_evidence", "max_duration_seconds"})
     return ResearchTaskContract(goal_original=task.goal, goal_normalized=goal, intent=intent,
                                 scope=task.scope.model_dump(), corpus_generation=state.corpus_generation,

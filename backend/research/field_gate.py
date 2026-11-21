@@ -159,6 +159,23 @@ def matches(field, claim, row, state, suggestions):
 
 def qualified(field, claims, sources, state, suggestions):
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
+    if field.facet:
+        if field.requested_metric:
+            aliases = {"准确率": "accuracy", "召回率": "recall", "精确率": "precision"}
+            metric = aliases.get(field.requested_metric, field.requested_metric).casefold()
+            valid = [c for c in valid if (c.conditions.metric_name or "").casefold() == metric]
+        from backend.research.overview import evidence_for, synthesize
+
+        if field.facet == "overview":
+            overview, by_id = synthesize(valid, sources, field.paper_ids)
+            linked = [entry for entry in overview["findings"] if entry["kind"] == "method_findings"]
+            if linked and not overview["incomplete_papers"]:
+                return [by_id[k] for k in linked[0]["premise_claim_ids"]], "insufficient_evidence"
+            return [], "insufficient_evidence"
+        if field.facet in {"topic", "finding", "method", "dataset", "metric", "conditions"}:
+            return evidence_for(field.facet, valid, field.requested_metric), "insufficient_evidence"
+        if field.facet == "comparison" and state.answer_contract.answer_type == "methods":
+            return evidence_for("method", valid), "insufficient_evidence"
     if field.operation in {"method", "chain", "synthesize", "disagreement"}:
         conflicts, differences = compare_premises(valid, sources)
         ids = (
@@ -174,7 +191,7 @@ def qualified(field, claims, sources, state, suggestions):
             for c in valid
             if c.claim_type == "metric" and measurement_key(c.conditions) and c.conditions.unit
         ]
-        requested = {x.casefold() for x in re.findall(METRIC, field.request, re.I)}
+        requested = {x.casefold() for x in re.findall(METRIC, field.request, re.I)} if not field.facet else set()
         if requested:
             measures = [c for c in measures if c.conditions.metric_name.casefold() in requested]
         if field.operation == "condition":
@@ -291,9 +308,11 @@ def evaluate(state, sources, suggestions=None, warnings=()):
         consumed = set()
         for f in req.fields:
             capable = {i: r for i, r in local.items() if f.capability.requires in caps[i].supported}
+            if f.paper_ids:
+                capable = {i: r for i, r in capable.items() if r["paper_id"] in f.paper_ids}
             proposals = source_claims(f, capable)
             proof, fallback = qualified(f, proposals, capable, state, suggestions)
-            proof = [c for c in proof if c.claim_id not in consumed]
+            proof = [c for c in proof if f.facet or c.claim_id not in consumed]
             prereqs = all(per_question[d] == "answerable" for d in req.dependencies)
             ids = {i for c in proof for i in c.evidence_ids}
             papers = {capable[i]["paper_id"] for i in ids}
@@ -308,12 +327,17 @@ def evaluate(state, sources, suggestions=None, warnings=()):
                 and any(c.claim_id in conflict_ids for c in proof)
             )
             b = []
-            if conflict_seen:
+            if state.retrieval_policy == "E9.1" and coverage.permission_denied:
+                status, reason, action = "blocked_by_permission", "blocked_by_permission", "request_permission"
+            elif state.retrieval_policy == "E9.1" and f.operation == "layout" and not capable:
+                status, reason, action = "source_capability_mismatch", "source_capability_mismatch", "stop"
+            elif conflict_seen:
                 status, reason, action = "conflicted", "conflicted", "resolve_conflict"
             elif (
                 prereqs
                 and not coverage.permission_denied
                 and len(papers) >= f.min_papers
+                and (not f.paper_ids or set(f.paper_ids) <= papers)
                 and len(spans) >= f.min_evidence
             ):
                 status, reason, action = "answerable", "verified", "publish"

@@ -44,6 +44,7 @@ export interface ResearchState {
   stop_reason:string|null;
 }
 export interface ResearchReport {
+  overview?:{findings:{kind:string;level:string;statement:string;premise_claim_ids:string[];evidence_ids:string[];paper_ids:string[]}[];incomplete_papers:string[]};
   summary:string;claims:ResearchClaim[];sources:ResearchSource[];unresolved:string[];markdown:string;
   sections:{verified:string[];uncertain:string[];not_comparable:string[];contradicted:string[]};
   field_requirements?:{question_id:string;fields:{field_id:string;request:string;datatype:string}[]}[];

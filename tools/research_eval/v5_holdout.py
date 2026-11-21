@@ -50,5 +50,5 @@ def cases():
                 abstract = "The paper lists the authors and their affiliations."
             if i == 2 and j == 1:
                 abstract = f"We employ {method} for {topic}. Our results show that {topic} declines on the held-out samples."
-            docs[pid] = dict(paper_id=pid, title=f"{topic.capitalize()} study {j}", abstract=abstract)
+            docs[pid] = {"paper_id": pid, "title": f"{topic.capitalize()} study {j}", "abstract": abstract}
         yield f"control-{i}", "overview", f"Give an overview of the methods and findings for {topic} across these two studies.", docs, "fixture:v5-holdout"

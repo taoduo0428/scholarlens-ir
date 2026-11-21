@@ -7,6 +7,12 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
     gate, accepted = evaluate(state, sources, suggestions, warnings)
     all_claims = {c.claim_id: c for c in state.claims}
     all_claims.update(accepted)
+    if state.retrieval_policy == "E9.1":
+        all_claims = {
+            cid: c.model_copy(update={"support_status": "insufficient"})
+            if cid not in accepted and c.support_status == "verified" else c
+            for cid, c in all_claims.items()
+        }
     direct = list(accepted)
     if ordering:
         direct = list(dict.fromkeys([i for i in ordering if i in accepted] + direct))
@@ -36,6 +42,19 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         ]
         + list(warnings),
     )
+    if state.retrieval_policy == "E9.1" and state.answer_contract.answer_type == "overview":
+        from backend.research.overview import synthesize
+
+        # Partial reports keep the paper profiles supported by completed nodes.
+        # A cross-paper inference additionally requires the final DAG decision.
+        overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids)
+        if not final_ids:
+            overview["findings"] = [entry for entry in overview["findings"] if entry["level"] != "derived_synthesis"]
+        else:
+            final_claims = [c for cid, c in accepted.items() if cid in final_ids]
+            final_overview, _ = synthesize(final_claims, sources, state.task.scope.paper_ids)
+            overview["findings"] = final_overview["findings"]
+        report["overview"] = overview
     sections = report["sections"]
     sections["verified"] = [i for i in conclusions if i in kept]
     sections["not_comparable"] = [i for i in sections["not_comparable"] if i in kept]
@@ -106,4 +125,9 @@ def markdown(report, escape):
         ("冲突字段", "conflicted"),
     ):
         rows.extend(["", "## " + title, *[escape(x) for x in report["ability_sections"][key]]])
+    if "overview" in report:
+        rows.extend(["", "## 综合研究"])
+        for entry in report["overview"]["findings"]:
+            rows.append("- " + escape(entry["statement"]) + " [" + escape(entry["level"]) + "] " +
+                        ", ".join(escape(cid) for cid in entry["premise_claim_ids"]))
     return "\n".join(rows) + "\n"

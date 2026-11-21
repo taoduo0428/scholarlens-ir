@@ -78,8 +78,15 @@ export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;task
           not_comparable:"不可直接比较",blocked_by_permission:"权限受限"};
         return <details key={f.field_id}><summary>{f.request} · {labels[d.status]||d.status}</summary>
           <p>{f.datatype} · {d.reason} · {d.next_action}</p>
-          {d.bindings.map(b=><p key={b.evidence_id}>{b.locator.paper_id} · {b.locator.raw}</p>)}</details>;
+          {d.bindings.map(b=><p key={b.evidence_id+":"+b.locator.raw}>{b.locator.paper_id} · {b.locator.raw}</p>)}</details>;
       })}</section>}
+    {report.overview&&<section aria-label="综合研究"><h3>综合研究</h3>
+      {report.overview.findings.map((f,i)=><details key={i}><summary>{f.statement}</summary>
+        <p>{{derived_synthesis:"根据多篇论文推导",supported_claim:"有原文支持",hypothesis:"作者假说",speculation:"作者推测"}[f.level]||f.level}</p>
+        {f.premise_claim_ids.map(id=>{const c=claims.get(id);return c&&<Claim key={id} claim={c} sources={sources} conflicts={peers(id)}/>;})}
+      </details>)}
+      {report.overview.incomplete_papers.map(p=><p key={p}>{p} · 仍缺研究方法或结果的原文证据</p>)}
+    </section>}
     {report.answer_groups&&<section aria-label="最终答案与证据">
       <h3>{report.answerability?.status==="partially_answerable"?"已核验的部分回答":report.answer_groups.unanswerable?"最终问题仍无法回答":"可发布的直接结论"}</h3>
       {([["direct","直接回答"],["background","背景与推理前提"],["incomparable","条件不可比"],["conflicting","相互矛盾的观察"]] as const).map(([key,label])=>{
