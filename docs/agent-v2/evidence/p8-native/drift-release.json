@@ -1,0 +1,26 @@
+{
+  "before": "running",
+  "interrupted": "paused",
+  "resumed": "completed",
+  "warning": "corpus_generation_unavailable",
+  "expected_generation": "scholarlens-papers-real-5a3d535543e4",
+  "source_count": 2,
+  "verified_post_resume_sources": 2,
+  "model_calls": 0,
+  "events": [
+    "created",
+    "started",
+    "round",
+    "step",
+    "paused",
+    "resumed",
+    "started",
+    "step",
+    "completed"
+  ],
+  "generation_preserved": true,
+  "source_hashes_equal": true,
+  "disposable_alias_removed": true,
+  "disposable_index_removed": true,
+  "baseline_papers_after": 859
+}

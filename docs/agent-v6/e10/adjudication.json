@@ -1,0 +1,1474 @@
+{
+  "source_phase_closed_utc": "2026-11-21T13:06:51.689853+00:00",
+  "source_snapshot_sha256": "d2f257fe6f864d8f0495b51cde8173261dd9cbec92b20e1e7c8652635c8b42a0",
+  "counts": {
+    "total": 111,
+    "source_papers": 40,
+    "human_gold": 0,
+    "ab_answerability_agreement": 103,
+    "ab_answerability_disagreement": 8,
+    "ab_source_paper_set_agreement": 111,
+    "ab_exact_span_set_differs": 92,
+    "ab_material_disagreement_any": 33,
+    "ab_no_material_disagreement": 78,
+    "ab_agree_status_other_material_disagreement": 25,
+    "ab_material_dimensions": {
+      "contradiction_definition": 7,
+      "claim_relevance": 2,
+      "scope_of_unsupported_claim": 17,
+      "answerability": 8
+    },
+    "adjudicator_revised_shared_status": 3,
+    "adjudicated_answerability": {
+      "answerable": 58,
+      "not_comparable": 20,
+      "partially_answerable": 12,
+      "insufficient_evidence": 21
+    },
+    "e91_answerability": {
+      "not_comparable": 53,
+      "insufficient_evidence": 57,
+      "partially_answerable": 1
+    },
+    "exact_status_matches": 34,
+    "false_refusal_on_full_or_partial_answer": 70,
+    "refusal_assessment": {
+      "false_refusal": 57,
+      "correct_main_refusal_missing_explanation": 37,
+      "partial_false_refusal": 13,
+      "correct_no_measure_wrong_frame": 4
+    },
+    "failure_categories": {
+      "objective_comparison_routed_to_ranking": 18,
+      "comparison_status_and_conditions": 3,
+      "supported_links_withheld": 18,
+      "background_accepted_as_requested_finding": 1,
+      "supported_portion_withheld": 12,
+      "metric_request_routed_to_comparison": 4,
+      "unreported_conditions": 17,
+      "missing_baseline_requirements": 17,
+      "supported_fact_withheld": 15,
+      "reported_measure_withheld": 6
+    },
+    "candidate_source_supported": 1,
+    "candidate_source_unsupported": 0,
+    "candidate_context_only": 1,
+    "published_verified_direct_claims": 0,
+    "direct_claim_precision": null,
+    "field_statuses": {
+      "insufficient_evidence": 297,
+      "not_comparable": 54,
+      "answerable": 1
+    },
+    "focal_papers_retrieved": {
+      "all": 50,
+      "some": 40,
+      "none": 21
+    },
+    "ab_source_spans_checked": 607,
+    "final_spans_checked": 312,
+    "run_source_spans_checked": 427,
+    "ambiguous": 0
+  },
+  "rows": [
+    {
+      "task_id": "v3-quantum-compare",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一项的目标是从受观测量子系统导出条件演化方程。第二项检验能否用两类模型作收益预测并构造表现良好的投资组合。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "v3-quantum-conditions",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [
+        "contradiction_definition"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "前者给出特定物理与秩假设下的推导，后者在日本市场比较组合表现。两者缺乏能同时解释结果的任务、指标和实验输入。 金融结果随时间区间变化。两个时间窗独立，未构成同条件的对立结论。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "不判定赢家合理，但缺少明确不可比的理由及各自可核对的条件。",
+      "failure_category": "comparison_status_and_conditions"
+    },
+    {
+      "task_id": "v3-quantum-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "contradiction_definition",
+        "claim_relevance"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "股票特征间的非线性是作者对结果的解释。可追溯的链条是预测个股收益、据预测构造组合、按投资表现评估。全样本和近期结果须分开看。 近期与全期的组合结果可同时为真。不得外推为所有时期的普遍优势。 保留论文对非线性的解释及近期结果作补充，金融管线中使用滤波方程的假设仍缺来源。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "v3-routing-compare",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "网络论文在转发和缓存位置上联合决策，试图降低分组延迟或满足协议。灾后论文要在损坏状态尚不清楚时持续安排巡检与修复。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "TCP 来源肯定了前人工作的背景。所问研究的联合决策目标与另一篇的恢复目标均缺少答复。",
+      "failure_category": "background_accepted_as_requested_finding"
+    },
+    {
+      "task_id": "v3-routing-conditions",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "网络仿真给出最高 16.4% 延迟降幅和最高 60.98% 部署成本降幅。两个恢复案例报告相对特定策略的停电成本降幅超过 15%。这些百分数分母和业务对象均不同。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "不判定赢家合理，但缺少明确不可比的理由及各自可核对的条件。",
+      "failure_category": "comparison_status_and_conditions"
+    },
+    {
+      "task_id": "v3-routing-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "监测受损引出现场检查，部分可观测模型表达逐步获得的信息，信念树帮助实时决定下一步行动，再以两套系统的停电成本检验。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "v3-privacy-compare",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一篇分析机器访问能否解除隐私义务，第二篇考察隐私保护还能否支撑高风险联邦系统的持续信任，并给出治理和记录机制。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "v3-privacy-conditions",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "一项采用案例与规范论证，另一项提出治理分类并用医疗场景举例。均未提供两种方法同场竞争的结果。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "不判定赢家合理，但缺少明确不可比的理由及各自可核对的条件。",
+      "failure_category": "comparison_status_and_conditions"
+    },
+    {
+      "task_id": "v3-privacy-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "代理架构与非平稳条件扩大治理需求，分类体系连接各项要求，协调蓝图记录权衡，轻量记录展示决策依据。监控案例可以提出隐私问题，不能据此验证医疗系统的信任。 临床成效与法律合规是两个独立的未验证推断。两边的治理目标和规范性论点均可保留。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-01-fact",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "推荐质量是文献明示的总体问题，多用户偏好是另一篇的预测输入。两者均没有解释如何界定邻居、选谁或选邻所需特征。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-01-comparison",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "可直接归于感知器的是从多用户偏好预测一个用户的兴趣。另一篇旨在用正负调整改善推荐质量，将调整等同于按相似度筛选邻居没有依据。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-01-multihop",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "预测模型确实从群体数据学习参数。另一篇没有给出邻居输入到调整值的映射，更没有报告感知器消费选出的邻居。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-01-metrics",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "逻辑回归是提出的参考方法。感知器论文没有实际报告可识别的评价量、实测值或界。",
+      "refusal_correctness": "correct_no_measure_wrong_frame",
+      "prediction_summary": "没有实测量或界可给。系统改判为跨论文不可比，缺少已知评价背景与具体缺口。",
+      "failure_category": "metric_request_routed_to_comparison"
+    },
+    {
+      "task_id": "review-01-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "正负调整在三个数据集评估，感知器摘要仅给出学习思路。新用户可用信号及双方针对同一冷启动切分的结果均未知。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-01-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "必须先定义新用户及可见交互，对冻结的当前系统和候选模型在同一新用户样本计分。以当前得分为分母计算相对变化，摘要没有给出 20% 保证。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-02-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "耗能既影响移动节点也影响整体寿命。按需多径协议把候选路径和电池余量作为决策依据。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-02-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一篇用节点余量与多条路径分摊能耗。第二篇处理互连争用，改变不同应用选择最短路径的概率以减噪。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-02-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "contradiction_definition"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "节点电量和备选路由指导能耗均衡，应用特性影响 HPC 最小路径选择概率。二者的连接限于路由依赖上下文这一推断。 绕行缓和局部拥塞与制造额外流量是两个效应，可以同时发生。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-02-metrics",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "两套 Dragonfly 机器、微基准与真实应用是实验条件。论文报告噪声下降和应用性能上升，但没有给出噪声估计式、单位、数值或各对照策略的同表结果。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-02-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [
+        "contradiction_definition"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "移动自组网的 DSR 能效仿真与 HPC 互连上的噪声、应用性能测量衡量不同代价。拥塞描述本身不足以选择两者。 局部和整体负载的影响方向可不同。它说明排名须规定目标。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-02-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "明确目标是降低拥塞延迟、噪声还是总耗能。以同负载下现行路由的该指标为分母，独立拥塞轨迹上的重复部署数据才可检验 20%。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-03-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "输出可能只依赖部分输入和变化的内部状态。要把关系细化到一次模块调用，需能用 Pig Latin 揭示该模块的内部功能。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-03-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "工作流对输入、状态与输出的依赖建图，目标是精确追溯和查询。存储系统研究记录与事务的写放大，改单日志并用索引维持访问能力。 组合存储的开销及双方是否共享表示均没有文献验证。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-03-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "模块可见性使细粒度依赖建图成为可能。LogBase 从写入开销推导日志架构。若把溯源记录写到该日志只是可能的应用，双方都未测量。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-03-metrics",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "记录持续写吞吐、恢复、缓存外访问和两套参照系统。摘要没有给出测值、时间单位或写负载配置。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-03-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "来源系统以查询和追踪可行性为目标，LogBase 测量写读与恢复。多记录事务并非多租户隔离或争用基准，两套实验不能给多租户系统排名。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-03-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "先在相同租户数、读写比、事务隔离配置下测当前系统的吞吐或时延，再评估候选与基线的相对变化。论文没有对该部署给出分母或 20% 下界。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-04-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "方法将关系仓库的派生水平分片改用于 XML 仓库，先划分维度文档，目标是承载更多数据并缩短复杂查询的响应。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-04-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "前者划分维度文档以改善仓库访问，后者考察不确定数据库中项集的随机出现次数，以期望或概率判定频繁性。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-04-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "水平分片作用于维度 XML 文档。不确定项集算法则须处理支持度的分布。若把分片结果喂给挖掘算法，需要另行定义不确定事务及支持度聚合。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-04-metrics",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "期望定义保留出现次数的量纲，另一种取概率。摘要报告大数据量时两者趋于统一，并在多个数据集统一测试八个算法。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "论文给出了足以说明测量或理论结果的定义和条件。系统将单篇指标请求转为跨论文不可比。",
+      "failure_category": "reported_measure_withheld"
+    },
+    {
+      "task_id": "review-04-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "一个研究仓库拆分，另一个研究随机数据上的频繁模式。统一仓库模型与统一挖掘平台都是各文内部的对照。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-04-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "以当前引擎在同一组不确定 XML 查询上的时延或挖掘误差为分母，固定事务概率和查询分布后测外部样本。两篇摘要均未测这种组合。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-05-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "以已可评价的基准网络和多个检测器给出的划分为输入，可检查最优性并比较算法间的分歧。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-05-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一篇评价算法给出的整个网络划分。第二篇考察拓扑导出的节点组是否对应非拓扑属性分组。后者的参照需要元数据。 补充外部元数据组与结构最优划分的普遍等价缺乏支持。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-05-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "contradiction_definition"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "闭合基准为最优性提供检验，层次聚类展示方法间差异。另一篇直接比较结构组与元数据组。因此一个划分即便结构上很好，其外部标签恢复仍需分别检验。 外部标签恢复失败反驳普遍等价的假设。结构最优与元数据恢复评价的目标不同。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-05-metrics",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [
+        "contradiction_definition"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "可确定研究检验结构算法是否恢复元数据组，且许多大网络出现不一致。没有报告一致性指标的名字、数学定义、单位、网络总数或分数。 结构划分未能恢复元数据是一项实际反例。摘要中相互冲突的同条件测值为零。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-05-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [
+        "contradiction_definition"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "无标签可以运行基于拓扑的方法，验证是否复现真实元数据组则需要独立分组。闭合基准上的近最优性不足以解决后者。 没有始终最优的受测算法，拓扑结构与元数据也可分离。二者共同限定外推。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-05-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "需要先明确 20% 指划分质量还是外部标签恢复，测当前方法在目标网络的指标。后者还需外部标签或独立验证信号。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-06-fact",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "可以确认输入是一个资源受限项目调度实例，资源评价利用容量。摘要没有逐项给出活动优先关系、任务时长、完整资源表或输入格式。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-06-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "GPU 搜索论文围绕项目可行解、资源评价、求解时间和质量。制造论文把活动选择及长度也作为变量，以完工跨度、时长均衡或资源均衡为目标。 搜索论文的具体目标函数及双方的实例兼容性均未明示。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-06-multihop",
+      "answerability": "answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "容量索引与启发式评价明确连接资源信息和搜索。活动选择和时长进入另一柔性模型。题目要求标出跨文献推断，可以明确说明要接入新决策变量。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-06-metrics",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "论文除了最小化总完工跨度，还分别追求被选活动时长和资源利用的均衡。两类柔性基准上达到最优，另举大型工业实例。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "论文给出了足以说明测量或理论结果的定义和条件。系统将单篇指标请求转为跨论文不可比。",
+      "failure_category": "reported_measure_withheld"
+    },
+    {
+      "task_id": "review-06-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "制造模型更贴近多批生产，但同时调度多批不能推出覆盖目标批量变化。GPU 与 CPU 的比较也没有在同一柔性模型重跑。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-06-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "工业实例和 GPU 对 CPU 的相对胜出只涉及各自场景。需要以现线排程的完工跨度或成本为分母，在批量变化的代表性订单上估计相对下降。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-07-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "输入图像先被过分割为沿轮廓的超像素，再用内容、共同边界与全局合并优先级得到一致区域。 初始分割的边界质量是迁移条件，医学或多模态输入不属于该单图设定。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-07-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "超像素论文在一幅图像内比较区域及共同边界。多模态论文从若干 MR 序列分离解剖与强度因素、配准融合，目标是生成目标模态的分割掩模。 该比较没有共同数据集或标签预算；将此单列为缺口。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-07-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一条链把轮廓过分割转换为区域合并。第二条链将共享解剖结构对齐并融合以改善分割。共同点是利用结构信息，超像素并未被证实是另一方法的输入。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-07-metrics",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "少标注等条件及单输入参照明确，报告准确性方向。评分定义、实测值和单位仍未知。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-07-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "给定相互对应的多个 MR 序列，第二篇的研究条件更贴近目标。一篇用 BSDS500，另一篇用 MR，摘要没有同一部分标注集上的比较。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-07-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "需要在固定患者划分、模态与标注比例下计算现系统分割指标，并在独立数据上测同一指标的相对增益。少标注场景有支持，20% 的部署保证缺证据。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-08-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "研究如何计算一对字符串的编辑距离并利用可压缩性降低耗时。复杂度以原字符串总长度 N、直线程序总大小 n 表示，区分有理与任意评分。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-08-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一篇保留字符串顺序，求给定评分规则下的编辑距离。第二篇为一组允许重复的有限对象定义压缩相似性度量，并检验其分类用途。 从表示都可利用压缩无法推得相同距离或排序。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-08-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "把输入编码为直线程序使编辑距离的时间界依赖 n 和 N。多重集方案用文件压缩长度近似其复杂度。共同之处是压缩可携带信息，更快的编辑距离算法不会自动改进多重集分类。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-08-metrics",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "可给出多重集度量的对象以及手写数字组合方法的准确性对照。式子、得分及样本规模没有报告。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-08-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "短直线程序可能利于精确编辑距离计算。多重集距离服务于相似性和分类。运行时间界与分类效果无法确定所谓重复字符串工作负载应选哪一个。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-08-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "若目标是耗时，应在相同评分、压缩表示和输入长度分布上测现有实现，再用该耗时归一化下降量。渐近界及独立分类实验均不能给出部署增益下界。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-09-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "无需先验标签，利用复杂数据中可比较的重要联系构图，提取聚类与层次。平面嵌入时还区分组内和组间层级。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-09-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "静态方法以重要关系构图并提取层级。访问方法按时段聚类，用摘要反映用户行为或网站变化，目标是发现分布漂移和更新模型。 Web 会话精确编码与双方共享图表示都未经验证。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-09-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "嵌入方法从关系强度建图。动态访问方法比较分期划分并更新摘要。为各时段另外构建嵌入图是可研究的连接，双方未做这种联合实验。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-09-metrics",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "摘要只说明用了两个外部准则比较同一数据集的不同划分，并定性报告有效检测变化。两个是准则个数，没有辨识准则名称、定义或得分。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-09-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "分期聚类的输入更接近点击流漂移。嵌入图在人工与真实数据上的层次质量没有与变化检测准则对齐。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-09-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "在后续独立时间段固定真值、窗口及延迟成本，测当前系统和替代方法。外部划分标准的数量不能作为 20% 相对提升的分母。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-10-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "作者为有色几何随机图建模的传感网给出渐近编码长度。条件包括单位区域内 n 个传感器和阶为 n log n 的平均连边数量，另分析经验传感与连接测度。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-10-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "前者把整个网络建模为随机图，研究熵与可编码长度。室内框架用 ZigBee 节点、传输及定位支持温控节能。 工程框架没有报告实际网络熵测量。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-10-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "网络规模和连边标度限定编码定理。温控框架尝试以较少传输节能并使用位置信息。将编码界换算为节能幅度需要另外给出协议与能耗模型。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-10-metrics",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": true,
+      "decision": "能耗与传输次数是系统设计意图。摘要只给架构和实施建议，没有实际报告测量、结果或界。",
+      "refusal_correctness": "correct_no_measure_wrong_frame",
+      "prediction_summary": "没有实测量或界可给。系统改判为跨论文不可比，缺少已知评价背景与具体缺口。",
+      "failure_category": "metric_request_routed_to_comparison"
+    },
+    {
+      "task_id": "review-10-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "渐近编码结果依赖指定随机图。ZigBee 架构描述控制决策。两者都没有共同的间歇掉线模型，也没有对同一指标比较。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-10-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "需定义丢失模式、环境扰动及指标，如给定舒适度约束下的能耗。以同条件现系统能耗为分母，独立现场数据可检验是否达到 20%。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-11-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "问题是解释测量前酉操作怎样改变状态。输入包括有限维量子查询算法及单位初态，分解向量须满足 Block Set 性质，按对应投影测量可保持结果。 任意分解不一定是 Block Set。也没有指定实现的布尔 oracle 或电路。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-11-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "一篇等价改写算法的状态演化，并检查输出 Gram 矩阵。另一篇通过多项式近似分析具体布尔函数族的查询复杂度。 保留两种表示之间缺少构造映射这一边界。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-11-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "在相应测量下分解保留输出 Gram 矩阵。另一篇将近似次数联系到查询复杂度下界。两种角度均能分析查询，但摘要没有把一个具体 Block Set 变成另文的对偶见证。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-11-metrics",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "claim_relevance"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "近似次数是在逐点误差至多 1/3 时需要的最低实多项式次数，也是查询次数下界。报告含像集大小检验 Ω(√n)、k-junta 检验 Ω(√k)、近似均匀分布距离与给定加性误差下的熵各 Ω(√n)。满射性的近似次数从此前 Ω(n^(2/3)) 改进至 Ω(n^(3/4))，与忽略对数因子的上界相配，其量子查询复杂度为 Θ(n)。另有固定 k 的 k-distinctness 界，摘要的纯文本未保留完整指数排版。 保留 B 的补充函数界作为可选实例。新 oracle 部署不在本题，有限规模运行成本及隐去的常数并未报告。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "论文给出了足以说明测量或理论结果的定义和条件。系统将单篇指标请求转为跨论文不可比。",
+      "failure_category": "reported_measure_withheld"
+    },
+    {
+      "task_id": "review-11-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "等价表达式不会自动给出一种更快实现。给出的界依赖特定函数及误差条件。尚未给定新 oracle 如何归入这些函数或其查询模型。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-11-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "要以既有算法在同一新 oracle 和误差标准下的查询数为分母，并有候选对此函数的上界或测量。已知函数的渐近下界本身无法保证固定的 20% 节省。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-12-fact",
+      "answerability": "answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "论文将输入限定为图的三着色实例，足以说明问题和输入类型。候选向量编码应另标为未知。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-12-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "差分进化是求解三着色的启发式。可通达性研究将着色数和独立数问题的可行状态作为网络，考察朝向最优解的流动如何随随机图变化。 进化个体的精确编码与前文是否显式采用可通达性分别未知。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-12-multihop",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "三色目标及混合方法明确，但摘要没有说明图的表示如何驱动候选更新。另一文提供解空间方向性的定义，二者的机制联系尚可作为推断。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-12-metrics",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "该量可作概率解释，描述状态网络从一部分到另一部分的通行便利程度。在扩展随机图的转变点，相对于转变前，更易朝最优解移动，反向变化相反。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "论文给出了足以说明测量或理论结果的定义和条件。系统将单篇指标请求转为跨论文不可比。",
+      "failure_category": "reported_measure_withheld"
+    },
+    {
+      "task_id": "review-12-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "三着色启发式的结果与解空间可通达性描述不同对象。新图的稀疏度、着色可行性、终止标准及结构都未在共同协议下验证。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-12-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "需定义三着色成功率或固定成功率下的耗时，测当前求解器在目标稀疏图上的分母，用独立实例检验相对变化。可通达性的变化没有给出部署增益。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-13-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "为需要传递知识的 TED 讲座发现内容相关视频，使用视频字幕提取讲座内容并建立内容关联网络。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-13-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "TED 系统按字幕内容连接视频并推荐相似讲座。CSSR 关注用户与代码仓库，以仓库图缓解数据稀疏，再结合交互顺序追踪偏好。 两种表示的总体形式可答，仓库上下文字段与字幕相似度精确算法未列出。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-13-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "内容文本支持讲座相似图。仓库上下文用于图嵌入，用户历史另用于顺序建模。两篇可以类比物品侧信息的作用，文中未报告字幕编码向仓库的迁移。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-13-metrics",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": true,
+      "decision": "可找到 GitHub 的数据来源及同既有方法比较的说法。但摘要未指定任何评价量或界，也无定量结果。",
+      "refusal_correctness": "correct_no_measure_wrong_frame",
+      "prediction_summary": "没有实测量或界可给。系统改判为跨论文不可比，缺少已知评价背景与具体缺口。",
+      "failure_category": "metric_request_routed_to_comparison"
+    },
+    {
+      "task_id": "review-13-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "CSSR 的任务与目标仓库更接近。摘要没有说明是否能为训练中未出现的仓库建立表示，更没有同 TED 推荐器的跨域对照。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-13-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "目标需区分新用户与新仓库，以当前系统在新仓库切分上的指定排名指标为分母，在独立上线时段比较。大规模 GitHub 评估未给出这种保证。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-14-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "研究有界平均度随机图中的社群恢复，以半定规划估计成员，讨论可错分的顶点比例。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-14-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一篇从稀疏随机图做节点分组并证明恢复误差性质。第二篇在社群统计相似的植入划分模型下，把广义模块度目标联系到最大似然。 可用假设为统计性质相似。摘要没有把它限定为社群规模完全相等。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-14-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "第一篇利用随机性控制半定优化和错分率。第二篇在特定块模型下建立目标等价。要连接这两个结论，需要证明前者的估计目标、参数与后者的模型符合。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-14-metrics",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "可报告的理论结果是在具有相似组统计性质的植入划分模型内，两种优化准则等价，分辨率参数控制发现群体的尺度。摘要称给出最优参数公式，但未列式。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "论文给出了足以说明测量或理论结果的定义和条件。系统将单篇指标请求转为跨论文不可比。",
+      "failure_category": "reported_measure_withheld"
+    },
+    {
+      "task_id": "review-14-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "平均度有界的恢复结论与特定模型中的目标等价回答不同问题。未知社群大小不等同于违反统计相似假设，仍缺少目标图及共同恢复实验。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-14-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "若以错分率下降为目标，需要当前估计器的非零错分率、可信成员真值或受控模拟，以及符合目标图的组大小与连接分布。任意小的理论错分界和目标等价均未量化这项相对改进。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-15-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "自由运动的距离会忽略道路约束。输入包括轨迹和底层路网以及可据以判定共享路段的信息，算法可按路线聚轨迹或按过境轨迹聚路段。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-15-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "轨迹研究构造轨迹或路段的相似图。时变图研究同时切分顶点和时间，以边分布共同变化定义簇及时间段。 一种方法展示合成轨迹，另一种另有真实案例。两篇都使用真实道路事件的表述缺乏依据。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-15-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "共同经过路段或轨迹决定相似图边。时变图方法需要源、目标和时间维度。若将轨迹相似性做成按时观测的边，才可能衔接，摘要没有报告该转换。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-15-metrics",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "partially_answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": true,
+      "decision": "三维聚类描述模型的输入。合成及真实例子展示使用方式，两类数据都没有对应的评价量、数值或界。",
+      "refusal_correctness": "correct_no_measure_wrong_frame",
+      "prediction_summary": "没有实测量或界可给。系统改判为跨论文不可比，缺少已知评价背景与具体缺口。",
+      "failure_category": "metric_request_routed_to_comparison"
+    },
+    {
+      "task_id": "review-15-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "一篇关注路段重合，另一篇关注边分布的时间演化。两者在目标部署可能互补，但没有同一动态道路网络的任务、评价量或横向实验。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-15-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "需定义交通模式变化的检测质量或聚类质量，记录当前模型的同一指标，并在留出的道路与时间段对比。已有合成或探索性效果不能证明 20% 保证。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-16-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "铁路交通中断后要重新安排路径或时刻。轨道站场及行车间隔、停站、线路占用与车辆周转约束进入二进制优化表示。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-16-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "前者把铁路排程变为 QUBO 或 HOBO，后者把车间调度变为随每次决策变化的状态及动作，通过学习近似贪心策略求解。 两篇未验证相同的现场目标或相同资源模型。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-16-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "铁路约束进入优化表示后使用量子或混合求解器。车间状态与可选动作不断变化，作者以循环表示和策略梯度建模。复用车间策略须为铁路约束和目标另行建模。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-16-metrics",
+      "answerability": "partially_answerable",
+      "a_answerability": "partially_answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "answerability"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "耗时和完工跨度是两项实际比较的量，参照方法类别与有限泛化范围明确。测值、计时单位、逐实例条件均未列出。",
+      "refusal_correctness": "partial_false_refusal",
+      "prediction_summary": "缺少的字段可以拒答。来源同时提供了可公布的条件、输入、上下文或定性结果。",
+      "failure_category": "supported_portion_withheld"
+    },
+    {
+      "task_id": "review-16-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "铁路工作直接研究中断重排，车间工作考察实例泛化。适配程度可讨论，但量子原型展示和车间时间、跨度测量没有共同中断测试。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-16-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "可把现行调度在同一中断下的总延误或恢复时间作为分母，按严重程度和网络状态配对比较。铁路原型和车间泛化结论都未给出现场 20% 的证据。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    },
+    {
+      "task_id": "review-17-fact",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "方法从训练序列计算相关、熵或模型拟合等属性，再选择能分辨类别的特征以训练线性分类器。用于监督选择需有可辨识的训练类别。摘要未指定标签格式。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题的事实与相应来源可以定位，系统给出的每个字段均缺少答复。",
+      "failure_category": "supported_fact_withheld"
+    },
+    {
+      "task_id": "review-17-comparison",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [
+        "scope_of_unsupported_claim"
+      ],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "时间序列方法选择少量可解释特征。势函数分类器把样本变为各类先验加权的核密度向量，并在这个空间划分类别。 势函数分类没有被证明使用另一篇论文的时序特征。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "问题要求描述与对照两个研究任务。系统转为评判统一实验与结果，将有据的研究目标一同拒绝。",
+      "failure_category": "objective_comparison_routed_to_ranking"
+    },
+    {
+      "task_id": "review-17-multihop",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "训练序列先转换为特征，按类别信息进行前向选择。另一篇用样本的各类势来作监督分类。以选出的时序特征为类势模型的数据点是尚待检验的组合。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "来源内部的机制关系可描述，跨文献连接需标为推断。系统的三个链路字段均拒答。",
+      "failure_category": "supported_links_withheld"
+    },
+    {
+      "task_id": "review-17-metrics",
+      "answerability": "answerable",
+      "a_answerability": "answerable",
+      "b_answerability": "answerable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "类势定义为类别先验乘估计的核密度，连续分布下两种分类机制强 Bayes 一致。含模拟数据与 50 个真实数据集并与 LDA、QDA 等比较。50 是数据集数。",
+      "refusal_correctness": "false_refusal",
+      "prediction_summary": "论文给出了足以说明测量或理论结果的定义和条件。系统将单篇指标请求转为跨论文不可比。",
+      "failure_category": "reported_measure_withheld"
+    },
+    {
+      "task_id": "review-17-comparability",
+      "answerability": "not_comparable",
+      "a_answerability": "not_comparable",
+      "b_answerability": "not_comparable",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "类势明确依赖类别先验，时序特征方法在若干数据集对照距离方法。已报告的条件没有覆盖同一类频率改变的测试，连续分布的一致性亦不能给两法排名。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝在不一致的协议下给排名有据。记录只有拒答状态，未给出各篇实际输入、目标与实验条件。",
+      "failure_category": "unreported_conditions"
+    },
+    {
+      "task_id": "review-17-insufficient",
+      "answerability": "insufficient_evidence",
+      "a_answerability": "insufficient_evidence",
+      "b_answerability": "insufficient_evidence",
+      "material_disagreements": [],
+      "adjudicator_changes_shared_answerability": false,
+      "decision": "指定变化后的类别比例和代价，用目标分布下当前模型的得分或误差归一化差异，再独立检验。分类器的一致性及 50 个真实数据集的比较均未提供该保证。",
+      "refusal_correctness": "correct_main_refusal_missing_explanation",
+      "prediction_summary": "拒绝保证增益有据。具体分母、当前基线与目标部署需要收集的证据也被标为不可答。",
+      "failure_category": "missing_baseline_requirements"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "code_commit": "99bc99c",
+  "backend": {
+    "total": 698,
+    "passed": 681,
+    "failed": 0,
+    "errors": 0,
+    "skipped": {
+      "opt-in local ES integration": 1,
+      "real delivery is external; pass --real-data-dir explicitly": 16
+    },
+    "pytest_seconds": 466.11,
+    "tests_exit": 0,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true
+  },
+  "delivery_files_additional": {
+    "passed": 4,
+    "deselected": 12,
+    "seconds": 32.67,
+    "exit": 0
+  },
+  "frontend": {
+    "node_unit_passed": 45,
+    "node_unit_seconds": 0.3544653,
+    "typecheck_exit": 0,
+    "structure_exit": 0,
+    "production_build_exit": 0,
+    "profile_browser": {
+      "profiles": 2,
+      "quote_locators": 6,
+      "other_account_status": 404,
+      "exit": 0
+    }
+  },
+  "runtime": [
+    {
+      "clients": 1,
+      "workers": 1,
+      "p50_seconds": 0.375,
+      "p95_seconds": 0.375,
+      "restored_reports": 1
+    },
+    {
+      "clients": 4,
+      "workers": 1,
+      "p50_seconds": 0.625,
+      "p95_seconds": 1.343,
+      "restored_reports": 4
+    },
+    {
+      "clients": 12,
+      "workers": 1,
+      "p50_seconds": 2.5,
+      "p95_seconds": 4.922,
+      "restored_reports": 12
+    }
+  ],
+  "model": {
+    "controlled": {
+      "model_plan": true,
+      "decision": true,
+      "tools": true,
+      "sources": true,
+      "published_with_premises": true,
+      "analysis": true,
+      "synthesis": true,
+      "no_fallback": true
+    },
+    "controlled_calls": 4,
+    "provider_calls": 0,
+    "provider_status": "BLOCKED"
+  },
+  "supply_chain": {
+    "pip_packages": 78,
+    "pip_advisories": 0,
+    "npm_advisories": 0
+  },
+  "github_actions_runs": 0
+}

@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "scholarlens-research": {
+      "command": "python",
+      "args": ["tools/agent/launch_mcp.py", "--api-base-url", "http://127.0.0.1:4174"]
+    }
+  }
+}

@@ -1,0 +1,458 @@
+{
+  "scope": "six frozen dev tasks",
+  "max_tools": 10,
+  "max_evidence": 10,
+  "max_duration_seconds": 120,
+  "max_model_calls": 0,
+  "reports": [
+    {
+      "suite": "seed",
+      "split": "dev",
+      "level": "B0",
+      "matched_legacy_limits": true,
+      "dataset_sha256": "92577aca7727cbdacdd515064fa26ca5ab259d94b04be7a4b25667cc6b37ce7b",
+      "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "config": {
+        "technique": "default",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      },
+      "tasks": [
+        {
+          "task_id": "graph-learning-fact",
+          "category": "fact",
+          "split": "dev",
+          "status": "evidence_only",
+          "stop_reason": null,
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "verify_sources"
+          ],
+          "rounds": 1,
+          "tool_calls": 2,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:1926689e55632574038c6d07c4bbd260619f491df6d71df5805e521f033f9c0e",
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6",
+            "chunk:85abb855c74067b6d16e640a0dbed36fee940561a8f994a9545406ebf498c748"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 1.192
+        },
+        {
+          "task_id": "graph-learning-comparison",
+          "category": "comparison",
+          "split": "dev",
+          "status": "evidence_only",
+          "stop_reason": null,
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "verify_sources"
+          ],
+          "rounds": 1,
+          "tool_calls": 2,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 0.897
+        },
+        {
+          "task_id": "graph-learning-multihop",
+          "category": "multihop",
+          "split": "dev",
+          "status": "evidence_only",
+          "stop_reason": null,
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "verify_sources"
+          ],
+          "rounds": 1,
+          "tool_calls": 2,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 0.824
+        },
+        {
+          "task_id": "graph-learning-metrics",
+          "category": "metrics",
+          "split": "dev",
+          "status": "evidence_only",
+          "stop_reason": null,
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "verify_sources"
+          ],
+          "rounds": 1,
+          "tool_calls": 2,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6",
+            "chunk:85abb855c74067b6d16e640a0dbed36fee940561a8f994a9545406ebf498c748"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 0.803
+        },
+        {
+          "task_id": "graph-learning-incomparable",
+          "category": "incomparable",
+          "split": "dev",
+          "status": "evidence_only",
+          "stop_reason": null,
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "verify_sources"
+          ],
+          "rounds": 1,
+          "tool_calls": 2,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:1926689e55632574038c6d07c4bbd260619f491df6d71df5805e521f033f9c0e",
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6",
+            "chunk:85abb855c74067b6d16e640a0dbed36fee940561a8f994a9545406ebf498c748"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 0.915
+        },
+        {
+          "task_id": "graph-learning-unsupported",
+          "category": "unsupported",
+          "split": "dev",
+          "status": "evidence_only",
+          "stop_reason": null,
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "verify_sources"
+          ],
+          "rounds": 1,
+          "tool_calls": 2,
+          "evidence_ids": [
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304"
+          ],
+          "expected_chunks": 0,
+          "matched_chunks": 0,
+          "unexpected_evidence": true,
+          "tool_errors": 0,
+          "elapsed_ms": 0.987
+        }
+      ],
+      "metrics": {
+        "anchor_hits": 7,
+        "anchor_total": 7,
+        "negative_with_evidence": 1,
+        "tool_calls": 12,
+        "source_failures": 0,
+        "budget_violations": 0,
+        "tool_errors": 0,
+        "model_calls": 0,
+        "tokens": 0,
+        "model_cost": 0,
+        "quality_human": null,
+        "p95_ms": 1.192
+      }
+    },
+    {
+      "suite": "seed",
+      "split": "dev",
+      "level": "B2",
+      "matched_legacy_limits": true,
+      "dataset_sha256": "92577aca7727cbdacdd515064fa26ca5ab259d94b04be7a4b25667cc6b37ce7b",
+      "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "config": {
+        "technique": "default",
+        "retrieval_strategy_policy": "inherit",
+        "max_additional_search_rounds": 3,
+        "evidence_per_subtask": 4
+      },
+      "tasks": [
+        {
+          "task_id": "graph-learning-fact",
+          "category": "fact",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 5,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:1926689e55632574038c6d07c4bbd260619f491df6d71df5805e521f033f9c0e",
+            "chunk:85abb855c74067b6d16e640a0dbed36fee940561a8f994a9545406ebf498c748"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 1,
+          "matched_chunks": 1,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 248.669
+        },
+        {
+          "task_id": "graph-learning-comparison",
+          "category": "comparison",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "method",
+            "dataset",
+            "metric",
+            "protocol"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 2,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 217.432
+        },
+        {
+          "task_id": "graph-learning-multihop",
+          "category": "multihop",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "protocol"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 1,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 269.28
+        },
+        {
+          "task_id": "graph-learning-metrics",
+          "category": "metrics",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "plateau",
+          "missing": [
+            "method",
+            "dataset"
+          ],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "search_papers",
+            "search_passages"
+          ],
+          "rounds": 2,
+          "tool_calls": 4,
+          "evidence_ids": [],
+          "source_checks": [],
+          "public_papers": [],
+          "expected_chunks": 1,
+          "matched_chunks": 0,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 529.324
+        },
+        {
+          "task_id": "graph-learning-incomparable",
+          "category": "incomparable",
+          "split": "dev",
+          "status": "completed",
+          "stop_reason": "complete",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 6,
+          "evidence_ids": [
+            "chunk:1627d652ba983b8088f9f424dd21ef30b6bccb2f1cfe652a8744fb64b91765b4",
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6",
+            "chunk:85abb855c74067b6d16e640a0dbed36fee940561a8f994a9545406ebf498c748"
+          ],
+          "source_checks": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304",
+            "source-sha256:6a53205809fe842023ce02a3cefaa08e3e207909dce92344bd9a8cb7273ef221"
+          ],
+          "expected_chunks": 2,
+          "matched_chunks": 2,
+          "unexpected_evidence": false,
+          "tool_errors": 0,
+          "elapsed_ms": 255.43
+        },
+        {
+          "task_id": "graph-learning-unsupported",
+          "category": "unsupported",
+          "split": "dev",
+          "status": "partial",
+          "stop_reason": "blocked",
+          "missing": [],
+          "trace_tools": [
+            "search_papers",
+            "search_passages",
+            "verify_source_quote",
+            "verify_source_quote"
+          ],
+          "rounds": 1,
+          "tool_calls": 4,
+          "evidence_ids": [
+            "chunk:23a63200df04916bf230a08a860e2c48725717eee2df05fcbee62c6dc4c2b3bf",
+            "chunk:2668c148cd405a955f13cc66ed6dc5e2516d63ed8e15b829fb03934741a86ee6"
+          ],
+          "source_checks": [
+            true,
+            true
+          ],
+          "public_papers": [
+            "source-sha256:237de9743df375035c6102dd4fb1cc6a094179b2315d2810ae34212689538304"
+          ],
+          "expected_chunks": 0,
+          "matched_chunks": 0,
+          "unexpected_evidence": true,
+          "tool_errors": 0,
+          "elapsed_ms": 187.551
+        }
+      ],
+      "metrics": {
+        "anchor_hits": 3,
+        "anchor_total": 7,
+        "negative_with_evidence": 1,
+        "tool_calls": 27,
+        "source_failures": 0,
+        "budget_violations": 0,
+        "tool_errors": 0,
+        "model_calls": 0,
+        "tokens": 0,
+        "model_cost": 0,
+        "quality_human": null,
+        "p95_ms": 529.324
+      }
+    }
+  ]
+}

@@ -1,0 +1,5997 @@
+{
+  "V1": {
+    "task_success": [
+      10,
+      58
+    ],
+    "diagnostic_overview": [
+      0,
+      6
+    ],
+    "holdout_overview": [
+      0,
+      12
+    ],
+    "holdout_quote": [
+      3,
+      12
+    ],
+    "holdout_false_layout": [
+      8,
+      12
+    ],
+    "control_with_link": [
+      0,
+      4
+    ],
+    "p50_ms": 379.28999999999996,
+    "p95_ms": 1116.671,
+    "tool_calls": 338,
+    "actual_model_tokens": 0,
+    "actual_model_cost": 0,
+    "trace_scope_errors": 0,
+    "terminal": {
+      "partial": 55,
+      "completed": 3
+    },
+    "task_retries": null,
+    "rows": [
+      {
+        "case": "diagnostic-public-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 395.86,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 382.719,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 274.533,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 448.465,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 440.858,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 741.702,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 429.221,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 442.759,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 317.334,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 447.697,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 291.225,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "diagnostic-public-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 294.332,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 409.45,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 431.414,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 305.087,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 455.7,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 675.852,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 276.772,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-control-0",
+        "kind": "overview",
+        "papers": [
+          "controlled-0-0",
+          "controlled-0-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 279.486,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "diagnostic-control-1",
+        "kind": "overview",
+        "papers": [
+          "controlled-1-0",
+          "controlled-1-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 291.54,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "diagnostic-control-2",
+        "kind": "overview",
+        "papers": [
+          "controlled-2-0",
+          "controlled-2-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 296.872,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "diagnostic-control-3",
+        "kind": "overview",
+        "papers": [
+          "controlled-3-0",
+          "controlled-3-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 309.061,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 280.55,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 2,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 317.605,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 296.018,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1203.064,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 277.795,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 274.195,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 303.274,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 396.002,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 375.861,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 286.396,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 483.835,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 327.231,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 321.944,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 447.471,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 1148.032,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 329.863,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 405.743,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 472.339,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-6-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 310.08,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-6-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 2,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 315.985,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-6-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 2,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 272.562,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-7-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 265.007,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-7-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 466.357,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-7-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 444.259,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-8-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1116.671,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-8-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 404.47,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-8-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 428.444,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-9-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 298.017,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-9-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 428.49,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-9-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 458.559,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-10-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 344.34,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-10-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 10,
+        "model_calls": 0,
+        "ms": 505.876,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 10
+      },
+      {
+        "case": "holdout-10-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 281.744,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-11-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 298.543,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-11-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 1111.116,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-11-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 410.493,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      }
+    ]
+  },
+  "V5": {
+    "task_success": [
+      10,
+      58
+    ],
+    "diagnostic_overview": [
+      0,
+      6
+    ],
+    "holdout_overview": [
+      0,
+      12
+    ],
+    "holdout_quote": [
+      3,
+      12
+    ],
+    "holdout_false_layout": [
+      8,
+      12
+    ],
+    "control_with_link": [
+      0,
+      4
+    ],
+    "p50_ms": 330.3135,
+    "p95_ms": 669.145,
+    "tool_calls": 338,
+    "actual_model_tokens": 0,
+    "actual_model_cost": 0,
+    "trace_scope_errors": 0,
+    "terminal": {
+      "partial": 53,
+      "completed": 5
+    },
+    "task_retries": null,
+    "rows": [
+      {
+        "case": "diagnostic-public-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 335.536,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 368.884,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 303.188,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 376.046,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 304.636,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 313.37,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 330.289,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 609.441,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 307.625,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 529.049,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 520.4,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 332.31,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 318.383,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 313.254,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 307.949,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 360.79,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 340.335,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-public-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 316.535,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-control-0",
+        "kind": "overview",
+        "papers": [
+          "controlled-0-0",
+          "controlled-0-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 1323.957,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-control-1",
+        "kind": "overview",
+        "papers": [
+          "controlled-1-0",
+          "controlled-1-1"
+        ],
+        "claims": 2,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 397.942,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-control-2",
+        "kind": "overview",
+        "papers": [
+          "controlled-2-0",
+          "controlled-2-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 515.131,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-control-3",
+        "kind": "overview",
+        "papers": [
+          "controlled-3-0",
+          "controlled-3-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 480.15,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 330.338,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 2,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 313.38,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 425.963,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1136.518,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 449.088,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 465.083,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 320.081,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 302.82,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 314.533,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 317.022,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 297.812,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 459.447,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 361.297,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 660.244,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 310.988,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 329.599,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 286.673,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 291.673,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-6-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 317.989,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-6-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 2,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 336.731,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-6-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 2,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 331.334,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-7-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 302.443,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-7-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 367.355,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-7-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 257.302,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-8-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 295.447,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-8-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 272.893,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-8-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 669.145,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-9-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 286.25,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-9-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 281.244,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-9-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 4,
+        "model_calls": 0,
+        "ms": 271.67,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 4
+      },
+      {
+        "case": "holdout-10-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 314.857,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-10-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 1,
+        "exact": false,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 320.957,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-10-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 364.003,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-11-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 383.602,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-11-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 394.251,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-11-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 1,
+        "exact": null,
+        "false_release": true,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": null,
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 379.984,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 8
+      }
+    ]
+  },
+  "E9": {
+    "task_success": [
+      37,
+      58
+    ],
+    "diagnostic_overview": [
+      0,
+      6
+    ],
+    "holdout_overview": [
+      0,
+      12
+    ],
+    "holdout_quote": [
+      12,
+      12
+    ],
+    "holdout_false_layout": [
+      0,
+      12
+    ],
+    "control_with_link": [
+      0,
+      4
+    ],
+    "p50_ms": 399.86699999999996,
+    "p95_ms": 938.326,
+    "tool_calls": 338,
+    "actual_model_tokens": 0,
+    "actual_model_cost": 0,
+    "trace_scope_errors": 0,
+    "terminal": {
+      "completed": 18,
+      "partial": 40
+    },
+    "task_retries": null,
+    "rows": [
+      {
+        "case": "diagnostic-public-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 363.904,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 493.775,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 300.959,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 319.474,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 482.209,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 323.303,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 333.856,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 466.82,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 287.628,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1483.899,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 476.793,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 294.129,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 358.459,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 489.047,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 356.522,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 371.278,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 501.329,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 347.141,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-control-0",
+        "kind": "overview",
+        "papers": [
+          "controlled-0-0",
+          "controlled-0-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 938.326,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-control-1",
+        "kind": "overview",
+        "papers": [
+          "controlled-1-0",
+          "controlled-1-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 533.788,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-control-2",
+        "kind": "overview",
+        "papers": [
+          "controlled-2-0",
+          "controlled-2-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 579.921,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-control-3",
+        "kind": "overview",
+        "papers": [
+          "controlled-3-0",
+          "controlled-3-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 572.302,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 321.522,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 375.671,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 990.6,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 326.606,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 403.0,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 522.827,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 348.577,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 366.4,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 518.157,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 453.992,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 447.813,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 801.464,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 381.89,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 366.4,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 554.703,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 397.066,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 372.172,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 593.7,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-6-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 346.161,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-6-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 360.966,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-6-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 542.805,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-7-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 712.826,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-7-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 415.217,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-7-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 565.884,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-8-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 360.964,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-8-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 326.745,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-8-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 530.399,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-9-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 402.668,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-9-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 339.996,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-9-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 622.275,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-10-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 359.093,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-10-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 327.949,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-10-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 502.701,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-11-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 366.774,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-11-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 334.299,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-11-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 551.048,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      }
+    ]
+  },
+  "E9.1": {
+    "task_success": [
+      41,
+      58
+    ],
+    "diagnostic_overview": [
+      0,
+      6
+    ],
+    "holdout_overview": [
+      1,
+      12
+    ],
+    "holdout_quote": [
+      12,
+      12
+    ],
+    "holdout_false_layout": [
+      0,
+      12
+    ],
+    "control_with_link": [
+      3,
+      4
+    ],
+    "p50_ms": 383.216,
+    "p95_ms": 1077.813,
+    "tool_calls": 240,
+    "actual_model_tokens": 0,
+    "actual_model_cost": 0,
+    "trace_scope_errors": 0,
+    "terminal": {
+      "completed": 22,
+      "partial": 36
+    },
+    "task_retries": null,
+    "rows": [
+      {
+        "case": "diagnostic-public-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 374.128,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 227.899,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 585.394,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 828.682,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 211.386,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 534.793,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 323.896,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 226.715,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 587.52,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 332.672,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 207.692,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 540.236,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 351.073,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 213.835,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 1342.409,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-public-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 374.239,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 344.619,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 698.146,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-control-0",
+        "kind": "overview",
+        "papers": [
+          "controlled-0-0",
+          "controlled-0-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 532.441,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-control-1",
+        "kind": "overview",
+        "papers": [
+          "controlled-1-0",
+          "controlled-1-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 650.185,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-control-2",
+        "kind": "overview",
+        "papers": [
+          "controlled-2-0",
+          "controlled-2-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 497.798,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "diagnostic-control-3",
+        "kind": "overview",
+        "papers": [
+          "controlled-3-0",
+          "controlled-3-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 486.835,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 612.689,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 358.717,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 233.294,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 3,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 6,
+        "model_calls": 0,
+        "ms": 506.238,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 6
+      },
+      {
+        "case": "holdout-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 378.293,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 231.659,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 1122.796,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 436.149,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 232.071,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 747.275,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 388.139,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 293.946,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 647.257,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 451.846,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 253.25,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 697.044,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 370.808,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 282.971,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-6-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 662.303,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-6-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 351.341,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-6-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 271.39,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-7-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 660.267,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-7-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 417.802,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-7-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 230.518,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-8-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 627.768,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-8-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1077.813,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-8-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 202.625,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-9-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 814.057,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-9-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 360.389,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-9-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 320.032,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-10-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 799.795,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-10-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 454.366,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-10-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 267.88,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-11-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 930.332,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-11-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 330.236,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-11-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 250.471,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      }
+    ]
+  },
+  "E10": {
+    "task_success": [
+      44,
+      58
+    ],
+    "diagnostic_overview": [
+      2,
+      6
+    ],
+    "holdout_overview": [
+      2,
+      12
+    ],
+    "holdout_quote": [
+      12,
+      12
+    ],
+    "holdout_false_layout": [
+      0,
+      12
+    ],
+    "control_with_link": [
+      3,
+      4
+    ],
+    "p50_ms": 524.2885,
+    "p95_ms": 1202.062,
+    "tool_calls": 261,
+    "actual_model_tokens": 0,
+    "actual_model_cost": 0,
+    "trace_scope_errors": 0,
+    "terminal": {
+      "completed": 21,
+      "partial": 37
+    },
+    "task_retries": null,
+    "rows": [
+      {
+        "case": "diagnostic-public-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 266.766,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 158.067,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:f215352c6e5f9498ab8d4f8b47c9a7ce0c44a9fdcf4bbf924b9e5333f38f1d1b",
+          "source-sha256:a7fd252d4cce76689f68b07f154220c87823c48c56f35703f8cc934c31ad2bfd"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 441.626,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "diagnostic-public-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 310.959,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 224.73,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:5d8262149d76cb0e2dddf5a0a366f6faec4e7f584b81bab173b9fdffaffa9374",
+          "source-sha256:9ef1ff6a0f7c6c35f1ddfce45957a412d7b231a8eb04a64f2dd596bff55026fc"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 1102.303,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 400.061,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 239.024,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:122b37307f1a63561cbf0e3725c7c47c68b62a3f01a798ac1a185d7bb36510bb",
+          "source-sha256:4fd5d7cc1970d6a4b5c73aec124e2beed3233171b2b51626bd83bc69d8acae7b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 810.781,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 445.213,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 275.526,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:818ec433a3c427c6a095659c2c07c2a716f9164ea8335ad082c5ada06de2a83e",
+          "source-sha256:08faee44e06d121f49ea4e7c8dcde8255bfd7989ea37ccab850b06c19fc2bbf6"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 651.391,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "diagnostic-public-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 423.39,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 217.739,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:04c26817e9f89c575050b3d4bc997b933fb1736af078669e99c01ad697a72105",
+          "source-sha256:b4a3dcbd36d6ed08861c6b3e170b7cf574f3f36a020373f78abfd70421854166"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 592.34,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "diagnostic-public-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 430.514,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-public-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 330.758,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "diagnostic-public-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:729216aa658bb928a7176f38c5183e05cafb68e2b7a04a870d20f302b7ccc580",
+          "source-sha256:b35a9213e5263223eae418530a3eacbba1abfb754c51393bdfd02fe43d0d69e8"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 1228.51,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "diagnostic-control-0",
+        "kind": "overview",
+        "papers": [
+          "controlled-0-0",
+          "controlled-0-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1176.222,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-control-1",
+        "kind": "overview",
+        "papers": [
+          "controlled-1-0",
+          "controlled-1-1"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 1422.916,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "diagnostic-control-2",
+        "kind": "overview",
+        "papers": [
+          "controlled-2-0",
+          "controlled-2-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 632.269,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "diagnostic-control-3",
+        "kind": "overview",
+        "papers": [
+          "controlled-3-0",
+          "controlled-3-1"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 600.894,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-0-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "insufficient_evidence",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 608.539,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-0-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 350.313,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-0-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b950525096121b270bb14e6362b29caf9a618d8b283523d5924e37ed61db7766",
+          "source-sha256:fd7c8f6cc62c838a1602c46c8c5a0da74a58f6a96dbfec8db96a68ce3a2df0da"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 220.72,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-1-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 530.52,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "holdout-1-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 343.982,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-1-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a24fe7ee113c79a4a770fcd9d806d60c33d1491acdeb7d06d8afc7debc8fe7f3",
+          "source-sha256:6746bfa91674f603ccddceffe11da6cda2169ef7088df73e71b5ed5da8f368a8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 212.345,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-2-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 569.554,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "holdout-2-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 396.89,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-2-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:809e3dbd4941300447bc6fcc4f2590d635b02f6b9bb585d89b19de1a1be507ef",
+          "source-sha256:75408d6bc3ef4f4ee0d70fb2ac6ea5e48af36e46cacee2cde5a1d9f31d9c8fda"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 241.426,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-3-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 716.486,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "holdout-3-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 482.85,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-3-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:6dc63fe7b39b627239d96ace37b45bc5c6b4974803d6aa11701040cbd6079cc9",
+          "source-sha256:70d9a0f2de45b0a04e0a87a9d0fd71c8a4f3e27a726342aa6a2267f1cc65ad87"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 265.395,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-4-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 1202.062,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "holdout-4-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 381.603,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-4-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:a36b2e727edb65d316b0678de6f94dd7c3607d6f2f1571ca1bed30e017df68a6",
+          "source-sha256:00edbc69dd3dd8fda19d720489a3e4500d8891f8ca0c906a336f0610cba1aea0"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 265.604,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-5-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 877.474,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-5-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 539.312,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-5-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:615fe6c398641da86871b13b6de1d9bf83440375a0dffeb3c170b2a3a8f0155b",
+          "source-sha256:9e92b39385b69fc36fbcdef2008934e65e9e1b7eae43d3ba223c84bd72aff6ca"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 329.782,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-6-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 986.201,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-6-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1022.095,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-6-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:b985d9012add5b304ecaa7b4c53262b329c9fe04b6d6af1ea1e6a292bc5b9b2d",
+          "source-sha256:e5f5197d341fc5fe1eb2ed9336ee7085389ed2d1f94badaf2f2516f9c3a44dcd"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 348.364,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-7-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 1043.327,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-7-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 596.726,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-7-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e0cbbc1ff4568262aa786df05eb12b8f6a2bf487ee4f095ad906b5ede796f91f",
+          "source-sha256:c14b37ef9f3e184dfd180826c514a47c374a3c41fb18ee32a9eea92da87f0fb8"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 347.903,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-8-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 1086.646,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-8-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 993.063,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-8-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:17e2eef32e5100e4b36b0b071dcd0fa05177c3a68b5dfed577b5f2b4adef4013",
+          "source-sha256:48725deeba06b003d02c2ca75d27ce6b250ce0eb1572553ed0bc6951db36fe33"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 322.226,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-9-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 4,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": true,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 7,
+        "model_calls": 0,
+        "ms": 1087.079,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 7
+      },
+      {
+        "case": "holdout-9-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 575.683,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-9-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:2402947c83d3ca467ac9201d6b1d10dc29eae8bcf0fa7e4383ff5b0e47fd77ee",
+          "source-sha256:3b3908686a4a78bb8edb57f5fcbee856387fe6b9eb65595b686d698c0e996125"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 336.228,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-10-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 9,
+        "model_calls": 0,
+        "ms": 992.9,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 9
+      },
+      {
+        "case": "holdout-10-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 518.057,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-10-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:e6b658c71f2511e54e61894c765ec5a34800e6302ad26ee2bf037fd25f5a76e9",
+          "source-sha256:9be620469eebc54e4cd193feacc05d0effd2cceaaefc7fd455f58494217c608a"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 613.659,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      },
+      {
+        "case": "holdout-11-overview",
+        "kind": "overview",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": null,
+        "linked_overview": false,
+        "scope_errors": 0,
+        "status": "partially_answerable",
+        "tools": 8,
+        "model_calls": 0,
+        "ms": 1175.693,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 8
+      },
+      {
+        "case": "holdout-11-quote",
+        "kind": "quote",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 1,
+        "exact": true,
+        "false_release": null,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "answerable",
+        "tools": 5,
+        "model_calls": 0,
+        "ms": 1060.124,
+        "run_status": "completed",
+        "tool_errors": 0,
+        "executed_tools": 5
+      },
+      {
+        "case": "holdout-11-layout",
+        "kind": "layout",
+        "papers": [
+          "source-sha256:07e086041165d6b498dcd764c63461bf649cdc7960271889ec562257009837e0",
+          "source-sha256:fda1404a5cfa9a3811782c42dacde2ee7794171c194574b3398d9fa80b66278b"
+        ],
+        "claims": 0,
+        "exact": null,
+        "false_release": false,
+        "linked_overview": null,
+        "scope_errors": 0,
+        "status": "source_capability_mismatch",
+        "tools": 0,
+        "model_calls": 0,
+        "ms": 824.531,
+        "run_status": "partial",
+        "tool_errors": 0,
+        "executed_tools": 0
+      }
+    ]
+  }
+}

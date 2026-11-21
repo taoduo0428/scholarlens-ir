@@ -248,6 +248,9 @@ node_modules/
 frontend/dist/
 frontend/.vite/
 backend/.venv/
+infra/.runtime/
+backend/.runtime/
+*.partial
 
 # Secrets and local configuration
 .env
@@ -262,3 +265,22 @@ backend/.venv/
 *.bak
 reports/generated/
 coverage/
+/output/
+/.playwright-cli/
+
+# Frontend QA runtime and the one synthetic upload fixture
+frontend/output/
+frontend/qa-*.png
+!frontend/tests/fixtures/browser-upload.pdf
+
+# Frontend application source is not a Python distribution lib directory.
+!/frontend/src/lib/
+!/frontend/src/lib/*.ts
+
+# Local agent tooling metadata
+.serena/
+
+# Local expansion delivery originals and nested test artifacts
+/data/ScholarLensData/
+/data/kaggle_arxiv_papers_jsonl/
+/backend/output/

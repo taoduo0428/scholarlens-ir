@@ -1,0 +1,63 @@
+{
+  "doi": "10.1371/journal.pone.0102799",
+  "license": "CC BY 4.0",
+  "engine": "pdfplumber/0.11.11",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "jats_sha256": "dacebe67fcabd7057895bd587a96c5ebbcc272163a1a4bd61879ddd0583ef49d",
+  "pages": 12,
+  "jats_tables": 6,
+  "jats_figures": 6,
+  "kinds": {
+    "table": 7,
+    "cell": 446,
+    "figure": 7,
+    "text": 773,
+    "caption": 14
+  },
+  "exact_tables": [
+    {
+      "page": 6,
+      "pdf_table_id": 1,
+      "jats_id": "pone-0102799-t001",
+      "cells": 36
+    },
+    {
+      "page": 7,
+      "pdf_table_id": 1,
+      "jats_id": "pone-0102799-t002",
+      "cells": 48
+    },
+    {
+      "page": 7,
+      "pdf_table_id": 2,
+      "jats_id": "pone-0102799-t003",
+      "cells": 48
+    },
+    {
+      "page": 8,
+      "pdf_table_id": 1,
+      "jats_id": "pone-0102799-t004",
+      "cells": 15
+    },
+    {
+      "page": 8,
+      "pdf_table_id": 2,
+      "jats_id": "pone-0102799-t005",
+      "cells": 12
+    },
+    {
+      "page": 10,
+      "pdf_table_id": 1,
+      "jats_id": "pone-0102799-t006",
+      "cells": 60
+    }
+  ],
+  "unmatched_candidates": [
+    {
+      "page": 1,
+      "pdf_table_id": 1
+    }
+  ],
+  "unmatched_references": [],
+  "elapsed_seconds": 3.047
+}

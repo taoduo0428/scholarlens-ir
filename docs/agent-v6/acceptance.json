@@ -1,0 +1,118 @@
+{
+  "date": "2026-11-21",
+  "baseline": "5dd0cbce22635c891e704aba851733cc67869dbf",
+  "pr": "https://github.com/taoduo0428/scholarlens-ir/pull/5",
+  "suites": {
+    "full": {
+      "tests": "673",
+      "failures": "3",
+      "errors": "89",
+      "skipped": "22",
+      "time": "627.248"
+    },
+    "research": {
+      "tests": "418",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "1",
+      "time": "84.567"
+    },
+    "legacy": {
+      "tests": "123",
+      "failures": "1",
+      "errors": "0",
+      "skipped": "11",
+      "time": "163.386"
+    },
+    "vectors": {
+      "tests": "12",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "23.068"
+    },
+    "native": {
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "48.336"
+    }
+  },
+  "full_initial_failure_or_error": 92,
+  "later_passed_same_tests": 92,
+  "full_suite_single_green_run": false,
+  "e10_api": {
+    "engine": "8.19.23",
+    "fixture_papers": 2,
+    "route_assertions": 163,
+    "quote_verified": true
+  },
+  "browser": {
+    "passed": [
+      "e9-field-release",
+      "workspace-v4-live"
+    ],
+    "exit": 0
+  },
+  "external_llm": {
+    "status": "BLOCKED",
+    "missing": [
+      "AI_API_KEY",
+      "AI_BASE_URL",
+      "AI_MODEL",
+      "E10_MAX_USD",
+      "E10_MAX_RATE_USD_PER_MTOK"
+    ],
+    "calls": 0
+  },
+  "controlled_model": {
+    "status": "PASS",
+    "gates": {
+      "model_plan": true,
+      "decision": true,
+      "tools": true,
+      "sources": true,
+      "published_with_premises": true,
+      "analysis": true,
+      "synthesis": true,
+      "no_fallback": true
+    },
+    "mode": "controlled_http",
+    "calls": 4
+  },
+  "frontend": {
+    "web-audit": {
+      "code": 0,
+      "seconds": 3.97
+    },
+    "web-build": {
+      "code": 0,
+      "seconds": 11.14
+    },
+    "web-test": {
+      "code": 0,
+      "seconds": 0.92
+    },
+    "web-typecheck": {
+      "code": 0,
+      "seconds": 6.53
+    },
+    "web-verify-structure": {
+      "code": 0,
+      "seconds": 0.52
+    }
+  },
+  "workflow": {
+    "status": "BLOCKED",
+    "reason": "oauth_workflow_scope",
+    "runs": 0
+  },
+  "human_gold": 0,
+  "closures": {
+    "engineering": "PARTIAL",
+    "research": "PARTIAL",
+    "product": "PARTIAL",
+    "release": "BLOCKED"
+  }
+}
