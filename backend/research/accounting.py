@@ -8,8 +8,8 @@ def spending(state):
     plan_calls = state.planning_calls
     total = state.budget.model_calls_used
     return {
-        "model_calls": total, "planning_calls": plan_calls, "decision_calls": max(0, total-plan_calls),
-        "synthesis_calls": 0, "verification_model_calls": 0,
+        "model_calls": total, "planning_calls": plan_calls, "decision_calls": state.reasoning_calls.get("decision", 0) if state.answer_contract else max(0, total-plan_calls),
+        "synthesis_calls": state.reasoning_calls.get("synthesis", 0), "verification_model_calls": state.reasoning_calls.get("analysis", 0),
         "tools": state.budget.tool_calls_used, "max_tools": state.budget.max_tool_calls,
         "retrieval_calls": sum(n for name,n in calls.items() if name != "verify_source_quote"),
         "source_readbacks": calls["verify_source_quote"],

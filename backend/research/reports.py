@@ -148,14 +148,22 @@ def _md(value):
 def render_markdown(report):
     rows = ["# ScholarLens 研究报告", "", _md(report["summary"])]
     claims = {c["claim_id"]: c for c in report["claims"]}
-    for group, title in (
+    groups = (
         ("verified", "已核验"),
         ("not_comparable", "不可直接比较"),
         ("uncertain", "证据不足"),
         ("contradicted", "证据冲突"),
-    ):
+    )
+    buckets=report["sections"]
+    if "answer_groups" in report:
+        buckets=report["answer_groups"]
+        groups=(("direct","直接结论"),("background","已核验的背景与推理前提"),
+                ("incomparable","条件不可比"),("conflicting","证据冲突"))
+        if buckets["unanswerable"]:
+            rows.extend(["","## 最终问题","现有来源不能回答该问题。"])
+    for group,title in groups:
         rows.extend(["", "## " + title])
-        for cid in report["sections"][group]:
+        for cid in buckets[group]:
             c = claims[cid]
             rows.append(
                 "- "
@@ -164,7 +172,7 @@ def render_markdown(report):
                 + ", ".join(_md(e) for e in c["evidence_ids"])
                 + "〕"
             )
-        if not report["sections"][group]:
+        if not buckets[group]:
             rows.append("本次无此类结论。")
     rows.extend(
         ["", "## 待解决问题", *["- " + _md(x) for x in report["unresolved"]], "", "## 可核验来源"]
@@ -177,10 +185,13 @@ def render_markdown(report):
     return "\n".join(rows) + "\n"
 
 
-def generate_report(state, store, registry):
+def generate_report(state, store, registry, *, semantic=None):
     """Update state with validated claims and artifact handles. Return the report to offline callers."""
     verified, warnings = _recheck(state, store, registry)
     claims, graph, missing = build_graph(state, verified)
+    if state.answer_contract:
+        from backend.research.workspace_proof import candidates
+        claims = candidates(state, claims, verified)
     for sub in state.subtasks:
         supported = [c for c in claims if c.subtask_id == sub.id and c.support_status == "verified"]
         if not supported:
@@ -229,6 +240,17 @@ def generate_report(state, store, registry):
         from backend.research.accounting import spending
 
         integrate(report, state, verified)
+        report["spending"] = spending(state)
+    if state.answer_contract:
+        from backend.research.workspace_proof import publish
+        from backend.research.accounting import spending
+
+        from backend.research.workspace_model import publication_suggestions
+        proposals, order = publication_suggestions(store,state,report,verified,semantic)
+        if registry is not None and state.budget.deadline and state.budget.deadline <= datetime.now(timezone.utc):
+            raise ToolError("tool_timeout")
+        publish(state, report, verified, proposals, order)
+        report["answer_contract"] = state.answer_contract.model_dump()
         report["spending"] = spending(state)
     report["markdown"] = render_markdown(report)
     for kind, data in (("report", canonical(report)), ("markdown", report["markdown"].encode())):

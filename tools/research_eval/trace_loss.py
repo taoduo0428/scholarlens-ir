@@ -80,16 +80,19 @@ class ObservedGraph(ResearchGraph):
         return result
 
 
-def execute(goal, paper_ids, docs, generation, directory, policy=None, skill=None, tuning=None):
+def execute(goal, paper_ids, docs, generation, directory, policy=None, skill=None, tuning=None, *, adapters=None):
     """Only public input crosses this boundary. Post-hoc targets stay outside the graph."""
     events, phase = [], ["research"]
     corpus = LocalCorpus(docs, generation)
     store = ResearchStore(directory)
-    state, revision, _ = store.create(1, "trace", TaskInput(goal=goal, scope=Scope(paper_ids=paper_ids)), generation, retrieval_policy=policy or "V1")
+    mode = "personal_model" if adapters else "evidence_only"
+    task = TaskInput(goal=goal, scope=Scope(paper_ids=paper_ids), mode=mode, depth="deep" if adapters else "standard")
+    state, revision, _ = store.create(1, "trace", task, generation, retrieval_policy=policy or "V1",
+                                     model_id="controlled-http/1" if adapters else "none")
     state.status = "running"
     state.budget.max_tool_calls = state.budget.max_evidence = 10
     state.budget.max_duration_seconds = 120
-    state.budget.max_model_calls = 0
+    state.budget.max_model_calls = 4 if adapters else 0
     store.save(1, state, revision, "started", "matched-10")
 
     def registry_for(s):
@@ -103,7 +106,7 @@ def execute(goal, paper_ids, docs, generation, directory, policy=None, skill=Non
         phase[0] = "publication"
         return generate_report(s, storage, registry)
 
-    graph = ObservedGraph(store, registry_for, report=publisher, experiment_skill=skill, tuning=tuning)
+    graph = ObservedGraph(store, registry_for, report=publisher, experiment_skill=skill, tuning=tuning, **(adapters or {}))
     graph.snapshots = []
     start = perf_counter()
     try:
@@ -117,6 +120,8 @@ def execute(goal, paper_ids, docs, generation, directory, policy=None, skill=Non
                 a.model_dump(mode="json") for a in final.actions], "events": events,
             "queries": [q.model_dump(mode="json") for q in final.queries],
             "question_plan": final.question_plan.model_dump() if final.question_plan else None,
+            "workspace_trace": final.workspace_trace, "model_stages": final.reasoning_calls,
+            "assessment_version": "workspace-proof/1" if final.answer_contract else None,
             "assessments": final.question_assessments, "report": report, "skill_steps": final.skill_steps,
             "coverage": graph.snapshots, "status": final.status, "stop": final.stop_reason,
             "warnings": final.warnings, "elapsed_ms": round(1000 * (perf_counter() - start), 3),

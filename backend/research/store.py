@@ -184,6 +184,8 @@ class ResearchStore:
         with self._db(write=True) as db:
             old = self._owned(db, owner, uid)
             previous = ResearchState.model_validate_json(old["state_json"])
+            if previous.answer_contract and previous.answer_contract != state.answer_contract:
+                raise Conflict("immutable answer contract")
             frozen = ("user_id", "task", "corpus_generation", "skill_version", "retrieval_policy",
                       "harness_policy_version")
             first_model_binding = (previous.model_id == "personal-pending"

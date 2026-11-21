@@ -68,7 +68,11 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         try:
             versions = bind_versions(registry_dir)
             retrieval_policy = os.getenv("SCHOLARLENS_RETRIEVAL_POLICY", "V1")
-            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5"}:
+            if os.getenv("SCHOLARLENS_WORKSPACE_V4", "").lower() == "true":
+                retrieval_policy = "W4"
+            elif retrieval_policy == "W4":
+                raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
+            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             with worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,
