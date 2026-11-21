@@ -1,6 +1,6 @@
 # ScholarLens 工程交付记录
 
-本轮工作集成到个人公开 fork 的 zjl。开发基线为 `f4733a2`。本轮所有改动文件、逐次提交、分支差异和合并记录见 [PR #7](https://github.com/taoduo0428/scholarlens-ir/pull/7/files)。
+本轮从 `f4733a2` 开发。首次工程集成与追加交付的改动分别见 [PR #7](https://github.com/taoduo0428/scholarlens-ir/pull/7/files) 和 [PR #9](https://github.com/taoduo0428/scholarlens-ir/pull/9/files)。个人公开仓库的默认分支已包含这些提交及原有论文资产。[默认分支整合记录](https://github.com/taoduo0428/scholarlens-ir/pull/8)
 
 |阶段|交付及依据|
 |---|---|
