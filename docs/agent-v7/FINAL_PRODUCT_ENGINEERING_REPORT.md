@@ -1,5 +1,9 @@
 # ScholarLens 工程交付记录
 
+最新代码验收针对提交 `7cc417d`。这次改动修正了具名论文在复合问题中的绑定和部分作答。新的 16 对论文中，7 题给出了带原文定位的目标论文陈述。原有 28 组跨论文综合成功 2 组。[本轮研究质量](RESEARCH_QUALITY_REPORT.md) · [逐题迁移结果](study-brief/transfer-new.json)
+
+本次完整后端 715 项全部通过，0 跳过，pytest 用时 437.12 秒。隔离实例含 859 篇论文、49,420 条向量，原索引文件清单一致且测试端口已释放。前端 45 项通过，类型、结构与生产构建通过。浏览器以两个账号验证了 PDF 选格、4 组引文和定位、报告下载、刷新恢复及隔离。真实出版社 PDF 第 6 页表 1 的 23,133 与 JATS 单元格一致。1、4、12 个并发用户的 17 个任务均从 SQLite 备份恢复了报告。78 个锁定 Python 包与前端 npm 审计均报告 0 条已知漏洞。[验收记录](study-brief/acceptance.json) · [运行数据](study-brief/runtime.json)
+
 本轮从 `f4733a2` 开发。首次工程集成与追加交付的改动分别见 [PR #7](https://github.com/taoduo0428/scholarlens-ir/pull/7/files) 和 [PR #9](https://github.com/taoduo0428/scholarlens-ir/pull/9/files)。个人公开仓库的默认分支已包含这些提交及原有论文资产。[默认分支整合记录](https://github.com/taoduo0428/scholarlens-ir/pull/8)
 
 |阶段|交付及依据|

@@ -33,6 +33,9 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
                                                for k, rows in p.fields.items()}}
             for p in index.values()
         ]
+        explicit_study_fields = {f.field_id for req in state.field_requirements for f in req.fields
+                                 if f.required_title and f.facet in {"problem", "method"}}
+        direct_ids.update(b["claim_id"] for b in gate["bindings"] if b["field_id"] in explicit_study_fields)
         if intent == "literature_synthesis":
             responsive = {f.field_id for req in state.field_requirements for f in req.fields
                           if f.facet in {"topic", "method", "finding", "limitations"}}

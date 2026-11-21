@@ -1,0 +1,109 @@
+{
+  "application_revision": "7cc417d",
+  "transfer_manifest_revision": "637ac47",
+  "backend": {
+    "tests_exit": 0,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true,
+    "tests": 715,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pytest_seconds": 437.016,
+    "command": "python -m tools.research_eval.v6_vector_fixture --es-home <ES_8.19.23_HOME> --offline-fixture infra/.runtime/elasticsearch-8.19.23/data --full-suite --delivery backend/.runtime/p0-delivery"
+  },
+  "frontend": {
+    "command": "npm test, npm run typecheck, npm run verify:structure, npm run build:production",
+    "tests": 45,
+    "failures": 0,
+    "skipped": 0,
+    "test_seconds": 0.2857573,
+    "exit_codes": [
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "browser": {
+    "command": "python -m tools.research_eval.v6_browser --e11 --fixture-lab <fixture.sqlite3> --dist frontend/dist --output <output>",
+    "exit": 0,
+    "seconds": 24.06,
+    "outcome": "PASS 2 profiles; 4 quote/locator pairs; selected cell; report downloaded; restored; access isolated"
+  },
+  "pdf": {
+    "doi": "10.1371/journal.pone.0102799",
+    "status": "PASS",
+    "publisher_table": "pone-0102799-t001",
+    "row_label": "ca-CondMat",
+    "column_label": "Number of nodes",
+    "cell": {
+      "paper_id": "10.1371/journal.pone.0102799",
+      "source_version": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+      "page": 6,
+      "table_id": 1,
+      "row": 3,
+      "column": 2,
+      "source_scope": "public_corpus",
+      "quote": "23,133",
+      "quote_sha256": "4b174377f0c1dfec6388d7fdc525643ca725661952c1b1e17785457bb661d36d",
+      "locator": "pdf:da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa:p6:cell:201.316,107.467,377.745,116.561",
+      "bbox": [
+        201.316,
+        107.467,
+        377.745,
+        116.561
+      ]
+    },
+    "jats_sha256": "dacebe67fcabd7057895bd587a96c5ebbcc272163a1a4bd61879ddd0583ef49d",
+    "tool_calls": 1
+  },
+  "security": {
+    "pip_audit_dependencies": 78,
+    "pip_audit_findings": 0,
+    "pip_audit_seconds": 15.81,
+    "npm_audit_findings": 0,
+    "npm_audit_seconds": 3.5,
+    "audit_exit_codes": [
+      0,
+      0
+    ]
+  },
+  "offline_evaluations": {
+    "silver": {
+      "runs": 111,
+      "seconds": 127.37,
+      "exit": 0
+    },
+    "holdout": {
+      "runs": 84,
+      "seconds": 87.76,
+      "exit": 0
+    },
+    "transfer_old": {
+      "runs": 32,
+      "seconds": 34.79,
+      "exit": 0
+    },
+    "transfer_new": {
+      "runs": 32,
+      "seconds": 34.96,
+      "exit": 0
+    },
+    "live_model_calls": 0,
+    "human_gold": 0
+  },
+  "main_asset_check": {
+    "base": "6a81c4c",
+    "preserved_blobs": 6,
+    "matching_unique_paper_and_manifest_ids": 859
+  },
+  "hosted_ci": {
+    "workflow_count": 0,
+    "runs": 0,
+    "credential_scope_missing": "workflow"
+  }
+}

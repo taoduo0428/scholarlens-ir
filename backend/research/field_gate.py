@@ -341,6 +341,10 @@ def evaluate(state, sources, suggestions=None, warnings=()):
             capable = {i: r for i, r in local.items() if f.capability.requires in caps[i].supported}
             if f.paper_ids:
                 capable = {i: r for i, r in capable.items() if r["paper_id"] in f.paper_ids}
+            if f.required_title:
+                from backend.research.study_brief import named_source
+                target = named_source(visible, state.task.scope.paper_ids, f.required_title)
+                capable = {i: row for i, row in capable.items() if row["paper_id"] == target}
             proposals = source_claims(f, capable)
             proof, fallback = qualified(f, proposals, capable, state, suggestions, profile_index)
             proof = [c for c in proof if f.facet or c.claim_id not in consumed]
@@ -353,7 +357,11 @@ def evaluate(state, sources, suggestions=None, warnings=()):
             # Different asserted values for the same explicit attribute require review,
             # even without lexical negation markers.
             values = {c.statement.casefold().strip() for c in proof}
-            conflict_seen = (f.operation == "attribute" and len(values) > 1) or (
+            multiple_values = f.operation == "attribute" and len(values) > 1
+            if multiple_values and profile_index is not None:
+                from backend.research.study_brief import enumerated_objectives
+                multiple_values = not enumerated_objectives(f, proof)
+            conflict_seen = multiple_values or (
                 f.operation not in {"disagreement", "synthesize"}
                 and any(c.claim_id in conflict_ids for c in proof)
             )
