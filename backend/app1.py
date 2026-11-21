@@ -618,7 +618,7 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
 
         def research_corpus(scope):
             acl = account_upload_acl(store) if scope.include_own_uploads else None
-            return EsCorpus(es, settings, upload_acl=acl)
+            return EsCorpus(es, settings, upload_acl=acl, pdf_resolver=document_pdf)
 
         attach(app, settings, store, research_corpus, report=generate_report)
     mount_frontend(app, settings.frontend_dir)

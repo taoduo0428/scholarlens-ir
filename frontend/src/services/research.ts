@@ -4,7 +4,9 @@ import {personalAiHeaders, type PersonalAi} from "./personalAi";
 export const RESEARCH_ENABLED = import.meta.env.VITE_RESEARCH_ENABLED === "true";
 export type TaskStatus = "queued"|"running"|"paused"|"awaiting_credentials"|"awaiting_input"|"completed"|"partial"|"cancelled"|"failed";
 export type Command = "pause"|"resume"|"cancel";
+export interface PdfCellRequest {paper_id:string;source_version:string;page:number;table_id:number;row:number;column:number}
 export interface TaskInput {
+  pdf_cell?:PdfCellRequest;
   research_project?:{workspace:string;project:string};
   goal:string;
   scope:{paper_ids:string[];include_own_uploads:boolean;library_only:true};
@@ -49,6 +51,7 @@ export interface ProfileQuote {
   source_version:string;extraction_method:string;verification_status:string;
 }
 export interface ResearchReport {
+  pdf_cell_evidence?:{status:"source_verified";cell:{paper_id:string;page:number;table_id:number;row:number;column:number;quote:string;locator:string}}|{status:"unavailable";reason:string};
   research_intent?:string;
   research_profiles?:{paper_id:string;title:string;fields:Record<string,ProfileQuote[]>}[];
   spending?:{tools:number;model_calls:number;cost:number|null;input_tokens:number|null;output_tokens:number|null};

@@ -1,4 +1,4 @@
-"""Seven allowlisted, typed research operations. Inputs cannot specify an owner or index."""
+"""Allowlisted, typed research operations. Inputs cannot specify an owner or index."""
 
 from __future__ import annotations
 
@@ -10,6 +10,7 @@ from backend.research.schemas import (
     Contract,
     Digest,
     Id,
+    PdfCellRequest,
     Scope,
     SearchFilter,
     SearchMode,
@@ -68,6 +69,7 @@ class EmptyRequest(Contract):
 
 
 REQUESTS = {
+    "read_pdf_cell": PdfCellRequest,
     "search_papers": SearchRequest,
     "search_passages": PassageRequest,
     "read_paper_metadata": PaperRequest,
@@ -140,6 +142,13 @@ class ToolRegistry:
 
     def _doc(self, pid):
         return self.corpus.read(pid, self.owner_id, self.scope)
+
+    def _read_pdf_cell(self, req):
+        from backend.research.layout_binding import read_cell
+        if req.paper_id not in self.scope.paper_ids:
+            raise ToolError("paper_not_found")
+        doc = self._doc(req.paper_id)
+        return read_cell(req, doc, getattr(self.corpus, "pdf_resolver", None))
 
     def _ids(self, req):
         return self.corpus.discover(req, self.owner_id, self.scope)

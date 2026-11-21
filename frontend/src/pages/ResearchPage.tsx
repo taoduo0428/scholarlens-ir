@@ -5,6 +5,7 @@ import {BackendError} from "../services/backend";
 import {loadPersonalAi} from "../services/personalAi";
 import {research, slotLabels, subtaskLabels, type Command, type ResearchEvent, type ResearchReport, type ResearchSource,
   type ResearchState, type TaskInput, type TaskItem} from "../services/research";
+import {PdfCellPicker} from "../components/PdfCellPicker";
 import {QuestionPlan} from "../components/QuestionPlan";
 import {ReportPanel, ResearchSourceDetail} from "../components/ResearchReport";
 
@@ -31,6 +32,8 @@ function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}
     if(ids.length>40){setError("论文范围最多 40 篇。");return;}
     if(mode==="personal_model"&&!personal){setError("请先在证据助手中配置个人模型。");return;}
     const body:TaskInput={goal:goal.trim(),scope:{paper_ids:ids,include_own_uploads:own,library_only:true},depth,mode};
+    const cell=new FormData(e.currentTarget as HTMLFormElement).get("pdf_cell");
+    if(typeof cell==="string") body.pdf_cell=JSON.parse(cell);
     if(project.trim()) body.research_project={workspace:"personal",project:project.trim()};
     const value=JSON.stringify(body);
     if(previous.current.input!==value)previous.current={input:value,key:crypto.randomUUID()};
@@ -58,6 +61,7 @@ function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}
       <label>限定论文 ID<input value={paperIds} onChange={e=>setPapers(e.target.value)} placeholder="用逗号分隔，留空搜索本库"/></label>
       <label className="research-check"><input type="checkbox" checked={own} onChange={e=>setOwn(e.target.checked)}/>包括本账户已入库上传</label>
     </details>
+    <PdfCellPicker key={paperIds} papers={[...new Set(paperIds.split(/[\s,，]+/u).filter(Boolean))]}/>
     {error&&<p role="alert">{error}</p>}
     <button className="button button-primary" disabled={busy||goal.trim().length<2||(mode==="personal_model"&&!personal)}>{busy?"正在创建…":"开始研究"}</button>
   </form>;

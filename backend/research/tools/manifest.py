@@ -1,5 +1,6 @@
 """Server-owned capability contracts for every research tool."""
 from types import MappingProxyType
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict
 
@@ -20,6 +21,20 @@ class Paper(Output):
     paper: dict
 
 
+class Cell(Output):
+    source_scope: Literal["owner_only", "public_corpus"]
+    paper_id: str
+    source_version: str
+    page: int
+    table_id: int
+    row: int
+    column: int
+    locator: str
+    bbox: list[float]
+    quote: str
+    quote_sha256: str
+
+
 class Verification(Output):
     verified: bool
     reason: str
@@ -38,6 +53,7 @@ class TaskView(Output):
 
 
 OUTPUTS = MappingProxyType({
+    "read_pdf_cell": Cell,
     "search_papers": Papers, "search_passages": Passages, "read_paper_metadata": Paper,
     "read_paper_chunks": Passages, "verify_source_quote": Verification,
     "extract_method_results": Extraction, "get_research_state": TaskView,
@@ -45,7 +61,7 @@ OUTPUTS = MappingProxyType({
 
 
 def timeout_for(name):
-    return {"search_papers": 20, "search_passages": 25}.get(name, 10)
+    return {"search_papers": 20, "search_passages": 25, "read_pdf_cell": 15}.get(name, 10)
 
 
 def describe():
