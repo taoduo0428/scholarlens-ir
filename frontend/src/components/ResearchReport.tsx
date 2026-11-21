@@ -2,6 +2,12 @@ import {useState} from "react";
 import {evidenceHref, evidenceLocatorLabel} from "../lib/evidenceLocation";
 import {slotLabels, type ResearchClaim, type ResearchReport, type ResearchSource, type ResearchSubtask} from "../services/research";
 
+const profileLabels:Record<string,string>={
+  research_objective:"研究目标",research_problem:"研究问题",methods:"方法",proposed_contributions:"作者贡献",
+  datasets:"数据集",metrics:"指标",experiment_settings:"实验条件",baselines:"基线",reported_findings:"研究发现",
+  limitations:"局限",future_work:"未来工作",author_qualifications:"带有条件的陈述"
+};
+
 const supportLabels:Record<string,string>={verified:"已核验",unverified:"待核验",uncertain:"待核验",
   insufficient:"证据不足",contradicted:"存在矛盾",not_comparable:"实验条件不可比"};
 const conditions:Record<string,string>={dataset:"数据集",metric_name:"指标",metric_value:"数值",
@@ -69,6 +75,16 @@ export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;task
     <div className="research-panel-heading"><h2>研究报告</h2>
       <button className="button button-secondary" onClick={()=>exportMarkdown(taskId,report.markdown)}>导出 Markdown</button></div>
     <p>{report.summary}</p>
+    {report.spending&&<p>工具调用 {report.spending.tools} 次 · 模型调用 {report.spending.model_calls} 次 ·
+      输入 {report.spending.input_tokens??"未报告"} tokens · 输出 {report.spending.output_tokens??"未报告"} tokens ·
+      费用 {report.spending.cost==null?"未报告":report.spending.cost}</p>}
+    {report.research_profiles&&<section aria-label="逐篇研究档案"><h3>逐篇研究档案</h3>
+      {report.research_profiles.map(p=><details key={p.paper_id}><summary>{p.title}</summary>
+        {Object.entries(p.fields).map(([field,quotes])=><div key={field}>
+          <h4>{profileLabels[field]??field}</h4>
+          {quotes.length===0?<p>尚无已核验的原文</p>:quotes.map(q=><blockquote key={q.locator}>
+            {q.quote}<footer>{q.locator} · {q.origin} · {q.extraction_method}</footer></blockquote>)}
+        </div>)}</details>)}</section>}
     {report.answerability&&<section aria-label="字段核验"><h3>字段核验</h3>
       {report.field_requirements?.flatMap(q=>q.fields).map(f=>{
         const d=report.answerability!.fields[f.field_id];
