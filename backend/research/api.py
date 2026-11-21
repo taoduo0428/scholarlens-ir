@@ -204,5 +204,15 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         from backend.research.tools.manifest import describe
         return {"tools": describe()}
 
+    @api.get("/model-gateway")
+    def gateway_capabilities(user=Depends(accounts.current)):
+        from backend.research.model_gateway import capabilities
+        return capabilities()
+
+    @api.get("/workspaces/{workspace_id}/projects/{project_id}/metrics")
+    def project_dashboard(workspace_id: str, project_id: str, user=Depends(accounts.current)):
+        from backend.research.project_metrics import metrics
+        return metrics(store, user["id"], workspace_id, project_id)
+
     app.include_router(api)
     return worker

@@ -2,7 +2,8 @@ param([ValidateRange(1024,65535)][int]$Port = 8000)
 $ErrorActionPreference = 'Stop'
 $pidName = if ($Port -eq 8000) { 'api.pid' } else { "api-$Port.pid" }
 $projectRoot = Split-Path $PSScriptRoot -Parent
-$pidFile = Join-Path (Join-Path $projectRoot 'backend/.runtime') $pidName
+$pidRoot = if ($env:SCHOLARLENS_LAUNCHER_DIR) { (Resolve-Path -LiteralPath $env:SCHOLARLENS_LAUNCHER_DIR).Path } else { Join-Path $projectRoot 'backend/.runtime' }
+$pidFile = Join-Path $pidRoot $pidName
 if (-not (Test-Path -LiteralPath $pidFile)) { Write-Output 'No recorded API process.'; return }
 $savedPid = [int](Get-Content -LiteralPath $pidFile)
 $proc = Get-CimInstance Win32_Process -Filter "ProcessId=$savedPid"

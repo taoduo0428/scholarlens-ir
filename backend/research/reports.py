@@ -256,10 +256,20 @@ def generate_report(state, store, registry, *, semantic=None):
             publish(state, report, verified, proposals, order)
         report["answer_contract"] = state.answer_contract.model_dump()
         report["spending"] = spending(state, store.usage(state.user_id, state.run_id))
+    if state.task.pdf_cell:
+        from backend.research.layout_binding import publish_cell
+        item = report["pdf_cell_evidence"] = publish_cell(state, registry)
+        from backend.research.accounting import spending
+        report["spending"] = spending(state, store.usage(state.user_id, state.run_id))
     report["markdown"] = render_markdown(report)
     if state.field_requirements:
         from backend.research.field_publication import markdown
         report["markdown"] += markdown(report,_md)
+    if state.task.pdf_cell:
+        cell = item.get("cell")
+        note = (_md(cell["quote"]) + " · " + _md(cell["paper_id"]) + " · " + _md(cell["locator"])
+                if cell else _md(item["reason"]))
+        report["markdown"] += "\n\n### 指定 PDF 单元格\n\n" + note + "\n"
     for kind, data in (("report", canonical(report)), ("markdown", report["markdown"].encode())):
         aid = store.put_artifact(state.user_id, state.run_id, kind, data, state.corpus_generation)
         if aid not in state.artifact_refs:

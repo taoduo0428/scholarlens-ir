@@ -53,8 +53,9 @@ def main(identity):
                 kwargs["env"] = {**empty_git_values, **os.environ}
             super().__init__(args, *positional, **kwargs)
 
-    with patch.object(Elasticsearch, "__init__", local_endpoint), patch.object(subprocess, "Popen", Popen):
-        return pytest.main(["backend/tests", "-q", "--tb=short",
+    from tools.research_eval.v7_delivery_api import delivery_api
+    with patch.object(Elasticsearch, "__init__", local_endpoint), patch.object(subprocess, "Popen", Popen), delivery_api(root, config) as extra:
+        return pytest.main(["backend/tests", "-q", "--tb=short", *extra,
                             "-o", "cache_dir=" + str(root/"cache"),
                             "--basetemp=" + str(root/"pytest-runtime"),
                             "--junitxml=" + str(root/"junit.xml")], plugins=[UploadNamespace()])

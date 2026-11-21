@@ -78,6 +78,14 @@ export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;task
     {report.spending&&<p>工具调用 {report.spending.tools} 次 · 模型调用 {report.spending.model_calls} 次 ·
       输入 {report.spending.input_tokens??"未报告"} tokens · 输出 {report.spending.output_tokens??"未报告"} tokens ·
       费用 {report.spending.cost==null?"未报告":report.spending.cost}</p>}
+    {report.pdf_cell_evidence&&<section aria-label="指定 PDF 单元格"><h3>指定 PDF 单元格</h3>
+      {report.pdf_cell_evidence.status==="source_verified"
+        ? <blockquote>{report.pdf_cell_evidence.cell.quote}<footer>{report.pdf_cell_evidence.cell.paper_id} ·
+          第 {report.pdf_cell_evidence.cell.page} 页 · 表 {report.pdf_cell_evidence.cell.table_id} ·
+          第 {report.pdf_cell_evidence.cell.row} 行第 {report.pdf_cell_evidence.cell.column} 列
+          <br/>{report.pdf_cell_evidence.cell.locator}</footer></blockquote>
+        : <p>无法核验此单元格（{report.pdf_cell_evidence.reason}）</p>}
+    </section>}
     {report.research_profiles&&<section aria-label="逐篇研究档案"><h3>逐篇研究档案</h3>
       {report.research_profiles.map(p=><details key={p.paper_id}><summary>{p.title}</summary>
         {Object.entries(p.fields).map(([field,quotes])=><div key={field}>

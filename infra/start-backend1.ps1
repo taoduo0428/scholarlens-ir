@@ -4,14 +4,15 @@ $projectRoot = Split-Path $PSScriptRoot -Parent
 $python = Join-Path $projectRoot 'backend/.venv/Scripts/python.exe'
 if (-not (Test-Path -LiteralPath $python)) { throw 'Install backend dependencies first.' }
 if (Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue) { throw "Port $Port is already in use." }
-$runtimeRoot = Join-Path $projectRoot 'backend/.runtime/expansion-api'
+$pidRoot = if ($env:SCHOLARLENS_LAUNCHER_DIR) { (Resolve-Path -LiteralPath $env:SCHOLARLENS_LAUNCHER_DIR).Path } else { Join-Path $projectRoot 'backend/.runtime' }
+$runtimeRoot = Join-Path $pidRoot 'expansion-api'
 New-Item -ItemType Directory -Path $runtimeRoot -Force | Out-Null
 $pidName = if ($Port -eq 8000) { 'api.pid' } else { "api-$Port.pid" }
 $oldIndex = $env:ELASTICSEARCH_INDEX
 try {
     if ($Index) { $env:ELASTICSEARCH_INDEX = $Index }
     $proc = Start-Process -FilePath $python -ArgumentList @('-m','uvicorn','backend.app1:app','--host','127.0.0.1','--port',"$Port") -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $runtimeRoot "api-$Port.stdout.log") -RedirectStandardError (Join-Path $runtimeRoot "api-$Port.stderr.log") -PassThru
-    Set-Content -LiteralPath (Join-Path (Join-Path $projectRoot 'backend/.runtime') $pidName) -Value $proc.Id
+    Set-Content -LiteralPath (Join-Path $pidRoot $pidName) -Value $proc.Id
 } finally { $env:ELASTICSEARCH_INDEX = $oldIndex }
 for ($attempt = 0; $attempt -lt 40; $attempt++) {
     try {

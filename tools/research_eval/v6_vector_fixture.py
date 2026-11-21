@@ -23,7 +23,10 @@ def main():
     parser.add_argument("--es-home", type=Path, required=True)
     parser.add_argument("--offline-fixture", type=Path, required=True)
     parser.add_argument("--full-suite", action="store_true", help="Run all backend tests on two isolated index namespaces")
+    parser.add_argument("--delivery", type=Path, help="Enable the external delivery and authenticated local ES cases")
     args = parser.parse_args()
+    if args.delivery and (not args.full_suite or not (args.delivery/"papers_final.jsonl").is_file()):
+        parser.error("--delivery requires --full-suite and an existing delivery directory")
     spec = importlib.util.spec_from_file_location("native", ROOT/"tools/audit/run-upload-integration.py")
     native = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(native)
@@ -100,6 +103,8 @@ with patch.object(Elasticsearch,'__init__',connect):
                 identity = {"url": url, "cluster": name, "cluster_uuid": info["cluster_uuid"], "nonce": nonce,
                             "output": str(out), "base_alias": upload_aliases["ELASTICSEARCH_INDEX"],
                             "vector_alias": upload_aliases["VECTOR_INDEX"], "synthetic_data": True}
+                if args.delivery:
+                    identity["delivery"] = str(args.delivery.resolve(strict=True))
                 (out/"isolation.json").write_text(json.dumps(identity), encoding="utf8")
                 print("starting full backend suite", flush=True)
                 with (out/"tests.log").open("w",encoding="utf8") as tests:
