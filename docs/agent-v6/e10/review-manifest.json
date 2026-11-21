@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "reviewer_type": "single_model_multi_pass_review",
+  "human_gold": 0,
+  "scope": "111 E10 tasks and 40 authorized paper abstracts",
+  "source": "blind-source.json derived from authorized local E10 originals",
+  "source_phase_sha256": "d2f257fe6f864d8f0495b51cde8173261dd9cbec92b20e1e7c8652635c8b42a0",
+  "source_phase_closed_utc": "2026-11-21T13:06:51.689853+00:00",
+  "prediction_review_written_utc": "2026-11-21T13:18:59.140503+00:00",
+  "model_family": "Codex",
+  "exact_model_version": null,
+  "independent_contexts": true,
+  "independent_model_families": false,
+  "reviewers": [
+    {
+      "id": "A",
+      "context": "/root/silver_a",
+      "input_access": "question, scoped source abstracts only",
+      "written_utc": "2026-11-21T12:59:16.486302+00:00"
+    },
+    {
+      "id": "B",
+      "context": "/root/silver_b",
+      "input_access": "question, scoped source abstracts only",
+      "written_utc": "2026-11-21T12:56:40.433863+00:00"
+    },
+    {
+      "id": "adjudicator",
+      "context": "/root/adjudicator",
+      "input_access": "both independently sealed reviewers, all original abstracts, with E9.1 outputs examined after source snapshot"
+    }
+  ],
+  "timestamp_note": "A/B UTC times describe filesystem last write, distinct from execution start times.",
+  "inputs": {
+    "blind-source.json": {
+      "sha256": "5298d6e8fa044175af001bd119ee293ba23d4514c9ca28396638102a3f6bda2b",
+      "written_utc": "2026-11-21T12:45:24.990369+00:00"
+    },
+    "reviewer-a.jsonl": {
+      "sha256": "d18b3b25b1b5bd6ca8003a7c2d70ed96f4b1efbe1fbaf66d1d5eec9f3577e97d",
+      "written_utc": "2026-11-21T12:59:16.486302+00:00"
+    },
+    "reviewer-b.jsonl": {
+      "sha256": "cb74931b79db428bddfec9bb57f0caca3152f2ee6abd856b99f656e8b37bb375",
+      "written_utc": "2026-11-21T12:56:40.433863+00:00"
+    },
+    "run.local.json": {
+      "sha256": "a1867f56cdc42f96022d7ae89de8ed28e74cc3ab0015d3ee1ae7bd000b4b74f1",
+      "dataset_hash": "5c426e87404055b072f27a6d2666a07e0790619977758ec82e5207aa49397d62",
+      "policy": "E9.1"
+    },
+    "reading-material.local.json": {
+      "sha256": "ed182fac6036724cf068f2f98fae0b447de0d1452edda0af8a59c2b3e3a56914"
+    },
+    "dataset.json": {
+      "sha256": "6299c28aba61663c8029522aab91a4a3f727ca5387a279d6a6e1ba4d3db9a979"
+    }
+  },
+  "rules": {
+    "scope": "Per-task permitted papers. source_papers lists focal evidence. Comparison and deployment conditions stay explicit.",
+    "answerability": "Answerable when principal requested constructs, mechanism, defined measure or bound are available. Partial when meaningful source fields exist but a key mechanism or reported metric definition/value is missing. Insufficient for an absent target result or an untested guarantee. Not comparable when no matched task/inputs/protocol support ranking.",
+    "evidence": "Unicode offsets [start,end) against the original abstract. SHA-256 of UTF-8 substring. Semantically equivalent windows and paraphrases count as agreement.",
+    "disagreement": "Material means different answerability, incompatible-polarity interpretation, or a substantively different claim/scope that would alter requested coverage or required caveat. Equivalent estimates, specificity and phrasing alone can agree. Several dimensions may overlap.",
+    "contradiction": "Requires incompatible findings under matching conditions. Within-study trade-offs, outcomes at different time windows or counterexamples to a universal assumption are retained separately.",
+    "prediction": "A source-entailed background candidate can still be irrelevant to the requested contribution. Missing substantive claims are tracked in field assessments. Field and task decisions on abstention are reviewed separately.",
+    "confidence": "Heuristic confidence uses the lower of both reviewer scores and a ceiling. Revised labels receive a stricter ceiling. Scores are uncalibrated."
+  },
+  "counts": {
+    "total": 111,
+    "source_papers": 40,
+    "human_gold": 0,
+    "ab_answerability_agreement": 103,
+    "ab_answerability_disagreement": 8,
+    "ab_source_paper_set_agreement": 111,
+    "ab_exact_span_set_differs": 92,
+    "ab_material_disagreement_any": 33,
+    "ab_no_material_disagreement": 78,
+    "ab_agree_status_other_material_disagreement": 25,
+    "ab_material_dimensions": {
+      "contradiction_definition": 7,
+      "claim_relevance": 2,
+      "scope_of_unsupported_claim": 17,
+      "answerability": 8
+    },
+    "adjudicator_revised_shared_status": 3,
+    "adjudicated_answerability": {
+      "answerable": 58,
+      "not_comparable": 20,
+      "partially_answerable": 12,
+      "insufficient_evidence": 21
+    },
+    "e91_answerability": {
+      "not_comparable": 53,
+      "insufficient_evidence": 57,
+      "partially_answerable": 1
+    },
+    "exact_status_matches": 34,
+    "false_refusal_on_full_or_partial_answer": 70,
+    "refusal_assessment": {
+      "false_refusal": 57,
+      "correct_main_refusal_missing_explanation": 37,
+      "partial_false_refusal": 13,
+      "correct_no_measure_wrong_frame": 4
+    },
+    "failure_categories": {
+      "objective_comparison_routed_to_ranking": 18,
+      "comparison_status_and_conditions": 3,
+      "supported_links_withheld": 18,
+      "background_accepted_as_requested_finding": 1,
+      "supported_portion_withheld": 12,
+      "metric_request_routed_to_comparison": 4,
+      "unreported_conditions": 17,
+      "missing_baseline_requirements": 17,
+      "supported_fact_withheld": 15,
+      "reported_measure_withheld": 6
+    },
+    "candidate_source_supported": 1,
+    "candidate_source_unsupported": 0,
+    "candidate_context_only": 1,
+    "published_verified_direct_claims": 0,
+    "direct_claim_precision": null,
+    "field_statuses": {
+      "insufficient_evidence": 297,
+      "not_comparable": 54,
+      "answerable": 1
+    },
+    "focal_papers_retrieved": {
+      "all": 50,
+      "some": 40,
+      "none": 21
+    },
+    "ab_source_spans_checked": 607,
+    "final_spans_checked": 312,
+    "run_source_spans_checked": 427,
+    "ambiguous": 0
+  },
+  "outputs": {
+    "silver-labels.jsonl": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
+    "disagreements.json": "56ce66c8e61350eb374e28ca38eeeacfbe25c8bd24a66e42d56143f19122f574",
+    "adjudication.json": "b46fc701c7fdefeec3e4568a294397495d98e562fe52784328f7f384b89f2239",
+    "review-summary.md": "bf5eb24e806eb9b22f01e586f71d3ea5d818ec73077c46d0dac3579555a84ea6"
+  },
+  "public_hash_encoding": "SHA-256 of UTF-8 files with LF line endings. Private inputs use original file bytes.",
+  "source_snapshot_encoding": "Sorted keys, unescaped Unicode, compact JSON separators, one LF per JSONL record. Remove prediction_assessment, supported_claims, unsupported_claims, refusal_correctness, failure_category to reproduce the phase-one hash."
+}
