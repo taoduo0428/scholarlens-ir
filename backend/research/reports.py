@@ -249,10 +249,17 @@ def generate_report(state, store, registry, *, semantic=None):
         proposals, order = publication_suggestions(store,state,report,verified,semantic)
         if registry is not None and state.budget.deadline and state.budget.deadline <= datetime.now(timezone.utc):
             raise ToolError("tool_timeout")
-        publish(state, report, verified, proposals, order)
+        if state.field_requirements:
+            from backend.research.field_publication import publish_fields
+            publish_fields(state,report,verified,proposals,order,warnings)
+        else:
+            publish(state, report, verified, proposals, order)
         report["answer_contract"] = state.answer_contract.model_dump()
         report["spending"] = spending(state)
     report["markdown"] = render_markdown(report)
+    if state.field_requirements:
+        from backend.research.field_publication import markdown
+        report["markdown"] += markdown(report,_md)
     for kind, data in (("report", canonical(report)), ("markdown", report["markdown"].encode())):
         aid = store.put_artifact(state.user_id, state.run_id, kind, data, state.corpus_generation)
         if aid not in state.artifact_refs:

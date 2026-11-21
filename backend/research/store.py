@@ -184,6 +184,12 @@ class ResearchStore:
         with self._db(write=True) as db:
             old = self._owned(db, owner, uid)
             previous = ResearchState.model_validate_json(old["state_json"])
+            if previous.field_requirements and previous.field_requirements != state.field_requirements:
+                raise Conflict("immutable field requirements")
+            if any(not set(ids)<=set(state.question_reads.get(q,[])) for q,ids in previous.question_reads.items()):
+                raise Conflict("immutable question read history")
+            if any(state.evidence_questions.get(k)!=q for k,q in previous.evidence_questions.items()):
+                raise Conflict("immutable evidence acquisition question")
             if previous.answer_contract and previous.answer_contract != state.answer_contract:
                 raise Conflict("immutable answer contract")
             frozen = ("user_id", "task", "corpus_generation", "skill_version", "retrieval_policy",

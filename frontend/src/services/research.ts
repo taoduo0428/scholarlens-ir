@@ -46,6 +46,8 @@ export interface ResearchState {
 export interface ResearchReport {
   summary:string;claims:ResearchClaim[];sources:ResearchSource[];unresolved:string[];markdown:string;
   sections:{verified:string[];uncertain:string[];not_comparable:string[];contradicted:string[]};
+  field_requirements?:{question_id:string;fields:{field_id:string;request:string;datatype:string}[]}[];
+  answerability?:{status:string;fields:Record<string,{status:string;reason:string;next_action:string;bindings:{evidence_id:string;locator:{paper_id:string;raw:string}}[]}>};
   answer_groups?:{direct:string[];background:string[];incomparable:string[];conflicting:string[];unresolved:string[];unanswerable:boolean};
   answer_proof?:{obligations:Record<string,{status:string;required:string;claims:string[]}>};
   graph?:{subtasks?:ResearchSubtask[];subtask_claim?:{subtask_id:string;claim_id:string}[];

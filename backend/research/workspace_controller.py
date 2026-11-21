@@ -16,6 +16,23 @@ def inspect_round(state, texts):
         and refs[r["evidence_id"]].quote_hash == sha256(r["quote"].encode()).hexdigest()
         and r["corpus_generation"] == state.corpus_generation
     }
+    if state.field_requirements:
+        from backend.research.field_gate import evaluate
+        result,_=evaluate(state,sources)
+        missing=[]
+        for sub in state.subtasks:
+            done=result["questions"][sub.id]=="answerable"
+            decisions=[d for d in result["fields"].values() if d["question_id"]==sub.id]
+            gaps=[d for d in decisions if d["status"]!="answerable"]
+            fields={f.field_id:f for q in state.field_requirements for f in q.fields}
+            state.question_assessments[sub.id]={"status":result["questions"][sub.id],"next_action":gaps[0]["next_action"] if gaps else "finish",
+                "missing_requirements":[fields[d["field_id"]].request for d in gaps],
+                "supporting_evidence_ids":list(dict.fromkeys(b["evidence_id"] for d in decisions for b in d["bindings"])),
+                "opposing_evidence_ids":[]}
+            sub.missing_slots=[] if done else list(sub.required_slots)
+            sub.status="satisfied" if done else "active"
+        missing=[fid for fid,d in result["fields"].items() if d["status"]!="answerable"]
+        return {"sufficient":not missing,"missing":missing}
     claims, graph, _ = build_graph(state, sources)
     claims = candidates(state, claims, sources)
     result = assess_proof(state, claims, sources, graph)

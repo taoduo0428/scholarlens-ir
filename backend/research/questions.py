@@ -140,7 +140,7 @@ def contract_for(state):
     task = state.task
     goal = " ".join(task.goal.split())
     # Titles identify sources. Their wording does not specify the requested operation.
-    intent_text = re.sub(r'["“《][^"”》]+["”》]', " ", goal) if state.retrieval_policy == "W4" else goal
+    intent_text = re.sub(r'["“《][^"”》]+["”》]', " ", goal) if state.retrieval_policy in {"W4","E9"} else goal
     intent = classify(intent_text)
     budget = state.budget.model_dump(include={"max_rounds", "max_tool_calls", "max_model_calls", "max_evidence", "max_duration_seconds"})
     return ResearchTaskContract(goal_original=task.goal, goal_normalized=goal, intent=intent,

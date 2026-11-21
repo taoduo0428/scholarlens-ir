@@ -69,8 +69,19 @@ export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;task
     <div className="research-panel-heading"><h2>研究报告</h2>
       <button className="button button-secondary" onClick={()=>exportMarkdown(taskId,report.markdown)}>导出 Markdown</button></div>
     <p>{report.summary}</p>
+    {report.answerability&&<section aria-label="字段核验"><h3>字段核验</h3>
+      {report.field_requirements?.flatMap(q=>q.fields).map(f=>{
+        const d=report.answerability!.fields[f.field_id];
+        if(!d)return null;
+        const labels:Record<string,string>={answerable:"已核验",partially_answerable:"部分可答",insufficient_evidence:"证据不足",
+          source_capability_mismatch:"来源不能提供所需信息",unavailable_in_scope:"许可范围内无此信息",conflicted:"证据冲突",
+          not_comparable:"不可直接比较",blocked_by_permission:"权限受限"};
+        return <details key={f.field_id}><summary>{f.request} · {labels[d.status]||d.status}</summary>
+          <p>{f.datatype} · {d.reason} · {d.next_action}</p>
+          {d.bindings.map(b=><p key={b.evidence_id}>{b.locator.paper_id} · {b.locator.raw}</p>)}</details>;
+      })}</section>}
     {report.answer_groups&&<section aria-label="最终答案与证据">
-      <h3>{report.answer_groups.unanswerable?"最终问题仍无法回答":"可发布的直接结论"}</h3>
+      <h3>{report.answerability?.status==="partially_answerable"?"已核验的部分回答":report.answer_groups.unanswerable?"最终问题仍无法回答":"可发布的直接结论"}</h3>
       {([["direct","直接回答"],["background","背景与推理前提"],["incomparable","条件不可比"],["conflicting","相互矛盾的观察"]] as const).map(([key,label])=>{
         const ids=report.answer_groups![key];
         return ids.length>0&&<details key={key} open={key==="direct"}><summary>{label} · {ids.length}</summary>
