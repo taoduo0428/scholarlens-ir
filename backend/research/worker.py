@@ -7,6 +7,7 @@ from filelock import FileLock, Timeout
 
 from backend.research.graph import ResearchGraph
 from backend.research.provider_adapter import choose_action, plan_questions
+from backend.research.workspace_model import propose
 from backend.research.store import Conflict
 from backend.research.tools import ToolRegistry
 
@@ -186,6 +187,7 @@ class Worker:
             else None,
             question_planner=(lambda view, remaining: plan_questions(settings, view, remaining))
             if settings is not None else None,
+            semantic=(lambda phase, view, remaining: propose(settings, phase, view, remaining)) if settings else None,
             control=guard,
             report=self.report,
         )

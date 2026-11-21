@@ -19,6 +19,7 @@ import { AuthProvider, useAuth } from "./services/AuthContext";
 import { accountApi, sessionToken } from "./services/backend";
 import { AccountPage } from "./pages/AccountPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import { EvolutionLabPage } from "./pages/EvolutionLabPage";
 import { ResearchPage } from "./pages/ResearchPage";
 import { RESEARCH_ENABLED } from "./services/research";
 
@@ -363,6 +364,7 @@ function AppRoutes() {
       <Route path="/library" element={<LibraryPage />} />
       <Route path="/account" element={<AccountPage />} />
       <Route path="/assistant" element={<AssistantPage />} />
+      {import.meta.env.VITE_EVOLUTION_LAB==="true" && <Route path="/evolution-lab" element={<EvolutionLabPage/>}/>}
       {RESEARCH_ENABLED && <Route path="/research" element={<ResearchPage />} />}
       <Route path="/evaluation" element={<EvaluationPage />} />
       <Route path="/upload" element={<UploadPage />} />

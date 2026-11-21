@@ -1,0 +1,812 @@
+{
+  "protocol": "workspace-v4-release/1",
+  "development": {
+    "code": "e038a9f8f6c53d03d1cf9c2f2a8a3747b29d0eef57cf2659151789b2c6cc0aa1",
+    "policy": "5fa187cb7435f55babcf7c4b7d2a16366cafa45ae0768068497b5a37e34fb8df",
+    "dev": "6044e935ff4836dd610977756dc53f50a848612c51faa7a1196c3c7980bfb898"
+  },
+  "policy": {
+    "suite": "7f5014b844aa57e308ea3fc0b439a0368dfc5dfa609ce79c1a3a0ac95435ae63",
+    "skill": {
+      "schema_version": "research-skill/1",
+      "parent": "baseline-v1",
+      "intents": [
+        "comparison",
+        "conflicting_findings"
+      ],
+      "min_papers": 2,
+      "steps": [
+        "identify_comparators",
+        "collect_conditions",
+        "target_missing_paper"
+      ],
+      "on_missing": "record_gap",
+      "expected": "condition_matrix",
+      "dataset_hash": "92577aca7727cbdacdd515064fa26ca5ab259d94b04be7a4b25667cc6b37ce7b",
+      "trace_hashes": [
+        "7736ab3f11287ba179178a84e86f8384be28512f3ed41ae121899c9bf97ea76b",
+        "826cfa6c403015d5a05e75fc920fa3e0d7534df7e5d5d2b9a2a75841b1cd2430",
+        "c491c1a87a7b37134e01df7ea5f7cdb234d1abc97035b0a898033d07929d30b2"
+      ],
+      "status": "candidate"
+    },
+    "version": "rs-5a7929dd6e8ff7b0abb9",
+    "source_manifest": "92577aca7727cbdacdd515064fa26ca5ab259d94b04be7a4b25667cc6b37ce7b",
+    "training_traces": [
+      "7736ab3f11287ba179178a84e86f8384be28512f3ed41ae121899c9bf97ea76b",
+      "826cfa6c403015d5a05e75fc920fa3e0d7534df7e5d5d2b9a2a75841b1cd2430",
+      "c491c1a87a7b37134e01df7ea5f7cdb234d1abc97035b0a898033d07929d30b2"
+    ],
+    "code": "e038a9f8f6c53d03d1cf9c2f2a8a3747b29d0eef57cf2659151789b2c6cc0aa1",
+    "grid": [
+      {
+        "quota": 4,
+        "metrics": {
+          "n": 14,
+          "tools": 108,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 5997.16,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            35,
+            35
+          ],
+          "judged_claims": 34,
+          "supported_claims": 34,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        }
+      },
+      {
+        "quota": 2,
+        "metrics": {
+          "n": 14,
+          "tools": 108,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 6222.3,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            35,
+            35
+          ],
+          "judged_claims": 34,
+          "supported_claims": 34,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        }
+      }
+    ],
+    "quota": 4
+  },
+  "split_summaries": {
+    "train": {
+      "suite": "7f5014b844aa57e308ea3fc0b439a0368dfc5dfa609ce79c1a3a0ac95435ae63",
+      "policy": "5fa187cb7435f55babcf7c4b7d2a16366cafa45ae0768068497b5a37e34fb8df",
+      "split": "train",
+      "versions": {
+        "baseline": {
+          "n": 14,
+          "tools": 96,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 6896.8,
+          "exact_answers": [
+            0,
+            2
+          ],
+          "abstentions": [
+            0,
+            4
+          ],
+          "source_checks": [
+            25,
+            25
+          ],
+          "judged_claims": 0,
+          "supported_claims": 0,
+          "direct_relations": 0,
+          "proof_sufficient": [
+            0,
+            0
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "advanced": {
+          "n": 14,
+          "tools": 106,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 5699.96,
+          "exact_answers": [
+            0,
+            2
+          ],
+          "abstentions": [
+            0,
+            4
+          ],
+          "source_checks": [
+            37,
+            37
+          ],
+          "judged_claims": 0,
+          "supported_claims": 0,
+          "direct_relations": 0,
+          "proof_sufficient": [
+            0,
+            0
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "contract": {
+          "n": 14,
+          "tools": 108,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 8559.5,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            35,
+            35
+          ],
+          "judged_claims": 34,
+          "supported_claims": 34,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "adaptive": {
+          "n": 14,
+          "tools": 108,
+          "models": 56,
+          "tokens": null,
+          "cost": 0,
+          "wall_ms": 11315.84,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            35,
+            35
+          ],
+          "judged_claims": 34,
+          "supported_claims": 34,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "adaptive_control": {
+          "n": 14,
+          "tools": 108,
+          "models": 28,
+          "tokens": null,
+          "cost": 0,
+          "wall_ms": 9808.05,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            35,
+            35
+          ],
+          "judged_claims": 34,
+          "supported_claims": 34,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "skill": {
+          "n": 14,
+          "tools": 108,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 9396.84,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            35,
+            35
+          ],
+          "judged_claims": 34,
+          "supported_claims": 34,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        },
+        "harness": {
+          "n": 14,
+          "tools": 108,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 8336.15,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            35,
+            35
+          ],
+          "judged_claims": 34,
+          "supported_claims": 34,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        }
+      },
+      "real_llm_calls": 0
+    },
+    "dev": {
+      "suite": "7f5014b844aa57e308ea3fc0b439a0368dfc5dfa609ce79c1a3a0ac95435ae63",
+      "policy": "5fa187cb7435f55babcf7c4b7d2a16366cafa45ae0768068497b5a37e34fb8df",
+      "split": "dev",
+      "versions": {
+        "baseline": {
+          "n": 14,
+          "tools": 86,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 5788.17,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            0,
+            4
+          ],
+          "source_checks": [
+            18,
+            18
+          ],
+          "judged_claims": 0,
+          "supported_claims": 0,
+          "direct_relations": 0,
+          "proof_sufficient": [
+            0,
+            0
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "advanced": {
+          "n": 14,
+          "tools": 90,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 5615.61,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            0,
+            4
+          ],
+          "source_checks": [
+            26,
+            26
+          ],
+          "judged_claims": 0,
+          "supported_claims": 0,
+          "direct_relations": 0,
+          "proof_sufficient": [
+            0,
+            0
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "contract": {
+          "n": 14,
+          "tools": 94,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 7884.64,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            24,
+            24
+          ],
+          "judged_claims": 28,
+          "supported_claims": 28,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "adaptive": {
+          "n": 14,
+          "tools": 94,
+          "models": 56,
+          "tokens": null,
+          "cost": 0,
+          "wall_ms": 7008.86,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            24,
+            24
+          ],
+          "judged_claims": 28,
+          "supported_claims": 28,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "adaptive_control": {
+          "n": 14,
+          "tools": 94,
+          "models": 28,
+          "tokens": null,
+          "cost": 0,
+          "wall_ms": 6913.86,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            24,
+            24
+          ],
+          "judged_claims": 28,
+          "supported_claims": 28,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "skill": {
+          "n": 14,
+          "tools": 94,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 7187.55,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            24,
+            24
+          ],
+          "judged_claims": 28,
+          "supported_claims": 28,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        },
+        "harness": {
+          "n": 14,
+          "tools": 94,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 8171.5,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            24,
+            24
+          ],
+          "judged_claims": 28,
+          "supported_claims": 28,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        }
+      },
+      "real_llm_calls": 0
+    },
+    "independent": {
+      "suite": "7f5014b844aa57e308ea3fc0b439a0368dfc5dfa609ce79c1a3a0ac95435ae63",
+      "policy": "5fa187cb7435f55babcf7c4b7d2a16366cafa45ae0768068497b5a37e34fb8df",
+      "split": "independent",
+      "versions": {
+        "baseline": {
+          "n": 14,
+          "tools": 80,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 8268.74,
+          "exact_answers": [
+            1,
+            2
+          ],
+          "abstentions": [
+            0,
+            4
+          ],
+          "source_checks": [
+            17,
+            17
+          ],
+          "judged_claims": 0,
+          "supported_claims": 0,
+          "direct_relations": 0,
+          "proof_sufficient": [
+            0,
+            0
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "advanced": {
+          "n": 14,
+          "tools": 86,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 7530.97,
+          "exact_answers": [
+            1,
+            2
+          ],
+          "abstentions": [
+            0,
+            4
+          ],
+          "source_checks": [
+            25,
+            25
+          ],
+          "judged_claims": 0,
+          "supported_claims": 0,
+          "direct_relations": 0,
+          "proof_sufficient": [
+            0,
+            0
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "contract": {
+          "n": 14,
+          "tools": 92,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 7643.03,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            25,
+            25
+          ],
+          "judged_claims": 29,
+          "supported_claims": 29,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "adaptive": {
+          "n": 14,
+          "tools": 92,
+          "models": 56,
+          "tokens": null,
+          "cost": 0,
+          "wall_ms": 8252.08,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            25,
+            25
+          ],
+          "judged_claims": 29,
+          "supported_claims": 29,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "adaptive_control": {
+          "n": 14,
+          "tools": 92,
+          "models": 28,
+          "tokens": null,
+          "cost": 0,
+          "wall_ms": 7522.75,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            25,
+            25
+          ],
+          "judged_claims": 29,
+          "supported_claims": 29,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 0,
+          "human_quality": null
+        },
+        "skill": {
+          "n": 14,
+          "tools": 92,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 6482.97,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            25,
+            25
+          ],
+          "judged_claims": 29,
+          "supported_claims": 29,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        },
+        "harness": {
+          "n": 14,
+          "tools": 92,
+          "models": 0,
+          "tokens": 0,
+          "cost": 0,
+          "wall_ms": 7530.76,
+          "exact_answers": [
+            2,
+            2
+          ],
+          "abstentions": [
+            4,
+            4
+          ],
+          "source_checks": [
+            25,
+            25
+          ],
+          "judged_claims": 29,
+          "supported_claims": 29,
+          "direct_relations": 2,
+          "proof_sufficient": [
+            2,
+            14
+          ],
+          "skill_triggers": 6,
+          "human_quality": null
+        }
+      },
+      "real_llm_calls": 0,
+      "registry_versions": {
+        "skill": "9b04ccd765077e8f091079af2a294b7f5acc9bd83aec7794f0b9358defebe034",
+        "harness": "2dd332126c8eb8513f856c9a2101aa52bf2ef2b669628f7dc42ecfd08128b9d8"
+      },
+      "decision": "rejected",
+      "reasons": [
+        "awaiting_signed_independent_quality",
+        "no_demonstrated_gain"
+      ]
+    }
+  },
+  "lab": {
+    "runs": 294,
+    "decisions": [
+      {
+        "version": "9b04ccd765077e8f091079af2a294b7f5acc9bd83aec7794f0b9358defebe034",
+        "decision": "rejected"
+      },
+      {
+        "version": "2dd332126c8eb8513f856c9a2101aa52bf2ef2b669628f7dc42ecfd08128b9d8",
+        "decision": "rejected"
+      }
+    ]
+  },
+  "browser": {
+    "checks": [
+      {
+        "kind": "workspace",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "kind": "lab",
+        "width": 1440,
+        "scroll": 1440
+      },
+      {
+        "kind": "workspace",
+        "width": 820,
+        "scroll": 820
+      },
+      {
+        "kind": "lab",
+        "width": 820,
+        "scroll": 820
+      },
+      {
+        "kind": "workspace",
+        "width": 390,
+        "scroll": 390
+      },
+      {
+        "kind": "lab",
+        "width": 390,
+        "scroll": 390
+      }
+    ],
+    "errors": [],
+    "sourceVerified": true,
+    "otherTaskStatus": 404,
+    "otherLabStatus": 403
+  },
+  "files": {
+    "dev.json": "f23551d30e196e3447cc23f242b6cb67a9ffcb312d8bbf7b530e19843d261feb",
+    "independent.json": "b79f6c786b985da18b6c9a05bf1f917f4e1e44c698a6e9c5483dc831fe4acc69",
+    "lab.sqlite3": "81a0fe359133274c4d5607e034121ba819982ed1145e20608648d0b46b71e2ef",
+    "policy.dev-receipt.json": "641cef15f26523bd8fa9f3e27ed27502468adaba65c4ac5a1c9cc88be60bdd3a",
+    "policy.json": "34f5b46b59c7ec6356ff9a2be9929ce855b106a1983a80c892626a7f42b73d6b",
+    "train.json": "a6efb03903e5f981b17758e473f5172b4853ed7dfc852c1d16eafbdd783b750e"
+  }
+}

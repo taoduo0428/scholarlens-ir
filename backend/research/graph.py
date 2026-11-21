@@ -12,6 +12,7 @@ from langgraph.graph import END, START, StateGraph
 from langsmith import tracing_context
 
 from backend.research.context import working_context
+from backend.research import workspace_model
 from backend.research.harness import bounded_read, call_tool
 from backend.research.broad_recall import eligible, fair_rows, free_calls, grounded_query
 from backend.research.planner import covers, plan, query_for
@@ -63,6 +64,7 @@ class ResearchGraph:
         *,
         choose=None,
         question_planner=None,
+        semantic=None,
         experiment_skill=None,
         control=None,
         report=None,
@@ -74,6 +76,7 @@ class ResearchGraph:
         self.registry_factory = registry_factory
         self.choose = choose
         self.question_planner = question_planner
+        self.semantic = semantic
         self.experiment_skill = experiment_skill
         self.control = control or (lambda owner, uid: None)
         self.report = report
@@ -140,13 +143,17 @@ class ResearchGraph:
                 seconds=state.budget.max_duration_seconds
             )
         if not state.subtasks:
-            if state.retrieval_policy in {"V3", "V4", "V5", "V6", "V7"}:
+            if state.retrieval_policy in {"V3", "V4", "V5", "V6", "V7", "W4","E9"}:
                 from backend.research.questions import legacy_subtasks, make_plan
 
                 def propose(contract, errors):
                     if state.budget.model_calls_used >= state.budget.max_model_calls or self._remaining(state) <= 0:
                         raise ValueError("budget")
-                    state.budget.model_calls_used += 1
+                    if state.retrieval_policy in {"W4","E9"}:
+                        if not workspace_model.reserve(self.store,state,"planning"):
+                            raise ValueError("budget")
+                    else:
+                        state.budget.model_calls_used += 1
                     state.planning_calls += 1
                     view = {"task": contract, "validation_errors": list(errors)}
                     try:
@@ -154,11 +161,30 @@ class ResearchGraph:
                                              deadline=state.budget.deadline)
                     except ToolError:
                         raise ValueError("provider_timeout") from None
-                    return graph.model_dump() if hasattr(graph, "model_dump") else graph
+                    result = graph.model_dump() if hasattr(graph, "model_dump") else graph
+                    if state.retrieval_policy in {"W4","E9"}:
+                        from backend.research.questions import Blueprint, PATHS
+                        parsed = Blueprint.model_validate(result)
+                        required = PATHS[contract["intent"]]
+                        by_kind = {n.requirement.kind:n for n in parsed.nodes}
+                        if len(parsed.nodes)!=len(required) or any(
+                               node.requirement.min_papers < (2 if node.requirement.kind=="comparison" else 1)
+                               for node in parsed.nodes):
+                            raise ValueError("invalid_plan")
+                        if any(k not in by_kind or any(by_kind[required[d-1][0]].id not in by_kind[k].dependencies
+                               for d in deps if required[d-1][0] in by_kind) for k,deps in required):
+                            raise ValueError("invalid_plan")
+                    return result
 
                 personal = state.task.mode == "personal_model" and self.question_planner is not None
                 state.question_plan = make_plan(state, propose if personal else None)
                 state.subtasks = legacy_subtasks(state.question_plan)
+                if state.retrieval_policy in {"W4","E9"}:
+                    from backend.research.answer_contract import bind_answer
+                    state.answer_contract = bind_answer(state.question_plan)
+                    if state.retrieval_policy=="E9":
+                        from backend.research.field_contract import requirements
+                        state.field_requirements=requirements(state.question_plan,state.answer_contract)
             else:
                 state.subtasks = plan(state)
         self._save(state, rev, "started")
@@ -227,10 +253,15 @@ class ResearchGraph:
         action = Search(subtask_id=sub.id, query=query, strategy=strategy)
         targets = set(_uncovered_papers(state)) if state.queries else set()
         view = working_context(state)
-        if self.choose is not None and state.task.mode == "personal_model":
+        can_choose = not state.answer_contract or workspace_model.allowed(state,"decision")
+        if self.choose is not None and state.task.mode == "personal_model" and can_choose:
             if state.budget.model_calls_used >= state.budget.max_model_calls:
                 raise Halt("budget")
-            state.budget.model_calls_used += 1
+            if state.answer_contract:
+                if not workspace_model.reserve(self.store,state,"decision"):
+                    return action
+            else:
+                state.budget.model_calls_used += 1
             try:
                 proposed = bounded_read(
                     self.choose,
@@ -239,7 +270,15 @@ class ResearchGraph:
                     deadline=state.budget.deadline,
                     limit=20,
                 )
+            except ProviderError:
+                if not state.answer_contract:
+                    raise
+                state.warnings.append("workspace_decision_fallback")
+                return action
             except ToolError as exc:
+                if state.answer_contract and self._remaining(state)>0:
+                    state.warnings.append("workspace_decision_fallback")
+                    return action
                 if exc.code != "tool_timeout":
                     raise
                 if self._remaining(state) <= 0:
@@ -375,7 +414,7 @@ class ResearchGraph:
                 broad = state.retrieval_policy != "V1"
                 if broad:
                     query = grounded_query(state.task.goal, query, state.task.constraints)
-                if self.experiment_skill is not None and state.retrieval_policy in {"V6", "V7"}:
+                if self.experiment_skill is not None and state.retrieval_policy in {"V6", "V7", "W4"}:
                     from backend.research.skills.program import interpret
 
                     hint, guided, operations = interpret(self.experiment_skill, state)
@@ -386,7 +425,12 @@ class ResearchGraph:
                         state.skill_steps = list(operations)
                 filters = action.filters.model_dump(exclude_none=True)
                 limit = min(4, self._tuning(state).evidence_per_subtask)
-                if broad and state.candidate_papers:
+                question_fields=next((r.fields for r in state.field_requirements if r.question_id==sub.id),[])
+                directed=bool(state.task.scope.paper_ids and any(f.operation in {"quote","layout"} for f in question_fields))
+                if directed:
+                    ids=list(state.task.scope.paper_ids)
+                    targets=[]
+                elif broad and state.candidate_papers:
                     ids = list(state.candidate_papers)
                 elif not targets:
                     papers = self._tool(
@@ -443,27 +487,46 @@ class ResearchGraph:
                                 "paper_ids": ids,
                                 "slot": slot,
                                 "limit": min(20, 3 * limit) if broad else limit,
+                                **({"abstract_opening":True} if directed else {}),
                                 **filters,
                             },
                         )["passages"]
                         if ids
                         else []
                     )
+            if state.answer_contract and len(state.subtasks) == 1 and state.answer_contract.answer_type == "quoted_text":
+                from backend.research.workspace_proof import opening
+                rows = sorted(rows, key=lambda r: not opening(r, state.task.scope.paper_ids))
             old_count = len(state.evidence_refs)
             eligible_slots = {slot}
             if targets:
                 eligible_slots.update(s for task in state.subtasks for s in task.required_slots)
             if state.retrieval_policy != "V1":
-                rows = fair_rows(rows, state.evidence_refs)
+                prior = state.evidence_refs
+                if state.field_requirements:
+                    seen=set(state.question_reads.get(sub.id,[]))
+                    prior=[r for r in prior if r.evidence_id in seen]
+                rows = fair_rows(rows, prior)
             for row in rows:
                 if state.retrieval_policy != "V1":
                     if free_calls(state) < 2:
                         break
                     if row["source_kind"] != "metadata" and (
-                        eligible(state.task.goal, row)
+                        (bool(state.field_requirements) and row["paper_id"] in state.task.scope.paper_ids)
+                        or eligible(state.task.goal, row)
                         or any(covers(s, row["quote"], state.task.goal) for s in eligible_slots)
                     ):
                         self._record_evidence(state, registry, row)
+                        if state.field_requirements and row["evidence_id"] in {e.evidence_id for e in state.evidence_refs}:
+                            eid=row["evidence_id"]
+                            state.evidence_questions.setdefault(eid,sub.id)
+                            reads=state.question_reads.setdefault(sub.id,[])
+                            if eid not in reads and any(ref.evidence_id==eid and ref.quote_hash==row["quote_hash"] for ref in state.evidence_refs):
+                                reads.append(eid)
+                        if state.answer_contract and state.answer_contract.answer_type == "quoted_text":
+                            from backend.research.workspace_proof import opening
+                            if opening(row, state.task.scope.paper_ids) and row["evidence_id"] in {e.evidence_id for e in state.evidence_refs}:
+                                break
                     continue
                 if row["source_kind"] != "metadata" and any(
                     covers(s, row["quote"], state.task.goal) for s in eligible_slots
@@ -523,7 +586,7 @@ class ResearchGraph:
             gap = sub.required_slots[0]
             sub.missing_slots, sub.status = [gap], "active"
             coverage[sub.id] = [s for s in coverage[sub.id] if s != gap]
-        if state.question_plan and state.retrieval_policy in {"V4", "V5", "V6", "V7"}:
+        if state.question_plan and state.retrieval_policy in {"V4", "V5", "V6", "V7", "W4"}:
             from backend.research.critic import assess, prioritize
 
             assessments = assess(state, texts)
@@ -537,6 +600,11 @@ class ResearchGraph:
             from backend.research.plan_history import record_order
 
             record_order(state)
+        workspace_proof = None
+        if state.answer_contract:
+            from backend.research.workspace_controller import inspect_round
+            workspace_proof = inspect_round(state, texts)
+            coverage = {s.id: [v for v in s.required_slots if v not in s.missing_slots] for s in state.subtasks}
         missing = list(dict.fromkeys(s for sub in state.subtasks for s in sub.missing_slots))
         state.coverage = Coverage(
             per_subtask=coverage,
@@ -562,6 +630,9 @@ class ResearchGraph:
                 state.stop_reason = "plateau"
             elif state.budget.rounds_used >= state.budget.max_rounds or self._remaining(state) <= 0:
                 state.stop_reason = "budget"
+        if workspace_proof is not None:
+            from backend.research.workspace_controller import record
+            record(state, workspace_proof)
         self._save(state, rev, "step")
         return {"route": "finish" if state.stop_reason else "retrieve"}
 
@@ -578,7 +649,12 @@ class ResearchGraph:
                     state.corpus_generation,
                     deadline=state.budget.deadline,
                 )
-                self.report(state, self.store, registry)
+                if state.answer_contract and self.semantic:
+                    # Only the canonical source-checking publisher may invoke this hook.
+                    from backend.research.reports import generate_report
+                    generate_report(state,self.store,registry,semantic=self.semantic)
+                else:
+                    self.report(state, self.store, registry)
             except ToolError as exc:
                 if exc.code == "corpus_generation_unavailable":
                     state.status, state.stop_reason = "paused", None

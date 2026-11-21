@@ -8,6 +8,8 @@ from uuid import UUID
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
 from backend.research.questions import QuestionPlan
+from backend.research.answer_contract import AnswerContract
+from backend.research.field_contract import AnswerRequirement
 
 Id = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=192)]
 Summary = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1, max_length=500)]
@@ -220,8 +222,14 @@ class ResearchState(Contract):
     actions: list[ActionRecord] = Field(default_factory=list, max_length=30)
     decisions: list[Decision] = Field(default_factory=list, max_length=30)
     budget: Budget = Field(default_factory=Budget)
-    retrieval_policy: Literal["V1", "V2", "V3", "V4", "V5", "V6", "V7"] = "V1"
+    retrieval_policy: Literal["V1", "V2", "V3", "V4", "V5", "V6", "V7", "W4", "E9"] = "V1"
+    field_requirements: list[AnswerRequirement] = Field(default_factory=list, max_length=6)
+    evidence_questions: dict[Id, Id] = Field(default_factory=dict, max_length=30)
+    question_reads: dict[Id,list[Id]] = Field(default_factory=dict,max_length=6)
     question_plan: QuestionPlan | None = None
+    answer_contract: AnswerContract | None = None
+    workspace_trace: list[dict] = Field(default_factory=list, max_length=30)
+    reasoning_calls: dict[str, int] = Field(default_factory=dict, max_length=5)
     planning_calls: int = Field(default=0, ge=0, le=20)
     question_assessments: dict[Id, dict] = Field(default_factory=dict, max_length=6)
     skill_steps: list[Id] = Field(default_factory=list, max_length=4)

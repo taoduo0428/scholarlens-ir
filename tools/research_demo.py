@@ -131,6 +131,13 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
 
     app.include_router(accounts_router(accounts, read_paper))
     app.include_router(workspace_router(accounts, read_paper))
+    import os
+
+    if os.getenv("SCHOLARLENS_EVOLUTION_LAB") == "true":
+        from backend.research.lab_api import router as lab_router
+
+        lab_path = Path(os.getenv("SCHOLARLENS_LAB_DB") or (runtime / "lab.sqlite3"))
+        app.include_router(lab_router(accounts, lab_path))
     worker = attach(
         app, config, accounts, lambda _scope: corpus, report=generate_report
     )

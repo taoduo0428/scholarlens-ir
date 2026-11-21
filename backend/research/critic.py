@@ -39,8 +39,7 @@ def assess(state, rows):
             by_question[claim.subtask_id].append(claim)
     measurements = [c for c in claims if c.support_status == "verified" and c.claim_type == "metric"
                     and measurement_key(c.conditions) is not None and c.conditions.unit]
-    compatible = [(a, b) for a, b in combinations(measurements, 2)
-                  if set(a.paper_ids).isdisjoint(b.paper_ids) and measurement_key(a.conditions) == measurement_key(b.conditions)]
+    lineage = {}
     conflicting_ids = {cid for pair in graph["conflicts"] for cid in pair["claim_ids"]}
     result = {}
     nodes = list(state.question_plan.graph.nodes)
@@ -50,8 +49,12 @@ def assess(state, rows):
         kind = node.requirement.kind
         candidates = by_question[node.id]
         selected = candidates
+        lineage[node.id]={node.id}.union(*(lineage[d] for d in node.dependencies))
+        metrics = [c for c in measurements if c.subtask_id in lineage[node.id]]
+        compatible = [(a,b) for a,b in combinations(metrics,2)
+                      if set(a.paper_ids).isdisjoint(b.paper_ids) and measurement_key(a.conditions)==measurement_key(b.conditions)]
         if kind == "conditions":
-            selected = measurements
+            selected = metrics
         elif kind == "comparison":
             selected = list(compatible[0]) if compatible else []
         elif kind == "mechanism":

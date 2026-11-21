@@ -1,0 +1,495 @@
+{
+  "dataset": {
+    "generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+    "groups": [
+      {
+        "papers": [
+          {
+            "abstract_sha": "b6c4d5ad394ffe38352f0fb48d3d0656e2a69aa6c5dd33f66d3c1791ecb0f33f",
+            "paper_id": "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0",
+            "row": 191,
+            "title": "Building Wavelet Histograms on Large Data in MapReduce"
+          },
+          {
+            "abstract_sha": "290195b921c9eccaa5e4fa7f202016eb1a1db15eed3fd1f3f94169f33f5c5ef7",
+            "paper_id": "source-sha256:60e3027c7599b75df02ca959c002d8933feec8dbc70be6324620f9be2905911b",
+            "row": 2632,
+            "title": "Interdependence between Green Financial Instruments and Major Conventional Assets: A Wavelet-Based Network Analysis"
+          }
+        ],
+        "split": "train",
+        "tasks": [
+          {
+            "goal": "Quote the first complete sentence of the abstract of \"Building Wavelet Histograms on Large Data in MapReduce\".",
+            "id": "wavelet-direct",
+            "kind": "direct",
+            "scope": [
+              "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0"
+            ]
+          },
+          {
+            "goal": "Compare the approaches to wavelet in \"Building Wavelet Histograms on Large Data in MapReduce\" and \"Interdependence between Green Financial Instruments and Major Conventional Assets: A Wavelet-Based Network Analysis\".",
+            "id": "wavelet-comparison",
+            "kind": "comparison",
+            "scope": [
+              "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0",
+              "source-sha256:60e3027c7599b75df02ca959c002d8933feec8dbc70be6324620f9be2905911b"
+            ]
+          },
+          {
+            "goal": "Trace the causal mechanism linking the approach and outcome in \"Interdependence between Green Financial Instruments and Major Conventional Assets: A Wavelet-Based Network Analysis\".",
+            "id": "wavelet-multihop",
+            "kind": "multihop",
+            "scope": [
+              "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0",
+              "source-sha256:60e3027c7599b75df02ca959c002d8933feec8dbc70be6324620f9be2905911b"
+            ]
+          },
+          {
+            "goal": "Compare the measured results under matching datasets, units, setup and protocol for wavelet.",
+            "id": "wavelet-alignment",
+            "kind": "alignment",
+            "scope": [
+              "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0",
+              "source-sha256:60e3027c7599b75df02ca959c002d8933feec8dbc70be6324620f9be2905911b"
+            ]
+          },
+          {
+            "goal": "Do the conclusions about wavelet contradict each other under the same conditions?",
+            "id": "wavelet-controversy",
+            "kind": "controversy",
+            "scope": [
+              "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0",
+              "source-sha256:60e3027c7599b75df02ca959c002d8933feec8dbc70be6324620f9be2905911b"
+            ]
+          },
+          {
+            "goal": "What is the physical shelf location of the printed copy of \"Interdependence between Green Financial Instruments and Major Conventional Assets: A Wavelet-Based Network Analysis\"?",
+            "id": "wavelet-absent",
+            "kind": "absent",
+            "scope": [
+              "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0",
+              "source-sha256:60e3027c7599b75df02ca959c002d8933feec8dbc70be6324620f9be2905911b"
+            ]
+          },
+          {
+            "goal": "Given \"Building Wavelet Histograms on Large Data in MapReduce\", give the institutional archive accession number of its signed original.",
+            "id": "wavelet-distractor",
+            "kind": "distractor",
+            "scope": [
+              "source-sha256:eda3848e21de9216f9551229d8d8c1315ee47c09206ed7a542003047f2042dc0"
+            ]
+          }
+        ],
+        "topic": "wavelet"
+      },
+      {
+        "papers": [
+          {
+            "abstract_sha": "8cc5d6293ef802950f4da07d4b45cd94d0731438b96ca7f0b74ca7f34a02f938",
+            "paper_id": "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6",
+            "row": 281,
+            "title": "Ontology-Based Administration of Web Directories"
+          },
+          {
+            "abstract_sha": "0aad0b6920ea4dfbf55221ad61aecac3f9131a655640410fbc11456b8e001b37",
+            "paper_id": "source-sha256:075e2e80409c8cae50f3400c558842d010139d996b03e878ff63746d40d470ef",
+            "row": 2908,
+            "title": "Search-Optimized Quantization in Biomedical Ontology Alignment"
+          }
+        ],
+        "split": "train",
+        "tasks": [
+          {
+            "goal": "Quote the first complete sentence of the abstract of \"Ontology-Based Administration of Web Directories\".",
+            "id": "ontology-direct",
+            "kind": "direct",
+            "scope": [
+              "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6"
+            ]
+          },
+          {
+            "goal": "Compare the approaches to ontology in \"Ontology-Based Administration of Web Directories\" and \"Search-Optimized Quantization in Biomedical Ontology Alignment\".",
+            "id": "ontology-comparison",
+            "kind": "comparison",
+            "scope": [
+              "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6",
+              "source-sha256:075e2e80409c8cae50f3400c558842d010139d996b03e878ff63746d40d470ef"
+            ]
+          },
+          {
+            "goal": "Trace the causal mechanism linking the approach and outcome in \"Search-Optimized Quantization in Biomedical Ontology Alignment\".",
+            "id": "ontology-multihop",
+            "kind": "multihop",
+            "scope": [
+              "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6",
+              "source-sha256:075e2e80409c8cae50f3400c558842d010139d996b03e878ff63746d40d470ef"
+            ]
+          },
+          {
+            "goal": "Compare the measured results under matching datasets, units, setup and protocol for ontology.",
+            "id": "ontology-alignment",
+            "kind": "alignment",
+            "scope": [
+              "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6",
+              "source-sha256:075e2e80409c8cae50f3400c558842d010139d996b03e878ff63746d40d470ef"
+            ]
+          },
+          {
+            "goal": "Do the conclusions about ontology contradict each other under the same conditions?",
+            "id": "ontology-controversy",
+            "kind": "controversy",
+            "scope": [
+              "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6",
+              "source-sha256:075e2e80409c8cae50f3400c558842d010139d996b03e878ff63746d40d470ef"
+            ]
+          },
+          {
+            "goal": "What is the physical shelf location of the printed copy of \"Search-Optimized Quantization in Biomedical Ontology Alignment\"?",
+            "id": "ontology-absent",
+            "kind": "absent",
+            "scope": [
+              "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6",
+              "source-sha256:075e2e80409c8cae50f3400c558842d010139d996b03e878ff63746d40d470ef"
+            ]
+          },
+          {
+            "goal": "Given \"Ontology-Based Administration of Web Directories\", give the institutional archive accession number of its signed original.",
+            "id": "ontology-distractor",
+            "kind": "distractor",
+            "scope": [
+              "source-sha256:e1dcc89203229bb9b7550c4c66e720078362264ed54c5c4dda734a6d96b4d5d6"
+            ]
+          }
+        ],
+        "topic": "ontology"
+      },
+      {
+        "papers": [
+          {
+            "abstract_sha": "034760acf14b97bdac9ba7b297dd38c020f9d5a1f45c57528cda8fd75125a07a",
+            "paper_id": "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977",
+            "row": 100,
+            "title": "DIFFUSION OF A FLUID THROUGH A VISCOELASTIC SOLID"
+          },
+          {
+            "abstract_sha": "7e4d238919d26f785982ec77b2a4b5db5ff1d3d12a461cca718ceabd62dc567c",
+            "paper_id": "source-sha256:44259189dd545328f5a06d95edf7da62dff7dfc7285cdba0eb0a2db14f115fdf",
+            "row": 2464,
+            "title": "Stokes-Brinkman-Darcy models for fluid-porous systems: derivation, analysis and validation"
+          }
+        ],
+        "split": "dev",
+        "tasks": [
+          {
+            "goal": "Quote the first complete sentence of the abstract of \"DIFFUSION OF A FLUID THROUGH A VISCOELASTIC SOLID\".",
+            "id": "fluid-direct",
+            "kind": "direct",
+            "scope": [
+              "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977"
+            ]
+          },
+          {
+            "goal": "Compare the approaches to fluid in \"DIFFUSION OF A FLUID THROUGH A VISCOELASTIC SOLID\" and \"Stokes-Brinkman-Darcy models for fluid-porous systems: derivation, analysis and validation\".",
+            "id": "fluid-comparison",
+            "kind": "comparison",
+            "scope": [
+              "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977",
+              "source-sha256:44259189dd545328f5a06d95edf7da62dff7dfc7285cdba0eb0a2db14f115fdf"
+            ]
+          },
+          {
+            "goal": "Trace the causal mechanism linking the approach and outcome in \"Stokes-Brinkman-Darcy models for fluid-porous systems: derivation, analysis and validation\".",
+            "id": "fluid-multihop",
+            "kind": "multihop",
+            "scope": [
+              "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977",
+              "source-sha256:44259189dd545328f5a06d95edf7da62dff7dfc7285cdba0eb0a2db14f115fdf"
+            ]
+          },
+          {
+            "goal": "Compare the measured results under matching datasets, units, setup and protocol for fluid.",
+            "id": "fluid-alignment",
+            "kind": "alignment",
+            "scope": [
+              "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977",
+              "source-sha256:44259189dd545328f5a06d95edf7da62dff7dfc7285cdba0eb0a2db14f115fdf"
+            ]
+          },
+          {
+            "goal": "Do the conclusions about fluid contradict each other under the same conditions?",
+            "id": "fluid-controversy",
+            "kind": "controversy",
+            "scope": [
+              "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977",
+              "source-sha256:44259189dd545328f5a06d95edf7da62dff7dfc7285cdba0eb0a2db14f115fdf"
+            ]
+          },
+          {
+            "goal": "What is the physical shelf location of the printed copy of \"Stokes-Brinkman-Darcy models for fluid-porous systems: derivation, analysis and validation\"?",
+            "id": "fluid-absent",
+            "kind": "absent",
+            "scope": [
+              "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977",
+              "source-sha256:44259189dd545328f5a06d95edf7da62dff7dfc7285cdba0eb0a2db14f115fdf"
+            ]
+          },
+          {
+            "goal": "Given \"DIFFUSION OF A FLUID THROUGH A VISCOELASTIC SOLID\", give the institutional archive accession number of its signed original.",
+            "id": "fluid-distractor",
+            "kind": "distractor",
+            "scope": [
+              "source-sha256:b76fa4dd158e1f340930ea009ca990b110689fcac808901b64946f6d1f511977"
+            ]
+          }
+        ],
+        "topic": "fluid"
+      },
+      {
+        "papers": [
+          {
+            "abstract_sha": "2ec1a6c3cbe9748c07989d48f6768f1bffc46a7f9386f2c0f427a5aeeaf9e831",
+            "paper_id": "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571",
+            "row": 1242,
+            "title": "Minimal Solvers for Rectifying from Radially-Distorted Conjugate Translations"
+          },
+          {
+            "abstract_sha": "c85e89babc497b4e7f8a39398371ef87069258ddf53e01418453c0b012d6766f",
+            "paper_id": "source-sha256:e4d88985e7817aa9debb216498277b9983692cee3d1198fd2f6258fccc01d8e1",
+            "row": 2075,
+            "title": "Optimizing Deep Transformers for Chinese-Thai Low-Resource Translation"
+          }
+        ],
+        "split": "dev",
+        "tasks": [
+          {
+            "goal": "Quote the first complete sentence of the abstract of \"Minimal Solvers for Rectifying from Radially-Distorted Conjugate Translations\".",
+            "id": "translation-direct",
+            "kind": "direct",
+            "scope": [
+              "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571"
+            ]
+          },
+          {
+            "goal": "Compare the approaches to translation in \"Minimal Solvers for Rectifying from Radially-Distorted Conjugate Translations\" and \"Optimizing Deep Transformers for Chinese-Thai Low-Resource Translation\".",
+            "id": "translation-comparison",
+            "kind": "comparison",
+            "scope": [
+              "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571",
+              "source-sha256:e4d88985e7817aa9debb216498277b9983692cee3d1198fd2f6258fccc01d8e1"
+            ]
+          },
+          {
+            "goal": "Trace the causal mechanism linking the approach and outcome in \"Optimizing Deep Transformers for Chinese-Thai Low-Resource Translation\".",
+            "id": "translation-multihop",
+            "kind": "multihop",
+            "scope": [
+              "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571",
+              "source-sha256:e4d88985e7817aa9debb216498277b9983692cee3d1198fd2f6258fccc01d8e1"
+            ]
+          },
+          {
+            "goal": "Compare the measured results under matching datasets, units, setup and protocol for translation.",
+            "id": "translation-alignment",
+            "kind": "alignment",
+            "scope": [
+              "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571",
+              "source-sha256:e4d88985e7817aa9debb216498277b9983692cee3d1198fd2f6258fccc01d8e1"
+            ]
+          },
+          {
+            "goal": "Do the conclusions about translation contradict each other under the same conditions?",
+            "id": "translation-controversy",
+            "kind": "controversy",
+            "scope": [
+              "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571",
+              "source-sha256:e4d88985e7817aa9debb216498277b9983692cee3d1198fd2f6258fccc01d8e1"
+            ]
+          },
+          {
+            "goal": "What is the physical shelf location of the printed copy of \"Optimizing Deep Transformers for Chinese-Thai Low-Resource Translation\"?",
+            "id": "translation-absent",
+            "kind": "absent",
+            "scope": [
+              "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571",
+              "source-sha256:e4d88985e7817aa9debb216498277b9983692cee3d1198fd2f6258fccc01d8e1"
+            ]
+          },
+          {
+            "goal": "Given \"Minimal Solvers for Rectifying from Radially-Distorted Conjugate Translations\", give the institutional archive accession number of its signed original.",
+            "id": "translation-distractor",
+            "kind": "distractor",
+            "scope": [
+              "source-sha256:7ba4ee0d679231affe7e9d2b72549f0a3ef2f82b5113cc57cb4278992e5bd571"
+            ]
+          }
+        ],
+        "topic": "translation"
+      },
+      {
+        "papers": [
+          {
+            "abstract_sha": "530c641e1f261c482c07fc34d4f3bfca5b464e817e2d85be77e795e4b2ac9c05",
+            "paper_id": "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8",
+            "row": 2758,
+            "title": "Generating Building-Level Heat Demand Time Series by Combining Occupancy Simulations and Thermal Modeling"
+          },
+          {
+            "abstract_sha": "8821cc2c6c02210239e0236d949c7e5d28e10de4218b0c115394d9735070fcf4",
+            "paper_id": "source-sha256:0fbd1f08216b02e5fe2c460ef244283433e5031d9c7a75aa223c5f3abf33dfa4",
+            "row": 1574,
+            "title": "Nonlinear Iterative Projection Methods with Multigrid in Photon Frequency for Thermal Radiative Transfer"
+          }
+        ],
+        "split": "independent",
+        "tasks": [
+          {
+            "goal": "Quote the first complete sentence of the abstract of \"Generating Building-Level Heat Demand Time Series by Combining Occupancy Simulations and Thermal Modeling\".",
+            "id": "thermal-direct",
+            "kind": "direct",
+            "scope": [
+              "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8"
+            ]
+          },
+          {
+            "goal": "Compare the approaches to thermal in \"Generating Building-Level Heat Demand Time Series by Combining Occupancy Simulations and Thermal Modeling\" and \"Nonlinear Iterative Projection Methods with Multigrid in Photon Frequency for Thermal Radiative Transfer\".",
+            "id": "thermal-comparison",
+            "kind": "comparison",
+            "scope": [
+              "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8",
+              "source-sha256:0fbd1f08216b02e5fe2c460ef244283433e5031d9c7a75aa223c5f3abf33dfa4"
+            ]
+          },
+          {
+            "goal": "Trace the causal mechanism linking the approach and outcome in \"Nonlinear Iterative Projection Methods with Multigrid in Photon Frequency for Thermal Radiative Transfer\".",
+            "id": "thermal-multihop",
+            "kind": "multihop",
+            "scope": [
+              "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8",
+              "source-sha256:0fbd1f08216b02e5fe2c460ef244283433e5031d9c7a75aa223c5f3abf33dfa4"
+            ]
+          },
+          {
+            "goal": "Compare the measured results under matching datasets, units, setup and protocol for thermal.",
+            "id": "thermal-alignment",
+            "kind": "alignment",
+            "scope": [
+              "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8",
+              "source-sha256:0fbd1f08216b02e5fe2c460ef244283433e5031d9c7a75aa223c5f3abf33dfa4"
+            ]
+          },
+          {
+            "goal": "Do the conclusions about thermal contradict each other under the same conditions?",
+            "id": "thermal-controversy",
+            "kind": "controversy",
+            "scope": [
+              "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8",
+              "source-sha256:0fbd1f08216b02e5fe2c460ef244283433e5031d9c7a75aa223c5f3abf33dfa4"
+            ]
+          },
+          {
+            "goal": "What is the physical shelf location of the printed copy of \"Nonlinear Iterative Projection Methods with Multigrid in Photon Frequency for Thermal Radiative Transfer\"?",
+            "id": "thermal-absent",
+            "kind": "absent",
+            "scope": [
+              "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8",
+              "source-sha256:0fbd1f08216b02e5fe2c460ef244283433e5031d9c7a75aa223c5f3abf33dfa4"
+            ]
+          },
+          {
+            "goal": "Given \"Generating Building-Level Heat Demand Time Series by Combining Occupancy Simulations and Thermal Modeling\", give the institutional archive accession number of its signed original.",
+            "id": "thermal-distractor",
+            "kind": "distractor",
+            "scope": [
+              "source-sha256:76450f2b78bbaf1034699e646c6b6a41b67f415f358d7266155061b051062ac8"
+            ]
+          }
+        ],
+        "topic": "thermal"
+      },
+      {
+        "papers": [
+          {
+            "abstract_sha": "371afe4fae2597e28470fe2bf398db2a405759b0af79416bccfe92318fe61a0e",
+            "paper_id": "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23",
+            "row": 587,
+            "title": "Language Recognition Power and Succinctness of Affine Automata ⋆"
+          },
+          {
+            "abstract_sha": "5fcef42b8b0c8186b4e70c0f381b6a60b608ed5259a609d2df22b466d02d0929",
+            "paper_id": "source-sha256:dc3b6dd25d268aed963478950023a6e80140f35c94b7cce4a1a9e54d5df87bdc",
+            "row": 528,
+            "title": "Weighted Automata and Logics for Infinite Nested Words"
+          }
+        ],
+        "split": "independent",
+        "tasks": [
+          {
+            "goal": "Quote the first complete sentence of the abstract of \"Language Recognition Power and Succinctness of Affine Automata ⋆\".",
+            "id": "automata-direct",
+            "kind": "direct",
+            "scope": [
+              "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23"
+            ]
+          },
+          {
+            "goal": "Compare the approaches to automata in \"Language Recognition Power and Succinctness of Affine Automata ⋆\" and \"Weighted Automata and Logics for Infinite Nested Words\".",
+            "id": "automata-comparison",
+            "kind": "comparison",
+            "scope": [
+              "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23",
+              "source-sha256:dc3b6dd25d268aed963478950023a6e80140f35c94b7cce4a1a9e54d5df87bdc"
+            ]
+          },
+          {
+            "goal": "Trace the causal mechanism linking the approach and outcome in \"Weighted Automata and Logics for Infinite Nested Words\".",
+            "id": "automata-multihop",
+            "kind": "multihop",
+            "scope": [
+              "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23",
+              "source-sha256:dc3b6dd25d268aed963478950023a6e80140f35c94b7cce4a1a9e54d5df87bdc"
+            ]
+          },
+          {
+            "goal": "Compare the measured results under matching datasets, units, setup and protocol for automata.",
+            "id": "automata-alignment",
+            "kind": "alignment",
+            "scope": [
+              "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23",
+              "source-sha256:dc3b6dd25d268aed963478950023a6e80140f35c94b7cce4a1a9e54d5df87bdc"
+            ]
+          },
+          {
+            "goal": "Do the conclusions about automata contradict each other under the same conditions?",
+            "id": "automata-controversy",
+            "kind": "controversy",
+            "scope": [
+              "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23",
+              "source-sha256:dc3b6dd25d268aed963478950023a6e80140f35c94b7cce4a1a9e54d5df87bdc"
+            ]
+          },
+          {
+            "goal": "What is the physical shelf location of the printed copy of \"Weighted Automata and Logics for Infinite Nested Words\"?",
+            "id": "automata-absent",
+            "kind": "absent",
+            "scope": [
+              "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23",
+              "source-sha256:dc3b6dd25d268aed963478950023a6e80140f35c94b7cce4a1a9e54d5df87bdc"
+            ]
+          },
+          {
+            "goal": "Given \"Language Recognition Power and Succinctness of Affine Automata ⋆\", give the institutional archive accession number of its signed original.",
+            "id": "automata-distractor",
+            "kind": "distractor",
+            "scope": [
+              "source-sha256:ae5c36c04c6b2665de841f9b5f4e0e13d1568ab8ae919b8f8562585a05c0db23"
+            ]
+          }
+        ],
+        "topic": "automata"
+      }
+    ],
+    "schema": "workspace-suite/1"
+  },
+  "sha256": "7f5014b844aa57e308ea3fc0b439a0368dfc5dfa609ce79c1a3a0ac95435ae63"
+}

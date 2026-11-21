@@ -38,6 +38,7 @@ class SearchRequest(SearchFilter):
 
 class PassageRequest(SearchRequest):
     slot: Slot | None = None
+    abstract_opening: bool = False
 
 
 class PaperRequest(Contract):
@@ -166,6 +167,12 @@ class ToolRegistry:
                 continue
             for row in passages_for(doc):
                 rows[row["chunk_id"]] = (doc, row)
+        if req.abstract_opening:
+            # _candidates already uses the same account, scope and document access checks.
+            if not req.paper_ids:
+                raise ToolError("explicit_paper_required")
+            return {"passages":[passage(doc,row,self.generation) for doc,row in rows.values()
+                                if row["field"]=="abstract" and row["offset_start"]==0][:req.limit]}
         keyword, dense = [], []
         if req.strategy != "semantic":
             keyword = bm25(query, [(cid, tokens(row["text"])) for cid, (_, row) in rows.items()])
