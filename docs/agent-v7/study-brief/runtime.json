@@ -1,0 +1,148 @@
+[
+  {
+    "clients": 1,
+    "workers": 1,
+    "runs": [
+      {
+        "owner": 1,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 0.532,
+        "model_calls": 0
+      }
+    ],
+    "p50_seconds": 0.532,
+    "p95_seconds": 0.532,
+    "restored_reports": 1
+  },
+  {
+    "clients": 4,
+    "workers": 1,
+    "runs": [
+      {
+        "owner": 1,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 0.969,
+        "model_calls": 0
+      },
+      {
+        "owner": 2,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 1.875,
+        "model_calls": 0
+      },
+      {
+        "owner": 3,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 0.531,
+        "model_calls": 0
+      },
+      {
+        "owner": 4,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 1.422,
+        "model_calls": 0
+      }
+    ],
+    "p50_seconds": 0.969,
+    "p95_seconds": 1.875,
+    "restored_reports": 4
+  },
+  {
+    "clients": 12,
+    "workers": 1,
+    "runs": [
+      {
+        "owner": 1,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 1.188,
+        "model_calls": 0
+      },
+      {
+        "owner": 2,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 0.438,
+        "model_calls": 0
+      },
+      {
+        "owner": 3,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 1.797,
+        "model_calls": 0
+      },
+      {
+        "owner": 4,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 4.344,
+        "model_calls": 0
+      },
+      {
+        "owner": 5,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 3.438,
+        "model_calls": 0
+      },
+      {
+        "owner": 6,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 2.375,
+        "model_calls": 0
+      },
+      {
+        "owner": 7,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 4.781,
+        "model_calls": 0
+      },
+      {
+        "owner": 8,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 0.625,
+        "model_calls": 0
+      },
+      {
+        "owner": 9,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 5.156,
+        "model_calls": 0
+      },
+      {
+        "owner": 10,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 2.906,
+        "model_calls": 0
+      },
+      {
+        "owner": 11,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 5.563,
+        "model_calls": 0
+      },
+      {
+        "owner": 12,
+        "status": "completed",
+        "tools": 3,
+        "elapsed_seconds": 3.922,
+        "model_calls": 0
+      }
+    ],
+    "p50_seconds": 2.906,
+    "p95_seconds": 5.563,
+    "restored_reports": 12
+  }
+]

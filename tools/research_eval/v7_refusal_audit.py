@@ -10,8 +10,7 @@ from tools.research_eval.v6_silver import ROOT, rows
 from tools.research_eval.v7_summary import silver
 
 
-def audit(directory):
-    public = ROOT / "docs/agent-v7/quality-results.json"
+def audit(directory, public=ROOT / "docs/agent-v7/quality-results.json"):
     annotation = ROOT / "docs/agent-v6/e10/silver-labels.jsonl"
     labels = rows(annotation)
     scores = json.loads((directory / "scores.json").read_bytes())
@@ -37,5 +36,7 @@ def audit(directory):
 if __name__ == "__main__":
     cli = argparse.ArgumentParser(description=__doc__)
     cli.add_argument("replay", type=Path)
+    cli.add_argument("--quality-results", type=Path, default=ROOT / "docs/agent-v7/quality-results.json",
+                     help="Published score summary for this replay revision")
     args = cli.parse_args()
-    print(json.dumps(audit(args.replay), indent=2))
+    print(json.dumps(audit(args.replay, args.quality_results), indent=2))
