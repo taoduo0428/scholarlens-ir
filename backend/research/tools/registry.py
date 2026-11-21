@@ -127,11 +127,15 @@ class ToolRegistry:
         result = getattr(self, "_" + name)(req)
         from backend.research.tools.manifest import OUTPUTS
         try:
+            size = len(json.dumps(result, ensure_ascii=False, allow_nan=False).encode("utf-8"))
+        except (TypeError, ValueError, RecursionError) as error:
+            raise ToolError("invalid_tool_output") from error
+        if size > 128_000:
+            raise ToolError("tool_output_limit")
+        try:
             OUTPUTS[name].model_validate(result)
         except ValidationError as error:
             raise ToolError("invalid_tool_output") from error
-        if len(json.dumps(result, ensure_ascii=False).encode("utf-8")) > 128_000:
-            raise ToolError("tool_output_limit")
         return result
 
     def _doc(self, pid):
