@@ -75,14 +75,28 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
             # Mixed objectives, representation and units still need independent proofs.
             if not re.search(r"unit of analysis|representation|分析单位|数据表示", intent_goal, re.I):
                 independent_facets = ["objective"]
-        if one and independent_facets and len(scope) <= 4 and not any(
+        from backend.research.descriptive_plan import comparison_subjects, requested_dimensions
+        subjects = comparison_subjects(contract.goal) if independent and one and research_type == "description" else []
+        typed = requested_dimensions(intent_goal)
+        if subjects and typed and not any(f.operation == "layout" for f in
+                [field_for(node, contract, part, 1) for part in requests(contract.goal)]):
+            for subject in subjects:
+                for dim in typed:
+                    request = f"{subject} · {dim}"
+                    f = field_for(node, contract, request, len(fields) + 1)
+                    fields.append(f.model_copy(update={"facet": dim, "subject": subject, "operation": "fact",
+                        "min_evidence": 1, "min_papers": 1, "acceptance": f"Source states {dim} for {subject}."}))
+        elif one and independent_facets and len(scope) <= 4 and not any(
             field_for(node, contract, part, 1).operation in {"layout", "quote"} for part in requests(contract.goal)
         ):
             for paper in scope or [None]:
                 for facet in independent_facets:
                     f = field_for(node, contract, contract.goal, len(fields) + 1)
-                    fields.append(f.model_copy(update={"facet": facet, "paper_ids": [paper] if paper else [],
-                                                       "min_evidence": 1, "min_papers": 1}))
+                    metric_names = list(dict.fromkeys(m.casefold() for m in METRICS.findall(intent_goal)))
+                    for metric in metric_names if facet == "metric" and metric_names else [None]:
+                        fields.append(f.model_copy(update={"field_id": f"{node.id}.f{len(fields)+1}",
+                            "facet": facet, "paper_ids": [paper] if paper else [], "requested_metric": metric,
+                            "min_evidence": 1, "min_papers": 1}))
         elif one:
             question = node.question if plan.origin == "personal_model" else contract.goal
             for i, request in enumerate(requests(question), 1):

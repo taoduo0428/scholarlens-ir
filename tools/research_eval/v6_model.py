@@ -45,7 +45,7 @@ class CappedTransport(PublicAITransport):
         return response
 
 
-def run(controlled=False):
+def run(controlled=False, policy="E10"):
     ledger = []
     if controlled:
         adapters, model = fixture_adapters(), "controlled-http/1"
@@ -112,7 +112,7 @@ def run(controlled=False):
             docs,
             "fixture:v6-provider",
             Path(d),
-            "E10",
+            policy,
             adapters=adapters,
             model_id=model,
         )
@@ -148,8 +148,9 @@ def run(controlled=False):
 def main():
     cli = argparse.ArgumentParser()
     cli.add_argument("--controlled", action="store_true")
+    cli.add_argument("--policy", choices=("E10","E11"), default="E10")
     args = cli.parse_args()
-    result = run(args.controlled)
+    result = run(args.controlled, args.policy)
     print(json.dumps(result, ensure_ascii=False, indent=2))
     return {"PASS": 0, "PARTIAL": 1, "BLOCKED": 2}[result["status"]]
 

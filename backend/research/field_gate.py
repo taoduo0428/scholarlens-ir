@@ -160,6 +160,9 @@ def matches(field, claim, row, state, suggestions):
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
     if field.facet:
+        if field.subject:
+            from backend.research.descriptive_plan import anchored
+            valid = [c for c in valid if anchored(field.subject, c, sources)]
         if field.requested_metric:
             aliases = {"准确率": "accuracy", "召回率": "recall", "精确率": "precision"}
             metric = aliases.get(field.requested_metric, field.requested_metric).casefold()
@@ -174,6 +177,15 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             temporal = [c for c in findings if len(set(re.findall(r"\b(?:19|20)\d{2}\b", c.statement))) >= 2
                         and re.search(r"increas|decreas|declin|grew|增长|下降|逐年", c.statement, re.I)]
             return temporal, "insufficient_evidence"
+        if profile_index is not None and field.facet in {"unit", "representation"}:
+            from backend.research.research_profile import attribution
+            patterns = {
+                "unit": r"\b(?:unit of analysis|analytical unit|each (?:observation|sample|instance) (?:is|represents))\b|分析单位",
+                "representation": r"\b(?:represent(?:ed|s)?|encod(?:ed|es?))\b.{1,75}\b(?:as|by|using|with)\b|表示为|编码为",
+            }
+            hits = [c for c in valid if attribution(c.statement)[0] == "authors" and
+                    re.search(patterns[field.facet], c.statement, re.I)]
+            return hits, "insufficient_evidence"
         if profile_index is not None:
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
             if field.facet in PROFILE_FACETS:

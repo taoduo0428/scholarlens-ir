@@ -48,7 +48,7 @@ class PaperResearchProfile(BaseModel):
 PRIOR = re.compile(r"\b(?:prior|previous|earlier|other) (?:research|work|studies|authors)|et al[.]|according to|\[\d+(?:[,\-– ]+\d+)*\]|前人|已有研究|先前研究|文献\[", re.I)
 HYP = re.compile(r"\bhypothes(?:is|ize|ise)|\bconjectur|假设|猜想", re.I)
 FUTURE = re.compile(r"\bfuture (?:work|studies|research)|\bwe (?:plan|intend|will)\b|未来工作|后续研究|我们计划", re.I)
-MAY = re.compile(r"\b(?:may|might|possibly|could|speculat\w*|predict\w*|expected to)\b|可能|推测|预测", re.I)
+MAY = re.compile(r"\b(?:may|might|possibly|could|speculat\w*|predict(?:s|ed)?|expected to)\b|可能|推测|预测", re.I)
 AUTHOR = re.compile(r"\b(?:we|our|this (?:study|work|paper|article|experiment)|the present (?:paper|study))\b|本文|本研究|我们", re.I)
 PASSIVE = re.compile(r"\b(?:is|was|are|were) (?:here |herein )?(?:developed|used|proposed|introduced|evaluated|tested|measured)\b|被(?:提出|采用|构建)", re.I)
 ANAPHOR = re.compile(r"^(?:this (?:method|approach|model|system)|it|the resulting (?:model|system)|该方法|该模型|这一方法)", re.I)
@@ -76,7 +76,9 @@ def attribution(text, previous=""):
         return "hypothesis", {"author_qualifications"}
     if MAY.search(text):
         return "speculation", {"author_qualifications"}
-    owned = bool(AUTHOR.search(text))
+    owned = bool(AUTHOR.search(text) or re.search(
+        r"\b(?:is|are|was|were) (?:investigated|studied|examined|addressed|proposed|developed) (?:here|in this paper)\b", text, re.I))
+
     # A pronoun only inherits ownership from an adjacent, explicit author statement.
     linked = bool(previous and ANAPHOR.match(text) and attribution(previous)[0] == "authors")
     if not (owned or linked):
@@ -84,6 +86,10 @@ def attribution(text, previous=""):
     legacy = roles(text)
     fields = {k for k, pattern in FACETS.items() if re.search(pattern, text, re.I)}
     if re.search(r"\b(?:we|this (?:study|paper|work)) (?:also )?(?:treats?|investigat\w*|examin\w*|stud(?:y|ies)|focus(?:es)? on|address(?:es)?)\b|(?:本文|我们|本研究)(?:研究|探讨|旨在解决)", text, re.I):
+        fields.add("research_objective")
+    if owned and re.search(r"\b(?:posed? the question|examined? whether|investigated here|to address (?:this|the) (?:issue|problem)|we (?:also )?consider)\b", text, re.I):
+        fields.add("research_objective")
+    if owned and re.search(r"\b(?:propos\w*|introduc\w*|develop\w*)\b.{1,150}\b(?:to|for)\s+\w+", text, re.I):
         fields.add("research_objective")
     if "method" in legacy or PASSIVE.search(text):
         fields.add("methods")

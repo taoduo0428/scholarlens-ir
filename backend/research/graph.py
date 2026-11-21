@@ -453,6 +453,11 @@ class ResearchGraph:
                     f.facet in {"objective", "topic", "method", "finding", "setting", "metric", "dataset", "limitations"}
                     for f in question_fields
                 )
+                if any(f.subject for f in question_fields):
+                    # The allowlist can contain distractors. Rank by study subject rather than
+                    # awarding one abstract window per permitted paper in arbitrary ID order.
+                    profile_read = False
+                    query = " ".join(dict.fromkeys(f.subject for f in question_fields if f.subject))[:500]
                 directed = directed or bool(profile_read and state.task.scope.paper_ids)
                 if directed:
                     ids=list(state.task.scope.paper_ids)

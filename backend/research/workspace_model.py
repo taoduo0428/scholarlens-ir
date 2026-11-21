@@ -107,7 +107,7 @@ def semantic_call(store, state, callback, phase, view):
 
 def publication_suggestions(store, state, report, sources, callback):
     claims = {c.claim_id: c for c in state.claims}
-    if callback and state.retrieval_policy == "E10" and state.task.mode == "personal_model":
+    if callback and state.retrieval_policy in {"E10", "E11"} and state.task.mode == "personal_model":
         # Supply already scope-checked field facts to both advisory model stages.
         # Publication below independently reruns the full gate on its own sources.
         from backend.research.field_gate import evaluate
