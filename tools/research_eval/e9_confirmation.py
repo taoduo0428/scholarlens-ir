@@ -15,6 +15,7 @@ from tools.research_eval.workspace_suite import corpus_file, excluded
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output",required=True,type=Path)
+    parser.add_argument("--policies", nargs="+", default=["V1", "V5", "E9"])
     args=parser.parse_args()
     args.output.mkdir(parents=True,exist_ok=False)
     used=excluded().union(*(set(docs) for _,_,docs,_,_ in public_cases()))
@@ -33,7 +34,7 @@ def main():
     assert digest.hexdigest()==OID
     papers=[p for _,p in sorted(pool,key=lambda r:r[0])[:6]]
     with TemporaryDirectory(dir=args.output) as tmp:
-        for policy in ("V1","V5","E9"):
+        for policy in args.policies:
             rows=[]
             for i,p in enumerate(papers):
                 other=papers[(i+1)%len(papers)]
