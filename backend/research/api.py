@@ -70,7 +70,11 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         try:
             versions = bind_versions(registry_dir)
             retrieval_policy = os.getenv("SCHOLARLENS_RETRIEVAL_POLICY", "V1")
-            if os.getenv("SCHOLARLENS_E10_ENABLED", "").lower() == "true":
+            if os.getenv("SCHOLARLENS_E11_ENABLED", "").lower() == "true":
+                retrieval_policy = "E11"
+            elif retrieval_policy == "E11":
+                raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
+            elif os.getenv("SCHOLARLENS_E10_ENABLED", "").lower() == "true":
                 retrieval_policy = "E10"
             elif retrieval_policy == "E10":
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
@@ -86,7 +90,7 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 retrieval_policy = "W4"
             elif retrieval_policy == "W4":
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
-            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10"}:
+            if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10", "E11"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             with worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,

@@ -59,7 +59,7 @@ class AnswerField(StrictRecord):
     field_id: str
     question_id: str
     request: str = Field(min_length=1, max_length=2200)
-    facet: Literal["limitations", "method", "dataset", "metric", "finding", "topic", "conditions", "overview", "comparison", "chain", "conflict"] | None = None
+    facet: Literal["trend", "setting", "limitations", "method", "dataset", "metric", "finding", "topic", "conditions", "overview", "comparison", "chain", "conflict"] | None = None
     paper_ids: list[str] = Field(default_factory=list, max_length=50)
     requested_metric: str | None = None
     datatype: AnswerFieldType

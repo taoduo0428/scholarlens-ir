@@ -55,6 +55,10 @@ def answer_type(plan):
     ):
         return "quoted_text"
     intent = plan.contract.intent
+    if intent in {"literature_synthesis", "trend_analysis"}:
+        return "overview"
+    if intent == "performance_ranking":
+        return "aligned_comparison"
     if intent == "comparison":
         return (
             "methods"

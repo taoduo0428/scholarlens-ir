@@ -157,7 +157,7 @@ def matches(field, claim, row, state, suggestions):
     return responsive(contract, claim, [row], semantic)
 
 
-def qualified(field, claims, sources, state, suggestions):
+def qualified(field, claims, sources, state, suggestions, profile_index=None):
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
     if field.facet:
         if field.requested_metric:
@@ -166,19 +166,31 @@ def qualified(field, claims, sources, state, suggestions):
             valid = [c for c in valid if (c.conditions.metric_name or "").casefold() == metric]
         from backend.research.overview import evidence_for, synthesize
 
-        if field.facet == "limitations" and state.retrieval_policy == "E10":
+        if profile_index is not None and field.facet == "trend":
+            from backend.research.research_profile import responsive_claims
+            findings = responsive_claims("finding", valid, profile_index)
+            # Report source-attributed longitudinal observations. A single time
+            # point or the publication date alone carries no temporal direction.
+            temporal = [c for c in findings if len(set(re.findall(r"\b(?:19|20)\d{2}\b", c.statement))) >= 2
+                        and re.search(r"increas|decreas|declin|grew|增长|下降|逐年", c.statement, re.I)]
+            return temporal, "insufficient_evidence"
+        if profile_index is not None:
+            from backend.research.research_profile import PROFILE_FACETS, responsive_claims
+            if field.facet in PROFILE_FACETS:
+                return responsive_claims(field.facet, valid, profile_index), "insufficient_evidence"
+        if field.facet == "limitations" and state.retrieval_policy in {"E10", "E11"}:
             from backend.research.overview import GAP
             return [c for c in valid if GAP.search(c.statement)], "insufficient_evidence"
         if field.facet == "overview":
-            overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy == "E10")
+            overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=profile_index)
             linked = [entry for entry in overview["findings"] if entry["kind"] == "method_findings"]
             if linked and not overview["incomplete_papers"]:
                 return [by_id[k] for k in linked[0]["premise_claim_ids"]], "insufficient_evidence"
             return [], "insufficient_evidence"
         if field.facet in {"topic", "finding", "method", "dataset", "metric", "conditions"}:
-            return evidence_for(field.facet, valid, field.requested_metric, attributed=state.retrieval_policy == "E10"), "insufficient_evidence"
+            return evidence_for(field.facet, valid, field.requested_metric, attributed=state.retrieval_policy in {"E10", "E11"}), "insufficient_evidence"
         if field.facet == "comparison" and state.answer_contract.answer_type == "methods":
-            return evidence_for("method", valid, attributed=state.retrieval_policy == "E10"), "insufficient_evidence"
+            return evidence_for("method", valid, attributed=state.retrieval_policy in {"E10", "E11"}), "insufficient_evidence"
     if field.operation in {"method", "chain", "synthesize", "disagreement"}:
         conflicts, differences = compare_premises(valid, sources)
         ids = (
@@ -270,6 +282,10 @@ def evaluate(state, sources, suggestions=None, warnings=()):
     owners = state.evidence_questions
     caps = {i: capability(r, state) for i, r in sources.items()}
     visible = {i: r for i, r in sources.items() if caps[i] is not None}
+    profile_index = None
+    if state.retrieval_policy == "E11":
+        from backend.research.research_profile import profiles
+        profile_index = profiles(state, visible, suggestions.get("_profile_candidates", []))
     allowed = ancestors(state.field_requirements)
     decisions = {}
     selected = {}
@@ -314,7 +330,7 @@ def evaluate(state, sources, suggestions=None, warnings=()):
             if f.paper_ids:
                 capable = {i: r for i, r in capable.items() if r["paper_id"] in f.paper_ids}
             proposals = source_claims(f, capable)
-            proof, fallback = qualified(f, proposals, capable, state, suggestions)
+            proof, fallback = qualified(f, proposals, capable, state, suggestions, profile_index)
             proof = [c for c in proof if f.facet or c.claim_id not in consumed]
             prereqs = all(per_question[d] == "answerable" for d in req.dependencies)
             ids = {i for c in proof for i in c.evidence_ids}
@@ -330,9 +346,9 @@ def evaluate(state, sources, suggestions=None, warnings=()):
                 and any(c.claim_id in conflict_ids for c in proof)
             )
             b = []
-            if state.retrieval_policy in {"E9.1", "E10"} and coverage.permission_denied:
+            if state.retrieval_policy in {"E9.1", "E10", "E11"} and coverage.permission_denied:
                 status, reason, action = "blocked_by_permission", "blocked_by_permission", "request_permission"
-            elif state.retrieval_policy in {"E9.1", "E10"} and f.operation == "layout" and not capable:
+            elif state.retrieval_policy in {"E9.1", "E10", "E11"} and f.operation == "layout" and not capable:
                 status, reason, action = "source_capability_mismatch", "source_capability_mismatch", "stop"
             elif conflict_seen:
                 status, reason, action = "conflicted", "conflicted", "resolve_conflict"
@@ -375,6 +391,15 @@ def evaluate(state, sources, suggestions=None, warnings=()):
                 next_action=action,
             )
             decisions[f.field_id] = d.model_dump(mode="json")
+            if profile_index is not None and status != "answerable":
+                first_loss = (
+                    "permission" if coverage.permission_denied else
+                    "retrieval" if not coverage.searches and not local else
+                    "read" if not local else "source_capability" if not capable else
+                    "extraction" if not proposals else "attribution_or_responsiveness" if not proof else
+                    "dependency" if not prereqs else "conflict" if conflict_seen else "binding"
+                )
+                decisions[f.field_id]["first_observed_loss"] = first_loss
             field_states.append(status)
             bindings.extend(b)
         per_question[req.question_id] = status_for(field_states)

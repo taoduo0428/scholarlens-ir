@@ -7,7 +7,7 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
     gate, accepted = evaluate(state, sources, suggestions, warnings)
     all_claims = {c.claim_id: c for c in state.claims}
     all_claims.update(accepted)
-    if state.retrieval_policy in {"E9.1", "E10"}:
+    if state.retrieval_policy in {"E9.1", "E10", "E11"}:
         all_claims = {
             cid: c.model_copy(update={"support_status": "insufficient"})
             if cid not in accepted and c.support_status == "verified" else c
@@ -18,8 +18,27 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         direct = list(dict.fromkeys([i for i in ordering if i in accepted] + direct))
     dependency_ids = {d for q in state.field_requirements for d in q.dependencies}
     final_ids = {b["claim_id"] for b in gate["bindings"] if b["question_id"] not in dependency_ids}
-    conclusions = [cid for cid in direct if cid in final_ids]
-    premises = [cid for cid in direct if cid not in final_ids]
+    index = None
+    direct_ids = final_ids.copy()
+    if state.retrieval_policy == "E11":
+        from backend.research.research_intent import research_intent
+        from backend.research.research_profile import profiles
+        intent = research_intent(state.task.goal)
+        report["research_intent"] = intent
+        index = {} if gate["status"] == "blocked_by_permission" else profiles(
+            state, sources, suggestions.get("_profile_candidates", []))
+        report["research_profiles"] = [p.model_dump(mode="json") for p in index.values()]
+        report["evidence_matrix"] = [
+            {"paper_id": p.paper_id, "fields": {k: list(dict.fromkeys(v.evidence_id for v in rows))
+                                               for k, rows in p.fields.items()}}
+            for p in index.values()
+        ]
+        if intent == "literature_synthesis":
+            responsive = {f.field_id for req in state.field_requirements for f in req.fields
+                          if f.facet in {"topic", "method", "finding", "limitations"}}
+            direct_ids.update(b["claim_id"] for b in gate["bindings"] if b["field_id"] in responsive)
+    conclusions = [cid for cid in direct if cid in direct_ids]
+    premises = [cid for cid in direct if cid not in direct_ids]
     state.claims = [all_claims[k] for k in dict.fromkeys(direct + list(all_claims))][:60]
     kept = {c.claim_id for c in state.claims}
     fields = {f.field_id: f for q in state.field_requirements for f in q.fields}
@@ -42,17 +61,23 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         ]
         + list(warnings),
     )
-    if state.retrieval_policy in {"E9.1", "E10"} and state.answer_contract.answer_type == "overview":
+    if state.retrieval_policy in {"E9.1", "E10", "E11"} and state.answer_contract.answer_type == "overview":
         from backend.research.overview import synthesize
 
         # Partial reports keep the paper profiles supported by completed nodes.
         # A cross-paper inference additionally requires the final DAG decision.
-        overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids, attributed=state.retrieval_policy == "E10")
-        if not final_ids:
+        overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=index)
+        if state.retrieval_policy == "E11" and intent == "trend_analysis":
+            overview["findings"] = [
+                {"kind": "reported_time_trend", "level": "supported_claim", "statement": accepted[cid].statement,
+                 "premise_claim_ids": [cid], "paper_ids": accepted[cid].paper_ids,
+                 "evidence_ids": accepted[cid].evidence_ids} for cid in sorted(final_ids)
+            ]
+        elif not final_ids:
             overview["findings"] = [entry for entry in overview["findings"] if entry["level"] != "derived_synthesis"]
         else:
             final_claims = [c for cid, c in accepted.items() if cid in final_ids]
-            final_overview, _ = synthesize(final_claims, sources, state.task.scope.paper_ids, attributed=state.retrieval_policy == "E10")
+            final_overview, _ = synthesize(final_claims, sources, state.task.scope.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=index)
             overview["findings"] = final_overview["findings"]
         report["overview"] = overview
     sections = report["sections"]
