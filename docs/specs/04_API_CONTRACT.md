@@ -163,3 +163,7 @@ search 的 query 回显全部已验证参数（包括 year_from/year_to/phrase/f
 ## 2026-11-01 拼写纠正增补
 
 输入建议和无结果后手动纠正规则、输入输出、负责人及验收见[拼写纠正协议](40_SPELLCHECK.md)。不自动改写查询，不重建索引。
+
+## E10 开发分支（2026-11-21）
+
+已登录所有者的 GET /api/research/tasks/{tid} 返回 state、revision、plan_metadata、provider_usage、trace_ids、graph_attempts 和 graph_reentries。缺少历史计数时返回 null，未采集 trace 时返回空数组。其他所有者访问任务和报告得到 404。负责人为后端组长，验收见[安全报告](../agent-v6/SECURITY_REPORT.md)。

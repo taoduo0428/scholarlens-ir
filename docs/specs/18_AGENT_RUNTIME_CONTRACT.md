@@ -61,3 +61,7 @@ Linux/macOS 对应解释器为 `.venv/bin/python`。可选 MCP SDK 不加入 Web
 - Ego 独立浏览器实际输入问题、提交、展开执行记录，得到 5 张原文卡片、2 个完成步骤，无页面报错或横向溢出。登录页显示“欢迎回来”，首页 1366×768 搜索框首屏可见；没有进行生产账户注册、写入或扫描。Ego 截图接口两次超时，未把未生成的截图标成视觉验收通过；DOM、实际交互及原有浏览器布局回归作为本轮证据。
 - 本次追加 6 项旧 RAG 适配器兼容测试通过；连同上述 38 项针对性测试共 44 项通过，不等同于后端全量。完整账户浏览器回归本轮未在生产执行；认证、个人配置及对话所有权使用隔离 HTTP/SQLite 夹具验证。
 - 本机预览源与交付仓库同步，构建资源一致。本机证据目录 `C:/Users/lenovo/Desktop/zjl/output/deploy-runtime-20261028/`；MCP 真实 API 验收报告位于忽略目录 `tools/agent/reports/mcp-real-api.json`。本发布记录只改文档，无需再重启服务。
+
+## E10 开发分支（2026-11-21）
+
+GET /api/research/tasks/{tid} 附带所有者可见的 trace_ids、graph_attempts 和 graph_reentries。工作进程重开可产生另一次图执行，计数涵盖显式恢复。老记录没有计数时返回 null。详见[运行验证](../agent-v6/SECURITY_REPORT.md)。
