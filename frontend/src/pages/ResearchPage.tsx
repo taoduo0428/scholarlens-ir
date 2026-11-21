@@ -142,6 +142,14 @@ function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
           {!terminal.has(state.status)&&<button className="button button-secondary" disabled={pending||requested!==null} onClick={()=>void control("cancel")}>取消任务</button>}
         </div>
       </section>
+      {state.answer_contract&&<section aria-label="答案契约" className="research-panel">
+        <h2>答案契约</h2><p>{state.answer_contract.goal}</p>
+        <p>预期答案 · {state.answer_contract.answer_type}</p>
+        {state.answer_contract.constraints.map(value=><p key={value}>{value}</p>)}
+        <ol>{state.answer_contract.obligations.map(o=><li key={o.id}><strong>{o.requirement}</strong>
+          <p>{o.evidence.join(" · ")} {o.prerequisites.length>0&&" ｜ 前置 "+o.prerequisites.join("、")}</p>
+          <span>{report?.answer_proof?.obligations[o.id]?.status==="met"?"已满足":report?"证据有缺口":"等待核验"}</span></li>)}</ol>
+      </section>}
       <QuestionPlan state={state}/>
       <section className="research-panel" aria-label="研究计划"><h2>研究计划</h2>
         {state.subtasks.length===0?<p>等待执行器生成计划。</p>:<details className="research-tree" open>
@@ -194,6 +202,7 @@ export function ResearchPage(){
   const [params]=useSearchParams();
   const next="/research"+(params.toString()?"?"+params.toString():"");
   return <main className="research-page"><h1>深度研究</h1>
+    {import.meta.env.VITE_EVOLUTION_LAB==="true"&&user?.role==="admin"&&<Link to="/evolution-lab">进入 Evolution Lab</Link>}
     {loading?<p>正在读取账户…</p>:user?<Workspace owner={user.id} key={user.id}/>:<section className="research-panel"><h2>研究任务随账户保存</h2>
       <Link className="button button-primary" to={"/account?next="+encodeURIComponent(next)}>登录研究账户</Link></section>}
   </main>;

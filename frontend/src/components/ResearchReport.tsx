@@ -69,6 +69,15 @@ export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;task
     <div className="research-panel-heading"><h2>研究报告</h2>
       <button className="button button-secondary" onClick={()=>exportMarkdown(taskId,report.markdown)}>导出 Markdown</button></div>
     <p>{report.summary}</p>
+    {report.answer_groups&&<section aria-label="最终答案与证据">
+      <h3>{report.answer_groups.unanswerable?"最终问题仍无法回答":"可发布的直接结论"}</h3>
+      {([["direct","直接回答"],["background","背景与推理前提"],["incomparable","条件不可比"],["conflicting","相互矛盾的观察"]] as const).map(([key,label])=>{
+        const ids=report.answer_groups![key];
+        return ids.length>0&&<details key={key} open={key==="direct"}><summary>{label} · {ids.length}</summary>
+          {ids.map(id=>{const c=claims.get(id);return c&&<Claim key={id} claim={c} sources={sources} conflicts={peers(c.claim_id)}/>;})}</details>;
+      })}
+      {report.answer_groups.unresolved.map(id=><p key={id}>缺口 · {report.answer_proof?.obligations[id]?.required||id}</p>)}
+    </section>}
     {experiments.length>0&&<details className="research-comparison"><summary>方法与实验对照 · {experiments.length} 条</summary>
       <div className="research-table-scroll" tabIndex={0} role="region" aria-label="方法与实验对照表"><table>
         <thead><tr><th>方法或结果</th><th>数据集</th><th>指标及数值</th><th>协议或设置</th><th>核验结果</th></tr></thead>

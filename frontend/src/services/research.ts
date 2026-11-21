@@ -30,6 +30,8 @@ export interface PlanQuestion {
   requirement:{kind:string;acceptance:string;failure:string;min_papers:number};
 }
 export interface ResearchState {
+  answer_contract?:{goal:string;answer_type:string;deliverables:string[];constraints:string[];
+    obligations:{id:string;requirement:string;prerequisites:string[];evidence:string[]}[];stop_conditions:string[]}|null;
   retrieval_policy?:string;
   question_plan?:{origin:string;plan_version:number;graph:{nodes:PlanQuestion[]};revisions:string[]} | null;
   question_assessments?:Record<string,{status:string;next_action:string;missing_requirements:string[];supporting_evidence_ids:string[];opposing_evidence_ids:string[]}>;
@@ -44,6 +46,8 @@ export interface ResearchState {
 export interface ResearchReport {
   summary:string;claims:ResearchClaim[];sources:ResearchSource[];unresolved:string[];markdown:string;
   sections:{verified:string[];uncertain:string[];not_comparable:string[];contradicted:string[]};
+  answer_groups?:{direct:string[];background:string[];incomparable:string[];conflicting:string[];unresolved:string[];unanswerable:boolean};
+  answer_proof?:{obligations:Record<string,{status:string;required:string;claims:string[]}>};
   graph?:{subtasks?:ResearchSubtask[];subtask_claim?:{subtask_id:string;claim_id:string}[];
     conflicts?:{claim_ids:string[];relation:string;basis?:string}[]};
 }
