@@ -1,0 +1,11 @@
+{
+  "tasks": 111,
+  "baseline_direct_tasks": 8,
+  "reviewed_direct_tasks": 8,
+  "reviewed_claims": 12,
+  "removed_claims": 0,
+  "additional_model_calls": 0,
+  "additional_retrieval_calls": 0,
+  "wall_seconds": 0.154,
+  "scope": "independent deterministic provenance review; semantic judgement unmeasured"
+}

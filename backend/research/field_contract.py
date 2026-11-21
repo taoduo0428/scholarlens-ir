@@ -59,8 +59,9 @@ class AnswerField(StrictRecord):
     field_id: str
     question_id: str
     request: str = Field(min_length=1, max_length=2200)
+    required_title: str | None = Field(default=None, min_length=1, max_length=500, exclude_if=lambda v: v is None)
     subject: str | None = Field(default=None, max_length=140, exclude_if=lambda v: v is None)
-    facet: Literal["unit", "representation", "objective", "trend", "setting", "limitations", "method", "dataset", "metric", "finding", "topic", "conditions", "overview", "comparison", "chain", "conflict"] | None = None
+    facet: Literal["problem", "unit", "representation", "objective", "trend", "setting", "limitations", "method", "dataset", "metric", "finding", "topic", "conditions", "overview", "comparison", "chain", "conflict"] | None = None
     paper_ids: list[str] = Field(default_factory=list, max_length=50)
     requested_metric: str | None = None
     datatype: AnswerFieldType
