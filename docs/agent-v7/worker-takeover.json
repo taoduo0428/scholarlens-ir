@@ -1,0 +1,10 @@
+{
+  "tasks": 4,
+  "verified_reports": 4,
+  "checkpoint_revision": 2,
+  "recovered_evidence": 1,
+  "duplicate_process_rejected": true,
+  "crashed_worker_exit": -15,
+  "successor_exit": 0,
+  "seconds_after_crash": 4.172
+}

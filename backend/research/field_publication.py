@@ -76,6 +76,20 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
                  "premise_claim_ids": [cid], "paper_ids": accepted[cid].paper_ids,
                  "evidence_ids": accepted[cid].evidence_ids} for cid in sorted(final_ids)
             ]
+        elif state.retrieval_policy == "E11":
+            # Publish observations from accepted fields and reconstruct relations
+            # solely from the bindings of the overview field that approved them.
+            relations = []
+            for fid, field in fields.items():
+                if field.facet != "overview" or decisions[fid]["status"] != "answerable":
+                    continue
+                ids = dict.fromkeys(b["claim_id"] for b in decisions[fid]["bindings"] if b["claim_id"] in kept)
+                bound, _ = synthesize([accepted[cid] for cid in ids], sources, field.paper_ids,
+                                      attributed=True, profile_index=index)
+                relations.extend(row for row in bound["findings"] if row["level"] == "derived_synthesis"
+                                 and set(field.paper_ids) <= set(row["paper_ids"]))
+            overview["findings"] = [row for row in overview["findings"] if row["level"] != "derived_synthesis"
+                                    and set(row["premise_claim_ids"]) <= kept] + relations
         elif not final_ids:
             overview["findings"] = [entry for entry in overview["findings"] if entry["level"] != "derived_synthesis"]
         else:
@@ -156,6 +170,6 @@ def markdown(report, escape):
     if "overview" in report:
         rows.extend(["", "## 综合研究"])
         for entry in report["overview"]["findings"]:
-            rows.append("- " + escape(entry["statement"]) + " [" + escape(entry["level"]) + "] " +
+            rows.append("- " + escape(entry["statement"]) + " [" + escape("逐篇观察" if entry["level"] == "paper_observation" else entry["level"]) + "] " +
                         ", ".join(escape(cid) for cid in entry["premise_claim_ids"]))
     return "\n".join(rows) + "\n"
