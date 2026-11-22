@@ -6,7 +6,8 @@ interface PageLayout {
   paper_id:string;
   page:number;
   source_version:string;
-  items:{kind:string;table_id:number;row:number;column:number;quote:string}[];
+  items:{kind:string;table_id:number;row:number;column:number;quote:string;locator:string}[];
+  figure_caption_links?:{number:number;figure_locator:string;caption_locator:string}[];
 }
 
 export function PdfCellPicker({papers}:{papers:string[]}) {
@@ -30,12 +31,13 @@ export function PdfCellPicker({papers}:{papers:string[]}) {
       if(controller.signal.aborted) return;
       if(result.paper_id!==paper || result.page!==Number(page)) throw new Error("返回的论文或页码不匹配。");
       const cells=result.items.filter(item=>item.kind==="cell" && item.quote.trim());
-      setLayout({...result,items:cells}); setMessage(cells.length?"":"本页没有可定位的表格单元格。");
+      setLayout(result); setMessage(cells.length?"":"本页没有可定位的表格单元格。");
     } catch(error) {
       if(!controller.signal.aborted) setMessage(error instanceof Error ? error.message : "此页暂不可读。");
     }
   }
-  const cell=selection!=="" ? layout?.items[Number(selection)] : null;
+  const cells=layout?.items.filter(item=>item.kind==="cell" && item.quote.trim()) ?? [];
+  const cell=selection!=="" ? cells[Number(selection)] : null;
   const target:PdfCellRequest | null=layout && cell ? {
     paper_id:paper, source_version:layout.source_version, page:layout.page,
     table_id:cell.table_id, row:cell.row, column:cell.column
@@ -48,11 +50,17 @@ export function PdfCellPicker({papers}:{papers:string[]}) {
       <button className="button button-secondary" type="button" onClick={()=>void read()}
         disabled={!Number.isInteger(Number(page)) || Number(page)<1 || Number(page)>500}>读取本页表格</button>
       {message && <p role="status">{message}</p>}
-      {layout && layout.items.length>0 && <label>引用单元格<select value={selection} onChange={e=>setSelection(e.target.value)}>
+      {layout && cells.length>0 && <label>引用单元格<select value={selection} onChange={e=>setSelection(e.target.value)}>
         <option value="">不引用</option>
-        {layout.items.map((item,index)=><option key={index} value={index}>
+        {cells.map((item,index)=><option key={index} value={index}>
           表 {item.table_id} · 行 {item.row} · 列 {item.column} · {item.quote.slice(0,100)}
         </option>)}</select></label>}
+      {layout?.figure_caption_links?.map(link=><details key={link.figure_locator}>
+        <summary>图 {link.number} · 第 {layout.page} 页题注</summary>
+        <p>{layout.items.find(item=>item.locator===link.caption_locator)?.quote}</p>
+        <p>图像位置 <code>{link.figure_locator}</code></p>
+        <p>题注位置 <code>{link.caption_locator}</code></p>
+      </details>)}
       {target && <input type="hidden" name="pdf_cell" value={JSON.stringify(target)}/>}
     </>}
   </details>;

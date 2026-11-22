@@ -1,0 +1,52 @@
+{
+  "revision": "4f0e772",
+  "backend": {
+    "tests_exit": 0,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true,
+    "tests": 741,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "pytest_seconds": 408.164
+  },
+  "backend_command": "python -m tools.research_eval.v6_vector_fixture --es-home <ES_HOME> --offline-fixture infra/.runtime/elasticsearch-8.19.23/data --full-suite --delivery backend/.runtime/p0-delivery",
+  "targeted": {
+    "passed": 17,
+    "skipped": 0,
+    "failed": 0,
+    "seconds": 3.37,
+    "exit": 0
+  },
+  "frontend": {
+    "unit_passed": 45,
+    "skipped": 0,
+    "failed": 0,
+    "unit_seconds": 0.385,
+    "production_build_seconds": 3.05,
+    "unit_exit": 0,
+    "structure_exit": 0,
+    "build_including_tsc_exit": 0
+  },
+  "e2e": {
+    "exit": 0,
+    "flow": "e11-profile-live",
+    "figure_checks": [
+      "caption line",
+      "figure locator",
+      "caption locator"
+    ],
+    "profiles": 2,
+    "quotes_checked": 4
+  },
+  "publisher": {
+    "figures_equal_rgb_and_titles": 6,
+    "figure_candidates": 7,
+    "pdf_tables_equal_to_jats": 6,
+    "published_cell": "23,133",
+    "figure_by_figure": "figure-results.json"
+  }
+}

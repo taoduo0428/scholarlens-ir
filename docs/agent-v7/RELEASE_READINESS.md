@@ -4,7 +4,7 @@
 |---|---|---|
 |Research Intelligence|PARTIAL|28 组综述中，27 组有直接事实，2 组有完整逐篇观察，覆盖全组的关系为 0 组。12 对富集证明陈述的论文中，1 对识别出共同研究手段。70 道可答或部分可答题中有 8 道形成直接答案。另取 16 对论文，7 次给出了指定论文的原文事实。|
 |Agent Engineering|PARTIAL|单 worker 并发、跨进程接替恢复四份报告、工具约束、浏览器档案与受控 HTTP 链路已验证。真实模型、多进程模型并发治理与全链路追踪缺完整验收。|
-|Production Software|PARTIAL|完整后端 731/731、前端 45/45 通过。两个容器镜像实测了升级和回退，SQLite 备份恢复了同一份报告。最终应用镜像扫描还有 96 条 High 匹配，生产规模的恢复演练待验收。|
+|Production Software|PARTIAL|完整后端 741/741、前端 45/45 通过。6 幅授权论文图片及题注已和出版社素材核对。两个容器镜像实测了升级和回退，SQLite 备份恢复了同一份报告。最终应用镜像扫描还有 96 条 High 匹配，生产规模的恢复演练待验收。|
 |Public Release|BLOCKED|GitHub Actions 运行数为 0。真实供应方、镜像安全发现和研究质量仍待发布验收。|
 
 个人 fork 使用 zjl 接收验收后的开发改动。GitHub 当前登录身份有 repo scope，缺 workflow scope。向开发分支写入标准工作流路径时，GitHub Contents API 返回 HTTP 404，Git 推送也明确返回缺少 workflow scope。CI 模板在 `infra/ci/agent-ci.yml`。启用后的目标是实际检查 E11、前端构建、Compose、镜像构建及依赖审计。

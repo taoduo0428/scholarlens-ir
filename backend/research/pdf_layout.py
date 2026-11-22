@@ -7,6 +7,32 @@ import re
 MAX_BYTES = 16 * 1024 * 1024
 
 
+def figure_caption_links(items):
+    """Pair a stand-alone image with its uniquely adjacent numbered caption line."""
+    figures = [item for item in items if item["kind"] == "figure"]
+    pairs = []
+    seen_labels = {}
+    for caption in (item for item in items if item["kind"] == "caption"):
+        label = re.match(r"^(?:figure|fig\.|图)\s*([1-9]\d{0,3})\s*[.:：．、]", caption["quote"], re.I)
+        if not label:
+            continue
+        number = int(label[1])
+        seen_labels[number] = seen_labels.get(number, 0) + 1
+        left, top, right, _ = caption["bbox"]
+        for figure in figures:
+            x0, _, x1, bottom = figure["bbox"]
+            overlap = min(right, x1) - max(left, x0)
+            if 0 <= top - bottom <= 24 and overlap >= 0.65 * min(right - left, x1 - x0):
+                pairs.append((number, figure["locator"], caption["locator"], caption["quote_sha256"]))
+    from collections import Counter
+    image_counts = Counter(image for _, image, _, _ in pairs)
+    caption_counts = Counter(line for _, _, line, _ in pairs)
+    return [{"number": number, "figure_locator": image, "caption_locator": line,
+             "caption_quote_sha256": digest, "basis": "unique_adjacent_caption"}
+            for number, image, line, digest in pairs
+            if seen_labels[number] == image_counts[image] == caption_counts[line] == 1]
+
+
 def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
     """Extract physical regions. Unlabelled numerical series cannot become measurements."""
     if not 1 <= page_number <= 500 or len(pdf_bytes) > MAX_BYTES or not pdf_bytes.startswith(b"%PDF-"):
@@ -50,7 +76,7 @@ def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
             add(kind, (line["x0"], line["top"], line["x1"], line["bottom"]), text)
         return {"paper_id": paper_id, "page": page.page_number, "source_version": version,
                 "width": float(page.width), "height": float(page.height), "coordinate_system": "pt_top_left",
-                "items": items, "ocr": "unavailable", "cross_page_table_links": "unverified",
+                "items": items, "figure_caption_links": figure_caption_links(items), "ocr": "unavailable", "cross_page_table_links": "unverified",
                 "chart_series": "unverified", "engine": "pdfplumber/" + pdfplumber.__version__}
 
 
