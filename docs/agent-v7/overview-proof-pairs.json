@@ -1,0 +1,54 @@
+{
+  "corpus": "49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "salt": "research-design-proof-pairs/1",
+  "pairs": [
+    [
+      "source-sha256:87702afd7ebf78996044ca424639f7e3c726659837dd5e95513d4f2b7a56fff6",
+      "source-sha256:47bc58a51ae9eb23a646ebba4b64bad23e2d79c678d6c8ac58b82efb57d521cb"
+    ],
+    [
+      "source-sha256:321487aee6dee266c7fc33b3b1032f97e1ae8d405b4ffc3306301b388b326c54",
+      "source-sha256:635f6bbafa017720fd642121c9b2ef45da6c046429ca120a95fec1147502e534"
+    ],
+    [
+      "source-sha256:4db87c7855527ed86e3f9deddeabcb74e0ed10766804bc79264383362f208528",
+      "source-sha256:094fc6bfba6354a07b55bf806d3aed2ff8c6d6fd65c84d0b9a9b5519438fa8fe"
+    ],
+    [
+      "source-sha256:57e67f1c12f331fabb5129b797b3b99ace7d31c915d500b316b1d394522c7e56",
+      "source-sha256:44fb208533486c4f6739615650f22d249ec6163f83c22c7712e6880f8798a942"
+    ],
+    [
+      "source-sha256:b96aa4a1223e5624b37953cc92635b7c594947a95b08e3afc3c13adcd50d822d",
+      "source-sha256:5cb311084c95d9cc9a5dcbd4e098eeef7e3b8943342733e85ec5234af8138dd6"
+    ],
+    [
+      "source-sha256:6eb1bca418ba0f35da0eac43588719223d3ef32feb1af85d953fa22cc6063cb8",
+      "source-sha256:134982d208458b90bcb8e316b7c64f00a23c93f66af1a1b106fed7e43f5b173a"
+    ],
+    [
+      "source-sha256:2206d6c0d6e9dd92aac5a3501f201c16b4703c6a15af5160057f789bf2ce9a13",
+      "source-sha256:9e02b727f26e18278e4e5ffed3e48cc2231f62eba315b190c531c8d43daeebd4"
+    ],
+    [
+      "source-sha256:1ae0ed7612733e94916ea8745793a2ee908d7c23b28ec04d2b799d86819e98a7",
+      "source-sha256:b5e96d53ad62981b815b7468b02e0c62eb94e56d6f02ea6564a16fc83feb52f2"
+    ],
+    [
+      "source-sha256:ddbbefaf4b37ade102418f699e19477ba5ebb523ba4d44463d76fcb38897a2fc",
+      "source-sha256:97de9799461015db70800db31e2a82f6880610e74714a824f869e9dbe9162359"
+    ],
+    [
+      "source-sha256:c41ead8474239c14d9c80945e3210f9150de4df821eee133e818d68c35d08f6b",
+      "source-sha256:a84cfb4dd8365e711e3c72ee256ab2ff80729fc149a1614f19a01011e10de4f9"
+    ],
+    [
+      "source-sha256:d12fa7d3adea1ea622c402fe10f9cea131b7dec9ce9192d67c7b918a865c606b",
+      "source-sha256:0c45b6787b4a9d560242caa6944f01bed862dbc9abc24d7a00751849494d112b"
+    ],
+    [
+      "source-sha256:12f06088335fb6d485552535c53bd0401ee9196225d047958d3ed22e94aad480",
+      "source-sha256:3f89d6856c438817dcc1c25444ba5bd73bae5f979f7ad8ae17f08bc1f5ee5274"
+    ]
+  ]
+}

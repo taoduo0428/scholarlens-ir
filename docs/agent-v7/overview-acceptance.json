@@ -1,0 +1,540 @@
+{
+  "application_revision": "88f7781",
+  "baseline_revision": "a8cab6b",
+  "sealed_pairs_revision": "c27a881",
+  "worker_probe_revision": "660ab44",
+  "proof_transfer": {
+    "before": {
+      "manifest_sha256": "62e2435afcee6896145d129d23bc6531390e817e688e0b3a9561fe42b889671b",
+      "rows": [
+        {
+          "pair": 0,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 8,
+          "ms": 1334.929
+        },
+        {
+          "pair": 0,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 915.753
+        },
+        {
+          "pair": 1,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 9,
+          "ms": 1258.052
+        },
+        {
+          "pair": 1,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 9,
+          "ms": 804.139
+        },
+        {
+          "pair": 2,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 7,
+          "ms": 1201.908
+        },
+        {
+          "pair": 2,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 802.019
+        },
+        {
+          "pair": 3,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 9,
+          "ms": 838.935
+        },
+        {
+          "pair": 3,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 2436.258
+        },
+        {
+          "pair": 4,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 8,
+          "ms": 870.587
+        },
+        {
+          "pair": 4,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 736.715
+        },
+        {
+          "pair": 5,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 9,
+          "ms": 869.526
+        },
+        {
+          "pair": 5,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 2006.507
+        },
+        {
+          "pair": 6,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 8,
+          "ms": 1040.571
+        },
+        {
+          "pair": 6,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 848.21
+        },
+        {
+          "pair": 7,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 8,
+          "ms": 751.85
+        },
+        {
+          "pair": 7,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 725.484
+        },
+        {
+          "pair": 8,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 8,
+          "ms": 704.803
+        },
+        {
+          "pair": 8,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 751.789
+        },
+        {
+          "pair": 9,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 8,
+          "ms": 871.178
+        },
+        {
+          "pair": 9,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 944.567
+        },
+        {
+          "pair": 10,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 1,
+          "tools": 9,
+          "ms": 1874.069
+        },
+        {
+          "pair": 10,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 826.064
+        },
+        {
+          "pair": 11,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 1137.676
+        },
+        {
+          "pair": 11,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 836.864
+        }
+      ],
+      "original_with_proof": 0,
+      "withheld_with_any_derived": 0
+    },
+    "after": {
+      "manifest_sha256": "62e2435afcee6896145d129d23bc6531390e817e688e0b3a9561fe42b889671b",
+      "rows": [
+        {
+          "pair": 0,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 8,
+          "ms": 1008.866
+        },
+        {
+          "pair": 0,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 1077.298
+        },
+        {
+          "pair": 1,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 9,
+          "ms": 1047.824
+        },
+        {
+          "pair": 1,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 9,
+          "ms": 1455.982
+        },
+        {
+          "pair": 2,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 1703.868
+        },
+        {
+          "pair": 2,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 1090.235
+        },
+        {
+          "pair": 3,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 9,
+          "ms": 1080.582
+        },
+        {
+          "pair": 3,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 2225.978
+        },
+        {
+          "pair": 4,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 8,
+          "ms": 1222.642
+        },
+        {
+          "pair": 4,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 1099.74
+        },
+        {
+          "pair": 5,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 9,
+          "ms": 1625.251
+        },
+        {
+          "pair": 5,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 1460.908
+        },
+        {
+          "pair": 6,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 8,
+          "ms": 1587.208
+        },
+        {
+          "pair": 6,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 956.673
+        },
+        {
+          "pair": 7,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 8,
+          "ms": 973.086
+        },
+        {
+          "pair": 7,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 1333.761
+        },
+        {
+          "pair": 8,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 8,
+          "ms": 1204.864
+        },
+        {
+          "pair": 8,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 1665.126
+        },
+        {
+          "pair": 9,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 8,
+          "ms": 1150.766
+        },
+        {
+          "pair": 9,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 992.778
+        },
+        {
+          "pair": 10,
+          "mode": "original",
+          "proof": true,
+          "derived_rows": 1,
+          "tools": 9,
+          "ms": 1063.656
+        },
+        {
+          "pair": 10,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 1071.634
+        },
+        {
+          "pair": 11,
+          "mode": "original",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 7,
+          "ms": 2037.448
+        },
+        {
+          "pair": 11,
+          "mode": "second_abstract_withheld",
+          "proof": false,
+          "derived_rows": 0,
+          "tools": 5,
+          "ms": 1280.401
+        }
+      ],
+      "original_with_proof": 1,
+      "withheld_with_any_derived": 0
+    }
+  },
+  "frozen_silver": {
+    "direct_on_positive": {
+      "count": 8,
+      "total": 70,
+      "wilson95": [
+        0.0591,
+        0.2096
+      ]
+    },
+    "no_direct_on_positive": {
+      "count": 62,
+      "total": 70,
+      "wilson95": [
+        0.7904,
+        0.9409
+      ]
+    },
+    "direct_on_negative": {
+      "count": 0,
+      "total": 41,
+      "wilson95": [
+        0,
+        0.0857
+      ]
+    },
+    "exact_answerability": {
+      "count": 41,
+      "total": 111,
+      "wilson95": [
+        0.2854,
+        0.4621
+      ]
+    },
+    "source_span_overlap": {
+      "count": 141,
+      "total": 432,
+      "wilson95": [
+        0.2839,
+        0.372
+      ]
+    },
+    "successful_tool_calls": {
+      "count": 1058,
+      "total": 1058,
+      "wilson95": [
+        0.9964,
+        1
+      ]
+    },
+    "task_states": {
+      "completed": 1,
+      "partial": 110
+    },
+    "p50_ms": 993.99,
+    "p95_ms": 1796.3
+  },
+  "holdout84": {
+    "exact": 27,
+    "false_release": 0,
+    "linked_overview": 0
+  },
+  "overview28": {
+    "holdout_sha256": "922a2445c2d8b276c2d6abed99ff6ad06bf0427c43623d5219cfc95fdf140ee5",
+    "cases": 28,
+    "legacy_linked": 0,
+    "direct": 27,
+    "full_relation": 0,
+    "complete_observations": 2,
+    "checked_claims": 73,
+    "tools": 233,
+    "models": 0,
+    "p50_ms": 1137.76,
+    "p95_ms": 2045.32
+  },
+  "targeted_backend": {
+    "command": "python -m pytest -q backend/tests/research/test_e11_overview_relations.py",
+    "passed": 16,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 26.25,
+    "exit": 0
+  },
+  "frontend": {
+    "command": "npm test && npm run verify:structure && npm run build:production",
+    "tests_passed": 45,
+    "tests_failed": 0,
+    "tests_skipped": 0,
+    "test_seconds": 0.549,
+    "production_build_seconds": 5.96,
+    "typescript_exit": 0,
+    "exit": 0
+  },
+  "browser": {
+    "command": "python -m tools.research_eval.v6_browser --e11 --fixture-lab <fixture.sqlite3> --dist frontend/dist --output <new-output>",
+    "result": "PASS 2 profiles; 4 quote/locator pairs; selected cell; report downloaded; restored; access isolated",
+    "exit": 0
+  },
+  "worker_takeover": {
+    "tasks": 4,
+    "verified_reports": 4,
+    "checkpoint_revision": 2,
+    "recovered_evidence": 1,
+    "duplicate_process_rejected": true,
+    "crashed_worker_exit": -15,
+    "successor_exit": 0,
+    "seconds_after_crash": 4.172
+  },
+  "model_provider": {
+    "status": "BLOCKED",
+    "calls": 0,
+    "missing": [
+      "AI_API_KEY",
+      "AI_BASE_URL",
+      "AI_MODEL",
+      "E10_MAX_USD",
+      "E10_MAX_RATE_USD_PER_MTOK"
+    ]
+  },
+  "hosted_ci_runs": 0,
+  "human_gold": 0,
+  "backend": {
+    "tests_exit": 0,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true,
+    "tests": 731,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pytest_seconds": 447.038,
+    "command": "python -m tools.research_eval.v6_vector_fixture --es-home <ES_8.19.23_HOME> --offline-fixture infra/.runtime/elasticsearch-8.19.23/data --full-suite --delivery backend/.runtime/p0-delivery"
+  }
+}
