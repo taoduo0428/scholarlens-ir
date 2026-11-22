@@ -1,0 +1,121 @@
+{
+  "corpus": "49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "transfer_salt": "e11-relations-design-transfer-20261122-v1",
+  "challenge_salt": "opening-model-20261122-1",
+  "groups": {
+    "random": [
+      [
+        "source-sha256:1e596b2982bd125e594459a2231da358191237e4ac4c7f0d24de29eae4e2ba37",
+        "source-sha256:2681561a0adb224778d68f906be9ba9b45bc16328eba4b5087c511a657035142"
+      ],
+      [
+        "source-sha256:fb69dd5c5af9224776cf128bda843d3704802973201bb1b3c7748c7477eae088",
+        "source-sha256:38daaf2a7d067cd8ddecd399bdd87ada38fb60cd9c37e5cb1ae639247a91d22a"
+      ],
+      [
+        "source-sha256:a551fa5cfccb38e51200c77ba92eea595f5825d99473a31ca6add9e4b88c9828",
+        "source-sha256:82a0186b64f68c66d5eb4888c70f6ae355091d0f2454789e69c8a84ef9d4ce4c"
+      ],
+      [
+        "source-sha256:0e606fb62ffb30f72f49ad501ebded7defa9191a32158934d5c1b796977ceadc",
+        "source-sha256:ffa37e2acc0aa954a4dabd61e0f696eb7f10d25324e72e5c93ea5fbe7f2c5661"
+      ],
+      [
+        "source-sha256:c7d2418deca137268266269d5f571b78d36036ea1f2b65a2fdc202f6f46a151c",
+        "source-sha256:450a29817832645a20586f46f4354ec2e6e6c4217e5427fa1a9df0e97a138bdd"
+      ],
+      [
+        "source-sha256:930d17f5f14ef4e12a5ea90d5e792ad6c34666ae7186b320b6ecb6d6fa99d04e",
+        "source-sha256:14e5e87aa36afb6a2050b88172f068c9c268dbda2df2e0c90386d7c4e7f4ada0"
+      ],
+      [
+        "source-sha256:f4ce5709550ef5e997028752977e93fa42c5bcf0d1ccfaac5deda21fc0eb6929",
+        "source-sha256:3c75f7a0756dbdd436e7333fc6e8e326387fca7e7be7f55b0fbb775c791f8421"
+      ],
+      [
+        "source-sha256:4360ea91f2d8ae66d44724b0d4fd98421dfad923030f4514479e163fec46ddf2",
+        "source-sha256:ce1103d2ef9f313fa4b2f12de70400958d404a7cbb4c5f875f39bdcb636a7db5"
+      ]
+    ],
+    "model_mention": [
+      [
+        "source-sha256:a85536a3f816a1329235f30a6125d6e3bfac3ab4152ba1e16da4cff95fdd1cb2",
+        "source-sha256:a80a2659f88bdeed819af7f4e63cf3183afdf71da0b1163264398f7cd98ab3ab"
+      ],
+      [
+        "source-sha256:227755b64acc9086e29d188803039ef8e58a59f4321dfb7c33ef9dc077027e07",
+        "source-sha256:cd1890951d2a22e96d5f7765f18eaff90fe14210ad3626bbdc74705976ca8759"
+      ],
+      [
+        "source-sha256:f263d4bec76f0ee9f455e3ec7f2b024ff53b39793098795a5732ab117cc00853",
+        "source-sha256:0c5c72d7003395db4b0eafba0c8ddd6c060a22b96501b9b53c8e4e145a86af97"
+      ],
+      [
+        "source-sha256:4b5ccc2c60f678c3b8825973ca97868cf0c0172a4917eb42345d18a2113d9591",
+        "source-sha256:7ebbaf9dc95009a6e48982d04bedbab1e8b2ecc64532aab19beaa7e9242be0eb"
+      ],
+      [
+        "source-sha256:215d86169d6a5da3c6e3ce86b62130e27d40ea638f009a907141ee166aea3f45",
+        "source-sha256:4f4a19ec75a07a888be648c557fc2264bbf287ad327763778fb8eceb96af9a5f"
+      ],
+      [
+        "source-sha256:d0a93c2dbab28737c408bab58ebc014e5e8d1c9451c6d4d116be63e1f36629ed",
+        "source-sha256:514863dd1f6a2a29346bf11d029c8008255a14b3c267280ceb6b9826d64e5525"
+      ],
+      [
+        "source-sha256:26bf4b96208a03051bf0572b2b07f8afe4f7290ae2c805c2caad3bc225fc538f",
+        "source-sha256:defbc6011f7ec63f4675a1fba263170f099c9cf9c877a37dd475febeb5ab9c69"
+      ],
+      [
+        "source-sha256:897b8560ad02814a0c14d60e3e35112e299a0b84ee44553d4d78747d485d63f4",
+        "source-sha256:1fb941d79120a62df58ca786f3629a2babd4503db71d0155ec58aa4286fea2be"
+      ]
+    ],
+    "author_model_enriched": [
+      [
+        "source-sha256:b9cca09697f490848e66ce0c89378485eb8d3be9c42a8a70905130e01b4346c2",
+        "source-sha256:e5e11279b23eba563e6e3efdb75448ec7a47f0cc58f3ce01bf9d053cdac9fdc9"
+      ],
+      [
+        "source-sha256:c2067df629383b99c2dceb98471b678d8cb338b321f7d4530d04b8ec723e450f",
+        "source-sha256:bc489716f6da4ec7cfe424919464e73a50d289cde9088f28fd53df17056d67dd"
+      ],
+      [
+        "source-sha256:eb48649200557df452647a08b11a7340afc03f06676fe41291b5f05f2a8fdafa",
+        "source-sha256:d47251fb29b669b5727cbdd3a83ae68d73443d2492ace880f99dfcad935b6af2"
+      ],
+      [
+        "source-sha256:0581150cba53f2131336510221aa79d2eabb93e78c419b071a98fdb8e8e91157",
+        "source-sha256:7431943045f9588f9e4b4fb441015537832f782db0017004f017f7470642a016"
+      ],
+      [
+        "source-sha256:685f256cf484490f0c8893383eaf29cf87e1f566f8b1d64666305eb5b3fb5237",
+        "source-sha256:aba9204a47a15eb5ecb46a086ddbf40cfd9d58fcbab426df11671e611a783e16"
+      ],
+      [
+        "source-sha256:535db249b63a3af6f363d142a4c7d80d199d55bdceaa5a0ffe22a55ccf847a33",
+        "source-sha256:010b7ea1ff26a4f77e9a25a39fb99262a9f0fca8b2e095e3b65d2c62326d75e8"
+      ],
+      [
+        "source-sha256:107e3a1382b1d892c733081aa604516b2d19b76b1105d0351372ee07c234c845",
+        "source-sha256:3e6de2d18de50d8d80b4f6d1636f4542231b89f5689c5dc16e0f163ff3485fb3"
+      ],
+      [
+        "source-sha256:f626d638ab9fd4d353f6035af8317e4b3970001535d2dac576c7a2c59d96e7d3",
+        "source-sha256:87e8abbbdf96a73794b54399d7e29e2610e5ba7fc91599fcdf1f29887bf01c50"
+      ]
+    ],
+    "opening_construction_challenge": [
+      [
+        "source-sha256:e3f75d528460fda99ba05327198c21dcd1ebf012aba54fb13b81de6dc1833b3e",
+        "source-sha256:72d9a28f02d42fbd24d1df63137d3b8dd8ac2ba8456afaf6267a272943c9ddab"
+      ]
+    ],
+    "development_group_22": [
+      [
+        "source-sha256:af101dc9f6d3819b472a4578c3092b8b9611c379fa28c24b122133f079eb667a",
+        "source-sha256:d4292b7596a58d955608a37700341c34c12cc769e1bbe02789ea0527ce732f88"
+      ]
+    ]
+  }
+}

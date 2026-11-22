@@ -93,7 +93,7 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10", "E11"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
-            with span("api") as active, worker.cv:
+            with span("api", tracer=worker.tracer) as active, worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,
                                                    initial_budget=task_budget(body), submission_trace=recorded_parent(active),
                                                    retrieval_policy=retrieval_policy,

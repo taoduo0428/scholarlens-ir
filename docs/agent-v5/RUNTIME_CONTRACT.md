@@ -5,3 +5,5 @@
 待执行任务若出现不可反序列化的状态、问题图摘要冲突或 checkpoint 校验失败，工作线程保留原始记录、隔离该任务、继续处理其他任务。管理员通过离线一致性备份恢复并重新核验数据，再解除隔离。认证用户访问其他用户的隔离记录同样返回 404。
 
 在设置 SCHOLARLENS_OTEL_ENABLED=true 并配置进程内 OpenTelemetry Provider 后，可采集 task、plan、retrieve、tool、verify、model、critique、publication 的父子 span。启用仅影响观测，默认不配置网络导出器。属性仅包含固定阶段、错误类别和执行状态，严禁采集输入、正文、请求头、模型输出、用户标识与凭据。验收检验跨线程上下文、缺测计数、所有权、旧快照升级和隔离任务队列。
+
+E13 由后端维护。启用追踪后，运维可设置 `SCHOLARLENS_OTLP_TRACES_ENDPOINT`，将此应用的研究 span 成批发送到指定的 OTLP/HTTP protobuf 接收端。远程地址须用 HTTPS，回环 IP 可用 HTTP。服务启动时校验完整的 `/v1/traces` 地址。接收端故障只影响观测。验收从已登录账号提交任务，根据任务详情的 trace ID 在接收端核对 API、Worker、工作流及各执行阶段，检查字段白名单和正常停机时的最后一批数据。
