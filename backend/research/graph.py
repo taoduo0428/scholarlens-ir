@@ -2,6 +2,7 @@
 
 from datetime import datetime, timedelta, timezone
 import json
+import os
 import sqlite3
 import time
 from typing import TypedDict
@@ -104,14 +105,16 @@ class ResearchGraph:
         self.conn.close()
 
     def run(self, owner: int, uid: str):
-        with span("task") as active, tracing_context(enabled=False), metering(lambda row: self.store.record_usage(owner, uid, row)):
+        parent = self.store.submission_trace(owner, uid) if os.getenv("SCHOLARLENS_OTEL_ENABLED", "").lower() == "true" else None
+        with span("task", parent=parent) as active, tracing_context(enabled=False), metering(lambda row: self.store.record_usage(owner, uid, row)):
             self.store.enter_graph(owner, uid)
             if active is not None and active.is_recording():
                 self.store.record_trace(owner, uid, format(active.get_span_context().trace_id, "032x"))
-            self.graph.invoke(
-                {"owner": owner, "task": str(uid), "route": "retrieve"},
-                {"configurable": {"thread_id": str(uid)}, "recursion_limit": 32},
-            )
+            with span("workflow"):
+                self.graph.invoke(
+                    {"owner": owner, "task": str(uid), "route": "retrieve"},
+                    {"configurable": {"thread_id": str(uid)}, "recursion_limit": 32},
+                )
         return self.store.get(owner, uid)[0]
 
     def _load(self, cursor):

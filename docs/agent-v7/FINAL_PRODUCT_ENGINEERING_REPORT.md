@@ -1,5 +1,7 @@
 # ScholarLens 工程交付记录
 
+应用提交 `b978ab8` 已通过完整后端 743 项检查。API 与后台任务共享追踪标识。上一版浏览器测试库的 1 项任务和 4 份产物在迁移后逐项一致，上一版代码也可读取迁移后的库。[运行报告](RUNTIME_REPORT.md) · [验收数据](submission-trace-acceptance.json)
+
 应用提交 `88f7781` 在隔离 Elasticsearch 上通过完整后端 731 项，失败和跳过均为 0，pytest 用时 447.038 秒。前端 45 项、结构检查、生产构建和双账号浏览器流程通过。[本轮验收](overview-acceptance.json)
 
 本次将逐篇观察和跨论文推断分别发布。原有 28 组中，27 组可以直接回答部分问题，覆盖全组的关系为 0 组。在另外 12 对含证明陈述的论文中，系统为 1 对给出了可回查双方原句的共同研究手段，12 次缺少第二篇摘要的对照均保留了关系缺口。[研究质量](RESEARCH_QUALITY_REPORT.md) · [逐项验收](overview-acceptance.json)
