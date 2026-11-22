@@ -46,7 +46,7 @@
 
 浏览器从限定论文中读取一页、选中合成表格的数值 87，在任务报告中核对位置，下载的 Markdown 与报告原文相同。刷新后两篇论文的档案仍可读，同名项目在另一账号下的任务数为 0。前端 45 项测试、结构校验、TypeScript 和启用研究页面的生产构建通过。另在真实出版社 PDF 的物理单元格上复核了数值 23,133。[本次机器验收记录](delivery-acceptance.json)
 
-GitHub 拒绝写入工作流，返回当前 OAuth 授权缺少 `workflow` 权限。复核用工作流存于 `infra/ci/agent-ci.yml`。公开稳定版仍待真实模型、容器和托管 CI 验收。
+GitHub 的工作流写权限已生效。2026-11-22，托管 Ubuntu 在同一次 PR 运行中通过三组 Python 测试，分别为 15、26、189 项。冻结基准、前端和 Docker 构建通过，Python 依赖审计通过。[运行日志及测试计数产物](https://github.com/taoduo0428/scholarlens-ir/actions/runs/44981973205)
 
 研究质量、PDF 结果、运行情况、安全审计与公开发布门槛分别见下列记录。
 
