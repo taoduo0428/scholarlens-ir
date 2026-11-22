@@ -64,12 +64,17 @@ def freeze():
     return {"schema":"workspace-suite/1","generation":GENERATION,"groups":groups}
 
 
-def load_split(split):
+def suite_groups(split):
     path = BENCH / "workspace-v4-frozen.json"
     data = json.loads(path.read_bytes())
     if data["sha256"] != "7f5014b844aa57e308ea3fc0b439a0368dfc5dfa609ce79c1a3a0ac95435ae63" or sha256(canonical(data["dataset"])).hexdigest() != data["sha256"]:
         raise ValueError("invalid suite digest")
     groups = [g for g in data["dataset"]["groups"] if g["split"] == split]
+    return groups, data["sha256"]
+
+
+def load_split(split):
+    groups, stamp = suite_groups(split)
     wanted = {p["row"]:p for g in groups for p in g["papers"]}
     docs = {}
     digest = sha256()
@@ -83,7 +88,7 @@ def load_split(split):
                 docs[row["paper_id"]] = {k:row[k] for k in ("paper_id","title","abstract")}
     if digest.hexdigest() != OID or len(docs) != len(wanted):
         raise ValueError("source mismatch")
-    return [t for g in groups for t in g["tasks"]], docs, data["sha256"]
+    return [t for g in groups for t in g["tasks"]], docs, stamp
 
 
 if __name__ == "__main__":

@@ -1,6 +1,8 @@
 """Request-scoped personal credentials and a DNS-pinned public HTTPS transport."""
 from dataclasses import replace
 import ipaddress
+import os
+import re
 import socket
 from urllib.parse import urlsplit
 
@@ -48,14 +50,42 @@ def personal_settings(settings, headers, authenticate, require_model=True):
                    ai_timeout=max(settings.ai_timeout, 60), ai_personal=True)
 
 
-class PublicAITransport(httpx.BaseTransport):
-    """Resolve once per request, reject private results, then dial the validated IP.
+def _trusted_proxy():
+    base = os.getenv("SCHOLARLENS_TRUSTED_AI_BASE_URL", "")
+    proxy = os.getenv("SCHOLARLENS_AI_LOOPBACK_PROXY", "")
+    if not base or not proxy:
+        return None
+    try:
+        if any(c.isspace() or ord(c) < 32 or c in "\\?#@" for c in base + proxy):
+            return None
+        url, local = urlsplit(base), urlsplit(proxy)
+        if (url.scheme != "https" or url.port not in (443, None) or not url.hostname
+                or not re.fullmatch(r"[a-z0-9.-]+", url.hostname)
+                or local.scheme != "http" or not local.port or local.path not in {"", "/"}
+                or not ipaddress.ip_address(local.hostname or "").is_loopback):
+            return None
+        prefix = url.path.rstrip("/")
+        if not re.fullmatch(r"(?:/[A-Za-z0-9._~-]+)*", prefix) or any(
+                part in {".", ".."} for part in prefix.split("/")):
+            return None
+        routes = {(method, (prefix + suffix).encode()) for method, suffix in (
+            ("GET", "/models"), ("POST", "/chat/completions"), ("POST", "/responses"))}
+        return url.hostname, routes, proxy
+    except (ValueError, UnicodeError):
+        return None
 
-    Original Host and TLS SNI remain intact, including certificate verification.
-    Redirects are disabled by the caller. No environment proxies are used.
+
+class PublicAITransport(httpx.BaseTransport):
+    """Validate public DNS and dial a checked address or the operator's trusted route.
+
+    TLS verifies the supplier hostname on both routes. The optional loopback
+    CONNECT proxy receives only the configured supplier's public model API.
     """
-    def __init__(self):
+    def __init__(self, *, dispatch=None):
         self.inner = httpx.HTTPTransport(retries=0)
+        self._dispatch = dispatch or (lambda request, send: send(request))
+        self._trusted = _trusted_proxy()
+        self._proxy = None
 
     def handle_request(self, request):
         hostname = request.url.host
@@ -64,10 +94,23 @@ class PublicAITransport(httpx.BaseTransport):
                 hostname, 443, type=socket.SOCK_STREAM)))
         except OSError:
             raise httpx.ConnectError("AI hostname lookup failed", request=request) from None
-        if not addresses or any(not ipaddress.ip_address(address).is_global for address in addresses):
+        ips = [ipaddress.ip_address(address) for address in addresses]
+        if not ips or any(not ip.is_global or ip.is_multicast for ip in ips):
             raise problem(400, "unsafe_ai_endpoint", "个人 API 地址不能指向本机、内网或保留网络")
         headers = httpx.Headers(request.headers)
         headers["Host"] = request.url.netloc.decode("ascii")
+        if (self._trusted and hostname == self._trusted[0] and request.url.scheme == "https"
+                and request.url.port in {443, None} and not request.url.userinfo and not request.url.fragment
+                and (request.method, request.url.raw_path) in self._trusted[1]):
+            if self._proxy is None:
+                self._proxy = httpx.HTTPTransport(proxy=self._trusted[2], verify=True, trust_env=False, retries=0)
+            headers.pop("Proxy-Authorization", None)
+            proxied = httpx.Request(request.method, request.url, headers=headers, stream=request.stream,
+                                    extensions={**request.extensions, "sni_hostname": hostname})
+            response = self._dispatch(proxied, self._proxy.handle_request)
+            if response.is_redirect:
+                response.headers.pop("location", None)
+            return response
         first = addresses[0]
         first_version = ipaddress.ip_address(first).version
         alternative = next(
@@ -82,7 +125,7 @@ class PublicAITransport(httpx.BaseTransport):
                 headers=headers, stream=request.stream,
                 extensions={**request.extensions, "sni_hostname": hostname},
             )
-            return self.inner.handle_request(pinned)
+            return self._dispatch(pinned, self.inner.handle_request)
 
         try:
             return dial(first)
@@ -94,3 +137,5 @@ class PublicAITransport(httpx.BaseTransport):
 
     def close(self):
         self.inner.close()
+        if self._proxy is not None:
+            self._proxy.close()

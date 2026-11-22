@@ -1,0 +1,36 @@
+{
+  "browser": "157.0.8103.79",
+  "fixture": "one paper metadata row; production layout route",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "supported": [
+    {
+      "page": 9,
+      "figure": 5,
+      "status": 200,
+      "displayed_rows": 6
+    },
+    {
+      "page": 10,
+      "figure": 6,
+      "status": 200,
+      "displayed_rows": 6
+    }
+  ],
+  "line_key": {
+    "page": 6,
+    "status": 200,
+    "rows": 0
+  },
+  "missing_page": {
+    "page": 499,
+    "status": 422,
+    "code": "layout_unavailable",
+    "visible_message": "无法在本页定位可读证据"
+  },
+  "calibrated_points": 8,
+  "indistinct_panels": 7,
+  "stale_legend_rows": 0,
+  "stale_chart_rows": 0,
+  "page_errors": 0,
+  "http_5xx": 0
+}

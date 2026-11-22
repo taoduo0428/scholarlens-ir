@@ -82,7 +82,16 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
         typed = requested_dimensions(intent_goal)
         from backend.research.study_brief import brief_remainder, named_problem_method
         title = named_problem_method(contract.goal) if independent and scope else None
-        if (title and len(title) <= 500 and node.requirement.kind == "source_fact"
+        from backend.research.multihop_fields import link_field, link_request
+        link = link_request(contract.goal) if independent and contract.answer_type == "causal_chain" else None
+        compiled_link = link_field(node, contract, link) if link else None
+        from backend.research.quantitative_evidence import quantity_fields
+        quantitative = quantity_fields(node, contract) if independent and one else []
+        if quantitative:
+            fields.extend(quantitative)
+        elif compiled_link is not None:
+            fields.append(compiled_link)
+        elif (title and len(title) <= 500 and node.requirement.kind == "source_fact"
                 and (contract.answer_type == "causal_chain" or (one and research_type == "description"))
                 and not any(field_for(node, contract, part, 1).operation in {"layout", "quote"}
                             for part in requests(contract.goal))):

@@ -196,6 +196,8 @@ class Store:
             db.executescript("""
                 CREATE TABLE IF NOT EXISTS schema_version (version INTEGER NOT NULL);
                 INSERT INTO schema_version(version) SELECT 0 WHERE NOT EXISTS (SELECT 1 FROM schema_version);
+                CREATE TABLE IF NOT EXISTS account_id_floor (
+                    singleton INTEGER PRIMARY KEY CHECK(singleton=1), highest_erased INTEGER NOT NULL);
                 PRAGMA journal_mode=WAL;
                 CREATE TABLE IF NOT EXISTS users (
                     id INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE COLLATE NOCASE,
@@ -354,7 +356,10 @@ def router(store: Store, read_paper):
         try:
             with store.connect() as db:
                 result = db.execute(
-                    "INSERT INTO users(username,salt,password_hash,created_at) VALUES(?,?,?,?)",
+                    """INSERT INTO users(id,username,salt,password_hash,created_at)
+                       SELECT MAX(COALESCE((SELECT MAX(id) FROM users),0),
+                                  COALESCE((SELECT highest_erased FROM account_id_floor WHERE singleton=1),0))
+                              + 1, ?,?,?,?""",
                     (body.username, salt, hashed, now()),
                 )
                 return {"id": result.lastrowid, "username": body.username, "role": "user"}

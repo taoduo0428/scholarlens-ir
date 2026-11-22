@@ -1,6 +1,7 @@
 """Authenticated research API. Feature registration and dependencies are opt-in."""
 import json
 import os
+import sqlite3
 from uuid import UUID
 
 from elastic_transport import TransportError
@@ -69,7 +70,6 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         except (ToolError, OSError, HTTPException, TransportError, ApiError):
             raise problem(503, "dependency_unavailable", "研究语料尚未就绪") from None
         try:
-            versions = bind_versions(registry_dir)
             retrieval_policy = os.getenv("SCHOLARLENS_RETRIEVAL_POLICY", "V1")
             if os.getenv("SCHOLARLENS_E11_ENABLED", "").lower() == "true":
                 retrieval_policy = "E11"
@@ -93,6 +93,10 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10", "E11"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
+            try:
+                versions = bind_versions(registry_dir, programs=retrieval_policy == "E11")
+            except (sqlite3.Error, ValueError):
+                raise problem(503, "research_registry_unavailable", "已审批的研究版本暂不可用") from None
             with span("api", tracer=worker.tracer) as active, worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,
                                                    initial_budget=task_budget(body), submission_trace=recorded_parent(active),
@@ -126,6 +130,38 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
         if after_seq < 0:
             raise problem(400, "invalid_cursor", "事件序号无效")
         return {"events": store.events(user["id"], tid, after_seq)}
+
+    @api.get("/tasks/{tid}/export")
+    def export_bundle(tid: UUID, user=Depends(accounts.current)):
+        from backend.research.lifecycle import export_task
+        try:
+            bundle = export_task(store, user["id"], tid)
+        except NotFound:
+            raise problem(404, "task_not_found", "找不到研究任务") from None
+        except Conflict as exc:
+            raise problem(409, str(exc), "无法导出这份任务快照") from None
+        except sqlite3.Error:
+            raise problem(503, "task_storage_unavailable", "任务存储暂时不可用") from None
+        return Response(bundle, media_type="application/zip", headers={
+            "Cache-Control": "no-store", "Content-Disposition": f'attachment; filename="research-{tid}.zip"'
+        })
+
+    @api.delete("/tasks/{tid}", status_code=204)
+    def erase_task(tid: UUID, revision: int, user=Depends(accounts.current)):
+        from backend.research.lifecycle import erase_terminal
+        key = user["id"], str(tid)
+        with worker.cv:
+            if worker.active == key or key in worker.queue:
+                raise problem(409, "task_delete_conflict", "工作线程仍在处理此任务")
+            try:
+                erase_terminal(store, user["id"], tid, revision)
+            except NotFound:
+                raise problem(404, "task_not_found", "找不到研究任务") from None
+            except Conflict as exc:
+                raise problem(409, str(exc), "请核对任务状态和修订号") from None
+            except sqlite3.Error:
+                raise problem(503, "task_storage_unavailable", "任务清理未完成，请稍后重试") from None
+        return Response(status_code=204)
 
     @api.post("/tasks/{tid}/pause", status_code=202)
     @api.post("/tasks/{tid}/cancel", status_code=202)

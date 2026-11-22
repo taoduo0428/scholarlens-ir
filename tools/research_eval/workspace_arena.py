@@ -132,7 +132,7 @@ def analyze(trace, expected, direct, missing_case, anchors):
     return labels
 
 
-def run_one(task, docs, stamp, split, variant, path, skill=None, tuning=None):
+def run_one(task, docs, stamp, split, variant, path, skill=None, tuning=None, *, runtime_policy=None):
     model = variant in {"adaptive", "adaptive_control"}
     model_adapters = adapters() if model else None
     if variant == "adaptive_control":
@@ -143,9 +143,9 @@ def run_one(task, docs, stamp, split, variant, path, skill=None, tuning=None):
         docs,
         GENERATION,
         path,
-        VARIANTS[variant],
+        runtime_policy or VARIANTS[variant],
         skill if variant == "skill" or variant == "harness" else None,
-        tuning if variant == "harness" else None,
+        tuning if variant == "harness" or runtime_policy else None,
         adapters=model_adapters,
     )
     report = trace["report"]

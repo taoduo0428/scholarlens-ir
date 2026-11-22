@@ -1,0 +1,100 @@
+{
+  "status": "PARTIAL",
+  "model": "deepseek-v4.1-flash",
+  "corpus_adapter": "LocalCorpus:pinned_public_abstracts",
+  "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "paper_abstract_sha256": {
+    "source-sha256:af101dc9f6d3819b472a4578c3092b8b9611c379fa28c24b122133f079eb667a": "a2ced6c4b7d29f65b1532b30f380ab1c4342b09bed6a8882ba28b678ed202ae8",
+    "source-sha256:d4292b7596a58d955608a37700341c34c12cc769e1bbe02789ea0527ce732f88": "e8bf2a2ef28b50b832ff35d876924c64669891de96ca1fb9c5cecc887e9c2101"
+  },
+  "budget_mode": "calls_only",
+  "max_request_attempts": 4,
+  "max_bytes_per_request": 48000,
+  "max_output_tokens_per_request": 1400,
+  "elapsed_ms": 48609,
+  "attempts": 4,
+  "model_calls": 4,
+  "receipts": [
+    {
+      "attempt": 1,
+      "request_bytes": 3521,
+      "output_token_limit": 1400,
+      "http_status": 200
+    },
+    {
+      "attempt": 2,
+      "request_bytes": 5279,
+      "output_token_limit": 800,
+      "http_status": 200
+    },
+    {
+      "attempt": 3,
+      "request_bytes": 14046,
+      "output_token_limit": 1400,
+      "http_status": 200
+    },
+    {
+      "attempt": 4,
+      "request_bytes": 3078,
+      "output_token_limit": 1400,
+      "http_status": null
+    }
+  ],
+  "usage": [
+    {
+      "input_tokens": 842,
+      "output_tokens": 1400,
+      "cached_tokens": 0,
+      "latency_ms": 12938
+    },
+    {
+      "input_tokens": 1260,
+      "output_tokens": 800,
+      "cached_tokens": 0,
+      "latency_ms": 9625
+    },
+    {
+      "input_tokens": 3286,
+      "output_tokens": 1400,
+      "cached_tokens": 0,
+      "latency_ms": 10672
+    }
+  ],
+  "actual_usd": null,
+  "estimate_usd": null,
+  "gates": {
+    "worker": true,
+    "planning": false,
+    "decision": false,
+    "retrieval": true,
+    "semantic_review": false,
+    "synthesis": false,
+    "publication": true,
+    "no_fallback": false,
+    "provider_receipts": false
+  },
+  "workflow_state": "completed",
+  "action_counts": {
+    "search_passages": 1,
+    "verify_source_quote": 6
+  },
+  "source_count": 3,
+  "two_paper_relations": 1,
+  "source_checked_model_fields": 0,
+  "warnings": [
+    "workspace_decision_fallback",
+    "workspace_analysis_fallback",
+    "workspace_synthesis_fallback"
+  ],
+  "report_http": 200,
+  "events_http": 200,
+  "date": "2026-11-22",
+  "evaluation_report_sha256": "faacf3afd62464f933dadd4422eaebe4aec4fa33a2caefa7e1eeafbbef02e9b4",
+  "verified_direct_count": 7,
+  "usage_token_sum": {
+    "input_tokens": 5388,
+    "output_tokens": 3600,
+    "cached_tokens": 0
+  },
+  "gateway_credit_observations": 3
+}

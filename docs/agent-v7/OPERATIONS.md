@@ -18,6 +18,10 @@ curl -fsS http://127.0.0.1:18001/readyz
 
 Compose 使用命名卷保存应用数据和 Elasticsearch，主机映射默认仅回环可访问。使用真实模型时从部署环境的秘密存储注入项目凭证并设预算。生产运维记录应保存应用镜像摘要、ES 快照名称及数据库备份校验和。
 
+需要识别英文彩色图例时，运维可在构建和启动命令中同时指定 `-f infra/product.compose.yml -f infra/pdf-ocr.compose.yml`。OCR 镜像包含 Tesseract、英文语言包以及图例识别用的程序路径。首次安装可在该镜像中运行 `python -m backend.research.ocr_check`，从生成的三行彩色图例核对输出。服务仍以应用账号运行。运维负责保管所用镜像的摘要与扫描记录。
+
+管理员需要查看已批准版本和冻结的实验记录时，设置主机目录 `SCHOLARLENS_APPROVALS_DIR` 和 `SCHOLARLENS_LAB_SNAPSHOT_DIR`，分别放入一致性快照 `approved.sqlite3` 和 `lab.sqlite3`。容器账号 10001 需有读取权限。加入 `-f infra/governance.compose.yml` 后，Compose 将两个目录只读挂载到 `/srv/approvals` 和 `/srv/experiments`，并在构建时启用管理页面。先以 `docker compose -f infra/product.compose.yml -f infra/governance.compose.yml config -q` 检查参数，再按当前环境的发布流程构建和部署。[审批与回滚说明](PROGRAM_RELEASE.md) · [治理页面验收](GOVERNANCE_VIEW.md)
+
 ## 同一主机上的模型并发
 
 Compose 已将 `SCHOLARLENS_MODEL_CAPACITY_DIR` 设为应用数据卷中的 `/var/lib/scholarlens/model-capacity`。同机的其他研究执行进程可将该变量指向同一个绝对目录。该本地文件系统须支持操作系统文件锁，并允许服务账号读写。共享进程合计最多同时调用模型四次，每个模型主机两次。能力接口的 `capacity_scope` 显示 `local_volume`。直接启动且使用默认配置的进程显示 `process`。

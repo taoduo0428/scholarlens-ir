@@ -437,7 +437,7 @@ class ResearchGraph:
                 broad = state.retrieval_policy != "V1"
                 if broad:
                     query = grounded_query(state.task.goal, query, state.task.constraints)
-                if self.experiment_skill is not None and state.retrieval_policy in {"V6", "V7", "W4"}:
+                if self.experiment_skill is not None and state.retrieval_policy in {"V6", "V7", "W4", "E11"}:
                     from backend.research.skills.program import interpret
 
                     hint, guided, operations = interpret(self.experiment_skill, state)
@@ -462,7 +462,18 @@ class ResearchGraph:
                     profile_read = False
                     query = " ".join(dict.fromkeys(f.subject for f in question_fields if f.subject))[:500]
                 directed = directed or bool(profile_read and state.task.scope.paper_ids)
-                if directed:
+                scoped_links = (state.retrieval_policy == "E11" and state.task.scope.paper_ids
+                                and state.answer_contract.answer_type == "causal_chain" and any(
+                                    f.facet in {"causal_premise", "causal_path", "input_path", "required_input"} and f.subject
+                                    for f in question_fields))
+                if scoped_links:
+                    # Rank relevant passages across the complete authorized candidate list.
+                    # An opening-window read would visit that list in input order.
+                    ids = list(state.task.scope.paper_ids)
+                    targets, directed = [], False
+                    query = " ".join(dict.fromkeys(
+                        name for f in question_fields for name in (f.subject, f.subject_context) if name))[:500]
+                elif directed:
                     ids=list(state.task.scope.paper_ids)
                     targets=[]
                 elif broad and state.candidate_papers:

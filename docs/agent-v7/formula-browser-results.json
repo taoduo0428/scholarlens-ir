@@ -1,0 +1,15 @@
+{
+  "browser": "157.0.8103.79",
+  "scope": "one catalogue fixture row; normal application and layout route",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "http_status": 200,
+  "expanded_mentions": [
+    "第 8 页正文引用 Eq.(4)",
+    "第 8 页正文引用 Eq.(6)"
+  ],
+  "visible_source_locations": 2,
+  "unresolved_same_page_links": 2,
+  "unavailable_page_status": 422,
+  "stale_mentions_after_error": 0,
+  "page_errors": 0
+}

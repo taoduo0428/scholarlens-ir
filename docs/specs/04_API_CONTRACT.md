@@ -170,4 +170,16 @@ search 的 query 回显全部已验证参数（包括 year_from/year_to/phrase/f
 
 ### 研究工作台的跨页表格
 
+同一布局接口的 `chart_readings` 提供登记坐标轴对应的读数、区间和页内位置，`formula_evidence` 提供编号等式、明确的变量定义和正文提及的字符区间。两者均绑定当前 PDF 版本。[图轴协议与验收](../agent-v7/CHART_AXES_ACCEPTANCE.md) · [公式协议与验收](../agent-v7/FORMULA_EVIDENCE.md)
+
 后端维护者负责 `GET /api/papers/{paper_id}/pdf/layout/{page}`。读取含明确续表标记的页时，服务在同一份已授权 PDF 内复核上一页。验收要求相邻页的表号、唯一相邻题注、列位置、表头和单位相符。命中时 `table_continuations` 返回两页的页码、表和题注定位，以及表头。单元格引用沿用物理页、行列和文件哈希。
+
+### 研究任务导出、删除与治理
+
+|方法和路径|访问条件|结果|
+|---|---|---|
+|GET `/api/research/tasks/{tid}/export`|任务所有者|返回含状态、事件、已绑定产物及哈希清单的 ZIP。校验或容量冲突返回 409。|
+|DELETE `/api/research/tasks/{tid}?revision={revision}`|任务所有者，终态及修订相符|删除成功返回 204。任务仍在运行或修订变化时返回 409。|
+|GET `/api/evolution-lab/governance`|已启用实验室且当前为管理员|返回可用工具、运行配置、版本和最近审批记录。匿名返回 401，普通账号返回 403。|
+
+后端维护者以隔离双账号核对归属、损坏产物、修订冲突和角色撤销。跨账号访问任务返回 404。审批与回滚使用离线发布命令。[任务协议](../agent-v7/TASK_DATA_LIFECYCLE.md) · [治理协议](../agent-v7/GOVERNANCE_VIEW.md)

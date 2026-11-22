@@ -21,21 +21,32 @@ def test_large_tool_result_fails_closed(monkeypatch):
 
 
 @pytest.mark.parametrize("calls", [0, 1])
-def test_provider_cannot_exceed_call_or_wall_clock_budget(tmp_path, calls):
+def test_provider_cannot_exceed_call_or_wall_clock_budget(tmp_path, calls, monkeypatch):
     corpus = LocalCorpus([], "test-corpus")
     store = ResearchStore(tmp_path)
     task = TaskInput(goal="Which method produced the result?", mode="personal_model")
     state, rev, _ = store.create(1, "id", task, corpus.generation)
     state.status = "running"
-    state.budget = Budget(
-        max_model_calls=calls, deadline=datetime.now(timezone.utc) + timedelta(seconds=0.4)
-    )
+    start = datetime.now(timezone.utc)
+    deadline = start + timedelta(seconds=2 if calls else 0.4)
+    state.budget = Budget(max_model_calls=calls, deadline=deadline)
     store.save(1, state, rev, "started", "bounds")
     entered, release, returned = Event(), Event(), Event()
 
+    if calls:
+        # Start this case with budget still available, even on a slow filesystem.
+        # The real executor timeout runs while the admitted provider is blocked.
+        class TaskClock:
+            @staticmethod
+            def now(_tz):
+                return deadline if entered.is_set() else start
+
+        monkeypatch.setattr("backend.research.graph.datetime", TaskClock)
+        monkeypatch.setattr("backend.research.harness.datetime", TaskClock)
+
     def slow_decision(view, remaining):
         entered.set()
-        release.wait(timeout=2)
+        release.wait(timeout=30)
         returned.set()
         return Finish(reason="blocked")
 

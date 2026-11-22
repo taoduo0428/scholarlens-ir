@@ -1,0 +1,22 @@
+services:
+  api:
+    environment:
+      SCHOLARLENS_EVOLUTION_LAB: "true"
+      SCHOLARLENS_APPROVED_REGISTRY: /srv/approvals
+      SCHOLARLENS_LAB_DB: /srv/experiments/lab.sqlite3
+    build:
+      args:
+        VITE_EVOLUTION_LAB: "true"
+    volumes:
+      - type: bind
+        source: ${SCHOLARLENS_APPROVALS_DIR:?set the verified registry directory}
+        target: /srv/approvals
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${SCHOLARLENS_LAB_SNAPSHOT_DIR:?set the read-only experiment snapshot directory}
+        target: /srv/experiments
+        read_only: true
+        bind:
+          create_host_path: false

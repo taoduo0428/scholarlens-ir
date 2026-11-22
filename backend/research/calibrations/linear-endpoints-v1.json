@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "id": "pone-0102799-fig4-v1",
+      "source_version": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+      "rgb_sha256": "f3a8e0c35183cd2ad8a80ae489ca9c39c2ba53ecd05862614299d378824629b7",
+      "caption_sha256": "56e309232d82a7a1cb1bbe8b015629648fce8fe148db94315409f712b11a1a14",
+      "page": 6,
+      "figure": 4,
+      "size": [
+        1863,
+        1380
+      ],
+      "x_axis": {
+        "label": "m/M (%)",
+        "min": 0,
+        "max": 100
+      },
+      "y_axis": {
+        "label": "q",
+        "min": -0.5,
+        "max": 1
+      },
+      "panels": {
+        "ca-CondMat": [
+          89,
+          44,
+          571,
+          288
+        ],
+        "ca-HepPh": [
+          721,
+          43,
+          1202,
+          287
+        ],
+        "email-Enron": [
+          1353,
+          44,
+          1835,
+          288
+        ],
+        "ca-AstroPh": [
+          89,
+          384,
+          571,
+          629
+        ],
+        "cit-HepTh": [
+          721,
+          384,
+          1203,
+          629
+        ],
+        "cit-HepPh": [
+          1353,
+          384,
+          1835,
+          629
+        ],
+        "com-Amazon": [
+          89,
+          725,
+          571,
+          970
+        ],
+        "com-DBLP": [
+          721,
+          725,
+          1203,
+          970
+        ],
+        "web-Stanford": [
+          1353,
+          725,
+          1835,
+          970
+        ],
+        "Amazon0601": [
+          89,
+          1065,
+          571,
+          1310
+        ],
+        "WikiTalk": [
+          721,
+          1065,
+          1203,
+          1310
+        ]
+      },
+      "series": {
+        "OLEM": "#0000ff",
+        "OLTM": "#007f00"
+      }
+    }
+  ]
+}

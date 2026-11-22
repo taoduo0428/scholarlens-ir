@@ -48,26 +48,71 @@ jobs:
             backend/tests/test_ai_responses.py backend/tests/test_agent_harness_reporting.py backend/tests/research/test_e10_profiles.py \
             backend/tests/research/test_e10_operational.py backend/tests/research/test_e10_boundaries.py backend/tests/research/test_runtime_receipts.py \
             backend/tests/research/test_workspace_recovery.py backend/tests/research/test_research_tools.py backend/tests/research/test_e11_model_relations.py \
-            backend/tests/research/test_figure_legend.py
+            backend/tests/research/test_figure_legend.py backend/tests/research/test_chart_readings.py \
+            backend/tests/research/test_multihop_scope.py backend/tests/research/test_task_lifecycle.py backend/tests/research/test_formula_links.py \
+            backend/tests/research/test_program_release.py backend/tests/research/test_governance_view.py \
+            backend/tests/research/test_quantitative_evidence.py backend/tests/research/test_account_erasure.py backend/tests/research/test_offline_verifier.py \
+            backend/tests/test_trusted_model_proxy.py backend/tests/research/test_live_research_acceptance.py
       - name: Frontend checks
         working-directory: frontend
         run: |
           npm ci --ignore-scripts
           npm test
+          node --check tests/real-workbench-live.mjs
           npm run verify:structure
-          npm run build
+          npm run build:production
           npm audit --audit-level=moderate
-      - name: Validate local service packaging
-        run: |
-          docker compose -f infra/product.compose.yml config -q
-          docker build -f infra/ScholarLens.Dockerfile -t scholarlens-ci .
-          docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "import os, ssl, sqlite3, gzip; assert os.getuid() == 10001; ssl.create_default_context(); assert sqlite3.connect(':memory:').execute('select 6*7').fetchone() == (42,); assert gzip.decompress(gzip.compress(b'paper')) == b'paper'"
       - name: Python dependency advisories
         run: |
           python -m venv "$RUNNER_TEMP/auditor"
           "$RUNNER_TEMP/auditor/bin/pip" install -r tools/audit/requirements.txt
           sed '/^#/d;/^-c/d;/^$/d' backend/requirements-lock.txt backend/research/requirements.txt backend/research/constraints-tested.txt backend/research/pdf-layout-requirements.txt | sort -u > "$RUNNER_TEMP/audit-locked.txt"
           "$RUNNER_TEMP/auditor/bin/pip-audit" --no-deps --disable-pip -r "$RUNNER_TEMP/audit-locked.txt"
+      - name: Publish test counts
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib, xml.etree.ElementTree as E
+          p=pathlib.Path("unit-results.xml")
+          if p.exists():
+              s=E.parse(p).getroot().find("testsuite")
+              pathlib.Path("unit-counts.json").write_text(json.dumps({k:s.get(k) for k in ("tests","failures","errors","skipped","time")}))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: agent-unit-counts
+          path: unit-counts.json
+          if-no-files-found: ignore
+  image:
+    name: Build and scan (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [standard, pdf-ocr]
+    env:
+      IMAGE_TARGET: ${{ matrix.target }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+      - name: Validate local service packaging
+        run: |
+          docker compose -f infra/product.compose.yml config -q
+          docker compose -f infra/product.compose.yml -f infra/pdf-ocr.compose.yml config -q
+          SCHOLARLENS_APPROVALS_DIR="$RUNNER_TEMP" SCHOLARLENS_LAB_SNAPSHOT_DIR="$RUNNER_TEMP" \
+            docker compose -f infra/product.compose.yml -f infra/governance.compose.yml config -q
+          docker build --target "$IMAGE_TARGET" -f infra/ScholarLens.Dockerfile -t scholarlens-ci .
+          docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "import os, ssl, sqlite3, gzip; assert os.getuid() == 10001; ssl.create_default_context(); assert sqlite3.connect(':memory:').execute('select 6*7').fetchone() == (42,); assert gzip.decompress(gzip.compress(b'paper')) == b'paper'"
+          docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "from backend.research.chart_registry import BUILTIN, read_registry; assert read_registry(BUILTIN).profiles"
+          docker run --rm --network none --read-only --tmpfs /tmp --tmpfs /var/lib/scholarlens:uid=10001,gid=10001 \
+            -e SCHOLARLENS_RESEARCH_ENABLED=true -e SCHOLARLENS_EVOLUTION_LAB=true scholarlens-ci \
+            python -c "from backend.app1 import app; paths=app.openapi()['paths']; assert '/api/research/tasks' in paths and '/api/evolution-lab/governance' in paths"
+          if [ "$IMAGE_TARGET" = "pdf-ocr" ]; then
+            docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -m backend.research.ocr_check
+          fi
       - name: Scan the built application image
         run: |
           set -euo pipefail
@@ -88,28 +133,15 @@ jobs:
           actual = scan["source"]["target"]["imageID"]
           if actual != expected:
               raise SystemExit(f"Scanned config {actual} differs from exported config {expected}")
-          print(expected, dict(collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])))
+          counts = collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])
+          print(expected, dict(counts))
+          if counts["Critical"]:
+              raise SystemExit("Critical image findings require remediation")
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: ${{ !cancelled() && hashFiles('image-findings.json') != '' }}
         with:
-          name: application-image-findings
+          name: application-image-findings-${{ matrix.target }}
           path: |
             image-findings.json
             scanned-image-id.txt
-      - name: Publish test counts
-        if: always()
-        run: |
-          python - <<'PY'
-          import json, pathlib, xml.etree.ElementTree as E
-          p=pathlib.Path("unit-results.xml")
-          if p.exists():
-              s=E.parse(p).getroot().find("testsuite")
-              pathlib.Path("unit-counts.json").write_text(json.dumps({k:s.get(k) for k in ("tests","failures","errors","skipped","time")}))
-          PY
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        if: always()
-        with:
-          name: agent-unit-counts
-          path: unit-counts.json
-          if-no-files-found: ignore

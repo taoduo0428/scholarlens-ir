@@ -5,12 +5,18 @@ services:
     build:
       context: ..
       dockerfile: infra/ScholarLens.Dockerfile
+      args:
+        VITE_JAEGER_UI_PATH: ${VITE_JAEGER_UI_PATH:-}
+        VITE_EVOLUTION_LAB: ${SCHOLARLENS_EVOLUTION_LAB:-false}
     ports:
       - "127.0.0.1:${SCHOLARLENS_PORT:-18001}:8000"
     environment:
       ELASTICSEARCH_URL: http://search:9200
       ELASTICSEARCH_INDEX: ${SCHOLARLENS_INDEX:-scholarlens-papers-real}
       SCHOLARLENS_RESEARCH_ENABLED: "true"
+      SCHOLARLENS_EVOLUTION_LAB: ${SCHOLARLENS_EVOLUTION_LAB:-false}
+      SCHOLARLENS_LAB_DB: ${SCHOLARLENS_LAB_DB:-/var/lib/scholarlens/lab.sqlite3}
+      SCHOLARLENS_APPROVED_REGISTRY: ${SCHOLARLENS_APPROVED_REGISTRY:-}
       SCHOLARLENS_MODEL_CAPACITY_DIR: /var/lib/scholarlens/model-capacity
       SCHOLARLENS_E11_ENABLED: ${SCHOLARLENS_E11_ENABLED:-false}
       SCHOLARLENS_OTEL_ENABLED: ${SCHOLARLENS_OTEL_ENABLED:-false}

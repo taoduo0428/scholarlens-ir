@@ -1,0 +1,22 @@
+{
+  "tasks": 111,
+  "baseline_direct_tasks": 12,
+  "reviewed_direct_tasks": 12,
+  "reviewed_claims": 16,
+  "removed_claims": 0,
+  "additional_model_calls": 0,
+  "additional_retrieval_calls": 0,
+  "wall_seconds": 0.197,
+  "scope": "independent deterministic provenance review; semantic judgement unmeasured",
+  "trace_manifest_sha256": "c9a23bdd0f19f494d9726c20ce61e9f854166b716430292c0b13525c0ad464c7",
+  "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "shared_spending": {
+    "tools": 994,
+    "retrieval_calls": 294,
+    "source_readbacks": 700,
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "provider_receipts": 0
+  }
+}
