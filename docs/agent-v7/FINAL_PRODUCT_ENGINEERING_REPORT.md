@@ -1,5 +1,7 @@
 # ScholarLens 工程交付记录
 
+应用提交 `ae694c8` 在隔离 Elasticsearch 上通过 754 项后端测试，失败、错误和跳过均为 0。pytest 用时 449.07 秒。测试副本包含 859 篇论文和 49,420 条向量，结束时已核对原索引文件清单和测试端口。复测命令沿用下文的 `v6_vector_fixture` 完整后端入口，附加 `--full-suite --delivery backend/.runtime/p0-delivery`。[本轮研究质量](RESEARCH_QUALITY_REPORT.md) · [逐题数据](subject-evidence-results.json)
+
 应用提交 `b978ab8` 已通过完整后端 743 项检查。API 与后台任务共享追踪标识。上一版浏览器测试库的 1 项任务和 4 份产物在迁移后逐项一致，上一版代码也可读取迁移后的库。[运行报告](RUNTIME_REPORT.md) · [验收数据](submission-trace-acceptance.json)
 
 应用提交 `88f7781` 在隔离 Elasticsearch 上通过完整后端 731 项，失败和跳过均为 0，pytest 用时 447.038 秒。前端 45 项、结构检查、生产构建和双账号浏览器流程通过。[本轮验收](overview-acceptance.json)

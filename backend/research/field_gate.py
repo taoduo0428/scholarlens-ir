@@ -160,6 +160,10 @@ def matches(field, claim, row, state, suggestions):
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
     if field.facet:
+        if profile_index is not None and field.facet in {"addressed_problem", "required_input"}:
+            from backend.research.subject_facts import witnesses
+            proof = witnesses(field, valid, sources) if field.subject else []
+            return proof, "insufficient_evidence"
         if field.subject:
             from backend.research.descriptive_plan import anchored
             valid = [c for c in valid if anchored(field.subject, c, sources)]
