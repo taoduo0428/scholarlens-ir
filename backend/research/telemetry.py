@@ -7,7 +7,7 @@ import os
 from urllib.parse import urlsplit
 
 _SINK = ContextVar("research_usage_sink", default=None)
-_PHASES = {"task", "plan", "retrieve", "tool", "verify", "model", "critique", "publication"}
+_PHASES = {"api", "workflow", "synthesis", "task", "plan", "retrieve", "tool", "verify", "model", "critique", "publication"}
 
 
 @contextmanager
@@ -20,7 +20,7 @@ def metering(sink):
 
 
 @contextmanager
-def span(phase):
+def span(phase, *, parent=None):
     if phase not in _PHASES:
         raise ValueError("unknown telemetry phase")
     if os.environ.get("SCHOLARLENS_OTEL_ENABLED", "").lower() != "true":
@@ -31,9 +31,20 @@ def span(phase):
     except ImportError:
         yield
         return
+    from opentelemetry.context import Context
+    context = Context() if phase == "api" else None
+    if parent:
+        trace_id, span_id = parent
+        try:
+            ancestor = trace.SpanContext(int(trace_id, 16), int(span_id, 16), is_remote=True,
+                                         trace_flags=trace.TraceFlags(trace.TraceFlags.SAMPLED))
+        except (TypeError, ValueError):
+            ancestor = None
+        if ancestor is not None and ancestor.is_valid:
+            context = trace.set_span_in_context(trace.NonRecordingSpan(ancestor), Context())
     tracer = trace.get_tracer("scholarlens.research")
     with tracer.start_as_current_span(
-        "research." + phase, record_exception=False, set_status_on_exception=False
+        "research." + phase, context=context, record_exception=False, set_status_on_exception=False
     ) as active:
         try:
             yield active
@@ -63,6 +74,15 @@ def traced(phase):
         return run
 
     return decorate
+
+
+def recorded_parent(active):
+    if active is None or not active.is_recording():
+        return None
+    current = active.get_span_context()
+    if not current.is_valid or not current.trace_flags.sampled:
+        return None
+    return format(current.trace_id, "032x"), format(current.span_id, "016x")
 
 
 def _count(value):
