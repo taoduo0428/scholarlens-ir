@@ -1,0 +1,1485 @@
+{
+  "checked_utc": "2026-11-22T03:25:02+00:00",
+  "image": "sha256:dc388d3fba6e9089220d7ac56eda9bafb1a10e15c730706d1a471877239eb60b",
+  "scan_sha256": "513521b44bf1d847f50e2705375011fee3ef6ae20ead36ecd3d257600be1a1c1",
+  "scan_db_built": "2026-11-21T06:20:06Z",
+  "high": 96,
+  "unique_advisories": 27,
+  "exact_status": {
+    "installed_version_marked_vulnerable": 88,
+    "no_exact_version_record": 8
+  },
+  "rows": [
+    {
+      "advisory": "CVE-2026-82560",
+      "package": "perl-base",
+      "kind": "deb",
+      "detected_version": "5.40.1-6+deb13u1",
+      "source": "perl",
+      "installed_debian_version": "5.40.1-6+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-41992",
+      "package": "gzip",
+      "kind": "binary",
+      "detected_version": "1.13",
+      "source": "gzip",
+      "installed_debian_version": null,
+      "scanner_fix": "",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": true
+    },
+    {
+      "advisory": "CVE-2026-124709",
+      "package": "libssl3t64",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-124709",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-124709",
+      "package": "openssl",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-124709",
+      "package": "openssl-provider-legacy",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2025-69720",
+      "package": "libncursesw6",
+      "kind": "deb",
+      "detected_version": "6.5+20250216-2",
+      "source": "ncurses",
+      "installed_debian_version": "6.5+20250216-2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2025-69720",
+      "package": "libtinfo6",
+      "kind": "deb",
+      "detected_version": "6.5+20250216-2",
+      "source": "ncurses",
+      "installed_debian_version": "6.5+20250216-2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2025-69720",
+      "package": "ncurses-base",
+      "kind": "deb",
+      "detected_version": "6.5+20250216-2",
+      "source": "ncurses",
+      "installed_debian_version": "6.5+20250216-2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2025-69720",
+      "package": "ncurses-bin",
+      "kind": "deb",
+      "detected_version": "6.5+20250216-2",
+      "source": "ncurses",
+      "installed_debian_version": "6.5+20250216-2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-9538",
+      "package": "perl-base",
+      "kind": "deb",
+      "detected_version": "5.40.1-6+deb13u1",
+      "source": "perl",
+      "installed_debian_version": "5.40.1-6+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95619",
+      "package": "gcc-14",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95619",
+      "package": "gcc-14-base",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95619",
+      "package": "libgcc-s1",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95619",
+      "package": "libstdc++6",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95692",
+      "package": "libssl3t64",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95692",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95692",
+      "package": "openssl",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95692",
+      "package": "openssl-provider-legacy",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-102010",
+      "package": "gcc-14",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-102010",
+      "package": "gcc-14-base",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-102010",
+      "package": "libgcc-s1",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-102010",
+      "package": "libstdc++6",
+      "kind": "deb",
+      "detected_version": "14.2.0-19",
+      "source": "gcc-14",
+      "installed_debian_version": "14.2.0-19",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107496",
+      "package": "libssl3t64",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107496",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107496",
+      "package": "openssl",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107496",
+      "package": "openssl-provider-legacy",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-19499",
+      "package": "libc-bin",
+      "kind": "deb",
+      "detected_version": "2.41-12+deb13u4",
+      "source": "glibc",
+      "installed_debian_version": "2.41-12+deb13u4",
+      "scanner_fix": "wont-fix",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": true
+    },
+    {
+      "advisory": "CVE-2026-19499",
+      "package": "libc6",
+      "kind": "deb",
+      "detected_version": "2.41-12+deb13u4",
+      "source": "glibc",
+      "installed_debian_version": "2.41-12+deb13u4",
+      "scanner_fix": "wont-fix",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": true
+    },
+    {
+      "advisory": "CVE-2026-119379",
+      "package": "libsqlite3-0",
+      "kind": "deb",
+      "detected_version": "3.46.1-7+deb13u2",
+      "source": "sqlite3",
+      "installed_debian_version": "3.46.1-7+deb13u2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95691",
+      "package": "libssl3t64",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95691",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95691",
+      "package": "openssl",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-95691",
+      "package": "openssl-provider-legacy",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107494",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-84243",
+      "package": "libc-bin",
+      "kind": "deb",
+      "detected_version": "2.41-12+deb13u4",
+      "source": "glibc",
+      "installed_debian_version": "2.41-12+deb13u4",
+      "scanner_fix": "wont-fix",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-84243",
+      "package": "libc6",
+      "kind": "deb",
+      "detected_version": "2.41-12+deb13u4",
+      "source": "glibc",
+      "installed_debian_version": "2.41-12+deb13u4",
+      "scanner_fix": "wont-fix",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-88823",
+      "package": "libssl3t64",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-88823",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-88823",
+      "package": "openssl",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-88823",
+      "package": "openssl-provider-legacy",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-121482",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-119374",
+      "package": "libsqlite3-0",
+      "kind": "deb",
+      "detected_version": "3.46.1-7+deb13u2",
+      "source": "sqlite3",
+      "installed_debian_version": "3.46.1-7+deb13u2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "bsdutils",
+      "kind": "deb",
+      "detected_version": "1:2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "libblkid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "liblastlog2-2",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "libmount1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "libsmartcols1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "libuuid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "login",
+      "kind": "deb",
+      "detected_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "mount",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78408",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-5435",
+      "package": "libc-bin",
+      "kind": "deb",
+      "detected_version": "2.41-12+deb13u4",
+      "source": "glibc",
+      "installed_debian_version": "2.41-12+deb13u4",
+      "scanner_fix": "wont-fix",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": true
+    },
+    {
+      "advisory": "CVE-2026-5435",
+      "package": "libc6",
+      "kind": "deb",
+      "detected_version": "2.41-12+deb13u4",
+      "source": "glibc",
+      "installed_debian_version": "2.41-12+deb13u4",
+      "scanner_fix": "wont-fix",
+      "debian_status": "no_exact_version_record",
+      "release_has_fixed_record": true
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "bsdutils",
+      "kind": "deb",
+      "detected_version": "1:2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "libblkid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "liblastlog2-2",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "libmount1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "libsmartcols1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "libuuid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "login",
+      "kind": "deb",
+      "detected_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "mount",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-76642",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "bsdutils",
+      "kind": "deb",
+      "detected_version": "1:2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "libblkid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "liblastlog2-2",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "libmount1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "libsmartcols1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "libuuid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "login",
+      "kind": "deb",
+      "detected_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "mount",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78410",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "bsdutils",
+      "kind": "deb",
+      "detected_version": "1:2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "libblkid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "liblastlog2-2",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "libmount1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "libsmartcols1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "libuuid1",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "login",
+      "kind": "deb",
+      "detected_version": "1:4.16.0-2+really2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "mount",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-78409",
+      "package": "util-linux",
+      "kind": "deb",
+      "detected_version": "2.41.5-0+deb13u1",
+      "source": "util-linux",
+      "installed_debian_version": "2.41.5-0+deb13u1",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-84786",
+      "package": "libssl3t64",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-84786",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-84786",
+      "package": "openssl",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-84786",
+      "package": "openssl-provider-legacy",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-119373",
+      "package": "libsqlite3-0",
+      "kind": "deb",
+      "detected_version": "3.46.1-7+deb13u2",
+      "source": "sqlite3",
+      "installed_debian_version": "3.46.1-7+deb13u2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-54369",
+      "package": "libacl1",
+      "kind": "deb",
+      "detected_version": "2.3.2-2+b1",
+      "source": "acl",
+      "installed_debian_version": "2.3.2-2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107493",
+      "package": "libssl3t64",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107493",
+      "package": "openssl",
+      "kind": "binary",
+      "detected_version": "3.5.9",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107493",
+      "package": "openssl",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-107493",
+      "package": "openssl-provider-legacy",
+      "kind": "deb",
+      "detected_version": "3.5.9-1~deb13u1",
+      "source": "openssl",
+      "installed_debian_version": "3.5.9-1~deb13u1",
+      "scanner_fix": "not-fixed",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    },
+    {
+      "advisory": "CVE-2026-54370",
+      "package": "libacl1",
+      "kind": "deb",
+      "detected_version": "2.3.2-2+b1",
+      "source": "acl",
+      "installed_debian_version": "2.3.2-2",
+      "scanner_fix": "wont-fix",
+      "debian_status": "installed_version_marked_vulnerable",
+      "release_has_fixed_record": false
+    }
+  ],
+  "tracker": {
+    "CVE-2025-69720": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2025-69720",
+      "html_sha256": "3542be519daaef8f60a0fd662f4a6129a238f59ef9b86155869d49cfd2b3af78",
+      "packages": [
+        {
+          "source": "ncurses",
+          "channel": "trixie",
+          "version": "6.5+20250216-2",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-102010": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-102010",
+      "html_sha256": "3c3fec50a898880b5fd1411a18318ebcf4748d9103639c41001454f5d716383a",
+      "packages": [
+        {
+          "source": "gcc-12",
+          "channel": "trixie",
+          "version": "12.4.0-5",
+          "status": "vulnerable"
+        },
+        {
+          "source": "gcc-13",
+          "channel": "trixie",
+          "version": "13.3.0-16",
+          "status": "vulnerable"
+        },
+        {
+          "source": "gcc-14",
+          "channel": "trixie",
+          "version": "14.2.0-19",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-107493": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-107493",
+      "html_sha256": "c90caa8b8dfadfa597ec18ad5ed3b0e522144b97b1ce954df76746b09f7be491",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-107494": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-107494",
+      "html_sha256": "fd8dc9620dbf2c333276414e7c3d0a9f13073b4cfbb4618d87404632e6e0d810",
+      "packages": []
+    },
+    "CVE-2026-107496": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-107496",
+      "html_sha256": "f79a88247eba9afb861075067ce8655a2d6624fb3e9a2c962db386937674124e",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-119373": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-119373",
+      "html_sha256": "caa306ace78626cf4c28044f3d1053a2d7a5785ebe88d42504218e5ffa23aaee",
+      "packages": [
+        {
+          "source": "sqlite3",
+          "channel": "trixie",
+          "version": "3.46.1-7+deb13u2",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-119374": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-119374",
+      "html_sha256": "08ee3a28b1be9e9dfcbad161a79731b08cc08a6b54caef90098da46bfc574cdc",
+      "packages": [
+        {
+          "source": "sqlite3",
+          "channel": "trixie",
+          "version": "3.46.1-7+deb13u2",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-119379": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-119379",
+      "html_sha256": "d7171e070be82e7ea297bad3ab3d2ca5aee54a70b198c5a2bec2b762ac942679",
+      "packages": [
+        {
+          "source": "sqlite3",
+          "channel": "trixie",
+          "version": "3.46.1-7+deb13u2",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-121482": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-121482",
+      "html_sha256": "708e8ff0027468510e97b652bcc813d02a07e431683d8d55c5b8476ecc6bc6b6",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-124709": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-124709",
+      "html_sha256": "a0a17b8fc37206409f084e69440196f8be35c83b3a3c84d99a607a6f36f2ec12",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-19499": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-19499",
+      "html_sha256": "8c9a723c5faed04d404b68f64c34d2c6adb0299296a745f282401c53c99962a4",
+      "packages": [
+        {
+          "source": "glibc",
+          "channel": "trixie",
+          "version": "2.41-12+deb13u5",
+          "status": "fixed"
+        }
+      ]
+    },
+    "CVE-2026-41992": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-41992",
+      "html_sha256": "23c64845212bf6eafcc398c596b4cbeed977de4ce5acfbb0afa6bbae07016132",
+      "packages": [
+        {
+          "source": "gzip",
+          "channel": "trixie",
+          "version": "1.13-1+deb13u1",
+          "status": "fixed"
+        }
+      ]
+    },
+    "CVE-2026-5435": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-5435",
+      "html_sha256": "9a2d890ab7503d6e2a6f3fc835a0dd221a8dfc0abe9018b34ef93cc0f9a359d3",
+      "packages": [
+        {
+          "source": "glibc",
+          "channel": "trixie",
+          "version": "2.41-12+deb13u5",
+          "status": "fixed"
+        }
+      ]
+    },
+    "CVE-2026-54369": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-54369",
+      "html_sha256": "4677cdb2b848eca7bc76f57dd54e5d01e309f438bba58d892550db432fbde5ca",
+      "packages": [
+        {
+          "source": "acl",
+          "channel": "trixie",
+          "version": "2.3.2-2",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-54370": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-54370",
+      "html_sha256": "36c932e9051decbe74a402bbe4df1e60f52a17c39cab2785b83901467b36758e",
+      "packages": [
+        {
+          "source": "acl",
+          "channel": "trixie",
+          "version": "2.3.2-2",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-76642": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-76642",
+      "html_sha256": "fd40eb589f4edd1f5b2df060db1d418501f7138459069481c60471abe1efde24",
+      "packages": [
+        {
+          "source": "util-linux",
+          "channel": "trixie (security)",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "util-linux",
+          "channel": "trixie",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-78408": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-78408",
+      "html_sha256": "c2ce37b05cca7f05768d22c20645c174592a837fb20423fa7f106dc4e6e0d104",
+      "packages": [
+        {
+          "source": "util-linux",
+          "channel": "trixie (security)",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "util-linux",
+          "channel": "trixie",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-78409": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-78409",
+      "html_sha256": "7762ce7d10558ca03e3fcc3995b97e7a24d13ab4b1d6cdd3e4bf9ff7d357ba48",
+      "packages": [
+        {
+          "source": "util-linux",
+          "channel": "trixie (security)",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "util-linux",
+          "channel": "trixie",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-78410": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-78410",
+      "html_sha256": "370b52136365d440004d915421bd2b2529393511c802bdc04f3e3a873241621b",
+      "packages": [
+        {
+          "source": "util-linux",
+          "channel": "trixie (security)",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "util-linux",
+          "channel": "trixie",
+          "version": "2.41.5-0+deb13u1",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-82560": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-82560",
+      "html_sha256": "5abda8037cb1bf00e3745da98d1c52def8f535cbd9bb494948c3763aec7a8bbb",
+      "packages": [
+        {
+          "source": "perl",
+          "channel": "trixie",
+          "version": "5.40.1-6+deb13u1",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-84243": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-84243",
+      "html_sha256": "d82305e228f84aac1a1e25c7fbad38a5d05d55f987a4c8ce430d10a4d737d90f",
+      "packages": [
+        {
+          "source": "glibc",
+          "channel": "trixie",
+          "version": "2.41-12+deb13u5",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-84786": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-84786",
+      "html_sha256": "3e0f5f6671e51f2584bd48e8463a44c616e36caf402de7c87da7d15237d0ae1d",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-88823": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-88823",
+      "html_sha256": "eb623dc9d8b0a95cba5c7dcb1031aa8f423c53109d88d08772c030ecc21d2425",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-9538": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-9538",
+      "html_sha256": "f9466371b6a5bd0094c5a53028d43144ca3115918fb37ca7ae0d48eb9dc350b1",
+      "packages": [
+        {
+          "source": "perl",
+          "channel": "trixie",
+          "version": "5.40.1-6+deb13u1",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-95619": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-95619",
+      "html_sha256": "1422cc89be85103a3be2a68be44aad94abe4af8d56e21d965c89838e3554cb6c",
+      "packages": [
+        {
+          "source": "gcc-12",
+          "channel": "trixie",
+          "version": "12.4.0-5",
+          "status": "vulnerable"
+        },
+        {
+          "source": "gcc-13",
+          "channel": "trixie",
+          "version": "13.3.0-16",
+          "status": "vulnerable"
+        },
+        {
+          "source": "gcc-14",
+          "channel": "trixie",
+          "version": "14.2.0-19",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-95691": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-95691",
+      "html_sha256": "38834566419ac509d06655867409f41301445487fbdb83df9b9cc484109a5f7e",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    },
+    "CVE-2026-95692": {
+      "url": "https://security-tracker.debian.org/tracker/CVE-2026-95692",
+      "html_sha256": "50f9edb6c8b63aa1b35938c7f2c2cfa430a4920db8428399fb8b148e5a1e7bec",
+      "packages": [
+        {
+          "source": "openssl",
+          "channel": "trixie",
+          "version": "3.5.9-1~deb13u1",
+          "status": "vulnerable"
+        },
+        {
+          "source": "openssl",
+          "channel": "trixie (security)",
+          "version": "3.5.7-1~deb13u3",
+          "status": "vulnerable"
+        }
+      ]
+    }
+  }
+}
