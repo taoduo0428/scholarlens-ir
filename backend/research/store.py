@@ -101,6 +101,9 @@ class ResearchStore:
             db.execute("""CREATE TABLE IF NOT EXISTS task_traces(
                 task TEXT NOT NULL REFERENCES tasks(id) ON DELETE CASCADE, trace_id TEXT NOT NULL,
                 PRIMARY KEY(task, trace_id))""")
+            db.execute("""CREATE TABLE IF NOT EXISTS submission_trace(
+                task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
+                trace_id TEXT NOT NULL, span_id TEXT NOT NULL)""")
             db.execute("""CREATE TABLE IF NOT EXISTS graph_attempts(
                 task TEXT PRIMARY KEY REFERENCES tasks(id) ON DELETE CASCADE,
                 attempts INTEGER NOT NULL CHECK(attempts > 0))""")
@@ -153,7 +156,7 @@ class ResearchStore:
             return state, row["revision"]
 
     def create(self, owner: int, idem: str, task: TaskInput, generation: str, *,
-               initial_budget: Budget | None = None, **versions):
+               initial_budget: Budget | None = None, submission_trace=None, **versions):
         """Return (state, revision, created). The owner comes from trusted authentication."""
         if not isinstance(idem, str) or not idem.strip() or len(idem) > 120:
             raise ValueError("invalid idempotency key")
@@ -173,6 +176,13 @@ class ResearchStore:
             uid, now = str(state.run_id), timestamp()
             db.execute("INSERT INTO tasks VALUES(?,?,?,?,?,?,?,?,?)",
                        (uid, owner, idem, hashed, state.status, 0, state.model_dump_json(), now, now))
+            if submission_trace:
+                trace_id, span_id = submission_trace
+                if not all(len(value) == size and all(ch in "0123456789abcdef" for ch in value)
+                           and int(value, 16) for value, size in ((trace_id, 32), (span_id, 16))):
+                    raise ValueError("invalid_submission_trace")
+                db.execute("INSERT INTO submission_trace VALUES(?,?,?)", (uid, trace_id, span_id))
+                db.execute("INSERT INTO task_traces VALUES(?,?)", (uid, trace_id))
             self._event(db, uid, "created", state.status)
             return state, 0, True
 
@@ -208,6 +218,12 @@ class ResearchStore:
             self._owned(db, owner, task_id)
             row = db.execute("SELECT attempts FROM graph_attempts WHERE task=?", (str(task_id),)).fetchone()
             return row[0] if row else None
+
+    def submission_trace(self, owner, task_id):
+        with self._db() as db:
+            self._owned(db, owner, task_id)
+            row = db.execute("SELECT trace_id, span_id FROM submission_trace WHERE task=?", (str(task_id),)).fetchone()
+            return tuple(row) if row else None
 
     def record_trace(self, owner, task_id, trace_id):
         if len(trace_id) != 32 or any(c not in "0123456789abcdef" for c in trace_id) or int(trace_id, 16) == 0:

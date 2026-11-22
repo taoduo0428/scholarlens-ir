@@ -5,6 +5,7 @@ from collections import defaultdict
 
 from backend.research.claim_verifier import GUARDS
 from backend.research.premises import compare_premises
+from backend.research.telemetry import traced
 
 METHOD = re.compile(r"\b(?:we|the authors?|the stud(?:y|ies)|this paper|our (?:study|model|approach))\s+(?:use[ds]?|employ\w*|propos\w*|introduc\w*|present\w*|adopt\w*|apply|develop\w*|combin\w*)\b|(?:本文|我们|本研究)(?:采用|使用|提出|设计)", re.I)
 FINDING = re.compile(r"\b(?:results?|experiments?|findings?)\s+(?:show|suggest|demonstrate|indicate|reveal)|\bwe (?:found|find|show|demonstrate|observe)|\b(?:outperform\w*|improv\w*|reduc\w*|declin\w*)\b|结果表明|实验发现|提高了|降低了", re.I)
@@ -39,6 +40,7 @@ def evidence_for(facet, claims, metric=None, *, attributed=False):
     return []
 
 
+@traced("synthesis")
 def synthesize(claims, sources, requested, *, attributed=False, profile_index=None):
     """Link within-paper methods and results before producing between-paper findings."""
     pool = [c for c in claims if c.support_status == "verified" and not GUARDS.search(c.statement)
