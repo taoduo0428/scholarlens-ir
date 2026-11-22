@@ -1,0 +1,496 @@
+{
+  "scope": "preselected legend regions; AI visual reference; word candidates only",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "engine": "tesseract v5.4.0.20240606",
+  "totals": {
+    "expected_labels": 14,
+    "whole_exact": 12,
+    "crop_exact": 14
+  },
+  "figures": [
+    {
+      "number": 4,
+      "page": 6,
+      "figure_pdf_bbox": [
+        82.488,
+        372.586,
+        529.738,
+        703.899
+      ],
+      "rgb_sha256": "f3a8e0c35183cd2ad8a80ae489ca9c39c2ba53ecd05862614299d378824629b7",
+      "crop_pixels": [
+        1593,
+        1041,
+        1742,
+        1307
+      ],
+      "expected": [
+        "OLEM",
+        "OLTM"
+      ],
+      "whole_figure_words_in_region": [
+        {
+          "text": "OLEM",
+          "confidence": 93.18,
+          "pixel_bbox": [
+            1613,
+            1151,
+            1677,
+            1168
+          ]
+        },
+        {
+          "text": "OLTM",
+          "confidence": 92.05,
+          "pixel_bbox": [
+            1613,
+            1210,
+            1676,
+            1227
+          ]
+        }
+      ],
+      "crop_words": [
+        {
+          "text": "=",
+          "confidence": 87.39,
+          "pixel_bbox": [
+            1593,
+            1156,
+            1601,
+            1162
+          ]
+        },
+        {
+          "text": "OLEM",
+          "confidence": 91.34,
+          "pixel_bbox": [
+            1613,
+            1151,
+            1677,
+            1168
+          ]
+        },
+        {
+          "text": "OLTM",
+          "confidence": 92.24,
+          "pixel_bbox": [
+            1613,
+            1210,
+            1676,
+            1227
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "page": 9,
+      "figure_pdf_bbox": [
+        82.828,
+        60.775,
+        529.398,
+        391.578
+      ],
+      "rgb_sha256": "6b5a9094e4aa14169c5d9687fa50464ba3d27b99f88de83bd2facdca30a5ae50",
+      "crop_pixels": [
+        1590,
+        1039,
+        1739,
+        1305
+      ],
+      "expected": [
+        "New",
+        "Split",
+        "Join",
+        "Move",
+        "Keep",
+        "Dense"
+      ],
+      "whole_figure_words_in_region": [
+        {
+          "text": "New",
+          "confidence": 93.08,
+          "pixel_bbox": [
+            1614,
+            1085,
+            1659,
+            1103
+          ]
+        },
+        {
+          "text": "Split",
+          "confidence": 93.72,
+          "pixel_bbox": [
+            1613,
+            1118,
+            1657,
+            1140
+          ]
+        },
+        {
+          "text": "Join",
+          "confidence": 93.89,
+          "pixel_bbox": [
+            1612,
+            1151,
+            1653,
+            1169
+          ]
+        },
+        {
+          "text": "Move",
+          "confidence": 96.82,
+          "pixel_bbox": [
+            1614,
+            1184,
+            1669,
+            1202
+          ]
+        },
+        {
+          "text": "Keep",
+          "confidence": 92.91,
+          "pixel_bbox": [
+            1614,
+            1217,
+            1666,
+            1239
+          ]
+        },
+        {
+          "text": "Dense",
+          "confidence": 94.18,
+          "pixel_bbox": [
+            1614,
+            1250,
+            1679,
+            1268
+          ]
+        }
+      ],
+      "crop_words": [
+        {
+          "text": "A",
+          "confidence": 30.08,
+          "pixel_bbox": [
+            1590,
+            1080,
+            1603,
+            1106
+          ]
+        },
+        {
+          "text": "New",
+          "confidence": 66.81,
+          "pixel_bbox": [
+            1614,
+            1085,
+            1659,
+            1103
+          ]
+        },
+        {
+          "text": "1",
+          "confidence": 19.43,
+          "pixel_bbox": [
+            1590,
+            1113,
+            1603,
+            1139
+          ]
+        },
+        {
+          "text": "Split",
+          "confidence": 89.2,
+          "pixel_bbox": [
+            1613,
+            1118,
+            1657,
+            1140
+          ]
+        },
+        {
+          "text": "I",
+          "confidence": 12.29,
+          "pixel_bbox": [
+            1590,
+            1146,
+            1603,
+            1172
+          ]
+        },
+        {
+          "text": "Join",
+          "confidence": 78.5,
+          "pixel_bbox": [
+            1612,
+            1151,
+            1653,
+            1169
+          ]
+        },
+        {
+          "text": "_",
+          "confidence": 0.0,
+          "pixel_bbox": [
+            1590,
+            1179,
+            1603,
+            1205
+          ]
+        },
+        {
+          "text": "Move",
+          "confidence": 96.48,
+          "pixel_bbox": [
+            1614,
+            1184,
+            1669,
+            1202
+          ]
+        },
+        {
+          "text": "I",
+          "confidence": 45.66,
+          "pixel_bbox": [
+            1590,
+            1211,
+            1603,
+            1238
+          ]
+        },
+        {
+          "text": "Keep",
+          "confidence": 86.43,
+          "pixel_bbox": [
+            1614,
+            1217,
+            1666,
+            1239
+          ]
+        },
+        {
+          "text": "B",
+          "confidence": 63.73,
+          "pixel_bbox": [
+            1590,
+            1245,
+            1603,
+            1270
+          ]
+        },
+        {
+          "text": "Dense",
+          "confidence": 96.54,
+          "pixel_bbox": [
+            1614,
+            1250,
+            1679,
+            1268
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "page": 10,
+      "figure_pdf_bbox": [
+        82.828,
+        60.775,
+        529.398,
+        391.578
+      ],
+      "rgb_sha256": "6998d95909c7a775c0888f8a0e78d058fc56285db15dab445f1a3d2d185fd9d7",
+      "crop_pixels": [
+        1590,
+        1039,
+        1739,
+        1305
+      ],
+      "expected": [
+        "New",
+        "Split",
+        "Join",
+        "Move",
+        "Keep",
+        "Dense"
+      ],
+      "whole_figure_words_in_region": [
+        {
+          "text": "New",
+          "confidence": 88.73,
+          "pixel_bbox": [
+            1612,
+            1093,
+            1657,
+            1111
+          ]
+        },
+        {
+          "text": "spit",
+          "confidence": 7.62,
+          "pixel_bbox": [
+            1611,
+            1126,
+            1655,
+            1148
+          ]
+        },
+        {
+          "text": "Loin",
+          "confidence": 63.72,
+          "pixel_bbox": [
+            1610,
+            1158,
+            1651,
+            1176
+          ]
+        },
+        {
+          "text": "Move",
+          "confidence": 96.67,
+          "pixel_bbox": [
+            1612,
+            1192,
+            1666,
+            1210
+          ]
+        },
+        {
+          "text": "Keep",
+          "confidence": 96.99,
+          "pixel_bbox": [
+            1612,
+            1224,
+            1664,
+            1246
+          ]
+        },
+        {
+          "text": "Dense",
+          "confidence": 88.61,
+          "pixel_bbox": [
+            1612,
+            1257,
+            1677,
+            1275
+          ]
+        }
+      ],
+      "crop_words": [
+        {
+          "text": "A",
+          "confidence": 31.92,
+          "pixel_bbox": [
+            1590,
+            1088,
+            1600,
+            1114
+          ]
+        },
+        {
+          "text": "New",
+          "confidence": 77.95,
+          "pixel_bbox": [
+            1612,
+            1093,
+            1657,
+            1111
+          ]
+        },
+        {
+          "text": "|",
+          "confidence": 48.67,
+          "pixel_bbox": [
+            1590,
+            1121,
+            1600,
+            1147
+          ]
+        },
+        {
+          "text": "Split",
+          "confidence": 92.54,
+          "pixel_bbox": [
+            1611,
+            1126,
+            1655,
+            1148
+          ]
+        },
+        {
+          "text": "J",
+          "confidence": 41.0,
+          "pixel_bbox": [
+            1590,
+            1153,
+            1600,
+            1180
+          ]
+        },
+        {
+          "text": "Join",
+          "confidence": 61.86,
+          "pixel_bbox": [
+            1610,
+            1158,
+            1651,
+            1176
+          ]
+        },
+        {
+          "text": "Move",
+          "confidence": 96.58,
+          "pixel_bbox": [
+            1612,
+            1192,
+            1666,
+            1210
+          ]
+        },
+        {
+          "text": "I",
+          "confidence": 74.64,
+          "pixel_bbox": [
+            1590,
+            1219,
+            1600,
+            1245
+          ]
+        },
+        {
+          "text": "Keep",
+          "confidence": 93.79,
+          "pixel_bbox": [
+            1612,
+            1224,
+            1664,
+            1246
+          ]
+        },
+        {
+          "text": "I",
+          "confidence": 58.82,
+          "pixel_bbox": [
+            1590,
+            1252,
+            1600,
+            1278
+          ]
+        },
+        {
+          "text": "Dense",
+          "confidence": 92.65,
+          "pixel_bbox": [
+            1612,
+            1257,
+            1677,
+            1275
+          ]
+        }
+      ]
+    }
+  ],
+  "elapsed_seconds": 5.188
+}
