@@ -167,3 +167,7 @@ search 的 query 回显全部已验证参数（包括 year_from/year_to/phrase/f
 ## E10 开发分支（2026-11-21）
 
 已登录所有者的 GET /api/research/tasks/{tid} 返回 state、revision、plan_metadata、provider_usage、trace_ids、graph_attempts 和 graph_reentries。缺少历史计数时返回 null，未采集 trace 时返回空数组。其他所有者访问任务和报告得到 404。负责人为后端组长，验收见[安全报告](../agent-v6/SECURITY_REPORT.md)。
+
+### 研究工作台的跨页表格
+
+后端维护者负责 `GET /api/papers/{paper_id}/pdf/layout/{page}`。读取含明确续表标记的页时，服务在同一份已授权 PDF 内复核上一页。验收要求相邻页的表号、唯一相邻题注、列位置、表头和单位相符。命中时 `table_continuations` 返回两页的页码、表和题注定位，以及表头。单元格引用沿用物理页、行列和文件哈希。

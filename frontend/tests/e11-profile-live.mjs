@@ -43,9 +43,19 @@ try {
   assert.ok((await figure.innerText()).includes("Figure 1. Synthetic image"));
   assert.ok((await figure.innerText()).includes(pageLayout.figure_caption_links[0].caption_locator));
   assert.ok((await figure.innerText()).includes(pageLayout.figure_caption_links[0].figure_locator));
+  await page.getByLabel("PDF 页码").fill("2");
+  const nextPage = page.waitForResponse(r=>r.url().includes("/pdf/layout/2"));
+  await page.getByRole("button", {name:"读取本页表格"}).click();
+  const nextLayout = await (await nextPage).json();
+  assert.equal(nextLayout.table_continuations.length, 1);
+  const continued = page.locator("details").filter({has:page.locator(":scope > summary", {hasText:"表 1 续表 · 第 1–2 页"})}).last();
+  await continued.locator(":scope > summary").click();
+  const link = nextLayout.table_continuations[0];
+  for (const value of [...link.headers, link.previous.table_locator, link.current.table_locator])
+    assert.ok((await continued.innerText()).includes(value));
   const picker = page.getByRole("combobox", {name:/^引用单元格/});
   await picker.waitFor();
-  const target = picker.locator("option").filter({hasText:/行 2 · 列 2 · 87/});
+  const target = picker.locator("option").filter({hasText:/行 2 · 列 2 · 64/});
   await picker.selectOption(await target.getAttribute("value"));
   await page.getByRole("button", {name:"开始研究",exact:true}).click();
   const region = page.getByRole("region", {name:"逐篇研究档案"});
@@ -58,8 +68,8 @@ try {
   assert.deepEqual(report.research_profiles.map(p => p.paper_id).sort(), [...info.example_paper_ids].sort());
   const selected = report.pdf_cell_evidence;
   assert.equal(selected.status, "source_verified");
-  assert.equal(selected.cell.quote, "87");
-  assert.equal(selected.cell.page, 1);
+  assert.equal(selected.cell.quote, "64");
+  assert.equal(selected.cell.page, 2);
   assert.equal(selected.cell.row, 2);
   assert.equal(selected.cell.column, 2);
   const published = page.getByRole("region", {name:"指定 PDF 单元格"});
@@ -72,7 +82,7 @@ try {
   for await (const chunk of stream) buffers.push(chunk);
   const markdown = Buffer.concat(buffers).toString("utf8");
   assert.equal(markdown, report.markdown);
-  assert.ok(markdown.includes("87") && markdown.includes("指定 PDF 单元格"));
+  assert.ok(markdown.includes("64") && markdown.includes("指定 PDF 单元格"));
   let verified = 0;
   for (const profile of report.research_profiles) {
     const section = region.locator("details").filter({has:page.getByText(profile.title, {exact:true})});

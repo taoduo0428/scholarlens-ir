@@ -7,6 +7,7 @@ interface PageLayout {
   page:number;
   source_version:string;
   items:{kind:string;table_id:number;row:number;column:number;quote:string;locator:string}[];
+  table_continuations?:{number:number;headers:string[];previous:{page:number;table_locator:string};current:{page:number;table_locator:string}}[];
   figure_caption_links?:{number:number;figure_locator:string;caption_locator:string}[];
 }
 
@@ -55,6 +56,12 @@ export function PdfCellPicker({papers}:{papers:string[]}) {
         {cells.map((item,index)=><option key={index} value={index}>
           表 {item.table_id} · 行 {item.row} · 列 {item.column} · {item.quote.slice(0,100)}
         </option>)}</select></label>}
+      {layout?.table_continuations?.map(link=><details key={link.current.table_locator}>
+        <summary>表 {link.number} 续表 · 第 {link.previous.page}–{link.current.page} 页</summary>
+        <p>表头 {link.headers.join(" · ")}</p>
+        <p>上一页 <code>{link.previous.table_locator}</code></p>
+        <p>本页 <code>{link.current.table_locator}</code></p>
+      </details>)}
       {layout?.figure_caption_links?.map(link=><details key={link.figure_locator}>
         <summary>图 {link.number} · 第 {layout.page} 页题注</summary>
         <p>{layout.items.find(item=>item.locator===link.caption_locator)?.quote}</p>
