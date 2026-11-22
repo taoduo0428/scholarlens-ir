@@ -2,7 +2,9 @@
 
 import re
 
-from backend.research.field_contract import AnswerRequirement, TITLES, field_for, requests
+from backend.research.field_contract import (
+    AnswerFieldType, AnswerRequirement, RequiredSourceCapability, TITLES, field_for, requests,
+)
 
 # Requirements are projected from node roles and paper scope. Lexical hints only
 # select dimensions inside an existing role. They never create permissions.
@@ -116,9 +118,18 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
                             "min_evidence": 1, "min_papers": 1}))
         elif one:
             question = node.question if plan.origin == "personal_model" else contract.goal
+            from backend.research.subject_facts import parse_request
+            previous_subject = None
             for i, request in enumerate(requests(question), 1):
                 f = field_for(node, contract, request, i)
-                fields.append(f.model_copy(update={"min_evidence": 1}))
+                changes = {"min_evidence": 1}
+                if independent and research_type == "description" and question == contract.goal:
+                    previous_subject = parse_request(request, previous_subject)
+                    if previous_subject:
+                        changes.update(facet=previous_subject.facet, subject=previous_subject.subject,
+                                       subject_context=previous_subject.context, operation="attribute",
+                                       datatype=AnswerFieldType.text, capability=RequiredSourceCapability(requires="text"))
+                fields.append(f.model_copy(update=changes))
         else:
             facets = dimensions(plan, node, contract)
             if profile_gaps and contract.answer_type == "overview" and "overview" in facets and re.search(
