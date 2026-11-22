@@ -1,12 +1,15 @@
 """Single local research worker with durable control requests and ephemeral credentials."""
 
 from collections import deque
+from contextlib import contextmanager
 from threading import Condition, Thread
 
 from filelock import FileLock, Timeout
 from pydantic import ValidationError
 
 from backend.research.graph import ResearchGraph
+from backend.research.otlp import export_tracer
+from backend.research.telemetry import using_tracer
 from backend.research.provider_adapter import choose_action, plan_questions
 from backend.research.workspace_model import propose
 from backend.research.store import Conflict, NotFound
@@ -22,7 +25,21 @@ class Worker:
         self.check_owner, self.report, self.max_queue = check_owner, report, max_queue
         self.cv, self.queue, self.credentials = Condition(), deque(), {}
         self.thread, self.closing, self.active = None, False, None
+        self.tracer = None
         self.lease = FileLock(str(store.path.with_suffix(".worker.lock")), thread_local=False)
+
+    @contextmanager
+    def serving(self):
+        """Run the worker and export its final spans after the thread finishes."""
+        with export_tracer() as self.tracer:
+            try:
+                self.start()
+                try:
+                    yield
+                finally:
+                    self.close()
+            finally:
+                self.tracer = None
 
     def start(self):
         with self.cv:
@@ -122,7 +139,8 @@ class Worker:
                     break
                 continue
             try:
-                self._execute(*key)
+                with using_tracer(self.tracer):
+                    self._execute(*key)
             except Exception as exc:
                 with self.cv:
                     if key not in self.queue:

@@ -1,0 +1,44 @@
+{
+  "observed_utc": "2026-11-22T07:39:24+00:00",
+  "jaeger_version": "v2.23.0",
+  "jaeger_binary_sha256": "be0b2dab260d7722f6e772b7a3cb94c34c8c1d21abe6bb0476ada997478743a8",
+  "storage": "memory",
+  "transport": "OTLP HTTP/protobuf on loopback",
+  "query": "GET /api/v3/traces/{traceID}",
+  "trace_id": "0a487f5d1b5a0e35169cd94c31d48210",
+  "ports_released": 5,
+  "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "seed_papers": 12,
+  "requested_papers": 2,
+  "task_status": "partial",
+  "metering": {
+    "provider_receipts": 0,
+    "model_calls": 0,
+    "tokens": 0,
+    "tools": 8,
+    "retrieval_calls": 2,
+    "source_readbacks": 6,
+    "evidence_count": 3
+  },
+  "span_count": 21,
+  "phase_counts": {
+    "research.api": 1,
+    "research.critique": 2,
+    "research.plan": 1,
+    "research.publication": 1,
+    "research.retrieve": 2,
+    "research.synthesis": 4,
+    "research.task": 1,
+    "research.tool": 2,
+    "research.verify": 6,
+    "research.workflow": 1
+  },
+  "verified_parent_edges": 20,
+  "root": "research.api",
+  "task_parent": "research.api",
+  "workflow_parent": "research.task",
+  "collector_metrics": {
+    "receiver_accepted": 21.0,
+    "exporter_sent": 21.0
+  }
+}
