@@ -1,0 +1,263 @@
+{
+  "labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
+  "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "before": {
+    "silver": {
+      "direct_on_positive": {
+        "count": 8,
+        "total": 70,
+        "wilson95": [
+          0.0591,
+          0.2096
+        ]
+      },
+      "no_direct_on_positive": {
+        "count": 62,
+        "total": 70,
+        "wilson95": [
+          0.7904,
+          0.9409
+        ]
+      },
+      "direct_on_negative": {
+        "count": 0,
+        "total": 41,
+        "wilson95": [
+          0,
+          0.0857
+        ]
+      },
+      "exact_answerability": {
+        "count": 41,
+        "total": 111,
+        "wilson95": [
+          0.2854,
+          0.4621
+        ]
+      },
+      "source_span_overlap": {
+        "count": 141,
+        "total": 432,
+        "wilson95": [
+          0.2839,
+          0.372
+        ]
+      },
+      "successful_tool_calls": {
+        "count": 1058,
+        "total": 1058,
+        "wilson95": [
+          0.9964,
+          1
+        ]
+      },
+      "task_states": {
+        "completed": 1,
+        "partial": 110
+      },
+      "p50_ms": 993.99,
+      "p95_ms": 1796.3
+    },
+    "source_checked_direct_claims": 12,
+    "subject_cases": 17,
+    "subject_totals": {
+      "actions": 170,
+      "direct_count": 0,
+      "located_sources": 68,
+      "overlapping": 12
+    },
+    "subject_annotated_spans": {
+      "report_full": 12,
+      "retrieval_absent": 2,
+      "verified_read_absent": 8,
+      "verified_read_partial": 3
+    },
+    "per_subject_case": {
+      "review-01-fact": {
+        "report_full": 1,
+        "verified_read_absent": 1
+      },
+      "review-02-fact": {
+        "report_full": 1
+      },
+      "review-03-fact": {
+        "verified_read_absent": 1,
+        "verified_read_partial": 1
+      },
+      "review-04-fact": {
+        "report_full": 2
+      },
+      "review-05-fact": {
+        "report_full": 1
+      },
+      "review-06-fact": {
+        "verified_read_absent": 1
+      },
+      "review-07-fact": {
+        "report_full": 1,
+        "verified_read_partial": 1
+      },
+      "review-08-fact": {
+        "verified_read_partial": 1,
+        "verified_read_absent": 1
+      },
+      "review-09-fact": {
+        "verified_read_absent": 1
+      },
+      "review-10-fact": {
+        "verified_read_absent": 1
+      },
+      "review-11-fact": {
+        "retrieval_absent": 2
+      },
+      "review-12-fact": {
+        "report_full": 1
+      },
+      "review-13-fact": {
+        "report_full": 1
+      },
+      "review-14-fact": {
+        "report_full": 2
+      },
+      "review-15-fact": {
+        "report_full": 1
+      },
+      "review-16-fact": {
+        "verified_read_absent": 2
+      },
+      "review-17-fact": {
+        "report_full": 1
+      }
+    }
+  },
+  "after": {
+    "silver": {
+      "direct_on_positive": {
+        "count": 8,
+        "total": 70,
+        "wilson95": [
+          0.0591,
+          0.2096
+        ]
+      },
+      "no_direct_on_positive": {
+        "count": 62,
+        "total": 70,
+        "wilson95": [
+          0.7904,
+          0.9409
+        ]
+      },
+      "direct_on_negative": {
+        "count": 0,
+        "total": 41,
+        "wilson95": [
+          0,
+          0.0857
+        ]
+      },
+      "exact_answerability": {
+        "count": 41,
+        "total": 111,
+        "wilson95": [
+          0.2854,
+          0.4621
+        ]
+      },
+      "source_span_overlap": {
+        "count": 147,
+        "total": 404,
+        "wilson95": [
+          0.3184,
+          0.4119
+        ]
+      },
+      "successful_tool_calls": {
+        "count": 1042,
+        "total": 1042,
+        "wilson95": [
+          0.9963,
+          1
+        ]
+      },
+      "task_states": {
+        "completed": 1,
+        "partial": 110
+      },
+      "p50_ms": 667.65,
+      "p95_ms": 1535.78
+    },
+    "source_checked_direct_claims": 12,
+    "subject_cases": 17,
+    "subject_totals": {
+      "actions": 154,
+      "direct_count": 0,
+      "located_sources": 40,
+      "overlapping": 18
+    },
+    "subject_annotated_spans": {
+      "paper_not_found": 2,
+      "report_full": 16,
+      "retrieval_absent": 3,
+      "retrieval_partial": 2,
+      "verified_read_absent": 1,
+      "verified_read_partial": 1
+    },
+    "per_subject_case": {
+      "review-01-fact": {
+        "paper_not_found": 2
+      },
+      "review-02-fact": {
+        "report_full": 1
+      },
+      "review-03-fact": {
+        "verified_read_absent": 1,
+        "verified_read_partial": 1
+      },
+      "review-04-fact": {
+        "report_full": 2
+      },
+      "review-05-fact": {
+        "report_full": 1
+      },
+      "review-06-fact": {
+        "report_full": 1
+      },
+      "review-07-fact": {
+        "report_full": 2
+      },
+      "review-08-fact": {
+        "report_full": 1,
+        "retrieval_partial": 1
+      },
+      "review-09-fact": {
+        "report_full": 1
+      },
+      "review-10-fact": {
+        "retrieval_absent": 1
+      },
+      "review-11-fact": {
+        "retrieval_absent": 2
+      },
+      "review-12-fact": {
+        "report_full": 1
+      },
+      "review-13-fact": {
+        "report_full": 1
+      },
+      "review-14-fact": {
+        "report_full": 2
+      },
+      "review-15-fact": {
+        "report_full": 1
+      },
+      "review-16-fact": {
+        "report_full": 1,
+        "retrieval_partial": 1
+      },
+      "review-17-fact": {
+        "report_full": 1
+      }
+    }
+  }
+}
