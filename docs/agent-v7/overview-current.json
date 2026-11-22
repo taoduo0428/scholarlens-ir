@@ -1,0 +1,399 @@
+{
+  "summary": {
+    "holdout_sha256": "922a2445c2d8b276c2d6abed99ff6ad06bf0427c43623d5219cfc95fdf140ee5",
+    "cases": 28,
+    "legacy_linked": 0,
+    "direct": 27,
+    "full_relation": 0,
+    "complete_observations": 2,
+    "checked_claims": 73,
+    "tools": 233,
+    "models": 0,
+    "p50_ms": 1137.76,
+    "p95_ms": 2045.32
+  },
+  "rows": [
+    {
+      "case": "group-00-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 1
+      },
+      "checked_claims": 5,
+      "tools": 9,
+      "models": 0,
+      "ms": 1129.242
+    },
+    {
+      "case": "group-01-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 2,
+      "tools": 7,
+      "models": 0,
+      "ms": 993.108
+    },
+    {
+      "case": "group-02-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 1
+      },
+      "checked_claims": 2,
+      "tools": 9,
+      "models": 0,
+      "ms": 1113.957
+    },
+    {
+      "case": "group-03-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 2,
+      "tools": 9,
+      "models": 0,
+      "ms": 925.252
+    },
+    {
+      "case": "group-04-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": false,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 0,
+      "tools": 8,
+      "models": 0,
+      "ms": 1516.065
+    },
+    {
+      "case": "group-05-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 1,
+      "tools": 7,
+      "models": 0,
+      "ms": 1139.684
+    },
+    {
+      "case": "group-06-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 3,
+      "tools": 8,
+      "models": 0,
+      "ms": 1373.269
+    },
+    {
+      "case": "group-07-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 1,
+      "tools": 7,
+      "models": 0,
+      "ms": 2045.324
+    },
+    {
+      "case": "group-08-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 3,
+      "tools": 9,
+      "models": 0,
+      "ms": 969.082
+    },
+    {
+      "case": "group-09-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 2,
+      "tools": 9,
+      "models": 0,
+      "ms": 921.985
+    },
+    {
+      "case": "group-10-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 3,
+      "tools": 7,
+      "models": 0,
+      "ms": 1846.476
+    },
+    {
+      "case": "group-11-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 1,
+      "tools": 9,
+      "models": 0,
+      "ms": 793.928
+    },
+    {
+      "case": "group-12-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": true,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 2
+      },
+      "checked_claims": 3,
+      "tools": 8,
+      "models": 0,
+      "ms": 977.087
+    },
+    {
+      "case": "group-13-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 1
+      },
+      "checked_claims": 2,
+      "tools": 9,
+      "models": 0,
+      "ms": 1223.779
+    },
+    {
+      "case": "group-14-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 2,
+      "tools": 8,
+      "models": 0,
+      "ms": 2751.933
+    },
+    {
+      "case": "group-15-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 2,
+      "tools": 8,
+      "models": 0,
+      "ms": 1236.474
+    },
+    {
+      "case": "group-16-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 2,
+      "tools": 9,
+      "models": 0,
+      "ms": 1135.833
+    },
+    {
+      "case": "group-17-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 1,
+      "tools": 8,
+      "models": 0,
+      "ms": 1794.55
+    },
+    {
+      "case": "group-18-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 2,
+      "tools": 7,
+      "models": 0,
+      "ms": 1571.052
+    },
+    {
+      "case": "group-19-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 1
+      },
+      "checked_claims": 3,
+      "tools": 7,
+      "models": 0,
+      "ms": 1666.146
+    },
+    {
+      "case": "group-20-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 3,
+      "tools": 9,
+      "models": 0,
+      "ms": 1393.516
+    },
+    {
+      "case": "group-21-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 3,
+      "tools": 9,
+      "models": 0,
+      "ms": 1075.672
+    },
+    {
+      "case": "group-22-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": true,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 2
+      },
+      "checked_claims": 5,
+      "tools": 8,
+      "models": 0,
+      "ms": 973.399
+    },
+    {
+      "case": "group-23-overview",
+      "papers": 2,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 1,
+      "tools": 9,
+      "models": 0,
+      "ms": 996.875
+    },
+    {
+      "case": "group-24-overview",
+      "papers": 3,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 1
+      },
+      "checked_claims": 5,
+      "tools": 9,
+      "models": 0,
+      "ms": 1204.351
+    },
+    {
+      "case": "group-25-overview",
+      "papers": 3,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 1
+      },
+      "checked_claims": 4,
+      "tools": 9,
+      "models": 0,
+      "ms": 1033.054
+    },
+    {
+      "case": "group-26-overview",
+      "papers": 3,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {},
+      "checked_claims": 4,
+      "tools": 9,
+      "models": 0,
+      "ms": 1062.741
+    },
+    {
+      "case": "group-27-overview",
+      "papers": 3,
+      "legacy_linked": false,
+      "direct": true,
+      "complete_observations": false,
+      "full_relation": false,
+      "kinds": {
+        "method_findings": 1
+      },
+      "checked_claims": 6,
+      "tools": 9,
+      "models": 0,
+      "ms": 1258.315
+    }
+  ]
+}
