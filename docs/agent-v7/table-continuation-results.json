@@ -1,0 +1,44 @@
+{
+  "doi": "10.1371/journal.pone.0081798",
+  "pdf_sha256": "ca2073de944a8ef60f5e12a9910cbba951e39785b9521c9ef130f743aa959f5c",
+  "xml_sha256": "bfd7fb0af1cf91110648e0c2f90fd52fc79e9512630abf9fe8e93ad398df0ae7",
+  "pages": 9,
+  "link": {
+    "number": 1,
+    "headers": [
+      "Characteristic",
+      "BMI \u226430 kg/m2 (n=33)",
+      "BMI >30 kg/m2 (n=24)",
+      "P"
+    ],
+    "previous": {
+      "page": 3,
+      "table_locator": "pdf:ca2073de944a8ef60f5e12a9910cbba951e39785b9521c9ef130f743aa959f5c:p3:table:315.5,132.0,554.4,716.0",
+      "caption_locator": "pdf:ca2073de944a8ef60f5e12a9910cbba951e39785b9521c9ef130f743aa959f5c:p3:caption:315.501,77.852,554.37,86.852",
+      "caption_quote_sha256": "6c995e254189ae3188c2d7c9a54223ef477d8e36730dc55d6312ee9a8471830c"
+    },
+    "current": {
+      "page": 4,
+      "table_locator": "pdf:ca2073de944a8ef60f5e12a9910cbba951e39785b9521c9ef130f743aa959f5c:p4:table:57.6,109.0,296.5,440.0",
+      "caption_locator": "pdf:ca2073de944a8ef60f5e12a9910cbba951e39785b9521c9ef130f743aa959f5c:p4:caption:57.6,77.702,142.614,86.702",
+      "caption_quote_sha256": "244f295faee363ab902c0473cd9d054d125491ad0bbcdefb3667cb34bc905f9c"
+    }
+  },
+  "physical": [
+    {
+      "page": 3,
+      "rows": 34,
+      "physical_cells": 136
+    },
+    {
+      "page": 4,
+      "rows": 19,
+      "physical_cells": 73
+    }
+  ],
+  "logical_rows": 52,
+  "logical_columns": 4,
+  "nonempty_values": 199,
+  "status": "PASS",
+  "elapsed_seconds": 2.484
+}
