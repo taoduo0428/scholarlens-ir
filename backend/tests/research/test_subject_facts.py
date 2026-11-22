@@ -61,3 +61,30 @@ def test_chinese_source_and_followup():
     assert (right.subject, right.context, right.facet) == ("镜像对齐", "测绘", "required_input")
     assert states_relation(SimpleNamespace(subject=right.subject, subject_context=right.context,
                            facet=right.facet, request="它需要哪些输入？"), "在测绘中，镜像对齐需要的输入为两个标记点。")
+
+
+def test_author_proposal_names_problem_but_does_not_imply_input(tmp_path):
+    target = "In this study, a mirror alignment algorithm for the cartography registration problem is proposed."
+    report = run(tmp_path, "For cartography, what problem does mirror alignment address and which input does it require?",
+                 ("Cartography methods", target),
+                 ("Cartography methods compared", "Earlier studies proposed mirror alignment for the atlas problem."))
+    assert direct(report) == {target}
+    assert report["answerability"]["status"] == "partially_answerable"
+
+
+@pytest.mark.parametrize(("sentence", "accepted"), [
+    ("We present a mirror alignment method for solving fiducial drift.", True),
+    ("In this work, we present mirror alignment to solve the map registration problem.", True),
+    ("In the paper, a mirror alignment algorithm for the map registration problem is proposed.", True),
+    ("We present a mirror alignment benchmark for solving fiducial drift.", False),
+    ("In this paper, mirror alignment for a scanner is proposed.", False),
+    ("A mirror alignment method for the benchmark problem was proposed.", False),
+    ("In this paper we propose a mirror alignment method for solving the aforementioned issue.", False),
+    ("We apply mirror alignment to solve the problem.", False),
+    ("We propose mirror alignment to address it.", False),
+    ("We present a laser alignment method for solving fiducial drift.", False),
+    ("We might present mirror alignment for solving fiducial drift.", False),
+])
+def test_proposal_purpose_is_explicit(sentence, accepted):
+    field = SimpleNamespace(subject="mirror alignment", subject_context=None, facet="addressed_problem", request="")
+    assert states_relation(field, sentence) is accepted

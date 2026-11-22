@@ -1,0 +1,177 @@
+{
+  "silver_labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
+  "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "annotation": "AI Silver",
+  "before": {
+    "silver": {
+      "direct_on_positive": {
+        "count": 8,
+        "total": 70,
+        "wilson95": [
+          0.0591,
+          0.2096
+        ]
+      },
+      "no_direct_on_positive": {
+        "count": 62,
+        "total": 70,
+        "wilson95": [
+          0.7904,
+          0.9409
+        ]
+      },
+      "direct_on_negative": {
+        "count": 0,
+        "total": 41,
+        "wilson95": [
+          0,
+          0.0857
+        ]
+      },
+      "exact_answerability": {
+        "count": 41,
+        "total": 111,
+        "wilson95": [
+          0.2854,
+          0.4621
+        ]
+      },
+      "source_span_overlap": {
+        "count": 147,
+        "total": 404,
+        "wilson95": [
+          0.3184,
+          0.4119
+        ]
+      },
+      "successful_tool_calls": {
+        "count": 1042,
+        "total": 1042,
+        "wilson95": [
+          0.9963,
+          1
+        ]
+      },
+      "task_states": {
+        "completed": 1,
+        "partial": 110
+      },
+      "p50_ms": 667.65,
+      "p95_ms": 1535.78
+    },
+    "source_checked_direct_claims": 12,
+    "subject_cases": 17,
+    "subject_totals": {
+      "actions": 154,
+      "direct_count": 0,
+      "located_sources": 40,
+      "overlapping": 18
+    },
+    "subject_annotated_spans": {
+      "paper_not_found": 2,
+      "report_full": 16,
+      "retrieval_absent": 3,
+      "retrieval_partial": 2,
+      "verified_read_absent": 1,
+      "verified_read_partial": 1
+    }
+  },
+  "after": {
+    "silver": {
+      "direct_on_positive": {
+        "count": 9,
+        "total": 70,
+        "wilson95": [
+          0.0691,
+          0.2266
+        ]
+      },
+      "no_direct_on_positive": {
+        "count": 61,
+        "total": 70,
+        "wilson95": [
+          0.7734,
+          0.9309
+        ]
+      },
+      "direct_on_negative": {
+        "count": 0,
+        "total": 41,
+        "wilson95": [
+          0,
+          0.0857
+        ]
+      },
+      "exact_answerability": {
+        "count": 42,
+        "total": 111,
+        "wilson95": [
+          0.2937,
+          0.4712
+        ]
+      },
+      "source_span_overlap": {
+        "count": 147,
+        "total": 404,
+        "wilson95": [
+          0.3184,
+          0.4119
+        ]
+      },
+      "successful_tool_calls": {
+        "count": 1042,
+        "total": 1042,
+        "wilson95": [
+          0.9963,
+          1
+        ]
+      },
+      "task_states": {
+        "completed": 1,
+        "partial": 110
+      },
+      "p50_ms": 688.34,
+      "p95_ms": 1268.3
+    },
+    "source_checked_direct_claims": 13,
+    "subject_cases": 17,
+    "subject_totals": {
+      "actions": 154,
+      "direct_count": 1,
+      "located_sources": 40,
+      "overlapping": 18
+    },
+    "subject_annotated_spans": {
+      "paper_not_found": 2,
+      "report_full": 16,
+      "retrieval_absent": 3,
+      "retrieval_partial": 2,
+      "verified_read_absent": 1,
+      "verified_read_partial": 1
+    }
+  },
+  "gained": {
+    "task": "review-06-fact",
+    "paper": "source-sha256:71c1180bf815b1922596889f90a8e8d524d98d926427b484e79190a8da555ff0",
+    "location": "abstract:chars:0-115",
+    "quote_sha256": "31a31bc0cb40796b6ed4bd19d1aa185d193b8856a0e6f5151bf42ad4fade6564",
+    "field_outcomes": {
+      "q1.f1": "answerable",
+      "q1.f2": "insufficient_evidence",
+      "q1.f3": "insufficient_evidence"
+    }
+  },
+  "brief_transfer": {
+    "manifest_sha256": "4c9ad3bd1a17435c0455f201da2ddc53437ae6fe99cbae6a16ae3657709346f1",
+    "named_direct_tasks": 7,
+    "wrong_title_claims": 0,
+    "unavailable_title_direct_tasks": 0,
+    "p50_ms": 616.25,
+    "p95_ms": 833.7
+  },
+  "brief_paired_decisions_and_counts_identical": 32,
+  "provider": {
+    "status": "BLOCKED",
+    "actual_calls": 0
+  }
+}
