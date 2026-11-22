@@ -65,3 +65,7 @@ Linux/macOS 对应解释器为 `.venv/bin/python`。可选 MCP SDK 不加入 Web
 ## E10 开发分支（2026-11-21）
 
 GET /api/research/tasks/{tid} 附带所有者可见的 trace_ids、graph_attempts 和 graph_reentries。工作进程重开可产生另一次图执行，计数涵盖显式恢复。老记录没有计数时返回 null。详见[运行验证](../agent-v6/SECURITY_REPORT.md)。
+
+### E11 方法用途的原文归属
+
+负责人为后端维护者。对于点名方法的问题，输入为方法名、可选场景和已核验论文原句。作者明确提出或使用该方法来解决具名问题时，问题字段可输出整句和出处。方法所需的输入仍单独核验。验收覆盖主动与被动措辞、同篇中的其他方法、替他人转述、假设和缺失原文。
