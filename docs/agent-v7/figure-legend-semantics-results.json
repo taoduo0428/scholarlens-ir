@@ -1,0 +1,456 @@
+{
+  "doi": "10.1371/journal.pone.0102799",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "engine": "tesseract v5.4.0.20240606",
+  "language": "eng",
+  "entry_point": "backend.research.pdf_layout.from_path",
+  "publisher_figures": 6,
+  "reference": "AI visual transcription of three figures plus previous OCR word boxes",
+  "totals": {
+    "visual_reference_labels": 14,
+    "matched": 12,
+    "missing": 2,
+    "extra_in_reference_figures": 0
+  },
+  "figures": [
+    {
+      "number": 1,
+      "page": 3,
+      "rgb_sha256": "d99c86e6e82db5f8aeb2a8a42b4bcce4a044e4f767cd8a99d25384b696dea825",
+      "caption_sha256": "08ea6600c0ab53039aac5039b870331a9e085130eab2a84ed208f7730b898cc9",
+      "entries": []
+    },
+    {
+      "number": 2,
+      "page": 4,
+      "rgb_sha256": "f2253bab5972ce1bfe1e83a936a1d272ea0bfbf753eb12cbd2ee70531aeb97cb",
+      "caption_sha256": "ef74d92eb506679914a61d0de1fd162c38db9d696cbc8b455ace60e4bffcc351",
+      "entries": []
+    },
+    {
+      "number": 3,
+      "page": 5,
+      "rgb_sha256": "596383a00b1b25eaf4849ccd7ea7115aa81b20a7cd95fe05c0dc91cded488b58",
+      "caption_sha256": "48c0f27bdfedf84692e94e38fd9606f365aae31253ebdf5028f165a2d5406e43",
+      "entries": []
+    },
+    {
+      "number": 4,
+      "page": 6,
+      "rgb_sha256": "f3a8e0c35183cd2ad8a80ae489ca9c39c2ba53ecd05862614299d378824629b7",
+      "caption_sha256": "56e309232d82a7a1cb1bbe8b015629648fce8fe148db94315409f712b11a1a14",
+      "entries": [],
+      "missing_labels": [
+        "OLEM",
+        "OLTM"
+      ]
+    },
+    {
+      "number": 5,
+      "page": 9,
+      "rgb_sha256": "6b5a9094e4aa14169c5d9687fa50464ba3d27b99f88de83bd2facdca30a5ae50",
+      "caption_sha256": "71728f96a5454f55d81a14a04c83021bb8314f95e00a7feb48a71b60c9eb3b8c",
+      "entries": [
+        {
+          "text": "New",
+          "color": "#00008f",
+          "swatch_pixels": [
+            1508,
+            1081,
+            1604,
+            1107
+          ],
+          "label_pixels": [
+            1614,
+            1085,
+            1659,
+            1103
+          ],
+          "confidence": 96.34,
+          "text_sha256": "18fdd549b2ed367ac0c74cbec1214644728515b30edbcb78e7d322757a7c8359",
+          "label_pdf_bbox": [
+            470.336,
+            321.24,
+            481.14,
+            325.561
+          ],
+          "swatch_pdf_bbox": [
+            444.886,
+            320.28,
+            467.935,
+            326.522
+          ]
+        },
+        {
+          "text": "Split",
+          "color": "#00ffff",
+          "swatch_pixels": [
+            1508,
+            1113,
+            1604,
+            1140
+          ],
+          "label_pixels": [
+            1613,
+            1118,
+            1657,
+            1140
+          ],
+          "confidence": 93.72,
+          "text_sha256": "32afaa784333648025e24b162bece7474051bcaaa29e98e19922b400b4ceb04b",
+          "label_pdf_bbox": [
+            470.095,
+            329.162,
+            480.659,
+            334.444
+          ],
+          "swatch_pdf_bbox": [
+            444.886,
+            327.962,
+            467.935,
+            334.444
+          ]
+        },
+        {
+          "text": "Join",
+          "color": "#00ff00",
+          "swatch_pixels": [
+            1508,
+            1146,
+            1604,
+            1172
+          ],
+          "label_pixels": [
+            1612,
+            1151,
+            1653,
+            1169
+          ],
+          "confidence": 93.89,
+          "text_sha256": "fd30fe681b4b2d9e55f851cb34641f907401aa43e9d80f5b1e14ce714ef00497",
+          "label_pdf_bbox": [
+            469.855,
+            337.084,
+            479.699,
+            341.405
+          ],
+          "swatch_pdf_bbox": [
+            444.886,
+            335.884,
+            467.935,
+            342.126
+          ]
+        },
+        {
+          "text": "Move",
+          "color": "#efff0f",
+          "swatch_pixels": [
+            1508,
+            1179,
+            1604,
+            1205
+          ],
+          "label_pixels": [
+            1614,
+            1184,
+            1669,
+            1202
+          ],
+          "confidence": 96.82,
+          "text_sha256": "6ecc3df6bffdd06c58cd4f6e276929e119c8f653c53f5a6a5a5e66dfa1c3fc93",
+          "label_pdf_bbox": [
+            470.336,
+            345.006,
+            483.541,
+            349.327
+          ],
+          "swatch_pdf_bbox": [
+            444.886,
+            343.806,
+            467.935,
+            350.048
+          ]
+        },
+        {
+          "text": "Keep",
+          "color": "#ff3f00",
+          "swatch_pixels": [
+            1508,
+            1212,
+            1604,
+            1238
+          ],
+          "label_pixels": [
+            1614,
+            1217,
+            1666,
+            1239
+          ],
+          "confidence": 96.76,
+          "text_sha256": "183f00f483d3844e875d26eac74c676054383aef38ed5a8e4d1505ef21008585",
+          "label_pdf_bbox": [
+            470.336,
+            352.928,
+            482.82,
+            358.21
+          ],
+          "swatch_pdf_bbox": [
+            444.886,
+            351.728,
+            467.935,
+            357.97
+          ]
+        },
+        {
+          "text": "Dense",
+          "color": "#7f0000",
+          "swatch_pixels": [
+            1508,
+            1245,
+            1604,
+            1271
+          ],
+          "label_pixels": [
+            1614,
+            1250,
+            1679,
+            1268
+          ],
+          "confidence": 96.8,
+          "text_sha256": "0710262cd7babfc22e6560990125154265fd7f8d373079e06fb88d9ba31b215a",
+          "label_pdf_bbox": [
+            470.336,
+            360.85,
+            485.941,
+            365.171
+          ],
+          "swatch_pdf_bbox": [
+            444.886,
+            359.65,
+            467.935,
+            365.892
+          ]
+        }
+      ],
+      "transformed_controls": {
+        "text_masked": {
+          "swatches_remaining": 6,
+          "labels": 0
+        },
+        "translated": {
+          "delta": [
+            -1380,
+            -933
+          ],
+          "labels": 6,
+          "max_pixel_error": 1
+        }
+      },
+      "missing_labels": []
+    },
+    {
+      "number": 6,
+      "page": 10,
+      "rgb_sha256": "6998d95909c7a775c0888f8a0e78d058fc56285db15dab445f1a3d2d185fd9d7",
+      "caption_sha256": "d9c6b55335583b0d00742350289ebe513b2fbede21249b95f8da46bbff883d3f",
+      "entries": [
+        {
+          "text": "New",
+          "color": "#00008f",
+          "swatch_pixels": [
+            1497,
+            1087,
+            1600,
+            1113
+          ],
+          "label_pixels": [
+            1612,
+            1093,
+            1657,
+            1111
+          ],
+          "confidence": 96.34,
+          "text_sha256": "18fdd549b2ed367ac0c74cbec1214644728515b30edbcb78e7d322757a7c8359",
+          "label_pdf_bbox": [
+            469.855,
+            323.161,
+            480.659,
+            327.482
+          ],
+          "swatch_pdf_bbox": [
+            442.245,
+            321.72,
+            466.974,
+            327.962
+          ]
+        },
+        {
+          "text": "Split",
+          "color": "#00ffff",
+          "swatch_pixels": [
+            1497,
+            1122,
+            1600,
+            1146
+          ],
+          "label_pixels": [
+            1611,
+            1126,
+            1655,
+            1148
+          ],
+          "confidence": 93.72,
+          "text_sha256": "32afaa784333648025e24b162bece7474051bcaaa29e98e19922b400b4ceb04b",
+          "label_pdf_bbox": [
+            469.615,
+            331.083,
+            480.179,
+            336.364
+          ],
+          "swatch_pdf_bbox": [
+            442.245,
+            330.123,
+            466.974,
+            335.884
+          ]
+        },
+        {
+          "text": "Join",
+          "color": "#00ff00",
+          "swatch_pixels": [
+            1497,
+            1153,
+            1600,
+            1179
+          ],
+          "label_pixels": [
+            1610,
+            1158,
+            1651,
+            1176
+          ],
+          "confidence": 93.89,
+          "text_sha256": "fd30fe681b4b2d9e55f851cb34641f907401aa43e9d80f5b1e14ce714ef00497",
+          "label_pdf_bbox": [
+            469.375,
+            338.765,
+            479.219,
+            343.086
+          ],
+          "swatch_pdf_bbox": [
+            442.245,
+            337.564,
+            466.974,
+            343.806
+          ]
+        },
+        {
+          "text": "Move",
+          "color": "#efff0f",
+          "swatch_pixels": [
+            1497,
+            1186,
+            1600,
+            1212
+          ],
+          "label_pixels": [
+            1612,
+            1192,
+            1666,
+            1210
+          ],
+          "confidence": 96.67,
+          "text_sha256": "6ecc3df6bffdd06c58cd4f6e276929e119c8f653c53f5a6a5a5e66dfa1c3fc93",
+          "label_pdf_bbox": [
+            469.855,
+            346.927,
+            482.82,
+            351.248
+          ],
+          "swatch_pdf_bbox": [
+            442.245,
+            345.486,
+            466.974,
+            351.728
+          ]
+        },
+        {
+          "text": "Keep",
+          "color": "#ff3f00",
+          "swatch_pixels": [
+            1497,
+            1218,
+            1600,
+            1245
+          ],
+          "label_pixels": [
+            1612,
+            1224,
+            1664,
+            1246
+          ],
+          "confidence": 96.76,
+          "text_sha256": "183f00f483d3844e875d26eac74c676054383aef38ed5a8e4d1505ef21008585",
+          "label_pdf_bbox": [
+            469.855,
+            354.609,
+            482.34,
+            359.89
+          ],
+          "swatch_pdf_bbox": [
+            442.245,
+            353.168,
+            466.974,
+            359.65
+          ]
+        },
+        {
+          "text": "Dense",
+          "color": "#7f0000",
+          "swatch_pixels": [
+            1497,
+            1251,
+            1600,
+            1277
+          ],
+          "label_pixels": [
+            1612,
+            1257,
+            1677,
+            1275
+          ],
+          "confidence": 96.8,
+          "text_sha256": "0710262cd7babfc22e6560990125154265fd7f8d373079e06fb88d9ba31b215a",
+          "label_pdf_bbox": [
+            469.855,
+            362.531,
+            485.461,
+            366.852
+          ],
+          "swatch_pdf_bbox": [
+            442.245,
+            361.09,
+            466.974,
+            367.332
+          ]
+        }
+      ],
+      "transformed_controls": {
+        "text_masked": {
+          "swatches_remaining": 6,
+          "labels": 0
+        },
+        "translated": {
+          "delta": [
+            -1369,
+            -939
+          ],
+          "labels": 6,
+          "max_pixel_error": 1
+        }
+      },
+      "missing_labels": []
+    }
+  ],
+  "elapsed_seconds": 13.094
+}

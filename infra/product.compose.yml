@@ -13,6 +13,8 @@ services:
       SCHOLARLENS_RESEARCH_ENABLED: "true"
       SCHOLARLENS_MODEL_CAPACITY_DIR: /var/lib/scholarlens/model-capacity
       SCHOLARLENS_E11_ENABLED: ${SCHOLARLENS_E11_ENABLED:-false}
+      SCHOLARLENS_OTEL_ENABLED: ${SCHOLARLENS_OTEL_ENABLED:-false}
+      SCHOLARLENS_OTLP_TRACES_ENDPOINT: ${SCHOLARLENS_OTLP_TRACES_ENDPOINT:-}
     depends_on:
       search:
         condition: service_healthy

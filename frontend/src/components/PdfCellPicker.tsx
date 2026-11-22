@@ -9,6 +9,9 @@ interface PageLayout {
   items:{kind:string;table_id:number;row:number;column:number;quote:string;locator:string}[];
   table_continuations?:{number:number;headers:string[];previous:{page:number;table_locator:string};current:{page:number;table_locator:string}}[];
   figure_caption_links?:{number:number;figure_locator:string;caption_locator:string}[];
+  figure_legends?:{number:number;figure_locator:string;rgb_sha256:string;entries:{
+    text:string;color:string;confidence:number;label_pdf_bbox:number[];text_sha256:string;
+  }[]}[];
 }
 
 export function PdfCellPicker({papers}:{papers:string[]}) {
@@ -69,6 +72,16 @@ export function PdfCellPicker({papers}:{papers:string[]}) {
         <p>题注位置 <code>{link.caption_locator}</code></p>
       </details>)}
       {target && <input type="hidden" name="pdf_cell" value={JSON.stringify(target)}/>}
+      {layout && !!layout.figure_caption_links?.length && layout.figure_legends?.length === 0 &&
+        <p>本页未识别出可核对的彩色图例。</p>}
+      {layout?.figure_legends?.map(legend=><details key={legend.figure_locator}>
+        <summary>图 {legend.number} · 图例文字（OCR）</summary>
+        <p>原图 RGB SHA-256 <code>{legend.rgb_sha256}</code></p>
+        <ul>{legend.entries.map(entry=><li key={entry.text_sha256}>
+          <strong>{entry.text}</strong> · 色值 <code>{entry.color}</code>
+          <p>第 {layout.page} 页位置 <code>{entry.label_pdf_bbox.join(", ")}</code></p>
+        </li>)}</ul>
+      </details>)}
     </>}
   </details>;
 }

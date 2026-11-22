@@ -86,11 +86,15 @@ def _single_page(pdf_bytes: bytes, paper_id: str, page_number: int, version: str
 def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
     """Read physical source regions and resolve explicit continuations in this edition."""
     from backend.research.table_continuation import continuation_number, link_tables
+    from backend.research.figure_legend import page_legends
 
     if not 1 <= page_number <= 500 or len(pdf_bytes) > MAX_BYTES or not pdf_bytes.startswith(b"%PDF-"):
         raise ValueError("invalid_document_or_page")
     version = sha256(pdf_bytes).hexdigest()
     current = _single_page(pdf_bytes, paper_id, page_number, version)
+    current["figure_legends"] = page_legends(pdf_bytes, current)
+    if current["figure_legends"]:
+        current["ocr"] = "figure_legend_labels"
     current["table_continuations"] = []
     if page_number > 1 and any(continuation_number(i) for i in current["items"]):
         previous = _single_page(pdf_bytes, paper_id, page_number - 1, version)

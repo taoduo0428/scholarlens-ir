@@ -26,7 +26,9 @@ Compose 已将 `SCHOLARLENS_MODEL_CAPACITY_DIR` 设为应用数据卷中的 `/va
 
 ## 按任务查运行追踪
 
-设置 `SCHOLARLENS_OTEL_ENABLED=true`，并在应用进程启动前配置 OpenTelemetry SDK 的 TracerProvider 和受信任的导出目的地。服务在任务创建成功时记录 API 跟踪标识，Worker 从任务库读回同一标识。登录用户通过任务详情的 `trace_ids` 或工作台的“任务追踪”取得标识，再到配置的收集端按该标识查询。未配置 SDK 或未采样时，此列表可以为空。旧任务可以继续执行。
+需要导出时，在 Compose 环境设置 `SCHOLARLENS_OTEL_ENABLED=true` 和 `SCHOLARLENS_OTLP_TRACES_ENDPOINT=https://collector.example.org/v1/traces`。把示例地址替换为运维管理的 OTLP/HTTP protobuf 接收端。明文 HTTP 仅支持回环 IP，容器内的回环地址指向容器自身。远端 TLS 证书须受系统信任，认证可由同一网络命名空间的本地代理处理。仅启用追踪且留空地址时，继续使用进程已有的 OpenTelemetry Provider。
+
+登录后打开工作台的“任务追踪”，或读取任务详情的 `trace_ids`，用该 ID 到接收端查 API 提交、Worker 和工作流。未采样时列表可以为空。应用以最多 64 条 span 为一批，每 2 秒发送，队列最多暂存 256 条。正常停机会先等待 Worker 完成，再排空队列。接收端离线、拒收或队列满时可能缺少记录，运维可检查应用的 `Research trace export failed` 日志及接收端状态。任务库中的 trace ID 表示已采样，交付以接收端查到的记录为准。
 
 应用 span 记录阶段名、结果和出错类别。保护部署环境的导出程序和收集器访问权限。首次升级前用现有 ResearchStore 备份流程保存数据库，升级会增加可按任务删除的关联表。
 

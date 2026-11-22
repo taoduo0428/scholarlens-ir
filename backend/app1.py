@@ -1,6 +1,6 @@
 """FastAPI six-field keyword search backed by a real Elasticsearch node."""
 
-from contextlib import asynccontextmanager
+from contextlib import asynccontextmanager, nullcontext
 from typing import Literal
 
 from elastic_transport import TransportError
@@ -156,13 +156,10 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app):
         worker = getattr(app.state, "research_worker", None)
-        if worker:
-            worker.start()
         try:
-            yield
+            with worker.serving() if worker else nullcontext():
+                yield
         finally:
-            if worker:
-                worker.close()
             if owns_client:
                 es.close()
 

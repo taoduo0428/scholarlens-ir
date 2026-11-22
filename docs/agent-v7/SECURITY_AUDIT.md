@@ -1,5 +1,7 @@
 # 依赖、工具权限与隔离
 
+2026-11-22，接入 OTLP 后，用 pip-audit 2.9.0 核对了后端、研究与 PDF 栈的 82 个锁定版本，审计报告的已知漏洞为 0。CycloneDX 清单逐项核对了 82 个包名和版本。基础镜像的系统包由 Grype 单独扫描。[Python 软件物料清单](python.cdx.json)
+
 ## 托管构建镜像复扫
 
 2026-11-22，GitHub Actions 在 Ubuntu 上重新构建完整应用镜像，导出后计算配置 SHA-256，与 Grype 报告中的镜像 ID 一致。此次扫描共 247 条包与公告匹配，其中 Critical 0、High 80、Medium 95、Low 21、Negligible 51。上一版完整镜像为 96 条 High、27 个不同的 High 公告，本次为 80 条、24 个公告。libc6 和 libc-bin 均为 `2.41-12+deb13u5`。扫描器将剩余 High 中的 59 条列为 `wont-fix`，21 条列为 `not-fixed`。正式发布仍需评估这些包在服务中的使用及影响。[完整镜像扫描摘要](hosted-image-scan.json) · [运行与原始产物](https://github.com/taoduo0428/scholarlens-ir/actions/runs/44983031422)

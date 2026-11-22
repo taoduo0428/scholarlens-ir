@@ -32,14 +32,57 @@ DESIGNS = {
 }
 DESIGN_PATTERNS = {name: re.compile(pattern, re.I) for name, pattern in DESIGNS.items()}
 
+# A model must be the object the authors build, or the setting in which they
+# add a specified mechanism. A "model comparison" or "model selection method"
+# has a different head noun and supplies neither witness.
+MODEL_ACTION = re.compile(
+    r"(?:we (?:propos(?:e|ed)|develop(?:ed)?|introduc(?:e|ed)|construct(?:ed)?|build|built) "
+    r"(?:a|an) (?P<modifiers>(?:[a-z][a-z0-9-]* ){0,4})"
+    r"model (?:of|for|to|that|which|combining|incorporating|describing|based on) |"
+    r"in our model,? we (?:introduce|add|incorporate) (?:a |an |the )?"
+    r"(?:feedback|coupling|interaction|constraint|noise term) (?:between|among|on|for|from|into|to) )"
+    r"(?P<detail>[\w][^\n]*?)\.", re.I)
+MODEL_ACTION_ZH = re.compile(
+    r"(?:本文|我们|本研究)(?:构建|提出|设计)了?(?:一个|一种)?(?:用于|用以|描述|刻画|解释|模拟)"
+    r"[\u3400-\u9fff]{3,80}的(?:数学|统计|概率|计算|理论)?模型。")
+MODEL_QUALIFIER = re.compile(
+    r"\b(?:if|unless|whether|never|neither|not|would|will|plan|hope|hypothetically|hypothetical|"
+    r"previously|elsewhere|attributed|quoted)\b|未能|假如|能否|计划|此前|前人", re.I)
+MODIFIER_BOUNDARY = re.compile(
+    r"\b(?:a|an|the|this|that|our|their|his|her|its|your|my|of|for|on|at|in|with|by|as|"
+    r"from|to|into|over|under|via|and|or|but|than|called|named|versus|against|about|"
+    r"without|review|comparison|evaluation|critique|survey)\b", re.I)
+GERUND_MODIFIERS = {"learning", "forecasting", "ranking", "matching", "sampling", "reasoning"}
+
+
+def describes_model_construction(statement: str) -> bool:
+    """Recognize a completed, author-owned model design statement with substantive detail."""
+    if MODEL_QUALIFIER.search(statement):
+        return False
+    if MODEL_ACTION_ZH.fullmatch(statement):
+        return True
+    match = MODEL_ACTION.fullmatch(statement)
+    if not match:
+        return False
+    modifiers = (match["modifiers"] or "").casefold()
+    if (MODIFIER_BOUNDARY.search(modifiers) or
+            any(w.endswith("ing") and w not in GERUND_MODIFIERS for w in modifiers.split())):
+        return False
+    detail = match["detail"]
+    return (len(re.findall(r"\b[\w-]+\b", detail)) >= 2
+            and not re.search(r"(?:[.,;:]|\b(?:a|an|and|or|of|to|for|the|that|with|e\.g|i\.e))$", detail, re.I))
+
 
 def method_relations(claims, index, requested):
     """Yield one verified premise per paper for each relation in the requested set."""
     by_method, by_task, by_design = defaultdict(dict), defaultdict(dict), defaultdict(dict)
+    model_builders = {}
     for claim in responsive_claims("method", claims, index):
         pid = claim.paper_ids[0]
         if requested and pid not in requested:
             continue
+        if describes_model_construction(claim.statement):
+            model_builders.setdefault(pid, claim)
         for design, pattern in DESIGN_PATTERNS.items():
             if pattern.match(claim.statement):
                 by_design[design].setdefault(pid, claim)
@@ -58,6 +101,11 @@ def method_relations(claims, index, requested):
     for design, papers in sorted(by_design.items()):
         if len(papers) >= 2:
             yield "shared_research_design", f"{len(papers)} 篇论文的作者均报告采用了{design}。", list(papers.values())
+    if len(model_builders) >= 2 and (not requested or set(model_builders) == set(requested)):
+        witnesses = [model_builders[pid] for pid in sorted(model_builders)]
+        details = [f"《{index[c.paper_ids[0]].title}》 — {c.statement}" for c in witnesses]
+        yield ("shared_research_design", "这些论文的共同研究手段是构建模型或在模型中引入机制。\n"
+               + "\n".join(details), witnesses)
     for task, papers in sorted(by_task.items()):
         if len(papers) < 2 or any(len(methods) != 1 for methods in papers.values()):
             continue

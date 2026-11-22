@@ -58,11 +58,8 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
 
     @asynccontextmanager
     async def lifespan(_app):
-        worker.start()
-        try:
+        with worker.serving():
             yield
-        finally:
-            worker.close()
 
     app = FastAPI(lifespan=lifespan)
 

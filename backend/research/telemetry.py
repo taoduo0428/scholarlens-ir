@@ -7,7 +7,17 @@ import os
 from urllib.parse import urlsplit
 
 _SINK = ContextVar("research_usage_sink", default=None)
+_TRACER = ContextVar("research_tracer", default=None)
 _PHASES = {"api", "workflow", "synthesis", "task", "plan", "retrieve", "tool", "verify", "model", "critique", "publication"}
+
+
+@contextmanager
+def using_tracer(tracer):
+    token = _TRACER.set(tracer)
+    try:
+        yield
+    finally:
+        _TRACER.reset(token)
 
 
 @contextmanager
@@ -20,7 +30,7 @@ def metering(sink):
 
 
 @contextmanager
-def span(phase, *, parent=None):
+def span(phase, *, parent=None, tracer=None):
     if phase not in _PHASES:
         raise ValueError("unknown telemetry phase")
     if os.environ.get("SCHOLARLENS_OTEL_ENABLED", "").lower() != "true":
@@ -42,7 +52,7 @@ def span(phase, *, parent=None):
             ancestor = None
         if ancestor is not None and ancestor.is_valid:
             context = trace.set_span_in_context(trace.NonRecordingSpan(ancestor), Context())
-    tracer = trace.get_tracer("scholarlens.research")
+    tracer = tracer or _TRACER.get() or trace.get_tracer("scholarlens.research")
     with tracer.start_as_current_span(
         "research." + phase, context=context, record_exception=False, set_status_on_exception=False
     ) as active:
