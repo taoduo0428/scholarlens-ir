@@ -8,7 +8,18 @@
 
 2026-11-22，接入 OTLP 后，用 pip-audit 2.9.0 核对了后端、研究与 PDF 栈的 82 个锁定版本，审计报告的已知漏洞为 0。CycloneDX 清单逐项核对了 82 个包名和版本。基础镜像的系统包由 Grype 单独扫描。[Python 软件物料清单](python.cdx.json)
 
-## 托管构建镜像复扫
+## PNG 专用 OCR 镜像复扫
+
+2026-11-22，在 GitHub Actions 的两个 Linux/amd64 构建中，逐份核对了四份 Grype 原始报告的 SHA-256、镜像 ID 和严重度计数。发行包 OCR 的 10 条 Critical 分别匹配 libcurl4t64（8）、libtiff6（1）和 libxml2（1）。改用 Debian 源码包 leptonlib 1.84.1-4 和 tesseract 5.5.0-1，禁用 curl、archive 和 TIFF 支持。托管构建核对运行时包清单，并用本地 PNG 实测英文 TSV 输出。[首次构建](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45009622218) · [PNG 构建和扫描](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45010414520)
+
+|镜像|发行包方案 Critical / High|PNG 专用方案 Critical / High|
+|---|---:|---:|
+|标准应用|0 / 79|0 / 79|
+|英文 OCR|10 / 161|0 / 84|
+
+计数单位为包与公告的匹配。标准镜像剩余的 79 条 High 和 OCR 镜像的 84 条 High 仍需结合服务用法复核。[逐镜像摘要及报告哈希](ocr-image-acceptance.json)
+
+## 历史标准镜像复扫
 
 2026-11-22，GitHub Actions 在 Ubuntu 上重新构建完整应用镜像，导出后计算配置 SHA-256，与 Grype 报告中的镜像 ID 一致。此次扫描共 247 条包与公告匹配，其中 Critical 0、High 80、Medium 95、Low 21、Negligible 51。上一版完整镜像为 96 条 High、27 个不同的 High 公告，本次为 80 条、24 个公告。libc6 和 libc-bin 均为 `2.41-12+deb13u5`。扫描器将剩余 High 中的 59 条列为 `wont-fix`，21 条列为 `not-fixed`。正式发布仍需评估这些包在服务中的使用及影响。[完整镜像扫描摘要](hosted-image-scan.json) · [运行与原始产物](https://github.com/taoduo0428/scholarlens-ir/actions/runs/44983031422)
 

@@ -1,0 +1,57 @@
+{
+  "runs": {
+    "distribution": 45009622218,
+    "png_only": 45010414520
+  },
+  "images": {
+    "distribution": {
+      "pdf-ocr": {
+        "image_id": "sha256:72d281e124d5d18a09fbbd7b772fd9bdd5cc4e1f52c640f32348d6791532d934",
+        "counts": {
+          "Negligible": 125,
+          "Critical": 10,
+          "High": 161,
+          "Medium": 151,
+          "Low": 24,
+          "Unknown": 25
+        },
+        "report_sha256": "57b94641ec1f903c0ba7fcd252b47b94bc7926a678d1d2c8cf2c8782d8eaf011"
+      },
+      "standard": {
+        "image_id": "sha256:ecc1b5e244cf946be4f7bbf1b824265d37de88733e081c11ae0df31236e0c919",
+        "counts": {
+          "High": 79,
+          "Medium": 80,
+          "Negligible": 51,
+          "Low": 15,
+          "Critical": 0
+        },
+        "report_sha256": "ac9b1d02777c05d65191f9c7f038b56686e15aaf0066531ef529101e64b2cb30"
+      }
+    },
+    "png_only": {
+      "pdf-ocr": {
+        "image_id": "sha256:49ee8538027e2863dc71b9613fb6196111efe9b5030574910919641373f6993e",
+        "counts": {
+          "High": 84,
+          "Medium": 88,
+          "Negligible": 54,
+          "Low": 15,
+          "Critical": 0
+        },
+        "report_sha256": "63689dde03497391d382cb9521c2604e8fe188a5cb4528e68324eac519a6d2ae"
+      },
+      "standard": {
+        "image_id": "sha256:131aa365d484d4fb21b2ca0bd3d65921995b9c4d6185f7b0f9a498c35ed29cf5",
+        "counts": {
+          "High": 79,
+          "Medium": 80,
+          "Negligible": 51,
+          "Low": 15,
+          "Critical": 0
+        },
+        "report_sha256": "b1ddc24a9f11393acce675b416c6d54e14fc293605dd2d798510ec45f08b3a21"
+      }
+    }
+  }
+}

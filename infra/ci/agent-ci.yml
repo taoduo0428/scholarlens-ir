@@ -51,12 +51,14 @@ jobs:
             backend/tests/research/test_figure_legend.py backend/tests/research/test_chart_readings.py \
             backend/tests/research/test_multihop_scope.py backend/tests/research/test_task_lifecycle.py backend/tests/research/test_formula_links.py \
             backend/tests/research/test_program_release.py backend/tests/research/test_governance_view.py \
-            backend/tests/research/test_quantitative_evidence.py backend/tests/research/test_account_erasure.py backend/tests/research/test_offline_verifier.py
+            backend/tests/research/test_quantitative_evidence.py backend/tests/research/test_account_erasure.py backend/tests/research/test_offline_verifier.py \
+            backend/tests/test_trusted_model_proxy.py backend/tests/research/test_live_research_acceptance.py
       - name: Frontend checks
         working-directory: frontend
         run: |
           npm ci --ignore-scripts
           npm test
+          node --check tests/real-workbench-live.mjs
           npm run verify:structure
           npm run build:production
           npm audit --audit-level=moderate
