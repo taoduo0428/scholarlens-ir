@@ -18,6 +18,12 @@ curl -fsS http://127.0.0.1:18001/readyz
 
 Compose 使用命名卷保存应用数据和 Elasticsearch，主机映射默认仅回环可访问。使用真实模型时从部署环境的秘密存储注入项目凭证并设预算。生产运维记录应保存应用镜像摘要、ES 快照名称及数据库备份校验和。
 
+## 同一主机上的模型并发
+
+Compose 已将 `SCHOLARLENS_MODEL_CAPACITY_DIR` 设为应用数据卷中的 `/var/lib/scholarlens/model-capacity`。同机的其他研究执行进程可将该变量指向同一个绝对目录。该本地文件系统须支持操作系统文件锁，并允许服务账号读写。共享进程合计最多同时调用模型四次，每个模型主机两次。能力接口的 `capacity_scope` 显示 `local_volume`。直接启动且使用默认配置的进程显示 `process`。
+
+运行目录固定使用四个名额，按带随机密钥的摘要匹配主机，正常退出调用时清空主机标记。异常退出进程的锁由操作系统释放，下一次使用名额时会覆盖旧标记。目录不可用时，研究网关返回 `provider_rate_limited`。已测本机 Windows 和 Linux 的进程终止恢复。
+
 ## 按任务查运行追踪
 
 设置 `SCHOLARLENS_OTEL_ENABLED=true`，并在应用进程启动前配置 OpenTelemetry SDK 的 TracerProvider 和受信任的导出目的地。服务在任务创建成功时记录 API 跟踪标识，Worker 从任务库读回同一标识。登录用户通过任务详情的 `trace_ids` 或工作台的“任务追踪”取得标识，再到配置的收集端按该标识查询。未配置 SDK 或未采样时，此列表可以为空。旧任务可以继续执行。
