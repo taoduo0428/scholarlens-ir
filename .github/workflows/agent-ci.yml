@@ -8,7 +8,7 @@ on:
 permissions:
   contents: read
 concurrency:
-  group: agent-${{ github.event.pull_request.head.sha || github.sha }}
+  group: agent-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   verify:
@@ -65,20 +65,28 @@ jobs:
           "$RUNNER_TEMP/auditor/bin/pip-audit" --no-deps --disable-pip -r "$RUNNER_TEMP/audit-locked.txt"
       - name: Scan the built application image
         run: |
+          set -euo pipefail
           cd "$RUNNER_TEMP"
           curl --fail --location --retry 2 --output grype.tgz https://github.com/anchore/grype/releases/download/v0.122.1/grype_0.122.1_linux_amd64.tar.gz
           echo 'f1ba7e2917ee1395618de20a98da0aa7c0fb1788927797651047c50502a37538  grype.tgz' | sha256sum --check
           tar -xzf grype.tgz grype
-          ./grype docker:scholarlens-ci -o json > "$GITHUB_WORKSPACE/image-findings.json"
-          docker image inspect --format '{{.Id}}' scholarlens-ci > "$GITHUB_WORKSPACE/scanned-image-id.txt"
+          docker image save --output application.tar scholarlens-ci:latest
+          config_path=$(tar -xOf application.tar manifest.json | jq -er '[.[] | select(any(.RepoTags[]?; . == "scholarlens-ci:latest" or endswith("/scholarlens-ci:latest"))) | .Config] | if length == 1 then first else error("ambiguous application image") end')
+          config_hash=$(tar -xOf application.tar "$config_path" | sha256sum | cut -d ' ' -f1)
+          printf 'sha256:%s\n' "$config_hash" > "$GITHUB_WORKSPACE/scanned-image-id.txt"
+          ./grype docker-archive:application.tar -o json > "$GITHUB_WORKSPACE/image-findings.json"
           cd "$GITHUB_WORKSPACE"
           python - <<'PY'
           import collections, json, pathlib
           scan = json.loads(pathlib.Path("image-findings.json").read_bytes())
-          assert scan["source"]["target"]["imageID"] == pathlib.Path("scanned-image-id.txt").read_text().strip()
-          print(dict(collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])))
+          expected = pathlib.Path("scanned-image-id.txt").read_text().strip()
+          actual = scan["source"]["target"]["imageID"]
+          if actual != expected:
+              raise SystemExit(f"Scanned config {actual} differs from exported config {expected}")
+          print(expected, dict(collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])))
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ !cancelled() && hashFiles('image-findings.json') != '' }}
         with:
           name: application-image-findings
           path: |

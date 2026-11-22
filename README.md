@@ -60,7 +60,7 @@ ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读�
 | 在线应用 | `20261029T022557Z-d7cfc56`；同源 `/api` 正式构建 |
 | 接口 | FastAPI 0.2.1，公网 OpenAPI 65 路径、81 操作 |
 | 已有外部验收 | 指定个人模型真实生成与引用链已验收；全站共享 AI 仍默认未配置 |
-| 待办 | 邮件、XML、正式中文导入/多语言向量、相关性金标准、托管 CI 和容量验证 |
+| 待办 | 邮件、XML、正式中文导入/多语言向量、相关性金标准和容量验证 |
 
 原包 999 份 PDF 与正式元数据存于独立[数据 Release](https://github.com/Scarlett-web/scholarlens-ir/releases/tag/papers-originals-2026-10-28)。原包数量、正式库数量、向量片段数是不同概念。
 
