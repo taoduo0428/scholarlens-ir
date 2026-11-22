@@ -106,7 +106,7 @@ export function ReportPanel({report,taskId,subtasks}:{report:ResearchReport;task
       })}</section>}
     {report.overview&&<section aria-label="综合研究"><h3>综合研究</h3>
       {report.overview.findings.map((f,i)=><details key={i}><summary>{f.statement}</summary>
-        <p>{{paper_observation:"逐篇观察",derived_synthesis:"根据多篇论文推导",supported_claim:"有原文支持",hypothesis:"作者假说",speculation:"作者推测"}[f.level]||f.level}</p>
+        <p>{{paper_observation:"逐篇观察",derived_synthesis:"根据多篇论文推导",supported_claim:"有原文支持",hypothesis:"作者假说",speculation:"作者推测"}[f.kind==="method_findings"?"paper_observation":f.level]||f.level}</p>
         {f.premise_claim_ids.map(id=>{const c=claims.get(id);return c&&<Claim key={id} claim={c} sources={sources} conflicts={peers(id)}/>;})}
       </details>)}
       {report.overview.incomplete_papers.map(p=><p key={p}>{p} · 仍缺研究方法或结果的原文证据</p>)}

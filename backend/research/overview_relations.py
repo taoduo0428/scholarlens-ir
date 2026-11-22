@@ -44,7 +44,8 @@ def method_relations(claims, index, requested):
             if pattern.match(claim.statement):
                 by_design[design].setdefault(pid, claim)
         match = EN.fullmatch(claim.statement) or ZH.fullmatch(claim.statement)
-        if not match:
+        if not match or re.search(r"\b(?:neither|nor|never|not|no|unless|except|without|if|only)\b|并非|除外|仅当|而非",
+                                  match["task"] or "", re.I):
             continue
         name = NAMES[match["method"].casefold()]
         by_method[name].setdefault(pid, claim)

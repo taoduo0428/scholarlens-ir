@@ -40,6 +40,7 @@ def test_relation_survives_missing_unrelated_fields(tmp_path, sentences, kind):
     ["We use BM25 for this task.", "We use BERT for this task."],
     ["We use BM25 for document retrieval.", "Previous studies used BM25 for document retrieval."],
     ["We use BM25 for document retrieval.", "We do not use BM25 for document retrieval."],
+    ["We use BM25 for document retrieval.", "We use BM25 for neither training nor retrieval."],
     ["We use BM25 for document retrieval.", "We may use BM25 for document retrieval."],
     ["We prove that the bound holds for compact domains.", "If the bound is sharp, we prove that a solution exists."],
     ["We use BM25 for document retrieval.", "We use BM25 for patent search.", "We use BERT for classification."],
