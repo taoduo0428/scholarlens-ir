@@ -195,6 +195,12 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             return [c for c in valid if GAP.search(c.statement)], "insufficient_evidence"
         if field.facet == "overview":
             overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=profile_index)
+            if profile_index is not None:
+                # Each relation must stand on its own across the requested scope.
+                ids = dict.fromkeys(cid for row in overview["findings"]
+                                    if row["level"] == "derived_synthesis" and set(field.paper_ids) <= set(row["paper_ids"])
+                                    for cid in row["premise_claim_ids"])
+                return [by_id[cid] for cid in ids], "insufficient_evidence"
             linked = [entry for entry in overview["findings"] if entry["kind"] == "method_findings"]
             if linked and not overview["incomplete_papers"]:
                 return [by_id[k] for k in linked[0]["premise_claim_ids"]], "insufficient_evidence"
@@ -349,6 +355,16 @@ def evaluate(state, sources, suggestions=None, warnings=()):
             proof, fallback = qualified(f, proposals, capable, state, suggestions, profile_index)
             proof = [c for c in proof if f.facet or c.claim_id not in consumed]
             prereqs = all(per_question[d] == "answerable" for d in req.dependencies)
+            if (not prereqs and proof and profile_index is not None and f.facet == "overview"
+                    and len(req.dependencies) == 1):
+                # An independently bound method per paper can establish a method
+                # relation even if that same node is still missing its results.
+                dependency = req.dependencies[0]
+                evidence_fields = {field.field_id for r in state.field_requirements if r.question_id == dependency
+                                   for field in r.fields if field.facet in {"method", "finding"}}
+                bound = {(b.evidence_id, selected[b.claim_id].statement)
+                         for b in bindings if b.field_id in evidence_fields}
+                prereqs = all((eid, c.statement) in bound for c in proof for eid in c.evidence_ids)
             ids = {i for c in proof for i in c.evidence_ids}
             papers = {capable[i]["paper_id"] for i in ids}
             spans = {(capable[i]["paper_id"], capable[i]["quote_hash"]) for i in ids}

@@ -78,7 +78,18 @@ def synthesize(claims, sources, requested, *, attributed=False, profile_index=No
             elif SPEC.search(c.statement):
                 level = "hypothesis" if re.search(r"hypoth|假设", c.statement, re.I) else "speculation"
                 add("author_qualification", level, c.statement, [c])
-    if len(complete) >= 2:
+    if profile_index is not None:
+        from backend.research.overview_relations import method_relations
+        for kind, message, witnesses in method_relations(pool, profile_index, requested):
+            add(kind, "derived_synthesis", message, witnesses)
+        from backend.research.overview_relations import finding_relations
+        for kind, message, witnesses in finding_relations(pool, profile_index, requested, sources):
+            add(kind, "derived_synthesis", message, witnesses)
+        for pid, method, result in complete:
+            title = sources[method.evidence_ids[0]].get("paper_title") or pid
+            statements = list(dict.fromkeys((method.statement, result.statement)))
+            add("method_findings", "paper_observation", title + " — " + " ".join(statements), [method, result])
+    elif len(complete) >= 2:
         # Attribute source statements side-by-side. This establishes co-reporting,
         # not causality or performance superiority.
         premises = [c for _, method, result in complete for c in (method, result)]
