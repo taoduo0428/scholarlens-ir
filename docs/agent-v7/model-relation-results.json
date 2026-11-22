@@ -1,0 +1,202 @@
+{
+  "baseline_git": "af2666daf0758e2d82a341971c3164a24e24af4f",
+  "original_28": {
+    "before": {
+      "holdout_sha256": "922a2445c2d8b276c2d6abed99ff6ad06bf0427c43623d5219cfc95fdf140ee5",
+      "cases": 28,
+      "legacy_linked": 0,
+      "direct": 27,
+      "full_relation": 0,
+      "complete_observations": 2,
+      "checked_claims": 73,
+      "tools": 233,
+      "models": 0,
+      "p50_ms": 575.11,
+      "p95_ms": 1169.98
+    },
+    "after": {
+      "holdout_sha256": "922a2445c2d8b276c2d6abed99ff6ad06bf0427c43623d5219cfc95fdf140ee5",
+      "cases": 28,
+      "legacy_linked": 1,
+      "direct": 27,
+      "full_relation": 1,
+      "complete_observations": 2,
+      "checked_claims": 75,
+      "tools": 233,
+      "models": 0,
+      "p50_ms": 1915.53,
+      "p95_ms": 2683.29
+    }
+  },
+  "strata": {
+    "random": {
+      "without-rule": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 68,
+        "model_calls": 0
+      },
+      "intact": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 68,
+        "model_calls": 0
+      },
+      "mask-first": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 53,
+        "model_calls": 0
+      },
+      "mask-last": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 52,
+        "model_calls": 0
+      }
+    },
+    "model_mention": {
+      "without-rule": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 72,
+        "model_calls": 0
+      },
+      "intact": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 72,
+        "model_calls": 0
+      },
+      "mask-first": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 59,
+        "model_calls": 0
+      },
+      "mask-last": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 58,
+        "model_calls": 0
+      }
+    },
+    "author_model_enriched": {
+      "without-rule": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 67,
+        "model_calls": 0
+      },
+      "intact": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 67,
+        "model_calls": 0
+      },
+      "mask-first": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 53,
+        "model_calls": 0
+      },
+      "mask-last": {
+        "pairs": 8,
+        "full_relations": 0,
+        "tool_calls": 51,
+        "model_calls": 0
+      }
+    },
+    "opening_construction_challenge": {
+      "without-rule": {
+        "pairs": 1,
+        "full_relations": 0,
+        "tool_calls": 8,
+        "model_calls": 0
+      },
+      "intact": {
+        "pairs": 1,
+        "full_relations": 1,
+        "tool_calls": 8,
+        "model_calls": 0
+      },
+      "mask-first": {
+        "pairs": 1,
+        "full_relations": 0,
+        "tool_calls": 5,
+        "model_calls": 0
+      },
+      "mask-last": {
+        "pairs": 1,
+        "full_relations": 0,
+        "tool_calls": 7,
+        "model_calls": 0
+      }
+    },
+    "development_group_22": {
+      "without-rule": {
+        "pairs": 1,
+        "full_relations": 0,
+        "tool_calls": 8,
+        "model_calls": 0
+      },
+      "intact": {
+        "pairs": 1,
+        "full_relations": 1,
+        "tool_calls": 8,
+        "model_calls": 0
+      },
+      "mask-first": {
+        "pairs": 1,
+        "full_relations": 0,
+        "tool_calls": 7,
+        "model_calls": 0
+      },
+      "mask-last": {
+        "pairs": 1,
+        "full_relations": 0,
+        "tool_calls": 5,
+        "model_calls": 0
+      }
+    }
+  },
+  "positive_premises": [
+    {
+      "case": "opening_construction_challenge-00",
+      "paper_id": "source-sha256:72d9a28f02d42fbd24d1df63137d3b8dd8ac2ba8456afaf6267a272943c9ddab",
+      "title": "Music Signal Processing Using Vector Product Neural Networks",
+      "claim_id": "c-d5d15aa68cebfddc967e732b",
+      "source_locator": "abstract:chars:0-637",
+      "claim_locator": "abstract:chars:0-132",
+      "claim_sha256": "9cce491335be22c12ac52d1fd7c67c13da15b8d23e4e6d28e30e40efa1ddf642"
+    },
+    {
+      "case": "opening_construction_challenge-00",
+      "paper_id": "source-sha256:e3f75d528460fda99ba05327198c21dcd1ebf012aba54fb13b81de6dc1833b3e",
+      "title": "FROM KINETIC MIXTURES TO COMPRESSIBLE TWO-PHASE FLOW: A BGK-TYPE MODEL AND RIGOROUS DERIVATION",
+      "claim_id": "c-efb1ed937541bf760560b60d",
+      "source_locator": "abstract:chars:0-898",
+      "claim_locator": "abstract:chars:0-146",
+      "claim_sha256": "12439d55790721885e0f02bc9044ece8bbbed5a41b8e1d53c89c277c40e971ab"
+    },
+    {
+      "case": "development_group_22-00",
+      "paper_id": "source-sha256:af101dc9f6d3819b472a4578c3092b8b9611c379fa28c24b122133f079eb667a",
+      "title": "Characterizing and modeling the dynamics of online popularity",
+      "claim_id": "c-24aef6a60f2e3be141340731",
+      "source_locator": "abstract:chars:0-805",
+      "claim_locator": "abstract:chars:455-620",
+      "claim_sha256": "147e67f7c016063f6ea6d775a3b8bda9192c1bde01a276a47d3caf057f7bcca8"
+    },
+    {
+      "case": "development_group_22-00",
+      "paper_id": "source-sha256:d4292b7596a58d955608a37700341c34c12cc769e1bbe02789ea0527ce732f88",
+      "title": "Excessive abundance of common resources deters social responsibility",
+      "claim_id": "c-7cee289743df4ba1f7b84428",
+      "source_locator": "abstract:chars:0-897",
+      "claim_locator": "abstract:chars:441-555",
+      "claim_sha256": "95a9106d7ecde6bf4df1ffbe6412ed0fa59ca52ecf7d079de5c7c9688f44eb15"
+    }
+  ],
+  "manifest_sha256": "180080363b7869dfcb23ee1a5fc08bfa6dcb60dd9ece25107596d1d469818bc8"
+}
