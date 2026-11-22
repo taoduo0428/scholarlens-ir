@@ -46,12 +46,12 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
         docs["ui:wave"]["pdf_available"] = True
     corpus = LocalCorpus(docs, version)
     if corpus_name == "profile-fixture":
-        from backend.tests.research.test_pdf_layout import specimen
+        from backend.tests.research.test_table_continuation import two_page_pdf
 
-        sample = runtime / "synthetic-wave-table.pdf"
+        sample = runtime / "synthetic-wave-tables-v2.pdf"
         if not sample.exists():
             with sample.open("xb") as stream:
-                stream.write(specimen(with_figure=True))
+                stream.write(two_page_pdf(with_figure=True))
         corpus.pdf_resolver = lambda doc: sample if doc["paper_id"] == "ui:wave" else None
     accounts = Store(str(runtime))
     config = Settings(runtime_dir=str(runtime), frontend_dir=str(frontend))
@@ -106,7 +106,7 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
         @app.get("/api/papers/{pid}/pdf/layout/{page}")
         def fixture_layout(pid: str, page: int):
             from backend.research.pdf_layout import from_path
-            if pid != "ui:wave" or page != 1:
+            if pid != "ui:wave" or page not in (1, 2):
                 raise HTTPException(404, "fixture_page_unavailable")
             return from_path(sample, pid, page)
 

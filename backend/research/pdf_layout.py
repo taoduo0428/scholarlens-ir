@@ -33,13 +33,11 @@ def figure_caption_links(items):
             if seen_labels[number] == image_counts[image] == caption_counts[line] == 1]
 
 
-def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
+def _single_page(pdf_bytes: bytes, paper_id: str, page_number: int, version: str):
     """Extract physical regions. Unlabelled numerical series cannot become measurements."""
-    if not 1 <= page_number <= 500 or len(pdf_bytes) > MAX_BYTES or not pdf_bytes.startswith(b"%PDF-"):
-        raise ValueError("invalid_document_or_page")
     import pdfplumber
+    from backend.research.banded_tables import banded_tables
 
-    version = sha256(pdf_bytes).hexdigest()
     items = []
 
     def add(kind, box, quote="", **attrs):
@@ -56,7 +54,12 @@ def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
         if not doc.pages:
             raise ValueError("page_out_of_range")
         page = doc.pages[0]
-        for idx, table in enumerate(page.find_tables()[:20], 1):
+        lines = page.extract_text_lines(return_chars=False)[:600]
+        captions = [{"bbox": (ln["x0"], ln["top"], ln["x1"], ln["bottom"])} for ln in lines
+                    if re.match(r"^(?:table|表)\s*\d+", ln["text"], re.I)]
+        ruled = page.find_tables()[:20]
+        tables = ruled + (banded_tables(page, captions, ruled) if len(ruled) < 20 else [])
+        for idx, table in enumerate(tables, 1):
             add("table", table.bbox, table_id=idx)
             values = table.extract()
             for row, record in enumerate(table.rows[:100]):
@@ -67,7 +70,7 @@ def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
         for entry in page.images[:100]:
             add("figure", (entry["x0"], entry["top"], entry["x1"], entry["bottom"]),
                 interpretation="region_only")
-        for line in page.extract_text_lines(return_chars=False)[:600]:
+        for line in lines:
             text = line["text"]
             kind = ("caption" if re.match(r"^(?:figure|fig\.|table|图|表)\s*\d+", text, re.I)
                     else "formula" if re.search(r"=\s*[^=].{0,130}\(\d+[a-z]?\)\s*$", text)
@@ -78,6 +81,23 @@ def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
                 "width": float(page.width), "height": float(page.height), "coordinate_system": "pt_top_left",
                 "items": items, "figure_caption_links": figure_caption_links(items), "ocr": "unavailable", "cross_page_table_links": "unverified",
                 "chart_series": "unverified", "engine": "pdfplumber/" + pdfplumber.__version__}
+
+
+def page_evidence(pdf_bytes: bytes, paper_id: str, page_number: int):
+    """Read physical source regions and resolve explicit continuations in this edition."""
+    from backend.research.table_continuation import continuation_number, link_tables
+
+    if not 1 <= page_number <= 500 or len(pdf_bytes) > MAX_BYTES or not pdf_bytes.startswith(b"%PDF-"):
+        raise ValueError("invalid_document_or_page")
+    version = sha256(pdf_bytes).hexdigest()
+    current = _single_page(pdf_bytes, paper_id, page_number, version)
+    current["table_continuations"] = []
+    if page_number > 1 and any(continuation_number(i) for i in current["items"]):
+        previous = _single_page(pdf_bytes, paper_id, page_number - 1, version)
+        current["table_continuations"] = link_tables(previous, current)
+        if current["table_continuations"]:
+            current["cross_page_table_links"] = "source_matched"
+    return current
 
 
 def from_path(path, paper_id, page):
