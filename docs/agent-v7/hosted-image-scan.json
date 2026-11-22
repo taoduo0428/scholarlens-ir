@@ -1,0 +1,112 @@
+{
+  "scope": "Linux/amd64 application image",
+  "scanner": "grype",
+  "scanner_version": "0.122.1",
+  "workflow_run": "https://github.com/taoduo0428/scholarlens-ir/actions/runs/44983031422",
+  "pull_request": 30,
+  "pr_head": "73ab586ace9a582dd28ad1d22a7bc4271c5cb4ba",
+  "artifact": "application-image-findings",
+  "raw_report_sha256": "c277fb6bef83fd5bc30ce3477f18f1a2567c4dd24c1d22612a7dc7bac3e99d56",
+  "historical_report_sha256": "513521b44bf1d847f50e2705375011fee3ef6ae20ead36ecd3d257600be1a1c1",
+  "baseline": {
+    "image_config": "sha256:dc388d3fba6e9089220d7ac56eda9bafb1a10e15c730706d1a471877239eb60b",
+    "manifest_digest": "sha256:e96824e5226f05ab7b2c58c0fb8fd41322fe9968075fc07306e3c1c031cd7705",
+    "database_built": "2026-11-21T06:20:06Z",
+    "database_source": "https://grype.anchore.io/databases/v6/vulnerability-db_v6.1.10_2026-11-21T00:21:39Z_1795242006.tar.zst?checksum=sha256%3A921d1b1b4151a211d39efbb8a7da54caabfc6eb717112766cb5bdee7920809b5",
+    "matches": 283,
+    "severities": {
+      "Critical": 0,
+      "High": 96,
+      "Medium": 105,
+      "Low": 24,
+      "Negligible": 58,
+      "Unknown": 0
+    },
+    "high_advisory_ids": [
+      "CVE-2025-69720",
+      "CVE-2026-102010",
+      "CVE-2026-107493",
+      "CVE-2026-107494",
+      "CVE-2026-107496",
+      "CVE-2026-119373",
+      "CVE-2026-119374",
+      "CVE-2026-119379",
+      "CVE-2026-121482",
+      "CVE-2026-124709",
+      "CVE-2026-19499",
+      "CVE-2026-41992",
+      "CVE-2026-5435",
+      "CVE-2026-54369",
+      "CVE-2026-54370",
+      "CVE-2026-76642",
+      "CVE-2026-78408",
+      "CVE-2026-78409",
+      "CVE-2026-78410",
+      "CVE-2026-82560",
+      "CVE-2026-84243",
+      "CVE-2026-84786",
+      "CVE-2026-88823",
+      "CVE-2026-9538",
+      "CVE-2026-95619",
+      "CVE-2026-95691",
+      "CVE-2026-95692"
+    ],
+    "high_fix_states": {
+      "": 1,
+      "fixed": 9,
+      "not-fixed": 21,
+      "wont-fix": 65
+    },
+    "glibc_versions": [
+      "2.41-12+deb13u4"
+    ]
+  },
+  "current": {
+    "image_config": "sha256:c44cfcd9f987a040a2e06c173c05b0bda04fc42589d2f207e5608404a89c71b9",
+    "manifest_digest": "sha256:47c149dfa8f53677102c36d99801b3c004c12d891f381654153cd6bf595d720a",
+    "database_built": "2026-11-21T06:20:06Z",
+    "database_source": "https://grype.anchore.io/databases/v6/vulnerability-db_v6.1.10_2026-11-21T00:21:39Z_1795242006.tar.zst?checksum=sha256%3A921d1b1b4151a211d39efbb8a7da54caabfc6eb717112766cb5bdee7920809b5",
+    "matches": 247,
+    "severities": {
+      "Critical": 0,
+      "High": 80,
+      "Medium": 95,
+      "Low": 21,
+      "Negligible": 51,
+      "Unknown": 0
+    },
+    "high_advisory_ids": [
+      "CVE-2025-69720",
+      "CVE-2026-102010",
+      "CVE-2026-107493",
+      "CVE-2026-107496",
+      "CVE-2026-119373",
+      "CVE-2026-119374",
+      "CVE-2026-119379",
+      "CVE-2026-124709",
+      "CVE-2026-19499",
+      "CVE-2026-5435",
+      "CVE-2026-54369",
+      "CVE-2026-54370",
+      "CVE-2026-76642",
+      "CVE-2026-78408",
+      "CVE-2026-78409",
+      "CVE-2026-78410",
+      "CVE-2026-82560",
+      "CVE-2026-84243",
+      "CVE-2026-84786",
+      "CVE-2026-88823",
+      "CVE-2026-9538",
+      "CVE-2026-95619",
+      "CVE-2026-95691",
+      "CVE-2026-95692"
+    ],
+    "high_fix_states": {
+      "not-fixed": 21,
+      "wont-fix": 59
+    },
+    "glibc_versions": [
+      "2.41-12+deb13u5"
+    ]
+  }
+}
