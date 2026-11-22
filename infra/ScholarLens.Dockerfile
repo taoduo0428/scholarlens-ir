@@ -11,7 +11,10 @@ ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     SCHOLARLENS_RUNTIME_DIR=/var/lib/scholarlens FRONTEND_DIST=/srv/frontend
 WORKDIR /srv
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends --only-upgrade openssl libssl3t64 zlib1g \
+    && apt-get install -y --no-install-recommends --only-upgrade openssl libssl3t64 zlib1g libc6 libc-bin gzip \
+    && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libc6)" ge '2.41-12+deb13u5' \
+    && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' libc-bin)" ge '2.41-12+deb13u5' \
+    && dpkg --compare-versions "$(dpkg-query -W -f='${Version}' gzip)" ge '1.13-1+deb13u1' \
     && rm -rf /var/lib/apt/lists/* \
     && pip install --no-cache-dir --upgrade setuptools==84.2.1 wheel==0.48.0
 COPY backend/requirements-lock.txt backend/requirements-lock.txt

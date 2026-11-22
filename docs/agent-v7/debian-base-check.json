@@ -1,0 +1,29 @@
+{
+  "scope": "isolated linux/amd64 base filesystem with offline signed Debian package repositories",
+  "base": "sha256:b701198cb708b68d9413ca67d6311bd97c9389a2c5fe4da0511fc652642366cd",
+  "before": {
+    "gzip": "1.13-1+deb13u1",
+    "libc-bin": "2.41-12+deb13u4",
+    "libc6": "2.41-12+deb13u4",
+    "libssl3t64": "3.5.7-1~deb13u3",
+    "openssl": "3.5.7-1~deb13u3",
+    "openssl-provider-legacy": "3.5.7-1~deb13u3",
+    "zlib1g": "1:1.3.dfsg+really1.3.1-1+b1"
+  },
+  "after": {
+    "gzip": "1.13-1+deb13u1",
+    "libc-bin": "2.41-12+deb13u5",
+    "libc6": "2.41-12+deb13u5",
+    "libssl3t64": "3.5.9-1~deb13u1",
+    "openssl": "3.5.9-1~deb13u1",
+    "openssl-provider-legacy": "3.5.9-1~deb13u1",
+    "zlib1g": "1:1.3.dfsg+really1.3.1-1+deb13u1"
+  },
+  "smoke": "OpenSSL 3.5.9 29 Sep 2026 3.46.1",
+  "floors": 3,
+  "seconds": 5.744,
+  "inrelease_sha256": {
+    "trixie": "bfacad4ca61899ce20d4a0d439f29339f66541561b67506364efb88e27dee870",
+    "trixie-security": "3d31c58caa2397eda1af459a0db092bb3b8f5abb31c67e50e1dd491958c2ddb9"
+  }
+}
