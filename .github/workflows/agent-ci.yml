@@ -1,0 +1,110 @@
+name: ScholarLens agent verification
+on:
+  push:
+    branches: [main, zjl, codex/evo-full-product]
+  pull_request:
+    branches: [main, zjl]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: agent-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONUTF8: '1'
+      EVO_TEST_LOOPBACK_ES: '0'
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: '1'
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22.18.0'
+      - name: Frozen benchmark bytes
+        run: |
+          python -m tools.research_eval.v6_ci
+          python -m tools.research_eval.v6_silver --public-only
+      - name: Locked Python dependencies
+        run: |
+          python -m pip install -r backend/requirements-lock.txt -r backend/research/requirements.txt -r backend/research/pdf-layout-requirements.txt
+          python -m pip install opentelemetry-sdk==1.45.2
+          python -m pip check
+      - name: Python checks
+        run: |
+          python -m ruff check backend tools/research_eval --select E9,F63,F7,F82
+          python -m pytest -q backend/tests/research/test_subject_facts.py backend/tests/research/test_shared_capacity.py backend/tests/research/test_submission_trace.py
+          python -m pytest -q backend/tests/test_health_probes.py backend/tests/research/test_budget_enforcement.py backend/tests/research/test_pdf_layout.py backend/tests/research/test_e11_intelligence.py backend/tests/research/test_project_memory.py backend/tests/research/test_descriptive_plan.py
+          python -m pytest -q backend/tests/test_agent.py backend/tests/test_ai_responses.py backend/tests/test_agent_harness_reporting.py backend/tests/research/test_e10_profiles.py backend/tests/research/test_e10_operational.py backend/tests/research/test_e10_boundaries.py backend/tests/research/test_runtime_receipts.py backend/tests/research/test_workspace_recovery.py backend/tests/research/test_research_tools.py --junitxml=unit-results.xml
+      - name: Frontend checks
+        working-directory: frontend
+        run: |
+          npm ci --ignore-scripts
+          npm test
+          npm run verify:structure
+          npm run build
+          npm audit --audit-level=moderate
+      - name: Validate local service packaging
+        run: |
+          docker compose -f infra/product.compose.yml config -q
+          docker build -f infra/ScholarLens.Dockerfile -t scholarlens-ci .
+          docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "import os, ssl, sqlite3, gzip; assert os.getuid() == 10001; ssl.create_default_context(); assert sqlite3.connect(':memory:').execute('select 6*7').fetchone() == (42,); assert gzip.decompress(gzip.compress(b'paper')) == b'paper'"
+      - name: Python dependency advisories
+        run: |
+          python -m venv "$RUNNER_TEMP/auditor"
+          "$RUNNER_TEMP/auditor/bin/pip" install -r tools/audit/requirements.txt
+          sed '/^#/d;/^-c/d;/^$/d' backend/requirements-lock.txt backend/research/requirements.txt backend/research/constraints-tested.txt backend/research/pdf-layout-requirements.txt | sort -u > "$RUNNER_TEMP/audit-locked.txt"
+          "$RUNNER_TEMP/auditor/bin/pip-audit" --no-deps --disable-pip -r "$RUNNER_TEMP/audit-locked.txt"
+      - name: Scan the built application image
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 2 --output grype.tgz https://github.com/anchore/grype/releases/download/v0.122.1/grype_0.122.1_linux_amd64.tar.gz
+          echo 'f1ba7e2917ee1395618de20a98da0aa7c0fb1788927797651047c50502a37538  grype.tgz' | sha256sum --check
+          tar -xzf grype.tgz grype
+          docker image save --output application.tar scholarlens-ci:latest
+          config_path=$(tar -xOf application.tar manifest.json | jq -er '[.[] | select(any(.RepoTags[]?; . == "scholarlens-ci:latest" or endswith("/scholarlens-ci:latest"))) | .Config] | if length == 1 then first else error("ambiguous application image") end')
+          config_hash=$(tar -xOf application.tar "$config_path" | sha256sum | cut -d ' ' -f1)
+          printf 'sha256:%s\n' "$config_hash" > "$GITHUB_WORKSPACE/scanned-image-id.txt"
+          ./grype docker-archive:application.tar -o json > "$GITHUB_WORKSPACE/image-findings.json"
+          cd "$GITHUB_WORKSPACE"
+          python - <<'PY'
+          import collections, json, pathlib
+          scan = json.loads(pathlib.Path("image-findings.json").read_bytes())
+          expected = pathlib.Path("scanned-image-id.txt").read_text().strip()
+          actual = scan["source"]["target"]["imageID"]
+          if actual != expected:
+              raise SystemExit(f"Scanned config {actual} differs from exported config {expected}")
+          print(expected, dict(collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ !cancelled() && hashFiles('image-findings.json') != '' }}
+        with:
+          name: application-image-findings
+          path: |
+            image-findings.json
+            scanned-image-id.txt
+      - name: Publish test counts
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib, xml.etree.ElementTree as E
+          p=pathlib.Path("unit-results.xml")
+          if p.exists():
+              s=E.parse(p).getroot().find("testsuite")
+              pathlib.Path("unit-counts.json").write_text(json.dumps({k:s.get(k) for k in ("tests","failures","errors","skipped","time")}))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: agent-unit-counts
+          path: unit-counts.json
+          if-no-files-found: ignore
