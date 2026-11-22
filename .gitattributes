@@ -1,2 +1,3 @@
 # The synthetic upload fixture has a byte-offset xref table; never normalize it.
 frontend/tests/fixtures/browser-upload.pdf binary
+infra/build-png-ocr.sh text eol=lf

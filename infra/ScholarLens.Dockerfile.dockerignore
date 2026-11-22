@@ -1,4 +1,7 @@
 **
+!infra/
+infra/**
+!infra/build-png-ocr.sh
 !backend/
 !backend/*.py
 !backend/requirements-lock.txt
