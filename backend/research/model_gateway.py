@@ -1,5 +1,6 @@
-"""Process-local admission for personal research providers. No endpoint history is retained."""
+"""Admission for personal research providers on a process or a shared local volume."""
 from contextlib import contextmanager
+import os
 from threading import Lock
 from urllib.parse import urlsplit
 
@@ -18,6 +19,12 @@ class ModelCapacity:
     @contextmanager
     def acquire(self, base_url):
         host = (urlsplit(base_url).hostname or "").lower().rstrip(".")
+        directory = os.environ.get("SCHOLARLENS_MODEL_CAPACITY_DIR")
+        if directory:
+            from backend.research.shared_capacity import shared_slot
+            with shared_slot(directory, host, self.global_limit, self.host_limit):
+                yield
+            return
         with self._lock:
             count = self._active.get(host, 0)
             if count >= self.host_limit or sum(self._active.values()) >= self.global_limit:
@@ -43,6 +50,7 @@ def capabilities():
         "tool_execution": "server_registry",
         "fallback": "local_evidence",
         "automatic_provider_retries": 0,
+        "capacity_scope": "local_volume" if os.environ.get("SCHOLARLENS_MODEL_CAPACITY_DIR") else "process",
         "global_concurrency": CAPACITY.global_limit,
         "per_host_concurrency": CAPACITY.host_limit,
     }

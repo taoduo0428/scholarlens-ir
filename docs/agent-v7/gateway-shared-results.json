@@ -1,0 +1,41 @@
+{
+  "scope": "one loopback HTTP provider, real adapter calls, synthetic responses",
+  "shared_volume": true,
+  "single": {
+    "processes": 1,
+    "simultaneous_attempts": 3,
+    "concurrent_requests": 2,
+    "rate_limited": 1,
+    "post_release_success": 1,
+    "http_requests": 3,
+    "clients": [
+      {
+        "admitted": 2,
+        "limited": 1,
+        "recovered": 1
+      }
+    ],
+    "elapsed_seconds": 1.875
+  },
+  "two": {
+    "processes": 2,
+    "simultaneous_attempts": 6,
+    "concurrent_requests": 2,
+    "rate_limited": 4,
+    "post_release_success": 2,
+    "http_requests": 4,
+    "clients": [
+      {
+        "admitted": 1,
+        "limited": 2,
+        "recovered": 1
+      },
+      {
+        "admitted": 1,
+        "limited": 2,
+        "recovered": 1
+      }
+    ],
+    "elapsed_seconds": 2.203
+  }
+}
