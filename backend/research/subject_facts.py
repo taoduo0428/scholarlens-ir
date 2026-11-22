@@ -62,6 +62,28 @@ def _mentions(text, phrase):
     return bool(re.search(r"(?<!\w)" + re.escape(phrase) + r"(?!\w)", text))
 
 
+_METHOD_SUFFIX = r"(?: (?:algorithm|method|model|procedure|technique))?"
+_PAPER_LEAD = r"in (?:this|the) (?:paper|study|work),? "
+_REFERENTIAL_TARGET = re.compile(r"\b(?:this|that|these|those|above|such|following|aforementioned)\b"
+                                 r"|^(?:the )?(?:problem|issue|challenge|task)s?$|^(?:it|them)$")
+
+
+def _stated_purpose(subject, text):
+    """Bind a named method to the purpose of an explicit author proposal or use."""
+    method = rf"(?:an? |the |our )?{subject}{_METHOD_SUFFIX}"
+    purpose = r"(?P<problem>[\w-]+(?: [\w-]+){0,30})"
+    active = (rf"(?:{_PAPER_LEAD})?we (?:propose|present|develop|introduce|apply|use) {method} "
+              rf"(?:to (?:address|solve|tackle)|for (?:addressing|solving|tackling)) {purpose}")
+    passive = (rf"{_PAPER_LEAD}{method} for {purpose} "
+               r"(?:is|was) (?:proposed|introduced|developed)")
+    match = re.fullmatch(active, text)
+    if not match:
+        match = re.fullmatch(passive, text)
+        if not match or not re.search(r"\b(?:problems?|tasks?|challenges?)$", match["problem"]):
+            return False
+    return not _REFERENTIAL_TARGET.search(match["problem"])
+
+
 def states_relation(field, sentence):
     """The requested object must be a grammatical argument of the stated relation."""
     if any(p.search(sentence) for p in (GUARDS, PRIOR, FUTURE, HYP, MAY, _QUALIFIED)):
@@ -86,6 +108,11 @@ def states_relation(field, sentence):
             rf"(?:本文的|我们的|该)?{subject}{chinese_verb}的输入(?:为|是).+",
         ]
     else:
+        object_tail = re.search(r"\b(?:address(?:es|ing)?|solv(?:e[sd]?|ing)|tackl(?:e[sd]?|ing)) (.+)$", text)
+        if object_tail and _REFERENTIAL_TARGET.search(object_tail[1]):
+            return False
+        if _stated_purpose(subject, text):
+            return True
         expressions = [
             rf"{owner} (?:addresses|address|solves?|tackles?) .+",
             rf"we (?:use|apply|developed|designed|propose|introduce) {owner} to (?:address|solve|tackle|overcome|reduce|prevent) .+",
