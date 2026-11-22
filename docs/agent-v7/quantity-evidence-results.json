@@ -1,0 +1,481 @@
+{
+  "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "silver_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
+  "human_gold": 0,
+  "runs": {
+    "before": {
+      "silver": {
+        "direct_on_positive": {
+          "count": 9,
+          "total": 70,
+          "wilson95": [
+            0.0691,
+            0.2266
+          ]
+        },
+        "no_direct_on_positive": {
+          "count": 61,
+          "total": 70,
+          "wilson95": [
+            0.7734,
+            0.9309
+          ]
+        },
+        "direct_on_negative": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "exact_answerability": {
+          "count": 42,
+          "total": 111,
+          "wilson95": [
+            0.2937,
+            0.4712
+          ]
+        },
+        "source_span_overlap": {
+          "count": 149,
+          "total": 374,
+          "wilson95": [
+            0.3501,
+            0.4488
+          ]
+        },
+        "successful_tool_calls": {
+          "count": 1003,
+          "total": 1003,
+          "wilson95": [
+            0.9962,
+            1
+          ]
+        },
+        "task_states": {
+          "completed": 1,
+          "partial": 110
+        },
+        "p50_ms": 661.88,
+        "p95_ms": 1817.7
+      },
+      "checked_sources": 374,
+      "checked_direct_claims": 13,
+      "elapsed_ms": 86341.38500000005,
+      "p50_ms": 661.879,
+      "p95_ms": 1817.704,
+      "actions": 1003,
+      "tool_ok": 1003,
+      "model_calls": 0,
+      "status_breakdown": {
+        "answerable / False": 50,
+        "answerable / True": 8,
+        "insufficient_evidence / False": 21,
+        "not_comparable / False": 20,
+        "partially_answerable / False": 11,
+        "partially_answerable / True": 1
+      }
+    },
+    "after": {
+      "silver": {
+        "direct_on_positive": {
+          "count": 12,
+          "total": 70,
+          "wilson95": [
+            0.1009,
+            0.2762
+          ]
+        },
+        "no_direct_on_positive": {
+          "count": 58,
+          "total": 70,
+          "wilson95": [
+            0.7238,
+            0.8991
+          ]
+        },
+        "direct_on_negative": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "exact_answerability": {
+          "count": 42,
+          "total": 111,
+          "wilson95": [
+            0.2937,
+            0.4712
+          ]
+        },
+        "source_span_overlap": {
+          "count": 154,
+          "total": 350,
+          "wilson95": [
+            0.3889,
+            0.4924
+          ]
+        },
+        "successful_tool_calls": {
+          "count": 994,
+          "total": 994,
+          "wilson95": [
+            0.9962,
+            1.0
+          ]
+        },
+        "task_states": {
+          "completed": 1,
+          "partial": 110
+        },
+        "p50_ms": 590.5,
+        "p95_ms": 1465.24
+      },
+      "checked_sources": 350,
+      "checked_direct_claims": 16,
+      "elapsed_ms": 76472.78300000002,
+      "p50_ms": 590.496,
+      "p95_ms": 1465.242,
+      "actions": 994,
+      "tool_ok": 994,
+      "model_calls": 0,
+      "status_breakdown": {
+        "answerable / False": 47,
+        "answerable / True": 11,
+        "insufficient_evidence / False": 21,
+        "not_comparable / False": 20,
+        "partially_answerable / False": 11,
+        "partially_answerable / True": 1
+      }
+    }
+  },
+  "changed_direct": [
+    {
+      "task": "review-04-metrics",
+      "previous": 0,
+      "current": 1,
+      "sources": [
+        {
+          "paper": "source-sha256:184f3224a86285e8f8519a0dbb98aaad5f5735d64bc7e85b26140afe6d1632fe",
+          "start": 145,
+          "end": 271,
+          "quote_sha256": "363bba993ccf05f6b4805dca136d1013a84db624cc5fdbde4670439d3924d800",
+          "overlap_with_silver": true
+        }
+      ]
+    },
+    {
+      "task": "review-12-metrics",
+      "previous": 0,
+      "current": 1,
+      "sources": [
+        {
+          "paper": "source-sha256:4c4cdaed9fde6a3b7653e237dbf840964a408d59e86f0beb5b59395b9a50a25e",
+          "start": 0,
+          "end": 238,
+          "quote_sha256": "86a36c4692f09398b1538ac8e22d5ab150b5a23a278bbbb907485d9b45949f91",
+          "overlap_with_silver": true
+        }
+      ]
+    },
+    {
+      "task": "review-17-metrics",
+      "previous": 0,
+      "current": 1,
+      "sources": [
+        {
+          "paper": "source-sha256:85e1ade5fd2aababaf942100a797547040344e3752e44035eb6f7ced9ea58057",
+          "start": 91,
+          "end": 200,
+          "quote_sha256": "de07e58a28e8898fee5452ef65eba98fbb82f372c71bc1bffb42f715cc93372e",
+          "overlap_with_silver": true
+        }
+      ]
+    }
+  ],
+  "panel_before": {
+    "conditions": {
+      "intact": {
+        "direct": 0,
+        "exact": 0,
+        "other": 0
+      },
+      "masked": {
+        "direct": 0,
+        "exact": 0,
+        "other": 0
+      },
+      "absent": {
+        "direct": 0,
+        "exact": 0,
+        "other": 0
+      }
+    },
+    "cases": [
+      {
+        "case": 0,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 0,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 0,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 1,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 1,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 1,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 2,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 2,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 2,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 3,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 3,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 3,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 4,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 4,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 4,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      }
+    ]
+  },
+  "panel_final": {
+    "conditions": {
+      "intact": {
+        "direct": 1,
+        "exact": 1,
+        "other": 0
+      },
+      "masked": {
+        "direct": 0,
+        "exact": 0,
+        "other": 0
+      },
+      "absent": {
+        "direct": 0,
+        "exact": 0,
+        "other": 0
+      }
+    },
+    "cases": [
+      {
+        "case": 0,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 0,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 0,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 1,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 8
+      },
+      {
+        "case": 1,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 6
+      },
+      {
+        "case": 1,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 2,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 7
+      },
+      {
+        "case": 2,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 2,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 3,
+        "variant": "intact",
+        "direct": 1,
+        "matched": true,
+        "other": 0,
+        "tools": 8
+      },
+      {
+        "case": 3,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 6
+      },
+      {
+        "case": 3,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      },
+      {
+        "case": 4,
+        "variant": "intact",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 8
+      },
+      {
+        "case": 4,
+        "variant": "masked",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 6
+      },
+      {
+        "case": 4,
+        "variant": "absent",
+        "direct": 0,
+        "matched": false,
+        "other": 0,
+        "tools": 5
+      }
+    ]
+  }
+}

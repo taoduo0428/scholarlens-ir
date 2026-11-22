@@ -4,9 +4,11 @@ COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --ignore-scripts
 COPY frontend/ ./
 ENV VITE_RESEARCH_ENABLED=true
+ARG VITE_EVOLUTION_LAB=false
+ARG VITE_JAEGER_UI_PATH=
 RUN npm run build:production
 
-FROM python:3.11-slim-trixie
+FROM python:3.11-slim-trixie AS app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     SCHOLARLENS_RUNTIME_DIR=/var/lib/scholarlens FRONTEND_DIST=/srv/frontend
 WORKDIR /srv
@@ -30,3 +32,14 @@ USER 10001:10001
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz',timeout=2)"
 CMD ["python","-m","uvicorn","backend.app1:app","--host","0.0.0.0","--port","8000","--workers","1"]
+
+FROM app AS pdf-ocr
+USER root
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends tesseract-ocr tesseract-ocr-eng \
+    && rm -rf /var/lib/apt/lists/*
+ENV SCHOLARLENS_TESSERACT=/usr/bin/tesseract
+USER 10001:10001
+RUN python -m backend.research.ocr_check
+
+FROM app AS standard

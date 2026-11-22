@@ -160,6 +160,14 @@ def matches(field, claim, row, state, suggestions):
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
     if field.facet:
+        if profile_index is not None and field.facet in {
+            "reported_quantity", "quantity_unit", "quantity_comparator", "quantity_conditions"
+        }:
+            from backend.research.quantitative_evidence import witnesses
+            return witnesses(field, valid, sources), "insufficient_evidence"
+        if profile_index is not None and field.facet in {"causal_premise", "causal_path", "input_path"}:
+            from backend.research.multihop_fields import causal_premises
+            return causal_premises(field, valid, sources), "insufficient_evidence"
         if profile_index is not None and field.facet in {"addressed_problem", "required_input"}:
             from backend.research.subject_facts import witnesses
             proof = witnesses(field, valid, sources) if field.subject else []

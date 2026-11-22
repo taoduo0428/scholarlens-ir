@@ -12,6 +12,15 @@ interface PageLayout {
   figure_legends?:{number:number;figure_locator:string;rgb_sha256:string;entries:{
     text:string;color:string;confidence:number;label_pdf_bbox:number[];text_sha256:string;
   }[]}[];
+  chart_reading_status?:string;
+  formula_evidence?:{
+    equations:{number:string;source:{locator:string;quote:string};definitions:{symbol:string;source:{locator:string;quote:string}}[]}[];
+    mentions:{number:string;source:{locator:string;quote:string;start:number};equation_locator:string|null}[];
+  };
+  chart_readings?:{number:number;figure_locator:string;rgb_sha256:string;calibration_id:string;
+    x_axis:{label:string;min:number;max:number;at:number};y_axis:{label:string;min:number;max:number};
+    panels:{dataset:string;points:{series:string;estimate:number;interval:number[];pdf_bbox:number[]}[]}[];
+  }[];
 }
 
 export function PdfCellPicker({papers}:{papers:string[]}) {
@@ -71,9 +80,37 @@ export function PdfCellPicker({papers}:{papers:string[]}) {
         <p>图像位置 <code>{link.figure_locator}</code></p>
         <p>题注位置 <code>{link.caption_locator}</code></p>
       </details>)}
+      {layout?.formula_evidence?.equations.map(eq=><details key={eq.source.locator}>
+        <summary>公式 ({eq.number}) · 第 {layout.page} 页</summary>
+        <p><code>{eq.source.quote}</code></p>
+        <p>原文位置 <code>{eq.source.locator}</code></p>
+        {eq.definitions.map(def=><p key={def.source.locator}>变量 {def.symbol} 的原文定义：{def.source.quote}</p>)}
+      </details>)}
+      {layout?.formula_evidence?.mentions.map(ref=><details key={ref.source.locator+"-"+ref.source.start}>
+        <summary>第 {layout.page} 页正文引用 {ref.source.quote}</summary>
+        <p>引用位置 <code>{ref.source.locator}</code></p>
+        {ref.equation_locator && <p>本页公式位置 <code>{ref.equation_locator}</code></p>}
+      </details>)}
       {target && <input type="hidden" name="pdf_cell" value={JSON.stringify(target)}/>}
       {layout && !!layout.figure_caption_links?.length && layout.figure_legends?.length === 0 &&
         <p>本页未识别出可核对的彩色图例。</p>}
+      {layout?.chart_reading_status==="unregistered" && <p>此图未登记坐标轴校准，暂无折线读数。</p>}
+      {layout?.chart_reading_status==="registry_unavailable" && <p>坐标轴校准文件不可用，暂无折线读数。</p>}
+      {layout?.chart_reading_status==="raster_unavailable_or_mismatch" && <p>原图与校准信息未能核对，暂无折线读数。</p>}
+      {layout?.chart_readings?.map(chart=><details key={chart.figure_locator+"-endpoints"}>
+        <summary>图 {chart.number} · 折线终点读数</summary>
+        <p>横轴 {chart.x_axis.label} 从 {chart.x_axis.min} 到 {chart.x_axis.max}，
+          读数位置 {chart.x_axis.at}。纵轴 {chart.y_axis.label} 从 {chart.y_axis.min} 到 {chart.y_axis.max}。</p>
+        <p>坐标轴校准 <code>{chart.calibration_id}</code></p>
+        <p>原图 RGB SHA-256 <code>{chart.rgb_sha256}</code></p>
+        {chart.panels.map(panel=><details key={panel.dataset}>
+          <summary>{panel.dataset} · {panel.points.length ? "查看读数" : "终点不可分辨"}</summary>
+          {panel.points.map(point=><p key={point.series}>
+            {point.series} ≈ {point.estimate}（图像读数区间 {point.interval.join(" 至 ")}）<br/>
+            第 {layout.page} 页位置 <code>{point.pdf_bbox.join(", ")}</code>
+          </p>)}
+        </details>)}
+      </details>)}
       {layout?.figure_legends?.map(legend=><details key={legend.figure_locator}>
         <summary>图 {legend.number} · 图例文字（OCR）</summary>
         <p>原图 RGB SHA-256 <code>{legend.rgb_sha256}</code></p>

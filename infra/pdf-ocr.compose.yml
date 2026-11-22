@@ -1,0 +1,5 @@
+services:
+  api:
+    image: ${SCHOLARLENS_OCR_IMAGE:-scholarlens:pdf-ocr}
+    build:
+      target: pdf-ocr

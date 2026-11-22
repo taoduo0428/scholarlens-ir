@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-22",
+  "backend": {
+    "distinct_passed": 891,
+    "distinct_in_suite": 891,
+    "split_after_native_es_memory_exit": true,
+    "runs": [
+      {
+        "run": "7f383982c562",
+        "collected": 891,
+        "passed": 873,
+        "remaining": 18,
+        "junit_sha256": "5fbbafddbd2a615108f340882d93c1af7f947da13d46a8a4ec1a379647d4e810",
+        "tests_exit": 1,
+        "scope": "offline copied fixture",
+        "source_unchanged": true,
+        "papers": 859,
+        "vectors": 49420,
+        "ports_closed": true
+      },
+      {
+        "run": "e1a98e998c4d",
+        "collected": 24,
+        "passed": 24,
+        "remaining": 0,
+        "junit_sha256": "62c2f98efbb53915653f876528b91c257476c9d5d8b6d04011726a2210513aef",
+        "tests_exit": 0,
+        "scope": "offline copied fixture",
+        "source_unchanged": true,
+        "papers": 859,
+        "vectors": 49420,
+        "ports_closed": true
+      }
+    ]
+  },
+  "frontend": {
+    "node_passed": 47,
+    "structure": "passed",
+    "production_api": "/api",
+    "npm_advisories": 0
+  },
+  "frozen_files": 9,
+  "silver_tasks": 111,
+  "live_provider": {
+    "status": "BLOCKED",
+    "calls": 0,
+    "missing": [
+      "AI_API_KEY",
+      "AI_BASE_URL",
+      "AI_MODEL",
+      "E10_MAX_USD",
+      "E10_MAX_RATE_USD_PER_MTOK"
+    ]
+  },
+  "evidence": [
+    "quantity-evidence-results.json",
+    "chart-axis-results.json",
+    "chart-axis-browser-results.json",
+    "formula-source-results.json",
+    "formula-browser-results.json",
+    "e16-current-results.json"
+  ]
+}

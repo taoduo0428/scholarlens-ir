@@ -1,5 +1,9 @@
 # 依赖、工具权限与隔离
 
+治理页使用当前账号角色鉴权。双会话验证中，匿名、普通账号、管理员分别获得 401、403、200，权限撤销后既有会话返回 403。发布库和冻结实验快照可只读挂入应用容器。任务导出按所有者和文件哈希验证内容。停用账号的离线删除会核对其他使用者、相关上传与在途任务。[治理验证](GOVERNANCE_VIEW.md) · [账号数据范围](ACCOUNT_ERASURE.md)
+
+标准镜像和英文 OCR 镜像由 CI 分别构建、运行并扫描，同一镜像保存 Grype 原始匹配和与之核对过的镜像 ID。两个扫描结果分别保存在对应 GitHub Actions 运行的 `application-image-findings-standard` 和 `application-image-findings-pdf-ocr` 产物中。下文的 80 条 High 来自上一版标准镜像。
+
 2026-11-22，接入 OTLP 后，用 pip-audit 2.9.0 核对了后端、研究与 PDF 栈的 82 个锁定版本，审计报告的已知漏洞为 0。CycloneDX 清单逐项核对了 82 个包名和版本。基础镜像的系统包由 Grype 单独扫描。[Python 软件物料清单](python.cdx.json)
 
 ## 托管构建镜像复扫

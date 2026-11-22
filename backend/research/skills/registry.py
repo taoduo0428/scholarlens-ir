@@ -45,11 +45,16 @@ def _db(registry_dir):
     return sqlite3.connect(path.as_uri() + "?mode=ro", uri=True)
 
 
-def bind_versions(registry_dir=None):
+def bind_versions(registry_dir=None, *, programs=False):
     if registry_dir is None:
         return SKILL_BASE, POLICY_BASE
     with closing(_db(registry_dir)) as db:
         active = dict(db.execute("SELECT kind, version FROM active"))
+        if programs and active.get("program", SKILL_BASE) != SKILL_BASE:
+            from backend.research.skills.releases import pinned_release
+            receipt = pinned_release(db, active["program"])
+            resolve_versions(receipt.base_skill, receipt.base_policy, registry_dir)
+            return receipt.version, receipt.base_policy
     pair = active.get("skill", SKILL_BASE), active.get("policy", POLICY_BASE)
     resolve_versions(*pair, registry_dir)
     return pair
@@ -81,6 +86,12 @@ def resolve_versions(skill_version, policy_version, registry_dir=None):
         raise ValueError("approved registry required for pinned version")
     values = {}
     with closing(_db(registry_dir)) as db:
+        if skill_version.startswith("release-"):
+            from backend.research.skills.releases import pinned_release
+            receipt = pinned_release(db, skill_version)
+            if receipt.base_policy != policy_version:
+                raise ValueError("pinned policy differs from the tested release")
+            skill_version = receipt.base_skill
         if skill_version != SKILL_BASE:
             skill = _approved(db, "skill", skill_version)
             if set(skill) != {"technique"}:
@@ -96,3 +107,11 @@ def resolve_versions(skill_version, policy_version, registry_dir=None):
                 raise ValueError("invalid approved policy")
             values.update(policy)
     return RuntimeTuning(**values)
+
+
+def resolve_program(skill_version, registry_dir):
+    if not skill_version.startswith("release-"):
+        return None
+    from backend.research.skills.releases import pinned_release
+    with closing(_db(registry_dir)) as db:
+        return pinned_release(db, skill_version).program

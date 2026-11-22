@@ -39,6 +39,7 @@ export async function backend<T>(path: string, options: Options = {}): Promise<T
       }
       throw new BackendError(raw?.error?.message || "请求失败（HTTP " + response.status + "）", response.status, raw?.error?.code || "request_failed");
     }
+    if (response.status === 204) return undefined as T;
     return (options.blob ? await response.blob() : await response.json()) as T;
   } catch (cause) {
     if (controller.signal.aborted && !options.signal?.aborted) throw new Error("请求超时，请稍后重试。");

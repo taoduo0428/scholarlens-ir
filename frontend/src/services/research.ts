@@ -77,6 +77,8 @@ export const research={
     method:"POST",headers:{"Idempotency-Key":key,...personalAiHeaders(personal)},body
   }),
   detail:(id:string,signal?:AbortSignal)=>backend<{state:ResearchState;revision:number;trace_ids?:string[]}>(item(id),{signal}),
+  exportZip:(id:string,signal:AbortSignal)=>backend<Blob>(item(id)+"/export",{blob:true,signal}),
+  erase:(id:string,revision:number,signal:AbortSignal)=>backend<void>(item(id)+"?revision="+revision,{method:"DELETE",signal}),
   metrics:(workspace:string,project:string,signal?:AbortSignal)=>backend<ProjectMetrics>(
     "/research/workspaces/"+encodeURIComponent(workspace)+"/projects/"+encodeURIComponent(project)+"/metrics",{signal}),
   events:(id:string,cursor:number,signal?:AbortSignal)=>backend<{events:ResearchEvent[]}>(item(id)+"/events?after_seq="+cursor,{signal}),

@@ -1,0 +1,70 @@
+{
+  "sample": "fresh generated test chart",
+  "axes": {
+    "x": {
+      "label": "Time (s)",
+      "min": -5.0,
+      "max": 25.0,
+      "at": 25.0
+    },
+    "y": {
+      "label": "Temperature (C)",
+      "min": -20.0,
+      "max": 80.0
+    }
+  },
+  "calibration": "fresh-pool-v1",
+  "pdf_sha256": "d978a3876d02111882c8911defbea1002938aa2e946101f1b5dd8b6000d7b5ac",
+  "rgb_sha256": "706962d92155c9f22e6e03808c4d45f3ccadb8522d60d8591ca48cec51f1f325",
+  "known_values": {
+    "Canal": 56,
+    "Pool": -1
+  },
+  "measured": [
+    {
+      "series": "Canal",
+      "color": "#74159f",
+      "estimate": 56.0,
+      "interval": [
+        53.0,
+        59.0
+      ],
+      "pixel_bbox": [
+        159,
+        40,
+        162,
+        45
+      ],
+      "pdf_bbox": [
+        174.0,
+        55.0,
+        177.0,
+        60.0
+      ]
+    },
+    {
+      "series": "Pool",
+      "color": "#ad751b",
+      "estimate": -1.0,
+      "interval": [
+        -4.0,
+        2.0
+      ],
+      "pixel_bbox": [
+        159,
+        97,
+        162,
+        102
+      ],
+      "pdf_bbox": [
+        174.0,
+        112.0,
+        177.0,
+        117.0
+      ]
+    }
+  ],
+  "empty_registry": "unregistered",
+  "invalid_registry": "registry_unavailable",
+  "wrong_pixels": "raster_unavailable_or_mismatch"
+}

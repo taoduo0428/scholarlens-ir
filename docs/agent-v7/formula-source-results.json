@@ -1,0 +1,92 @@
+{
+  "doi": "10.1371/journal.pone.0102799",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "xml_sha256": "dacebe67fcabd7057895bd587a96c5ebbcc272163a1a4bd61879ddd0583ef49d",
+  "page": 8,
+  "jats_paragraph": "sec[@id='s3']/p[1]",
+  "jats_paragraph_sha256": "9c8b618f32b971e08a4533c6486e6dcb37f849c8daea1973cbc3ad6ee8f3c33d",
+  "matched_mentions": 2,
+  "mentions": [
+    {
+      "number": "4",
+      "product_source": {
+        "locator": "pdf:da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa:p8:text:58.053,401.646,554.215,413.935",
+        "bbox": [
+          58.053,
+          401.646,
+          554.215,
+          413.935
+        ],
+        "line_sha256": "2329b558465d0247417a70bd8ef690c8958d9c018562557c33e4998ea80e53e1",
+        "start": 77,
+        "end": 83,
+        "quote": "Eq.(4)",
+        "quote_sha256": "bb09e4b750851e5635c62ccd59b06098b21addbd56e5a5c1e92b5925c0bd3a62"
+      },
+      "product_equation_locator": null,
+      "pdfium_char_range": [
+        2678,
+        2684
+      ],
+      "pdfium_glyph_bbox": [
+        489.886,
+        405.252,
+        510.455,
+        413.438
+      ],
+      "jats_context": "temporal modularity",
+      "jats_paragraph_char_range": [
+        359,
+        365
+      ],
+      "jats_formula_id": "pone.0102799.e084",
+      "jats_formula_graphic": "info:doi/10.1371/journal.pone.0102799.e084"
+    },
+    {
+      "number": "6",
+      "product_source": {
+        "locator": "pdf:da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa:p8:text:67.011,412.531,554.177,424.55",
+        "bbox": [
+          67.011,
+          412.531,
+          554.177,
+          424.55
+        ],
+        "line_sha256": "0c804675f08f6297c0c91f8ef0e10ed7535ceac2cdacda2720fb45b74af4cc6c",
+        "start": 94,
+        "end": 100,
+        "quote": "Eq.(6)",
+        "quote_sha256": "d74334d0e546c138fbe24bff3edde88205752c3a9b7c6fa26dace3922182f6f5"
+      },
+      "product_equation_locator": null,
+      "pdfium_char_range": [
+        2732,
+        2738
+      ],
+      "pdfium_glyph_bbox": [
+        448.671,
+        415.91,
+        469.24,
+        424.096
+      ],
+      "jats_context": "expected modularity",
+      "jats_paragraph_char_range": [
+        403,
+        409
+      ],
+      "jats_formula_id": "pone.0102799.e109",
+      "jats_formula_graphic": "info:doi/10.1371/journal.pone.0102799.e109"
+    }
+  ],
+  "display_equations": {
+    "4": {
+      "page": 4,
+      "product_expression": null
+    },
+    "6": {
+      "page": 5,
+      "product_expression": null
+    }
+  },
+  "verified_expression_transcriptions": 0
+}
