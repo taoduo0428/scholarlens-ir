@@ -51,7 +51,7 @@ def create_demo(runtime: Path, frontend: Path, corpus_name: str):
         sample = runtime / "synthetic-wave-table.pdf"
         if not sample.exists():
             with sample.open("xb") as stream:
-                stream.write(specimen())
+                stream.write(specimen(with_figure=True))
         corpus.pdf_resolver = lambda doc: sample if doc["paper_id"] == "ui:wave" else None
     accounts = Store(str(runtime))
     config = Settings(runtime_dir=str(runtime), frontend_dir=str(frontend))

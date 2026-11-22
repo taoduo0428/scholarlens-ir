@@ -35,7 +35,14 @@ try {
   await page.getByRole("button", {name:"读取本页表格"}).click();
   const layout = await layoutResponse;
   assert.equal(layout.status(), 200);
-  assert.ok((await layout.json()).items.some(item=>item.kind==="cell" && item.quote==="87"));
+  const pageLayout = await layout.json();
+  assert.ok(pageLayout.items.some(item=>item.kind==="cell" && item.quote==="87"));
+  assert.equal(pageLayout.figure_caption_links.length, 1);
+  const figure = page.locator("details").filter({has:page.locator(":scope > summary", {hasText:"图 1 · 第 1 页题注"})}).last();
+  await figure.locator(":scope > summary").click();
+  assert.ok((await figure.innerText()).includes("Figure 1. Synthetic image"));
+  assert.ok((await figure.innerText()).includes(pageLayout.figure_caption_links[0].caption_locator));
+  assert.ok((await figure.innerText()).includes(pageLayout.figure_caption_links[0].figure_locator));
   const picker = page.getByRole("combobox", {name:/^引用单元格/});
   await picker.waitFor();
   const target = picker.locator("option").filter({hasText:/行 2 · 列 2 · 87/});
