@@ -1,0 +1,31 @@
+{
+  "paper": "source-sha256:3cdbbe6efeef37c0b067458ebc0eb2ebd99b6a080f0389080d429a4497956db1",
+  "control": "source-sha256:000cef6647945f4a970680c91d86ee5ea8f30a55364950b55d89c7be103b50cd",
+  "generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "start": 628,
+  "end": 791,
+  "quote_sha256": "1f2a204c40dce4cb2223813c519762281a347cad8b47e3fa668c23c485f451da",
+  "cases": {
+    "available": {
+      "direct": 1,
+      "exact": 1,
+      "tools": 8,
+      "model_calls": 0,
+      "status": "partially_answerable"
+    },
+    "absent_subject": {
+      "direct": 0,
+      "exact": 0,
+      "tools": 5,
+      "model_calls": 0,
+      "status": "insufficient_evidence"
+    },
+    "absent_paper": {
+      "direct": 0,
+      "exact": 0,
+      "tools": 4,
+      "model_calls": 0,
+      "status": "insufficient_evidence"
+    }
+  }
+}
