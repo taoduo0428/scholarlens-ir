@@ -1,9 +1,9 @@
 name: ScholarLens agent verification
 on:
   push:
-    branches: [zjl, codex/evo-full-product]
+    branches: [main, zjl, codex/evo-full-product]
   pull_request:
-    branches: [zjl]
+    branches: [main, zjl]
   workflow_dispatch:
 permissions:
   contents: read
@@ -13,7 +13,7 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 35
     env:
       PYTHONUTF8: '1'
       EVO_TEST_LOOPBACK_ES: '0'
@@ -36,10 +36,12 @@ jobs:
       - name: Locked Python dependencies
         run: |
           python -m pip install -r backend/requirements-lock.txt -r backend/research/requirements.txt -r backend/research/pdf-layout-requirements.txt
+          python -m pip install opentelemetry-sdk==1.45.2
           python -m pip check
       - name: Python checks
         run: |
           python -m ruff check backend tools/research_eval --select E9,F63,F7,F82
+          python -m pytest -q backend/tests/research/test_subject_facts.py backend/tests/research/test_shared_capacity.py backend/tests/research/test_submission_trace.py
           python -m pytest -q backend/tests/test_health_probes.py backend/tests/research/test_budget_enforcement.py backend/tests/research/test_pdf_layout.py backend/tests/research/test_e11_intelligence.py backend/tests/research/test_project_memory.py backend/tests/research/test_descriptive_plan.py
           python -m pytest -q backend/tests/test_agent.py backend/tests/test_ai_responses.py backend/tests/test_agent_harness_reporting.py backend/tests/research/test_e10_profiles.py backend/tests/research/test_e10_operational.py backend/tests/research/test_e10_boundaries.py backend/tests/research/test_runtime_receipts.py backend/tests/research/test_workspace_recovery.py backend/tests/research/test_research_tools.py --junitxml=unit-results.xml
       - name: Frontend checks
@@ -54,6 +56,7 @@ jobs:
         run: |
           docker compose -f infra/product.compose.yml config -q
           docker build -f infra/ScholarLens.Dockerfile -t scholarlens-ci .
+          docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "import os, ssl, sqlite3, gzip; assert os.getuid() == 10001; ssl.create_default_context(); assert sqlite3.connect(':memory:').execute('select 6*7').fetchone() == (42,); assert gzip.decompress(gzip.compress(b'paper')) == b'paper'"
       - name: Python dependency advisories
         run: |
           python -m venv "$RUNNER_TEMP/auditor"
