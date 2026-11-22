@@ -1,0 +1,159 @@
+{
+  "doi": "10.1371/journal.pone.0102799",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "jats_sha256": "dacebe67fcabd7057895bd587a96c5ebbcc272163a1a4bd61879ddd0583ef49d",
+  "publisher_figures": 6,
+  "matched": [
+    {
+      "page": 3,
+      "number": 1,
+      "bbox": [
+        170.589,
+        454.28,
+        441.638,
+        694.828
+      ],
+      "caption_bbox": [
+        58.053,
+        706.488,
+        554.282,
+        714.482
+      ],
+      "caption_line_sha256": "08ea6600c0ab53039aac5039b870331a9e085130eab2a84ed208f7730b898cc9",
+      "size": [
+        1129,
+        1002
+      ],
+      "rgb_sha256": "d99c86e6e82db5f8aeb2a8a42b4bcce4a044e4f767cd8a99d25384b696dea825",
+      "publisher_file_sha256": "80e3d4cba0d7f32fb7e4be8606348141c9a1a300769b5b81b30b4dac4329d818"
+    },
+    {
+      "page": 4,
+      "number": 2,
+      "bbox": [
+        178.866,
+        60.775,
+        433.36,
+        339.761
+      ],
+      "caption_bbox": [
+        58.053,
+        351.363,
+        554.255,
+        359.357
+      ],
+      "caption_line_sha256": "ef74d92eb506679914a61d0de1fd162c38db9d696cbc8b455ace60e4bffcc351",
+      "size": [
+        1060,
+        1162
+      ],
+      "rgb_sha256": "f2253bab5972ce1bfe1e83a936a1d272ea0bfbf753eb12cbd2ee70531aeb97cb",
+      "publisher_file_sha256": "cc9f4376b7fdd51f5fb06c0ab3597c9255ca847830d8535fa26f34eaf372713d"
+    },
+    {
+      "page": 5,
+      "number": 3,
+      "bbox": [
+        169.625,
+        60.775,
+        442.601,
+        241.512
+      ],
+      "caption_bbox": [
+        58.053,
+        253.171,
+        554.242,
+        261.165
+      ],
+      "caption_line_sha256": "48c0f27bdfedf84692e94e38fd9606f365aae31253ebdf5028f165a2d5406e43",
+      "size": [
+        1137,
+        753
+      ],
+      "rgb_sha256": "596383a00b1b25eaf4849ccd7ea7115aa81b20a7cd95fe05c0dc91cded488b58",
+      "publisher_file_sha256": "ca3ca7856f7d4e13be910d608a082770f6ff54d4c7cb7cea83b1872d378f9161"
+    },
+    {
+      "page": 6,
+      "number": 4,
+      "bbox": [
+        82.488,
+        372.586,
+        529.738,
+        703.899
+      ],
+      "caption_bbox": [
+        58.053,
+        715.558,
+        358.183,
+        723.552
+      ],
+      "caption_line_sha256": "56e309232d82a7a1cb1bbe8b015629648fce8fe148db94315409f712b11a1a14",
+      "size": [
+        1863,
+        1380
+      ],
+      "rgb_sha256": "f3a8e0c35183cd2ad8a80ae489ca9c39c2ba53ecd05862614299d378824629b7",
+      "publisher_file_sha256": "f51de023a35135c415f170aa9527614656f6f7d1341bb594425f56a4937c3d16"
+    },
+    {
+      "page": 9,
+      "number": 5,
+      "bbox": [
+        82.828,
+        60.775,
+        529.398,
+        391.578
+      ],
+      "caption_bbox": [
+        58.053,
+        403.237,
+        554.219,
+        411.231
+      ],
+      "caption_line_sha256": "71728f96a5454f55d81a14a04c83021bb8314f95e00a7feb48a71b60c9eb3b8c",
+      "size": [
+        1860,
+        1378
+      ],
+      "rgb_sha256": "6b5a9094e4aa14169c5d9687fa50464ba3d27b99f88de83bd2facdca30a5ae50",
+      "publisher_file_sha256": "491714c1b1a7b020f5aec1d37160a7dec7c60e7b5d693071ab4d4d7da4152bac"
+    },
+    {
+      "page": 10,
+      "number": 6,
+      "bbox": [
+        82.828,
+        60.775,
+        529.398,
+        391.578
+      ],
+      "caption_bbox": [
+        58.053,
+        403.237,
+        554.219,
+        411.231
+      ],
+      "caption_line_sha256": "d9c6b55335583b0d00742350289ebe513b2fbede21249b95f8da46bbff883d3f",
+      "size": [
+        1860,
+        1378
+      ],
+      "rgb_sha256": "6998d95909c7a775c0888f8a0e78d058fc56285db15dab445f1a3d2d185fd9d7",
+      "publisher_file_sha256": "a6aa4dc103939a6810884823b4b1e4f04564c42ddc94c8d7c329250f128aacd7"
+    }
+  ],
+  "regions_without_caption": [
+    {
+      "page": 1,
+      "bbox": [
+        565.0,
+        58.786,
+        602.44,
+        95.866
+      ]
+    }
+  ],
+  "missing": [],
+  "elapsed_seconds": 2.156
+}
