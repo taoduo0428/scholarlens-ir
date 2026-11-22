@@ -48,6 +48,8 @@
 
 GitHub 的工作流写权限已生效。2026-11-22，托管 Ubuntu 在同一次 PR 运行中通过三组 Python 测试，分别为 15、26、189 项。冻结基准、前端和 Docker 构建通过，Python 依赖审计通过。[运行日志及测试计数产物](https://github.com/taoduo0428/scholarlens-ir/actions/runs/44981973205)
 
+2026-11-22，GitHub Actions 在 Ubuntu 上重新构建完整应用镜像，导出后计算配置 SHA-256，与 Grype 报告中的镜像 ID 一致。此次扫描共 247 条包与公告匹配，其中 Critical 0、High 80、Medium 95、Low 21、Negligible 51。上一版完整镜像为 96 条 High、27 个不同的 High 公告，本次为 80 条、24 个公告。libc6 和 libc-bin 均为 `2.41-12+deb13u5`。扫描器将剩余 High 中的 59 条列为 `wont-fix`，21 条列为 `not-fixed`。正式发布仍需评估这些包在服务中的使用及影响。[完整镜像扫描摘要](hosted-image-scan.json) · [运行与原始产物](https://github.com/taoduo0428/scholarlens-ir/actions/runs/44983031422)
+
 研究质量、PDF 结果、运行情况、安全审计与公开发布门槛分别见下列记录。
 
 - [研究质量](RESEARCH_QUALITY_REPORT.md)
