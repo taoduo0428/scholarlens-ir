@@ -1,0 +1,56 @@
+{
+  "application_revision": "b978ab8",
+  "controlled_graph": {
+    "status": "PASS",
+    "counts": {
+      "research.model": 4,
+      "research.plan": 1,
+      "research.tool": 3,
+      "research.verify": 4,
+      "research.retrieve": 3,
+      "research.synthesis": 6,
+      "research.critique": 3,
+      "research.publication": 1,
+      "research.workflow": 1,
+      "research.task": 1
+    },
+    "trace_count": 1,
+    "model_calls": 4,
+    "scope": "controlled HTTP through the production graph",
+    "span_attributes": [
+      "outcome"
+    ],
+    "span_events": 0
+  },
+  "legacy_store": {
+    "previous_revision": "683bac0",
+    "old_fixture": "isolated browser journey",
+    "tasks_preserved": 1,
+    "artifact_hashes_preserved": 4,
+    "upgraded_integrity": "ok",
+    "old_version_can_read": true,
+    "original_database_unchanged": true
+  },
+  "api_test": {
+    "command": "python -m pytest -q backend/tests/research/test_submission_trace.py",
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 3.5,
+    "exit": 0
+  },
+  "backend": {
+    "tests_exit": 0,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true,
+    "tests": 743,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "pytest_seconds": 422.923,
+    "command": "python -m tools.research_eval.v6_vector_fixture --full-suite --es-home <ES_HOME> --offline-fixture infra/.runtime/elasticsearch-8.19.23/data --delivery backend/.runtime/p0-delivery"
+  }
+}
