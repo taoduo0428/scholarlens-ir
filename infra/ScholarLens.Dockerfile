@@ -4,9 +4,11 @@ COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --ignore-scripts
 COPY frontend/ ./
 ENV VITE_RESEARCH_ENABLED=true
+ARG VITE_EVOLUTION_LAB=false
+ARG VITE_JAEGER_UI_PATH=
 RUN npm run build:production
 
-FROM python:3.11-slim-trixie
+FROM python:3.11-slim-trixie AS app
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
     SCHOLARLENS_RUNTIME_DIR=/var/lib/scholarlens FRONTEND_DIST=/srv/frontend
 WORKDIR /srv
@@ -30,3 +32,21 @@ USER 10001:10001
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz',timeout=2)"
 CMD ["python","-m","uvicorn","backend.app1:app","--host","0.0.0.0","--port","8000","--workers","1"]
+
+FROM python:3.11-slim-trixie AS ocr-builder
+COPY infra/build-png-ocr.sh /build-png-ocr.sh
+RUN sh /build-png-ocr.sh
+
+FROM app AS pdf-ocr
+USER root
+RUN --mount=from=ocr-builder,source=/packages,target=/packages,ro \
+    apt-get update && apt-get install -y --no-install-recommends /packages/*.deb \
+    && ldconfig && rm -rf /var/lib/apt/lists/* \
+    && ldd /opt/scholarlens-ocr/bin/tesseract > /tmp/ocr-linked.txt \
+    && ! grep -Ei 'not found|lib(curl|tiff|xml2|archive)\.so' /tmp/ocr-linked.txt
+ENV SCHOLARLENS_TESSERACT=/opt/scholarlens-ocr/bin/tesseract \
+    TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata
+USER 10001:10001
+RUN python -m backend.research.ocr_check
+
+FROM app AS standard

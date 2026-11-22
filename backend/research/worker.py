@@ -207,7 +207,7 @@ class Worker:
                 return "cancelled"
             return self._command(who, tid)
 
-        from backend.research.skills.registry import resolve_versions
+        from backend.research.skills.registry import resolve_program, resolve_versions
 
         tuning = resolve_versions(
             state.skill_version, state.harness_policy_version, self.registry_dir
@@ -216,6 +216,7 @@ class Worker:
             self.store,
             registry,
             tuning=tuning,
+            experiment_skill=resolve_program(state.skill_version, self.registry_dir) if state.retrieval_policy == "E11" else None,
             choose=(lambda view, remaining: choose_action(settings, view, remaining))
             if settings is not None
             else None,

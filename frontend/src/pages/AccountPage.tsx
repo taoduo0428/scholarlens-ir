@@ -23,7 +23,7 @@ export function AccountPage(){
     try{
       await login(username.trim(),password,register);setPassword("");setShowPassword(false);
       const next=params.get("next");
-      if(next&&/^\/(?:assistant|library|upload|admin|search|paper)(?:[/?#]|$)/.test(next)&&!next.includes("\\"))navigate(next,{replace:true});
+      if(next&&/^\/(?:assistant|library|upload|admin|search|paper|research|evolution-lab)(?:[/?#]|$)/.test(next)&&!next.includes("\\"))navigate(next,{replace:true});
     }catch(cause){setError(cause instanceof Error?cause.message:"登录失败，请重试");}
     finally{setBusy(false);}
   };

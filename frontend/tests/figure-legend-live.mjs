@@ -6,6 +6,7 @@ import {createRequire} from "node:module";
 const origin = process.env.SCHOLARLENS_URL;
 assert.equal(new URL(origin).hostname, "127.0.0.1");
 const records = JSON.parse(await readFile(new URL("../../docs/agent-v7/figure-legend-semantics-results.json", import.meta.url)));
+const endpoints = JSON.parse(await readFile(new URL("../../docs/agent-v7/chart-axis-results.json", import.meta.url)));
 const {chromium} = createRequire(import.meta.url)(process.env.SCHOLARLENS_PLAYWRIGHT || "playwright");
 const browser = await chromium.launch({headless: true, executablePath: process.env.SCHOLARLENS_CHROME});
 try {
@@ -40,6 +41,8 @@ try {
     const reply = await readPage(n);
     assert.equal(reply.status(), 200);
     const layout = await reply.json();
+    assert.equal(layout.chart_reading_status, "unregistered");
+    await page.getByText("此图未登记坐标轴校准，暂无折线读数。", {exact:true}).waitFor();
     assert.equal(layout.source_version, records.pdf_sha256);
     assert.equal(layout.paper_id, "figure-eval-paper");
     assert.equal(layout.figure_legends[0].rgb_sha256, expected.rgb_sha256);
@@ -56,21 +59,47 @@ try {
     tested.push({page:n, figure:expected.number, status:reply.status(), displayed_rows:expected.entries.length});
   }
   const unsupported = await readPage(6);
-  assert.deepEqual((await unsupported.json()).figure_legends, []);
+  const lineLayout = await unsupported.json();
+  assert.deepEqual(lineLayout.figure_legends, []);
+  assert.equal(lineLayout.chart_series, "calibrated_endpoints");
+  assert.equal(lineLayout.chart_reading_status, "matched");
   await page.getByText("本页未识别出可核对的彩色图例。", {exact:true}).waitFor();
   assert.equal(await summary.count(), 0);
+  const chartSummary = page.getByText("图 4 · 折线终点读数", {exact:true});
+  await chartSummary.click();
+  const chart = chartSummary.locator("..");
+  assert.ok((await chart.innerText()).includes(endpoints.rgb_sha256));
+  assert.ok((await chart.innerText()).includes(lineLayout.chart_readings[0].calibration_id));
+  assert.match(await chart.innerText(), /m\/M \(%\) 从 0 到 100/);
+  assert.match(await chart.innerText(), /q 从 -0.5 到 1/);
+  const named = [...new Set(endpoints.points.map(point=>point.dataset))];
+  for (const name of named) {
+    const dataset = chart.getByText(name+" · 查看读数", {exact:true});
+    await dataset.click();
+    const text = await dataset.locator("..").innerText();
+    for (const point of endpoints.points.filter(p=>p.dataset===name)) {
+      assert.ok(text.includes(point.series+" ≈ "+point.estimate));
+      assert.ok(text.includes(point.interval.join(" 至 ")));
+      assert.ok(text.includes(point.pdf_bbox.join(", ")));
+    }
+  }
+  for (const name of endpoints.panels_withheld) {
+    await chart.getByText(name+" · 终点不可分辨", {exact:true}).waitFor();
+  }
   const missing = await readPage(499);
   assert.equal(missing.status(), 422);
   const issue = (await missing.json()).error;
   assert.equal(issue.code, "layout_unavailable");
   await page.getByText(issue.message, {exact:true}).waitFor();
   assert.equal(await summary.count(), 0);
+  assert.equal(await chartSummary.count(), 0);
   assert.deepEqual(errors, []);
   assert.deepEqual(serverErrors, []);
   console.log(JSON.stringify({browser:browser.version(), fixture:"one paper metadata row; production layout route",
     pdf_sha256:records.pdf_sha256, supported:tested, line_key:{page:6,status:unsupported.status(),rows:0},
     missing_page:{page:499,status:422,code:issue.code,visible_message:issue.message},
-    stale_legend_rows:0,page_errors:errors.length,http_5xx:serverErrors.length}));
+    calibrated_points:endpoints.points.length,indistinct_panels:endpoints.panels_withheld.length,
+    stale_legend_rows:0,stale_chart_rows:0,page_errors:errors.length,http_5xx:serverErrors.length}));
 } finally {
   await browser.close();
 }

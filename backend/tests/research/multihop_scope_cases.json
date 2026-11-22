@@ -1,0 +1,78 @@
+{
+  "corpus_sha256": "49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "salt": "multihop-provenance-before-fix-1",
+  "cases": [
+    {
+      "paper_id": "source-sha256:d87020f6f3f41768fcb0a7b8b6786afdbc5a9998fa6f7a3064cc7dbc729654ec",
+      "start": 0,
+      "end": 56,
+      "subject": "Fecal-contaminated water",
+      "effect": "diseases and even death",
+      "sha256": "4efc6795d2f19372e5996532aa7e81ec6a4ace2c44648c1df2a7aa10f2aa4955"
+    },
+    {
+      "paper_id": "source-sha256:7da25655cb267a252111eb6d8810f58c39aab81ee334d6dab8e130cb685b71d9",
+      "start": 199,
+      "end": 312,
+      "subject": "nonlinear activation functions",
+      "effect": "interesting nonlinear equivariant maps between simple representations",
+      "sha256": "825ab83d337d5d1058e2bab4957e8dc0598514a4695cd6b3bdd0f1b0983aa33b"
+    },
+    {
+      "paper_id": "source-sha256:2691205dfa045c94e40da55dda4cb65f2c8e8dfc8afba80f03a000d9c7850e9b",
+      "start": 0,
+      "end": 100,
+      "subject": "Parametric finite elements",
+      "effect": "very efficient numerical methods for surface evolution equations",
+      "sha256": "5738b3606ebdb03f7760ff0b5a7f7476e7563299165a451b4b1fba1d120bc27b"
+    },
+    {
+      "paper_id": "source-sha256:c54745381abbe400a14bad28ecb5e499b802280c20ae30c49744de5aef18800f",
+      "start": 0,
+      "end": 100,
+      "subject": "Shrinking pattern dimensions",
+      "effect": "an increased variety of defect types in semiconductor devices",
+      "sha256": "04193f1cbfb28adb10ea9e57cb9b8c2e04252606ecec1c5319e418d4d34c1b58"
+    },
+    {
+      "paper_id": "source-sha256:ffa4b122470db3f83446e77428bd5209788b7aff2c8a298bd978faa0ce980a45",
+      "start": 394,
+      "end": 509,
+      "subject": "use of face masks",
+      "effect": "performance of conventional face recognition technologies to degrade considerably",
+      "sha256": "4118ff0800956c00de68810d915ca928e3509fa86d9a565b2f7525ba91fc27bf"
+    },
+    {
+      "paper_id": "source-sha256:503cc75e9fcdeb62d49b5ff6c8b6b03e173e6a5f7fe1d9abefa11802e8f903a6",
+      "start": 0,
+      "end": 60,
+      "subject": "One of the main",
+      "effect": "of death around the globe is malaria",
+      "sha256": "d56779f6740f0d35e9230c9c815df239f67c3e270c39dd0ec2256365bdb77b7b"
+    },
+    {
+      "paper_id": "source-sha256:0a987f5ef4086eb4e40cd0a026e2d06f7c4e181bc4a473c3d0c0e57502febae9",
+      "start": 763,
+      "end": 881,
+      "subject": "approach also",
+      "effect": "significantly smaller and computationally cheaper subproblems for lower and upper bounding",
+      "sha256": "0860a0a5d61974a47245503345f22481605b812a000f3a9b4faca88c499353af"
+    },
+    {
+      "paper_id": "source-sha256:98e183ad05f5d3cef90da95e28471bc24f6a62d5e5e62a30343f9eb3796fe053",
+      "start": 110,
+      "end": 189,
+      "subject": "Suicide is also a major",
+      "effect": "of death for adolescents in many other countries",
+      "sha256": "3a2ac3d6679d4861ebd282bab3b4d1409f4b847d4abad00ac4da0a7fc1ad8246"
+    }
+  ],
+  "distractors": [
+    "source-sha256:9dc92f7ad4f8ffadc3b982f39cc22071838081943d419297826c94d5bb3929a5",
+    "source-sha256:65a37519e199924f598336904fdc9aa380d38337218edecaae23dc39a3f810ee",
+    "source-sha256:fd64967f40cd4f18454a76bbaad5956357b6d67ffcb9a579e7c0d1dae165d316",
+    "source-sha256:627c240ed85ba265a96fe750fbf52de2d9ef878c194c742790d8836d8ecf548b",
+    "source-sha256:b2ebb8b8343b800301879ceae4886048293b017c67555c7603d6ae2b6aa0d8e2",
+    "source-sha256:be0efd25c7b97efc8008bca7603b3867ad56738bf24532d001647651add1e7ea"
+  ]
+}

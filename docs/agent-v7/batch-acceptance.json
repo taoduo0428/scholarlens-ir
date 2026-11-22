@@ -1,0 +1,100 @@
+{
+  "date": "2026-11-22",
+  "backend": {
+    "distinct_passed": 891,
+    "distinct_in_suite": 891,
+    "split_after_native_es_memory_exit": true,
+    "runs": [
+      {
+        "run": "7f383982c562",
+        "collected": 891,
+        "passed": 873,
+        "remaining": 18,
+        "junit_sha256": "5fbbafddbd2a615108f340882d93c1af7f947da13d46a8a4ec1a379647d4e810",
+        "tests_exit": 1,
+        "scope": "offline copied fixture",
+        "source_unchanged": true,
+        "papers": 859,
+        "vectors": 49420,
+        "ports_closed": true
+      },
+      {
+        "run": "e1a98e998c4d",
+        "collected": 24,
+        "passed": 24,
+        "remaining": 0,
+        "junit_sha256": "62c2f98efbb53915653f876528b91c257476c9d5d8b6d04011726a2210513aef",
+        "tests_exit": 0,
+        "scope": "offline copied fixture",
+        "source_unchanged": true,
+        "papers": 859,
+        "vectors": 49420,
+        "ports_closed": true
+      }
+    ]
+  },
+  "frontend": {
+    "node_passed": 47,
+    "structure": "passed",
+    "production_api": "/api",
+    "npm_advisories": 0
+  },
+  "frozen_files": 9,
+  "silver_tasks": 111,
+  "live_provider": {
+    "status": "PARTIAL",
+    "model": "deepseek-v4.1-flash",
+    "calls": 4,
+    "http_200": 3,
+    "usage_receipts": 3,
+    "actual_usd": null,
+    "evidence": "live-research-acceptance.json"
+  },
+  "evidence": [
+    "quantity-evidence-results.json",
+    "chart-axis-results.json",
+    "chart-axis-browser-results.json",
+    "formula-source-results.json",
+    "formula-browser-results.json",
+    "e16-current-results.json",
+    "live-research-acceptance.json",
+    "REAL_WORKBENCH_BROWSER.md",
+    "ocr-image-acceptance.json"
+  ],
+  "prior_unconfigured_provider_probe": {
+    "status": "BLOCKED",
+    "calls": 0,
+    "missing": [
+      "AI_API_KEY",
+      "AI_BASE_URL",
+      "AI_MODEL",
+      "E10_MAX_USD",
+      "E10_MAX_RATE_USD_PER_MTOK"
+    ]
+  },
+  "personal_model_browser": {
+    "mode": "personal_model",
+    "selected_model": "deepseek-v4.1-flash",
+    "catalog_size": 28,
+    "model_calls": 2,
+    "provider_receipts": 1,
+    "input_tokens": null,
+    "output_tokens": null,
+    "report_status": "partial",
+    "answerability": "insufficient_evidence",
+    "report_bytes": 6278,
+    "report_sha256": "0647272e80d669f2f248d09bf47bdd7b34386c7cd7d8280ff2f4859a8f2d4e33",
+    "page_errors": 0,
+    "anonymous_report": 401,
+    "verified_source_locations": 5,
+    "journey_sha256": "96b0aef51a291e6ee3e9c5ad08e1fdba9d67b55167ff14b729273fdb8c407b9c",
+    "evidence": "REAL_WORKBENCH_BROWSER.md"
+  },
+  "personal_model_regression": {
+    "tests": 39,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0,
+    "junit_sha256": "56281a39e78f3bd402f7492fba94272d8c94225c76d12d81c59743cfeb30e12b"
+  }
+}

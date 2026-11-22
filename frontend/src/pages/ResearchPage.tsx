@@ -6,6 +6,8 @@ import {loadPersonalAi} from "../services/personalAi";
 import {research, slotLabels, subtaskLabels, type Command, type ResearchEvent, type ResearchReport, type ResearchSource,
   type ResearchState, type TaskInput, type TaskItem} from "../services/research";
 import {PdfCellPicker} from "../components/PdfCellPicker";
+import {TaskTraceViewer} from "../components/TaskTraceViewer";
+import {TaskDataActions} from "../components/TaskDataActions";
 import {QuestionPlan} from "../components/QuestionPlan";
 import {ReportPanel, ResearchSourceDetail} from "../components/ResearchReport";
 
@@ -67,7 +69,7 @@ function CreateForm({owner,onCreated}:{owner:number;onCreated:(id:string)=>void}
   </form>;
 }
 
-function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
+function Run({id,owner,onUpdate,onDeleted}:{id:string;owner:number;onUpdate:()=>void;onDeleted:()=>void}){
   const [state,setState]=useState<ResearchState|null>(null),[events,setEvents]=useState<ResearchEvent[]>([]);
   const [report,setReport]=useState<ResearchReport|null>(null),[error,setError]=useState(""),[network,setNetwork]=useState("");
   const [pending,setPending]=useState(false),[requested,setRequested]=useState<Command|null>(null);
@@ -141,7 +143,9 @@ function Run({id,owner,onUpdate}:{id:string;owner:number;onUpdate:()=>void}){
       <section className="research-panel"><div className="research-panel-heading"><h2>{state.task.goal}</h2><span className="research-state">{statusLabel[state.status]}</span></div>
         <p>研究轮次 {state.budget.rounds_used}/{state.budget.max_rounds} · 工具调用 {state.budget.tool_calls_used}/{state.budget.max_tool_calls}</p>
         <details><summary>任务版本</summary><p>语料 {state.corpus_generation} · 模型 {state.model_id}</p></details>
-        <details><summary>任务追踪</summary><p>任务 ID {id}</p>{traces.length?traces.map(t=><p key={t}>{t}</p>):<p>运行环境尚无追踪记录</p>}</details>
+        <TaskTraceViewer taskId={id} traces={traces}/>
+        <TaskDataActions taskId={id} revision={lastRev.current} terminal={terminal.has(state.status)}
+          onDeleted={onDeleted} onConflict={()=>setReload(n=>n+1)}/>
         {state.task.research_project&&<ProjectDashboard workspace={state.task.research_project.workspace}
           project={state.task.research_project.project} revision={lastRev.current}/>}
         {state.status==="awaiting_credentials"&&<p>恢复前请重新配置个人模型。 <Link to="/assistant">配置个人模型</Link></p>}
@@ -228,7 +232,8 @@ function Workspace({owner}:{owner:number}){
         <button aria-current={current===t.id?"page":undefined} onClick={()=>select(t.id)}>
           <strong>{t.goal}</strong><span>{statusLabel[t.status]}</span></button></li>)}</ul>
     </section></div>
-    {current?<Run key={current} id={current} owner={owner} onUpdate={bump}/>:<section className="research-panel"><h2>任务详情</h2><p>创建或选择一项任务后可查看计划、证据和报告。</p></section>}
+    {current?<Run key={current} id={current} owner={owner} onUpdate={bump}
+      onDeleted={()=>{setTasks(old=>old.filter(task=>task.id!==current));setParams({}, {replace:true});bump();}}/>:<section className="research-panel"><h2>任务详情</h2><p>创建或选择一项任务后可查看计划、证据和报告。</p></section>}
   </div>;
 }
 export function ResearchPage(){

@@ -618,6 +618,8 @@ def create_app(settings: Settings | None = None, client=None) -> FastAPI:
             return EsCorpus(es, settings, upload_acl=acl, pdf_resolver=document_pdf)
 
         attach(app, settings, store, research_corpus, report=generate_report)
+    from backend.research.lab_api import attach_if_enabled as attach_governance
+    attach_governance(app, store, settings.runtime_dir)
     mount_frontend(app, settings.frontend_dir)
     return app
 

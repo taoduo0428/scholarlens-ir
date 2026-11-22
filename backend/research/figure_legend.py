@@ -172,18 +172,14 @@ def labels(image, stack, exe):
     return output if len({e["text"].casefold() for e in output}) == len(output) else []
 
 
-def page_legends(pdf_bytes, layout):
-    """Decode one unrotated uniquely captioned raster in its verified PDF coordinate frame."""
-    configured = os.environ.get("SCHOLARLENS_TESSERACT", "")
-    if not configured or not layout["figure_caption_links"]:
-        return []
-    exe = Path(configured)
-    if not exe.is_absolute() or not exe.is_file() or len(layout["figure_caption_links"]) != 1:
-        return []
+def verified_raster(pdf_bytes, layout):
+    """Return a detached RGB image, figure link and box for one unrotated matched figure."""
+    if len(layout["figure_caption_links"]) != 1:
+        return None
     (link,) = layout["figure_caption_links"]
     regions = [i for i in layout["items"] if i["locator"] == link["figure_locator"]]
     if len(regions) != 1:
-        return []
+        return None
     box = regions[0]["bbox"]
     try:
         import pypdfium2 as pdfium
@@ -195,10 +191,10 @@ def page_legends(pdf_bytes, layout):
                 or abs(page.get_width() - layout["width"]) > 0.03
                 or abs(page.get_height() - layout["height"]) > 0.03
             ):
-                return []
+                return None
             objects = list(page.get_objects(filter=[pdfium.raw.FPDF_PAGEOBJ_IMAGE]))
             if len(objects) != 1:
-                return []
+                return None
             (obj,) = objects
             a, b, c, d, _, _ = obj.get_matrix().get()
             x0, y0, x1, y1 = obj.get_bounds()
@@ -212,34 +208,53 @@ def page_legends(pdf_bytes, layout):
                 or min(w, h) < 48
                 or w * h > 3_000_000
             ):
-                return []
+                return None
             image = obj.get_bitmap().to_pil().convert("RGB")
-            entries = labels(image, swatch_stack(image), exe)
-            if not entries:
-                return []
-            for entry in entries:
-                for kind in ("label", "swatch"):
-                    x, y, X, Y = entry[f"{kind}_pixels"]
-                    entry[f"{kind}_pdf_bbox"] = [
-                        round(v, 3)
-                        for v in (
-                            box[0] + x * (box[2] - box[0]) / w,
-                            box[1] + y * (box[3] - box[1]) / h,
-                            box[0] + X * (box[2] - box[0]) / w,
-                            box[1] + Y * (box[3] - box[1]) / h,
-                        )
-                    ]
-            return [
-                {
-                    **link,
-                    "page": layout["page"],
-                    "paper_id": layout["paper_id"],
-                    "source_version": layout["source_version"],
-                    "image_size": [w, h],
-                    "rgb_sha256": sha256(image.tobytes()).hexdigest(),
-                    "entries": entries,
-                    "method": "solid_swatch_tesseract_eng",
-                }
-            ]
+            return image, link, box
+    except (ImportError, OSError, ValueError, RuntimeError):
+        return None
+
+
+def pdf_box(pixels, figure, width, height):
+    x, y, right, bottom = pixels
+    sx, sy = (figure[2] - figure[0]) / width, (figure[3] - figure[1]) / height
+    return [
+        round(figure[0] + x * sx, 3),
+        round(figure[1] + y * sy, 3),
+        round(figure[0] + right * sx, 3),
+        round(figure[1] + bottom * sy, 3),
+    ]
+
+
+def page_legends(pdf_bytes, layout, *, raster=None):
+    configured = os.environ.get("SCHOLARLENS_TESSERACT", "")
+    if not configured or not layout["figure_caption_links"]:
+        return []
+    exe = Path(configured)
+    if not exe.is_absolute() or not exe.is_file():
+        return []
+    resolved = raster or verified_raster(pdf_bytes, layout)
+    if resolved is None:
+        return []
+    image, link, box = resolved
+    try:
+        entries = labels(image, swatch_stack(image), exe)
     except (ImportError, OSError, ValueError, RuntimeError, subprocess.SubprocessError):
         return []
+    if not entries:
+        return []
+    for entry in entries:
+        for kind in ("label", "swatch"):
+            entry[f"{kind}_pdf_bbox"] = pdf_box(entry[f"{kind}_pixels"], box, *image.size)
+    return [
+        {
+            **link,
+            "page": layout["page"],
+            "paper_id": layout["paper_id"],
+            "source_version": layout["source_version"],
+            "image_size": list(image.size),
+            "rgb_sha256": sha256(image.tobytes()).hexdigest(),
+            "entries": entries,
+            "method": "solid_swatch_tesseract_eng",
+        }
+    ]

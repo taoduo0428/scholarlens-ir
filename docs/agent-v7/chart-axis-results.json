@@ -1,0 +1,233 @@
+{
+  "doi": "10.1371/journal.pone.0102799",
+  "page": 6,
+  "figure": 4,
+  "paper_id": "figure-eval-paper",
+  "pdf_sha256": "da9bc35ff925feb8c278c20f06604c3c10eba13afa075476b210e6902da0affa",
+  "xml_sha256": "dacebe67fcabd7057895bd587a96c5ebbcc272163a1a4bd61879ddd0583ef49d",
+  "rgb_sha256": "f3a8e0c35183cd2ad8a80ae489ca9c39c2ba53ecd05862614299d378824629b7",
+  "calibration": "image-registered linear axes, panel labels and two legend colors",
+  "reference": "publisher JATS table pone-0102799-t002, columns OLEM and OLTM",
+  "axes": {
+    "x": {
+      "label": "m/M (%)",
+      "min": 0,
+      "max": 100,
+      "at": 100
+    },
+    "y": {
+      "label": "q",
+      "min": -0.5,
+      "max": 1
+    }
+  },
+  "reference_values": 22,
+  "reported": 8,
+  "inside_reported_interval": 8,
+  "max_absolute_error": 0.0073,
+  "mean_absolute_error": 0.00404,
+  "panels_withheld": [
+    "ca-CondMat",
+    "ca-HepPh",
+    "ca-AstroPh",
+    "cit-HepTh",
+    "com-Amazon",
+    "com-DBLP",
+    "web-Stanford"
+  ],
+  "masked_panels_abstained": 4,
+  "points": [
+    {
+      "dataset": "email-Enron",
+      "series": "OLEM",
+      "color": "#0000ff",
+      "estimate": 0.542,
+      "interval": [
+        0.52,
+        0.564
+      ],
+      "pixel_bbox": [
+        1833,
+        116,
+        1836,
+        122
+      ],
+      "pdf_bbox": [
+        522.536,
+        400.435,
+        523.256,
+        401.876
+      ],
+      "table_value": 0.5447,
+      "absolute_error": 0.0027
+    },
+    {
+      "dataset": "email-Enron",
+      "series": "OLTM",
+      "color": "#007f00",
+      "estimate": 0.041,
+      "interval": [
+        0.016,
+        0.066
+      ],
+      "pixel_bbox": [
+        1833,
+        197,
+        1836,
+        204
+      ],
+      "pdf_bbox": [
+        522.536,
+        419.882,
+        523.256,
+        421.563
+      ],
+      "table_value": 0.0464,
+      "absolute_error": 0.0054
+    },
+    {
+      "dataset": "cit-HepPh",
+      "series": "OLTM",
+      "color": "#007f00",
+      "estimate": 0.679,
+      "interval": [
+        0.657,
+        0.7
+      ],
+      "pixel_bbox": [
+        1833,
+        434,
+        1836,
+        440
+      ],
+      "pdf_bbox": [
+        522.536,
+        476.782,
+        523.256,
+        478.222
+      ],
+      "table_value": 0.6771,
+      "absolute_error": 0.0019
+    },
+    {
+      "dataset": "cit-HepPh",
+      "series": "OLEM",
+      "color": "#0000ff",
+      "estimate": 0.63,
+      "interval": [
+        0.608,
+        0.652
+      ],
+      "pixel_bbox": [
+        1833,
+        442,
+        1836,
+        448
+      ],
+      "pdf_bbox": [
+        522.536,
+        478.702,
+        523.256,
+        480.143
+      ],
+      "table_value": 0.6278,
+      "absolute_error": 0.0022
+    },
+    {
+      "dataset": "Amazon0601",
+      "series": "OLEM",
+      "color": "#0000ff",
+      "estimate": 0.783,
+      "interval": [
+        0.761,
+        0.805
+      ],
+      "pixel_bbox": [
+        569,
+        1098,
+        572,
+        1104
+      ],
+      "pdf_bbox": [
+        219.088,
+        636.196,
+        219.808,
+        637.636
+      ],
+      "table_value": 0.7785,
+      "absolute_error": 0.0045
+    },
+    {
+      "dataset": "Amazon0601",
+      "series": "OLTM",
+      "color": "#007f00",
+      "estimate": 0.458,
+      "interval": [
+        0.436,
+        0.48
+      ],
+      "pixel_bbox": [
+        569,
+        1151,
+        572,
+        1157
+      ],
+      "pdf_bbox": [
+        219.088,
+        648.92,
+        219.808,
+        650.361
+      ],
+      "table_value": 0.4533,
+      "absolute_error": 0.0047
+    },
+    {
+      "dataset": "WikiTalk",
+      "series": "OLEM",
+      "color": "#0000ff",
+      "estimate": 0.538,
+      "interval": [
+        0.516,
+        0.56
+      ],
+      "pixel_bbox": [
+        1201,
+        1138,
+        1204,
+        1144
+      ],
+      "pdf_bbox": [
+        370.812,
+        645.799,
+        371.532,
+        647.24
+      ],
+      "table_value": 0.5344,
+      "absolute_error": 0.0036
+    },
+    {
+      "dataset": "WikiTalk",
+      "series": "OLTM",
+      "color": "#007f00",
+      "estimate": 0.097,
+      "interval": [
+        0.075,
+        0.119
+      ],
+      "pixel_bbox": [
+        1201,
+        1210,
+        1204,
+        1216
+      ],
+      "pdf_bbox": [
+        370.812,
+        663.085,
+        371.532,
+        664.526
+      ],
+      "table_value": 0.0897,
+      "absolute_error": 0.0073
+    }
+  ]
+}

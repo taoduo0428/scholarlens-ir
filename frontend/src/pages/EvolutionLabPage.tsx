@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {backend} from "../services/backend";
 import {useAuth} from "../services/AuthContext";
+import {GovernancePanel} from "../components/GovernancePanel";
 import "./EvolutionLabPage.css";
 
 interface Trial {
@@ -70,5 +71,5 @@ function Explorer(){
 export function EvolutionLabPage(){
   const {user,loading}=useAuth();
   return <main className="research-page lab-page"><Link to="/research">返回研究工作台</Link><h1>Evolution Lab</h1>
-    {loading?<p>正在读取账户…</p>:user?.role==="admin"?<Explorer key={user.id}/>:user?<p>该账户没有实验室访问权限。</p>:<Link to="/account?next=%2Fevolution-lab">登录实验室账户</Link>}</main>;
+    {loading?<p>正在读取账户…</p>:user?.role==="admin"?<div key={user.id}><GovernancePanel/><Explorer/></div>:user?<p>该账户没有实验室访问权限。</p>:<Link to="/account?next=%2Fevolution-lab">登录实验室账户</Link>}</main>;
 }

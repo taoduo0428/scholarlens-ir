@@ -7,6 +7,7 @@ import re
 import time
 
 from tools.research_eval.e10_pack import material
+from tools.research_eval.inputs import GENERATION
 
 
 def source_valid(source, documents, allowed, generation):
@@ -26,10 +27,20 @@ def source_valid(source, documents, allowed, generation):
 def evaluate(directory):
     tasks, documents, _ = material()
     before = after = checked = removed = 0
+    spending = {key: 0 for key in ("tools", "retrieval_calls", "source_readbacks", "model_calls",
+                                   "input_tokens", "output_tokens", "provider_receipts")}
+    trace_hash = sha256()
     started = time.perf_counter()
     for task in tasks:
-        trace = json.loads((directory/(task["task_id"]+".json")).read_bytes())
+        raw = (directory / (task["task_id"] + ".json")).read_bytes()
+        trace_hash.update(task["task_id"].encode() + b"\x00" + sha256(raw).digest())
+        trace = json.loads(raw)
+        if (trace["goal"] != task["research_goal"] or trace["scope"] != task["allowed_papers"]
+                or trace["generation"] != GENERATION):
+            raise ValueError("trace differs from frozen task: " + task["task_id"])
         report = trace["report"]
+        for key in spending:
+            spending[key] += report["spending"][key]
         claims = {c["claim_id"]:c for c in report["claims"]}
         sources = {s["evidence_id"]:s for s in report["sources"]}
         direct = report["sections"]["verified"]
@@ -38,8 +49,10 @@ def evaluate(directory):
             claim = claims[cid]
             evidence = claim["evidence_ids"]
             ok = bool(evidence) and all(
-                eid in sources and source_valid(sources[eid], documents, task["allowed_papers"], trace["generation"])
+                eid in sources and source_valid(sources[eid], documents, task["allowed_papers"], GENERATION)
                 for eid in evidence)
+            if claim["claim_type"] in {"fact", "metric"} and ok:
+                ok = bool(claim["statement"].strip()) and any(claim["statement"] in sources[eid]["quote"] for eid in evidence)
             if ok and set(claim["paper_ids"]) == {sources[eid]["paper_id"] for eid in evidence}:
                 kept.append(cid)
         before += bool(direct)
@@ -49,7 +62,8 @@ def evaluate(directory):
     return dict(tasks=len(tasks), baseline_direct_tasks=before, reviewed_direct_tasks=after,
                 reviewed_claims=checked, removed_claims=removed, additional_model_calls=0,
                 additional_retrieval_calls=0, wall_seconds=round(time.perf_counter()-started,3),
-                scope="independent deterministic provenance review; semantic judgement unmeasured")
+                scope="independent deterministic provenance review; semantic judgement unmeasured",
+                trace_manifest_sha256=trace_hash.hexdigest(), corpus_generation=GENERATION, shared_spending=spending)
 
 
 if __name__ == "__main__":

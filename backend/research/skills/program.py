@@ -1,4 +1,4 @@
-"""Offline-only, finite research procedures with a closed set of typed operations."""
+"""Finite research procedures, evaluated offline and executable by an approved release."""
 
 from hashlib import sha256
 import json

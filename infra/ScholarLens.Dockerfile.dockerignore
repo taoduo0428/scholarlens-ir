@@ -1,4 +1,7 @@
 **
+!infra/
+infra/**
+!infra/build-png-ocr.sh
 !backend/
 !backend/*.py
 !backend/requirements-lock.txt
@@ -6,6 +9,8 @@
 !backend/research/**/*.py
 !backend/research/*.py
 !backend/research/*.txt
+!backend/research/calibrations/
+!backend/research/calibrations/linear-endpoints-v1.json
 !agent/
 !agent/workflows/
 !agent/workflows/evidence-grounded-answer.yaml
