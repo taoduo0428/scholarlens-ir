@@ -18,6 +18,7 @@ REVIEW = {
     "v3-routing-multihop": [(1, "partial", "aff27694")],
     "v3-privacy-compare": [(1, "partial", "93be5f84")],
     "v3-privacy-multihop": [(2, "partial", "75424e16"), (3, "partial", "00bea3d4")],
+    "review-04-comparison": [(1, "partial", "5ffd59ce")],
     "review-04-metrics": [(1, "partial", "f69d4634")],
     "review-06-fact": [(1, "full", "ea5ed897")],
     "review-06-comparison": [(1, "partial", "ea5ed897")],
@@ -26,6 +27,7 @@ REVIEW = {
     "review-12-comparison": [(1, "partial", "9e824667"), (3, "partial", "9e824667")],
     "review-12-metrics": [(1, "partial", "19ce91c6")],
     "review-14-comparison": [(1, "partial", "ba7539f2"), (3, "partial", "ba7539f2")],
+    "review-15-comparison": [(1, "partial", "3527b40c")],
     "review-16-comparison": [(2, "partial", "b5620366")],
     "review-17-comparison": [(1, "partial", "72f94426"), (3, "partial", "72f94426")],
     "review-17-metrics": [(1, "partial", "618cb0e3")],
@@ -60,7 +62,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--out", required=True, type=Path)
-    parser.add_argument("--candidate", default="G4", help="candidate experiment directory")
+    parser.add_argument("--candidate", default="G7", help="candidate experiment directory")
     args = parser.parse_args()
     with args.out.open("x", encoding="utf8") as stream:
         json.dump({arm: review(args.root/folder/"diagnostic/E11") for arm, folder in [("A","A"),("G",args.candidate)]},

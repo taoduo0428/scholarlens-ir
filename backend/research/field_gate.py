@@ -174,7 +174,7 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             return proof, "insufficient_evidence"
         if field.subject:
             from backend.research.descriptive_plan import anchored
-            valid = [c for c in valid if anchored(field.subject, c, sources)]
+            valid = [c for c in valid if anchored(field.subject, c, sources, frames=state.pra_arm in {"B", "G"})]
         if field.requested_metric:
             aliases = {"准确率": "accuracy", "召回率": "recall", "精确率": "precision"}
             metric = aliases.get(field.requested_metric, field.requested_metric).casefold()

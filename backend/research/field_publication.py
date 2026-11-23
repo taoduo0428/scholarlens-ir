@@ -21,7 +21,7 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
     direct_ids = final_ids.copy()
     if state.retrieval_policy == "E11":
         from backend.research.research_intent import research_intent
-        intent = research_intent(state.task.goal)
+        intent = research_intent(state.task.goal, descriptive_subjects=state.pra_arm == "G")
         report["research_intent"] = intent
         if gate["status"] == "blocked_by_permission":
             index = {}

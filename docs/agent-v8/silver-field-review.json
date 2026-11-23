@@ -1455,8 +1455,8 @@
   "reviewer": "post-hoc single AI assessment of published direct claims",
   "counts": {
    "full": 4,
-   "partial": 22,
-   "absent": 183
+   "partial": 24,
+   "absent": 181
   },
   "full_tasks": 0,
   "rows": [
@@ -1857,8 +1857,10 @@
     "requirements": [
      {
       "requirement": "XML 文档的单位、组织及目标",
-      "assessment": "absent",
-      "claims": []
+      "assessment": "partial",
+      "claims": [
+       "c-5ffd59ce104aeafcddaa6ad6"
+      ]
      },
      {
       "requirement": "随机项集支持度的单位、表示及目标",
@@ -2709,8 +2711,10 @@
     "requirements": [
      {
       "requirement": "轨迹、路段和共享关系",
-      "assessment": "absent",
-      "claims": []
+      "assessment": "partial",
+      "claims": [
+       "c-3527b40c3d649b263620c752"
+      ]
      },
      {
       "requirement": "源顶点、目标顶点和时间",

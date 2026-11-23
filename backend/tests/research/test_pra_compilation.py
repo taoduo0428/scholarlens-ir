@@ -164,6 +164,18 @@ def test_subset_relation_has_its_own_scope_and_cannot_complete_the_overview(tmp_
     assert not sections["synthesis"]["items"]
 
 
+def test_object_words_and_requested_analysis_have_separate_roles():
+    from backend.research.descriptive_plan import anchored
+    from backend.research.research_intent import research_intent
+
+    goal = "Compare selecting records with price changes over time. Give the unit of analysis and objective for each."
+    assert research_intent(goal, descriptive_subjects=True) == "description"
+    assert research_intent(goal + " Analyze the trends over time.", descriptive_subjects=True) == "trend_analysis"
+    c = SimpleNamespace(statement="We examine record selection.", evidence_ids=["e"])
+    assert anchored("selecting records", c, {"e": {"paper_title": "Study"}}, frames=True)
+    assert not anchored("selecting documents", c, {"e": {"paper_title": "Study"}}, frames=True)
+
+
 @pytest.mark.parametrize(("left", "right", "relation"), [
     ("We use logistic regression for forecasting.", "We use linear regression for forecasting.", "shared_method_family"),
     ("We use BM25 for document retrieval.", "We use BERT for document retrieval.", "different_methods_for_task"),

@@ -26,8 +26,16 @@ DIMENSIONS = (
 )
 
 
-def research_intent(goal: str) -> ResearchIntent:
+def research_intent(goal: str, *, descriptive_subjects=False) -> ResearchIntent:
     text = TITLES.sub(" ", goal)
+    if descriptive_subjects:
+        from backend.research.descriptive_plan import comparison_subjects, requested_dimensions
+        subjects = comparison_subjects(text)
+        if (subjects and len(requested_dimensions(text)) >= 2
+                and not any(re.search(r"\b(?:and|then) (?:explain|describe|rank|assess|compare|analyse|analyze)\b",
+                                      subject, re.I) for subject in subjects)):
+            for subject in subjects:
+                text = text.replace(subject, " ", 1)
     for intent, pattern in PATTERNS:
         if re.search(pattern, text, re.I):
             return intent

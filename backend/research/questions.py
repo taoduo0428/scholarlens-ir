@@ -149,7 +149,7 @@ def contract_for(state):
         intent = "landscape"
     if state.retrieval_policy == "E11":
         from backend.research.research_intent import plan_intent, research_intent
-        category = research_intent(intent_text)
+        category = research_intent(intent_text, descriptive_subjects=state.pra_arm == "G")
         intent = plan_intent(category, intent)
         if category == "description" and re.search(r"objectives?|research goals?|研究目标|研究目的", intent_text, re.I):
             intent = "fact"

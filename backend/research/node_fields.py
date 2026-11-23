@@ -65,7 +65,7 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
     for node in plan.graph.nodes:
         fields = []
         from backend.research.research_intent import research_intent
-        research_type = research_intent(contract.goal) if independent else None
+        research_type = research_intent(contract.goal, descriptive_subjects=pra) if independent else None
         dimensions_by_intent = {
             "method_comparison": ["method"], "metric_comparison": ["metric"],
             "condition_comparison": ["dataset" if re.search(HINTS["dataset"], contract.goal, re.I) else "setting"],

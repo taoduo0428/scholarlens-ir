@@ -38,7 +38,23 @@ def words(text):
             for w in re.findall(r"[a-z\d]+", text)]
 
 
-def anchored(subject, claim, sources):
+ACTION_NOUN = {
+    "classifying": "classification", "segmenting": "segmentation", "fragmenting": "fragmentation",
+    "optimizing": "optimization", "encoding": "encoding", "estimating": "estimation",
+    "predicting": "prediction", "selecting": "selection", "filtering": "filtering",
+}
+
+
+def argument_frames(subject):
+    """Allow only an intact action and the same contiguous object in a noun construction."""
+    tokens = words(subject)
+    if len(tokens) < 2 or len(tokens) > 6 or tokens[0] not in ACTION_NOUN:
+        return []
+    action, obj = ACTION_NOUN[tokens[0]], tokens[1:]
+    return [[*obj, action], [action, "of", *obj]]
+
+
+def anchored(subject, claim, sources, *, frames=False):
     """Allow an explicit topic in the claim or paper title, never the permitted list alone."""
     tokenized = words(subject)
     if not tokenized:
@@ -47,6 +63,17 @@ def anchored(subject, claim, sources):
     titles = [sources[e].get("paper_title") or "" for e in claim.evidence_ids]
     if any(needle in " " + " ".join(words(text)) + " " for text in [claim.statement, *titles]):
         return True
+    if frames:
+        frames_to_match = argument_frames(subject)
+        # Match consonant-y plurals only when a neighbouring subject term also matches.
+        if len(tokenized) > 1 and re.search(r"\b\w+[^aeiou]ies\b", subject, re.I):
+            folded = [re.sub(r"([^aeiou])ie$", r"\1y", word) for word in tokenized]
+            if folded != tokenized:
+                frames_to_match.append(folded)
+        for frame in frames_to_match:
+            if any(" " + " ".join(frame) + " " in " " + " ".join(words(text)) + " "
+                   for text in (claim.statement, *titles)):
+                return True
     # A title may reorder a compound, e.g. “classification of time series”.
     # Require all substantive terms, at least two, within the same short window.
     terms = set(tokenized) - {"a", "an", "and", "for", "in", "of", "on", "the", "with"}
