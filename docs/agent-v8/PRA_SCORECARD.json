@@ -545,6 +545,25 @@
     }
   },
   "paired_changes": {
+    "holdout_full_group_synthesis": {
+      "gained": [],
+      "lost": [],
+      "retained": 0
+    },
+    "qasper_rerun_negative_direct": {
+      "batch_1": {
+        "gained": [],
+        "lost": [],
+        "retained": 0
+      },
+      "batch_2": {
+        "gained": [],
+        "lost": [
+          "b0edb9023f35a5a02eb8fb968e880e36233e66b3"
+        ],
+        "retained": 0
+      }
+    },
     "silver_any_direct": {
       "gained": [
         "review-04-comparison",

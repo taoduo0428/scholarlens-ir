@@ -187,12 +187,17 @@ def build(root, reruns=None):
     rerun_batches = [read(path) for path in reruns] if reruns else read(root / "qasper-same-case-reruns.json")
     if len(rerun_batches) != len(batches):
         raise ValueError("Missing QASPER rerun batch")
+    rerun_negative_changes = {}
     for i, rows in enumerate(rerun_batches, 1):
         row_keys = {(r["paper"], r["question"], r["unanswerable"]) for r in rows}
         expected = {(r["paper"], r["question"], r["unanswerable"]) for r in batches[i-1]["cases"]}
         if row_keys != expected:
             raise ValueError(f"QASPER rerun {i} differs from its blind cohort")
         external[f"same_cases_rerun_{i}"] = qasper_cases(rows)
+        negatives_before = {r["question"] for r in batches[i-1]["cases"]
+                            if r["unanswerable"] and r["A"]["direct"]}
+        negatives_after = {r["question"] for r in rows if r["unanswerable"] and r["direct"]}
+        rerun_negative_changes[f"batch_{i}"] = paired_hits(negatives_before, negatives_after)
     acceptance = read(root / "qasper-acceptance.json")
     if acceptance["source_sha256"] != public["archive_sha256"]:
         raise ValueError("QASPER source version mismatch")
@@ -218,7 +223,13 @@ def build(root, reruns=None):
                 if row["unanswerable"] == negative
                 and (row["direct"] if negative else row["all_spans_with_reference"])}
 
+    def holdout_hits(arm, field):
+        return {r["case"] for r in holdout_rows if r["arm"] == arm and r[field] is True}
+
     paired = {
+        "holdout_full_group_synthesis": paired_hits(holdout_hits("A", "linked_overview"),
+                                                    holdout_hits("G", "linked_overview")),
+        "qasper_rerun_negative_direct": rerun_negative_changes,
         "silver_any_direct": paired_hits(published("A", True), published("G", True)),
         "silver_negative_direct": paired_hits(published("A", False), published("G", False)),
         "silver_original_requirements_changed": paired_requirements(review["A"], review["G"]),
@@ -233,9 +244,7 @@ def build(root, reruns=None):
     if paired["silver_negative_direct"]["gained"]:
         failures.append("silver_negative_regression")
     if (paired["fresh_qasper_negative_direct"]["gained"]
-            or any(external[f"same_cases_rerun_{i}"]["negative_direct"]["count"] >
-                   external[f"blind_batch_{i}"]["A"]["negative_direct"]["count"]
-                   for i in range(1, len(batches) + 1))):
+            or any(row["gained"] for row in rerun_negative_changes.values())):
         failures.append("qasper_negative_regression")
     return {
         "schema": "pra-scorecard/1",
