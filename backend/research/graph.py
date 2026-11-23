@@ -580,6 +580,11 @@ class ResearchGraph:
                             and state.pra_arm == "G" and state.answer_contract.answer_type == "overview"
                             and any(f.facet in {"topic", "method", "finding"} for f in question_fields)
                             and all(f.operation not in {"quote", "layout"} for f in question_fields) else {}),
+                        **({"profile_limitation_request": state.answer_contract.goal[:500]}
+                           if directed and state.retrieval_policy == "E11" and state.pra_arm == "G"
+                           and state.answer_contract.answer_type == "overview"
+                           and any(f.facet == "limitations" and len(f.paper_ids) == 1 for f in question_fields)
+                           else {}),
                         **({"focus": focus} if focus and not directed else {}),
                         **({"preferred_section": section_hint} if section_hint else {}),
                         **filters,

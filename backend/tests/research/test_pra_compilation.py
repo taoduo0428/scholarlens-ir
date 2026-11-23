@@ -260,6 +260,25 @@ def test_missing_overview_role_places_body_candidate_after_both_abstracts():
     assert passages[-1]["quote"] == text
 
 
+def test_overview_prioritizes_a_source_stated_open_question(tmp_path):
+    limitation = "In future work, we plan to test whether the estimator generalizes to coastal sites."
+    docs = {
+        "a": {"paper_id": "a", "title": "Interior sites", "abstract": "We use regression to estimate canopy cover.",
+              "fulltext": "Background observations. " * 80 + limitation},
+        "b": {"paper_id": "b", "title": "Solid cover", "abstract": "We use field measurements to assess cover.",
+              "fulltext": "Prior work asked whether wheat species are affected."},
+    }
+    report = execute("综合这组论文各自的方法、主要结果和仍待解决的问题。", list(docs), docs,
+                     "test:v8:body-limit", tmp_path, "E11", pra_arm="G")["report"]
+    claims = {c["claim_id"]: c for c in report["claims"]}
+    limits = {f["paper_ids"][0]: report["answerability"]["fields"][f["field_id"]]
+              for q in report["field_requirements"] for f in q["fields"] if f["facet"] == "limitations"}
+    assert limits["a"]["status"] == "answerable"
+    assert limits["b"]["status"] != "answerable"
+    assert {claims[b["claim_id"]]["statement"] for b in limits["a"]["bindings"]} == {limitation}
+    assert report["status"] == "partial"
+
+
 def test_object_words_and_requested_analysis_have_separate_roles():
     from backend.research.descriptive_plan import anchored
     from backend.research.research_intent import research_intent

@@ -44,6 +44,7 @@ class PassageRequest(SearchRequest):
     abstract_opening: bool = False
     abstract_profile: bool = False
     profile_body_fallback: bool = False
+    profile_limitation_request: Summary | None = None
     preferred_section: Literal["methods", "results"] | None = None
     focus: list[Summary] = Field(default_factory=list, max_length=4)
 
@@ -209,11 +210,11 @@ class ToolRegistry:
                     by_paper.setdefault(doc["paper_id"], []).append((score, row["offset_start"], doc, row))
                     if req.profile_body_fallback:
                         abstract_roles.setdefault(doc["paper_id"], set()).update(*facets)
-                elif req.profile_body_fallback and row["field"] == "fulltext":
+                elif (req.profile_body_fallback or req.profile_limitation_request) and row["field"] == "fulltext":
                     body_fallback.setdefault(doc["paper_id"], []).append((doc, row))
             for windows in by_paper.values():
                 windows.sort(key=lambda w: (-w[0][0], -w[0][1], w[1]))
-            if body_fallback:
+            if body_fallback and req.profile_body_fallback:
                 from backend.research.profile_frames import BODY_ROLES, body_gap_score, body_profile_score
 
                 for pid, windows in body_fallback.items():
@@ -242,6 +243,43 @@ class ToolRegistry:
                     scored.sort(key=lambda w: (-w[0][0], -w[0][1], ranks.get(w[3]["chunk_id"], len(ranks)), w[1]))
                     if scored:
                         by_paper[pid] = scored[:4]
+            if req.profile_limitation_request:
+                from backend.research.profile_frames import scoped_limitation
+
+                def limitation_window(row):
+                    return any(scoped_limitation(span[2], req.profile_limitation_request)
+                               for span in sentence_spans(row["text"], row["offset_start"]) if span)
+
+                def observation_roles(row):
+                    from backend.research.profile_frames import body_profile_supports
+
+                    supported = set()
+                    for span in sentence_spans(row["text"], row["offset_start"]):
+                        if not span:
+                            continue
+                        if row["field"] == "abstract":
+                            origin, fields = attribution(span[2])
+                            if origin == "authors":
+                                supported.update(fields & {"methods", "reported_findings"})
+                        else:
+                            for facet, role in (("method", "methods"), ("finding", "reported_findings")):
+                                if body_profile_supports(span[2], facet):
+                                    supported.add(role)
+                    return supported
+
+                for pid, candidates in body_fallback.items():
+                    windows = by_paper.get(pid, [])
+                    if any(limitation_window(window[3]) for window in windows):
+                        continue
+                    for doc, row in candidates[:256]:
+                        if limitation_window(row):
+                            priority = 1
+                            if len(windows) > 1:
+                                uncovered = observation_roles(windows[1][3]) - observation_roles(windows[0][3])
+                                if uncovered - observation_roles(row):
+                                    priority = 2
+                            by_paper.setdefault(pid, []).insert(priority, ((0, 0), row["offset_start"], doc, row))
+                            break
             lists = list(by_paper.values())
             ranked = [group[i] for i in range(max(map(len, lists), default=0))
                       for group in lists if i < len(group)]
