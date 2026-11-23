@@ -14,6 +14,7 @@ def compile_answer(report):
     sources = {s["evidence_id"]: s for s in report["sources"]}
     claims = {c["claim_id"]: c for c in report["claims"] if c["support_status"] == "verified"}
     direct = set(report["sections"]["verified"])
+    background = set(report.get("answer_groups", {}).get("background", []))
     fields = {f["field_id"]: f for req in report["field_requirements"] for f in req["fields"]}
     seen = set()
     for fid, d in gate.items():
@@ -24,14 +25,17 @@ def compile_answer(report):
         for b in d["bindings"]:
             cid, eid = b["claim_id"], b["evidence_id"]
             claim, source = claims.get(cid), sources.get(eid)
-            if (cid not in direct or not claim or not source or b["verification_status"] != "verified"
+            if ((cid not in direct and cid not in background) or not claim or not source
+                    or b["verification_status"] != "verified"
                     or eid not in claim["evidence_ids"] or claim["paper_ids"] != [source["paper_id"]]
                     or b["source_version"] != source["corpus_generation"]
                     or claim["statement"] not in source["quote"]):
                 continue
-            item = {"kind": "source", "text": claim["statement"], "field_id": fid, "claim_ids": [cid],
+            item = {"kind": "source" if cid in direct else "premise", "text": claim["statement"],
+                    "field_id": fid, "claim_ids": [cid],
                     "evidence_ids": [eid], "paper_ids": claim["paper_ids"]}
-            seen.add(cid)
+            if cid in direct:
+                seen.add(cid)
             section = {"method": "methods", "representation": "methods", "setting": "conditions",
                        "dataset": "conditions", "conditions": "conditions", "limitations": "limitations"}.get(f["facet"])
             if section:
@@ -41,7 +45,7 @@ def compile_answer(report):
             if not any(x["evidence_ids"] == [eid] for x in sections["references"]):
                 sections["references"].append({"kind": "reference", "text": source["paper_title"] + " · " + source["locator"],
                                                "evidence_ids": [eid], "paper_ids": claim["paper_ids"]})
-    sections["summary"] = sections["papers"][:3]
+    sections["summary"] = [item for item in sections["papers"] if item["kind"] == "source"][:3]
     for row in report.get("overview", {}).get("findings", []) + report.get("method_relations", []):
         if row["level"] != "derived_synthesis" or not row["premise_claim_ids"]:
             continue
@@ -75,7 +79,8 @@ def markdown(compiled, escape):
                 lines.extend(["", "#### " + escape(item["paper_title"])])
                 previous = item["paper_ids"]
             refs = "、".join(escape(e) for e in item.get("evidence_ids", []))
-            lines.append("- " + escape(item["text"]) + (" · " + refs if refs else ""))
+            label = "已核验前提 · " if item["kind"] == "premise" else ""
+            lines.append("- " + label + escape(item["text"]) + (" · " + refs if refs else ""))
         if not section["items"]:
             lines.append("本节暂无经核验的条目。")
     return "\n".join(lines) + "\n"

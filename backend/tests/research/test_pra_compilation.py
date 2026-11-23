@@ -6,6 +6,7 @@ from types import SimpleNamespace
 import pytest
 from pydantic import ValidationError
 
+from backend.research.answer_compiler import compile_answer, markdown
 from backend.research.pra_relations import method_name, verify_derivation
 from backend.research.workspace_model import SourceReview
 from tools.research_eval.trace_loss import execute
@@ -222,11 +223,46 @@ def test_object_words_and_requested_analysis_have_separate_roles():
     assert research_intent(goal + " Analyze the trends over time.", descriptive_subjects=True) == "trend_analysis"
     assert research_intent("Which module yields the largest gain compared with other methods?",
                            descriptive_subjects=True) == "performance_ranking"
+    assert research_intent("How does this result compare to other methods on the benchmark?",
+                           descriptive_subjects=True) == "performance_ranking"
+    assert research_intent("实验结果与其他方法相比如何？",
+                           descriptive_subjects=True) == "performance_ranking"
+    assert research_intent("How does this method compare to other methods?",
+                           descriptive_subjects=True) == "method_comparison"
     assert research_intent("Compare the methods in “Which model gives the most speedup?”.",
                            descriptive_subjects=True) == "method_comparison"
     c = SimpleNamespace(statement="We examine record selection.", evidence_ids=["e"])
     assert anchored("selecting records", c, {"e": {"paper_title": "Study"}}, frames=True)
     assert not anchored("selecting documents", c, {"e": {"paper_title": "Study"}}, frames=True)
+
+
+def test_compiled_report_keeps_source_checked_premises_without_promoting_the_comparison():
+    sentence = "Our simulations reduced delivery delays by 16%."
+    source = {"evidence_id": "e1", "paper_id": "p1", "paper_title": "Routing", "quote": sentence,
+              "corpus_generation": "g1", "locator": "abstract:chars:0-47"}
+    claim = {"claim_id": "c1", "paper_ids": ["p1"], "evidence_ids": ["e1"],
+             "support_status": "verified", "statement": sentence}
+    binding = {"claim_id": "c1", "evidence_id": "e1", "verification_status": "verified", "source_version": "g1"}
+    report = {
+        "answerability": {"fields": {"observed": {"status": "answerable", "bindings": [binding]},
+                                     "relation": {"status": "not_comparable", "reason": "conditions_mismatch"}}},
+        "sources": [source], "claims": [claim], "sections": {"verified": []},
+        "answer_groups": {"background": ["c1"]},
+        "field_requirements": [{"fields": [{"field_id": "observed", "facet": "finding"},
+                                          {"field_id": "relation", "request": "Compare both methods"}]}],
+        "method_relations": [{"level": "derived_synthesis", "premise_claim_ids": ["c1"], "evidence_ids": ["e1"],
+                              "paper_ids": ["p1"], "kind": "shared_method", "statement": "Unlicensed relation."}],
+    }
+    compiled = compile_answer(report)
+    sections = {section["section"]: section["items"] for section in compiled}
+    assert [(item["kind"], item["text"], item["evidence_ids"]) for item in sections["papers"]] == [
+        ("premise", sentence, ["e1"]),
+    ]
+    assert sentence in markdown(compiled, str) and "已核验前提" in markdown(compiled, str)
+    assert sections["gaps"] and sections["references"]
+    assert not sections["summary"] and not sections["relations"] and not sections["synthesis"]
+    binding["source_version"] = "stale"
+    assert not next(section for section in compile_answer(report) if section["section"] == "papers")["items"]
 
 
 @pytest.mark.parametrize(("left", "right", "relation"), [

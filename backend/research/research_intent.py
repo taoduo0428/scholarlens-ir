@@ -11,6 +11,13 @@ ResearchIntent = Literal[
 ]
 
 COMPARE = re.compile(r"compar|differ|contrast|versus|分别|对比|比较|差异|异同", re.I)
+OUTCOME_COMPARISON = re.compile(
+    r"^(?:how\s+(?:do|does|did|would)\s+(?:(?:this|these|the|their|our|its)\s+)?"
+    r"(?:results?|performance|outcomes?)\s+compare\b|"
+    r"(?:这(?:个|些|项)?|本研究的|该研究的)?(?:实验结果|研究结果|结果|性能)"
+    r"\s*(?:和|与|相比于?)\s*[^？?。；;]{1,100}(?:相比|比较|如何|怎样))",
+    re.I,
+)
 PATTERNS = (
     ("performance_ranking", r"\brank(?:ing)?\b|which.{0,28}(?:better|best|superior|outperform)|谁.{0,8}(?:好|高|优)|排名|优于|性能更"),
     ("contradiction_analysis", r"contradict|conflict|inconsistent|矛盾|冲突|不一致"),
@@ -29,6 +36,8 @@ DIMENSIONS = (
 def research_intent(goal: str, *, descriptive_subjects=False) -> ResearchIntent:
     text = TITLES.sub(" ", goal)
     if descriptive_subjects:
+        if OUTCOME_COMPARISON.match(text.strip()):
+            return "performance_ranking"
         if (re.search(r"\b(?:which|what) (?:part|component|module|step|method|model|system|approach|variant)\b", text, re.I)
                 and re.search(r"\b(?:most|largest|greatest|highest|lowest|smallest|least) "
                               r"(?:speed[ -]?up|gain|improvement|accuracy|precision|recall|latency|error|runtime)\b",
