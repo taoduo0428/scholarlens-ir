@@ -5,6 +5,56 @@ import re
 from backend.research.claim_verifier import METRIC
 
 
+BODY_ROLES = {
+    "topic": {"research_objective", "research_problem"},
+    "method": {"methods"},
+    "finding": {"reported_findings"},
+}
+BODY_METHOD = re.compile(
+    r"^(?:We (?:also |then )?(?:used?|employed?|applied|adopted?|implemented?|evaluated?|"
+    r"developed?|designed?|analy[sz]ed|examined?|trained|sampled?|tested|proposed?) [A-Za-z]|"
+    r"(?:本文|本研究|我们)(?:采用|使用|验证|评价|训练|研究|提出))", re.I)
+BODY_FINDING = re.compile(
+    r"^(?:We (?:also )?(?:(?:find|found|show(?:ed)?|demonstrated?|confirmed?|proved?) that|observed?) "
+    r"|Our (?:results?|experiments?|analysis) (?:show|indicate|demonstrate|confirm|reveal)\w* "
+    r"|(?:我们|本研究)(?:发现|证实|证明)|实验结果(?:表明|显示))", re.I)
+BODY_CONTEXT = re.compile(
+    r"\b(?:not|never|if|unless|should|could|may|might|would|seems?|several years ago|earlier|previous\w*|prior|"
+    r"demonstration purposes|the desired|the above|given above|the following|from (?:this|that) it|"
+    r"by going back|those results|both model types|for this purpose)\b|如果|不确定|可能|先前|以往|上述", re.I)
+BODY_ABBREVIATION = re.compile(
+    r"(?:\b(?:Fig|Figs|cf|e\.g|i\.e|et al|Sec|Ref|Eq)|\d[ -]?(?:in|ft))\.$", re.I)
+
+
+def body_profile_supports(statement, facet):
+    """Require a complete author statement before using body text in an overview."""
+    from backend.research.research_profile import attribution
+
+    if (not re.match(r"^(?:We |Our |本文|本研究|我们|实验结果)", statement, re.I)
+            or BODY_CONTEXT.search(statement) or BODY_ABBREVIATION.search(statement)
+            or any(statement.count(left) != statement.count(right) for left, right in ("()", "[]", "（）"))):
+        return False
+    origin, roles = attribution(statement)
+    if origin != "authors" or not (roles & BODY_ROLES[facet]):
+        return False
+    return (facet == "topic" or
+            bool((BODY_METHOD if facet == "method" else BODY_FINDING).match(statement)))
+
+
+def body_profile_score(text, offset):
+    """Measure coverage across the independently extractable overview roles."""
+    from backend.research.research_profile import attribution, sentence_spans
+
+    available = set().union(*BODY_ROLES.values(), {"limitations", "future_work"})
+    roles = []
+    for span in sentence_spans(text, offset):
+        if span:
+            origin, fields = attribution(span[2])
+            if origin == "authors":
+                roles.append(fields & available)
+    return len(set().union(*roles)), sum(bool(group) for group in roles)
+
+
 METRIC_NAMES_QUESTION = re.compile(
     r"(?:(?:what|which) (?:evaluation )?metrics? (?:(?:is|are|was|were) used|did (?:they|the authors) use)"
     r"|(?:本文|作者|研究)?(?:采用|使用)(?:了)?哪些(?:评价|评估)指标)[?？。]?", re.I)

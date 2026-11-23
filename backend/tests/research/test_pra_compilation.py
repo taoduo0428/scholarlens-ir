@@ -214,6 +214,30 @@ def test_subset_relation_has_its_own_scope_and_cannot_complete_the_overview(tmp_
     assert not sections["synthesis"]["items"]
 
 
+def test_overview_recovers_attributed_body_when_abstract_is_unavailable(tmp_path):
+    method = "We used line intercept sampling to measure average shrub height along each transect."
+    finding = "We found that average shrub height increased by 18 cm."
+    misleading = "We found tests on the Internet that took hours to administer."
+    truncated = "We used a dispenser fitted with a 5/8-in."
+    docs = {
+        "a": {"paper_id": "a", "title": "Shrub sampling", "abstract": "",
+              "fulltext": f"{method} {misleading} {truncated} outlet. {finding}"},
+        "b": {"paper_id": "b", "title": "Canopy survey", "abstract": "",
+              "fulltext": "Prior work used field measurements. We used aerial photography to estimate canopy cover."},
+    }
+    report = execute("综合这组论文各自的方法、主要结果和仍待解决的问题。", list(docs), docs,
+                     "test:v8:no-abstract", tmp_path, "E11", pra_arm="G")["report"]
+    claims = {c["claim_id"]: c for c in report["claims"]}
+    released = {claims[c]["statement"]: claims[c] for c in report["sections"]["verified"]}
+    sources = {r["evidence_id"]: r for r in report["sources"]}
+    assert method in released and finding in released
+    assert misleading not in released and truncated not in released
+    assert released[method]["paper_ids"] == ["a"]
+    assert all(sources[e]["field"] == "fulltext" for e in released[method]["evidence_ids"])
+    assert report["status"] == "partial"
+    assert not next(s for s in report["compiled_answer"] if s["section"] == "synthesis")["items"]
+
+
 def test_object_words_and_requested_analysis_have_separate_roles():
     from backend.research.descriptive_plan import anchored
     from backend.research.research_intent import research_intent

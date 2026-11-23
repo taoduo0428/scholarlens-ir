@@ -1,0 +1,205 @@
+{
+  "corpus_sha256": "a73e65c552264ae7dee265d1ad854ea700c9377c0e2f54bb97a49c78b1d1441c",
+  "corpus_rows": 859,
+  "selection": "Filter missing or blank abstracts, nonempty body text, no replacement characters or unreadable-character flag. Sort by SHA256 of body-fallback-v1: + paper_id; take zero-based slice 64:80. Pair neighbouring rows before execution.",
+  "budget": {
+    "max_tool_calls": 10,
+    "max_evidence": 10,
+    "max_model_calls": 0,
+    "max_duration_seconds": 120
+  },
+  "task": "综合这组论文各自的方法、主要结果和仍待解决的问题。",
+  "control": "PRA G with no abstract-to-fulltext fallback and previous overview proof filter",
+  "candidate": "PRA G with automatic bounded body fallback and explicit author role filtering",
+  "cases": [
+    {
+      "group": 1,
+      "paper_id_hashes": [
+        "2aac147c6ccf3f27b456e5400a38ad1a4faa6dbc7b5a4fd259129bf8728ee8b9",
+        "4cc7c9ff87953b2b1d38f466c80ddb8180a6310eae4f8d9714a2324c568ecbe1"
+      ],
+      "base": {
+        "tool_calls": 2,
+        "retained_fulltext": 0,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 4,
+        "retained_fulltext": 1,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      }
+    },
+    {
+      "group": 2,
+      "paper_id_hashes": [
+        "e9f4b666e4a96b3781ee9234ed8cee1f53cdf7ba420c03835b0132174ab62d18",
+        "e84e88e8fd4a0c36e62d3699dfc31b04c54a2925ecee881acda2119b90d3e2df"
+      ],
+      "base": {
+        "tool_calls": 10,
+        "retained_fulltext": 4,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 10,
+        "retained_fulltext": 4,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      }
+    },
+    {
+      "group": 3,
+      "paper_id_hashes": [
+        "d4720b71be50cdb3d5346809fd0c0593b337e538246456368cbca03924d7e654",
+        "f7530e47fec1ce5d8a5edbe35fa0ee648e845bbe6693d27aab75d9fda106b4b1"
+      ],
+      "base": {
+        "tool_calls": 10,
+        "retained_fulltext": 4,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 9,
+        "retained_fulltext": 4,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      }
+    },
+    {
+      "group": 4,
+      "paper_id_hashes": [
+        "3fb4a8df886781b06daf85003764b54ecf0c150ad0abcd9175c52dcefc646aa5",
+        "6996322c738aa55501508713e57ec5d5a584a188b2857bbd8a138decb6010c03"
+      ],
+      "base": {
+        "tool_calls": 8,
+        "retained_fulltext": 3,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 9,
+        "retained_fulltext": 4,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      }
+    },
+    {
+      "group": 5,
+      "paper_id_hashes": [
+        "ad33ecf7c33df4e2fafb1c76ff7b1e266ec5f7c69eea63d83f729b4bdff58ffe",
+        "3640c36f4713779a925c086ea5b737fdd5b419b565ae4d3e265ebb2e5908672d"
+      ],
+      "base": {
+        "tool_calls": 8,
+        "retained_fulltext": 3,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 7,
+        "retained_fulltext": 2,
+        "direct_source_claims": 2,
+        "answerable_fields": 2,
+        "task_complete": false,
+        "verified_claim_sha256": [
+          "c8d5b104fedc28b472987c8bdcbe5858dbd92198ea547f3f5e70731c3b429435",
+          "3b8079666f12acd95629d4b83abd600c28ba49b0b5681405e038d9b88c4d73a1"
+        ]
+      }
+    },
+    {
+      "group": 6,
+      "paper_id_hashes": [
+        "46459d7b7a4b12965fb047f06d5ded8d1d02a6343390e9581f4073e6cc93663e",
+        "5e8ddf455c49564fc0f38259f5dd8e5bdad575ef99ea1eba1d098247b793d00c"
+      ],
+      "base": {
+        "tool_calls": 2,
+        "retained_fulltext": 0,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 9,
+        "retained_fulltext": 4,
+        "direct_source_claims": 1,
+        "answerable_fields": 1,
+        "task_complete": false,
+        "verified_claim_sha256": [
+          "ba69d5944958667d61e4c129b18a7333f3eba8bfa7420d3389f9bb64d15767c4"
+        ]
+      }
+    },
+    {
+      "group": 7,
+      "paper_id_hashes": [
+        "504eb861c659a5959d3da0eb400a84efe1e5036776fd8e38df29e3cf646d890a",
+        "922342866aff2e73825d4266a49ef5896c3d5b4f460c7d9f4a62fbfd7b289335"
+      ],
+      "base": {
+        "tool_calls": 6,
+        "retained_fulltext": 1,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 6,
+        "retained_fulltext": 1,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      }
+    },
+    {
+      "group": 8,
+      "paper_id_hashes": [
+        "a13bbe4c8f7199b55638d734d8260fb4c0fc9beec0de191c443f4b212a3079f9",
+        "c1df3efb3af80bf81b50ae677e6e8845e2e3b51eb62a172c4828e8cf40b9e7ad"
+      ],
+      "base": {
+        "tool_calls": 8,
+        "retained_fulltext": 2,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      },
+      "body": {
+        "tool_calls": 8,
+        "retained_fulltext": 2,
+        "direct_source_claims": 0,
+        "answerable_fields": 0,
+        "task_complete": false,
+        "verified_claim_sha256": []
+      }
+    }
+  ]
+}

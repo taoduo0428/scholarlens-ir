@@ -222,6 +222,12 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
             if field.facet in PROFILE_FACETS:
                 proof = responsive_claims(field.facet, valid, profile_index)
+                if (state.pra_arm == "G" and state.answer_contract.answer_type == "overview"
+                        and field.facet in {"topic", "method", "finding"}):
+                    from backend.research.profile_frames import body_profile_supports
+
+                    proof = [c for c in proof if any(sources[e]["field"] != "fulltext" for e in c.evidence_ids)
+                             or body_profile_supports(c.statement, field.facet)]
                 if (field.facet == "limitations" and state.pra_arm == "G" and field.operation == "fact"
                         and state.answer_contract.answer_type == "overview" and len(field.paper_ids) == 1):
                     from backend.research.profile_frames import scoped_limitation
