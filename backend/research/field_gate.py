@@ -170,7 +170,7 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             return causal_premises(field, valid, sources), "insufficient_evidence"
         if profile_index is not None and field.facet in {"addressed_problem", "required_input"}:
             from backend.research.subject_facts import witnesses
-            proof = witnesses(field, valid, sources) if field.subject else []
+            proof = witnesses(field, valid, sources, study_context=state.pra_arm in {"B", "G"}) if field.subject else []
             return proof, "insufficient_evidence"
         if field.subject:
             from backend.research.descriptive_plan import anchored

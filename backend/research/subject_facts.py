@@ -124,15 +124,44 @@ def states_relation(field, sentence):
     return any(re.fullmatch(pattern, text) for pattern in expressions)
 
 
-def witnesses(field, claims, sources):
+def transformation_purpose(field, sentence, previous):
+    """Bind an explicitly stated task to the operation and its ordered arguments."""
+    if field.facet != "addressed_problem" or not field.subject_context:
+        return False
+    from backend.research.descriptive_plan import words
+    from backend.research.profile_frames import LEAD
+    from backend.research.research_profile import attribution
+
+    if (not re.match(LEAD + r"(?:present|propos|develop|introduc|design|implement)", previous, re.I)
+            or attribution(previous)[0] != "authors" or any(
+                guard.search(text) for guard in (GUARDS, PRIOR, FUTURE, HYP, MAY, _QUALIFIED)
+                for text in (previous, sentence))):
+        return False
+    match = re.fullmatch(
+        r"(?:From [\w -]{3,100}, )?(?:the )?(?P<task>[\w -]{3,90}) (?:is|was) "
+        r"(?:achieved|performed|accomplished) by (?:iteratively |successively )?"
+        r"(?P<action>merging|grouping|partitioning|encoding|converting|splitting) "
+        r"(?:similar |individual )?(?P<source>[\w-]+) into (?P<target>[\w-]+)\.", sentence, re.I)
+    if not match or words(match["task"]) != words(field.subject_context) or not _mentions(previous, match["task"]):
+        return False
+    subject = words(field.subject)
+    src, dst, action = (words(match[k]) for k in ("source", "target", "action"))
+    return subject in (src + dst + action, action + src + ["into"] + dst)
+
+
+def witnesses(field, claims, sources, *, study_context=False):
     """Only complete, verified statements in a source matching the requested context."""
     eligible = set()
     for eid, row in sources.items():
         offset = int(row["locator"].rsplit(":", 1)[1].split("-")[0])
+        previous = ""
         for span in sentence_spans(row["quote"], offset):
-            if span and states_relation(field, span[2]):
+            statement = span[2] if span else ""
+            transformation = bool(study_context and span and transformation_purpose(field, statement, previous))
+            if span and (states_relation(field, statement) or transformation):
                 if not field.subject_context or any(_mentions(s, field.subject_context)
                         for s in (span[2], row.get("paper_title") or "")):
                     eligible.add((eid, span[2]))
+            previous = statement
     return [c for c in claims if c.support_status == "verified" and len(c.paper_ids) == 1
             and any((eid, c.statement) in eligible for eid in c.evidence_ids)]

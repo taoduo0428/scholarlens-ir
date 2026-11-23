@@ -1454,9 +1454,9 @@
  "G": {
   "reviewer": "post-hoc single AI assessment of published direct claims",
   "counts": {
-   "full": 4,
-   "partial": 24,
-   "absent": 181
+   "full": 5,
+   "partial": 25,
+   "absent": 179
   },
   "full_tasks": 0,
   "rows": [
@@ -2080,13 +2080,17 @@
     "requirements": [
      {
       "requirement": "超像素合并解决的选择问题",
-      "assessment": "absent",
-      "claims": []
+      "assessment": "partial",
+      "claims": [
+       "c-4d06d570cb8f6056f0a88d81"
+      ]
      },
      {
       "requirement": "图像与初始区域",
-      "assessment": "absent",
-      "claims": []
+      "assessment": "full",
+      "claims": [
+       "c-4d06d570cb8f6056f0a88d81"
+      ]
      },
      {
       "requirement": "相似性和顺序",

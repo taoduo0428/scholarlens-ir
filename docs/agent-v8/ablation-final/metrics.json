@@ -57,13 +57,13 @@
     "labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
     "tasks": 111,
     "positives": 70,
-    "at_least_one": 18,
+    "at_least_one": 19,
     "all_positive_system_fields_published": 1,
     "negative_direct": 0,
     "positive_system_fields": 271,
-    "positive_system_fields_published": 20,
+    "positive_system_fields_published": 21,
     "loss_on_unanswered_positives": {
-      "attribution_or_responsiveness": 174,
+      "attribution_or_responsiveness": 171,
       "read": 7,
       "extraction": 3,
       "binding": 6
@@ -75,24 +75,24 @@
     "input_tokens": 0,
     "output_tokens": 0,
     "failed_calls": 0,
-    "p50_ms": 650.29,
-    "p95_ms": 1066.37,
-    "direct_claims": 25,
+    "p50_ms": 915.3,
+    "p95_ms": 1305.96,
+    "direct_claims": 26,
     "filled_profile_field_cells": 734,
     "total_scope_papers_across_tasks": 834,
     "observed_partial_on_silver_partial": 1,
     "model_cost_usd": 0,
     "independent_source_verification": {
       "tasks": 111,
-      "baseline_direct_tasks": 18,
-      "reviewed_direct_tasks": 18,
-      "reviewed_claims": 25,
+      "baseline_direct_tasks": 19,
+      "reviewed_direct_tasks": 19,
+      "reviewed_claims": 26,
       "removed_claims": 0,
       "additional_model_calls": 0,
       "additional_retrieval_calls": 0,
-      "wall_seconds": 0.058,
+      "wall_seconds": 0.06,
       "scope": "independent deterministic provenance review; semantic judgement unmeasured",
-      "trace_manifest_sha256": "1bdbd4450eea688b7fbd6022089c03c9d1213b731988ecc8716486c55b006622",
+      "trace_manifest_sha256": "5831f3fe94004dd20dc643c25a1b8eaa64053e10b725a206c2137b793d176dd7",
       "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
       "shared_spending": {
         "tools": 994,
@@ -104,8 +104,8 @@
         "provider_receipts": 0
       }
     },
-    "false_refusals_positive": 52,
-    "case_file_sha256": "cd11411aa236fed571d193efc18072f0cf51925b274f49f8a8be329f4021c449"
+    "false_refusals_positive": 51,
+    "case_file_sha256": "2ef63384321e44acb58610a0191aa699d6e011969f008a21d946f2cc15460346"
   },
   "C": {
     "labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
@@ -327,13 +327,13 @@
     "labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
     "tasks": 111,
     "positives": 70,
-    "at_least_one": 19,
+    "at_least_one": 20,
     "all_positive_system_fields_published": 1,
     "negative_direct": 0,
     "positive_system_fields": 273,
-    "positive_system_fields_published": 21,
+    "positive_system_fields_published": 22,
     "loss_on_unanswered_positives": {
-      "attribution_or_responsiveness": 173,
+      "attribution_or_responsiveness": 170,
       "read": 7,
       "extraction": 3,
       "binding": 3
@@ -345,24 +345,24 @@
     "input_tokens": 0,
     "output_tokens": 0,
     "failed_calls": 0,
-    "p50_ms": 859.73,
-    "p95_ms": 2367.2,
-    "direct_claims": 26,
+    "p50_ms": 913.67,
+    "p95_ms": 1283.09,
+    "direct_claims": 27,
     "filled_profile_field_cells": 736,
     "total_scope_papers_across_tasks": 834,
     "observed_partial_on_silver_partial": 1,
     "model_cost_usd": 0,
     "independent_source_verification": {
       "tasks": 111,
-      "baseline_direct_tasks": 19,
-      "reviewed_direct_tasks": 19,
-      "reviewed_claims": 26,
+      "baseline_direct_tasks": 20,
+      "reviewed_direct_tasks": 20,
+      "reviewed_claims": 27,
       "removed_claims": 0,
       "additional_model_calls": 0,
       "additional_retrieval_calls": 0,
-      "wall_seconds": 0.141,
+      "wall_seconds": 0.233,
       "scope": "independent deterministic provenance review; semantic judgement unmeasured",
-      "trace_manifest_sha256": "a28a429163a4ed9fb03ecedc20f1bbb45e39326220501b369b84408ea7a268e7",
+      "trace_manifest_sha256": "0194db959a0c5c06a030f5a649d51d9b43f38511d3ad0cac31c6b52a964bf517",
       "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
       "shared_spending": {
         "tools": 991,
@@ -374,7 +374,7 @@
         "provider_receipts": 0
       }
     },
-    "false_refusals_positive": 51,
-    "case_file_sha256": "81a05a59b8410eba93d3dc85cac06686919442417fe8625012e7eccc02d6d6f9"
+    "false_refusals_positive": 50,
+    "case_file_sha256": "f6ffa12bc84d0769643b3556d2dc650011f1873b86bd76ff744f7eb09c8fc757"
   }
 }

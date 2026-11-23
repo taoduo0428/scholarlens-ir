@@ -7,7 +7,6 @@ from pathlib import Path
 from tools.research_eval.pra_baseline import LABELS, POSITIVE
 from tools.research_eval.v6_silver import rows
 
-
 # Only visible direct statements are credited, with a task-local claim key. A compound requirement
 # receives partial credit when the statement covers only some questions or only one requested paper.
 # This table is offline evaluation material and is never imported by the runtime.
@@ -22,6 +21,9 @@ REVIEW = {
     "review-04-metrics": [(1, "partial", "f69d4634")],
     "review-06-fact": [(1, "full", "ea5ed897")],
     "review-06-comparison": [(1, "partial", "ea5ed897")],
+    # The quote identifies the input image and initial over-segmentation. It describes merging
+    # similar regions but does not specify a similarity criterion or decide the merge order.
+    "review-07-fact": [(1, "partial", "4d06d570"), (2, "full", "4d06d570")],
     "review-09-comparison": [(1, "partial", "401befea")],
     "review-10-comparison": [(2, "partial", "b7636643"), (3, "partial", "c434d300")],
     "review-12-comparison": [(1, "partial", "9e824667"), (3, "partial", "9e824667")],
@@ -62,7 +64,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--out", required=True, type=Path)
-    parser.add_argument("--candidate", default="G7", help="candidate experiment directory")
+    parser.add_argument("--candidate", default="G9", help="candidate experiment directory")
     args = parser.parse_args()
     with args.out.open("x", encoding="utf8") as stream:
         json.dump({arm: review(args.root/folder/"diagnostic/E11") for arm, folder in [("A","A"),("G",args.candidate)]},
