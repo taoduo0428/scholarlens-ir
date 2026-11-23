@@ -61,6 +61,16 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
     scope = list(dict.fromkeys(contract.scope["paper_ids"]))
     chinese = bool(re.search(r"[\u3400-\u9fff]", contract.goal))
     one = len(plan.graph.nodes) == 1
+    asks_limits = profile_gaps and contract.answer_type == "overview" and re.search(
+        r"open questions?|limitations?|future (?:work|research)|仍待|待解决|局限|不足", contract.goal, re.I
+    )
+    # Individual limitations are observations. Shared limitations still require group evidence.
+    individual_limits = bool(
+        asks_limits and pra and 1 < len(scope) <= 4 and not TITLES.search(contract.goal)
+        and re.search(r"各自|逐篇|每篇|每项研究|\beach (?:paper|study|article)\b|\bpaper.by.paper\b", contract.goal, re.I)
+        and not re.search(r"共同|共有|一致|\b(?:shared|common|across all)\b", contract.goal, re.I)
+        and any(n.requirement.kind == "source_fact" and not n.dependencies for n in plan.graph.nodes)
+    )
     result = []
     for node in plan.graph.nodes:
         fields = []
@@ -172,12 +182,12 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
                 fields.append(f.model_copy(update=changes))
         else:
             facets = dimensions(plan, node, contract)
-            if profile_gaps and contract.answer_type == "overview" and "overview" in facets and re.search(
-                r"open questions?|limitations?|future (?:work|research)|仍待|待解决|局限|不足", contract.goal, re.I
-            ):
+            if individual_limits and node.requirement.kind == "source_fact" and not node.dependencies:
+                facets = [*facets, "limitations"]
+            elif asks_limits and not individual_limits and "overview" in facets:
                 facets = [*facets, "limitations"]
             for facet in facets:
-                per_paper = facet in {"method", "dataset", "metric", "finding", "topic"}
+                per_paper = facet in {"method", "dataset", "metric", "finding", "topic"} or (individual_limits and facet == "limitations")
                 targets = [[p] for p in scope] if per_paper and 0 < len(scope) <= 4 else [scope]
                 metrics = list(dict.fromkeys(m.casefold() for m in METRICS.findall(TITLES.sub("", contract.goal))))
                 for papers in targets:

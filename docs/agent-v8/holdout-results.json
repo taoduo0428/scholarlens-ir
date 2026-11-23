@@ -1006,8 +1006,9 @@
    "q1.f4": "answerable",
    "q1.f5": "answerable",
    "q1.f6": "insufficient_evidence",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q1.f7": "insufficient_evidence",
+   "q1.f8": "insufficient_evidence",
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1045,8 +1046,9 @@
    "q1.f4": "answerable",
    "q1.f5": "insufficient_evidence",
    "q1.f6": "answerable",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q1.f7": "insufficient_evidence",
+   "q1.f8": "insufficient_evidence",
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1084,8 +1086,9 @@
    "q1.f4": "insufficient_evidence",
    "q1.f5": "insufficient_evidence",
    "q1.f6": "insufficient_evidence",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q1.f7": "insufficient_evidence",
+   "q1.f8": "insufficient_evidence",
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1123,8 +1126,9 @@
    "q1.f4": "insufficient_evidence",
    "q1.f5": "answerable",
    "q1.f6": "answerable",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q1.f7": "insufficient_evidence",
+   "q1.f8": "insufficient_evidence",
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1162,8 +1166,9 @@
    "q1.f4": "insufficient_evidence",
    "q1.f5": "insufficient_evidence",
    "q1.f6": "insufficient_evidence",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q1.f7": "insufficient_evidence",
+   "q1.f8": "insufficient_evidence",
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1201,8 +1206,9 @@
    "q1.f4": "answerable",
    "q1.f5": "answerable",
    "q1.f6": "answerable",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q1.f7": "insufficient_evidence",
+   "q1.f8": "insufficient_evidence",
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1235,6 +1241,9 @@
   "model_calls": 0,
   "field_status": {
    "q1.f1": "answerable",
+   "q1.f10": "insufficient_evidence",
+   "q1.f11": "insufficient_evidence",
+   "q1.f12": "insufficient_evidence",
    "q1.f2": "answerable",
    "q1.f3": "answerable",
    "q1.f4": "answerable",
@@ -1243,8 +1252,7 @@
    "q1.f7": "answerable",
    "q1.f8": "insufficient_evidence",
    "q1.f9": "insufficient_evidence",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1277,6 +1285,9 @@
   "model_calls": 0,
   "field_status": {
    "q1.f1": "answerable",
+   "q1.f10": "insufficient_evidence",
+   "q1.f11": "insufficient_evidence",
+   "q1.f12": "insufficient_evidence",
    "q1.f2": "answerable",
    "q1.f3": "answerable",
    "q1.f4": "answerable",
@@ -1285,8 +1296,7 @@
    "q1.f7": "answerable",
    "q1.f8": "answerable",
    "q1.f9": "answerable",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1319,6 +1329,9 @@
   "model_calls": 0,
   "field_status": {
    "q1.f1": "answerable",
+   "q1.f10": "insufficient_evidence",
+   "q1.f11": "insufficient_evidence",
+   "q1.f12": "insufficient_evidence",
    "q1.f2": "answerable",
    "q1.f3": "answerable",
    "q1.f4": "answerable",
@@ -1327,8 +1340,7 @@
    "q1.f7": "insufficient_evidence",
    "q1.f8": "answerable",
    "q1.f9": "insufficient_evidence",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1361,6 +1373,9 @@
   "model_calls": 0,
   "field_status": {
    "q1.f1": "answerable",
+   "q1.f10": "insufficient_evidence",
+   "q1.f11": "insufficient_evidence",
+   "q1.f12": "insufficient_evidence",
    "q1.f2": "answerable",
    "q1.f3": "answerable",
    "q1.f4": "answerable",
@@ -1369,8 +1384,7 @@
    "q1.f7": "answerable",
    "q1.f8": "answerable",
    "q1.f9": "insufficient_evidence",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1403,6 +1417,9 @@
   "model_calls": 0,
   "field_status": {
    "q1.f1": "answerable",
+   "q1.f10": "insufficient_evidence",
+   "q1.f11": "insufficient_evidence",
+   "q1.f12": "insufficient_evidence",
    "q1.f2": "answerable",
    "q1.f3": "answerable",
    "q1.f4": "answerable",
@@ -1411,8 +1428,7 @@
    "q1.f7": "answerable",
    "q1.f8": "answerable",
    "q1.f9": "insufficient_evidence",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q2.f1": "insufficient_evidence"
   }
  },
  {
@@ -1445,6 +1461,9 @@
   "model_calls": 0,
   "field_status": {
    "q1.f1": "insufficient_evidence",
+   "q1.f10": "insufficient_evidence",
+   "q1.f11": "insufficient_evidence",
+   "q1.f12": "insufficient_evidence",
    "q1.f2": "insufficient_evidence",
    "q1.f3": "answerable",
    "q1.f4": "insufficient_evidence",
@@ -1453,8 +1472,7 @@
    "q1.f7": "insufficient_evidence",
    "q1.f8": "insufficient_evidence",
    "q1.f9": "answerable",
-   "q2.f1": "insufficient_evidence",
-   "q2.f2": "insufficient_evidence"
+   "q2.f1": "insufficient_evidence"
   }
  }
 ]

@@ -35,6 +35,29 @@ def test_unregistered_method_needs_full_author_supplied_name():
     assert method_name("We use sparse lattice optimization (ABC) for scheduling.") is None
 
 
+@pytest.mark.parametrize("group_request", [False, True])
+def test_individual_limits_survive_missing_other_paper_but_shared_limits_do_not(tmp_path, group_request):
+    statement = "Our study is limited to daytime observations."
+    docs = {
+        "a": {"paper_id": "a", "title": "Transit", "abstract": "We use dynamic programming for scheduling. " + statement},
+        "b": {"paper_id": "b", "title": "Workshop", "abstract": "We use linear regression for estimation. "
+              "To address this limitation, we introduce an estimator. We will discuss applications below."},
+    }
+    goal = ("综合这组论文各自的方法、主要结果和共同局限。" if group_request else
+            "综合这组论文各自的方法、主要结果和局限。")
+    report = execute(goal, list(docs), docs, "test:limits", tmp_path, "E11", pra_arm="G")["report"]
+    fields = [f for q in report["field_requirements"] for f in q["fields"] if f["facet"] == "limitations"]
+    decisions = report["answerability"]["fields"]
+    if group_request:
+        assert len(fields) == 1 and set(fields[0]["paper_ids"]) == set(docs)
+        assert decisions[fields[0]["field_id"]]["status"] != "answerable"
+    else:
+        assert {tuple(f["paper_ids"]): decisions[f["field_id"]]["status"] for f in fields} == {
+            ("a",): "answerable", ("b",): "insufficient_evidence"}
+        section = next(s for s in report["compiled_answer"] if s["section"] == "limitations")
+        assert [(i["paper_ids"], i["text"]) for i in section["items"]] == [(["a"], statement)]
+
+
 def test_named_mixed_dimensions_exclude_permitted_distractor(tmp_path):
     docs = {pid: {"paper_id": pid, "title": title, "abstract": text} for pid, title, text in (
         ("a", "Transit design", "We use dynamic programming for scheduling. Our results show that delays decreased."),
@@ -50,6 +73,21 @@ def test_named_mixed_dimensions_exclude_permitted_distractor(tmp_path):
     assert {p for cid in r["sections"]["verified"] for p in claims[cid]["paper_ids"]} == {"a", "b"}
     assert any(f["required_title"] == "Workshop design" and f["facet"] == "finding"
                and r["answerability"]["fields"][f["field_id"]]["status"] != "answerable" for f in fields)
+
+
+@pytest.mark.parametrize("heading_offset,expected", [(0, True), (1, False)])
+def test_method_gap_reads_validated_fulltext_heading(tmp_path, heading_offset, expected):
+    statement = "我们采用线性回归估计明日气温。"
+    doc = {"paper_id": "atlas", "title": "Forecasts", "abstract": "Archived summary of historical observations.",
+           "fulltext": "研究方法。" + statement, "sections": [{"start": heading_offset, "title": "研究方法"}]}
+    report = execute("What method did the authors use?", ["atlas"], {"atlas": doc}, "test:section",
+                     tmp_path, "E11", pra_arm="G")["report"]
+    direct = report["sections"]["verified"]
+    answers = [c for c in report["claims"] if c["claim_id"] in direct and c["statement"] == statement]
+    assert bool(answers) is expected
+    if expected:
+        ids = set(answers[0]["evidence_ids"])
+        assert ids == {s["evidence_id"] for s in report["sources"] if s["field"] == "fulltext" and statement in s["quote"]}
 
 
 def test_bilingual_pair_uses_exact_spans_and_withdraws_on_premise_loss(tmp_path):

@@ -237,8 +237,8 @@
     "input_tokens": 0,
     "output_tokens": 0,
     "failed_calls": 0,
-    "p50_ms": 727.39,
-    "p95_ms": 1252.09,
+    "p50_ms": 871.22,
+    "p95_ms": 2166.73,
     "direct_claims": 20,
     "filled_profile_field_cells": 648,
     "total_scope_papers_across_tasks": 834,
@@ -252,9 +252,9 @@
       "removed_claims": 0,
       "additional_model_calls": 0,
       "additional_retrieval_calls": 0,
-      "wall_seconds": 0.216,
+      "wall_seconds": 0.122,
       "scope": "independent deterministic provenance review; semantic judgement unmeasured",
-      "trace_manifest_sha256": "4a309520fb26175b09cd3bfc780231afd703a175ac5d6ee8ad634bd7438a6821",
+      "trace_manifest_sha256": "66495dbb13a80444a245611fa521b0d079fca3ae88a95ed478d938a654d7ad1d",
       "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
       "shared_spending": {
         "tools": 990,
@@ -267,7 +267,7 @@
       }
     },
     "false_refusals_positive": 55,
-    "case_file_sha256": "a0744b86bf825b0e6e7d425122bd1f2dd298b5a78b7bc67599a09fd292dad6ab"
+    "case_file_sha256": "1ac23ee41cb88f012fda61cb26c2bdff07d7d18fe49cb315d4b4c63490e89dac"
   },
   "F": {
     "labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
@@ -345,8 +345,8 @@
     "input_tokens": 0,
     "output_tokens": 0,
     "failed_calls": 0,
-    "p50_ms": 640.71,
-    "p95_ms": 1103.8,
+    "p50_ms": 859.73,
+    "p95_ms": 2367.2,
     "direct_claims": 26,
     "filled_profile_field_cells": 736,
     "total_scope_papers_across_tasks": 834,
@@ -360,9 +360,9 @@
       "removed_claims": 0,
       "additional_model_calls": 0,
       "additional_retrieval_calls": 0,
-      "wall_seconds": 0.104,
+      "wall_seconds": 0.141,
       "scope": "independent deterministic provenance review; semantic judgement unmeasured",
-      "trace_manifest_sha256": "d9c9fdcd8ab0b3c61b78c9471bf4ce354d37e8862180b4b85987d477f02f0d27",
+      "trace_manifest_sha256": "a28a429163a4ed9fb03ecedc20f1bbb45e39326220501b369b84408ea7a268e7",
       "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
       "shared_spending": {
         "tools": 991,
@@ -375,6 +375,6 @@
       }
     },
     "false_refusals_positive": 51,
-    "case_file_sha256": "f22bff1f497c74566d0ccbe64d0ec47800826b0fa50e67b017a4adf9762452b0"
+    "case_file_sha256": "81a05a59b8410eba93d3dc85cac06686919442417fe8625012e7eccc02d6d6f9"
   }
 }

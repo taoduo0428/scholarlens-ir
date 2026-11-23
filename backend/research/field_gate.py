@@ -208,6 +208,10 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
             if field.facet in PROFILE_FACETS:
                 proof = responsive_claims(field.facet, valid, profile_index)
+                if (field.facet == "limitations" and state.pra_arm == "G" and field.operation == "fact"
+                        and state.answer_contract.answer_type == "overview" and len(field.paper_ids) == 1):
+                    from backend.research.profile_frames import scoped_limitation
+                    proof = [c for c in proof if scoped_limitation(c.statement, state.answer_contract.goal)]
                 if field.facet == "method" and state.pra_arm == "G" and len(field.paper_ids) == 1:
                     from backend.research.profile_frames import abstract_method
                     labelled = [c for c in proof if any(sources[e]["field"] == "abstract" for e in c.evidence_ids)

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from typing import Literal
 from pydantic import Field, ValidationError
 
 from backend.research.schemas import (
@@ -24,6 +25,7 @@ from .passages import (
     combine,
     dense_rank,
     hash_text,
+    nearest_heading,
     passage,
     passages_for,
     tokens,
@@ -41,6 +43,7 @@ class PassageRequest(SearchRequest):
     slot: Slot | None = None
     abstract_opening: bool = False
     abstract_profile: bool = False
+    preferred_section: Literal["methods", "results"] | None = None
     focus: list[Summary] = Field(default_factory=list, max_length=4)
 
 
@@ -243,6 +246,21 @@ class ToolRegistry:
                                      if rows[cid][1]["paper_id"] == selected["paper_id"]
                                      and rows[cid][1]["field"] != "title"), lane[0]))
             ranked = list(dict.fromkeys(leaders + ranked))
+        if req.preferred_section and req.paper_ids:
+            headings = ({"method", "methods", "methodology", "materials and methods", "方法", "研究方法"}
+                        if req.preferred_section == "methods" else
+                        {"results", "experimental results", "results and discussion", "结果", "实验结果"})
+            # A validated heading is a retrieval hint. The returned text still goes through source verification.
+            candidates = dict.fromkeys([*ranked, *rows])
+            leaders = {}
+            for cid in candidates:
+                doc, row = rows[cid]
+                if row["paper_id"] in leaders or row["field"] != "fulltext":
+                    continue
+                heading = nearest_heading(doc, row)
+                if heading and re.sub(r"^\d+(?:\.\d+)*\.?\s+", "", heading.strip().casefold()) in headings:
+                    leaders[row["paper_id"]] = cid
+            ranked = list(dict.fromkeys([*leaders.values(), *ranked]))
         return {"passages": [passage(*rows[cid], self.generation) for cid in ranked[: req.limit]]}
 
     def _read_paper_chunks(self, req):

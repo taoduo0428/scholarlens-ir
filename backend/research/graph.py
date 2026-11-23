@@ -523,6 +523,7 @@ class ResearchGraph:
                     if not ids:
                         targets = _uncovered_papers(state)
                         ids = state.task.scope.paper_ids[:6]
+                section_hint = None
                 if (gap and sub.id == gap["question_id"] and isinstance(action, Search)
                         and (gap["kind"] == "missing_paper" or gap["action"] in {
                             "read_method_section", "read_results_section", "align_conditions"})):
@@ -531,6 +532,7 @@ class ResearchGraph:
                     if requested and state.task.scope.paper_ids:
                         ids = [p for p in state.task.scope.paper_ids if p in requested]
                         targets = []
+                        section_hint = {"read_method_section": "methods", "read_results_section": "results"}.get(gap["action"])
                     query = " ".join(filter(None, [field.subject, field.subject_context,
                                        field.facet, field.requested_metric, field.request]))[:500]
                     directed, focus = False, []
@@ -575,6 +577,7 @@ class ResearchGraph:
                             and (profile_read or state.answer_contract.answer_type == "overview")
                            else {"abstract_opening": True} if directed else {}),
                         **({"focus": focus} if focus and not directed else {}),
+                        **({"preferred_section": section_hint} if section_hint else {}),
                         **filters,
                     }
                     if ids and state.pra_arm in {"E", "G"} and not state.task.scope.include_own_uploads:

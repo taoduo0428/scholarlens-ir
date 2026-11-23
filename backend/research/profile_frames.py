@@ -84,6 +84,19 @@ def frame_fields(text):
     return fields
 
 
+def scoped_limitation(text, goal):
+    """Distinguish an author's study boundary from an explicit research agenda."""
+    boundary = re.search(r"limitations?|局限|不足", goal, re.I) and re.match(
+        r"^(?:(?:our|this) (?:study|work|analysis|method|evaluation|approach|model|experiments?) "
+        r"(?:is|was|are|were) limited (?:by|to) |(?:one|a|the main) limitation of (?:our|this) "
+        r"(?:study|work|approach|model) is |(?:本研究|本文|我们的方法)(?:的局限(?:在于|是)|受限于))", text, re.I)
+    agenda = re.search(r"open questions?|future (?:work|research)|仍待|待解决", goal, re.I) and re.match(
+        r"^(?:(?:(?:in|for|as) future work,? we (?:plan|intend) to|"
+        r"future work (?:should|will|must)|we leave .{3,120} (?:for|to) future work)\b|"
+        r"(?:未来工作中[，,]?我们(?:计划|将)|我们计划在未来研究中))", text, re.I)
+    return bool(boundary or agenda)
+
+
 def abstract_method(text):
     """A Methods label plus a study procedure, never a section label alone."""
     match = re.fullmatch(r"(?:Methods?|研究方法|方法)\s*[:：]\s*(.+[.。])", text, re.I)
