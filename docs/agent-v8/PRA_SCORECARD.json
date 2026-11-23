@@ -454,6 +454,94 @@
         ]
       },
       "tool_calls": 314
+    },
+    "independent_acceptance": {
+      "A": {
+        "any_direct": {
+          "count": 1,
+          "total": 24,
+          "wilson95": [
+            0.0074,
+            0.2024
+          ]
+        },
+        "all_reference_spans": {
+          "count": 1,
+          "total": 16,
+          "wilson95": [
+            0.0111,
+            0.2833
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 16,
+          "total": 24,
+          "wilson95": [
+            0.4671,
+            0.8203
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 6,
+          "total": 16,
+          "wilson95": [
+            0.1848,
+            0.6136
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 8,
+          "wilson95": [
+            0,
+            0.3244
+          ]
+        },
+        "tool_calls": 315
+      },
+      "G": {
+        "any_direct": {
+          "count": 1,
+          "total": 24,
+          "wilson95": [
+            0.0074,
+            0.2024
+          ]
+        },
+        "all_reference_spans": {
+          "count": 1,
+          "total": 16,
+          "wilson95": [
+            0.0111,
+            0.2833
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 16,
+          "total": 24,
+          "wilson95": [
+            0.4671,
+            0.8203
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 6,
+          "total": 16,
+          "wilson95": [
+            0.1848,
+            0.6136
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 8,
+          "wilson95": [
+            0,
+            0.3244
+          ]
+        },
+        "tool_calls": 320
+      }
     }
   },
   "holdout_manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",

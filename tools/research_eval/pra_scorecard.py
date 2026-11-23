@@ -164,6 +164,21 @@ def build(root, reruns=None):
         if row_keys != expected:
             raise ValueError(f"QASPER rerun {i} differs from its blind cohort")
         external[f"same_cases_rerun_{i}"] = qasper_cases(rows)
+    acceptance = read(root / "qasper-acceptance.json")
+    if acceptance["source_sha256"] != public["archive_sha256"]:
+        raise ValueError("QASPER source version mismatch")
+    def identity(row):
+        return row["paper"], row["question"], row["unanswerable"]
+    acceptance_cases = [identity(r) for r in acceptance["manifest"]]
+    prior_papers = {r["paper"] for batch in batches for r in batch["cases"]}
+    if prior_papers.intersection(pid for pid, _, _ in acceptance_cases):
+        raise ValueError("QASPER acceptance papers overlap historical cohorts")
+    external["independent_acceptance"] = {}
+    for arm in ("A", "G"):
+        rows = acceptance["results"][arm]
+        if [identity(row) for row in rows] != acceptance_cases:
+            raise ValueError("Unpaired QASPER acceptance")
+        external["independent_acceptance"][arm] = qasper_cases(rows)
     failures = []
     if matched["G"]["full_group_synthesis"]["count"] <= matched["A"]["full_group_synthesis"]["count"]:
         failures.append("no_full_group_holdout_gain")
@@ -171,9 +186,11 @@ def build(root, reruns=None):
         failures.append("holdout_source_or_layout_failure")
     if scores["G"]["negative_direct"]["count"] > scores["A"]["negative_direct"]["count"]:
         failures.append("silver_negative_regression")
-    if any(external[f"same_cases_rerun_{i}"]["negative_direct"]["count"] >
-           external[f"blind_batch_{i}"]["A"]["negative_direct"]["count"]
-           for i in range(1, len(batches) + 1)):
+    fresh = external["independent_acceptance"]
+    if (fresh["G"]["negative_direct"]["count"] > fresh["A"]["negative_direct"]["count"]
+            or any(external[f"same_cases_rerun_{i}"]["negative_direct"]["count"] >
+                   external[f"blind_batch_{i}"]["A"]["negative_direct"]["count"]
+                   for i in range(1, len(batches) + 1))):
         failures.append("qasper_negative_regression")
     return {
         "schema": "pra-scorecard/1",

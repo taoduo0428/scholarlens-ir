@@ -164,3 +164,14 @@ def test_pra_scorecard_rebuilds_pinned_results_and_rejects_mismatched_cohort(tmp
     b.write_text(json.dumps(batch_b), encoding="utf-8")
     with pytest.raises(ValueError, match="differs from its blind cohort"):
         build(records, [a, b])
+
+
+def test_qasper_manifest_rejects_relabeling_of_public_annotations():
+    from tools.research_eval.pra_qasper import frozen_cases
+
+    dataset = {"p": {"title": "Original paper", "qas": [{"question_id": "q", "answers": [
+        {"worker_id": "one", "answer": {"unanswerable": False}},
+        {"worker_id": "two", "answer": {"unanswerable": False}},
+    ]}]}}
+    with pytest.raises(ValueError, match="disagrees with published annotations"):
+        frozen_cases(dataset, [{"paper": "p", "question": "q", "unanswerable": True}])

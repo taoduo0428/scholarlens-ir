@@ -134,12 +134,32 @@ def score(report, doc, annotations):
             "published_ids": sorted(direct)}
 
 
-def main(archive, out, arms, batch):
+def frozen_cases(dataset, manifest):
+    cases, titles = [], set()
+    for row in manifest:
+        pid = row["paper"]
+        paper = dataset[pid]
+        title = norm(paper["title"])
+        question = next((q for q in paper["qas"] if q["question_id"] == row["question"]), None)
+        if title in titles or question is None or type(row["unanswerable"]) is not bool:
+            raise ValueError("Invalid or repeated QASPER case")
+        annotations = question["answers"]
+        if (len({a["worker_id"] for a in annotations}) < 2
+                or {a["answer"]["unanswerable"] for a in annotations} != {row["unanswerable"]}):
+            raise ValueError("QASPER manifest disagrees with published annotations")
+        titles.add(title)
+        cases.append((pid, question, row["unanswerable"]))
+    if len(cases) != 32 or sum(negative for _, _, negative in cases) != 8:
+        raise ValueError("Incomplete QASPER positive and negative coverage")
+    return cases
+
+
+def main(archive, out, arms, batch, manifest_path=None):
     if sha256(archive.read_bytes()).hexdigest() != ARCHIVE:
         raise ValueError("unexpected official test archive")
     with tarfile.open(archive) as reader:
         data = json.load(reader.extractfile("qasper-test-v0.3.json"))
-    cases = select(data, batch)
+    cases = frozen_cases(data, json.loads(manifest_path.read_bytes())) if manifest_path else select(data, batch)
     out.mkdir(exist_ok=False)
     manifest = [{"paper": pid, "question": q["question_id"], "unanswerable": no} for pid, q, no in cases]
     (out/"manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf8")
@@ -159,6 +179,8 @@ if __name__ == "__main__":
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--arms", nargs="+", choices=("A", "G"), default=["A", "G"])
-    parser.add_argument("--batch", type=int, choices=(1, 2), default=1)
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument("--batch", type=int, choices=(1, 2), default=1)
+    selection.add_argument("--manifest", type=Path, help="Replay a frozen 24 positive, 8 negative cohort.")
     args = parser.parse_args()
-    main(args.archive, args.out, args.arms, args.batch)
+    main(args.archive, args.out, args.arms, args.batch, args.manifest)
