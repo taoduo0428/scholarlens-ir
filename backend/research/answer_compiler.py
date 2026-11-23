@@ -17,14 +17,13 @@ def compile_path(field, bindings, claims, sources, generation):
     from backend.research.multihop_fields import causal_premises
     from backend.research.schemas import Claim
 
+    sources = {eid: row for eid, row in sources.items()
+               if row["corpus_generation"] == generation
+               and sha256(row["quote"].encode()).hexdigest() == row.get("quote_hash")}
     candidates = []
     for cid, evidence in bindings.items():
         claim = Claim.model_validate(claims[cid])
-        if evidence != set(claim.evidence_ids):
-            continue
-        if not all(sources[e]["corpus_generation"] == generation
-                   and sha256(sources[e]["quote"].encode()).hexdigest() == sources[e].get("quote_hash")
-                   for e in evidence):
+        if evidence != set(claim.evidence_ids) or not evidence <= sources.keys():
             continue
         if verify_claim(claim, sources).support_status == "verified":
             candidates.append(claim)

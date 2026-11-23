@@ -14,6 +14,11 @@ EACH_LINK = re.compile(r"(?:cite|identify|give|explain) each link(?: and mark th
 AMBIGUOUS = re.compile(r"\b(?:these|those|it|they|all|both|every|each|either|other|except|"
                        r"unless|ignore|without|not|papers?|studies|articles?|assuming|possibly)\b", re.I)
 
+NEGATED_EDGE = re.compile(
+    rf"({ENTITY}) (?:do|does|did) not (?:cause|lead to|result in) ({ENTITY})[.!]?", re.I,
+)
+SCOPED_EDGE = re.compile(r"\b(?:when|under|during|among|with|for|if|while|in the)\b", re.I)
+
 
 def link_request(goal):
     if TITLES.search(goal):
@@ -62,14 +67,33 @@ def causal_edge(statement):
     return None
 
 
+
+def contradicted_edges(sources):
+    """Collect explicit denials with the same unqualified endpoints as a link."""
+    denied = set()
+    for observation in sources:
+        offset = int(observation["locator"].rsplit(":", 1)[1].split("-")[0])
+        for span in sentence_spans(observation["quote"], offset):
+            if not span:
+                continue
+            statement = span[2]
+            match = NEGATED_EDGE.fullmatch(statement)
+            if (match and not any(pattern.search(statement) for pattern in (PRIOR, FUTURE, HYP, MAY))
+                    and not any(AMBIGUOUS.search(part) or SCOPED_EDGE.search(part) for part in match.groups())):
+                denied.add(tuple(map(endpoint, match.groups())))
+    return denied
+
+
 def missing_bridge_terms(field, sources):
     """Use exact, known outer links to search for a missing middle link."""
+    sources = list(sources)
+    denied = contradicted_edges(sources)
     first, last = set(), set()
     start, target = endpoint(field.subject), endpoint(field.subject_context)
     for row in sources:
         for span in sentence_spans(row["quote"], row["offset_start"]):
             edge = causal_edge(span[2]) if span else None
-            if not edge:
+            if not edge or edge in denied:
                 continue
             a, b = edge
             if a == start and b not in {start, target} and not AMBIGUOUS.search(b):
@@ -105,6 +129,7 @@ def input_starts(field, claims, sources, edges):
 
 def causal_premises(field, claims, sources, *, max_hops=2):
     edges = []
+    denied = contradicted_edges(sources.values()) if max_hops == 3 else set()
     original = {
         (eid, span[2]) for eid, row in sources.items()
         for span in sentence_spans(row["quote"], int(row["locator"].rsplit(":", 1)[1].split("-")[0]))
@@ -115,7 +140,7 @@ def causal_premises(field, claims, sources, *, max_hops=2):
                 or not any((eid, c.statement) in original for eid in c.evidence_ids)):
             continue
         edge = causal_edge(c.statement)
-        if edge:
+        if edge and edge not in denied:
             edges.append((*edge, c))
     first = (input_starts(field, claims, sources, edges) if field.facet == "input_path"
              else [(a, b, c, []) for a, b, c in edges if a == endpoint(field.subject) and a != b])
