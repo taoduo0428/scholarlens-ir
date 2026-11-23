@@ -53,6 +53,9 @@ jobs:
             backend/tests/research/test_program_release.py backend/tests/research/test_governance_view.py \
             backend/tests/research/test_quantitative_evidence.py backend/tests/research/test_account_erasure.py backend/tests/research/test_offline_verifier.py \
             backend/tests/test_trusted_model_proxy.py backend/tests/research/test_live_research_acceptance.py
+      - name: Research scorecard
+        run: |
+          python -m pytest -q backend/tests/research/test_eval_p1.py -k pra_scorecard
       - name: Frontend checks
         working-directory: frontend
         run: |

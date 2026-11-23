@@ -139,3 +139,23 @@ def test_qasper_counts_complete_reference_sentences_at_the_located_occurrence(st
     row["quote_hash"] = "0" * 64
     with pytest.raises(ValueError, match="retained source mismatch"):
         score(report, doc, [annotated])
+
+
+def test_pra_scorecard_rebuilds_pinned_results_and_rejects_mismatched_cohort(tmp_path):
+    from pathlib import Path
+
+    from tools.research_eval.pra_scorecard import build
+
+    records = Path(__file__).resolve().parents[3] / "docs" / "agent-v8"
+    scorecard = build(records)
+    assert scorecard == json.loads((records / "PRA_SCORECARD.json").read_bytes())
+    assert scorecard["silver_single_ai_review"]["G"]["full_original_task"]["count"] == 0
+    assert scorecard["silver_single_ai_review"]["G"]["any_direct"]["count"] == 20
+    assert scorecard["default_policy_gate"]["status"] == "keep_current"
+    batch_a, batch_b = json.loads((records / "qasper-same-case-reruns.json").read_bytes())
+    a, b = tmp_path / "a.json", tmp_path / "b.json"
+    batch_a[0]["question"] = "other-cohort"
+    a.write_text(json.dumps(batch_a), encoding="utf-8")
+    b.write_text(json.dumps(batch_b), encoding="utf-8")
+    with pytest.raises(ValueError, match="differs from its blind cohort"):
+        build(records, [a, b])
