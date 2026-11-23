@@ -180,3 +180,23 @@ def test_qasper_manifest_rejects_relabeling_of_public_annotations():
     ]}]}}
     with pytest.raises(ValueError, match="disagrees with published annotations"):
         frozen_cases(dataset, [{"paper": "p", "question": "q", "unanswerable": True}])
+
+
+def test_pra_scorecard_rejects_new_false_answer_even_when_total_is_unchanged(tmp_path):
+    from pathlib import Path
+    from shutil import copytree
+
+    from tools.research_eval.pra_scorecard import build
+
+    records = Path(__file__).resolve().parents[3] / "docs" / "agent-v8"
+    copytree(records, tmp_path / "records")
+    candidate = tmp_path / "records" / "qasper-acceptance.json"
+    acceptance = json.loads(candidate.read_bytes())
+    a, g = ([r for r in acceptance["results"][arm] if r["unanswerable"]] for arm in ("A", "G"))
+    a[0]["direct"] = 1
+    g[1]["direct"] = 1
+    candidate.write_text(json.dumps(acceptance), encoding="utf8")
+    report = build(candidate.parent)
+    negatives = report["paired_changes"]["fresh_qasper_negative_direct"]
+    assert negatives == {"gained": [g[1]["question"]], "lost": [a[0]["question"]], "retained": 0}
+    assert "qasper_negative_regression" in report["default_policy_gate"]["reasons"]
