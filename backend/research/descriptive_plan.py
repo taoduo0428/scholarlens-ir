@@ -54,6 +54,41 @@ def argument_frames(subject):
     return [[*obj, action], [action, "of", *obj]]
 
 
+def constraint_representation(subject, field_id, claims, sources):
+    """Bind a representation to a constraints question using its adjacent qualifier."""
+    from backend.research.claim_verifier import (
+        CONSTRAINT_CONTEXT, contextual_fact_pairs, new_claim, verify_claim,
+    )
+    from backend.research.evidence_graph import publication_quote
+    from backend.research.profile_frames import CLAUSE, REPRESENT
+    from backend.research.research_profile import FUTURE, HYP, MAY, NEGATED, PRIOR, attribution
+
+    tokens = words(subject)
+    if not 3 <= len(tokens) <= 6 or tokens[-1] != "constraint":
+        return []
+    topic = set(tokens[:-1])
+    eligible = {(eid, c.statement) for c in claims for eid in c.evidence_ids}
+    results = []
+    for eid, row in sources.items():
+        if not topic <= set(words(row.get("paper_title") or "")):
+            continue
+        for first, qualifier, text in contextual_fact_pairs(
+            publication_quote(row), reference=CONSTRAINT_CONTEXT
+        ):
+            if (eid, first) not in eligible or not REPRESENT.match(first) or not topic <= set(words(first)):
+                continue
+            if attribution(first)[0] != "authors" or CLAUSE.search(first):
+                continue
+            # Additive “not only” enumerates covered conditions, it is not a denial.
+            additive_context = re.sub(r"\bnot only\b", "", qualifier, flags=re.I)
+            if any(rx.search(additive_context) for rx in (FUTURE, HYP, MAY, PRIOR, NEGATED)):
+                continue
+            claim = verify_claim(new_claim(field_id, text, "fact", [row]), sources)
+            if claim.support_status == "verified":
+                results.append(claim)
+    return results
+
+
 def anchored(subject, claim, sources, *, frames=False):
     """Allow an explicit topic in the claim or paper title, never the permitted list alone."""
     tokenized = words(subject)

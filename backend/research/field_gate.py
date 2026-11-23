@@ -218,6 +218,10 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             from backend.research.subject_facts import witnesses
             proof = witnesses(field, valid, sources, study_context=state.pra_arm in {"B", "G"}) if field.subject else []
             return proof, "insufficient_evidence"
+        scoped_representation = []
+        if field.subject and field.facet == "representation" and state.pra_arm == "G":
+            from backend.research.descriptive_plan import constraint_representation
+            scoped_representation = constraint_representation(field.subject, field.question_id, valid, sources)
         if field.subject:
             from backend.research.descriptive_plan import anchored
             valid = [c for c in valid if anchored(field.subject, c, sources, frames=state.pra_arm in {"B", "G"})]
@@ -249,7 +253,7 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
                             for v in p.fields.get("representations", ()) if v.origin == "authors"}
                 hits.extend(c for c in valid if c not in hits and len(c.paper_ids) == 1 and any(
                     (c.paper_ids[0], eid, c.statement) in anchored for eid in c.evidence_ids))
-            return hits, "insufficient_evidence"
+            return hits + scoped_representation, "insufficient_evidence"
         if profile_index is not None:
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
             if field.facet in PROFILE_FACETS:
@@ -472,6 +476,13 @@ def evaluate_with_profiles(state, sources, suggestions=None, warnings=()):
             spans = {(capable[i]["paper_id"], capable[i]["quote_hash"]) for i in ids}
             conflict, _ = compare_premises(proposals, capable)
             conflict_ids = {i for item in conflict for i in item["claim_ids"]}
+            if conflict_ids and f.facet == "representation":
+                # A contextual quote cannot supersede a conflict in either component.
+                opposing = [c for c in proposals if c.claim_id in conflict_ids]
+                conflict_ids.update(c.claim_id for c in proof
+                                    if "exact_adjacent_representation_context" in c.check_notes
+                                    and any(p.statement in c.statement and set(p.evidence_ids) & set(c.evidence_ids)
+                                            for p in opposing))
             # Different asserted values for the same explicit attribute require review,
             # even without lexical negation markers.
             values = {c.statement.casefold().strip() for c in proof}
