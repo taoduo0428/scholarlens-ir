@@ -245,13 +245,19 @@ def generate_report(state, store, registry, *, semantic=None):
         from backend.research.workspace_proof import publish
         from backend.research.accounting import spending
 
-        from backend.research.workspace_model import publication_suggestions
-        proposals, order = publication_suggestions(store,state,report,verified,semantic)
+        from backend.research.workspace_model import publication_suggestions, synthesis_order
+        proposals, reviewable = publication_suggestions(store, state, verified, semantic)
+        if state.field_requirements:
+            from backend.research.field_gate import evaluate_with_profiles
+            evaluation = evaluate_with_profiles(state, verified, proposals, warnings)
+            if state.pra_arm == "G" and state.retrieval_policy == "E11":
+                reviewable = list(evaluation[1].values())
+        order = synthesis_order(store, state, reviewable, semantic)
         if registry is not None and state.budget.deadline and state.budget.deadline <= datetime.now(timezone.utc):
             raise ToolError("tool_timeout")
         if state.field_requirements:
             from backend.research.field_publication import publish_fields
-            publish_fields(state,report,verified,proposals,order,warnings)
+            publish_fields(state, report, verified, evaluation, order, warnings)
         else:
             publish(state, report, verified, proposals, order)
         report["answer_contract"] = state.answer_contract.model_dump()

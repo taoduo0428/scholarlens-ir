@@ -139,7 +139,7 @@ def review_excerpt(quote, statement, limit=560):
     return quote[start:start + limit]
 
 
-def publication_suggestions(store, state, report, sources, callback):
+def publication_suggestions(store, state, sources, callback):
     claims = {c.claim_id: c for c in state.claims}
     if callback and state.retrieval_policy in {"E10", "E11"} and state.task.mode == "personal_model":
         # Supply already scope-checked field facts to both advisory model stages.
@@ -232,7 +232,11 @@ def publication_suggestions(store, state, report, sources, callback):
                 and label.support_span in c.statement
             ):
                 valid[label.claim_id] = label.answer_relation
-    items = [{"id": c.claim_id, "text": c.statement} for c in reviewable[:12]]
+    return valid, reviewable
+
+
+def synthesis_order(store, state, claims, callback):
+    items = [{"id": c.claim_id, "text": c.statement} for c in claims[:12]]
     layout = (
         semantic_call(
             store,
@@ -244,9 +248,8 @@ def publication_suggestions(store, state, report, sources, callback):
                 "items": items,
             },
         )
-        if claims
+        if items
         else None
     )
     shown_ids = {item["id"] for item in items}
-    order = list(dict.fromkeys(i for i in layout.ordered_claim_ids if i in shown_ids)) if layout else []
-    return valid, order
+    return list(dict.fromkeys(i for i in layout.ordered_claim_ids if i in shown_ids)) if layout else []

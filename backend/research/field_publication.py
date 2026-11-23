@@ -1,10 +1,7 @@
 """Project externally rechecked per-field decisions into the existing report."""
 
-from backend.research.field_gate import evaluate_with_profiles
-
-
-def publish_fields(state, report, sources, suggestions, ordering, warnings):
-    gate, accepted, index = evaluate_with_profiles(state, sources, suggestions, warnings)
+def publish_fields(state, report, sources, evaluation, ordering, warnings):
+    gate, accepted, index = evaluation
     all_claims = {c.claim_id: c for c in state.claims}
     all_claims.update(accepted)
     if state.retrieval_policy in {"E9.1", "E10", "E11"}:

@@ -36,7 +36,8 @@ def test_review_uses_actual_visible_claim_and_evidence_pairs(monkeypatch):
         return model.Review(labels=labels)
 
     monkeypatch.setattr(model, "semantic_call", stage)
-    labels, order = model.publication_suggestions(None, state, None, sources, object())
+    labels, reviewable = model.publication_suggestions(None, state, sources, object())
+    order = model.synthesis_order(None, state, reviewable, object())
     assert labels == {"0": "responsive"}
     assert order == ["1"]
 
