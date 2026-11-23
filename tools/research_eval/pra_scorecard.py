@@ -171,6 +171,7 @@ def build(root, reruns=None):
         return row["paper"], row["question"], row["unanswerable"]
     acceptance_cases = [identity(r) for r in acceptance["manifest"]]
     prior_papers = {r["paper"] for batch in batches for r in batch["cases"]}
+    prior_papers.update(acceptance["excluded_papers"])
     if prior_papers.intersection(pid for pid, _, _ in acceptance_cases):
         raise ValueError("QASPER acceptance papers overlap historical cohorts")
     external["independent_acceptance"] = {}

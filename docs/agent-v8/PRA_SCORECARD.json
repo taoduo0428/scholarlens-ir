@@ -467,26 +467,26 @@
         },
         "all_reference_spans": {
           "count": 1,
-          "total": 16,
+          "total": 17,
           "wilson95": [
-            0.0111,
-            0.2833
+            0.0105,
+            0.2698
           ]
         },
         "annotated_passage_read": {
-          "count": 16,
+          "count": 15,
           "total": 24,
           "wilson95": [
-            0.4671,
-            0.8203
+            0.4271,
+            0.7884
           ]
         },
         "all_reference_sentences_read": {
           "count": 6,
-          "total": 16,
+          "total": 17,
           "wilson95": [
-            0.1848,
-            0.6136
+            0.1731,
+            0.587
           ]
         },
         "negative_direct": {
@@ -510,26 +510,26 @@
         },
         "all_reference_spans": {
           "count": 1,
-          "total": 16,
+          "total": 17,
           "wilson95": [
-            0.0111,
-            0.2833
+            0.0105,
+            0.2698
           ]
         },
         "annotated_passage_read": {
-          "count": 16,
+          "count": 15,
           "total": 24,
           "wilson95": [
-            0.4671,
-            0.8203
+            0.4271,
+            0.7884
           ]
         },
         "all_reference_sentences_read": {
           "count": 6,
-          "total": 16,
+          "total": 17,
           "wilson95": [
-            0.1848,
-            0.6136
+            0.1731,
+            0.587
           ]
         },
         "negative_direct": {
