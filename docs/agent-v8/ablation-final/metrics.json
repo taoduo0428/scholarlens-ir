@@ -230,15 +230,15 @@
       "extraction": 3,
       "binding": 6
     },
-    "tools": 994,
-    "retrieval_calls": 294,
+    "tools": 990,
+    "retrieval_calls": 290,
     "source_readbacks": 700,
     "model_calls": 0,
     "input_tokens": 0,
     "output_tokens": 0,
     "failed_calls": 0,
-    "p50_ms": 849.73,
-    "p95_ms": 1611.14,
+    "p50_ms": 727.39,
+    "p95_ms": 1252.09,
     "direct_claims": 20,
     "filled_profile_field_cells": 648,
     "total_scope_papers_across_tasks": 834,
@@ -252,13 +252,13 @@
       "removed_claims": 0,
       "additional_model_calls": 0,
       "additional_retrieval_calls": 0,
-      "wall_seconds": 0.308,
+      "wall_seconds": 0.216,
       "scope": "independent deterministic provenance review; semantic judgement unmeasured",
-      "trace_manifest_sha256": "252b61f0e99ce5f9a43066cacc5369e31f597dbcbc566e36c337063b8adea19b",
+      "trace_manifest_sha256": "4a309520fb26175b09cd3bfc780231afd703a175ac5d6ee8ad634bd7438a6821",
       "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
       "shared_spending": {
-        "tools": 994,
-        "retrieval_calls": 294,
+        "tools": 990,
+        "retrieval_calls": 290,
         "source_readbacks": 700,
         "model_calls": 0,
         "input_tokens": 0,
@@ -267,7 +267,7 @@
       }
     },
     "false_refusals_positive": 55,
-    "case_file_sha256": "06e3a0c1ce252569e98ef26e7776663138a6988a640d85504b1a9b79216a2b38"
+    "case_file_sha256": "a0744b86bf825b0e6e7d425122bd1f2dd298b5a78b7bc67599a09fd292dad6ab"
   },
   "F": {
     "labels_sha256": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
@@ -338,15 +338,15 @@
       "extraction": 3,
       "binding": 6
     },
-    "tools": 994,
-    "retrieval_calls": 294,
+    "tools": 990,
+    "retrieval_calls": 290,
     "source_readbacks": 700,
     "model_calls": 0,
     "input_tokens": 0,
     "output_tokens": 0,
     "failed_calls": 0,
-    "p50_ms": 837.82,
-    "p95_ms": 1688.87,
+    "p50_ms": 757.42,
+    "p95_ms": 1333.73,
     "direct_claims": 24,
     "filled_profile_field_cells": 734,
     "total_scope_papers_across_tasks": 834,
@@ -360,13 +360,13 @@
       "removed_claims": 0,
       "additional_model_calls": 0,
       "additional_retrieval_calls": 0,
-      "wall_seconds": 0.15,
+      "wall_seconds": 0.252,
       "scope": "independent deterministic provenance review; semantic judgement unmeasured",
-      "trace_manifest_sha256": "fb6e245426b8895ea5d5e571bd992d5a2d3641361c6394aca96dae49fb9cd22d",
+      "trace_manifest_sha256": "9d809282a3736f5e031a9d6e4149329952e425c0f3103e45b505a416736709eb",
       "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
       "shared_spending": {
-        "tools": 994,
-        "retrieval_calls": 294,
+        "tools": 990,
+        "retrieval_calls": 290,
         "source_readbacks": 700,
         "model_calls": 0,
         "input_tokens": 0,
@@ -375,6 +375,6 @@
       }
     },
     "false_refusals_positive": 53,
-    "case_file_sha256": "c3fc0a6802d0213951eb21738f8daa54d14de886cbea3ff65d664d04818edf24"
+    "case_file_sha256": "4de25a29526d4610ca37652a1c5023494553abf179b13a87ea3dd928131a89b9"
   }
 }

@@ -60,8 +60,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", required=True, type=Path)
     parser.add_argument("--out", required=True, type=Path)
+    parser.add_argument("--candidate", default="G4", help="candidate experiment directory")
     args = parser.parse_args()
     with args.out.open("x", encoding="utf8") as stream:
-        json.dump({arm: review(args.root/folder/"diagnostic/E11") for arm, folder in [("A","A"),("G","G2")]},
+        json.dump({arm: review(args.root/folder/"diagnostic/E11") for arm, folder in [("A","A"),("G",args.candidate)]},
                   stream, ensure_ascii=False, indent=1)
         stream.write("\n")

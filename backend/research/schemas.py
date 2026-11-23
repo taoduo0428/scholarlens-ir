@@ -137,6 +137,7 @@ class Query(Contract):
     mode: SearchMode
     attempted: bool
     result_summary: Summary
+    exhausted_search: Digest | None = Field(default=None, exclude_if=lambda value: value is None)
 
 
 class EvidenceRef(Contract):

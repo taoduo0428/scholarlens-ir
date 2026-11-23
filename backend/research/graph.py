@@ -418,6 +418,9 @@ class ResearchGraph:
         # Initial discovery keeps ordinary relevance ranking. Later rounds fill explicit source gaps.
         targets = _uncovered_papers(state) if state.queries else []
         budget.rounds_used += 1
+        search_key = None
+        returned_passages = []
+        repeated_search = False
         try:
             registry = self._get_registry(state)
             action = self._action(state, slot, sub)
@@ -561,28 +564,25 @@ class ResearchGraph:
                             continue
                         rows.extend(found)
                 else:
-                    rows = (
-                        self._tool(
-                            state,
-                            registry,
-                            "search_passages",
-                            {
-                                "query": query,
-                                "strategy": strategy,
-                                "paper_ids": ids,
-                                "slot": slot,
-                                "limit": 12 if state.retrieval_policy in {"E10", "E11"} and directed and (profile_read or state.answer_contract.answer_type == "overview")
-                                else min(20, 3 * limit) if broad else limit,
-                                **({"abstract_profile": True} if directed and state.retrieval_policy in {"E10", "E11"}
-                                    and (profile_read or state.answer_contract.answer_type == "overview")
-                                   else {"abstract_opening": True} if directed else {}),
-                                **({"focus": focus} if focus and not directed else {}),
-                                **filters,
-                            },
-                        )["passages"]
-                        if ids
-                        else []
-                    )
+                    search_args = {
+                        "query": query,
+                        "strategy": strategy,
+                        "paper_ids": ids,
+                        "slot": slot,
+                        "limit": 12 if state.retrieval_policy in {"E10", "E11"} and directed and (profile_read or state.answer_contract.answer_type == "overview")
+                        else min(20, 3 * limit) if broad else limit,
+                        **({"abstract_profile": True} if directed and state.retrieval_policy in {"E10", "E11"}
+                            and (profile_read or state.answer_contract.answer_type == "overview")
+                           else {"abstract_opening": True} if directed else {}),
+                        **({"focus": focus} if focus and not directed else {}),
+                        **filters,
+                    }
+                    if ids and state.pra_arm in {"E", "G"} and not state.task.scope.include_own_uploads:
+                        search_key = digest(canonical([state.corpus_generation, sub.id, search_args]))
+                        repeated_search = bool(state.queries and state.queries[-1].exhausted_search == search_key)
+                    rows = self._tool(state, registry, "search_passages", search_args)["passages"] if ids and not repeated_search else []
+                    if search_key:
+                        returned_passages = [(r["evidence_id"], r["quote_hash"]) for r in rows]
             if state.answer_contract and len(state.subtasks) == 1 and state.answer_contract.answer_type == "quoted_text":
                 from backend.research.workspace_proof import opening
                 rows = sorted(rows, key=lambda r: not opening(r, state.task.scope.paper_ids))
@@ -622,13 +622,20 @@ class ResearchGraph:
                 ):
                     self._record_evidence(state, registry, row)
             gained = len(state.evidence_refs) - old_count
+            if search_key and not repeated_search:
+                owned = set(state.question_reads.get(sub.id, []))
+                verified = {(r.evidence_id, r.quote_hash) for r in state.evidence_refs if r.evidence_id in owned}
+                if not returned_passages or not verified.issuperset(returned_passages):
+                    search_key = None
             state.queries.append(
                 Query(
                     subtask_id=sub.id,
                     query=query,
                     mode=strategy,
-                    attempted=True,
-                    result_summary=f"{len(ids)} papers, {gained} new verified passages",
+                    attempted=not repeated_search,
+                    result_summary=("previously verified passages, 0 new verified passages" if repeated_search
+                                    else f"{len(ids)} papers, {gained} new verified passages"),
+                    exhausted_search=search_key,
                 )
             )
         except (Halt, ToolError, ProviderError) as exc:
