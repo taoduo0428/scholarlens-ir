@@ -238,6 +238,28 @@ def test_overview_recovers_attributed_body_when_abstract_is_unavailable(tmp_path
     assert not next(s for s in report["compiled_answer"] if s["section"] == "synthesis")["items"]
 
 
+def test_missing_overview_role_places_body_candidate_after_both_abstracts():
+    from backend.research.schemas import Scope
+    from backend.research.tools import LocalCorpus, ToolRegistry
+
+    text = "We used line intercept sampling to measure canopy cover."
+    corpus = LocalCorpus([
+        {"paper_id": "a", "title": "Survey", "abstract": "Background observations. " * 65, "fulltext": text},
+        {"paper_id": "b", "title": "Trials", "abstract": "We found that measured cover increased.",
+         "fulltext": "We examined a completely different site."},
+    ], "test:v8:body-priority")
+    scope = Scope(paper_ids=["a", "b"])
+    registry = ToolRegistry(corpus, owner_id=1, scope=scope, generation=corpus.generation)
+    passages = registry.call("search_passages", {
+        "query": "summarize the methods and findings", "paper_ids": scope.paper_ids,
+        "abstract_profile": True, "profile_body_fallback": True, "limit": 3,
+    })["passages"]
+    assert [(row["paper_id"], row["field"]) for row in passages] == [
+        ("a", "abstract"), ("b", "abstract"), ("a", "fulltext"),
+    ]
+    assert passages[-1]["quote"] == text
+
+
 def test_object_words_and_requested_analysis_have_separate_roles():
     from backend.research.descriptive_plan import anchored
     from backend.research.research_intent import research_intent

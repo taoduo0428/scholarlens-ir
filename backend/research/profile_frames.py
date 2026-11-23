@@ -21,9 +21,12 @@ BODY_FINDING = re.compile(
 BODY_CONTEXT = re.compile(
     r"\b(?:not|never|if|unless|should|could|may|might|would|seems?|several years ago|earlier|previous\w*|prior|"
     r"demonstration purposes|the desired|the above|given above|the following|from (?:this|that) it|"
-    r"by going back|those results|both model types|for this purpose)\b|如果|不确定|可能|先前|以往|上述", re.I)
+    r"by going back|those results|both model types|for this purpose|this class of)\b|如果|不确定|可能|先前|以往|上述", re.I)
 BODY_ABBREVIATION = re.compile(
-    r"(?:\b(?:Fig|Figs|cf|e\.g|i\.e|et al|Sec|Ref|Eq)|\d[ -]?(?:in|ft))\.$", re.I)
+    r"(?:(?i:\b(?:Fig|Figs|cf|e\.g|i\.e|et al|Sec|Ref|Eq)|\d[ -]?(?:in|ft))|\b[A-Z])\.$")
+BODY_UNSPECIFIED_METHOD = re.compile(
+    r"^We (?:also )?(?:evaluate[ds]?|test(?:ed)?) our (?:model|method|framework|approach) "
+    r"on (?:several|different|various|multiple) (?:data ?sets|benchmarks)\.$", re.I)
 
 
 def body_profile_supports(statement, facet):
@@ -36,6 +39,8 @@ def body_profile_supports(statement, facet):
         return False
     origin, roles = attribution(statement)
     if origin != "authors" or not (roles & BODY_ROLES[facet]):
+        return False
+    if facet == "method" and BODY_UNSPECIFIED_METHOD.fullmatch(statement):
         return False
     return (facet == "topic" or
             bool((BODY_METHOD if facet == "method" else BODY_FINDING).match(statement)))
@@ -53,6 +58,15 @@ def body_profile_score(text, offset):
             if origin == "authors":
                 roles.append(fields & available)
     return len(set().union(*roles)), sum(bool(group) for group in roles)
+
+
+def body_gap_score(text, offset, gaps):
+    """Count self-contained statements bearing directly on the missing roles."""
+    from backend.research.research_profile import sentence_spans
+
+    statements = [span[2] for span in sentence_spans(text, offset) if span]
+    counts = [sum(body_profile_supports(statement, facet) for statement in statements) for facet in gaps]
+    return sum(bool(n) for n in counts), sum(counts)
 
 
 METRIC_NAMES_QUESTION = re.compile(

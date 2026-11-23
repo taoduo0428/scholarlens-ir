@@ -200,19 +200,38 @@ class ToolRegistry:
 
             by_paper = {}
             body_fallback = {}
+            abstract_roles = {}
             for doc, row in rows.values():
                 if row["field"] == "abstract":
                     facets = [fields for span in sentence_spans(row["text"], row["offset_start"]) if span
                               for origin, fields in [attribution(span[2])] if origin == "authors"]
                     score = (len(set().union(*facets)), sum(bool(f) for f in facets))
                     by_paper.setdefault(doc["paper_id"], []).append((score, row["offset_start"], doc, row))
-                elif req.profile_body_fallback and row["field"] == "fulltext" and not doc.get("abstract", "").strip():
+                    if req.profile_body_fallback:
+                        abstract_roles.setdefault(doc["paper_id"], set()).update(*facets)
+                elif req.profile_body_fallback and row["field"] == "fulltext":
                     body_fallback.setdefault(doc["paper_id"], []).append((doc, row))
+            for windows in by_paper.values():
+                windows.sort(key=lambda w: (-w[0][0], -w[0][1], w[1]))
             if body_fallback:
-                from backend.research.profile_frames import body_profile_score
+                from backend.research.profile_frames import BODY_ROLES, body_gap_score, body_profile_score
 
                 for pid, windows in body_fallback.items():
                     windows = windows[:256]
+                    if pid in by_paper:
+                        abstracts = by_paper[pid]
+                        if len(req.paper_ids) not in range(2, 5) or len(abstracts) < 2:
+                            continue
+                        gaps = [facet for facet in ("method", "finding")
+                                if not BODY_ROLES[facet] & abstract_roles[pid]]
+                        if not gaps:
+                            continue
+                        scores = [(body_gap_score(row["text"], row["offset_start"], gaps), row["offset_start"], doc, row)
+                                  for doc, row in windows]
+                        best = min(scores, key=lambda w: (-w[0][0], -w[0][1], w[1]))
+                        if best[0][0]:
+                            abstracts.insert(1, best)
+                        continue
                     lexical = bm25(query, [(row["chunk_id"], tokens(row["text"])) for _, row in windows])
                     ranks = {cid: i for i, cid in enumerate(lexical)}
                     scored = []
@@ -221,10 +240,9 @@ class ToolRegistry:
                         if score[0]:
                             scored.append((score, row["offset_start"], doc, row))
                     scored.sort(key=lambda w: (-w[0][0], -w[0][1], ranks.get(w[3]["chunk_id"], len(ranks)), w[1]))
-                    if scored and pid not in by_paper:
+                    if scored:
                         by_paper[pid] = scored[:4]
-            lists = [windows if windows[0][3]["field"] == "fulltext" else
-                     sorted(windows, key=lambda w: (-w[0][0], -w[0][1], w[1])) for windows in by_paper.values()]
+            lists = list(by_paper.values())
             ranked = [group[i] for i in range(max(map(len, lists), default=0))
                       for group in lists if i < len(group)]
             return {"passages": [passage(doc, row, self.generation) for _, _, doc, row in ranked[:req.limit]]}
