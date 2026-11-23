@@ -17,6 +17,7 @@ def compile_answer(report):
     background = set(report.get("answer_groups", {}).get("background", []))
     fields = {f["field_id"]: f for req in report["field_requirements"] for f in req["fields"]}
     seen = set()
+    comparisons = {}
     for fid, d in gate.items():
         f = fields[fid]
         if d["status"] != "answerable":
@@ -25,6 +26,11 @@ def compile_answer(report):
         for b in d["bindings"]:
             cid, eid = b["claim_id"], b["evidence_id"]
             claim, source = claims.get(cid), sources.get(eid)
+            if (cid in direct and claim and claim.get("claim_type") == "comparison"
+                    and source and b["verification_status"] == "verified"
+                    and b["source_version"] == source["corpus_generation"] and eid in claim["evidence_ids"]):
+                comparisons.setdefault((fid, cid), set()).add(eid)
+                continue
             if ((cid not in direct and cid not in background) or not claim or not source
                     or b["verification_status"] != "verified"
                     or eid not in claim["evidence_ids"] or claim["paper_ids"] != [source["paper_id"]]
@@ -46,6 +52,29 @@ def compile_answer(report):
                 sections["references"].append({"kind": "reference", "text": source["paper_title"] + " · " + source["locator"],
                                                "evidence_ids": [eid], "paper_ids": claim["paper_ids"]})
     sections["summary"] = [item for item in sections["papers"] if item["kind"] == "source"][:3]
+    if comparisons:
+        from backend.research.schemas import Claim
+        from backend.research.synthesis import judge
+
+        premise_ids = {cid for item in sections["papers"] for cid in item["claim_ids"]}
+        premises = [Claim.model_validate(claims[cid]) for cid in sorted(premise_ids)
+                    if claims[cid].get("claim_type") == "metric"]
+        displayed = set()
+        for (fid, cid), evidence in comparisons.items():
+            claim = Claim.model_validate(claims[cid])
+            field = fields[fid]
+            if (cid in displayed or field.get("operation") != "compare"
+                    or evidence != set(claim.evidence_ids)
+                    or not set(field["paper_ids"]) <= set(claim.paper_ids)
+                    or judge(claim, premises, sources, field["request"])["comparison_status"] != "comparable"):
+                continue
+            item = {"kind": "derived", "text": claim.statement, "field_id": fid, "claim_ids": [cid],
+                    "evidence_ids": claim.evidence_ids, "paper_ids": claim.paper_ids}
+            displayed.add(cid)
+            sections["relations"].append(item)
+            sections["synthesis"].append(item)
+            if len(sections["summary"]) < 3:
+                sections["summary"].append(item)
     for row in report.get("overview", {}).get("findings", []) + report.get("method_relations", []):
         if row["level"] != "derived_synthesis" or not row["premise_claim_ids"]:
             continue

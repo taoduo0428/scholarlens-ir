@@ -31,6 +31,13 @@ from backend.research.workspace_relations import attribute, joined_support
 from types import SimpleNamespace
 
 
+TWO_PAPER_METRIC = re.compile(
+    rf"(?:which (?:paper|study|method|model) (?:reports|reported|has|had) the (?:highest|lowest|higher|lower)"
+    rf"|compare the reported) ({METRIC})(?: of (?:the|these) two (?:papers|studies|methods|models))?[?.]?",
+    re.I,
+)
+
+
 def capability(row, state):
     ref = next((r for r in state.evidence_refs if r.evidence_id == row["evidence_id"]), None)
     if not ref or any(
@@ -159,6 +166,24 @@ def matches(field, claim, row, state, suggestions):
 
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
+    # A source-bound measurement with complete conditions is itself a reported finding.
+    # Apply this only to an explicit metric comparison between two selected papers.
+    comparison_metric = None
+    if (state.pra_arm == "G" and state.answer_contract.answer_type == "aligned_comparison"
+            and len(state.task.scope.paper_ids) == 2
+            and not state.task.constraints
+            and field.facet in {"finding", "metric", "conditions", "comparison"}):
+        match = TWO_PAPER_METRIC.fullmatch(state.answer_contract.goal.strip())
+        if match:
+            comparison_metric = match[1].casefold()
+    if comparison_metric:
+        from backend.research.research_profile import NEGATED, attribution
+        valid = [c for c in valid if c.claim_type == "metric"
+                 and (c.conditions.metric_name or "").casefold() == comparison_metric
+                 and c.conditions.unit and measurement_key(c.conditions)
+                 and not NEGATED.search(c.statement) and attribution(c.statement)[0] == "authors"]
+        if field.facet == "finding":
+            return valid, "insufficient_evidence"
     if (state.pra_arm == "G" and field.operation == "attribute" and len(field.paper_ids) == 1
             and field.facet is None and field.datatype == "text"):
         from backend.research.profile_frames import METRIC_NAMES_QUESTION, states_metric_use
@@ -283,6 +308,14 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             measures = [c for c in measures if c.conditions.metric_name.casefold() in requested]
         if field.operation == "condition":
             return measures, "insufficient_evidence"
+        if comparison_metric:
+            # This question does not select an experiment. Accept a unique
+            # reported measurement per paper, including repeated identical reports.
+            measured = {(c.paper_ids[0], measurement_key(c.conditions), c.conditions.metric_value): c
+                        for c in measures if len(c.paper_ids) == 1}
+            if len(measured) != 2 or {key[0] for key in measured} != set(state.task.scope.paper_ids):
+                return [], "not_comparable"
+            measures = list(measured.values())
         for a, b in combinations(measures, 2):
             if not set(a.paper_ids).isdisjoint(b.paper_ids):
                 continue

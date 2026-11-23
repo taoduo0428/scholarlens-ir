@@ -260,6 +260,37 @@ def test_missing_overview_role_places_body_candidate_after_both_abstracts():
     assert passages[-1]["quote"] == text
 
 
+@pytest.mark.parametrize(("dataset", "other_result", "answerable"), [
+    ("East", "", True),
+    ("West", "", False),
+    ("East", " Our chamber accuracy was 70% on dataset: East, setup: bench, protocol: blind.", False),
+])
+def test_author_measurements_support_a_comparison_only_when_aligned_and_unique(
+        tmp_path, dataset, other_result, answerable):
+    docs = {
+        "a": {"paper_id": "a", "title": "First chamber", "abstract":
+              "Our chamber accuracy was 73% on dataset: East, setup: bench, protocol: blind." + other_result},
+        "b": {"paper_id": "b", "title": "Second chamber", "abstract":
+              f"Our chamber accuracy was 87% on dataset: {dataset}, setup: bench, protocol: blind."},
+    }
+    report = execute("Which model has the highest accuracy?", list(docs), docs,
+                     "test:v8:metric-premises", tmp_path, "E11", pra_arm="G")["report"]
+    direct = [c for c in report["claims"] if c["claim_id"] in report["sections"]["verified"]]
+    assert bool(direct) is answerable
+    if answerable:
+        assert report["status"] == "completed"
+        assert len(direct) == 1 and direct[0]["claim_type"] == "comparison"
+        assert set(direct[0]["paper_ids"]) == set(docs) and len(direct[0]["evidence_ids"]) == 2
+        compiled = {s["section"]: s["items"] for s in report["compiled_answer"]}
+        assert compiled["synthesis"][0]["claim_ids"] == [direct[0]["claim_id"]]
+        assert compiled["synthesis"][0]["evidence_ids"] == direct[0]["evidence_ids"]
+        direct[0]["statement"] = "The first model wins on every test."
+        rebuilt = {s["section"]: s["items"] for s in compile_answer(report)}
+        assert not rebuilt["synthesis"]
+    else:
+        assert not next(s for s in report["compiled_answer"] if s["section"] == "synthesis")["items"]
+
+
 def test_overview_prioritizes_a_source_stated_open_question(tmp_path):
     limitation = "In future work, we plan to test whether the estimator generalizes to coastal sites."
     docs = {
