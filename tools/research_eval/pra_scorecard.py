@@ -110,10 +110,38 @@ def qasper_cases(rows):
     }
 
 
+def paired_hits(baseline, candidate):
+    """List changed cases even when wins and losses cancel in aggregate."""
+    return {
+        "gained": sorted(candidate - baseline),
+        "lost": sorted(baseline - candidate),
+        "retained": len(baseline & candidate),
+    }
+
+
+def paired_requirements(baseline, candidate):
+    before = keyed(baseline["rows"], "id")
+    after = keyed(candidate["rows"], "id")
+    if before.keys() != after.keys():
+        raise ValueError("Unpaired original requirement review")
+    changes = []
+    for task, row in sorted(before.items()):
+        for ordinal, (old, new) in enumerate(zip(
+            row["requirements"], after[task]["requirements"], strict=True
+        ), 1):
+            if old["requirement"] != new["requirement"]:
+                raise ValueError(f"Original requirement changed for {task} field {ordinal}")
+            if old["assessment"] != new["assessment"]:
+                changes.append({"task": task, "ordinal": ordinal, "requirement": old["requirement"],
+                                "A": old["assessment"], "G": new["assessment"],
+                                "A_claims": old["claims"], "G_claims": new["claims"]})
+    return changes
+
+
 def build(root, reruns=None):
     review = read(root / "silver-field-review.json")
     ablation = read(root / "ablation-final/metrics.json")
-    scores, cohort = {}, None
+    scores, cohort, silver_rows = {}, None, {}
     for arm in ("A", "G"):
         raw = (root / "ablation-final" / f"{arm}.jsonl").read_bytes()
         metrics = ablation[arm]
@@ -124,6 +152,7 @@ def build(root, reruns=None):
         if len(rows) != 111 or (cohort is not None and signature != cohort):
             raise ValueError("Unpaired Silver cohort")
         cohort = signature
+        silver_rows[arm] = rows
         scores[arm] = silver(rows, review[arm])
         verification = metrics["independent_source_verification"]
         count = verification["reviewed_claims"]
@@ -180,15 +209,30 @@ def build(root, reruns=None):
         if [identity(row) for row in rows] != acceptance_cases:
             raise ValueError("Unpaired QASPER acceptance")
         external["independent_acceptance"][arm] = qasper_cases(rows)
+    def published(arm, expected_positive):
+        return {key for key, row in silver_rows[arm].items()
+                if (row["expected"] in POSITIVE) == expected_positive and row["direct_claims"]}
+
+    def external_hits(arm, negative):
+        return {row["question"] for row in acceptance["results"][arm]
+                if row["unanswerable"] == negative
+                and (row["direct"] if negative else row["all_spans_with_reference"])}
+
+    paired = {
+        "silver_any_direct": paired_hits(published("A", True), published("G", True)),
+        "silver_negative_direct": paired_hits(published("A", False), published("G", False)),
+        "silver_original_requirements_changed": paired_requirements(review["A"], review["G"]),
+        "fresh_qasper_reference_hits": paired_hits(external_hits("A", False), external_hits("G", False)),
+        "fresh_qasper_negative_direct": paired_hits(external_hits("A", True), external_hits("G", True)),
+    }
     failures = []
     if matched["G"]["full_group_synthesis"]["count"] <= matched["A"]["full_group_synthesis"]["count"]:
         failures.append("no_full_group_holdout_gain")
     if matched["G"]["source_failures"] or matched["G"]["unsupported_layout"]["count"]:
         failures.append("holdout_source_or_layout_failure")
-    if scores["G"]["negative_direct"]["count"] > scores["A"]["negative_direct"]["count"]:
+    if paired["silver_negative_direct"]["gained"]:
         failures.append("silver_negative_regression")
-    fresh = external["independent_acceptance"]
-    if (fresh["G"]["negative_direct"]["count"] > fresh["A"]["negative_direct"]["count"]
+    if (paired["fresh_qasper_negative_direct"]["gained"]
             or any(external[f"same_cases_rerun_{i}"]["negative_direct"]["count"] >
                    external[f"blind_batch_{i}"]["A"]["negative_direct"]["count"]
                    for i in range(1, len(batches) + 1))):
@@ -198,6 +242,7 @@ def build(root, reruns=None):
         "silver_single_ai_review": scores,
         "independent_fulltext_holdout": matched,
         "qasper_human_reference": external,
+        "paired_changes": paired,
         "holdout_manifest_sha256": seal,
         "qasper_archive_sha256": public["archive_sha256"],
         "unmeasured": ["claim_entailment_precision", "question_decomposition_accuracy",

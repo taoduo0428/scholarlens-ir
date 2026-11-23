@@ -544,6 +544,113 @@
       }
     }
   },
+  "paired_changes": {
+    "silver_any_direct": {
+      "gained": [
+        "review-04-comparison",
+        "review-06-comparison",
+        "review-07-fact",
+        "review-15-comparison",
+        "review-17-comparison"
+      ],
+      "lost": [],
+      "retained": 15
+    },
+    "silver_negative_direct": {
+      "gained": [],
+      "lost": [],
+      "retained": 0
+    },
+    "silver_original_requirements_changed": [
+      {
+        "task": "review-04-comparison",
+        "ordinal": 1,
+        "requirement": "XML \u6587\u6863\u7684\u5355\u4f4d\u3001\u7ec4\u7ec7\u53ca\u76ee\u6807",
+        "A": "absent",
+        "G": "partial",
+        "A_claims": [],
+        "G_claims": [
+          "c-5ffd59ce104aeafcddaa6ad6"
+        ]
+      },
+      {
+        "task": "review-06-comparison",
+        "ordinal": 1,
+        "requirement": "\u8d44\u6e90\u53d7\u9650\u9879\u76ee\u53ca\u641c\u7d22\u8868\u793a",
+        "A": "absent",
+        "G": "partial",
+        "A_claims": [],
+        "G_claims": [
+          "c-ea5ed8978e3d74b34415fc10"
+        ]
+      },
+      {
+        "task": "review-07-fact",
+        "ordinal": 1,
+        "requirement": "\u8d85\u50cf\u7d20\u5408\u5e76\u89e3\u51b3\u7684\u9009\u62e9\u95ee\u9898",
+        "A": "absent",
+        "G": "partial",
+        "A_claims": [],
+        "G_claims": [
+          "c-4d06d570cb8f6056f0a88d81"
+        ]
+      },
+      {
+        "task": "review-07-fact",
+        "ordinal": 2,
+        "requirement": "\u56fe\u50cf\u4e0e\u521d\u59cb\u533a\u57df",
+        "A": "absent",
+        "G": "full",
+        "A_claims": [],
+        "G_claims": [
+          "c-4d06d570cb8f6056f0a88d81"
+        ]
+      },
+      {
+        "task": "review-15-comparison",
+        "ordinal": 1,
+        "requirement": "\u8f68\u8ff9\u3001\u8def\u6bb5\u548c\u5171\u4eab\u5173\u7cfb",
+        "A": "absent",
+        "G": "partial",
+        "A_claims": [],
+        "G_claims": [
+          "c-3527b40c3d649b263620c752"
+        ]
+      },
+      {
+        "task": "review-17-comparison",
+        "ordinal": 1,
+        "requirement": "\u65f6\u5e8f\u8f93\u5165\u3001\u7ecf\u9009\u7279\u5f81\u4e0e\u5206\u7c7b",
+        "A": "absent",
+        "G": "partial",
+        "A_claims": [],
+        "G_claims": [
+          "c-72f944263331fdb5f0d56d8e"
+        ]
+      },
+      {
+        "task": "review-17-comparison",
+        "ordinal": 3,
+        "requirement": "\u5404\u81ea\u76ee\u6807",
+        "A": "absent",
+        "G": "partial",
+        "A_claims": [],
+        "G_claims": [
+          "c-72f944263331fdb5f0d56d8e"
+        ]
+      }
+    ],
+    "fresh_qasper_reference_hits": {
+      "gained": [],
+      "lost": [],
+      "retained": 1
+    },
+    "fresh_qasper_negative_direct": {
+      "gained": [],
+      "lost": [],
+      "retained": 0
+    }
+  },
   "holdout_manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
   "qasper_archive_sha256": "72a52a41193e2838b8074f80ac074b94f956b84886c36a61c58a7df4171bdd72",
   "unmeasured": [
