@@ -28,6 +28,12 @@ OPERATION = re.compile(
     r"(?:use[sd]?|employ(?:s|ed)?|adopt(?:s|ed)?|appl(?:y|ies|ied)) (?:a |an |the )?"
     rf"(?P<method>{TERM})(?=[.,;]| (?:to|for|in|on|with)\b)|"
     rf"^(?:我们|本文|本研究)(?:采用|使用)(?:了)?(?P<zh>{TERM})(?=来|用于|进行|研究|[，。])", re.I)
+AUTHOR_INSTRUMENT = re.compile(
+    rf"^using (?:an? |the )?(?P<method>{TERM}),? we "
+    r"(?:analy[sz]e[ds]?|comput(?:e|ed)|evaluat(?:e|ed)|examin(?:e|ed)|"
+    r"investigat(?:e|ed)|measur(?:e|ed)|simulat(?:e|ed)) [\w][^.;!?]{5,220}\.",
+    re.I,
+)
 RESTRICTION = re.compile(r"\b(?:only|baseline|illustrat\w*|examples?|previously|hypothetical|instead|whether|would|could|unlike|"
                          r"suppose|supposing|assum(?:e|ing)|if|unless)\b|如果|假如|此前", re.I)
 # Unregistered long names must have an author-supplied matching abbreviation. Never unify on initials alone.
@@ -47,6 +53,9 @@ def method_name(statement):
     match = OPERATION.match(statement)
     if match:
         return ALIASES[(match["method"] or match["zh"]).casefold()]
+    instrument = AUTHOR_INSTRUMENT.fullmatch(statement)
+    if instrument:
+        return ALIASES[instrument["method"].casefold()]
     proposed = DEFINED.match(statement)
     if not proposed:
         return None

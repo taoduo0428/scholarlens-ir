@@ -1,0 +1,111 @@
+{
+  "baseline_commit": "255bc0e",
+  "dataset": "existing ScholarLens corpus",
+  "task": "Compare the methods used in these papers.",
+  "sampling": "Development cases and source-withdrawal controls",
+  "cases": {
+    "positive": {
+      "before": {
+        "papers": [
+          "source-sha256:cabc0eb19e4855008b4103821ab44c903d901911aa1be4a37570f15b13fda192",
+          "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480"
+        ],
+        "relations": [],
+        "direct": [
+          "c-7c323f49b89fb5ca6ee1cd2e",
+          "c-8cc6e381cdc7747a33735395"
+        ],
+        "tools": 7
+      },
+      "after": {
+        "papers": [
+          "source-sha256:cabc0eb19e4855008b4103821ab44c903d901911aa1be4a37570f15b13fda192",
+          "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480"
+        ],
+        "relations": [
+          {
+            "scope": "full_group",
+            "kind": "shared_method",
+            "papers": [
+              "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480",
+              "source-sha256:cabc0eb19e4855008b4103821ab44c903d901911aa1be4a37570f15b13fda192"
+            ]
+          }
+        ],
+        "direct": [
+          "c-7c323f49b89fb5ca6ee1cd2e",
+          "c-48486ebb77a1a43fdf63b9c2",
+          "c-0c3277214ea407b49fba15b2"
+        ],
+        "tools": 7
+      }
+    },
+    "partial_scope": {
+      "before": {
+        "papers": [
+          "source-sha256:cabc0eb19e4855008b4103821ab44c903d901911aa1be4a37570f15b13fda192",
+          "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480",
+          "source-sha256:d4d8d73e3bbd0189ba122b966a43279b89a7d882b4646ef70c8bdb631ffb0a0a"
+        ],
+        "relations": [],
+        "direct": [
+          "c-7c323f49b89fb5ca6ee1cd2e",
+          "c-8cc6e381cdc7747a33735395"
+        ],
+        "tools": 9
+      },
+      "after": {
+        "papers": [
+          "source-sha256:cabc0eb19e4855008b4103821ab44c903d901911aa1be4a37570f15b13fda192",
+          "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480",
+          "source-sha256:d4d8d73e3bbd0189ba122b966a43279b89a7d882b4646ef70c8bdb631ffb0a0a"
+        ],
+        "relations": [
+          {
+            "scope": "subset",
+            "kind": "shared_method",
+            "papers": [
+              "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480",
+              "source-sha256:cabc0eb19e4855008b4103821ab44c903d901911aa1be4a37570f15b13fda192"
+            ]
+          }
+        ],
+        "direct": [
+          "c-7c323f49b89fb5ca6ee1cd2e",
+          "c-48486ebb77a1a43fdf63b9c2",
+          "c-0c3277214ea407b49fba15b2",
+          "c-c05fec75226518b4841f15e0",
+          "c-cf3e74ce27cf8372eaf8ef51"
+        ],
+        "tools": 9
+      }
+    },
+    "removed": {
+      "before": {
+        "papers": [
+          "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480",
+          "source-sha256:d4d8d73e3bbd0189ba122b966a43279b89a7d882b4646ef70c8bdb631ffb0a0a"
+        ],
+        "relations": [],
+        "direct": [
+          "c-8cc6e381cdc7747a33735395"
+        ],
+        "tools": 9
+      },
+      "after": {
+        "papers": [
+          "source-sha256:290bdeb64924ecb71164122fb2056f14916b208eba095f8ae8b3d46935bfa480",
+          "source-sha256:d4d8d73e3bbd0189ba122b966a43279b89a7d882b4646ef70c8bdb631ffb0a0a"
+        ],
+        "relations": [],
+        "direct": [
+          "c-48486ebb77a1a43fdf63b9c2",
+          "c-0c3277214ea407b49fba15b2",
+          "c-c05fec75226518b4841f15e0",
+          "c-cf3e74ce27cf8372eaf8ef51"
+        ],
+        "tools": 9
+      }
+    }
+  }
+}

@@ -106,6 +106,30 @@ def passages_for(doc):
     return chunks(doc)
 
 
+def complete_abstract_opening(doc, row):
+    """Extend an initial abstract window to one complete sentence, up to 1000 characters."""
+    from backend.research.claim_verifier import sentence_boundaries
+
+    text = doc.get("abstract", "")
+    end = row["offset_end"]
+    if row["field"] != "abstract" or row["offset_start"] or end >= len(text) or end >= 1000:
+        return None
+    start = 0
+    for split in [*sentence_boundaries(text[:1002]), None]:
+        stop = split.start() if split else min(len(text), 1002)
+        if stop > end:
+            sentence = text[start:stop].strip()
+            if start < end < stop <= 1000 and 8 <= len(sentence) <= 480 and sentence[-1] in ".!?。！？":
+                quote = text[:stop]
+                chunk_id = "chunk:" + hash_text(f"research-abstract-opening/1:{row['chunk_id']}:{stop}:{quote}")
+                return {**row, "chunk_id": chunk_id, "offset_end": stop,
+                        "locator": f"abstract:chars:0-{stop}", "text": quote}, sentence
+            break
+        if split:
+            start = split.end()
+    return None
+
+
 def nearest_heading(doc, row):
     if row["field"] != "fulltext":
         return None

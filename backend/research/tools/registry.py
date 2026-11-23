@@ -23,6 +23,7 @@ from .passages import (
     ToolError,
     bm25,
     combine,
+    complete_abstract_opening,
     dense_rank,
     hash_text,
     nearest_heading,
@@ -43,6 +44,7 @@ class PassageRequest(SearchRequest):
     slot: Slot | None = None
     abstract_opening: bool = False
     abstract_profile: bool = False
+    complete_method_opening: bool = False
     profile_body_fallback: bool = False
     profile_limitation_request: Summary | None = None
     preferred_section: Literal["methods", "results"] | None = None
@@ -204,6 +206,12 @@ class ToolRegistry:
             abstract_roles = {}
             for doc, row in rows.values():
                 if row["field"] == "abstract":
+                    if req.complete_method_opening and not row["offset_start"]:
+                        from backend.research.pra_relations import method_name
+
+                        completed = complete_abstract_opening(doc, row)
+                        if completed and method_name(completed[1]):
+                            row = completed[0]
                     facets = [fields for span in sentence_spans(row["text"], row["offset_start"]) if span
                               for origin, fields in [attribution(span[2])] if origin == "authors"]
                     score = (len(set().union(*facets)), sum(bool(f) for f in facets))
@@ -341,6 +349,12 @@ class ToolRegistry:
     def _read_paper_chunks(self, req):
         doc = self._doc(req.paper_id)
         by_id = {row["chunk_id"]: row for row in passages_for(doc)}
+        opening = next((row for row in by_id.values() if row["field"] == "abstract" and not row["offset_start"]), None)
+        if opening and any(cid not in by_id for cid in req.chunk_ids):
+            completed = complete_abstract_opening(doc, opening)
+            if completed:
+                row, _ = completed
+                by_id[row["chunk_id"]] = row
         if any(cid not in by_id for cid in req.chunk_ids):
             raise ToolError("chunk_not_found")
         return {
@@ -358,7 +372,13 @@ class ToolRegistry:
             if error.code != "paper_not_found":
                 raise
             return {"verified": False, "reason": error.code}
-        chunk = next((row for row in passages_for(doc) if row["chunk_id"] == req.chunk_id), None)
+        rows = passages_for(doc)
+        chunk = next((row for row in rows if row["chunk_id"] == req.chunk_id), None)
+        if not chunk and req.locator.startswith("abstract:chars:"):
+            opening = next((row for row in rows if row["field"] == "abstract" and not row["offset_start"]), None)
+            completed = complete_abstract_opening(doc, opening) if opening else None
+            if completed and completed[0]["chunk_id"] == req.chunk_id:
+                chunk = completed[0]
         if not chunk:
             return {"verified": False, "reason": "chunk_not_found"}
         match = re.fullmatch(r"(title|abstract|fulltext):chars:(\d{1,12})-(\d{1,12})", req.locator)

@@ -586,6 +586,9 @@ class ResearchGraph:
                         **({"abstract_profile": True} if directed and state.retrieval_policy in {"E10", "E11"}
                             and (profile_read or state.answer_contract.answer_type == "overview")
                            else {"abstract_opening": True} if directed else {}),
+                        **({"complete_method_opening": True} if directed and state.retrieval_policy == "E11"
+                           and state.pra_arm == "G" and any(f.facet == "method" for f in question_fields)
+                           and all(f.operation not in {"quote", "layout"} for f in question_fields) else {}),
                         **({"profile_body_fallback": True} if directed and state.retrieval_policy == "E11"
                             and state.pra_arm == "G" and state.answer_contract.answer_type == "overview"
                             and any(f.facet in {"topic", "method", "finding"} for f in question_fields)

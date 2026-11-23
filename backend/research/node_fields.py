@@ -92,6 +92,10 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
         }
         independent_facets = dimensions_by_intent.get(research_type)
         intent_goal = TITLES.sub(" ", contract.goal)
+        multiple_methods = bool(pra and research_type == "method_comparison" and 2 <= len(scope) <= 4
+                                and re.fullmatch(r"compare the (?:research )?methods (?:used in|of) "
+                                                 r"(?:the two|these|the selected) (?:papers|studies)[.?]?",
+                                                 intent_goal.strip(), re.I))
         named_targets = []
         if pra and one and len(scope) == 1 and research_type == "description" and not TITLES.search(contract.goal):
             study = r"(?:the authors|this (?:study|paper)|the (?:study|paper))"
@@ -173,6 +177,7 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
                     for metric in metric_names if facet == "metric" and metric_names else [None]:
                         fields.append(f.model_copy(update={"field_id": f"{node.id}.f{len(fields)+1}",
                             "facet": facet, "paper_ids": [paper] if paper else [], "requested_metric": metric,
+                            **({"operation": "fact"} if facet == "method" and multiple_methods else {}),
                             **({"required_title": title, "request": f"《{title}》 · {facet}"} if title else {}),
                             "min_evidence": 1, "min_papers": 1}))
         elif one:

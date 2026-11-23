@@ -24,9 +24,18 @@ def test_model_nominates_existing_ids_without_choosing_source_coordinates():
     "We might use dynamic programming for scheduling.",
     "We use dynamic programming only if sufficient time is available.",
     "We use dynamic programming as a baseline for comparison.",
+    "Using Monte Carlo simulations, we compute drift as a baseline for comparison.",
+    "Using Monte Carlo simulations, we might compute phase drift.",
+    "Using Monte Carlo simulations, other authors examined phase drift.",
+    "We propose a process that can be used in Monte Carlo simulations.",
 ])
 def test_qualified_method_cannot_become_an_author_relation(text):
     assert method_name(text) is None
+
+
+def test_method_stated_as_an_instrument_of_author_action():
+    assert method_name("Using Monte Carlo simulations, we computed phase drift.") == "Monte Carlo simulation"
+    assert method_name("Using Monte Carlo simulations we examined lattice fluctuations.") == "Monte Carlo simulation"
 
 
 def test_unregistered_method_needs_full_author_supplied_name():
@@ -413,3 +422,30 @@ def test_compiled_relations_preserve_scope_and_experimental_conditions(tmp_path,
         if claim["claim_id"] in direct:
             assert len(claim["paper_ids"]) == 1
             assert claim["statement"] in docs[claim["paper_ids"][0]]["abstract"]
+
+
+def test_cross_window_method_is_read_back_and_withdrawn_with_removed_source(tmp_path):
+    first = "Using Monte Carlo simulations, we examined lattice fluctuations."
+    second = "Using Monte Carlo simulations, we computed drift in daily temperature measurements."
+    background = "Background observations. " * 34
+    docs = {
+        "a": {"paper_id": "a", "title": "Lattice", "abstract": first},
+        "b": {"paper_id": "b", "title": "Temperature", "abstract": background + second},
+        "c": {"paper_id": "c", "title": "Other", "abstract":
+              "We develop a method that can be used in Monte Carlo simulations."},
+    }
+    goal = "Compare the methods used in these papers."
+    def report(scope, path):
+        trace = execute(goal, scope, {pid: docs[pid] for pid in scope}, "fixture:instrument",
+                        tmp_path / path, "E11", pra_arm="G")
+        return trace["report"]
+
+    r = report(["a", "b", "c"], "with-both")
+    relation, = [x for x in r["method_relations"] if x["kind"] == "shared_method"]
+    assert relation["scope"] == "subset" and relation["paper_ids"] == ["a", "b"]
+    source = next(x for x in r["sources"] if x["paper_id"] == "b" and second in x["quote"])
+    assert source["locator"] == f"abstract:chars:0-{len(docs['b']['abstract'])}"
+    assert source["quote"] == docs["b"]["abstract"]
+    assert sha256(source["quote"].encode()).hexdigest() == source["quote_hash"]
+    assert not [x for x in report(["b", "c"], "without-a")["method_relations"]
+                if x["kind"] == "shared_method"]
