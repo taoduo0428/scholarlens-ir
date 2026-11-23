@@ -166,6 +166,13 @@ def matches(field, claim, row, state, suggestions):
 
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
+    if (state.pra_arm == "G" and field.operation == "attribute" and field.facet is None
+            and len(state.task.scope.paper_ids) == 1 and not state.task.constraints):
+        from backend.research.workspace_relations import SOFTWARE_QUESTION, software_support
+
+        question = SOFTWARE_QUESTION.fullmatch(field.request.strip())
+        if question:
+            return [c for c in valid if software_support(question, c.statement)], "insufficient_evidence"
     # A source-bound measurement with complete conditions is itself a reported finding.
     # Apply this only to an explicit metric comparison between two selected papers.
     comparison_metric = None
