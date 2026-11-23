@@ -35,6 +35,17 @@ def test_unregistered_method_needs_full_author_supplied_name():
     assert method_name("We use sparse lattice optimization (ABC) for scheduling.") is None
 
 
+def test_metric_identity_is_distinct_from_its_value_and_external_protocol():
+    from backend.research.profile_frames import METRIC_NAMES_QUESTION, states_metric_use
+    assert METRIC_NAMES_QUESTION.fullmatch("Which evaluation metrics were used?")
+    assert not METRIC_NAMES_QUESTION.fullmatch("What precision value was measured?")
+    assert states_metric_use("We report precision as our primary evaluation metric.", "")
+    criterion = "The checkpoint with the lowest validation RMSE was selected."
+    assert states_metric_use(criterion, "Our models were evaluated on the test set.")
+    assert not states_metric_use(criterion, "In prior work the models were evaluated on the test set.")
+    assert not states_metric_use("We did not use BLEU as our evaluation metric.", "")
+
+
 @pytest.mark.parametrize("group_request", [False, True])
 def test_individual_limits_survive_missing_other_paper_but_shared_limits_do_not(tmp_path, group_request):
     statement = "Our study is limited to daytime observations."

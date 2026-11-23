@@ -2,6 +2,27 @@
 
 import re
 
+from backend.research.claim_verifier import METRIC
+
+
+METRIC_NAMES_QUESTION = re.compile(
+    r"(?:(?:what|which) (?:evaluation )?metrics? (?:(?:is|are|was|were) used|did (?:they|the authors) use)"
+    r"|(?:本文|作者|研究)?(?:采用|使用)(?:了)?哪些(?:评价|评估)指标)[?？。]?", re.I)
+
+
+def states_metric_use(text, previous):
+    """An explicit evaluation choice, including a test-set selection criterion."""
+    from backend.research.research_profile import FUTURE, HYP, MAY, NEGATED, PRIOR
+
+    if any(rx.search(text) for rx in (PRIOR, FUTURE, HYP, MAY, NEGATED)):
+        return False
+    if re.fullmatch(rf"(?:we|this study) (?:use[sd]?|report[s]?|adopt[s]?) (?:the )?{METRIC}"
+                    r"(?: score)? as (?:our |the |an? )?(?:primary )?evaluation metric[.]", text, re.I):
+        return True
+    return bool(re.search(r"\b(?:our|the|both) .{0,110}\b(?:was|were|are) evaluated on (?:a |the )?test set\b", previous, re.I)
+                and not any(rx.search(previous) for rx in (PRIOR, HYP, MAY, NEGATED, FUTURE))
+                and re.fullmatch(rf"(?:the )?(?:model|checkpoint|system) with the (?:highest|lowest|best) "
+                                 rf"(?:test|validation) {METRIC}(?: score)? (?:is|was) selected(?: as the best)?\.", text, re.I))
 
 SUBJECT = r"(?:we|this (?:paper|study|work|article)|our (?:study|paper|work))"
 LEAD = rf"^(?:(?:in (?:this|the present) (?:paper|study|work)|here),? )?{SUBJECT} (?:also |first |then )?"

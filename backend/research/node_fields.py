@@ -173,6 +173,11 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
             for i, request in enumerate(requests(question), 1):
                 f = field_for(node, contract, request, i)
                 changes = {"min_evidence": 1}
+                if pra and one and len(scope) == 1 and research_type == "description":
+                    from backend.research.profile_frames import METRIC_NAMES_QUESTION
+                    if METRIC_NAMES_QUESTION.fullmatch(contract.goal.strip()):
+                        changes.update(operation="attribute", datatype=AnswerFieldType.text, paper_ids=scope,
+                                       capability=RequiredSourceCapability(requires="text"))
                 if independent and research_type == "description" and question == contract.goal:
                     previous_subject = parse_request(request, previous_subject)
                     if previous_subject:

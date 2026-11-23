@@ -22,7 +22,7 @@ def norm(text):
     return " ".join(re.findall(r"\w+", text.casefold()))
 
 
-def select(dataset):
+def select(dataset, batch=1):
     excluded = {norm(p["title"]) for p in source_rows()}
     pool = []
     for pid, paper in dataset.items():
@@ -33,16 +33,19 @@ def select(dataset):
             labels = {a["answer"]["unanswerable"] for a in annotations}
             if len({a["worker_id"] for a in annotations}) >= 2 and len(labels) == 1:
                 pool.append((digest("scholarlens-qasper-v1:" + question["question_id"]), pid, question, labels.pop()))
-    quota = {False: 24, True: 8}
-    chosen, seen = [], set()
-    for _, pid, question, negative in sorted(pool, key=lambda item: item[0]):
-        title = norm(dataset[pid]["title"])
-        if title not in seen and quota[negative]:
-            chosen.append((pid, question, negative))
-            seen.add(title)
-            quota[negative] -= 1
-    if any(quota.values()):
-        raise ValueError("insufficient eligible questions")
+    seen = set()
+    ordered = sorted(pool, key=lambda item: item[0])
+    for _ in range(batch):
+        quota = {False: 24, True: 8}
+        chosen = []
+        for _, pid, question, negative in ordered:
+            title = norm(dataset[pid]["title"])
+            if title not in seen and quota[negative]:
+                chosen.append((pid, question, negative))
+                seen.add(title)
+                quota[negative] -= 1
+        if any(quota.values()):
+            raise ValueError("insufficient eligible questions")
     return chosen
 
 
@@ -95,12 +98,12 @@ def score(report, doc, annotations):
             "published_ids": sorted(direct)}
 
 
-def main(archive, out, arms):
+def main(archive, out, arms, batch):
     if sha256(archive.read_bytes()).hexdigest() != ARCHIVE:
         raise ValueError("unexpected official test archive")
     with tarfile.open(archive) as reader:
         data = json.load(reader.extractfile("qasper-test-v0.3.json"))
-    cases = select(data)
+    cases = select(data, batch)
     out.mkdir(exist_ok=False)
     manifest = [{"paper": pid, "question": q["question_id"], "unanswerable": no} for pid, q, no in cases]
     (out/"manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf8")
@@ -120,5 +123,6 @@ if __name__ == "__main__":
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--arms", nargs="+", choices=("A", "G"), default=["A", "G"])
+    parser.add_argument("--batch", type=int, choices=(1, 2), default=1)
     args = parser.parse_args()
-    main(args.archive, args.out, args.arms)
+    main(args.archive, args.out, args.arms, args.batch)

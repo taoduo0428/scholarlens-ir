@@ -31,6 +31,15 @@
    "extractive_reference_cases": 20,
    "all_extractive_spans_in_grounded_answer": 0,
    "tools": 312
+  },
+  "G_metric_regression": {
+   "positive_direct": 1,
+   "negative_direct": 0,
+   "positive_retained_reference": 15,
+   "positive_direct_sentence_in_reference": 1,
+   "extractive_reference_cases": 20,
+   "all_extractive_spans_in_grounded_answer": 1,
+   "tools": 312
   }
  },
  "cases": [
@@ -57,6 +66,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -96,6 +114,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -121,6 +148,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -160,6 +196,17 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 1,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": true,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": true,
+    "published_ids": [
+     "c-76a29081b517ba04bc6d4ede"
+    ],
+    "tools": 10
    }
   },
   {
@@ -185,6 +232,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -224,6 +280,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -249,6 +314,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -288,6 +362,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -313,6 +396,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -352,6 +444,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -377,6 +478,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -416,6 +526,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -441,6 +560,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -480,6 +608,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 8
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 8
    }
   },
   {
@@ -505,6 +642,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -544,6 +690,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 4
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 4
    }
   },
   {
@@ -569,6 +724,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -608,6 +772,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -633,6 +806,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -672,6 +854,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -697,6 +888,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -736,6 +936,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -761,6 +970,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": true,
     "direct_sentence_in_reference": false,
@@ -800,6 +1018,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -825,6 +1052,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -864,6 +1100,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -889,6 +1134,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -928,6 +1182,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -953,6 +1216,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -992,6 +1264,15 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   },
   {
@@ -1017,6 +1298,15 @@
     "tools": 10
    },
    "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
     "direct": 0,
     "reference_passage_read": false,
     "direct_sentence_in_reference": false,
@@ -1058,7 +1348,780 @@
     "all_spans_with_reference": false,
     "published_ids": [],
     "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
    }
   }
- ]
+ ],
+ "fresh_second_batch": {
+  "scores": {
+   "A": {
+    "positive_direct": 0,
+    "negative_direct": 1,
+    "positive_retained_reference": 11,
+    "positive_direct_sentence_in_reference": 0,
+    "extractive_reference_cases": 17,
+    "all_extractive_spans_in_grounded_answer": 0,
+    "tools": 308
+   },
+   "G": {
+    "positive_direct": 0,
+    "negative_direct": 1,
+    "positive_retained_reference": 11,
+    "positive_direct_sentence_in_reference": 0,
+    "extractive_reference_cases": 17,
+    "all_extractive_spans_in_grounded_answer": 0,
+    "tools": 307
+   }
+  },
+  "cases": [
+   {
+    "paper": "1708.07252",
+    "question": "9f065e787a0d40bb4550be1e0d64796925459005",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1911.04474",
+    "question": "aebd1f0d728d0de5f76238844da044a44109f76f",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1801.05617",
+    "question": "85ab5f773b297bcf48a274634d402a35e1d57446",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1612.03762",
+    "question": "71413505d7d6579e2a453a1f09f4efd20197ab4b",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1709.06365",
+    "question": "7d8cd7d6c86349ef0bd4fdbd84c8dc49c7678f46",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1708.07690",
+    "question": "7ba6330d105f49c7f71dba148bb73245a8ef2966",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1912.10162",
+    "question": "6cad6f074b0486210ffa4982c8d1632f5aa91d91",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1911.10742",
+    "question": "397a1e851aab41c455c2b284f5e4947500d797f0",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1805.11850",
+    "question": "df4895c6ae426006e75c511a304d56d37c42a1c7",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1811.04791",
+    "question": "e5f8d2fc1332e982a54ee4b4c1f7f55e900d0b86",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1605.05156",
+    "question": "8ddf78dbdc6ac964a7102ae84df18582841f2e3c",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.09283",
+    "question": "bfd55ae9630a08a9e287074fff3691dfbffc3258",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1603.00957",
+    "question": "1d9d7c96c5e826ac06741eb40e89fca6b4b022bd",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.10001",
+    "question": "c25014b7e57bb2949138d64d49f356d69838bc25",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1905.07562",
+    "question": "bcf222ad4bb537b01019ed354ea03cd6bf2c1f8e",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.06259",
+    "question": "fea9b4d136156f23a88e5c7841874a467f2ba86d",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1611.02378",
+    "question": "818c85ee26f10622c42ae7bcd0dfbdf84df3a5e0",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1805.11937",
+    "question": "dc23006d67f20f430f1483398de4a89c0be4efe2",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1911.00461",
+    "question": "3cc9a820c4a2cd2ff61da920c41ed09f3c0135be",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1912.00342",
+    "question": "c0120d339fcdb3833884622e532e7513d1b2c7dd",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1708.01065",
+    "question": "dfaeb8faf04505a4178945c933ba217e472979d8",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1809.08935",
+    "question": "c728fe6137f114c02e921f9be4a02a5bd83ae787",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.11046",
+    "question": "2929e92f9b4939297b4d0f799d464d46e8d52063",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 5
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 4
+    }
+   },
+   {
+    "paper": "1708.05521",
+    "question": "0ac6fbd81e2dd95b800283dc7e59ce969d45fc02",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1711.11118",
+    "question": "d5d4504f419862275a532b8e53d0ece16e0ae8d1",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1907.01339",
+    "question": "a913aa14d4e05cc9d658bf6697fe5b2652589b1b",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "2003.03728",
+    "question": "c626637ed14dee3049b87171ddf326115e59d9ee",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1905.08392",
+    "question": "98c8ed9019e43839ffb53a714bc37fbb1c28fe2c",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1907.00168",
+    "question": "ab95ca983240ad5289c123a2774f8e0db424f4a1",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1906.04287",
+    "question": "d427e9d181434078c78b7ee33a26b269f160f6d2",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1910.12477",
+    "question": "b0edb9023f35a5a02eb8fb968e880e36233e66b3",
+    "unanswerable": true,
+    "A": {
+     "direct": 1,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [
+      "c-9f4cf4d4e55495dace6de18d"
+     ],
+     "tools": 3
+    },
+    "G": {
+     "direct": 1,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [
+      "c-9f4cf4d4e55495dace6de18d"
+     ],
+     "tools": 3
+    }
+   },
+   {
+    "paper": "1803.08614",
+    "question": "21175d8853fd906266f884bced85c598c35b1cbc",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   }
+  ]
+ }
 }
