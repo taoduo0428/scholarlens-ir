@@ -29,6 +29,11 @@ OPERATION = re.compile(
     rf"^(?:我们|本文|本研究)(?:采用|使用)(?:了)?(?P<zh>{TERM})(?=来|用于|进行|研究|[，。])", re.I)
 RESTRICTION = re.compile(r"\b(?:only|baseline|illustrat\w*|examples?|previously|hypothetical|instead|whether|would|could|unlike|"
                          r"suppose|supposing|assum(?:e|ing)|if|unless)\b|如果|假如|此前", re.I)
+# Unregistered long names must have an author-supplied matching abbreviation. Never unify on initials alone.
+DEFINED = re.compile(
+    r"^(?:we|this (?:paper|study)) (?:use[sd]?|adopt(?:s|ed)?|employ(?:s|ed)?) (?:the |an? )?"
+    r"(?P<long>[A-Za-z][A-Za-z-]*(?: [A-Za-z][A-Za-z-]*){2,6}) \((?P<abbr>[A-Z]{3,7})\)"
+    r"(?=[.,;]| (?:for|to|on|in|with)\b)", re.I)
 ROLE = {"methods": ("Method", "uses"), "research_problem": ("Research Problem", "reports"),
         "decision_models": ("Model", "formulated_as"), "datasets": ("Dataset", "reports"),
         "metrics": ("Metric", "reports"), "experiment_settings": ("Experiment", "reports"),
@@ -39,11 +44,26 @@ def method_name(statement):
     if attribution(statement)[0] != "authors" or NEGATED.search(statement) or RESTRICTION.search(statement):
         return None
     match = OPERATION.match(statement)
-    return ALIASES[(match["method"] or match["zh"]).casefold()] if match else None
+    if match:
+        return ALIASES[(match["method"] or match["zh"]).casefold()]
+    proposed = DEFINED.match(statement)
+    if not proposed:
+        return None
+    words = proposed["long"].casefold().split()
+    if words[-1] not in {"algorithm", "method", "regression", "programming", "optimization", "network",
+                         "analysis", "learning", "filter", "sampling", "transform"}:
+        return None
+    if any(w in {"new", "novel", "different", "similar", "proposed", "our", "their", "other", "without",
+                 "model", "selection", "comparison", "or", "and", "not"} for w in words):
+        return None
+    initials = "".join(w[0].upper() for w in words if w not in {"of", "for", "the"})
+    if proposed["abbr"] != initials:
+        return None
+    return " ".join(words)
 
 
 def application(statement):
-    match = OPERATION.match(statement)
+    match = OPERATION.match(statement) or DEFINED.match(statement)
     if not match or not method_name(statement):
         return None
     tail = statement[match.end():].strip()
@@ -109,7 +129,10 @@ def verify_derivation(edges, by_id, sources, scope, relation="shared_method"):
         owners.add(row["paper_id"])
         methods.add(e["target"])
         versions.add(row["corpus_generation"])
-        applications.add(application(text))
+        source_application = application(text)
+        if source_application != e["application"]:
+            return False
+        applications.add(source_application)
     if owners != set(scope) or len(versions) != 1:
         return False
     if relation == "shared_method":
@@ -141,7 +164,11 @@ def shared_relations(claims, profiles, sources, scope):
                 "different_methods_for_task": f"针对原文所列任务「{value}」，各篇报告的方法分别为",
             }
             text = descriptions[relation]
-            if relation != "shared_method":
+            if relation == "shared_method" and all(e["application"] for e in edges):
+                text += "原文所述用途分别为" + "、".join(
+                    f"《{profiles[e['source']].title}》用于 {e['application']}" for e in edges
+                ) + "。"
+            elif relation != "shared_method":
                 text += "、".join(f"《{profiles[e['source']].title}》使用 {e['target']}" for e in edges) + "。"
             yield (relation, text,
                    [by_id[e["claim_ids"][0]] for e in edges])

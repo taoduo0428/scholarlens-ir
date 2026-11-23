@@ -37,12 +37,12 @@ def compile_answer(report):
             if section:
                 sections[section].append(item)
             if not any(x["claim_ids"] == [cid] for x in sections["papers"]):
-                sections["papers"].append(item)
+                sections["papers"].append({**item, "paper_title": source.get("paper_title") or source["paper_id"]})
             if not any(x["evidence_ids"] == [eid] for x in sections["references"]):
                 sections["references"].append({"kind": "reference", "text": source["paper_title"] + " · " + source["locator"],
                                                "evidence_ids": [eid], "paper_ids": claim["paper_ids"]})
     sections["summary"] = sections["papers"][:3]
-    for row in report.get("overview", {}).get("findings", []):
+    for row in report.get("overview", {}).get("findings", []) + report.get("method_relations", []):
         if row["level"] != "derived_synthesis" or not row["premise_claim_ids"]:
             continue
         if not set(row["premise_claim_ids"]) <= seen or not set(row["evidence_ids"]) <= sources.keys():
@@ -65,7 +65,14 @@ def markdown(compiled, escape):
     lines = ["", "## 研究报告"]
     for section in compiled:
         lines.extend(["", "### " + section["title"]])
-        for item in section["items"]:
+        items = section["items"]
+        if section["section"] == "papers":
+            items = sorted(items, key=lambda i: tuple(i["paper_ids"]))
+        previous = None
+        for item in items:
+            if section["section"] == "papers" and item.get("paper_title") and item["paper_ids"] != previous:
+                lines.extend(["", "#### " + escape(item["paper_title"])])
+                previous = item["paper_ids"]
             refs = "、".join(escape(e) for e in item.get("evidence_ids", []))
             lines.append("- " + escape(item["text"]) + (" · " + refs if refs else ""))
         if not section["items"]:

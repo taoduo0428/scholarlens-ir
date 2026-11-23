@@ -151,6 +151,16 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         if conclusions
         else "现有证据不足以回答最终问题。"
     )
+    if state.pra_arm in {"D", "G"} and report.get("research_intent") == "method_comparison":
+        from backend.research.pra_relations import shared_relations
+        released = [accepted[cid] for cid in sections["verified"] if cid in accepted]
+        report["method_relations"] = [
+            {"kind": kind, "level": "derived_synthesis", "statement": message,
+             "premise_claim_ids": [c.claim_id for c in witnesses],
+             "evidence_ids": sorted({eid for c in witnesses for eid in c.evidence_ids}),
+             "paper_ids": sorted({pid for c in witnesses for pid in c.paper_ids})}
+            for kind, message, witnesses in shared_relations(released, index, sources, state.task.scope.paper_ids)
+        ]
     if state.pra_arm in {"F", "G"}:
         from backend.research.answer_compiler import compile_answer
         report["compiled_answer"] = compile_answer(report)

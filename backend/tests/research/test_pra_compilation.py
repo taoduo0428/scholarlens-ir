@@ -28,6 +28,30 @@ def test_qualified_method_cannot_become_an_author_relation(text):
     assert method_name(text) is None
 
 
+def test_unregistered_method_needs_full_author_supplied_name():
+    assert method_name("We use sparse lattice optimization (SLO) for scheduling.") == "sparse lattice optimization"
+    assert method_name("We use stochastic likelihood optimization (SLO) for scheduling.") == "stochastic likelihood optimization"
+    assert method_name("We use SLO for scheduling.") is None
+    assert method_name("We use sparse lattice optimization (ABC) for scheduling.") is None
+
+
+def test_named_mixed_dimensions_exclude_permitted_distractor(tmp_path):
+    docs = {pid: {"paper_id": pid, "title": title, "abstract": text} for pid, title, text in (
+        ("a", "Transit design", "We use dynamic programming for scheduling. Our results show that delays decreased."),
+        ("b", "Workshop design", "We use linear regression for forecasting."),
+        ("c", "Unrequested study", "We use BERT for retrieval. Our results show that accuracy increased."),
+    )}
+    goal = "Compare the methods and reported findings of “Transit design” and “Workshop design”."
+    r = execute(goal, list(docs), docs, "test:v8:names", tmp_path, "E11", pra_arm="G")["report"]
+    fields = [f for q in r["field_requirements"] for f in q["fields"]]
+    assert {(f["required_title"], f["facet"]) for f in fields} == {
+        (title, facet) for title in ("Transit design", "Workshop design") for facet in ("method", "finding")}
+    claims = {c["claim_id"]: c for c in r["claims"]}
+    assert {p for cid in r["sections"]["verified"] for p in claims[cid]["paper_ids"]} == {"a", "b"}
+    assert any(f["required_title"] == "Workshop design" and f["facet"] == "finding"
+               and r["answerability"]["fields"][f["field_id"]]["status"] != "answerable" for f in fields)
+
+
 def test_bilingual_pair_uses_exact_spans_and_withdraws_on_premise_loss(tmp_path):
     docs = {
         "p1": {"paper_id": "p1", "title": "Scheduling", "abstract": "We use dynamic programming for scheduling."},
@@ -45,6 +69,14 @@ def test_bilingual_pair_uses_exact_spans_and_withdraws_on_premise_loss(tmp_path)
     assert not verify_derivation(edges, claims, sources, {"p1"})
     assert not verify_derivation([{**edges[0], "target": "BERT"}, edges[1]], claims, sources, docs)
     assert len(r["compiled_answer"]) == 12
+    assert any(x["kind"] == "shared_method" for x in r["method_relations"])
+    relation = next(x for x in r["method_relations"] if x["kind"] == "shared_method")
+    assert "《Scheduling》用于 scheduling" in relation["statement"]
+    assert "《资源分配》用于 计算资源分配" in relation["statement"]
+    assert not verify_derivation([{**edges[0], "application": "another task"}, edges[1]], claims, sources, docs)
+    assert "#### Scheduling" in r["markdown"] and "#### 资源分配" in r["markdown"]
+    assert any(x["kind"] == "derived" for section in r["compiled_answer"] if section["section"] == "common"
+               for x in section["items"])
     for entry in r["compiled_answer"]:
         for item in entry["items"]:
             if item["kind"] == "source":
@@ -53,6 +85,7 @@ def test_bilingual_pair_uses_exact_spans_and_withdraws_on_premise_loss(tmp_path)
     weaker = execute(task, list(missing), missing, "test:v8:changed", tmp_path/"missing", "E11", pra_arm="G")["report"]
     assert {p for e in weaker["profile_relations"] if e["relation"]=="uses" for p in e["paper_ids"]} == {"p1"}
     assert weaker["answerability"]["status"] == "partially_answerable"
+    assert not weaker["method_relations"]
 
 
 def test_profiles_separate_goals_from_observed_results(tmp_path):
