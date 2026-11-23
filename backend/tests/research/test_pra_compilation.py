@@ -214,6 +214,33 @@ def test_subset_relation_has_its_own_scope_and_cannot_complete_the_overview(tmp_
     assert not sections["synthesis"]["items"]
 
 
+@pytest.mark.parametrize("connected", [True, False])
+def test_method_only_overview_joins_verified_relations_without_inventing_direct_edges(tmp_path, connected):
+    abstracts = {
+        "a": "We use BM25 for patent retrieval.",
+        "b": "We use BM25 for document retrieval.",
+        "c": "We use BERT for document retrieval." if connected else "We use BERT for author identification.",
+    }
+    docs = {pid: {"paper_id": pid, "title": f"Study {pid.upper()}", "abstract": text} for pid, text in abstracts.items()}
+    report = execute("综合这组论文各自的方法。", list(docs), docs,
+                     "test:v8:connected-methods", tmp_path, "E11", pra_arm="G")["report"]
+    fields = [field for question in report["field_requirements"] for field in question["fields"]]
+    assert [field["facet"] for field in fields] == ["method", "method", "method", "overview"]
+    synthesis = next(section["items"] for section in report["compiled_answer"] if section["section"] == "synthesis")
+    assert (report["status"] == "completed") is connected
+    assert bool(synthesis) is connected
+    subsets = {tuple(item["paper_ids"]) for item in report["method_relations"]}
+    assert subsets == ({("a", "b"), ("b", "c")} if connected else {("a", "b")})
+    if connected:
+        assert len(synthesis) == 1 and synthesis[0]["paper_ids"] == ["a", "b", "c"]
+        claims = {claim["claim_id"]: claim for claim in report["claims"]}
+        sources = {source["evidence_id"]: source for source in report["sources"]}
+        for claim_id in synthesis[0]["claim_ids"]:
+            claim = claims[claim_id]
+            assert claim["statement"] == abstracts[claim["paper_ids"][0]]
+            assert all(claim["statement"] in sources[evidence]["quote"] for evidence in claim["evidence_ids"])
+
+
 def test_overview_recovers_attributed_body_when_abstract_is_unavailable(tmp_path):
     method = "We used line intercept sampling to measure average shrub height along each transect."
     finding = "We found that average shrub height increased by 18 cm."

@@ -272,8 +272,11 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             from backend.research.overview import GAP
             return [c for c in valid if GAP.search(c.statement)], "insufficient_evidence"
         if field.facet == "overview":
+            from backend.research.node_fields import method_only_overview
+
             overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"},
-                                         profile_index=profile_index, pairwise=state.pra_arm in {"D", "G"})
+                                         profile_index=profile_index, pairwise=state.pra_arm in {"D", "G"},
+                                         compose_methods=state.pra_arm == "G" and method_only_overview(state.answer_contract.goal))
             if profile_index is not None:
                 # Each relation must stand on its own across the requested scope.
                 ids = dict.fromkeys(cid for row in overview["findings"]

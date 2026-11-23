@@ -192,3 +192,27 @@ def shared_relations(claims, profiles, sources, scope):
                     yield ("complements", f"《{profiles[producer].title}》输出的「{item}」与"
                            f"《{profiles[consumer].title}》所列输入名称一致。实际联用效果仍需验证。",
                            [by_id[e["claim_ids"][0]] for e in (output, required)])
+
+
+def connected_method_relations(relations, scope):
+    """Select verified relations that link every requested paper without adding edges."""
+    scope = set(scope)
+    if len(scope) < 3:
+        return []
+    available = []
+    for _, statement, claims in relations:
+        papers = {pid for claim in claims for pid in claim.paper_ids}
+        if papers == scope:
+            return []  # Already covered by a single relation.
+        if 1 < len(papers) and papers < scope:
+            available.append((papers, statement, claims))
+    covered = {min(scope)}
+    selected = []
+    while covered < scope:
+        adjacent = [row for row in available if row[0] & covered and row[0] - covered]
+        if not adjacent:
+            return []
+        papers, statement, claims = max(adjacent, key=lambda row: len(row[0] - covered))
+        selected.append((papers, statement, claims))
+        covered.update(papers)
+    return selected

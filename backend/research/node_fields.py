@@ -29,6 +29,15 @@ HINTS = {
     "finding": r"result|finding|outcome|conclusion|结果|发现|结论",
 }
 METRICS = re.compile(r"\b(?:accuracy|precision|recall|f1|ndcg|mrr|rmse|mae)\b|准确率|召回率|精确率", re.I)
+METHOD_OVERVIEW = re.compile(
+    r"(?:综合(?:这组|这些|所选)论文(?:各自|各篇|每篇)(?:的)?(?:研究)?方法"
+    r"|(?:synthesize|summarize) the (?:reported )?(?:research )?methods of "
+    r"each (?:of the selected )?(?:paper|study))(?:[。.!？?])?", re.I,
+)
+
+
+def method_only_overview(goal):
+    return METHOD_OVERVIEW.fullmatch(goal.strip()) is not None
 
 
 def dimensions(plan, node, contract):
@@ -187,6 +196,9 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
                 fields.append(f.model_copy(update=changes))
         else:
             facets = dimensions(plan, node, contract)
+            if (pra and plan.contract.intent == "literature_synthesis"
+                    and node.requirement.kind == "source_fact" and method_only_overview(contract.goal)):
+                facets = ["method"]
             if individual_limits and node.requirement.kind == "source_fact" and not node.dependencies:
                 facets = [*facets, "limitations"]
             elif asks_limits and not individual_limits and "overview" in facets:

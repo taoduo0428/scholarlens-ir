@@ -80,6 +80,8 @@ def publish_fields(state, report, sources, evaluation, ordering, warnings):
                  "evidence_ids": accepted[cid].evidence_ids} for cid in sorted(final_ids)
             ]
         elif state.retrieval_policy == "E11":
+            from backend.research.node_fields import method_only_overview
+
             # Publish observations from accepted fields and reconstruct relations
             # solely from the bindings of the overview field that approved them.
             relations = []
@@ -88,7 +90,8 @@ def publish_fields(state, report, sources, evaluation, ordering, warnings):
                     continue
                 ids = dict.fromkeys(b["claim_id"] for b in decisions[fid]["bindings"] if b["claim_id"] in kept)
                 bound, _ = synthesize([accepted[cid] for cid in ids], sources, field.paper_ids,
-                                      attributed=True, profile_index=index, pairwise=state.pra_arm in {"D", "G"})
+                                      attributed=True, profile_index=index, pairwise=state.pra_arm in {"D", "G"},
+                                      compose_methods=state.pra_arm == "G" and method_only_overview(state.answer_contract.goal))
                 relations.extend(row for row in bound["findings"] if row["level"] == "derived_synthesis"
                                  and set(field.paper_ids) <= set(row["paper_ids"]))
             overview["findings"] = [row for row in overview["findings"] if row["level"] != "derived_synthesis"
