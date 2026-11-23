@@ -6,6 +6,7 @@ import pytest
 from tools.research_eval.build_seed import build_smoke
 from tools.research_eval.compare import compare
 from tools.research_eval.inputs import BENCH
+from tools.research_eval.pra_qasper import ARCHIVE, score
 from tools.research_eval.run import benchmark, run_case
 from tools.research_eval.validate_dataset import validate
 
@@ -112,3 +113,29 @@ def test_explicit_judgments_require_labeler_and_cover_entire_scope(tmp_path, mon
     row["paper_qrels"].pop("fixture:birch")
     with pytest.raises(ValueError, match="review"):
         validate(saved(tmp_path, [row]))
+
+
+@pytest.mark.parametrize("start_at_end", [False, True])
+def test_qasper_counts_complete_reference_sentences_at_the_located_occurrence(start_at_end):
+    from hashlib import sha256
+
+    paragraph = "We used corpus X with fixed experimental settings for the baseline evaluation."
+    document_text = f"{paragraph}\nUnrelated text.\n{paragraph}"
+    doc = {"paper_id": "p", "fulltext": document_text}
+    origin = document_text.rindex(paragraph)
+    start = origin
+    end = len(document_text)
+    if start_at_end:
+        end -= len(" evaluation.")
+    quote = document_text[start:end]
+    row = {"evidence_id": "e", "field": "fulltext", "paper_id": "p",
+           "locator": f"fulltext:chars:{start}-{end}", "quote": quote,
+           "quote_hash": sha256(quote.encode()).hexdigest(), "corpus_generation": "qasper:" + ARCHIVE}
+    report = {"sources": [row], "claims": [], "sections": {"verified": []}}
+    annotated = {"answer": {"evidence": [paragraph], "extractive_spans": ["corpus X"]}}
+    result = score(report, doc, [annotated])
+    assert result["all_spans_in_retained_reference_sentences"] is not start_at_end
+    assert result["direct"] == 0
+    row["quote_hash"] = "0" * 64
+    with pytest.raises(ValueError, match="retained source mismatch"):
+        score(report, doc, [annotated])

@@ -7,6 +7,7 @@ from hashlib import sha256
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
+from backend.research.claim_verifier import sentence_boundaries
 from tools.research_eval.trace_loss import execute
 from tools.research_eval.v6_holdout import source_rows
 from tools.research_eval.v7_independent_verifier import source_valid
@@ -63,6 +64,28 @@ def document(pid, paper):
             "fulltext": "\n".join(parts), "sections": headings}
 
 
+def retained_reference_sentences(paragraph, document_text, start, end):
+    """Return exactly contained sentences at the annotated paragraph's original location."""
+    bounds = []
+    cursor = 0
+    for split in [*sentence_boundaries(paragraph), None]:
+        stop = split.start() if split else len(paragraph)
+        raw = paragraph[cursor:stop]
+        sentence = raw.strip()
+        if sentence and sentence[-1] in ".!?。！？":
+            left = cursor + len(raw) - len(raw.lstrip())
+            bounds.append((left, left + len(sentence), sentence))
+        if split:
+            cursor = split.end()
+    for occurrence in re.finditer(re.escape(paragraph), document_text):
+        origin = occurrence.start()
+        if origin >= end:
+            break
+        if occurrence.end() > start:
+            yield from (sentence for left, right, sentence in bounds
+                        if start <= origin + left and origin + right <= end)
+
+
 def score(report, doc, annotations):
     sources = {s["evidence_id"]: s for s in report["sources"]}
     direct = set(report["sections"]["verified"])
@@ -81,20 +104,33 @@ def score(report, doc, annotations):
     answers = [a["answer"] for a in annotations]
     evidence = {p for a in answers for p in a["evidence"] if p}
     located = False
+    readable = {p: set() for p in evidence}
+    generation = "qasper:" + ARCHIVE
     for src in sources.values():
+        if not source_valid(src, {doc["paper_id"]: doc}, [doc["paper_id"]], generation):
+            raise ValueError("retained source mismatch")
         text = doc[src["field"]]
         start, end = map(int, src["locator"].rsplit(":", 1)[1].split("-"))
         for paragraph in evidence:
             at = text.find(paragraph)
             if at >= 0 and min(at + len(paragraph), end) - max(at, start) >= min(40, len(paragraph)):
                 located = True
+            readable[paragraph].update(retained_reference_sentences(paragraph, text, start, end))
     cited = any(s in paragraph for s in excerpts for paragraph in evidence)
     extractive = [a for a in answers if a["extractive_spans"]]
-    def covered(a):
-        statements = [" " + norm(s) + " " for s in excerpts if any(s in p for p in a["evidence"])]
-        return all(norm(span) and any(" " + norm(span) + " " in s for s in statements) for span in a["extractive_spans"])
+    def covers_spans(answer, sentences):
+        statements = [f" {norm(sentence)} " for sentence in sentences]
+        return all(norm(span) and any(f" {norm(span)} " in s for s in statements)
+                   for span in answer["extractive_spans"])
+
+    def covered(answer):
+        return covers_spans(answer, (s for s in excerpts if any(s in p for p in answer["evidence"])))
+
+    all_spans_read = any(covers_spans(a, (s for p in a["evidence"] for s in readable.get(p, ())))
+                         for a in extractive)
     return {"direct": len(direct), "reference_passage_read": located, "direct_sentence_in_reference": cited,
             "has_extractive_reference": bool(extractive), "all_spans_with_reference": any(covered(a) for a in extractive),
+            "all_spans_in_retained_reference_sentences": all_spans_read if extractive else None,
             "published_ids": sorted(direct)}
 
 
