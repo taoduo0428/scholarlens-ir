@@ -221,7 +221,7 @@ class ToolRegistry:
                     windows = windows[:256]
                     if pid in by_paper:
                         abstracts = by_paper[pid]
-                        if len(req.paper_ids) not in range(2, 5) or len(abstracts) < 2:
+                        if len(req.paper_ids) not in range(2, 5):
                             continue
                         gaps = [facet for facet in ("method", "finding")
                                 if not BODY_ROLES[facet] & abstract_roles[pid]]

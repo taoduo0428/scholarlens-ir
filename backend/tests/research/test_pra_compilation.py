@@ -265,13 +265,15 @@ def test_overview_recovers_attributed_body_when_abstract_is_unavailable(tmp_path
     assert not next(s for s in report["compiled_answer"] if s["section"] == "synthesis")["items"]
 
 
-def test_missing_overview_role_places_body_candidate_after_both_abstracts():
+@pytest.mark.parametrize("abstract_repeats", [1, 65])
+def test_missing_overview_role_places_body_candidate_after_both_abstracts(abstract_repeats):
     from backend.research.schemas import Scope
     from backend.research.tools import LocalCorpus, ToolRegistry
 
     text = "We used line intercept sampling to measure canopy cover."
     corpus = LocalCorpus([
-        {"paper_id": "a", "title": "Survey", "abstract": "Background observations. " * 65, "fulltext": text},
+        {"paper_id": "a", "title": "Survey", "abstract": "Background observations. " * abstract_repeats,
+         "fulltext": text},
         {"paper_id": "b", "title": "Trials", "abstract": "We found that measured cover increased.",
          "fulltext": "We examined a completely different site."},
     ], "test:v8:body-priority")
