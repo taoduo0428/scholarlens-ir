@@ -1,0 +1,386 @@
+{
+  "baseline_singles": {
+    "arm": "A",
+    "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+    "rows": [
+      {
+        "paper": "source-sha256:2ecf43be14d3568c11a8644f682595c15fe100cb39680fe86553c240b96095b2",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "f1ba6ed73321f7dcd4ef98d7f8d7b7fcacce75dc0bc461b73d233f7d54d73960"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:dba887978408c2daaddc134569af7dc09231d2a9ac72d9c793854c02c9f37626",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "c436e1d01e71fe643ed178ce6af2235403ded9e94b69ee9fc1bc9a7a571bdbfa"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:99b40ee0ffaf0139d003a66e1837ce4aa10e381e0edad04930313ec1cadd2ae2",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "4fded6b648938bee32a0c04e57c53e94d75927a2500215e22b6ebefeccae1b79"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:867c24ff35fce56eb4e2373e04007754e297f06b3f7607eb1ea9e0d6c6d1a295",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "884bbea1f35e46c49816c0a40223101faf05402a2a01a56ca771bcc52bf0556d"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:c2102829c03ca6d4e53640a904229557149114735cb285ccb42149e89a29318c",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "b3c37c499fa192f4741b12e387b1a4cb3db581606218598aacfdad31bfa1d74d"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:7b540eac6a6c7640faefc7f005bcb5f743cb1dc4f6aea5bfe1ed19c21deb99d4",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "c6438462f1e328695cb22ac38963fe5bc5c0a4a8c9b688bb6081ce75dd1e889a"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:042397987815467faebafdb9f08d971316b616af8feef5cf98c439f021869520",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "78471787defaae9dd83d8ab04f8dd7ca11c1ff5f0cb8dacb173ac33fdb69538d"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:975ad5dae15e60df1e04ab1a000d27eff9e70c3c1548f858148cccb518f42873",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "b54ec2a2672e6cc49c4e402d3984a1866c77e479991b830ea41c2e29c781b932"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:8f30c015d03059662baa9c599136625f0a1e15d9b50b0d89af4123cbfb9e7b18",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "a48ce9d70deaf9460e3bc5905f412d96f4617a69b9b211ce5ba2265dc6b14313"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      },
+      {
+        "paper": "source-sha256:35abe360a1da8ee0c133584e8acf1b16494e1b5d972be996db43131da54689e6",
+        "explicit_reference": true,
+        "reference_hashes": [
+          "43f7490f1b4a47e3d9082174ade9620539789ef0d28ca8a096308d50f382635d"
+        ],
+        "exact_reference_published": false,
+        "direct": 0,
+        "tools": 10
+      }
+    ]
+  },
+  "candidate_singles": {
+    "arm": "G",
+    "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+    "rows": [
+      {
+        "papers": [
+          "source-sha256:2ecf43be14d3568c11a8644f682595c15fe100cb39680fe86553c240b96095b2"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:2ecf43be14d3568c11a8644f682595c15fe100cb39680fe86553c240b96095b2": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 5
+      },
+      {
+        "papers": [
+          "source-sha256:dba887978408c2daaddc134569af7dc09231d2a9ac72d9c793854c02c9f37626"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:dba887978408c2daaddc134569af7dc09231d2a9ac72d9c793854c02c9f37626": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 5
+      },
+      {
+        "papers": [
+          "source-sha256:99b40ee0ffaf0139d003a66e1837ce4aa10e381e0edad04930313ec1cadd2ae2"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:99b40ee0ffaf0139d003a66e1837ce4aa10e381e0edad04930313ec1cadd2ae2": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 7
+      },
+      {
+        "papers": [
+          "source-sha256:867c24ff35fce56eb4e2373e04007754e297f06b3f7607eb1ea9e0d6c6d1a295"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:867c24ff35fce56eb4e2373e04007754e297f06b3f7607eb1ea9e0d6c6d1a295": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 7
+      },
+      {
+        "papers": [
+          "source-sha256:c2102829c03ca6d4e53640a904229557149114735cb285ccb42149e89a29318c"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:c2102829c03ca6d4e53640a904229557149114735cb285ccb42149e89a29318c": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 5
+      },
+      {
+        "papers": [
+          "source-sha256:7b540eac6a6c7640faefc7f005bcb5f743cb1dc4f6aea5bfe1ed19c21deb99d4"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:7b540eac6a6c7640faefc7f005bcb5f743cb1dc4f6aea5bfe1ed19c21deb99d4": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 5
+      },
+      {
+        "papers": [
+          "source-sha256:042397987815467faebafdb9f08d971316b616af8feef5cf98c439f021869520"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:042397987815467faebafdb9f08d971316b616af8feef5cf98c439f021869520": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 7
+      },
+      {
+        "papers": [
+          "source-sha256:975ad5dae15e60df1e04ab1a000d27eff9e70c3c1548f858148cccb518f42873"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:975ad5dae15e60df1e04ab1a000d27eff9e70c3c1548f858148cccb518f42873": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 5
+      },
+      {
+        "papers": [
+          "source-sha256:8f30c015d03059662baa9c599136625f0a1e15d9b50b0d89af4123cbfb9e7b18"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:8f30c015d03059662baa9c599136625f0a1e15d9b50b0d89af4123cbfb9e7b18": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 5
+      },
+      {
+        "papers": [
+          "source-sha256:35abe360a1da8ee0c133584e8acf1b16494e1b5d972be996db43131da54689e6"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:35abe360a1da8ee0c133584e8acf1b16494e1b5d972be996db43131da54689e6": true
+        },
+        "all_named_methods": true,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 9
+      }
+    ]
+  },
+  "baseline_pairs": {
+    "arm": "A",
+    "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+    "rows": [
+      {
+        "papers": [
+          "source-sha256:2ecf43be14d3568c11a8644f682595c15fe100cb39680fe86553c240b96095b2",
+          "source-sha256:dba887978408c2daaddc134569af7dc09231d2a9ac72d9c793854c02c9f37626"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:2ecf43be14d3568c11a8644f682595c15fe100cb39680fe86553c240b96095b2": false,
+          "source-sha256:dba887978408c2daaddc134569af7dc09231d2a9ac72d9c793854c02c9f37626": false
+        },
+        "all_named_methods": false,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:99b40ee0ffaf0139d003a66e1837ce4aa10e381e0edad04930313ec1cadd2ae2",
+          "source-sha256:867c24ff35fce56eb4e2373e04007754e297f06b3f7607eb1ea9e0d6c6d1a295"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:99b40ee0ffaf0139d003a66e1837ce4aa10e381e0edad04930313ec1cadd2ae2": true,
+          "source-sha256:867c24ff35fce56eb4e2373e04007754e297f06b3f7607eb1ea9e0d6c6d1a295": false
+        },
+        "all_named_methods": false,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:c2102829c03ca6d4e53640a904229557149114735cb285ccb42149e89a29318c",
+          "source-sha256:7b540eac6a6c7640faefc7f005bcb5f743cb1dc4f6aea5bfe1ed19c21deb99d4"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:c2102829c03ca6d4e53640a904229557149114735cb285ccb42149e89a29318c": false,
+          "source-sha256:7b540eac6a6c7640faefc7f005bcb5f743cb1dc4f6aea5bfe1ed19c21deb99d4": false
+        },
+        "all_named_methods": false,
+        "direct": 1,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:042397987815467faebafdb9f08d971316b616af8feef5cf98c439f021869520",
+          "source-sha256:975ad5dae15e60df1e04ab1a000d27eff9e70c3c1548f858148cccb518f42873"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:042397987815467faebafdb9f08d971316b616af8feef5cf98c439f021869520": false,
+          "source-sha256:975ad5dae15e60df1e04ab1a000d27eff9e70c3c1548f858148cccb518f42873": false
+        },
+        "all_named_methods": false,
+        "direct": 0,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:8f30c015d03059662baa9c599136625f0a1e15d9b50b0d89af4123cbfb9e7b18",
+          "source-sha256:35abe360a1da8ee0c133584e8acf1b16494e1b5d972be996db43131da54689e6"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:8f30c015d03059662baa9c599136625f0a1e15d9b50b0d89af4123cbfb9e7b18": false,
+          "source-sha256:35abe360a1da8ee0c133584e8acf1b16494e1b5d972be996db43131da54689e6": false
+        },
+        "all_named_methods": false,
+        "direct": 0,
+        "derived_relations": 0,
+        "tools": 9
+      }
+    ]
+  },
+  "candidate_pairs": {
+    "arm": "G",
+    "corpus": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+    "rows": [
+      {
+        "papers": [
+          "source-sha256:2ecf43be14d3568c11a8644f682595c15fe100cb39680fe86553c240b96095b2",
+          "source-sha256:dba887978408c2daaddc134569af7dc09231d2a9ac72d9c793854c02c9f37626"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:2ecf43be14d3568c11a8644f682595c15fe100cb39680fe86553c240b96095b2": true,
+          "source-sha256:dba887978408c2daaddc134569af7dc09231d2a9ac72d9c793854c02c9f37626": true
+        },
+        "all_named_methods": true,
+        "direct": 2,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:99b40ee0ffaf0139d003a66e1837ce4aa10e381e0edad04930313ec1cadd2ae2",
+          "source-sha256:867c24ff35fce56eb4e2373e04007754e297f06b3f7607eb1ea9e0d6c6d1a295"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:99b40ee0ffaf0139d003a66e1837ce4aa10e381e0edad04930313ec1cadd2ae2": true,
+          "source-sha256:867c24ff35fce56eb4e2373e04007754e297f06b3f7607eb1ea9e0d6c6d1a295": true
+        },
+        "all_named_methods": true,
+        "direct": 2,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:c2102829c03ca6d4e53640a904229557149114735cb285ccb42149e89a29318c",
+          "source-sha256:7b540eac6a6c7640faefc7f005bcb5f743cb1dc4f6aea5bfe1ed19c21deb99d4"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:c2102829c03ca6d4e53640a904229557149114735cb285ccb42149e89a29318c": true,
+          "source-sha256:7b540eac6a6c7640faefc7f005bcb5f743cb1dc4f6aea5bfe1ed19c21deb99d4": true
+        },
+        "all_named_methods": true,
+        "direct": 2,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:042397987815467faebafdb9f08d971316b616af8feef5cf98c439f021869520",
+          "source-sha256:975ad5dae15e60df1e04ab1a000d27eff9e70c3c1548f858148cccb518f42873"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:042397987815467faebafdb9f08d971316b616af8feef5cf98c439f021869520": true,
+          "source-sha256:975ad5dae15e60df1e04ab1a000d27eff9e70c3c1548f858148cccb518f42873": true
+        },
+        "all_named_methods": true,
+        "direct": 2,
+        "derived_relations": 0,
+        "tools": 9
+      },
+      {
+        "papers": [
+          "source-sha256:8f30c015d03059662baa9c599136625f0a1e15d9b50b0d89af4123cbfb9e7b18",
+          "source-sha256:35abe360a1da8ee0c133584e8acf1b16494e1b5d972be996db43131da54689e6"
+        ],
+        "exact_method_by_paper": {
+          "source-sha256:8f30c015d03059662baa9c599136625f0a1e15d9b50b0d89af4123cbfb9e7b18": true,
+          "source-sha256:35abe360a1da8ee0c133584e8acf1b16494e1b5d972be996db43131da54689e6": true
+        },
+        "all_named_methods": true,
+        "direct": 2,
+        "derived_relations": 0,
+        "tools": 9
+      }
+    ]
+  }
+}

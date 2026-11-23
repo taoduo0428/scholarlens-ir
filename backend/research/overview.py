@@ -87,9 +87,12 @@ def synthesize(claims, sources, requested, *, attributed=False, profile_index=No
         if pairwise:
             from backend.research.pra_relations import shared_relations
             for kind, message, witnesses in shared_relations(pool, profile_index, sources, requested):
-                if not any(row["kind"] == kind and set(row["premise_claim_ids"]) == {
-                    c.claim_id for c in witnesses} for row in findings):
+                match = next((row for row in findings if row["kind"] == kind and set(row["premise_claim_ids"]) ==
+                              {c.claim_id for c in witnesses}), None)
+                if match is None:
                     add(kind, "derived_synthesis", message, witnesses)
+                elif kind == "shared_method":
+                    match["statement"] = message
         from backend.research.overview_relations import finding_relations
         for kind, message, witnesses in finding_relations(pool, profile_index, requested, sources):
             add(kind, "derived_synthesis", message, witnesses)

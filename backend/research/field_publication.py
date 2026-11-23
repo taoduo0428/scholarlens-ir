@@ -151,16 +151,27 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         if conclusions
         else "现有证据不足以回答最终问题。"
     )
-    if state.pra_arm in {"D", "G"} and report.get("research_intent") == "method_comparison":
+    intent = report.get("research_intent")
+    if state.pra_arm in {"D", "G"} and intent in {"method_comparison", "literature_synthesis"}:
         from backend.research.pra_relations import shared_relations
         released = [accepted[cid] for cid in sections["verified"] if cid in accepted]
-        report["method_relations"] = [
-            {"kind": kind, "level": "derived_synthesis", "statement": message,
-             "premise_claim_ids": [c.claim_id for c in witnesses],
-             "evidence_ids": sorted({eid for c in witnesses for eid in c.evidence_ids}),
-             "paper_ids": sorted({pid for c in witnesses for pid in c.paper_ids})}
-            for kind, message, witnesses in shared_relations(released, index, sources, state.task.scope.paper_ids)
-        ]
+        scope = set(state.task.scope.paper_ids)
+        rows = []
+        for kind, message, witnesses in shared_relations(released, index, sources, scope):
+            papers = sorted({pid for c in witnesses for pid in c.paper_ids})
+            subset = set(papers) < scope
+            if intent == "literature_synthesis" and not subset:
+                continue  # The overview field owns publication for the full group.
+            if subset:
+                titles = "、".join(f"《{index[p].title}》" for p in papers)
+                message = f"所选 {len(scope)} 篇中，以下关系仅由 {titles} 支持。{message}"
+            rows.append({"kind": kind, "level": "derived_synthesis", "statement": message,
+                         "scope": "subset" if subset else "full_group",
+                         "premise_claim_ids": [c.claim_id for c in witnesses],
+                         "evidence_ids": sorted({eid for c in witnesses for eid in c.evidence_ids}),
+                         "paper_ids": papers})
+        if rows or intent == "method_comparison":
+            report["method_relations"] = rows
     if state.pra_arm in {"F", "G"}:
         from backend.research.answer_compiler import compile_answer
         report["compiled_answer"] = compile_answer(report)

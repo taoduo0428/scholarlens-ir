@@ -7,7 +7,7 @@ from typing import Literal, get_args
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from backend.research.claim_verifier import GUARDS, METRIC, SPLIT
+from backend.research.claim_verifier import GUARDS, METRIC, sentence_boundaries
 from backend.research.paper_findings import roles
 
 ProfileField = Literal[
@@ -128,7 +128,7 @@ def attribution(text, previous=""):
 def sentence_spans(text, offset):
     """Use positions from the parser, including repeated identical sentences."""
     start = 0
-    for split in [*SPLIT.finditer(text), None]:
+    for split in [*sentence_boundaries(text), None]:
         end = split.start() if split else len(text)
         piece = text[start:end]
         sentence = piece.strip()
@@ -179,6 +179,10 @@ def profiles(state, sources, candidates=()):
             left, right, text = span
             origin, fields = attribution(text, previous)
             enhanced = getattr(state, "pra_arm", "A") in {"B", "G"}
+            if enhanced and cap.locator.field == "abstract" and origin in {"background", "authors"}:
+                from backend.research.profile_frames import abstract_method
+                if abstract_method(text):
+                    origin, fields = "authors", fields | {"methods"}
             if enhanced and origin == "background":
                 from backend.research.profile_frames import passive_proposal
                 if passive_proposal(text):
@@ -186,6 +190,12 @@ def profiles(state, sources, candidates=()):
             if enhanced and origin == "authors":
                 from backend.research.profile_frames import frame_fields
                 fields.update(frame_fields(text))
+                from backend.research.method_interfaces import interface
+                port = interface(text)
+                if port:
+                    fields.add("methods")
+                    if port[0] == "requires":
+                        fields.add("input_variables")
             antecedent = None
             if enhanced and previous and previous_id and attribution(previous)[0] == "authors" and (
                 re.match(r"^(?:the (?:aim|objective|purpose) (?:of this (?:work|study) )?is to "

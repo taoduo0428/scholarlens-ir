@@ -102,6 +102,68 @@ def test_profiles_separate_goals_from_observed_results(tmp_path):
     assert not p["fields"]["reported_findings"]
 
 
+@pytest.mark.parametrize("goal", [
+    "Compare the methods used in the two papers.",
+    "综合这组论文各自的方法、主要结果和仍待解决的问题。",
+])
+def test_interface_join_preserves_direction_units_and_evidence(tmp_path, goal):
+    from backend.research.method_interfaces import interface
+
+    output = "Our method outputs an hourly demand matrix in MW."
+    input_ = "Our method requires an hourly demand matrix in MW as input."
+    docs = {"a": {"paper_id": "a", "title": "Emitter", "abstract": output},
+            "b": {"paper_id": "b", "title": "Reader", "abstract": input_}}
+
+    def compare(source, path):
+        r = execute(goal, list(source), source, "test:v8:interface", path, "E11", pra_arm="G")["report"]
+        return r, [x for x in r.get("method_relations", r.get("overview", {}).get("findings", []))
+                   if x["kind"] == "complements"]
+
+    r, relations = compare(docs, tmp_path/"intact")
+    assert len(relations) == 1
+    assert relations[0]["paper_ids"] == ["a", "b"] and len(relations[0]["evidence_ids"]) == 2
+    assert "《Emitter》输出" in relations[0]["statement"] and "《Reader》所列输入" in relations[0]["statement"]
+    assert relations[0]["statement"] in r["markdown"]
+    assert interface(input_.replace("Our method requires", "Previous studies required")) is None
+    assert interface(output.replace("outputs", "may output")) is None
+    assert interface(input_.replace("MW", "mW")) != interface(input_)
+    for n, changed in enumerate((input_.replace("MW", "mW"), output)):
+        _, withdrawn = compare({**docs, "b": {**docs["b"], "abstract": changed}}, tmp_path/str(n))
+        assert not withdrawn
+
+
+def test_structured_method_requires_an_attributable_complete_procedure(tmp_path):
+    from backend.research.profile_frames import abstract_method
+
+    assert not abstract_method("Methods: Previous authors used a different mapping.")
+    assert not abstract_method("Methods: The sensor was optimized if readings were reliable.")
+    assert not abstract_method("Methods: We propose to measure the predicted rate, i.e.")
+    assert not abstract_method("Methods: A significant problem in data analysis.")
+    method = "Methods: The sensor was optimized for contactless mapping."
+    docs = {"s": {"paper_id": "s", "title": "Sensor study", "abstract": method}}
+    def direct(source, directory):
+        report = execute("作者采用了什么方法？", ["s"], source, "test:structured-method",
+                         directory, "E11", pra_arm="G")["report"]
+        cited = set(report["sections"]["verified"])
+        return [c["statement"] for c in report["claims"] if c["claim_id"] in cited]
+    assert direct(docs, tmp_path/"ok") == [method]
+    changed = {"s": {**docs["s"], "abstract": method + " Correction: We did not use this sensor."}}
+    assert not direct(changed, tmp_path/"correction")
+
+
+def test_subset_relation_has_its_own_scope_and_cannot_complete_the_overview(tmp_path):
+    docs = {p: {"paper_id": p, "title": p, "abstract": statement} for p, statement in [
+        ("a", "We use BM25 for document retrieval."), ("b", "We use BM25 for patent search."),
+        ("c", "We use BERT for document classification.")]}
+    report = execute("综合这组论文各自的方法、主要结果和仍待解决的问题。", list(docs), docs,
+                     "test:v8:subset", tmp_path, "E11", pra_arm="G")["report"]
+    relation = next(r for r in report["method_relations"] if r["kind"] == "shared_method")
+    assert relation["scope"] == "subset" and relation["paper_ids"] == ["a", "b"]
+    sections = {s["section"]: s for s in report["compiled_answer"]}
+    assert any("《a》" in r["text"] and "《b》" in r["text"] for r in sections["relations"]["items"])
+    assert not sections["synthesis"]["items"]
+
+
 @pytest.mark.parametrize(("left", "right", "relation"), [
     ("We use logistic regression for forecasting.", "We use linear regression for forecasting.", "shared_method_family"),
     ("We use BM25 for document retrieval.", "We use BERT for document retrieval.", "different_methods_for_task"),

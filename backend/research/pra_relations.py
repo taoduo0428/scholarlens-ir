@@ -5,6 +5,7 @@ from hashlib import sha256
 import re
 
 from backend.research.overview_relations import TECHNIQUES
+from backend.research.method_interfaces import interface
 from backend.research.research_profile import NEGATED, attribution
 
 
@@ -92,9 +93,11 @@ def source_graph(claims, profiles, sources):
                         or row["quote"][v.start:v.end] != v.quote or sha256(v.quote.encode()).hexdigest() != v.quote_hash):
                     continue
                 name = method_name(v.quote) if field == "methods" else None
-                edges.append({"source": pid, "target": name or v.sentence_id, "target_type": entity,
+                port = interface(v.quote) if field == "methods" and not name else None
+                edges.append({"source": pid, "target": port[1] if port else name or v.sentence_id,
+                              "target_type": "Data" if port else entity,
                               "method_family": FAMILY.get(name), "application": application(v.quote) if name else None,
-                              "relation": relation if name or field != "methods" else "reports",
+                              "relation": port[0] if port else relation if name or field != "methods" else "reports",
                               "scope": "paper", "paper_ids": [pid], "claim_ids": [c.claim_id],
                               "evidence_ids": [v.evidence_id], "verification_status": "verified",
                               "provenance": {"sentence_id": v.sentence_id, "quote_hash": v.quote_hash,
@@ -108,7 +111,8 @@ def verify_derivation(edges, by_id, sources, scope, relation="shared_method"):
         return False
     owners, methods, versions, applications = set(), set(), set(), set()
     for e in edges:
-        if e["relation"] != "uses" or e["verification_status"] != "verified":
+        allowed = {"produces", "requires"} if relation == "complements" else {"uses"}
+        if e["relation"] not in allowed or e["verification_status"] != "verified":
             return False
         c = by_id.get(e["claim_ids"][0])
         eid = e["evidence_ids"][0]
@@ -122,7 +126,9 @@ def verify_derivation(edges, by_id, sources, scope, relation="shared_method"):
         if not loc or not base or loc[1] != base[1] or not int(base[2]) <= int(loc[2]) < int(loc[3]) <= int(base[3]):
             return False
         text = row["quote"][int(loc[2])-int(base[2]):int(loc[3])-int(base[2])]
-        if (c.statement != text or method_name(text) != e["target"]
+        valid_target = (interface(text) == (e["relation"], e["target"]) if relation == "complements"
+                        else method_name(text) == e["target"])
+        if (c.statement != text or not valid_target
                 or sha256(text.encode()).hexdigest() != e["provenance"]["quote_hash"]
                 or row["corpus_generation"] != e["provenance"]["source_version"]):
             return False
@@ -135,6 +141,8 @@ def verify_derivation(edges, by_id, sources, scope, relation="shared_method"):
         applications.add(source_application)
     if owners != set(scope) or len(versions) != 1:
         return False
+    if relation == "complements":
+        return len(edges) == 2 and len(methods) == 1 and {e["relation"] for e in edges} == {"produces", "requires"}
     if relation == "shared_method":
         return len(methods) == 1
     if relation == "shared_method_family":
@@ -148,8 +156,11 @@ def verify_derivation(edges, by_id, sources, scope, relation="shared_method"):
 def shared_relations(claims, profiles, sources, scope):
     """Index by canonical method before joining papers. Each group has one premise per paper."""
     buckets = defaultdict(dict)
+    ports = defaultdict(lambda: defaultdict(dict))
     by_id = {c.claim_id: c for c in claims}
     for edge in source_graph(claims, profiles, sources):
+        if edge["source"] in scope and edge["relation"] in {"produces", "requires"}:
+            ports[edge["target"]][edge["relation"]].setdefault(edge["source"], edge)
         if edge["relation"] == "uses" and edge["source"] in scope:
             for relation, value in (("shared_method", edge["target"]), ("shared_method_family", edge["method_family"]),
                                     ("different_methods_for_task", edge["application"])):
@@ -172,3 +183,12 @@ def shared_relations(claims, profiles, sources, scope):
                 text += "、".join(f"《{profiles[e['source']].title}》使用 {e['target']}" for e in edges) + "。"
             yield (relation, text,
                    [by_id[e["claim_ids"][0]] for e in edges])
+    for item, roles in sorted(ports.items()):
+        for producer, output in sorted(roles["produces"].items()):
+            for consumer, required in sorted(roles["requires"].items()):
+                if producer == consumer:
+                    continue
+                if verify_derivation([output, required], by_id, sources, {producer, consumer}, "complements"):
+                    yield ("complements", f"《{profiles[producer].title}》输出的「{item}」与"
+                           f"《{profiles[consumer].title}》所列输入名称一致。实际联用效果仍需验证。",
+                           [by_id[e["claim_ids"][0]] for e in (output, required)])

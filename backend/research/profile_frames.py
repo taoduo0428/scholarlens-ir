@@ -82,3 +82,20 @@ def frame_fields(text):
                 fields.add("decision_models")
     fields.update(k for k, pattern in VARIABLES.items() if re.match(pattern, text, re.I))
     return fields
+
+
+def abstract_method(text):
+    """A Methods label plus a study procedure, never a section label alone."""
+    match = re.fullmatch(r"(?:Methods?|研究方法|方法)\s*[:：]\s*(.+[.。])", text, re.I)
+    if not match:
+        return False
+    body = match[1]
+    if (CLAUSE.search(body) or re.search(r"\b(?:earlier|prior|previous|another|historical|other (?:studies|authors)|"
+            r"planned|plans?|literature suggests|by others|instead|elsewhere|(?:in|by) (?:a|the) previous study)\b|前人|此前|计划|曾有", body, re.I)
+            or re.search(r"\b(?:i\.e|e\.g|et al)\.$|(?:Results?|Conclusions?|Background)\s*:", body, re.I)):
+        return False
+    return bool(re.search(
+        r"\bwe (?:have |also )?(?:used?|perform(?:ed)?|conduct(?:ed)?|carried out|develop(?:ed)?|"
+        r"evaluat(?:e|ed)|propos(?:e|ed)|adopt(?:ed)?|implement(?:ed)?|address\b.{1,70}by performing)\b|"
+        r"\b(?:was|were|is|are) (?:optimized|ported|recruited|trained|sampled|measured|"
+        r"encoded|simplified|implemented|composed of)\b|(?:本研究|本文|我们)(?:采用|使用|测量|采样)", body, re.I))

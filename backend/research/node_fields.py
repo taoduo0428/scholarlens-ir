@@ -74,6 +74,16 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra
         independent_facets = dimensions_by_intent.get(research_type)
         intent_goal = TITLES.sub(" ", contract.goal)
         named_targets = []
+        if pra and one and len(scope) == 1 and research_type == "description" and not TITLES.search(contract.goal):
+            study = r"(?:the authors|this (?:study|paper)|the (?:study|paper))"
+            if re.fullmatch(
+                rf"(?:what|which) (?:research )?(?:methods?|approach(?:es)?|techniques?) "
+                rf"(?:(?:did|does|do) {study} (?:use|apply|adopt)|"
+                rf"(?:was|were) (?:used|applied|adopted) (?:in|by) {study})[?.]?|"
+                r"(?:本文|这篇论文|本研究|作者)(?:采用|使用)(?:了)?(?:什么|哪些|哪种)(?:研究)?方法[？?。]?",
+                intent_goal.strip(), re.I
+            ):
+                independent_facets = ["method"]
         if research_type == "description" and re.search(r"objectives?|research goals?|研究目标|研究目的", intent_goal, re.I):
             # Mixed objectives, representation and units still need independent proofs.
             if not re.search(r"unit of analysis|representation|分析单位|数据表示", intent_goal, re.I):

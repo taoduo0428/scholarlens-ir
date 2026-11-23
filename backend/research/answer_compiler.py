@@ -50,7 +50,8 @@ def compile_answer(report):
         item = {"kind": "derived", "text": row["statement"], "claim_ids": row["premise_claim_ids"],
                 "evidence_ids": row["evidence_ids"], "paper_ids": row["paper_ids"]}
         sections["relations"].append(item)
-        sections["synthesis"].append(item)
+        if row.get("scope") != "subset":
+            sections["synthesis"].append(item)
         if row["kind"].startswith("shared_"):
             sections["common"].append(item)
         elif row["kind"] == "contradicts":

@@ -207,7 +207,18 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
         if profile_index is not None:
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
             if field.facet in PROFILE_FACETS:
-                return responsive_claims(field.facet, valid, profile_index), "insufficient_evidence"
+                proof = responsive_claims(field.facet, valid, profile_index)
+                if field.facet == "method" and state.pra_arm == "G" and len(field.paper_ids) == 1:
+                    from backend.research.profile_frames import abstract_method
+                    labelled = [c for c in proof if any(sources[e]["field"] == "abstract" for e in c.evidence_ids)
+                                and re.match(r"^(?:Methods?|研究方法|方法)\s*[:：]", c.statement, re.I)]
+                    if labelled:
+                        correction = any(re.search(
+                            r"\b(?:we (?:did not|never) (?:use|apply|adopt)|(?:we|our study) (?:used|uses) "
+                            r".{1,80} instead of|(?:correction|erratum)\s*:)|(?:更正|勘误)[：:]|我们并未采用",
+                            c.statement, re.I) for c in valid)
+                        proof = [] if correction else [c for c in labelled if abstract_method(c.statement)]
+                return proof, "insufficient_evidence"
         if field.facet == "limitations" and state.retrieval_policy in {"E10", "E11"}:
             from backend.research.overview import GAP
             return [c for c in valid if GAP.search(c.statement)], "insufficient_evidence"

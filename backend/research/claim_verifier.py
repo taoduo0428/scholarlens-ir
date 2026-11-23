@@ -34,10 +34,26 @@ SPLIT = re.compile(
 )
 
 
+def sentence_boundaries(text):
+    """Keep the explanation following i.e. or e.g. inside a labelled abstract sentence."""
+    start = 0
+    for split in SPLIT.finditer(text):
+        if (text[max(0, split.start()-4):split.start()].lower() in {"i.e.", "e.g."}
+                and re.match(r"\s*(?:methods?|results?|objectives?)\s*:", text[start:split.start()], re.I)
+                and text[split.end():split.end()+1].islower()):
+            continue
+        yield split
+        start = split.end()
+
+
 def sentences(text: str) -> list[str]:
-    return [
-        v.strip() for v in SPLIT.split(text) if 8 <= len(v.strip()) <= 480 and not GUARDS.search(v)
-    ]
+    start = 0
+    rows = []
+    for split in sentence_boundaries(text):
+        rows.append(text[start:split.start()].strip())
+        start = split.end()
+    rows.append(text[start:].strip())
+    return [s for s in rows if 8 <= len(s) <= 480 and not GUARDS.search(s)]
 
 
 REFERENTIAL = re.compile(
