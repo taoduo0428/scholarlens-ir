@@ -130,7 +130,7 @@ PATHS = {
 }
 PATHS["performance_ranking"] = PATHS["comparison"]
 PATHS["literature_synthesis"] = [("source_fact", []), ("synthesis", [1])]
-PATHS["trend_analysis"] = [("source_fact", []), ("synthesis", [1])]
+PATHS["trend_analysis"] = PATHS["literature_synthesis"]
 ZH = {"source_fact": "原文直接说明了哪些相关事实", "conditions": "各项实验的语料、指标、单位与协议是什么",
       "comparison": "哪些条件对齐的测量可以比较", "mechanism": "哪些原文把前提和结果连起来",
       "synthesis": "哪些结论有独立来源支持，哪些仍是推测", "availability": "许可材料能否定位所求信息"}
@@ -210,8 +210,10 @@ def make_plan(state, propose=None):
                 # Persist only local, allowlisted codes. Provider payloads can contain credentials.
                 code = str(exc)
                 errors.append(code if code in {"outside_scope", "missing_comparison", "off_topic", "budget", "provider_timeout",
-                                               "invalid_decision", "provider_unavailable", "provider_rate_limited"} else "invalid_plan")
-                if errors[-1] in {"budget", "provider_timeout", "provider_unavailable", "provider_rate_limited"}:
+                                               "invalid_decision", "provider_unavailable", "provider_rate_limited",
+                                               "provider_output_limit"} else "invalid_plan")
+                if errors[-1] in {"budget", "provider_timeout", "provider_unavailable", "provider_rate_limited",
+                                   "provider_output_limit"}:
                     break
     return QuestionPlan(contract=contract, graph=graph or fallback(contract, profiles=state.retrieval_policy in {"E10", "E11"}), origin=origin,
                         input_hash=digest, prompt_hash=sha256(PROMPT.encode()).hexdigest(), validation_errors=errors)

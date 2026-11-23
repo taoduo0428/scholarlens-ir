@@ -41,6 +41,7 @@ class PassageRequest(SearchRequest):
     slot: Slot | None = None
     abstract_opening: bool = False
     abstract_profile: bool = False
+    focus: list[Summary] = Field(default_factory=list, max_length=4)
 
 
 class PaperRequest(Contract):
@@ -191,13 +192,13 @@ class ToolRegistry:
                 raise ToolError("explicit_paper_required")
             # Select a window per paper for each round, reserving space for
             # other papers before offering additional windows.
-            from backend.research.paper_findings import roles
-            from backend.research.claim_verifier import sentences
+            from backend.research.research_profile import attribution, sentence_spans
 
             by_paper = {}
             for doc, row in rows.values():
                 if row["field"] == "abstract":
-                    facets = [roles(sentence) for sentence in sentences(row["text"])]
+                    facets = [fields for span in sentence_spans(row["text"], row["offset_start"]) if span
+                              for origin, fields in [attribution(span[2])] if origin == "authors"]
                     score = (len(set().union(*facets)), sum(bool(f) for f in facets))
                     by_paper.setdefault(doc["paper_id"], []).append((score, row["offset_start"], doc, row))
             lists = [sorted(windows, key=lambda w: (-w[0][0], -w[0][1], w[1]))
@@ -225,6 +226,23 @@ class ToolRegistry:
             if len(reordered) != len(window) or set(reordered) != set(window):
                 raise ToolError("invalid_rerank_result")
             ranked = reordered + tail
+        if req.focus and req.strategy != "semantic":
+            # Give each named subject an independent lexical ranking. A joined BM25
+            # query can spend the entire result window on the more distinctive side.
+            choices = [(cid, tokens(row["text"])) for cid, (_, row) in rows.items()
+                       if row["field"] != "title"]
+            leaders = []
+            for subject in req.focus:
+                lane = bm25(subject, choices)
+                if not lane:
+                    continue
+                selected = rows[lane[0]][1]
+                # Prefer a higher-ranked joint-query window on the same paper.
+                # This keeps facet terms and avoids evicting an already useful window.
+                leaders.append(next((cid for cid in ranked
+                                     if rows[cid][1]["paper_id"] == selected["paper_id"]
+                                     and rows[cid][1]["field"] != "title"), lane[0]))
+            ranked = list(dict.fromkeys(leaders + ranked))
         return {"passages": [passage(*rows[cid], self.generation) for cid in ranked[: req.limit]]}
 
     def _read_paper_chunks(self, req):

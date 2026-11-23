@@ -29,7 +29,9 @@ GUARDS = re.compile(
     r"(?:ignore (?:all |the )?(?:previous|prior)|system prompt|call (?:the )?tool|忽略.*指令|调用.*工具)",
     re.I,
 )
-SPLIT = re.compile(r"(?<=[.!?。！？])\s+|(?<=。)|\n+")
+SPLIT = re.compile(
+    r"(?<=[。！？])\s*|(?<=[.!?])\s+|\n+|(?<=[a-z]{3}\.)(?=(?:We |Our |This study |This paper ))"
+)
 
 
 def sentences(text: str) -> list[str]:

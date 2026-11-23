@@ -1,5 +1,6 @@
 """Bind comparative descriptions to named study subjects, including larger permitted libraries."""
 import re
+import unicodedata
 
 from backend.research.field_contract import TITLES
 
@@ -32,7 +33,7 @@ def requested_dimensions(goal):
 
 
 def words(text):
-    text = re.sub(r"neighbour", "neighbor", text.casefold())
+    text = unicodedata.normalize("NFKC", text).casefold().replace("neighbour", "neighbor").replace("colour", "color")
     return [w[:-1] if len(w) > 4 and w.endswith("s") and not w.endswith("ss") else w
             for w in re.findall(r"[a-z\d]+", text)]
 
@@ -43,5 +44,15 @@ def anchored(subject, claim, sources):
     if not tokenized:
         return False
     needle = " " + " ".join(tokenized) + " "
-    return any(needle in " " + " ".join(words(text)) + " " for text in
-               [claim.statement, *(sources[e].get("paper_title", "") for e in claim.evidence_ids)])
+    titles = [sources[e].get("paper_title") or "" for e in claim.evidence_ids]
+    if any(needle in " " + " ".join(words(text)) + " " for text in [claim.statement, *titles]):
+        return True
+    # A title may reorder a compound, e.g. “classification of time series”.
+    # Require all substantive terms, at least two, within the same short window.
+    terms = set(tokenized) - {"a", "an", "and", "for", "in", "of", "on", "the", "with"}
+    if not 2 <= len(terms) <= 6:
+        return False
+    window = len(terms) + 3
+    return any(terms <= set(parts[i:i + window])
+               for parts in (words(text) for text in titles)
+               for i in range(len(parts)))

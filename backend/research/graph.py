@@ -18,7 +18,7 @@ from backend.research import workspace_model
 from backend.research.harness import bounded_read, call_tool
 from backend.research.broad_recall import eligible, fair_rows, free_calls, grounded_query
 from backend.research.planner import covers, plan, query_for
-from backend.research.provider_adapter import ProviderError
+from backend.research.provider_adapter import MODEL_STAGE_SECONDS, ProviderError
 from backend.research.schemas import (
     ActionRecord,
     Coverage,
@@ -164,15 +164,28 @@ class ResearchGraph:
                         state.budget.model_calls_used += 1
                     state.planning_calls += 1
                     view = {"task": contract, "validation_errors": list(errors)}
+                    if state.retrieval_policy == "E11":
+                        from backend.research.questions import PATHS
+                        view["skeleton"] = [
+                            {"id": f"q{i}", "kind": kind, "dependencies": [f"q{d}" for d in deps],
+                             "priority": i, "min_papers": 2 if kind == "comparison" else 1}
+                            for i, (kind, deps) in enumerate(PATHS[contract["intent"]], 1)
+                        ]
                     try:
                         graph = bounded_read(self.question_planner, view, self._remaining(state),
-                                             deadline=state.budget.deadline)
+                                             deadline=state.budget.deadline, limit=MODEL_STAGE_SECONDS)
                     except ToolError:
                         raise ValueError("provider_timeout") from None
                     result = graph.model_dump() if hasattr(graph, "model_dump") else graph
                     if state.retrieval_policy in {"W4","E9","E9.1", "E10", "E11"}:
                         from backend.research.questions import Blueprint, PATHS
                         parsed = Blueprint.model_validate(result)
+                        if "skeleton" in view and [
+                            {"id": n.id, "kind": n.requirement.kind, "dependencies": n.dependencies,
+                             "priority": n.priority, "min_papers": n.requirement.min_papers}
+                            for n in parsed.nodes
+                        ] != view["skeleton"]:
+                            raise ValueError("invalid_plan")
                         required = PATHS[contract["intent"]]
                         by_kind = {n.requirement.kind:n for n in parsed.nodes}
                         if len(parsed.nodes)!=len(required) or any(
@@ -198,6 +211,7 @@ class ResearchGraph:
                                 state.question_plan, state.answer_contract,
                                 profile_gaps=state.retrieval_policy in {"E10", "E11"},
                                 independent=state.retrieval_policy == "E11",
+                                pra=state.pra_arm == "G",
                             )
                         else:
                             state.field_requirements = requirements(state.question_plan, state.answer_contract)
@@ -269,6 +283,8 @@ class ResearchGraph:
         action = Search(subtask_id=sub.id, query=query, strategy=strategy)
         targets = set(_uncovered_papers(state)) if state.queries else set()
         view = working_context(state)
+        if state.retrieval_policy == "E11":
+            view["current_target"] = sub.id
         can_choose = not state.answer_contract or workspace_model.allowed(state,"decision")
         if self.choose is not None and state.task.mode == "personal_model" and can_choose:
             if state.budget.model_calls_used >= state.budget.max_model_calls:
@@ -284,12 +300,14 @@ class ResearchGraph:
                     view,
                     self._remaining(state),
                     deadline=state.budget.deadline,
-                    limit=20,
+                    limit=MODEL_STAGE_SECONDS,
                 )
-            except ProviderError:
+            except ProviderError as exc:
                 if not state.answer_contract:
                     raise
                 state.warnings.append("workspace_decision_fallback")
+                if str(exc) in {"provider_output_limit", "provider_timeout", "provider_unavailable", "provider_rate_limited"}:
+                    state.warnings.append("workspace_decision_" + str(exc))
                 return action
             except ToolError as exc:
                 if state.answer_contract and self._remaining(state)>0:
@@ -377,6 +395,10 @@ class ResearchGraph:
         if self._control(state, rev):
             return {"route": "end"}
         sub = next((s for s in state.subtasks if s.missing_slots), None)
+        from backend.research.pra_gaps import next_gap
+        gap = next_gap(state)
+        if gap:
+            sub = next((s for s in state.subtasks if s.id == gap["question_id"] and s.missing_slots), sub)
         budget = state.budget
         if sub is None or budget.rounds_used >= budget.max_rounds:
             state.stop_reason = "complete" if sub is None else "budget"
@@ -456,11 +478,15 @@ class ResearchGraph:
                     f.facet in {"objective", "topic", "method", "finding", "setting", "metric", "dataset", "limitations"}
                     for f in question_fields
                 )
-                if any(f.subject for f in question_fields):
+                subjects = list(dict.fromkeys(f.subject for f in question_fields if f.subject))
+                focus = []
+                if subjects:
                     # The allowlist can contain distractors. Rank by study subject rather than
                     # awarding one abstract window per permitted paper in arbitrary ID order.
                     profile_read = False
-                    query = " ".join(dict.fromkeys(f.subject for f in question_fields if f.subject))[:500]
+                    query = " ".join(subjects)[:500]
+                    if state.retrieval_policy == "E11" and len(subjects) > 1:
+                        focus = subjects[:4]
                 directed = directed or bool(profile_read and state.task.scope.paper_ids)
                 scoped_links = (state.retrieval_policy == "E11" and state.task.scope.paper_ids
                                 and state.answer_contract.answer_type == "causal_chain" and any(
@@ -473,6 +499,8 @@ class ResearchGraph:
                     targets, directed = [], False
                     query = " ".join(dict.fromkeys(
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:500]
+                    focus = list(dict.fromkeys(
+                        name for f in question_fields for name in (f.subject, f.subject_context) if name))[:4]
                 elif directed:
                     ids=list(state.task.scope.paper_ids)
                     targets=[]
@@ -492,6 +520,17 @@ class ResearchGraph:
                     if not ids:
                         targets = _uncovered_papers(state)
                         ids = state.task.scope.paper_ids[:6]
+                if (gap and sub.id == gap["question_id"] and isinstance(action, Search)
+                        and (gap["kind"] == "missing_paper" or gap["action"] in {
+                            "read_method_section", "read_results_section", "align_conditions"})):
+                    field = next(f for f in question_fields if f.field_id == gap["field_id"])
+                    requested = set(gap["paper_ids"])
+                    if requested and state.task.scope.paper_ids:
+                        ids = [p for p in state.task.scope.paper_ids if p in requested]
+                        targets = []
+                    query = " ".join(filter(None, [field.subject, field.subject_context,
+                                       field.facet, field.requested_metric, field.request]))[:500]
+                    directed, focus = False, []
                 if targets:
                     # Separate reads keep one top hit or unavailable source from hiding the other papers.
                     misses = sum(
@@ -537,6 +576,7 @@ class ResearchGraph:
                                 **({"abstract_profile": True} if directed and state.retrieval_policy in {"E10", "E11"}
                                     and (profile_read or state.answer_contract.answer_type == "overview")
                                    else {"abstract_opening": True} if directed else {}),
+                                **({"focus": focus} if focus and not directed else {}),
                                 **filters,
                             },
                         )["passages"]

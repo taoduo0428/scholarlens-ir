@@ -93,6 +93,9 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10", "E11"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
+            pra_arm = os.getenv("SCHOLARLENS_PRA_ARM", "A") if retrieval_policy == "E11" else "A"
+            if pra_arm not in set("ABCDEFG"):
+                raise problem(503, "research_policy_unavailable", "PRA 实验组配置无效")
             try:
                 versions = bind_versions(registry_dir, programs=retrieval_policy == "E11")
             except (sqlite3.Error, ValueError):
@@ -100,7 +103,7 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
             with span("api", tracer=worker.tracer) as active, worker.cv:
                 state, rev, created = store.create(owner, idempotency_key, body, generation,
                                                    initial_budget=task_budget(body), submission_trace=recorded_parent(active),
-                                                   retrieval_policy=retrieval_policy,
+                                                   retrieval_policy=retrieval_policy, pra_arm=pra_arm,
                                                    skill_version=versions[0], harness_policy_version=versions[1],
                                                    model_id=config.ai_model if config else
                                                    ("personal-pending" if body.mode == "personal_model" else "none"))

@@ -50,6 +50,7 @@ def main():
         "--policy", choices=["V1", "V5", "E9", "E9.1", "E10", "E11"], required=True
     )
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--pra-arm", choices=list("ABCDEFG"), default="A")
     args = parser.parse_args()
     out = args.output / args.policy
     out.mkdir(parents=True, exist_ok=False)
@@ -64,6 +65,7 @@ def main():
                 GENERATION,
                 Path(tmp) / tid,
                 args.policy,
+                pra_arm=args.pra_arm,
             )
             (out / (tid + ".json")).write_text(
                 json.dumps(trace, ensure_ascii=False), encoding="utf8"

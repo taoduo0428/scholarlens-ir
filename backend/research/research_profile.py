@@ -14,6 +14,7 @@ ProfileField = Literal[
     "research_objective", "research_problem", "methods", "proposed_contributions", "datasets",
     "metrics", "experiment_settings", "baselines", "reported_findings", "limitations",
     "future_work", "author_qualifications",
+    "decision_models", "representations", "input_variables", "state", "action", "reward",
 ]
 Origin = Literal["authors", "prior_work", "background", "hypothesis", "prediction", "speculation"]
 
@@ -30,6 +31,8 @@ class Candidate(BaseModel):
 
 
 class ProfileItem(Candidate):
+    sentence_id: str = ""
+    attribution_sentence_id: str | None = None
     locator: str
     quote_hash: str
     source_version: str
@@ -53,6 +56,17 @@ AUTHOR = re.compile(r"\b(?:we|our|this (?:study|work|paper|article|experiment)|t
 PASSIVE = re.compile(r"\b(?:is|was|are|were) (?:here |herein )?(?:developed|used|proposed|introduced|evaluated|tested|measured)\b|被(?:提出|采用|构建)", re.I)
 ANAPHOR = re.compile(r"^(?:this (?:method|approach|model|system)|it|the resulting (?:model|system)|该方法|该模型|这一方法)", re.I)
 MEASURED = re.compile(r"\b(?:improved|reduced|achieved|outperformed|revealed|yielded)\b|提高了|降低了|结果表明", re.I)
+NEGATED = re.compile(r"\b(?:not|never|neither|nor|no longer|instead of|rather than)\b|未采用|并未|没有使用", re.I)
+STUDY_DESIGN = re.compile(
+    r"^(?:in (?:this|the present) (?:study|work|paper),? )?"
+    r"(?:we|this (?:study|work|paper)) (?:also |here )?"
+    r"(?:perform(?:ed|s)?|conduct(?:ed|s)?|carry out|carried out) "
+    r"(?:an? |a series of )?(?:controlled |comparative |detailed |systematic |numerical |empirical )*"
+    r"(?:experiments?|evaluations?|simulations?|analys[ei]s|case stud(?:y|ies))\b", re.I)
+PRESENTED_APPROACH = re.compile(
+    r"^(?:an?|the) [^.;!?]{3,140} (?:approach|algorithm|method|framework|procedure|model) "
+    r"(?:for [^.;!?]{3,110} )?(?:is|was) (?:introduced|proposed|presented|developed)"
+    r"(?:[.!?]| (?:that|which|to|for|using|based on)\b)", re.I)
 FACETS = {
     "research_objective": r"\b(?:aims?|objective|purpose|seek[s]?)\b|旨在|目的是",
     "research_problem": r"\b(?:address(?:es)?|investigat\w*|study|studies|examin\w*)\b.{1,60}(?:problem|question|whether)|研究的问题|探讨",
@@ -76,7 +90,8 @@ def attribution(text, previous=""):
         return "hypothesis", {"author_qualifications"}
     if MAY.search(text):
         return "speculation", {"author_qualifications"}
-    owned = bool(AUTHOR.search(text) or re.search(
+    passive_design = bool(PRESENTED_APPROACH.search(text) and not NEGATED.search(text))
+    owned = bool(AUTHOR.search(text) or passive_design or re.search(
         r"\b(?:is|are|was|were) (?:investigated|studied|examined|addressed|proposed|developed) (?:here|in this paper)\b", text, re.I))
 
     # A pronoun only inherits ownership from an adjacent, explicit author statement.
@@ -93,10 +108,17 @@ def attribution(text, previous=""):
                            r"(?:address|enable|evaluate|explain|extract|identify|improve|investigate|measure|minimi[sz]e|"
                            r"model|predict|reduce|resolve|solve|study|test|understand)\b", text, re.I):
         fields.add("research_objective")
+    if owned and not NEGATED.search(text) and re.search(
+        r"(?:\b(?:propos\w*|introduc\w*|develop\w*|presents?)\b[^.;!?]{0,150}\b(?:for|to) "
+        r"|\b(?:approach|method|framework|procedure) (?:for|to) )"
+        r"(?:[a-z]+[ -]){0,4}(?:classification|segmentation|clustering|prediction|forecasting|"
+        r"retrieval|rescheduling|optimization|optimisation|recognition|detection)\b", text, re.I
+    ):
+        fields.add("research_objective")
     if owned and re.search(r"\bwe (?:also )?(?:address|tackle|investigate) (?:the |an? )?(?:problem|challenge|question) of\b|"
                            r"(?:本文|本研究|我们)(?:聚焦|探讨|研究|解决).{2,45}(?:问题|难题)", text, re.I):
         fields.add("research_problem")
-    if "method" in legacy or PASSIVE.search(text):
+    if ("method" in legacy or PASSIVE.search(text) or passive_design or STUDY_DESIGN.search(text)) and not NEGATED.search(text):
         fields.add("methods")
     if "finding" in legacy or MEASURED.search(text):
         fields.add("reported_findings")
@@ -148,13 +170,35 @@ def profiles(state, sources, candidates=()):
             paper_id=pid, title=row.get("paper_title") or pid,
             fields={field: [] for field in get_args(ProfileField)}, evidence_bindings=[]))
         previous = ""
+        previous_id = None
         for span in sentence_spans(row["quote"], cap.locator.start):
             if not span:
                 previous = ""
+                previous_id = None
                 continue
             left, right, text = span
             origin, fields = attribution(text, previous)
+            enhanced = getattr(state, "pra_arm", "A") in {"B", "G"}
+            if enhanced and origin == "background":
+                from backend.research.profile_frames import passive_proposal
+                if passive_proposal(text):
+                    origin = "authors"
+            if enhanced and origin == "authors":
+                from backend.research.profile_frames import frame_fields
+                fields.update(frame_fields(text))
+            antecedent = None
+            if enhanced and previous and previous_id and attribution(previous)[0] == "authors" and (
+                re.match(r"^(?:the (?:aim|objective|purpose) (?:of this (?:work|study) )?is to "
+                         r"|(?:研究目标|目的是)(?:在于)?)", text, re.I)
+                and not any(rx.search(text) for rx in (GUARDS, PRIOR, FUTURE, HYP, NEGATED))
+                and not re.search(r"\b(?:they|their|another|previous|prior)\b|他人|前人", text, re.I)
+            ):
+                # A stated aim licenses only an objective, even if the intended outcome is speculative.
+                origin, fields, antecedent = "authors", {"research_objective"}, previous_id
+            if enhanced and not antecedent and ANAPHOR.match(text) and origin == "authors" and not AUTHOR.search(text):
+                antecedent = previous_id
             previous = text
+            previous_id = sentence_key(eid, left, right)
             for field in get_args(ProfileField):
                 if ((pid, eid, left, right, text, field, origin) in proposals
                         and model_field_supported(field, origin, text)):
@@ -164,7 +208,8 @@ def profiles(state, sources, candidates=()):
                 start, end = cap.locator.start + left, cap.locator.start + right
                 item = ProfileItem(paper_id=pid, evidence_id=eid, quote=text, start=left, end=right,
                     field=field, origin=origin, locator=f"{cap.locator.field}:chars:{start}-{end}",
-                    quote_hash=sha256(text.encode()).hexdigest(), source_version=cap.quality.version,
+                    sentence_id=previous_id, attribution_sentence_id=antecedent, quote_hash=sha256(text.encode()).hexdigest(),
+                    source_version=cap.quality.version,
                     extraction_method="model_and_source_check" if key in proposals else "deterministic",
                     confidence="explicit_attribution" if origin == "authors" else "qualified_statement",
                     verification_status="source_verified")
@@ -175,7 +220,12 @@ def profiles(state, sources, candidates=()):
     return result
 
 
+def sentence_key(eid, left, right):
+    return "s-" + sha256(f"{eid}:{left}:{right}".encode()).hexdigest()[:24]
+
+
 PROFILE_FACETS = {
+    "decision_model": ("decision_models",),
     "objective": ("research_objective",), "problem": ("research_problem",),
     "topic": ("research_objective", "research_problem", "methods", "reported_findings"),
     "method": ("methods",), "finding": ("reported_findings",), "dataset": ("datasets",),

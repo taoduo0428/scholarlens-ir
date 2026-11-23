@@ -5,6 +5,7 @@ import pytest
 
 from backend.research.research_intent import research_intent
 from backend.research.research_profile import attribution
+from backend.research.claim_verifier import sentences
 from tools.research_eval.trace_loss import execute
 
 
@@ -25,6 +26,19 @@ def test_qualified_statements():
     assert attribution("It achieved a smaller error.", "We developed a mirror.")[1] >= {"reported_findings"}
     assert "reported_findings" not in attribution("Previous studies achieved a smaller error.")[1]
     assert "reported_findings" not in attribution("This may improve measurement.")[1]
+
+
+def test_complete_source_sentences_and_explicit_study_design():
+    source = "We studied optical contrast.We conducted numerical simulations.本研究提出了方法！该方法用于分类。"
+    # The existing English boundary still applies next to CJK when a space is present.
+    source = source.replace("simulations.本", "simulations. 本")
+    spans = sentences(source)
+    assert len(spans) == 4 and all(span in source for span in spans)
+    assert "methods" in attribution(spans[1])[1]
+    for sentence in ("We did not conduct numerical simulations.",
+                     "Previous studies performed numerical simulations.",
+                     "We may conduct numerical simulations."):
+        assert "methods" not in attribution(sentence)[1]
 
 
 @pytest.mark.parametrize("missing", [True, False])

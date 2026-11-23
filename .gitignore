@@ -225,6 +225,7 @@ __marimo__/
 *.xml
 *.jsonl
 !data/sample/*.jsonl
+!docs/agent-v8/ablation-final/[A-G].jsonl
 /data/raw/
 /data/processed/
 /data/index/

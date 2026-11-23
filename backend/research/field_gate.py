@@ -190,13 +190,19 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
                         and re.search(r"increas|decreas|declin|grew|增长|下降|逐年", c.statement, re.I)]
             return temporal, "insufficient_evidence"
         if profile_index is not None and field.facet in {"unit", "representation"}:
-            from backend.research.research_profile import attribution
+            from backend.research.research_profile import attribution, NEGATED
             patterns = {
                 "unit": r"\b(?:unit of analysis|analytical unit|each (?:observation|sample|instance) (?:is|represents))\b|分析单位",
-                "representation": r"\b(?:represent(?:ed|s)?|encod(?:ed|es?))\b.{1,75}\b(?:as|by|using|with)\b|表示为|编码为",
+                "representation": (r"\b(?:model|models|represent|represents|encode|encodes)\b[^.;]{1,95}\bas\b|"
+                                   r"\b(?:represented|encoded)\b[^.;]{1,75}\b(?:as|by|using|with)\b|表示为|编码为"),
             }
-            hits = [c for c in valid if attribution(c.statement)[0] == "authors" and
+            hits = [c for c in valid if attribution(c.statement)[0] == "authors" and not NEGATED.search(c.statement) and
                     re.search(patterns[field.facet], c.statement, re.I)]
+            if field.facet == "representation" and state.pra_arm in {"B", "G"}:
+                anchored = {(v.paper_id, v.evidence_id, v.quote) for p in profile_index.values()
+                            for v in p.fields.get("representations", ()) if v.origin == "authors"}
+                hits.extend(c for c in valid if c not in hits and len(c.paper_ids) == 1 and any(
+                    (c.paper_ids[0], eid, c.statement) in anchored for eid in c.evidence_ids))
             return hits, "insufficient_evidence"
         if profile_index is not None:
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
@@ -206,7 +212,8 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             from backend.research.overview import GAP
             return [c for c in valid if GAP.search(c.statement)], "insufficient_evidence"
         if field.facet == "overview":
-            overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=profile_index)
+            overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"},
+                                         profile_index=profile_index, pairwise=state.pra_arm in {"D", "G"})
             if profile_index is not None:
                 # Each relation must stand on its own across the requested scope.
                 ids = dict.fromkeys(cid for row in overview["findings"]
@@ -308,6 +315,11 @@ def status_for(statuses):
 
 
 def evaluate(state, sources, suggestions=None, warnings=()):
+    gate, selected, _ = evaluate_with_profiles(state, sources, suggestions, warnings)
+    return gate, selected
+
+
+def evaluate_with_profiles(state, sources, suggestions=None, warnings=()):
     suggestions = suggestions or {}
     owners = state.evidence_questions
     caps = {i: capability(r, state) for i, r in sources.items()}
@@ -458,4 +470,4 @@ def evaluate(state, sources, suggestions=None, warnings=()):
         "fields": decisions,
         "questions": per_question,
         "bindings": [b.model_dump(mode="json") for b in bindings],
-    }, selected
+    }, selected, profile_index

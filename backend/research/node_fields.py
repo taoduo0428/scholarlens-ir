@@ -57,7 +57,7 @@ def dimensions(plan, node, contract):
     return ["chain" if role == "mechanism" else "finding"]
 
 
-def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
+def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra=False):
     scope = list(dict.fromkeys(contract.scope["paper_ids"]))
     chinese = bool(re.search(r"[\u3400-\u9fff]", contract.goal))
     one = len(plan.graph.nodes) == 1
@@ -77,6 +77,21 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
             # Mixed objectives, representation and units still need independent proofs.
             if not re.search(r"unit of analysis|representation|分析单位|数据表示", intent_goal, re.I):
                 independent_facets = ["objective"]
+        if pra and one and scope and len(scope) <= 4 and research_type in {
+            "description", "method_comparison", "condition_comparison", "metric_comparison"
+        } and re.search(r"compar|contrast|比较|对比", intent_goal, re.I):
+            dimensions_requested = [k for k, rx in {
+                "objective": r"objectives?|research goals?|研究目标|研究目的",
+                "method": r"\bmethods?\b|研究方法|方法",
+                "decision_model": r"decision models?|决策模型",
+                "setting": r"experimental (?:conditions?|settings?)|实验条件|实验设置",
+                "finding": r"reported (?:findings?|results?)|研究结果|实验结果",
+                "metric": r"evaluation metrics?|评价指标",
+            }.items() if re.search(rx, intent_goal, re.I)]
+            # Named titles can denote a strict subset of the permitted library.
+            if (len(dimensions_requested) >= 2 and not TITLES.search(contract.goal)
+                    and not re.search(r"rank|caus|contradict|unit of analysis|representation|排名|因果|矛盾", intent_goal, re.I)):
+                independent_facets = dimensions_requested
         from backend.research.descriptive_plan import comparison_subjects, requested_dimensions
         subjects = comparison_subjects(contract.goal) if independent and one and research_type == "description" else []
         typed = requested_dimensions(intent_goal)

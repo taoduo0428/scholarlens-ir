@@ -74,9 +74,11 @@ def _stated_purpose(subject, text):
     purpose = r"(?P<problem>[\w-]+(?: [\w-]+){0,30})"
     active = (rf"(?:{_PAPER_LEAD})?we (?:propose|present|develop|introduce|apply|use) {method} "
               rf"(?:to (?:address|solve|tackle)|for (?:addressing|solving|tackling)) {purpose}")
+    applied = (rf"(?:{_PAPER_LEAD})?we (?:apply|applied|use|used|adopt|adopted) {method} "
+               rf"(?:to (?:address|solve|tackle)|(?:to|for)) {purpose}")
     passive = (rf"{_PAPER_LEAD}{method} for {purpose} "
                r"(?:is|was) (?:proposed|introduced|developed)")
-    match = re.fullmatch(active, text)
+    match = re.fullmatch(active, text) or re.fullmatch(applied, text)
     if not match:
         match = re.fullmatch(passive, text)
         if not match or not re.search(r"\b(?:problems?|tasks?|challenges?)$", match["problem"]):

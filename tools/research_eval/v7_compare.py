@@ -32,6 +32,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--policies", nargs="+", choices=POLICIES, default=POLICIES)
+    parser.add_argument("--pra-arm", choices=list("ABCDEFG"), default="A")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     digest = sha256(DEST.read_bytes()).hexdigest()
@@ -41,12 +42,13 @@ def main():
                 out = args.output / f"{case}-{policy}.json"
                 if out.exists():
                     cached = json.loads(out.read_bytes())
-                    if cached["dataset_sha256"] != digest or cached["policy"] != policy:
+                    if (cached["dataset_sha256"] != digest or cached["policy"] != policy
+                            or cached.get("pra_arm", "A") != args.pra_arm):
                         raise ValueError("result key mismatch")
                     continue
-                trace = execute(goal, list(docs), docs, GENERATION, Path(temp)/case/policy, policy)
+                trace = execute(goal, list(docs), docs, GENERATION, Path(temp)/case/policy, policy, pra_arm=args.pra_arm)
                 row = score(case, kind, docs, trace)
-                row.update(policy=policy, dataset_sha256=digest, run_status=trace["status"])
+                row.update(policy=policy, dataset_sha256=digest, run_status=trace["status"], pra_arm=args.pra_arm)
                 tmp = out.with_suffix(".tmp")
                 tmp.write_text(json.dumps(row, ensure_ascii=False), encoding="utf8")
                 tmp.replace(out)

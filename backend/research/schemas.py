@@ -234,6 +234,7 @@ class ResearchState(Contract):
     task: TaskInput
     corpus_generation: Id
     model_id: Id = "none"
+    pra_arm: Literal["A", "B", "C", "D", "E", "F", "G"] = "A"
     skill_version: Id = "baseline-v1"
     harness_policy_version: Id = "bounded-v1"
     subtasks: list[Subtask] = Field(default_factory=list, max_length=6)

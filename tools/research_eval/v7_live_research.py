@@ -185,7 +185,7 @@ def run_case(headers, transport, runtime, limits):
                 (label.claim_id, label.evidence_id) in supported and
                 all(label.support_span in text for text in supported[label.claim_id, label.evidence_id])
                 for label in reply.labels)
-            observed["proposed_profiles"] = len(reply.profiles)
+            observed["proposed_profiles"] = len(getattr(reply, "selections", getattr(reply, "profiles", [])))
         else:
             supplied = {c["id"] for c in view["items"]}
             observed["valid_order_ids"] = len(set(reply.ordered_claim_ids) & supplied)
@@ -271,6 +271,11 @@ def controlled_reply(request):
         reply = {"labels": [dict(claim_id=c["id"], evidence_id=c["sources"][0]["id"],
                                  answer_relation="premise", support_span=c["text"][:40])
                             for c in view["claims"] if c["sources"] and c["text"][:40] in c["sources"][0]["text"]]}
+        if "sentences" in view:
+            reply["selections"] = [
+                {"evidence_id": s["evidence_id"], "sentence_id": s["sentence_id"], "field": "methods", "origin": "authors"}
+                for s in view["sentences"] if re.match(r"we (?:develop|introduce|propose|use)", s["text"], re.I)
+            ][:3]
     else:
         reply = {"ordered_claim_ids": [c["id"] for c in view["items"]], "emphasis": "answer"}
     return httpx.Response(200, json={"choices": [{"message": {"content": json.dumps(reply)}}],
