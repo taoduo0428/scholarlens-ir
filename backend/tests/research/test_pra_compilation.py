@@ -209,6 +209,10 @@ def test_object_words_and_requested_analysis_have_separate_roles():
     goal = "Compare selecting records with price changes over time. Give the unit of analysis and objective for each."
     assert research_intent(goal, descriptive_subjects=True) == "description"
     assert research_intent(goal + " Analyze the trends over time.", descriptive_subjects=True) == "trend_analysis"
+    assert research_intent("Which module yields the largest gain compared with other methods?",
+                           descriptive_subjects=True) == "performance_ranking"
+    assert research_intent("Compare the methods in “Which model gives the most speedup?”.",
+                           descriptive_subjects=True) == "method_comparison"
     c = SimpleNamespace(statement="We examine record selection.", evidence_ids=["e"])
     assert anchored("selecting records", c, {"e": {"paper_title": "Study"}}, frames=True)
     assert not anchored("selecting documents", c, {"e": {"paper_title": "Study"}}, frames=True)

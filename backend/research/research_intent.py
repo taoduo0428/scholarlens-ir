@@ -29,6 +29,11 @@ DIMENSIONS = (
 def research_intent(goal: str, *, descriptive_subjects=False) -> ResearchIntent:
     text = TITLES.sub(" ", goal)
     if descriptive_subjects:
+        if (re.search(r"\b(?:which|what) (?:part|component|module|step|method|model|system|approach|variant)\b", text, re.I)
+                and re.search(r"\b(?:most|largest|greatest|highest|lowest|smallest|least) "
+                              r"(?:speed[ -]?up|gain|improvement|accuracy|precision|recall|latency|error|runtime)\b",
+                              text, re.I)):
+            return "performance_ranking"
         from backend.research.descriptive_plan import comparison_subjects, requested_dimensions
         subjects = comparison_subjects(text)
         if (subjects and len(requested_dimensions(text)) >= 2
