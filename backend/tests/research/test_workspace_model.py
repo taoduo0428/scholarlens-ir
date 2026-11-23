@@ -90,3 +90,40 @@ def test_schema_validated_semantic_transport():
             3,
             transport({"ordered_claim_ids": [], "emphasis": "answer", "grant": "all"}),
         )
+
+
+@pytest.mark.parametrize("phase", ["analysis", "synthesis"])
+def test_model_timeout_leaves_time_to_publish_verified_evidence(monkeypatch, phase):
+    from backend.research import workspace_model as model
+    from backend.research.tools.passages import ToolError
+
+    clock = datetime(2026, 11, 23, tzinfo=timezone.utc)
+
+    class Clock:
+        @staticmethod
+        def now(tz):
+            return clock
+
+    monkeypatch.setattr(model, "datetime", Clock)
+    reservation = []
+
+    def reserve(store, state, name):
+        reservation.append(name)
+        return True
+
+    def timeout(callback, name, view, remaining, *, deadline, limit):
+        nonlocal clock
+        assert callback and name == phase and remaining > 0
+        clock = deadline
+        raise ToolError("tool_timeout")
+
+    monkeypatch.setattr(model, "reserve", reserve)
+    monkeypatch.setattr(model, "bounded_read", timeout)
+    budget = SimpleNamespace(deadline=clock + timedelta(seconds=5))
+    state = SimpleNamespace(budget=budget, warnings=[])
+    callback = object()
+    assert model.semantic_call(None, state, callback, phase, {}) is None
+    assert clock < budget.deadline
+    assert f"workspace_{phase}_fallback" in state.warnings
+    assert model.semantic_call(None, state, callback, phase, {}) is None
+    assert reservation == [phase]

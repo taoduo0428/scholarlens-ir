@@ -1,6 +1,6 @@
 """Use typed semantic suggestions within independently committed, per-task call reservations."""
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 import json
 from typing import Literal
 
@@ -11,6 +11,9 @@ from backend.research.tools.passages import ToolError
 from backend.research.provider_adapter import MODEL_STAGE_SECONDS, ProviderError, _structured
 from backend.research.questions import Strict
 from backend.research.research_profile import Candidate, Origin, ProfileField
+
+
+PUBLICATION_RESERVE = timedelta(seconds=1)
 
 
 class SemanticLabel(Strict):
@@ -109,14 +112,17 @@ def reserve(store, state, phase):
 
 
 def semantic_call(store, state, callback, phase, view):
-    if not callback or not reserve(store, state, phase):
+    if not callback:
         return None
-    remaining = (state.budget.deadline - datetime.now(timezone.utc)).total_seconds()
+    deadline = state.budget.deadline - PUBLICATION_RESERVE
+    if datetime.now(timezone.utc) >= deadline or not reserve(store, state, phase):
+        return None
+    remaining = (deadline - datetime.now(timezone.utc)).total_seconds()
     if remaining <= 0:
         return None
     try:
-        result = bounded_read(callback, phase, view, remaining,
-                              deadline=state.budget.deadline, limit=MODEL_STAGE_SECONDS)
+        result = bounded_read(callback, phase, view, min(remaining, MODEL_STAGE_SECONDS),
+                              deadline=deadline, limit=MODEL_STAGE_SECONDS)
         schema = (SourceReview if "sentences" in view else Review) if phase == "analysis" else Narrative
         return schema.model_validate(result)
     except (ValueError, RuntimeError, ToolError) as exc:
