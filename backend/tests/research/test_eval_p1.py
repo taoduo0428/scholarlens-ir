@@ -142,13 +142,18 @@ def test_qasper_counts_complete_reference_sentences_at_the_located_occurrence(st
 
 
 def test_pra_scorecard_rebuilds_pinned_results_and_rejects_mismatched_cohort(tmp_path):
+    from hashlib import sha256
     from pathlib import Path
 
-    from tools.research_eval.pra_scorecard import build
+    from tools.research_eval.pra_scorecard import build, matches_recorded_digest
 
     records = Path(__file__).resolve().parents[3] / "docs" / "agent-v8"
     scorecard = build(records)
     assert scorecard == json.loads((records / "PRA_SCORECARD.json").read_bytes())
+    lf = (records / "holdout.json").read_bytes().replace(b"\r\n", b"\n")
+    digest = sha256(lf.replace(b"\n", b"\r\n")).hexdigest()
+    assert matches_recorded_digest(lf, digest)
+    assert not matches_recorded_digest(lf + b" ", digest)
     assert scorecard["silver_single_ai_review"]["G"]["full_original_task"]["count"] == 0
     assert scorecard["silver_single_ai_review"]["G"]["any_direct"]["count"] == 20
     assert scorecard["default_policy_gate"]["status"] == "keep_current"

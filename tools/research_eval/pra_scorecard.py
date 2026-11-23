@@ -21,6 +21,12 @@ def keyed(rows, field):
     return indexed
 
 
+def matches_recorded_digest(raw, digest):
+    # Historical artifacts were stamped from both Windows and POSIX checkouts.
+    lf = raw.replace(b"\r\n", b"\n")
+    return any(sha256(data).hexdigest() == digest for data in (raw, lf, lf.replace(b"\n", b"\r\n")))
+
+
 def rate(count, total):
     return proportion(count, total) if total else None
 
@@ -111,7 +117,7 @@ def build(root, reruns=None):
     for arm in ("A", "G"):
         raw = (root / "ablation-final" / f"{arm}.jsonl").read_bytes()
         metrics = ablation[arm]
-        if sha256(raw).hexdigest() != metrics["case_file_sha256"]:
+        if not matches_recorded_digest(raw, metrics["case_file_sha256"]):
             raise ValueError(f"Ablation checksum mismatch for {arm}")
         rows = keyed([json.loads(line) for line in raw.splitlines()], "task")
         signature = {k: (r["expected"], r["required_silver_fields"]) for k, r in rows.items()}
@@ -131,8 +137,14 @@ def build(root, reruns=None):
         scores[arm]["missing_field_reasons"] = metrics["loss_on_unanswered_positives"]
         scores[arm]["case_sha256"] = metrics["case_file_sha256"]
 
-    seal = sha256((root / "holdout.json").read_bytes()).hexdigest()
-    matched = holdout(read(root / "fulltext-transfer-results.json"), seal)
+    holdout_rows = read(root / "fulltext-transfer-results.json")
+    seals = {row["manifest_sha256"] for row in holdout_rows}
+    if len(seals) != 1:
+        raise ValueError("Inconsistent holdout manifest digests")
+    seal = next(iter(seals))
+    if not matches_recorded_digest((root / "holdout.json").read_bytes(), seal):
+        raise ValueError("Holdout manifest checksum mismatch")
+    matched = holdout(holdout_rows, seal)
     public = read(root / "qasper-human-results.json")
     external = {}
     batches = (public, public["fresh_second_batch"])
