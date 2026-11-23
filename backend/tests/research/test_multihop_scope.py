@@ -1,5 +1,6 @@
 import pytest
 
+from backend.research.answer_compiler import compile_answer
 from backend.research.multihop_fields import link_request
 from tools.research_eval.trace_loss import execute
 
@@ -72,3 +73,29 @@ def test_input_and_effect_on_requested_method_belong_to_one_study(tmp_path, same
 ])
 def test_explicit_study_or_additional_obligations_keep_existing_contract(goal):
     assert link_request(goal) is None
+
+
+@pytest.mark.parametrize("missing_bridge", [False, True])
+def test_three_source_chain_is_rechecked_on_export(tmp_path, missing_bridge):
+    statements = [
+        "Thermal gradients cause tensile stress.",
+        "Unrelated pressure causes fatigue." if missing_bridge else "Tensile stress causes fatigue.",
+        "Fatigue leads to microfractures.",
+    ]
+    docs = {pid: {"paper_id": pid, "title": f"Study {pid}", "abstract": statement}
+            for pid, statement in zip(("a", "b", "c"), statements, strict=True)}
+    report = execute(GOAL, list(docs), docs, "fixture:three-links", tmp_path, "E11", pra_arm="G")["report"]
+    synthesis = next(s["items"] for s in report["compiled_answer"] if s["section"] == "synthesis")
+    assert report["answer_proof"]["sufficient"] is not missing_bridge
+    assert bool(synthesis) is not missing_bridge
+    if missing_bridge:
+        assert report["sections"]["verified"]
+        return
+    assert len(synthesis) == 1 and len(synthesis[0]["evidence_ids"]) == 3
+    assert synthesis[0]["paper_ids"] == ["a", "b", "c"]
+    assert "跨论文推断" in synthesis[0]["text"]
+    indices = [synthesis[0]["text"].index(statement) for statement in statements]
+    assert indices == sorted(indices)
+    row = next(row for row in report["sources"] if row["paper_id"] == "b")
+    row["quote_hash"] = "stale"
+    assert not next(s["items"] for s in compile_answer(report) if s["section"] == "synthesis")

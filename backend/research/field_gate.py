@@ -213,7 +213,7 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             return witnesses(field, valid, sources), "insufficient_evidence"
         if profile_index is not None and field.facet in {"causal_premise", "causal_path", "input_path"}:
             from backend.research.multihop_fields import causal_premises
-            return causal_premises(field, valid, sources), "insufficient_evidence"
+            return causal_premises(field, valid, sources, max_hops=3 if state.pra_arm == "G" else 2), "insufficient_evidence"
         if profile_index is not None and field.facet in {"addressed_problem", "required_input"}:
             from backend.research.subject_facts import witnesses
             proof = witnesses(field, valid, sources, study_context=state.pra_arm in {"B", "G"}) if field.subject else []

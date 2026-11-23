@@ -1,5 +1,6 @@
 """Compile explicit link requests and check each causal endpoint against its own source."""
 import re
+from collections import defaultdict
 
 from backend.research.field_contract import TITLES, field_for
 from backend.research.research_profile import FUTURE, HYP, MAY, PRIOR, sentence_spans
@@ -54,6 +55,32 @@ def endpoint(text):
     return text.casefold().removeprefix("the ").strip()
 
 
+def causal_edge(statement):
+    match = CAUSE.fullmatch(statement)
+    if match and not any(pattern.search(statement) for pattern in (UNKNOWN, PRIOR, FUTURE, HYP, MAY)):
+        return endpoint(match[1]), endpoint(match[2])
+    return None
+
+
+def missing_bridge_terms(field, sources):
+    """Use exact, known outer links to search for a missing middle link."""
+    first, last = set(), set()
+    start, target = endpoint(field.subject), endpoint(field.subject_context)
+    for row in sources:
+        for span in sentence_spans(row["quote"], row["offset_start"]):
+            edge = causal_edge(span[2]) if span else None
+            if not edge:
+                continue
+            a, b = edge
+            if a == start and b not in {start, target} and not AMBIGUOUS.search(b):
+                first.add(b)
+            if b == target and a not in {start, target} and not AMBIGUOUS.search(a):
+                last.add(a)
+    if len(first) == len(last) == 1 and first != last:
+        return next(iter(first)), next(iter(last))
+    return ()
+
+
 def input_starts(field, claims, sources, edges):
     """Require the input declaration and its effect on the named method in the same paper."""
     from backend.research.subject_facts import witnesses
@@ -76,7 +103,7 @@ def input_starts(field, claims, sources, edges):
     return starts
 
 
-def causal_premises(field, claims, sources):
+def causal_premises(field, claims, sources, *, max_hops=2):
     edges = []
     original = {
         (eid, span[2]) for eid, row in sources.items()
@@ -87,17 +114,29 @@ def causal_premises(field, claims, sources):
         if (c.support_status != "verified" or len(c.paper_ids) != 1
                 or not any((eid, c.statement) in original for eid in c.evidence_ids)):
             continue
-        match = CAUSE.fullmatch(c.statement)
-        if not match or any(pattern.search(c.statement) for pattern in (UNKNOWN, PRIOR, FUTURE, HYP, MAY)):
-            continue
-        edges.append((endpoint(match[1]), endpoint(match[2]), c))
+        edge = causal_edge(c.statement)
+        if edge:
+            edges.append((*edge, c))
     first = (input_starts(field, claims, sources, edges) if field.facet == "input_path"
              else [(a, b, c, []) for a, b, c in edges if a == endpoint(field.subject) and a != b])
     if field.facet == "causal_premise":
         return [c for _, _, c, _ in first]
+    target = endpoint(field.subject_context)
+    outgoing = defaultdict(list)
+    for start, end, claim in edges:
+        outgoing[start].append((end, claim))
     for a, b, c, inputs in first:
-        for mid, end, other in edges:
-            if (mid == b and end == endpoint(field.subject_context) and end not in {a, b}
-                    and c.paper_ids != other.paper_ids):
+        for end, other in outgoing[b]:
+            if end == target and end not in {a, b} and c.paper_ids != other.paper_ids:
                 return [*inputs, c, other]
+    if max_hops == 3 and field.facet == "causal_path":
+        for a, b, c, _ in first:
+            if target in {a, b} or AMBIGUOUS.search(b):
+                continue
+            for mid, second in outgoing[b]:
+                if mid in {a, b, target} or AMBIGUOUS.search(mid) or c.paper_ids == second.paper_ids:
+                    continue
+                for end, third in outgoing[mid]:
+                    if end == target and third.paper_ids not in (c.paper_ids, second.paper_ids):
+                        return [c, second, third]
     return []

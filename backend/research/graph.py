@@ -504,6 +504,16 @@ class ResearchGraph:
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:500]
                     focus = list(dict.fromkeys(
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:4]
+                    path = next((f for f in question_fields if f.facet == "causal_path"), None)
+                    if state.pra_arm == "G" and len(ids) >= 3 and path and state.evidence_refs:
+                        from backend.research.field_gate import capability
+                        from backend.research.multihop_fields import missing_bridge_terms
+
+                        rows = (json.loads(self.store.artifact(state.user_id, state.run_id, aid)["content"])
+                                for aid in state.artifact_refs if aid.startswith("evidence-"))
+                        bridge = missing_bridge_terms(path, (row for row in rows if capability(row, state)))
+                        if bridge:
+                            query, focus = " ".join(bridge), []
                 elif directed:
                     ids=list(state.task.scope.paper_ids)
                     targets=[]
