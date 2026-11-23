@@ -128,6 +128,17 @@ def semantic_call(store, state, callback, phase, view):
         return None
 
 
+def review_excerpt(quote, statement, limit=560):
+    """Return a contiguous source window containing the claim when it fits."""
+    if len(quote) <= limit:
+        return quote
+    at = quote.find(statement)
+    if at < 0 or at + len(statement) <= limit or len(statement) > limit:
+        return quote[:limit]
+    start = max(0, min(at - (limit - len(statement)) // 2, len(quote) - limit))
+    return quote[start:start + limit]
+
+
 def publication_suggestions(store, state, report, sources, callback):
     claims = {c.claim_id: c for c in state.claims}
     if callback and state.retrieval_policy in {"E10", "E11"} and state.task.mode == "personal_model":
@@ -144,7 +155,7 @@ def publication_suggestions(store, state, report, sources, callback):
                 "id": c.claim_id,
                 "text": c.statement,
                 "sources": [
-                    {"id": e, "text": sources[e]["quote"][:560]}
+                    {"id": e, "text": review_excerpt(sources[e]["quote"], c.statement)}
                     for e in c.evidence_ids[:2]
                     if e in sources
                 ],
@@ -182,8 +193,10 @@ def publication_suggestions(store, state, report, sources, callback):
         payload["sentences"] = [{"paper_id": sources[e]["paper_id"], "evidence_id": e, "sentence_id": s,
                                  "text": value[2]} for (e, s), value in catalog.items()]
         # Fit the actual UTF-8 envelope used by the provider. Count IDs and JSON framing as well as paper text.
-        size = lambda: len(json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode())
-        while size() > 24000 and (payload["sentences"] or payload["claims"]):
+        def payload_bytes():
+            return len(json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode())
+
+        while payload_bytes() > 24000 and (payload["sentences"] or payload["claims"]):
             if len(payload["claims"]) > 2 and len(payload["sentences"]) <= len(payload["claims"]):
                 payload["claims"].pop()
             elif payload["sentences"]:
@@ -191,6 +204,10 @@ def publication_suggestions(store, state, report, sources, callback):
                 del catalog[removed["evidence_id"], removed["sentence_id"]]
             else:
                 payload["claims"].pop()
+    shown = {
+        (claim["id"], excerpt["id"]): excerpt["text"]
+        for claim in payload["claims"] for excerpt in claim["sources"]
+    }
     labels = semantic_call(store, state, callback, "analysis", payload) if claims or payload.get("passages") or catalog else None
     valid = {}
     if labels:
@@ -207,15 +224,15 @@ def publication_suggestions(store, state, report, sources, callback):
             valid["_profile_candidates"] = labels.profiles
         for label in labels.labels:
             c = claims.get(label.claim_id)
-            row = sources.get(label.evidence_id)
+            excerpt = shown.get((label.claim_id, label.evidence_id))
             if (
                 c
-                and row
-                and label.evidence_id in c.evidence_ids
-                and label.support_span in row["quote"]
+                and excerpt
+                and label.support_span in excerpt
                 and label.support_span in c.statement
             ):
                 valid[label.claim_id] = label.answer_relation
+    items = [{"id": c.claim_id, "text": c.statement} for c in reviewable[:12]]
     layout = (
         semantic_call(
             store,
@@ -224,11 +241,12 @@ def publication_suggestions(store, state, report, sources, callback):
             "synthesis",
             {
                 "goal": state.task.goal,
-                "items": [{"id": c.claim_id, "text": c.statement} for c in reviewable[:12]],
+                "items": items,
             },
         )
         if claims
         else None
     )
-    order = [i for i in layout.ordered_claim_ids if i in claims] if layout else []
+    shown_ids = {item["id"] for item in items}
+    order = list(dict.fromkeys(i for i in layout.ordered_claim_ids if i in shown_ids)) if layout else []
     return valid, order
