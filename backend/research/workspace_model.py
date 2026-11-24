@@ -169,14 +169,17 @@ def publication_suggestions(store, state, sources, callback):
             for c in reviewable[:10]
         ],
     }
-    if state.retrieval_policy == "E11" and callback and state.pra_arm not in {"B", "G"}:
+    from backend.research.arms import has_profile_arm
+
+    arm = getattr(state, "pra_arm", "A")
+    if state.retrieval_policy == "E11" and callback and not has_profile_arm(arm):
         from backend.research.field_gate import capability
         payload["passages"] = [
             {"paper_id": r["paper_id"], "evidence_id": i, "text": r["quote"][:1000]}
             for i, r in sources.items() if capability(r, state)
         ][:10]
     catalog = {}
-    if state.retrieval_policy == "E11" and callback and state.pra_arm in {"B", "G"}:
+    if state.retrieval_policy == "E11" and callback and has_profile_arm(arm):
         from backend.research.field_gate import capability
         from backend.research.research_profile import sentence_key, sentence_spans
         queues = []

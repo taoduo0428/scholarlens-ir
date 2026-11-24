@@ -50,7 +50,7 @@ def main():
         "--policy", choices=["V1", "V5", "E9", "E9.1", "E10", "E11"], required=True
     )
     parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--pra-arm", choices=list("ABCDEFG"), default="A")
+    parser.add_argument("--pra-arm", choices=["A", "B", "C", "D", "E", "F", "G", "H1", "H2", "H3", "H4", "H5", "R"], default="A")
     args = parser.parse_args()
     out = args.output / args.policy
     out.mkdir(parents=True, exist_ok=False)

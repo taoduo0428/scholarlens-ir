@@ -177,8 +177,10 @@ def profiles(state, sources, candidates=()):
                 previous_id = None
                 continue
             left, right, text = span
+            from backend.research.arms import has_profile_arm
+
             origin, fields = attribution(text, previous)
-            enhanced = getattr(state, "pra_arm", "A") in {"B", "G"}
+            enhanced = has_profile_arm(getattr(state, "pra_arm", "A"))
             if enhanced and cap.locator.field == "abstract" and origin in {"background", "authors"}:
                 from backend.research.profile_frames import abstract_method
                 if abstract_method(text):

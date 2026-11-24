@@ -178,7 +178,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--archive", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--arms", nargs="+", choices=("A", "G"), default=["A", "G"])
+    parser.add_argument("--arms", nargs="+", choices=["A", "G", "H1", "H2", "H3", "H4", "H5", "R"], default=["A", "G"])
     selection = parser.add_mutually_exclusive_group()
     selection.add_argument("--batch", type=int, choices=(1, 2), default=1)
     selection.add_argument("--manifest", type=Path, help="Replay a frozen 24 positive, 8 negative cohort.")

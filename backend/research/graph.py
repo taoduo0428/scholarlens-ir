@@ -206,12 +206,13 @@ class ResearchGraph:
                     if state.retrieval_policy in {"E9", "E9.1", "E10", "E11"}:
                         from backend.research.field_contract import requirements
                         if state.retrieval_policy in {"E9.1", "E10", "E11"}:
+                            from backend.research.arms import has_full_pra
                             from backend.research.node_fields import compile_fields
                             state.field_requirements = compile_fields(
                                 state.question_plan, state.answer_contract,
                                 profile_gaps=state.retrieval_policy in {"E10", "E11"},
                                 independent=state.retrieval_policy == "E11",
-                                pra=state.pra_arm == "G",
+                                pra=has_full_pra(state.pra_arm),
                             )
                         else:
                             state.field_requirements = requirements(state.question_plan, state.answer_contract)
@@ -504,8 +505,9 @@ class ResearchGraph:
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:500]
                     focus = list(dict.fromkeys(
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:4]
+                    from backend.research.arms import has_full_pra
                     path = next((f for f in question_fields if f.facet == "causal_path"), None)
-                    if state.pra_arm == "G" and len(ids) >= 3 and path and state.evidence_refs:
+                    if has_full_pra(state.pra_arm) and len(ids) >= 3 and path and state.evidence_refs:
                         from backend.research.field_gate import capability
                         from backend.research.multihop_fields import missing_bridge_terms
 
@@ -576,6 +578,8 @@ class ResearchGraph:
                             continue
                         rows.extend(found)
                 else:
+                    from backend.research.arms import has_full_pra, has_gap_arm
+                    arm = state.pra_arm
                     search_args = {
                         "query": query,
                         "strategy": strategy,
@@ -587,14 +591,14 @@ class ResearchGraph:
                             and (profile_read or state.answer_contract.answer_type == "overview")
                            else {"abstract_opening": True} if directed else {}),
                         **({"complete_method_opening": True} if directed and state.retrieval_policy == "E11"
-                           and state.pra_arm == "G" and any(f.facet == "method" for f in question_fields)
+                           and has_full_pra(arm) and any(f.facet == "method" for f in question_fields)
                            and all(f.operation not in {"quote", "layout"} for f in question_fields) else {}),
                         **({"profile_body_fallback": True} if directed and state.retrieval_policy == "E11"
-                            and state.pra_arm == "G" and state.answer_contract.answer_type == "overview"
+                            and has_full_pra(arm) and state.answer_contract.answer_type == "overview"
                             and any(f.facet in {"topic", "method", "finding"} for f in question_fields)
                             and all(f.operation not in {"quote", "layout"} for f in question_fields) else {}),
                         **({"profile_limitation_request": state.answer_contract.goal[:500]}
-                           if directed and state.retrieval_policy == "E11" and state.pra_arm == "G"
+                           if directed and state.retrieval_policy == "E11" and has_full_pra(arm)
                            and state.answer_contract.answer_type == "overview"
                            and any(f.facet == "limitations" and len(f.paper_ids) == 1 for f in question_fields)
                            else {}),
@@ -602,7 +606,7 @@ class ResearchGraph:
                         **({"preferred_section": section_hint} if section_hint else {}),
                         **filters,
                     }
-                    if ids and state.pra_arm in {"E", "G"} and not state.task.scope.include_own_uploads:
+                    if ids and has_gap_arm(arm) and not state.task.scope.include_own_uploads:
                         search_key = digest(canonical([state.corpus_generation, sub.id, search_args]))
                         repeated_search = bool(state.queries and state.queries[-1].exhausted_search == search_key)
                     rows = self._tool(state, registry, "search_passages", search_args)["passages"] if ids and not repeated_search else []

@@ -17,13 +17,14 @@ def publish_fields(state, report, sources, evaluation, ordering, warnings):
     final_ids = {b["claim_id"] for b in gate["bindings"] if b["question_id"] not in dependency_ids}
     direct_ids = final_ids.copy()
     if state.retrieval_policy == "E11":
+        from backend.research.arms import has_full_pra, has_graph_arm, has_pairwise_arm
         from backend.research.research_intent import research_intent
-        intent = research_intent(state.task.goal, descriptive_subjects=state.pra_arm == "G")
+        intent = research_intent(state.task.goal, descriptive_subjects=has_full_pra(state.pra_arm))
         report["research_intent"] = intent
         if gate["status"] == "blocked_by_permission":
             index = {}
         report["research_profiles"] = [p.model_dump(mode="json") for p in index.values()]
-        if state.pra_arm in {"C", "G"}:
+        if has_graph_arm(state.pra_arm):
             from backend.research.pra_relations import source_graph
             report["profile_relations"] = source_graph(accepted.values(), index, sources)
         report["evidence_matrix"] = [
@@ -66,13 +67,14 @@ def publish_fields(state, report, sources, evaluation, ordering, warnings):
         + list(warnings),
     )
     if state.retrieval_policy in {"E9.1", "E10", "E11"} and state.answer_contract.answer_type == "overview":
+        from backend.research.arms import has_full_pra, has_pairwise_arm
         from backend.research.overview import synthesize
 
         # Partial reports keep the paper profiles supported by completed nodes.
         # A cross-paper inference additionally requires the final DAG decision.
         overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids,
                                  attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=index,
-                                 pairwise=state.pra_arm in {"D", "G"})
+                                 pairwise=has_pairwise_arm(state.pra_arm))
         if state.retrieval_policy == "E11" and intent == "trend_analysis":
             overview["findings"] = [
                 {"kind": "reported_time_trend", "level": "supported_claim", "statement": accepted[cid].statement,
@@ -90,8 +92,8 @@ def publish_fields(state, report, sources, evaluation, ordering, warnings):
                     continue
                 ids = dict.fromkeys(b["claim_id"] for b in decisions[fid]["bindings"] if b["claim_id"] in kept)
                 bound, _ = synthesize([accepted[cid] for cid in ids], sources, field.paper_ids,
-                                      attributed=True, profile_index=index, pairwise=state.pra_arm in {"D", "G"},
-                                      compose_methods=state.pra_arm == "G" and method_only_overview(state.answer_contract.goal))
+                                      attributed=True, profile_index=index, pairwise=has_pairwise_arm(state.pra_arm),
+                                      compose_methods=has_full_pra(state.pra_arm) and method_only_overview(state.answer_contract.goal))
                 relations.extend(row for row in bound["findings"] if row["level"] == "derived_synthesis"
                                  and set(field.paper_ids) <= set(row["paper_ids"]))
             overview["findings"] = [row for row in overview["findings"] if row["level"] != "derived_synthesis"
@@ -151,8 +153,9 @@ def publish_fields(state, report, sources, evaluation, ordering, warnings):
         if conclusions
         else "现有证据不足以回答最终问题。"
     )
+    from backend.research.arms import has_compiler_arm, has_pairwise_arm
     intent = report.get("research_intent")
-    if state.pra_arm in {"D", "G"} and intent in {"method_comparison", "literature_synthesis"}:
+    if has_pairwise_arm(state.pra_arm) and intent in {"method_comparison", "literature_synthesis"}:
         from backend.research.pra_relations import shared_relations
         released = [accepted[cid] for cid in sections["verified"] if cid in accepted]
         scope = set(state.task.scope.paper_ids)
@@ -172,7 +175,7 @@ def publish_fields(state, report, sources, evaluation, ordering, warnings):
                          "paper_ids": papers})
         if rows or intent == "method_comparison":
             report["method_relations"] = rows
-    if state.pra_arm in {"F", "G"}:
+    if has_compiler_arm(state.pra_arm):
         from backend.research.answer_compiler import compile_answer
         report["compiled_answer"] = compile_answer(report)
 

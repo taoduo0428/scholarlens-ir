@@ -93,8 +93,10 @@ def attach(app, settings, accounts, corpus_factory, *, report=None):
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
             if retrieval_policy not in {"V1", "V2", "V3", "V4", "V5", "W4", "E9", "E9.1", "E10", "E11"}:
                 raise problem(503, "research_policy_unavailable", "研究策略尚未开放")
+            from backend.research.arms import VALID_PRA_ARMS
+
             pra_arm = os.getenv("SCHOLARLENS_PRA_ARM", "A") if retrieval_policy == "E11" else "A"
-            if pra_arm not in set("ABCDEFG"):
+            if pra_arm not in VALID_PRA_ARMS:
                 raise problem(503, "research_policy_unavailable", "PRA 实验组配置无效")
             try:
                 versions = bind_versions(registry_dir, programs=retrieval_policy == "E11")

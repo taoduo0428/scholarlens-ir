@@ -165,8 +165,11 @@ def matches(field, claim, row, state, suggestions):
 
 
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
+    from backend.research.arms import has_full_pra, has_pairwise_arm, has_profile_arm
+
+    arm = state.pra_arm
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
-    if (state.pra_arm == "G" and field.operation == "attribute" and field.facet is None
+    if (has_full_pra(arm) and field.operation == "attribute" and field.facet is None
             and len(state.task.scope.paper_ids) == 1 and not state.task.constraints):
         from backend.research.workspace_relations import SOFTWARE_QUESTION, software_support
 
@@ -176,7 +179,7 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
     # A source-bound measurement with complete conditions is itself a reported finding.
     # Apply this only to an explicit metric comparison between two selected papers.
     comparison_metric = None
-    if (state.pra_arm == "G" and state.answer_contract.answer_type == "aligned_comparison"
+    if (has_full_pra(arm) and state.answer_contract.answer_type == "aligned_comparison"
             and len(state.task.scope.paper_ids) == 2
             and not state.task.constraints
             and field.facet in {"finding", "metric", "conditions", "comparison"}):
@@ -191,7 +194,7 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
                  and not NEGATED.search(c.statement) and attribution(c.statement)[0] == "authors"]
         if field.facet == "finding":
             return valid, "insufficient_evidence"
-    if (state.pra_arm == "G" and field.operation == "attribute" and len(field.paper_ids) == 1
+    if (has_full_pra(arm) and field.operation == "attribute" and len(field.paper_ids) == 1
             and field.facet is None and field.datatype == "text"):
         from backend.research.profile_frames import METRIC_NAMES_QUESTION, states_metric_use
         from backend.research.research_profile import sentence_spans
@@ -213,18 +216,18 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             return witnesses(field, valid, sources), "insufficient_evidence"
         if profile_index is not None and field.facet in {"causal_premise", "causal_path", "input_path"}:
             from backend.research.multihop_fields import causal_premises
-            return causal_premises(field, valid, sources, max_hops=3 if state.pra_arm == "G" else 2), "insufficient_evidence"
+            return causal_premises(field, valid, sources, max_hops=3 if has_full_pra(arm) else 2), "insufficient_evidence"
         if profile_index is not None and field.facet in {"addressed_problem", "required_input"}:
             from backend.research.subject_facts import witnesses
-            proof = witnesses(field, valid, sources, study_context=state.pra_arm in {"B", "G"}) if field.subject else []
+            proof = witnesses(field, valid, sources, study_context=has_profile_arm(arm)) if field.subject else []
             return proof, "insufficient_evidence"
         scoped_representation = []
-        if field.subject and field.facet == "representation" and state.pra_arm == "G":
+        if field.subject and field.facet == "representation" and has_full_pra(arm):
             from backend.research.descriptive_plan import constraint_representation
             scoped_representation = constraint_representation(field.subject, field.question_id, valid, sources)
         if field.subject:
             from backend.research.descriptive_plan import anchored
-            valid = [c for c in valid if anchored(field.subject, c, sources, frames=state.pra_arm in {"B", "G"})]
+            valid = [c for c in valid if anchored(field.subject, c, sources, frames=has_profile_arm(arm))]
         if field.requested_metric:
             aliases = {"准确率": "accuracy", "召回率": "recall", "精确率": "precision"}
             metric = aliases.get(field.requested_metric, field.requested_metric).casefold()
@@ -248,7 +251,7 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             }
             hits = [c for c in valid if attribution(c.statement)[0] == "authors" and not NEGATED.search(c.statement) and
                     re.search(patterns[field.facet], c.statement, re.I)]
-            if field.facet == "representation" and state.pra_arm in {"B", "G"}:
+            if field.facet == "representation" and has_profile_arm(arm):
                 anchored = {(v.paper_id, v.evidence_id, v.quote) for p in profile_index.values()
                             for v in p.fields.get("representations", ()) if v.origin == "authors"}
                 hits.extend(c for c in valid if c not in hits and len(c.paper_ids) == 1 and any(
@@ -258,17 +261,17 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
             if field.facet in PROFILE_FACETS:
                 proof = responsive_claims(field.facet, valid, profile_index)
-                if (state.pra_arm == "G" and state.answer_contract.answer_type == "overview"
+                if (has_full_pra(arm) and state.answer_contract.answer_type == "overview"
                         and field.facet in {"topic", "method", "finding"}):
                     from backend.research.profile_frames import body_profile_supports
 
                     proof = [c for c in proof if any(sources[e]["field"] != "fulltext" for e in c.evidence_ids)
                              or body_profile_supports(c.statement, field.facet)]
-                if (field.facet == "limitations" and state.pra_arm == "G" and field.operation == "fact"
+                if (field.facet == "limitations" and has_full_pra(arm) and field.operation == "fact"
                         and state.answer_contract.answer_type == "overview" and len(field.paper_ids) == 1):
                     from backend.research.profile_frames import scoped_limitation
                     proof = [c for c in proof if scoped_limitation(c.statement, state.answer_contract.goal)]
-                if field.facet == "method" and state.pra_arm == "G" and len(field.paper_ids) == 1:
+                if field.facet == "method" and has_full_pra(arm) and len(field.paper_ids) == 1:
                     from backend.research.profile_frames import abstract_method
                     labelled = [c for c in proof if any(sources[e]["field"] == "abstract" for e in c.evidence_ids)
                                 and re.match(r"^(?:Methods?|研究方法|方法)\s*[:：]", c.statement, re.I)]
@@ -286,8 +289,8 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             from backend.research.node_fields import method_only_overview
 
             overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"},
-                                         profile_index=profile_index, pairwise=state.pra_arm in {"D", "G"},
-                                         compose_methods=state.pra_arm == "G" and method_only_overview(state.answer_contract.goal))
+                                         profile_index=profile_index, pairwise=has_pairwise_arm(arm),
+                                         compose_methods=has_full_pra(arm) and method_only_overview(state.answer_contract.goal))
             if profile_index is not None:
                 # Each relation must stand on its own across the requested scope.
                 ids = dict.fromkeys(cid for row in overview["findings"]
