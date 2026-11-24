@@ -109,6 +109,7 @@ jobs:
             docker compose -f infra/product.compose.yml -f infra/governance.compose.yml config -q
           docker build --target "$IMAGE_TARGET" -f infra/ScholarLens.Dockerfile -t scholarlens-ci .
           docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "import os, ssl, sqlite3, gzip; assert os.getuid() == 10001; ssl.create_default_context(); assert sqlite3.connect(':memory:').execute('select 6*7').fetchone() == (42,); assert gzip.decompress(gzip.compress(b'paper')) == b'paper'"
+          docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "from importlib.util import find_spec; assert find_spec('pytest') is None and find_spec('ruff') is None"
           docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "from backend.research.chart_registry import BUILTIN, read_registry; assert read_registry(BUILTIN).profiles"
           docker run --rm --network none --read-only --tmpfs /tmp --tmpfs /var/lib/scholarlens:uid=10001,gid=10001 \
             -e SCHOLARLENS_RESEARCH_ENABLED=true -e SCHOLARLENS_EVOLUTION_LAB=true scholarlens-ci \

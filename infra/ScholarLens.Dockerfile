@@ -21,7 +21,11 @@ RUN apt-get update \
     && pip install --no-cache-dir --upgrade setuptools==84.2.1 wheel==0.48.0
 COPY backend/requirements-lock.txt backend/requirements-lock.txt
 COPY backend/research/requirements.txt backend/research/constraints-tested.txt backend/research/pdf-layout-requirements.txt backend/research/
-RUN pip install --no-cache-dir -r backend/requirements-lock.txt -r backend/research/requirements.txt -r backend/research/pdf-layout-requirements.txt \
+# Keep the shared pins for dependency resolution and leave test tools in CI.
+RUN sed -E '/^(pytest|ruff|iniconfig|pluggy|pygments|colorama)==/d' backend/requirements-lock.txt > backend/.runtime-requirements.txt \
+    && pip install --no-cache-dir -r backend/.runtime-requirements.txt -r backend/research/requirements.txt -r backend/research/pdf-layout-requirements.txt \
+    && pip check \
+    && rm backend/.runtime-requirements.txt \
     && useradd --uid 10001 --create-home scholar \
     && install -d -o scholar -g scholar /var/lib/scholarlens
 COPY backend/ backend/
