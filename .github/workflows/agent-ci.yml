@@ -178,7 +178,8 @@ jobs:
           set -euo pipefail
           image=$(docker compose -f infra/product.compose.yml config --format json | jq -er '.services.search.image')
           docker image inspect --format '{{.Id}}' "$image" > es-image-id.txt
-          "$RUNNER_TEMP/grype" "docker:$image" -o json > es-image-findings.json
+          docker image save --output "$RUNNER_TEMP/search.tar" "$image"
+          "$RUNNER_TEMP/grype" "docker-archive:$RUNNER_TEMP/search.tar" -o json > es-image-findings.json
           python - <<'PY'
           import collections, json, pathlib
           scan = json.loads(pathlib.Path("es-image-findings.json").read_bytes())
