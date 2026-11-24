@@ -177,8 +177,11 @@ jobs:
         run: |
           set -euo pipefail
           image=$(docker compose -f infra/product.compose.yml config --format json | jq -er '.services.search.image')
-          docker image inspect --format '{{.Id}}' "$image" > es-image-id.txt
-          docker image save --output "$RUNNER_TEMP/search.tar" "$image"
+          archive="$RUNNER_TEMP/search.tar"
+          docker image save --output "$archive" "$image"
+          config=$(tar -xOf "$archive" manifest.json | jq -er 'if length == 1 then .[0].Config else error("ambiguous search image") end')
+          config_hash=$(tar -xOf "$archive" "$config" | sha256sum | cut -d ' ' -f1)
+          printf 'sha256:%s\n' "$config_hash" > es-image-id.txt
           "$RUNNER_TEMP/grype" "docker-archive:$RUNNER_TEMP/search.tar" -o json > es-image-findings.json
           python - <<'PY'
           import collections, json, pathlib
