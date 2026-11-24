@@ -1,0 +1,62 @@
+{
+  "corpus": "49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "salt": "scholarlens-v9-unseen-holdout-1",
+  "pairs": [
+    [
+      "source-sha256:628b67665a8e95e09044e3d17a5c4de34520c24142f7bc7f297aa68b54552cd1",
+      "source-sha256:0b62e0d88ffb95342d854664ed36d1da6c2f8a4e015cf6dab2ffecde7b8e77f1"
+    ],
+    [
+      "source-sha256:9fcf0ec337091ea555cdb2fbd1da38e706f95fa735f06714834b9a175341d7f2",
+      "source-sha256:667e142804d81d57d3804625e15e2afc75f3d3706791e2e55059ed13adb21b7a"
+    ],
+    [
+      "source-sha256:18a06255e6bb201c550a7fc5223f0d864e26075ec1eecd150f09fb34d87a7891",
+      "source-sha256:823544f199dcc352a1d873cf9780da805cc7444d3b7e0a062ddfa99e04cbfe0d"
+    ],
+    [
+      "source-sha256:100009af1b67f9069f4e94fe022abd3c709a89b221b3f27db65f71aeeb50a45d",
+      "source-sha256:e0cd0524ed260f56b136128b43c610b81c7d912a6ced73cf86101a1de7521e3b"
+    ],
+    [
+      "source-sha256:9d2d1c34b5a89836846f54416710968a354270fcecae40b40c2a33805c889c8a",
+      "source-sha256:db0b6a343724c0774d1d2949b72eb7e9c3caa075a404cfc271784fcdae1db947"
+    ],
+    [
+      "source-sha256:a6b92b06583f628f1200bbef210e6c218d503903d723f48b53680be6d748d5c1",
+      "source-sha256:03bad8e2ea4ec543ba5752c645ead7bffeb7d34ae769d204b57879fd9e7360e7"
+    ]
+  ],
+  "triples": [
+    [
+      "source-sha256:5d28c69453b977841bf1d6c2f4b95f4f9b82c7538cee4a1980cfddddb7d4a189",
+      "source-sha256:2f006bda1d6d7360fa4c12cdde72090bdc920606cb9bcd4f42d85f896f6d778b",
+      "source-sha256:f917f048725776fabe26c6b1019f4ceb855fd8f1419d2000e3a23eac3cd6950c"
+    ],
+    [
+      "source-sha256:0f4c8afd93030540d70e98ece38e048b8b1693c70acd16222a7e3489b29b9324",
+      "source-sha256:9cf651e2c5b93fd793af87d97c0e1756269a73b5ee5a15259077151a8aace838",
+      "source-sha256:07374b297f4fc1a078e717aa324cb93fad4c36c2703ed2972defa5982ff5462b"
+    ],
+    [
+      "source-sha256:e5e4b5abb28fe3564c0958989fda10e8f564c49f53bab3a41a282d6df5dd5444",
+      "source-sha256:b408f56fa544552574e849238f1c5eebc285d59514b5e6ba8951abf58a69a044",
+      "source-sha256:837d217aa9166927cece7dd9ac0ad0958199ce394b8d75df8773413af7c387ed"
+    ],
+    [
+      "source-sha256:1ac7414e6eec67538c3f730a4371a080daee9d507636070d3150251afab87a7c",
+      "source-sha256:8d6259eb2a532d31b32729c872354b069c70251a3f00587b1086d812283e8934",
+      "source-sha256:dfd821b1e68bac51aa046a6ec76b769d1bb5cc59832c0cd8c96d7b6ba2b2e569"
+    ],
+    [
+      "source-sha256:54ca483748f51e4959ba417d46f37f44acfc2e781c828a59c2dc162023d77b0e",
+      "source-sha256:88ed07089d51603d0bb32088a49db146ded4f1f700038a7f98f0accd340855e5",
+      "source-sha256:1eb8aaaf8e26bba4e8ed8c9f1d0be00b91f5a6db03641a9acb2be6b90029478a"
+    ],
+    [
+      "source-sha256:50ff4f00d1291822799ef512b68de8acd24be1400f8985656425418d2def6ff2",
+      "source-sha256:80dcce959043942ed587f7f2408f1a2204df2fc4a7ec28ed8b73ae82b3976669",
+      "source-sha256:64d37e39de9932f1606ad9990055b51c2792f4124c58b0514f641c8aba4703aa"
+    ]
+  ]
+}
