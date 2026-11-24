@@ -171,3 +171,25 @@ jobs:
           path: |
             image-findings.json
             scanned-image-id.txt
+
+      - name: Scan the Compose Elasticsearch image
+        if: matrix.target == 'standard'
+        run: |
+          set -euo pipefail
+          image=$(docker compose -f infra/product.compose.yml config --format json | jq -er '.services.search.image')
+          docker image inspect --format '{{.Id}}' "$image" > es-image-id.txt
+          "$RUNNER_TEMP/grype" "docker:$image" -o json > es-image-findings.json
+          python - <<'PY'
+          import collections, json, pathlib
+          scan = json.loads(pathlib.Path("es-image-findings.json").read_bytes())
+          assert scan["source"]["target"]["imageID"] == pathlib.Path("es-image-id.txt").read_text().strip()
+          counts = collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])
+          print(dict(counts))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ !cancelled() && hashFiles('es-image-findings.json') != '' }}
+        with:
+          name: compose-elasticsearch-image-findings
+          path: |
+            es-image-findings.json
+            es-image-id.txt
