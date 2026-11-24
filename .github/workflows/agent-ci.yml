@@ -116,6 +116,26 @@ jobs:
           if [ "$IMAGE_TARGET" = "pdf-ocr" ]; then
             docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -m backend.research.ocr_check
           fi
+      - name: Isolated Compose startup and volume retention
+        if: matrix.target == 'standard'
+        shell: bash
+        run: |
+          set -euo pipefail
+          export SCHOLARLENS_IMAGE=scholarlens-ci:latest SCHOLARLENS_INDEX=scholarlens-fixture
+          export SCHOLARLENS_E11_ENABLED=true SCHOLARLENS_PORT=18001
+          compose=(docker compose --project-name "sl-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" -f infra/product.compose.yml)
+          trap 'status=$?; trap - EXIT; if ((status)); then "${compose[@]}" ps; fi; "${compose[@]}" down -v --remove-orphans || exit 1; exit "$status"' EXIT
+          "${compose[@]}" up -d --no-build --wait --wait-timeout 200
+          "${compose[@]}" exec -T search curl -fsS -X PUT -H 'Content-Type: application/json' -d '{"mappings":{"_meta":{"data_status":"mock","input_records":0}}}' http://localhost:9200/scholarlens-fixture
+          origin=http://127.0.0.1:18001
+          curl -fsS "$origin/readyz" | jq -e '.status == "ready"'
+          curl -fsS "$origin/" | grep -i 'scholarlens'
+          curl -fsS "$origin/openapi.json" | jq -e '.paths["/api/research/tasks"] != null'
+          credentials=$(python -c 'import json, secrets; print(json.dumps({"username": "compose-check", "password": secrets.token_hex(24)}))')
+          curl -fsS -H 'Content-Type: application/json' --data "$credentials" "$origin/api/auth/register" | jq -e '.username == "compose-check"'
+          "${compose[@]}" up -d --force-recreate --no-deps --no-build --wait --wait-timeout 90 api
+          curl -fsS -H 'Content-Type: application/json' --data "$credentials" "$origin/api/auth/login" -o /dev/null
+          curl -fsS "$origin/readyz" | jq -e '.status == "ready"'
       - name: Scan the built application image
         run: |
           set -euo pipefail
