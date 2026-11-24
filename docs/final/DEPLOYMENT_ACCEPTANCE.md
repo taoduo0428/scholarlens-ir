@@ -23,4 +23,4 @@ docker compose -p scholarlens-staging -f infra/product.compose.yml up -d --build
 
 部署前记录镜像 digest、索引别名、持久化路径和 schema 版本。应用账号、研究数据、上传文件和正式论文各自按所属运行目录备份，SQLite 活跃库使用 SQLite Backup API 获取一致副本。保留上一镜像及快照，先在独立目录验证完整性与恢复。
 
-恢复账号库时先停对应 API，再运行 `python -m backend.db_migrations --database <账号数据库> --restore <备份文件>`。恢复会保留操作前的数据库副本。研究库使用自身快照流程。实际回滚先将应用恢复至兼容版本，再核对账号、任务所有权、论文别名与健康探针。部署和回滚流程详见 [服务器操作说明](../operations/11_SERVER_DEPLOYMENT.md)。
+恢复账号库时先停对应 API，再运行 `python -m backend.db_migrations --database <账号数据库> --restore <备份文件>`。恢复会保留操作前的数据库副本。需要撤销恢复时，在 API 停止的状态下使用该副本再次执行 restore，并检查完整性及账号状态。研究库使用自身快照流程。实际回滚先将应用恢复至兼容版本，再核对账号、任务所有权、论文别名与健康探针。部署和回滚流程详见 [服务器操作说明](../operations/11_SERVER_DEPLOYMENT.md)。
