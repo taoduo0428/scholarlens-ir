@@ -8,7 +8,7 @@
 
 1. frontend/ 中执行 npm ci --ignore-scripts，再执行 npm run build:production。该入口固定 VITE_DATA_SOURCE=api、VITE_API_BASE_URL=/api，并记录资源哈希；不要设置真实 AI 密钥。
 2. Python 3.11+ 创建 /opt/scholarlens/venv，使用 python -m pip install -r backend/requirements-lock.txt 安装固定版本，再运行 python -m pip check。requirements.txt仅表达开发兼容范围，不能替代发布锁文件。源码放独立release；frontend/dist同步进该目录，通过current符号链接切换。已有环境的依赖更新先保留旧环境并单独验证，不在每次代码发布时重装或升级。
-3. 独立 Elasticsearch 8.19.23 容器只绑定 127.0.0.1:19200，持久化独立卷，单节点、课程数据；参考 infra/elasticsearch.compose.yml（固定镜像 digest），根据主机资源限制堆和容器内存。不要修改其他应用或公开 ES。生产数据如需加密/认证按部署环境补充，不能把 loopback 无认证端口暴露公网。
+3. 独立 Elasticsearch 8.19.26 容器只绑定 127.0.0.1:19200，使用单节点和独立持久卷。按 infra/elasticsearch.compose.yml 的固定 digest 部署，根据主机资源限制堆和容器内存。保持 ES 端口仅供本机使用。生产数据按环境要求配置加密和认证。从 8.19.23 升级前先保留索引快照或关停后的完整卷副本。回滚使用旧版本和升级前的数据副本。
 4. 建立独立 scholarlens 用户和 /var/lib/scholarlens，模型放该目录 minilm/，SQLite/上传/评价放 runtime/。不要使用 root 运行 API。
 5. /etc/scholarlens/app.env 仅管理员可读，参考 infra/.env.example，配置 ELASTICSEARCH_URL=http://127.0.0.1:19200、实际索引别名、SCHOLARLENS_RUNTIME_DIR=/var/lib/scholarlens/runtime、EMBEDDING_MODEL_DIR=/var/lib/scholarlens/minilm、FRONTEND_DIST=/opt/scholarlens/current/frontend/dist。邮件和服务器 AI 值默认留空。
 6. 使用 infra/scholarlens-api.service，systemctl daemon-reload 后启动并启用。API 仅监听 127.0.0.1:18090，验证 /api/stats、/api/capabilities、网页与 /assistant 深层路由。
