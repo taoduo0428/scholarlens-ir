@@ -8,7 +8,7 @@
 | 研究任务 | `backend/research/api.py` 和 `backend/research/store.py` 校验任务所有者及产物；后台工作进程使用任务的用户与来源上下文。 |
 | Provider 与密钥 | `backend/personal_ai.py` 在已认证请求内处理凭证，由传输层约束目标。凭证、真实用户库和 PDF 排除于容器构建上下文。Provider 实网验收状态为 BLOCKED。 |
 | 运行隔离 | API 容器 UID 10001、只读根、清空 Linux capabilities、禁止提权。Compose 的 ES 无宿主机端口且默认关闭 ES 认证，整个 Docker 主机及其网络成员必须可信。原 PDF 是外部输入，OCR 使用专用 PNG 路径。 |
-| 供应链 | 软件锁与 Grype 扫描保留独立证据。CI 用实际导出配置的哈希绑定扫描对象。High 必须通过可达性及上游修订复核后才能放行。 |
+| 供应链 | 软件锁与 Grype 扫描保留独立证据。CI 将搜索镜像配置的 SHA-256 与实际拉取的镜像 ID 核对。未决告警需要复核发行版补丁和受影响路径。 |
 
 ## 镜像剩余风险
 
@@ -23,6 +23,8 @@
 
 裁剪后的 OCR 镜像包含标准镜像的 79 条 High，再加 5 条 OCR 条目。按源包和已安装版本查询 Debian 13 安全跟踪器，84 条匹配均查到受影响记录，未查到对应 Trixie 渠道的修复版本。[逐条匹配及版本记录](image-advisory-review.json)
 
-Compose 固定的 Elasticsearch 8.19.23 镜像经独立配置哈希绑定扫描，结果为 0 Critical、16 High。其中 JDK 6 条、Java 包 7 条、系统包 3 条，扫描器均列出了组件修复版本。现有 Compose 将搜索留在内部网络。JDK 和 Java 包随搜索进程运行，发布前需获得包含补丁的受支持 Elastic 镜像，并验证索引恢复、搜索和向量路径。[ES 扫描清单](elasticsearch-scan-summary.json) · [CI](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45347880238)
+旧版 Elasticsearch 8.19.23 的归档扫描记录为 0 Critical、16 High。改用同一 Grype 版本和数据库直接扫描两个 Linux/amd64 镜像后，8.19.23 为 16 Critical / 67 High，8.19.26 为 16 Critical / 56 High。补丁升级消除了 11 条 High 匹配，涉及 JDK 6 条、Java 包 2 条和系统包 3 条，两版 Critical 匹配相同。归档和镜像仓库两种扫描方式识别的包不同，各自在同一口径内解读。[旧版归档证据](elasticsearch-scan-summary.json) · [同口径扫描与逐条核对](elasticsearch-upgrade-review.json)
 
-安全闭环为 BLOCKED。当前证据不足以完成残余 High 的逐条接受。
+16 条 Critical 来自对 curl 与 OpenSSL 上游版本的通用二进制匹配。按 Ubuntu 24.04 Noble 的实际安装包与安全公告复核，14 条已包含回补，1 条由 Ubuntu 标为不受影响，1 条 curl 公告请求超时，尚未判定。剩余 High 包括通用二进制告警及 Guava 等组件告警。Compose 将 Elasticsearch 留在内部网络，模块自带的依赖仍需按应用路径与厂商修补版本复核。
+
+安全闭环为 BLOCKED。应用镜像的 High、Elasticsearch 未关闭的告警，以及正式环境密钥保护仍需验收。

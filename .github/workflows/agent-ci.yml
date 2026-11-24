@@ -202,16 +202,14 @@ jobs:
         run: |
           set -euo pipefail
           image=$(docker compose -f infra/product.compose.yml config --format json | jq -er '.services.search.image')
-          archive="$RUNNER_TEMP/search.tar"
-          docker image save --output "$archive" "$image"
-          config=$(tar -xOf "$archive" manifest.json | jq -er 'if length == 1 then .[0].Config else error("ambiguous search image") end')
-          config_hash=$(tar -xOf "$archive" "$config" | sha256sum | cut -d ' ' -f1)
-          printf 'sha256:%s\n' "$config_hash" > es-image-id.txt
-          "$RUNNER_TEMP/grype" "docker-archive:$RUNNER_TEMP/search.tar" -o json > es-image-findings.json
+          docker image inspect --format '{{.Id}}' "$image" > es-image-id.txt
+          "$RUNNER_TEMP/grype" "registry:$image" --platform linux/amd64 -o json > es-image-findings.json
           python - <<'PY'
-          import collections, json, pathlib
+          import base64, collections, hashlib, json, pathlib
           scan = json.loads(pathlib.Path("es-image-findings.json").read_bytes())
-          assert scan["source"]["target"]["imageID"] == pathlib.Path("es-image-id.txt").read_text().strip()
+          target = scan["source"]["target"]
+          config_id = "sha256:" + hashlib.sha256(base64.b64decode(target["config"], validate=True)).hexdigest()
+          assert config_id == target["imageID"] == pathlib.Path("es-image-id.txt").read_text().strip()
           counts = collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])
           print(dict(counts))
           PY
