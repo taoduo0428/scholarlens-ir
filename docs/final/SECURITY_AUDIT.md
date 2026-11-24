@@ -23,4 +23,6 @@
 
 裁剪后的 OCR 镜像包含标准镜像的 79 条 High，再加 5 条 OCR 条目。按源包和已安装版本查询 Debian 13 安全跟踪器，84 条匹配均查到受影响记录，未查到对应 Trixie 渠道的修复版本。[逐条匹配及版本记录](image-advisory-review.json)
 
+Compose 固定的 Elasticsearch 8.19.23 镜像经独立配置哈希绑定扫描，结果为 0 Critical、16 High。其中 JDK 6 条、Java 包 7 条、系统包 3 条，扫描器均列出了组件修复版本。现有 Compose 将搜索留在内部网络。JDK 和 Java 包随搜索进程运行，发布前需获得包含补丁的受支持 Elastic 镜像，并验证索引恢复、搜索和向量路径。[ES 扫描清单](elasticsearch-scan-summary.json) · [CI](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45347880238)
+
 安全闭环为 BLOCKED。当前证据不足以完成残余 High 的逐条接受。
