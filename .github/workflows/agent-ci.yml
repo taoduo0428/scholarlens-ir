@@ -204,12 +204,21 @@ jobs:
           image=$(docker compose -f infra/product.compose.yml config --format json | jq -er '.services.search.image')
           docker image inspect --format '{{.Id}}' "$image" > es-image-id.txt
           "$RUNNER_TEMP/grype" "registry:$image" --platform linux/amd64 -o json > es-image-findings.json
-          python - <<'PY'
-          import base64, collections, hashlib, json, pathlib
+          python - "$image" <<'PY'
+          import base64, collections, hashlib, json, pathlib, sys
           scan = json.loads(pathlib.Path("es-image-findings.json").read_bytes())
           target = scan["source"]["target"]
           config_id = "sha256:" + hashlib.sha256(base64.b64decode(target["config"], validate=True)).hexdigest()
-          assert config_id == target["imageID"] == pathlib.Path("es-image-id.txt").read_text().strip()
+          manifest = base64.b64decode(target["manifest"], validate=True)
+          manifest_id = "sha256:" + hashlib.sha256(manifest).hexdigest()
+          repository_tag, index_id = sys.argv[1].rsplit("@", 1)
+          repository = repository_tag.rsplit(":", 1)[0]
+          assert f"{repository}@{index_id}" in target["repoDigests"]
+          assert manifest_id == target["manifestDigest"]
+          assert config_id == target["imageID"] == json.loads(manifest)["config"]["digest"]
+          # Docker can expose the index, platform manifest, or config as its image ID.
+          docker_id = pathlib.Path("es-image-id.txt").read_text().strip()
+          assert docker_id in {index_id, manifest_id, config_id}, docker_id
           counts = collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])
           print(dict(counts))
           PY

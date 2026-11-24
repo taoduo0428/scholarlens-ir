@@ -22,6 +22,7 @@
 | 最终代码 CI（d4a1d8e） | verify、standard、pdf-ocr 均通过，作业退出 0。ES 初次扫描的配置 ID 比较退出 1，改为核对导出配置哈希后通过。[运行记录](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45347880238) |
 | Compose 升级 CI（0461a21） | Linux runner 的 8.19.23 到 8.19.26 升级、原卷 UUID、文本搜索、kNN、前台 smoke 和账号恢复均通过，升级步骤退出 0。随后旧版镜像归档脚本找不到候选配置条目，扫描步骤退出 2。扫描流程改为从仓库按 digest 扫描，并核对实际容器镜像 ID。[运行记录](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45350433998) |
 | ES 镜像对照与公告核查 | 两次同口径镜像扫描及配置校验退出 0。Ubuntu 安全公告核实 15/16，剩余一条查询退出 28。[原始结果摘要](elasticsearch-upgrade-review.json) |
+| 托管搜索镜像标识复核（3ca4672） | Compose 升级步骤退出 0。镜像扫描生成制品，但校验把 Docker 的镜像索引 digest 与平台配置 digest 直接比较，退出 1。修正后分别核对仓库索引、平台清单、配置字节与 Docker 报告的标识。[运行记录](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45351807018) |
 | 真实 Provider | BLOCKED，退出 2，实际请求 0。 |
 | 冻结材料 | v6_ci 验证 9 个冻结文件，v6_silver 核对 111 道公开题，分别退出 0。 |
 

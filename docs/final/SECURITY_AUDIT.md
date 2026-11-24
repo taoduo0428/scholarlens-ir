@@ -8,7 +8,7 @@
 | 研究任务 | `backend/research/api.py` 和 `backend/research/store.py` 校验任务所有者及产物；后台工作进程使用任务的用户与来源上下文。 |
 | Provider 与密钥 | `backend/personal_ai.py` 在已认证请求内处理凭证，由传输层约束目标。凭证、真实用户库和 PDF 排除于容器构建上下文。Provider 实网验收状态为 BLOCKED。 |
 | 运行隔离 | API 容器 UID 10001、只读根、清空 Linux capabilities、禁止提权。Compose 的 ES 无宿主机端口且默认关闭 ES 认证，整个 Docker 主机及其网络成员必须可信。原 PDF 是外部输入，OCR 使用专用 PNG 路径。 |
-| 供应链 | 软件锁与 Grype 扫描保留独立证据。CI 将搜索镜像配置的 SHA-256 与实际拉取的镜像 ID 核对。未决告警需要复核发行版补丁和受影响路径。 |
+| 供应链 | 软件锁与 Grype 扫描保留独立证据。CI 核对搜索镜像的固定索引、平台清单和配置字节，并验证 Docker 报告的标识属于该镜像。未决告警需要复核发行版补丁和受影响路径。 |
 
 ## 镜像剩余风险
 
