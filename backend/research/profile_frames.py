@@ -29,13 +29,35 @@ BODY_UNSPECIFIED_METHOD = re.compile(
     r"on (?:several|different|various|multiple) (?:data ?sets|benchmarks)\.$", re.I)
 
 
-def body_profile_supports(statement, facet):
+def body_profile_supports(statement, facet, *, discourse=False):
     """Require a complete author statement before using body text in an overview."""
     from backend.research.research_profile import attribution
 
+    if any(statement.count(left) != statement.count(right) for left, right in ("()", "[]", "（）")):
+        return False
+    if BODY_ABBREVIATION.search(statement):
+        return False
+    if discourse:
+        from backend.research.discourse_attribution import (
+            analyze_clause_attribution,
+            has_propositional_negation,
+        )
+        if has_propositional_negation(statement) or re.search(
+            r"\b(?:the desired|the above|given above|the following|from (?:this|that) it|"
+            r"by going back|those results|both model types|for this purpose|this class of)\b|"
+            r"如果|不确定|可能|先前|以往|上述",
+            statement,
+            re.I,
+        ):
+            return False
+        origin, roles, _ = analyze_clause_attribution(statement)
+        if origin != "authors" or not (roles & BODY_ROLES[facet]):
+            return False
+        if facet == "method" and BODY_UNSPECIFIED_METHOD.fullmatch(statement):
+            return False
+        return True
     if (not re.match(r"^(?:We |Our |本文|本研究|我们|实验结果)", statement, re.I)
-            or BODY_CONTEXT.search(statement) or BODY_ABBREVIATION.search(statement)
-            or any(statement.count(left) != statement.count(right) for left, right in ("()", "[]", "（）"))):
+            or BODY_CONTEXT.search(statement)):
         return False
     origin, roles = attribution(statement)
     if origin != "authors" or not (roles & BODY_ROLES[facet]):

@@ -263,10 +263,11 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
                 proof = responsive_claims(field.facet, valid, profile_index)
                 if (has_full_pra(arm) and state.answer_contract.answer_type == "overview"
                         and field.facet in {"topic", "method", "finding"}):
+                    from backend.research.arms import has_h1
                     from backend.research.profile_frames import body_profile_supports
 
                     proof = [c for c in proof if any(sources[e]["field"] != "fulltext" for e in c.evidence_ids)
-                             or body_profile_supports(c.statement, field.facet)]
+                             or body_profile_supports(c.statement, field.facet, discourse=has_h1(arm))]
                 if (field.facet == "limitations" and has_full_pra(arm) and field.operation == "fact"
                         and state.answer_contract.answer_type == "overview" and len(field.paper_ids) == 1):
                     from backend.research.profile_frames import scoped_limitation
@@ -491,8 +492,23 @@ def evaluate_with_profiles(state, sources, suggestions=None, warnings=()):
             values = {c.statement.casefold().strip() for c in proof}
             multiple_values = f.operation == "attribute" and len(values) > 1
             if multiple_values and profile_index is not None:
+                from backend.research.arms import has_h1
+                from backend.research.discourse_attribution import has_propositional_negation
                 from backend.research.study_brief import enumerated_objectives
-                multiple_values = not enumerated_objectives(f, proof)
+
+                if (
+                    has_h1(state.pra_arm)
+                    and f.facet in {"objective", "method", "problem", "topic", "finding", "limitations", "representation"}
+                    and len({p for c in proof for p in c.paper_ids}) == 1
+                    and not any(
+                        has_propositional_negation(c.statement)
+                        or re.search(r"\b(?:only|sole|instead|except|rather than)\b|并非|不是|唯一|仅", c.statement, re.I)
+                        for c in proof
+                    )
+                ):
+                    multiple_values = False
+                else:
+                    multiple_values = not enumerated_objectives(f, proof)
             conflict_seen = multiple_values or (
                 f.operation not in {"disagreement", "synthesize"}
                 and any(c.claim_id in conflict_ids for c in proof)
