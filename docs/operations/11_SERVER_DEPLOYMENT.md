@@ -1,5 +1,7 @@
 # 单域名服务器部署
 
+> Compose 独立部署与迁移恢复说明见 [部署验收手册](../final/DEPLOYMENT_ACCEPTANCE.md)。发布候选、镜像扫描与环境准入条件见 [发布准备](../final/RELEASE_READINESS.md)。
+
 输入：本仓库源码、已验收的论文索引/向量和 MiniLM 模型；输出：同源 HTTPS 网页、API 与隔离持久化目录。负责人为项目维护者。不要把本机 QA 用户或运行库直接复制为正式用户库。
 
 ## 构建与运行

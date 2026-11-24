@@ -1,5 +1,9 @@
 # ScholarLens — 学术论文检索与研究工作台
 
+## 最终工程交付
+
+交付候选的运行、测试、安全与发布状态汇总在 [最终工程验收](docs/final/ENGINEERING_COMPLETION_REPORT.md)。深度研究在启用 E11 的环境使用默认 A 组，PRA 作为实验候选。
+
 ScholarLens 是信息检索课程项目，将真实论文检索、原文阅读、收藏笔记、账户、受审核上传与证据助手连接成完整研究流程。
 
 在线访问：[scholarlens.lingion.cc.cd](https://scholarlens.lingion.cc.cd/)。华为云运行，经 Cloudflare Tunnel 提供 HTTPS，个人电脑关机后仍可访问。
