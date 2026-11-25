@@ -42,7 +42,7 @@ def evidence_for(facet, claims, metric=None, *, attributed=False):
 
 @traced("synthesis")
 def synthesize(claims, sources, requested, *, attributed=False, profile_index=None, pairwise=False,
-               compose_methods=False):
+               compose_methods=False, open_relations=False, discourse=False):
     """Link within-paper methods and results before producing between-paper findings."""
     pool = [c for c in claims if c.support_status == "verified" and not GUARDS.search(c.statement)
             and c.evidence_ids and all(e in sources for e in c.evidence_ids) and len(c.paper_ids) == 1]
@@ -107,6 +107,30 @@ def synthesize(claims, sources, requested, *, attributed=False, profile_index=No
         from backend.research.overview_relations import finding_relations
         for kind, message, witnesses in finding_relations(pool, profile_index, requested, sources):
             add(kind, "derived_synthesis", message, witnesses)
+        if open_relations:
+            from backend.research.open_relations import open_overview_relations
+
+            has_full = bool(requested) and any(
+                row["level"] == "derived_synthesis" and set(requested) <= set(row["paper_ids"])
+                for row in findings
+            )
+            if not has_full:
+                for kind, message, witnesses in open_overview_relations(
+                    pool,
+                    profile_index,
+                    sources,
+                    requested,
+                    method_only=compose_methods,
+                    discourse=discourse,
+                ):
+                    wids = {c.claim_id for c in witnesses}
+                    if not any(
+                        row["level"] == "derived_synthesis"
+                        and row["kind"] == kind
+                        and set(row["premise_claim_ids"]) == wids
+                        for row in findings
+                    ):
+                        add(kind, "derived_synthesis", message, witnesses)
         for pid, method, result in complete:
             title = sources[method.evidence_ids[0]].get("paper_title") or pid
             statements = list(dict.fromkeys((method.statement, result.statement)))

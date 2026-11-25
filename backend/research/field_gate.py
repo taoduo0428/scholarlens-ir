@@ -182,7 +182,7 @@ def matches(field, claim, row, state, suggestions):
 
 
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
-    from backend.research.arms import has_full_pra, has_h2, has_pairwise_arm, has_profile_arm
+    from backend.research.arms import has_full_pra, has_h1, has_h2, has_h3, has_pairwise_arm, has_profile_arm
 
     arm = state.pra_arm
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
@@ -238,7 +238,13 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             return proof, "insufficient_evidence"
         if profile_index is not None and field.facet in {"causal_premise", "causal_path", "input_path"}:
             from backend.research.multihop_fields import causal_premises
-            return causal_premises(field, valid, sources, max_hops=3 if has_full_pra(arm) else 2), "insufficient_evidence"
+            return causal_premises(
+                field,
+                valid,
+                sources,
+                max_hops=3 if has_full_pra(arm) else 2,
+                open_links=has_h3(arm),
+            ), "insufficient_evidence"
         if profile_index is not None and field.facet in {"addressed_problem", "required_input"}:
             from backend.research.subject_facts import witnesses
             proof = witnesses(field, valid, sources, study_context=has_profile_arm(arm)) if field.subject else []
@@ -323,7 +329,8 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
 
             overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"},
                                          profile_index=profile_index, pairwise=has_pairwise_arm(arm),
-                                         compose_methods=has_full_pra(arm) and method_only_overview(state.answer_contract.goal))
+                                         compose_methods=has_full_pra(arm) and method_only_overview(state.answer_contract.goal),
+                                         open_relations=has_h3(arm), discourse=has_h1(arm))
             if profile_index is not None:
                 # Each relation must stand on its own across the requested scope.
                 ids = dict.fromkeys(cid for row in overview["findings"]

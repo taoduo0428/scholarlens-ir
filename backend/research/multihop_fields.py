@@ -60,10 +60,34 @@ def endpoint(text):
     return text.casefold().removeprefix("the ").strip()
 
 
-def causal_edge(statement):
+_OPEN_CAUSE = re.compile(
+    r"^(?:in\s+(?:this|the)\s+(?:paper|study),?\s+)?(?:the\s+|our\s+)?"
+    r"(?P<left>[\w-]+(?:\s+[\w-]+){0,14}?)\s+"
+    r"(?:causes?|leads?\s+to|results?\s+in|induces?|triggers?|enables?|drives?|produces?)\s+"
+    r"(?:the\s+)?(?P<right>[\w-]+(?:\s+[\w-]+){0,14}?)[.!]?$",
+    re.I,
+)
+
+
+def causal_edge(statement, *, open_links: bool = False):
     match = CAUSE.fullmatch(statement)
     if match and not any(pattern.search(statement) for pattern in (UNKNOWN, PRIOR, FUTURE, HYP, MAY)):
         return endpoint(match[1]), endpoint(match[2])
+    if open_links:
+        from backend.research.discourse_attribution import (
+            analyze_clause_attribution,
+            has_propositional_negation,
+            is_epistemic_speculation,
+        )
+        if (
+            not has_propositional_negation(statement)
+            and not is_epistemic_speculation(statement)
+            and not any(pattern.search(statement) for pattern in (UNKNOWN, PRIOR, FUTURE, HYP))
+        ):
+            m = _OPEN_CAUSE.fullmatch(statement.strip())
+            if m and not AMBIGUOUS.search(m["left"]) and not AMBIGUOUS.search(m["right"]):
+                if analyze_clause_attribution(statement)[0] in {"authors", "background"}:
+                    return endpoint(m["left"]), endpoint(m["right"])
     return None
 
 
@@ -127,9 +151,9 @@ def input_starts(field, claims, sources, edges):
     return starts
 
 
-def causal_premises(field, claims, sources, *, max_hops=2):
+def causal_premises(field, claims, sources, *, max_hops=2, open_links: bool = False):
     edges = []
-    denied = contradicted_edges(sources.values()) if max_hops == 3 else set()
+    denied = contradicted_edges(sources.values()) if (max_hops == 3 or open_links) else set()
     original = {
         (eid, span[2]) for eid, row in sources.items()
         for span in sentence_spans(row["quote"], int(row["locator"].rsplit(":", 1)[1].split("-")[0]))
@@ -139,7 +163,7 @@ def causal_premises(field, claims, sources, *, max_hops=2):
         if (c.support_status != "verified" or len(c.paper_ids) != 1
                 or not any((eid, c.statement) in original for eid in c.evidence_ids)):
             continue
-        edge = causal_edge(c.statement)
+        edge = causal_edge(c.statement, open_links=open_links)
         if edge and edge not in denied:
             edges.append((*edge, c))
     first = (input_starts(field, claims, sources, edges) if field.facet == "input_path"
