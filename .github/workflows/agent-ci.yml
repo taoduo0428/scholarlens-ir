@@ -55,6 +55,7 @@ jobs:
             backend/tests/research/test_v9_discourse_attribution.py backend/tests/research/test_v9_model_collaboration.py \
             backend/tests/research/test_v9_open_relations.py backend/tests/research/test_v9_retrieval_budget.py \
             backend/tests/research/test_v9_semantic_slots.py \
+            backend/tests/research/test_pra_arm_compose_config.py \
             backend/tests/test_trusted_model_proxy.py backend/tests/research/test_live_research_acceptance.py
       - name: SQLite migration and rollback
         run: python -m pytest -q backend/tests/test_v21_flows.py -k 'migration_legacy or restore_preserves'
@@ -313,11 +314,14 @@ jobs:
           jq -e '.version.number == "8.19.23"' <<< "$legacy_status"
           cluster_uuid=$(jq -er '.cluster_uuid | select(. != "_na_")' <<< "$legacy_status")
           "${compose[@]}" exec -T search curl -fsS -X PUT -H 'Content-Type: application/json' \
-            -d '{"mappings":{"_meta":{"data_status":"mock","input_records":1},"properties":{"title":{"type":"text"},"embedding":{"type":"dense_vector","dims":3,"index":true,"similarity":"cosine"}}}}' \
+            -d '{"mappings":{"_meta":{"data_status":"mock","input_records":2},"properties":{"paper_id":{"type":"keyword"},"title":{"type":"text"},"abstract":{"type":"text"},"embedding":{"type":"dense_vector","dims":3,"index":true,"similarity":"cosine"}}}}' \
             "$es/scholarlens-fixture"
           "${compose[@]}" exec -T search curl -fsS -X PUT -H 'Content-Type: application/json' \
-            -d '{"title":"ScholarLens upgrade fixture","embedding":[1,0,0]}' \
+            -d '{"paper_id":"upgrade-fixture","title":"ScholarLens upgrade fixture","abstract":"Optical fixture record.","embedding":[1,0,0]}' \
             "$es/scholarlens-fixture/_doc/upgrade-fixture?refresh=wait_for"
+          "${compose[@]}" exec -T search curl -fsS -X PUT -H 'Content-Type: application/json' \
+            -d '{"paper_id":"arm-demo","title":"Mirror Test","abstract":"We developed a mirror tracker for optical alignment.","embedding":[0,1,0]}' \
+            "$es/scholarlens-fixture/_doc/arm-demo?refresh=wait_for"
           "${compose[@]}" up -d --no-build --wait --wait-timeout 200
           "${compose[@]}" exec -T search curl -fsS "$es/" | \
             jq -e --arg uuid "$cluster_uuid" '.version.number == "8.19.26" and .cluster_uuid == $uuid'
@@ -336,6 +340,58 @@ jobs:
           "${compose[@]}" up -d --force-recreate --no-deps --no-build --wait --wait-timeout 90 api
           curl -fsS -H 'Content-Type: application/json' --data "$credentials" "$origin/api/auth/login" -o /dev/null
           curl -fsS "$origin/readyz" | jq -e '.status == "ready"'
+          env -u SCHOLARLENS_PRA_ARM "${compose[@]}" config --format json | jq -er '.services.api.environment.SCHOLARLENS_PRA_ARM == "A"'
+          run_arm_task() {
+            python - "$origin" "$credentials" "$1" "$2" <<'PY'
+          import json, sys, time, urllib.request, uuid
+          origin, creds, expected_arm, label = sys.argv[1], json.loads(sys.argv[2]), sys.argv[3], sys.argv[4]
+          def req(path, payload=None, headers=None):
+              data = None if payload is None else json.dumps(payload).encode()
+              r = urllib.request.Request(origin + path, data=data, headers={"Content-Type": "application/json", **(headers or {})})
+              with urllib.request.urlopen(r, timeout=15) as resp:
+                  return json.loads(resp.read().decode())
+          tok = req("/api/auth/login", creds)["access_token"]
+          auth = {"Authorization": f"Bearer {tok}"}
+          created = req("/api/research/tasks", {"goal": f'{label}: Quote the opening sentence of "Mirror Test".', "scope": {"paper_ids": ["arm-demo"]}}, headers={**auth, "Idempotency-Key": uuid.uuid4().hex})
+          tid = created["task_id"]
+          deadline = time.monotonic() + 90
+          while time.monotonic() < deadline:
+              detail = req(f"/api/research/tasks/{tid}", headers=auth)
+              if detail["state"]["status"] in {"completed", "partial"}:
+                  break
+              time.sleep(0.3)
+          else:
+              raise SystemExit(f"Timed out waiting for task {tid} in arm {expected_arm}")
+          assert detail["state"]["retrieval_policy"] == "E11", detail["state"]
+          assert detail["state"]["pra_arm"] == expected_arm, (expected_arm, detail["state"])
+          print(json.dumps({"label": label, "task_id": tid, "status": detail["state"]["status"], "pra_arm": detail["state"]["pra_arm"]}))
+          PY
+          }
+          out_default_a=$(run_arm_task "A" "default_A")
+          SCHOLARLENS_PRA_ARM=G "${compose[@]}" up -d --force-recreate --no-deps --no-build --wait --wait-timeout 90 api
+          out_g=$(run_arm_task "G" "switch_G")
+          SCHOLARLENS_PRA_ARM=R "${compose[@]}" up -d --force-recreate --no-deps --no-build --wait --wait-timeout 90 api
+          out_r=$(run_arm_task "R" "switch_R")
+          env -u SCHOLARLENS_PRA_ARM "${compose[@]}" up -d --force-recreate --no-deps --no-build --wait --wait-timeout 90 api
+          out_rollback_a=$(run_arm_task "A" "rollback_A")
+          python - "$origin" "$credentials" "$out_default_a" "$out_g" "$out_r" "$out_rollback_a" <<'PY'
+          import json, pathlib, sys, urllib.request
+          origin, creds = sys.argv[1], json.loads(sys.argv[2])
+          steps = [json.loads(arg) for arg in sys.argv[3:]]
+          def req(path, payload=None, headers=None):
+              data = None if payload is None else json.dumps(payload).encode()
+              r = urllib.request.Request(origin + path, data=data, headers={"Content-Type": "application/json", **(headers or {})})
+              with urllib.request.urlopen(r, timeout=15) as resp:
+                  return json.loads(resp.read().decode())
+          tok = req("/api/auth/login", creds)["access_token"]
+          auth = {"Authorization": f"Bearer {tok}"}
+          for step in steps:
+              detail = req(f"/api/research/tasks/{step['task_id']}", headers=auth)
+              assert detail["state"]["pra_arm"] == step["pra_arm"], step
+          receipt = {"compose_default_pra_arm": "A", "steps": steps, "rollback_verified": True}
+          pathlib.Path("pra-arm-compose-receipt.json").write_text(json.dumps(receipt, indent=2), encoding="utf-8")
+          print(json.dumps(receipt))
+          PY
       - name: Isolated PDF OCR Compose upgrade, OCR verification, and rollback
         if: matrix.target == 'pdf-ocr'
         shell: bash
@@ -455,6 +511,7 @@ jobs:
             scanned-image-id.txt
             sbom-*.spdx.json
             pdf-ocr-compose-receipt.json
+            pra-arm-compose-receipt.json
 
       - name: Scan the Compose Elasticsearch image
         if: matrix.target == 'standard'
