@@ -72,6 +72,18 @@ curl -fsS http://127.0.0.1:18001/readyz
 docker compose -f infra/product.compose.yml -f infra/governance.compose.yml up -d --build api
 ```
 
+### 3.5 `SCHOLARLENS_PRA_ARM` 策略切换与回滚（`A` / `G` / `R`）
+`infra/product.compose.yml` 已默认将 `SCHOLARLENS_PRA_ARM` 置为 `${SCHOLARLENS_PRA_ARM:-A}`（即缺省或空值严格保持生产默认策略 `A`）。仅在明确授权评估 `G`（PRA）或 `R`（V9）时按以下步骤原地切换与回滚：
+```bash
+# 切换至 G 或 R（须同时保持 SCHOLARLENS_E11_ENABLED=true）：
+SCHOLARLENS_E11_ENABLED=true SCHOLARLENS_PRA_ARM=R docker compose -f infra/product.compose.yml up -d --force-recreate --no-deps --no-build --wait api
+# 确认新任务 state.pra_arm == "R"；既有任务保留其原始 pra_arm 不受影响。
+
+# 一键回滚至生产默认策略 A：
+SCHOLARLENS_E11_ENABLED=true SCHOLARLENS_PRA_ARM=A docker compose -f infra/product.compose.yml up -d --force-recreate --no-deps --no-build --wait api
+curl -fsS http://127.0.0.1:18001/readyz
+```
+
 ---
 
 ## 4. 备份与灾难恢复 SOP

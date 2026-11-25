@@ -2,6 +2,8 @@
 
 ## Release v1.0.0 工程闭环与交付入口
 
+- **当前发布状态**：**Draft Release (`v1.0.0`)**（默认策略 `SCHOLARLENS_PRA_ARM=A`；PR #47 合入 `main` CI Run [`45570157649`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45570157649) 5/5 全绿，待负责人对 Debian Trixie / ES 8.19.26 残留 High CVE 风险签核及目标环境模型复测后转正）
+- **版本对应说明**：Release 标签 `v1.0.0` · 前端包 `1.0.0` · 后端 OpenAPI 接口 `0.2.1` · Elasticsearch Compose `8.19.26`（本地 Windows 兼容 `8.19.23`）
 - **版本变更记录**：[CHANGELOG.md](CHANGELOG.md)
 - **发布准入结论与门禁矩阵**：[发布准入与就绪评估](docs/release-v1/FINAL_RELEASE_READINESS.md) · [最终工程交付总结](docs/release-v1/FINAL_DELIVERY_REPORT.md) · [清单 JSON](docs/release-v1/RELEASE_MANIFEST.json)
 - **验收与安全文档**：[全量后端测试](docs/release-v1/FULL_BACKEND_ACCEPTANCE.md) · [Elasticsearch 集成](docs/release-v1/ELASTICSEARCH_ACCEPTANCE.md) · [Docker 部署与 PDF OCR](docs/release-v1/DOCKER_DEPLOYMENT_ACCEPTANCE.md) · [CVE 分级排查](docs/release-v1/SECURITY_TRIAGE.md) · [备份与恢复演练](docs/release-v1/BACKUP_RESTORE_ACCEPTANCE.md) · [模型工程验收](docs/release-v1/LIVE_MODEL_ACCEPTANCE.md)

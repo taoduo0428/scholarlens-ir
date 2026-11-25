@@ -1,8 +1,8 @@
 # 全量后端测试验收报告
 
 **验收日期**：2026-11-25  
-**分支与基线**：`gemini/final-release-closure`（基线 `origin/main` `160b84e1305d99f4ac58036a9879f229022e03d8`）  
-**状态**：**PASS**（本地 Windows ASCII Worktree **1,028 / 1,028**；CI Ubuntu `integration` 真实 ES 8.19.26 **963 passed / 0 failed / 1 Windows-only skipped**；CI `verify` **446 / 446**）
+**分支与基线**：`gemini/final-release-closure` / `gemini/final-release-check`（PR `#47` & `#48`）  
+**状态**：**PASS**（本地 Windows ASCII Worktree **1,028 / 1,028** + 新增 `test_pra_arm_compose_config.py` **2 / 2**；CI Ubuntu `integration` 真实 ES 8.19.26 **965 passed / 0 failed / 1 Windows-only skipped**；CI `verify` **448 / 448**）
 
 ---
 
@@ -22,8 +22,9 @@
 | 验证环境 | 测试入口 / 命令 | Total | Passed | Failed | Errors | Skipped | Deselected | 耗时 | 证据文件 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | **本地 Windows 11 ASCII Worktree (ES 8.19.23)** | `.\.venv\Scripts\python.exe -m tools.research_eval.v6_vector_fixture --es-home ...\elasticsearch-8.19.23 --offline-fixture ...\data --full-suite --delivery ...\p0-delivery` | **1,028** | **1,028** | **0** | **0** | **0** | 0 | `444.523s` | [counts.json](../../output/release-v1/backend-full/counts.json) · [result.json](../../output/release-v1/backend-full/result.json) |
-| **CI Ubuntu `verify` (Run `45566748805`)** | 单元测试 + 契约 + V9 (`test_v9_*.py`) + SQLite 迁移回滚 + Scorecard | **446** | **446** | **0** | **0** | **0** | 0 | `30.116s` | [unit-counts.json](../../output/release-v1/ci-final/agent-unit-counts/unit-counts.json) |
-| **CI Ubuntu `integration` (Run `45566748805`, ES 8.19.26 + Jaeger 1.60)** | 导入 859 篇真实论文 + OTLP 链路实测 + `pytest backend/tests`（排除 6 个需未入库 MiniLM ONNX 模型或 Windows `.ps1` 的文件） | **964** | **963** | **0** | **0** | **1*** | 1 | `74.988s` | [integration-counts.json](../../output/release-v1/ci-final/backend-integration-es/integration-counts.json) |
+| **本地 Windows 补充回归 (`test_pra_arm_compose_config.py`)** | `.\.venv\Scripts\python.exe -m pytest -q --basetemp C:\work\pytest-tmp-arm backend/tests/research/test_pra_arm_compose_config.py` | **2** | **2** | **0** | **0** | **0** | 0 | `5.53s` | 随 PR #48 合入 CI 持续验证 |
+| **CI Ubuntu `verify` (Run `45573050177`)** | 单元测试 + 契约 + V9 (`test_v9_*.py`) + Compose `PRA_ARM` + SQLite 迁移回滚 + Scorecard | **448** | **448** | **0** | **0** | **0** | 0 | `30.222s` | `output/release-v1/ci-check/agent-unit-counts/unit-counts.json` |
+| **CI Ubuntu `integration` (Run `45573050177`, ES 8.19.26 + Jaeger 1.60)** | 导入 859 篇真实论文 + OTLP 链路实测 + `pytest backend/tests`（排除 6 个需未入库 MiniLM ONNX 模型或 Windows `.ps1` 的文件） | **966** | **965** | **0** | **0** | **1*** | 1 | `83.957s` | `output/release-v1/ci-check/backend-integration-es/integration-counts.json` |
 
 *\*注：CI Ubuntu 上唯一的 1 条 skipped 用例为 `test_upload_runner_guards.py::test_timeout_stops_owned_child_and_grandchild_with_unicode_space_paths`（显式标注为 Windows 原生进程生命周期测试），该用例已在本地 Windows 全量 1,028/1,028 运行中实际通过。*
 

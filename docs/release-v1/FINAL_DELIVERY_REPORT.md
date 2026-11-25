@@ -1,9 +1,9 @@
 # ScholarLens EvoResearch V9 — 最终工程交付与验收总报告
 
 **报告日期**：2026-11-25  
-**交付分支**：`gemini/final-release-closure`（合入 PR `#47` 至 `main`）  
-**基线分支**：`origin/main` (`160b84e1305d99f4ac58036a9879f229022e03d8`)  
-**CI 全绿运行**：[GitHub Actions Run `45566748805`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45566748805)（**5/5 Jobs PASS**）
+**交付分支**：`gemini/final-release-closure`（PR `#47` 已合入 `main` @ `b9ae32ff17c7129bb2a4a1ed8c246d104a051b5f`）与 `gemini/final-release-check`（终检 PR `#48`）  
+**基线分支**：`origin/main` (`160b84e1305d99f4ac58036a9879f229022e03d8` → `b9ae32ff17c7129bb2a4a1ed8c246d104a051b5f`)  
+**CI 全绿运行**：`main` Run [`45570157649`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45570157649)（**5/5 Jobs PASS**）· 终检 PR #48 Run [`45573050177`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45573050177)（**5/5 Jobs PASS**）
 
 ---
 
@@ -14,12 +14,12 @@
 2. **完整工程审计与精准修复（阶段 1）**：
    - 在纯 ASCII Git Worktree `C:\work\scholarlens-final-release` 开展全部审计与实测（完整保护了原含中文路径工作区及未提交本地缓存）。
    - 对 20 项工程子域实施源码级排查：`ruff --select E9,F63,F7,F82` **0 致命语法/作用域错误**，AST 静态扫描 **0 bare except / 0 敏感日志输出**，`pip-audit` **0 漏洞**，`npm audit` **0 漏洞**。
-   - 修复了 3 项非研究算法类工程问题：Windows `.venv` 启动/停止路径兼容性（`infra/start-backend1.ps1`、`infra/stop-backend.ps1`）、4 处 ES 补丁版本断言兼容（`8.19.23` 与 `8.19.26`）、以及 CI 运行环境补齐项（`.github/workflows/agent-ci.yml` 与经核实非秘密的 `.gitleaksignore`）。
+   - 修复了 4 项非研究算法类工程问题：Windows `.venv` 启动/停止路径兼容性（`infra/start-backend1.ps1`、`infra/stop-backend.ps1`）、4 处 ES 补丁版本断言兼容（`8.19.23` 与 `8.19.26`）、`infra/product.compose.yml` 透传 `SCHOLARLENS_PRA_ARM: ${SCHOLARLENS_PRA_ARM:-A}` 配置遗漏及对应 `A/G/R` 切换回滚验证，以及 CI 运行环境补齐项（`.github/workflows/agent-ci.yml` 与经核实非秘密的 `.gitleaksignore`）。
 3. **全量后端与 Elasticsearch 8.19.x 双环境集成（阶段 2）**：
-   - 本地 Windows 11 ASCII Worktree 针对真实隔离 ES 8.19.23（859 篇真实论文 + 49,420 个 MiniLM 向量 + 交付 API 重启回归）：**`1,028 passed, 0 failed, 0 skipped`（`444.523s`，退出码 `0`）**。
-   - GitHub Actions `ubuntu-latest` 独立 `integration` 作业启动实时 Elasticsearch 8.19.26 与 Jaeger 1.60 容器，现场导入 859 篇 `papers_final.jsonl` 并拉取锁定历史 Git LFS 对象：`964` 项测试 **`963 passed, 0 failed, 0 errors, 1 Windows-only skipped`**（详见 [FULL_BACKEND_ACCEPTANCE.md](FULL_BACKEND_ACCEPTANCE.md)）。
+   - 本地 Windows 11 ASCII Worktree 针对真实隔离 ES 8.19.23（859 篇真实论文 + 49,420 个 MiniLM 向量 + 交付 API 重启回归）：**`1,028 passed, 0 failed, 0 skipped`（`444.523s`，退出码 `0`）**，外加终检新增 `test_pra_arm_compose_config.py` **`2 passed`（`5.53s`）**。
+   - GitHub Actions `ubuntu-latest` 独立 `integration` 作业启动实时 Elasticsearch 8.19.26 与 Jaeger 1.60 容器，现场导入 859 篇 `papers_final.jsonl` 并拉取锁定历史 Git LFS 对象：`966` 项测试 **`965 passed, 0 failed, 0 errors, 1 Windows-only skipped`**（`verify` **`448 passed`**, Run `45573050177`，详见 [FULL_BACKEND_ACCEPTANCE.md](FULL_BACKEND_ACCEPTANCE.md)）。
 4. **Docker Standard / PDF OCR 镜像、升级与回滚 + SQLite 恢复演练（阶段 3）**：
-   - 在 GitHub Actions Linux Docker 宿主机实测通过 `Standard`（ES `8.19.23 -> 8.19.26` 卷保留 + 重建持久化）及 `Standard -> PDF OCR -> Standard` 原地升级、容器内 `ocr_check` + 合成光栅图例 PDF OCR 提取（`River`, `Lake`, `Forest`）与回滚全流程（详见 [DOCKER_DEPLOYMENT_ACCEPTANCE.md](DOCKER_DEPLOYMENT_ACCEPTANCE.md)）。
+   - 在 GitHub Actions Linux Docker 宿主机实测通过 `Standard`（ES `8.19.23 -> 8.19.26` 卷保留 + 重建持久化 + Compose `SCHOLARLENS_PRA_ARM` **`A -> G -> R -> A`** 切换与回滚）及 `Standard -> PDF OCR -> Standard` 原地升级、容器内 `ocr_check` + 合成光栅图例 PDF OCR 提取（`River`, `Lake`, `Forest`）与回滚全流程（详见 [DOCKER_DEPLOYMENT_ACCEPTANCE.md](DOCKER_DEPLOYMENT_ACCEPTANCE.md)）。
    - 本地独立完成账户库（`schema_version=0 -> 4`）与研究任务库（`user_version=1`）在线一致性备份、模拟损坏、CLI（`python -m backend.db_migrations --restore`）恢复及双向回滚实测（详见 [BACKUP_RESTORE_ACCEPTANCE.md](BACKUP_RESTORE_ACCEPTANCE.md)）。
 5. **全量安全扫描、SBOM 与逐条 CVE 排查（阶段 4）**：
    - `pip-audit` 0 漏洞、`npm audit` 0 漏洞、Gitleaks v8.30.1 扫描全仓库 229+ 提交历史 **0 真实密钥泄露**，Syft v1.57.2 为 `standard` 与 `pdf-ocr` 产出完整 SPDX SBOM。
