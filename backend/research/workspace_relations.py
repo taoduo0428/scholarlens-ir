@@ -18,6 +18,43 @@ CAUSE = re.compile(
 )
 
 
+SOFTWARE = r"(?:software(?: package)?|package|toolkit|library|framework)"
+SOFTWARE_ACTION = r"(?:build|train|fit|estimate|implement|evaluate|simulate|analyze|analyse|process)"
+SOFTWARE_QUESTION = re.compile(
+    rf"(?:what|which) {SOFTWARE} (?:(?:is|was) used|did (?:they|the authors) use) "
+    rf"to (?P<action>{SOFTWARE_ACTION}) (?:the )?(?P<target>[\w -]{{3,100}})[?]?", re.I,
+)
+SOFTWARE_USE = re.compile(
+    rf"(?:(?:once|after) we [^,.]{{4,70}}, )?(?:we|this study) (?:used?|uses|employ(?:ed|s)?) (?:the )?"
+    rf"(?P<name>[\w.+-]+(?: [\w.+-]+){{0,5}}) {SOFTWARE} to (?P<action>{SOFTWARE_ACTION}) "
+    r"(?:the )?(?P<target>[\w -]{3,100})[.]", re.I,
+)
+NONFACTUAL_USE = re.compile(
+    r"\b(?:if|unless|not|never|could|would|might|may|instead|prior|previously|baseline|"
+    r"hypothetical|for example|or|either|respectively)\b", re.I,
+)
+
+
+def software_support(question, statement):
+    """Bind the author's software use to the requested action and object."""
+    found = SOFTWARE_USE.fullmatch(statement)
+    if not found or NONFACTUAL_USE.search(statement) or not any(c.isupper() for c in found["name"]):
+        return False
+    from backend.research.research_profile import attribution
+
+    if attribution(statement)[0] != "authors":
+        return False
+    asked_target = re.sub(r"(?<=\w)-(?=\w)", "", question["target"].casefold())
+    target = re.sub(r"(?<=\w)-(?=\w)", "", found["target"].casefold())
+    target = re.sub(r" on (?:each|every) (?:corpus|data set|dataset|sample)$", "", target)
+    requested_action = question["action"].casefold()
+    action = found["action"].casefold()
+    supported_action = action == requested_action or (
+        requested_action == "build" and action == "train" and re.search(r"\bmodels?$", asked_target)
+    )
+    return bool(asked_target == target and supported_action)
+
+
 def attribute(goal, text, semantic=False):
     """Match both the owner and the requested relation, including copular inversions."""
     q = goal.strip().rstrip("?.？。").casefold()

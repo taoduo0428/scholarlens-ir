@@ -3,7 +3,7 @@ from types import SimpleNamespace as Box
 import pytest
 
 from backend.research.claim_verifier import new_claim, verify_claim
-from backend.research.workspace_relations import attribute, joined_support
+from backend.research.workspace_relations import SOFTWARE_QUESTION, attribute, joined_support, software_support
 
 
 @pytest.mark.parametrize(
@@ -24,6 +24,20 @@ def test_model_can_ground_an_inverted_predicate():
     assert attribute(q, "Copper is the material of the shield.", True)
     assert not attribute(q, "Copper is the material of the shield.")
     assert not attribute(q, "Copper is the material of the frame.", True)
+
+
+@pytest.mark.parametrize(("statement", "expected"), [
+    ("After we normalized the targets, we used the Acme Toolkit to train the classification model.", True),
+    ("We used the Acme Toolkit to evaluate the classification model.", False),
+    ("We used the Acme Toolkit to train the generation model.", False),
+    ("We may use the Acme Toolkit to train the classification model.", False),
+    ("Prior work used the Acme Toolkit to train the classification model.", False),
+    ("We used the Acme Toolkit to train the classification model on the validation dataset.", False),
+])
+def test_software_name_requires_compatible_action_and_bound_target(statement, expected):
+    question = SOFTWARE_QUESTION.fullmatch("What software package was used to build the classification model?")
+    assert question is not None
+    assert software_support(question, statement) is expected
 
 
 def witness(kind, goal, a, b):

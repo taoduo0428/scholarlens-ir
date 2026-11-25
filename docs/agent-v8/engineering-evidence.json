@@ -1,0 +1,167 @@
+{
+  "isolated_backend": {
+    "tests_exit": 0,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true
+  },
+  "junit": {
+    "tests": 931,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 10
+  },
+  "supplemental_junit": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "skipped_ids_passing_supplemental": [
+    "tests.research.test_otlp_delivery.test_authenticated_task_exports_matching_trace_and_drains_at_shutdown",
+    "tests.research.test_otlp_delivery.test_collector_acknowledgement[empty-True]",
+    "tests.research.test_otlp_delivery.test_collector_acknowledgement[finite-True]",
+    "tests.research.test_otlp_delivery.test_collector_acknowledgement[html-False]",
+    "tests.research.test_otlp_delivery.test_collector_acknowledgement[rejected-False]",
+    "tests.research.test_otlp_delivery.test_collector_acknowledgement[short-False]",
+    "tests.research.test_otlp_delivery.test_exporter_does_not_follow_redirect",
+    "tests.research.test_otlp_delivery.test_parallel_app_lifespans_have_separate_destinations",
+    "tests.research.test_runtime_receipts.test_optional_sdk_private_spans",
+    "tests.research.test_submission_trace.test_authenticated_api_to_worker_trace"
+  ],
+  "real_web": {
+    "indexed": 859,
+    "login": 200,
+    "reader_opened": true,
+    "report_bytes": 7050,
+    "answerability": "insufficient_evidence",
+    "verified_source_locations": [
+      "fulltext:chars:16699-17594",
+      "fulltext:chars:3973-4866",
+      "fulltext:chars:15900-16799",
+      "fulltext:chars:21477-22371",
+      "abstract:chars:0-895"
+    ],
+    "page_errors": 0,
+    "anonymous_report": 401,
+    "mode": "evidence_only",
+    "browser": "157.0.8103.79"
+  },
+  "controlled": {
+    "status": "PASS",
+    "attempts": 4,
+    "gates": {
+      "worker": true,
+      "planning": true,
+      "decision": true,
+      "retrieval": true,
+      "semantic_review": true,
+      "synthesis": true,
+      "publication": true,
+      "no_fallback": true,
+      "provider_receipts": true
+    },
+    "model_calls": 4,
+    "stage_observations": {
+      "chosen": "search",
+      "grounded_labels": 9,
+      "proposed_profiles": 1,
+      "valid_order_ids": 11
+    },
+    "source_checked_model_fields": 1,
+    "mode": "controlled_http"
+  },
+  "supplier": {
+    "status": "BLOCKED",
+    "reason": "missing_settings",
+    "missing": [
+      "AI_BASE_URL",
+      "AI_MODEL",
+      "AI_API_KEY"
+    ],
+    "attempts": 0
+  },
+  "npm_advisories": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "python_advisories": 0,
+  "semantic_review_followup": {
+    "report_inputs": 111,
+    "eligible_verbatim_source_pairs": 142,
+    "whole_claim_visible_in_560_chars": {
+      "before": 99,
+      "after": 142
+    },
+    "direct_source_pairs": 27,
+    "direct_whole_visible": {
+      "before": 25,
+      "after": 27
+    },
+    "controlled": {
+      "before_verified_ordering": {
+        "attempts": 4,
+        "status": "PASS",
+        "mode": "controlled_http",
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 10,
+          "proposed_profiles": 1,
+          "valid_order_ids": 11
+        },
+        "source_checked_model_fields": 1,
+        "direct": 7
+      },
+      "after_verified_ordering": {
+        "attempts": 4,
+        "status": "PASS",
+        "mode": "controlled_http",
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 10,
+          "proposed_profiles": 1,
+          "valid_order_ids": 7
+        },
+        "source_checked_model_fields": 1,
+        "direct": 7
+      }
+    }
+  },
+  "full_backend_followup": {
+    "application_commit": "4be2764",
+    "run_directory": "tools/audit/reports/full-backend-3041fa5b0a34",
+    "tests_exit": 1,
+    "scope": "offline copied fixture",
+    "source_unchanged": true,
+    "papers": 859,
+    "vectors": 49420,
+    "ports_closed": true,
+    "junit": {
+      "tests": 948,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "failed_case": "tests.test_upload_runner_guards.test_timeout_stops_owned_child_and_grandchild_with_unicode_space_paths",
+    "post_fix_runner_guards": {
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "offline_reader_trial": {
+    "model": "onnx-community/roberta-base-squad2-ONNX",
+    "revision": "6d1aeed784b6386659454d3be72de76fad8b73db",
+    "sha256": "b573474247f705a1d0bd21997e690d8b7f8bc4379066fc11498bcdd08f735b6b",
+    "scoring": "best source span vs null; margin > 0; local experiment only",
+    "positive_candidates": 12,
+    "negative_candidates": 3,
+    "grounded_full_single_span_answers": 1,
+    "batch": "QASPER published study, batch 1"
+  }
+}

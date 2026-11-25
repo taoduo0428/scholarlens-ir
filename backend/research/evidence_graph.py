@@ -78,7 +78,8 @@ def publication_quote(row):
     interval = re.search(r":chars:(\d+)-\d+$", row.get("locator", ""))
     if not interval:
         return quote
-    if int(interval[1]) and re.match(r"^\s*[a-z]", quote):
+    aligned = str(row.get("chunk_id", "")).startswith("chunk:sw1-")
+    if not aligned and int(interval[1]) and re.match(r"^\s*[a-z]", quote):
         # The leading lowercase word may be a suffix of a word in the preceding chunk.
         first = SPLIT.search(quote)
         quote = quote[first.end():] if first else ""

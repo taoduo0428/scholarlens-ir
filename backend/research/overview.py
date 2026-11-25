@@ -41,7 +41,8 @@ def evidence_for(facet, claims, metric=None, *, attributed=False):
 
 
 @traced("synthesis")
-def synthesize(claims, sources, requested, *, attributed=False, profile_index=None):
+def synthesize(claims, sources, requested, *, attributed=False, profile_index=None, pairwise=False,
+               compose_methods=False, open_relations=False, discourse=False):
     """Link within-paper methods and results before producing between-paper findings."""
     pool = [c for c in claims if c.support_status == "verified" and not GUARDS.search(c.statement)
             and c.evidence_ids and all(e in sources for e in c.evidence_ids) and len(c.paper_ids) == 1]
@@ -84,9 +85,52 @@ def synthesize(claims, sources, requested, *, attributed=False, profile_index=No
         from backend.research.overview_relations import method_relations
         for kind, message, witnesses in method_relations(pool, profile_index, requested):
             add(kind, "derived_synthesis", message, witnesses)
+        if pairwise:
+            from backend.research.pra_relations import connected_method_relations, shared_relations
+            verified_relations = list(shared_relations(pool, profile_index, sources, requested))
+            for kind, message, witnesses in verified_relations:
+                match = next((row for row in findings if row["kind"] == kind and set(row["premise_claim_ids"]) ==
+                              {c.claim_id for c in witnesses}), None)
+                if match is None:
+                    add(kind, "derived_synthesis", message, witnesses)
+                elif kind == "shared_method":
+                    match["statement"] = message
+            if compose_methods:
+                links = connected_method_relations(verified_relations, requested)
+                if links:
+                    message = "\n".join(
+                        "、".join(f"《{profile_index[pid].title}》" for pid in sorted(paper_ids)) + " — " + text
+                        for paper_ids, text, _ in links
+                    )
+                    add("connected_methods", "derived_synthesis", message,
+                        [claim for _, _, witnesses in links for claim in witnesses])
         from backend.research.overview_relations import finding_relations
         for kind, message, witnesses in finding_relations(pool, profile_index, requested, sources):
             add(kind, "derived_synthesis", message, witnesses)
+        if open_relations:
+            from backend.research.open_relations import open_overview_relations
+
+            has_full = bool(requested) and any(
+                row["level"] == "derived_synthesis" and set(requested) <= set(row["paper_ids"])
+                for row in findings
+            )
+            if not has_full:
+                for kind, message, witnesses in open_overview_relations(
+                    pool,
+                    profile_index,
+                    sources,
+                    requested,
+                    method_only=compose_methods,
+                    discourse=discourse,
+                ):
+                    wids = {c.claim_id for c in witnesses}
+                    if not any(
+                        row["level"] == "derived_synthesis"
+                        and row["kind"] == kind
+                        and set(row["premise_claim_ids"]) == wids
+                        for row in findings
+                    ):
+                        add(kind, "derived_synthesis", message, witnesses)
         for pid, method, result in complete:
             title = sources[method.evidence_ids[0]].get("paper_title") or pid
             statements = list(dict.fromkeys((method.statement, result.statement)))

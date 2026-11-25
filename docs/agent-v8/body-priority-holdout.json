@@ -1,0 +1,413 @@
+{
+  "corpus_sha256": "a73e65c552264ae7dee265d1ad854ea700c9377c0e2f54bb97a49c78b1d1441c",
+  "selection": "Filter nonempty abstracts and bodies, exclude bodies with replacement characters or an unreadable-character flag. Sort by SHA256 of gap-authors-v1: + paper_id. Take zero-based slice 64:96 and pair neighbouring rows.",
+  "control": "d64ea5c G",
+  "candidate": "G with mixed abstract and fulltext prioritization",
+  "task": "综合这组论文各自的方法、主要结果和仍待解决的问题。",
+  "budget": {
+    "max_tool_calls": 10,
+    "max_evidence": 10,
+    "max_model_calls": 0,
+    "max_duration_seconds": 120
+  },
+  "cases": [
+    {
+      "group": 32,
+      "paper_id_hashes": [
+        "104629064822a99f70ff4b38262a2ad3c44f01ac90991c2be357aad6fb2ce1b4",
+        "498dfdd4c33180cbb5dbf4d8b44d32c0ce81c8cee10b2b8dc1ec5d1f9acb33e9"
+      ],
+      "control": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "44972ce6ab12693792de39998565d2d26227896e452044185dfb6c744c27edfc"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 2,
+        "fulltext_sources": 1,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "44972ce6ab12693792de39998565d2d26227896e452044185dfb6c744c27edfc",
+          "10f973d8fdb1c7984a4f4f7ba694dda25ef4ab1ef8def516e831df9494d656a4"
+        ]
+      }
+    },
+    {
+      "group": 33,
+      "paper_id_hashes": [
+        "cb6f525ae1ee00b766244228411728f8fb98cf3c47b7d0bc2ecee07eb8d286a4",
+        "1f89455433c26b62b2a72489677a7dea3401b8bdd75ce0338e053b2c625cfc9e"
+      ],
+      "control": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "c862d2e6de78eea6f5eb5ce36360bcf3fec3dd29f6b18e86ca041c3df21fbe37"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "c862d2e6de78eea6f5eb5ce36360bcf3fec3dd29f6b18e86ca041c3df21fbe37"
+        ]
+      }
+    },
+    {
+      "group": 34,
+      "paper_id_hashes": [
+        "6c80491bfc9049515f48dd7b65172f038008444295f9d6bb9104beee0769f5b4",
+        "b1b4f1013345128856a1b6e5493f3b05b5e434e78e8e778b897ddbaa46571a16"
+      ],
+      "control": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": []
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 1,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "22362c42c6acfaf9b0ee43822e9610ccf3df238bce2ff9c763144f87629a5e6d"
+        ]
+      }
+    },
+    {
+      "group": 35,
+      "paper_id_hashes": [
+        "6d64b51b9795f7441570e7ede3039226892e76b48a01331fbd941f9e9a85d637",
+        "9281a2480989dfbbd1a7d80a4e903460e6cc4b91a6e8d3f26998ebc8b6d16366"
+      ],
+      "control": {
+        "direct_source_claims": 4,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "3d3bcc47a47d4b9c4d3ca33fddd8e9f4e27217469962b3511b42e5b06f308c29",
+          "2fe42f2384d13174347cbb945535221d28b9310c3a5c1d05198ac04ff2157f11",
+          "3f369570537cc765446dde24fb6dbf446d32cb1ad0896fb6389e488ce8ceec85",
+          "918be224faae7a89d8a4f547a1ebf37c9ffb3a7e00dd56e4af1e1b5a33850afb"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 4,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "3d3bcc47a47d4b9c4d3ca33fddd8e9f4e27217469962b3511b42e5b06f308c29",
+          "2fe42f2384d13174347cbb945535221d28b9310c3a5c1d05198ac04ff2157f11",
+          "3f369570537cc765446dde24fb6dbf446d32cb1ad0896fb6389e488ce8ceec85",
+          "918be224faae7a89d8a4f547a1ebf37c9ffb3a7e00dd56e4af1e1b5a33850afb"
+        ]
+      }
+    },
+    {
+      "group": 36,
+      "paper_id_hashes": [
+        "add1d61e0d620694e7d328740e9b6283a28da2f2fd3443484d651f34b286afff",
+        "7b90bc5da9cd399a5959a59722f65b82710680677cb9b0624d9da99a8d956f80"
+      ],
+      "control": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "baf07eeefdb2e7799159449743880b372da831fa0b677b5ae52822e831ab4dc7"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "baf07eeefdb2e7799159449743880b372da831fa0b677b5ae52822e831ab4dc7"
+        ]
+      }
+    },
+    {
+      "group": 37,
+      "paper_id_hashes": [
+        "2cd1214d93c2cb0622364fc28c1d9903610f697bfbd86d4b83e79d39ac10f1e0",
+        "3c8414267071db441f386ae8d8344400d9bd08fdce01d14419139110e02eecfe"
+      ],
+      "control": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": []
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 1,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "ae65e103126d77b5cf670fee3ea9085907ca3d1ba8d83a38ff4fc69d7a1a8e3c"
+        ]
+      }
+    },
+    {
+      "group": 38,
+      "paper_id_hashes": [
+        "897f1e39d6660d92334ed200d61517f2e0f6efe070ed760d5eef3087e754449a",
+        "c314a075a6645a0be9de0cd98b559a8dc627d423320c6360fcaa5bf03cd66030"
+      ],
+      "control": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": []
+      },
+      "candidate": {
+        "direct_source_claims": 2,
+        "fulltext_sources": 2,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "185940f5007fc69634f7114f4d1f0ad889fdf8ff017063b1d8cb1a2ebfb23877",
+          "64b3b36bdc7d64f36e5b4ea3ceba58b68aa9e075c95e74f38ba91ebf09f4cc6b"
+        ]
+      }
+    },
+    {
+      "group": 39,
+      "paper_id_hashes": [
+        "293aa016eb5fab119f9d7fbdbb1dd0094ac0566e7f05073984ffbddcd7dfeb2d",
+        "95ecaa1eeccc73a1a6016e78bc9d53bf783c75afd75737bffcfd8169497f5acf"
+      ],
+      "control": {
+        "direct_source_claims": 2,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "8a4d88514088ddfab66c478b3557e669d78c7557214916368f2c47566d9b82a9",
+          "af3b22f7d90a93353b185669623bec2b0cebdfadbdb45180fe026acb5214eac5"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 2,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "8a4d88514088ddfab66c478b3557e669d78c7557214916368f2c47566d9b82a9",
+          "af3b22f7d90a93353b185669623bec2b0cebdfadbdb45180fe026acb5214eac5"
+        ]
+      }
+    },
+    {
+      "group": 40,
+      "paper_id_hashes": [
+        "0cef13ab419d93ce15de977616b9304440eaf11f061c68cffc42571e5a15137e",
+        "7e543611054b804888323d33f5bb847f52a4677fa6ef9f2a82a2eb87bcfaf1ca"
+      ],
+      "control": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "b3ec635f948231fcbd49fa9079e37d9cfb7286ba31cdf991a865a23c1bb2834c"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "b3ec635f948231fcbd49fa9079e37d9cfb7286ba31cdf991a865a23c1bb2834c"
+        ]
+      }
+    },
+    {
+      "group": 41,
+      "paper_id_hashes": [
+        "88257089b4b8ff58e75bee5fc49712930ff13ac89fbe7df54901fa9696eaae6b",
+        "3e03987f628b5ab846a8d25d6a40519e0f3a2722f4cfdbec76aaff8a545d3283"
+      ],
+      "control": {
+        "direct_source_claims": 4,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "02da9f7ce0b097cc1ec81fd02dddb2ef4096a178f7ccb820521a067928942dc9",
+          "e0a2382ef48c16b6ffd4adc1052494d0fe4f1b01e215e594d2542ea0fe8484f2",
+          "5e09be24e6cf34172bdcb21bc03a677105d1ef16d210ae99032b5e167107bc8e",
+          "4594696119f23d5106f3d397576f18621378388945b77e527932eb130510025f"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 4,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "02da9f7ce0b097cc1ec81fd02dddb2ef4096a178f7ccb820521a067928942dc9",
+          "e0a2382ef48c16b6ffd4adc1052494d0fe4f1b01e215e594d2542ea0fe8484f2",
+          "5e09be24e6cf34172bdcb21bc03a677105d1ef16d210ae99032b5e167107bc8e",
+          "4594696119f23d5106f3d397576f18621378388945b77e527932eb130510025f"
+        ]
+      }
+    },
+    {
+      "group": 42,
+      "paper_id_hashes": [
+        "17effa36f0d763ce629bf08bd281e368b5fa5aecb72964bf40b37bf1f832ff2e",
+        "b27d2e5ab12f6d702bedf9f8dfacfc0c8c0a7b8fb17e50f8d9b3c89b753add5e"
+      ],
+      "control": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": []
+      },
+      "candidate": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": []
+      }
+    },
+    {
+      "group": 43,
+      "paper_id_hashes": [
+        "3a016f7d7028e162d445f798a3a62d6fc058ebce7acaad5ddfbd532bf4844101",
+        "bf1bd491560b7c8d56da640fae6733ab799a3a291a59d1c76fec3062c0abd3a5"
+      ],
+      "control": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": []
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 1,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "203b9b67e2c0880a2420ac9021f2ca4b6cc39a36970c982e9bff506a10ff7afd"
+        ]
+      }
+    },
+    {
+      "group": 44,
+      "paper_id_hashes": [
+        "7c5386cef0cc4738862a111b8e6b6095c360a29d0ee911030020a50d9e690fe7",
+        "06494ce239a924e7ddd4bf378947dbd9cc1f0b4bc95dca2a409c3f429dd31439"
+      ],
+      "control": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 6,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "3085e4cd487b594919ea7eadf9936ff1c5b2c5f1c30390eda5334c51b35fa46f"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 6,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "3085e4cd487b594919ea7eadf9936ff1c5b2c5f1c30390eda5334c51b35fa46f"
+        ]
+      }
+    },
+    {
+      "group": 45,
+      "paper_id_hashes": [
+        "1bf721168f69c5291bd6fa5059ae7a3ed8f7385162cd39e926fdb1748b7ed76e",
+        "ff619b996cbb5c1571c4c3472366b934bf383a476fc34f3129b2b40b0f40cf4b"
+      ],
+      "control": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": []
+      },
+      "candidate": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": []
+      }
+    },
+    {
+      "group": 46,
+      "paper_id_hashes": [
+        "022996e847828bb7006ee7ebed0551296cc2b3902fb1b21f12a6aaf81cb62eed",
+        "d0439b7fba2e2cb6a52a4ba3ce0e198750c7487f702aacc6f9ef78f4a9e86e55"
+      ],
+      "control": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "749e15046ab5ecb81d10a5f3ac4eae7d5efaf935e3d22fafb88baacee9c64895"
+        ]
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 0,
+        "tool_calls": 8,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "749e15046ab5ecb81d10a5f3ac4eae7d5efaf935e3d22fafb88baacee9c64895"
+        ]
+      }
+    },
+    {
+      "group": 47,
+      "paper_id_hashes": [
+        "5f2be4d58b237236bab47bbfc8f658ddfbdadda3d53df6b75a791e1fc9a6133a",
+        "7ed890f67249c4d217070f9bdc17c80996b812df28c559f1efd53813d30ed21b"
+      ],
+      "control": {
+        "direct_source_claims": 0,
+        "fulltext_sources": 0,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": []
+      },
+      "candidate": {
+        "direct_source_claims": 1,
+        "fulltext_sources": 1,
+        "tool_calls": 9,
+        "task_complete": false,
+        "source_claim_sha256": [
+          "619d36bed0205d624f769a15f13f686d10740795c526e0e1307fa819cbcc6d5c"
+        ]
+      }
+    }
+  ]
+}

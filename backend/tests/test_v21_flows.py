@@ -494,3 +494,31 @@ def test_streaming_rejects_invalid_citations_before_content(v21, monkeypatch):
             "application/json"
         )
         assert "event: answer" not in response.text
+
+def test_restore_preserves_post_backup_state_for_rollback(tmp_path):
+    from contextlib import closing
+
+    active = tmp_path / "active.sqlite3"
+    backup = tmp_path / "backup.sqlite3"
+    with closing(sqlite3.connect(active)) as db, closing(sqlite3.connect(backup)) as snapshot:
+        db.execute("PRAGMA journal_mode=WAL")
+        db.execute("CREATE TABLE sample (value TEXT)")
+        db.execute("INSERT INTO sample VALUES ('before')")
+        db.commit()
+        db.backup(snapshot)
+        db.execute("UPDATE sample SET value='after'")
+        db.commit()
+
+    def value(path):
+        with closing(sqlite3.connect(path)) as db:
+            assert db.execute("PRAGMA integrity_check").fetchone() == ("ok",)
+            return db.execute("SELECT value FROM sample").fetchone()[0]
+
+    preserved = tmp_path / restore(active, backup)["preserved_file"]
+    assert value(active) == "before"
+    assert value(preserved) == "after"
+    restore(active, preserved)
+    assert value(active) == "after"
+    active.unlink()
+    backup.unlink()
+    preserved.unlink()

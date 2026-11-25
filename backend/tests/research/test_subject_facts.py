@@ -26,6 +26,23 @@ def test_subject_survives_a_followup_but_not_an_intervening_request():
     assert parse_request("What problem do alignment and mapping solve?") is None
 
 
+@pytest.mark.parametrize(("introduction", "operation", "accepted"), [
+    ("This study presents a traffic analysis procedure.", "grouping packets into frames", True),
+    ("This study presents a traffic analysis procedure.", "grouping frames into packets", False),
+    ("Prior studies present a traffic analysis procedure.", "grouping packets into frames", False),
+    ("This study presents a traffic analysis procedure.", "possibly grouping packets into frames", False),
+])
+def test_stated_task_keeps_direction_and_neighbouring_author_context(tmp_path, introduction, operation, accepted):
+    procedure = f"Traffic analysis is performed by {operation}."
+    issue = "This approach poses a question: how should packet boundaries be selected."
+    doc = {"paper_id": "traffic", "title": "Traffic analysis", "abstract": " ".join([introduction, procedure, issue])}
+    goal = "For traffic analysis, what problem does packet frame grouping address and which input does it require?"
+    report = execute(goal, ["traffic"], {"traffic": doc}, "test:transformation", tmp_path, "E11", pra_arm="G")["report"]
+    assert direct(report) == ({procedure} if accepted else set())
+    fields = [f for req in report["field_requirements"] for f in req["fields"] if f["facet"] == "required_input"]
+    assert len(fields) == 1 and report["answerability"]["fields"][fields[0]["field_id"]]["status"] != "answerable"
+
+
 def test_report_binds_inputs_to_same_named_method_and_context(tmp_path):
     quote1 = "Our mirror alignment solves registration drift."
     quote2 = "Our mirror alignment requires two fiducial marks as input."

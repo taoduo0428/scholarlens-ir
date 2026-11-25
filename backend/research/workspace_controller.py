@@ -33,7 +33,13 @@ def inspect_round(state, texts):
             sub.missing_slots=[] if done or (state.retrieval_policy in {"E9.1", "E10", "E11"} and not executable) else list(sub.required_slots)
             sub.status="satisfied" if done else "active"
         missing=[fid for fid,d in result["fields"].items() if d["status"]!="answerable"]
-        return {"sufficient":not missing,"missing":missing}
+        proof = {"sufficient": not missing, "missing": missing}
+        from backend.research.arms import has_gap_arm
+
+        if has_gap_arm(state.pra_arm):
+            from backend.research.pra_gaps import ranked_gaps
+            proof["gaps"] = ranked_gaps(state, result)
+        return proof
     claims, graph, _ = build_graph(state, sources)
     claims = candidates(state, claims, sources)
     result = assess_proof(state, claims, sources, graph)
@@ -89,3 +95,8 @@ def record(state, proof):
             "result": proof["sufficient"],
         }
     )
+    if "gaps" in proof:
+        current = state.workspace_trace[-1]
+        current["gaps"] = proof["gaps"]
+        previous = state.workspace_trace[-2].get("gaps", []) if len(state.workspace_trace) > 1 else []
+        current["resolved_field_ids"] = sorted({g["field_id"] for g in previous} - set(proof["missing"]))

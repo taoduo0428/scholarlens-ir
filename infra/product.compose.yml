@@ -33,7 +33,7 @@ services:
     security_opt: ["no-new-privileges:true"]
     restart: unless-stopped
   search:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.23@sha256:4d0724bb8d78d7a2330693623e26ca4d621079d062ecc8a30b3e1fc180ec14c1
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.26@sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d
     environment:
       discovery.type: single-node
       xpack.security.enabled: "false"

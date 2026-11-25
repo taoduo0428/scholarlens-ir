@@ -1,0 +1,36 @@
+{
+  "commit": "3d8b546",
+  "workflow_run": 45345079394,
+  "images": {
+    "pdf-ocr": {
+      "image": "sha256:7a1bc05c5b3c641fbb9e9d292333414cfe2f3d9bce77873c291e6d6254cc0014",
+      "scan_sha256": "d40aea280851cb121395c79ba8a0839933692651102e8a5817c7e2df93f74417",
+      "severity": {
+        "High": 84,
+        "Medium": 88,
+        "Negligible": 54,
+        "Low": 15
+      },
+      "unique_high": 28,
+      "high_fixes": {
+        "not-fixed": 24,
+        "wont-fix": 60
+      }
+    },
+    "standard": {
+      "image": "sha256:c2b8c87bfd9bfbad1686b9905a1924b9d3c3638452417336dd4c03c37ff57d6b",
+      "scan_sha256": "0e5e6c6d3e95b8b49a239a1dd3a5645a6a2d3f30a9269cf79a96aebaf1e2c375",
+      "severity": {
+        "High": 79,
+        "Medium": 80,
+        "Negligible": 51,
+        "Low": 15
+      },
+      "unique_high": 23,
+      "high_fixes": {
+        "not-fixed": 24,
+        "wont-fix": 55
+      }
+    }
+  }
+}

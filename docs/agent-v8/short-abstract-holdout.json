@@ -1,0 +1,1081 @@
+{
+  "base_commit": "ffb6c35",
+  "source": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "selection": "Filter abstracts of 1–880 characters and readable body, exclude sealed and documented holdout paper hashes, SHA-256 sort by pra-short-abstract-v1: + paper_id. Take first 32 and pair neighbours.",
+  "task": "综合这组论文各自的方法、主要结果和仍待解决的问题。",
+  "budget": {
+    "tool_calls": 10,
+    "evidence": 10,
+    "model_calls": 0,
+    "duration_seconds": 120
+  },
+  "short_abstract_cases": [
+    {
+      "group": 0,
+      "paper_id_hashes": [
+        "e7de302e5e91518a0c1b19283eb24fce3c31d352536b3a9969b2c0fd2f0cac25",
+        "7a6cc09037bb8621ef3d1cea4bbef79d3ddc151e931bcadf84089645709d5ca3"
+      ],
+      "baseline": {
+        "claims": 4,
+        "claim_hashes": [
+          "0682fd30fab71d42633d02206e67bd7ddcae944b44e0450c0530c8ca59ac77df",
+          "de41584c263eb75c7ea5025e437c3b89df7f287080ee33bb931069beb9300b58",
+          "eae6119dbfdca3cd42430308740bb6ebf6c05078ae48b7c85ce15560f190332f",
+          "fc0f5e43e55bf731567e620e608bb9ab738b788e9ca22b43c5702075620f856a"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 5,
+        "claim_hashes": [
+          "0682fd30fab71d42633d02206e67bd7ddcae944b44e0450c0530c8ca59ac77df",
+          "92a0302f5fb5bde0e66a5d1e46b48a67abe06212a08e543fb535fbd1dc61c2b7",
+          "de41584c263eb75c7ea5025e437c3b89df7f287080ee33bb931069beb9300b58",
+          "eae6119dbfdca3cd42430308740bb6ebf6c05078ae48b7c85ce15560f190332f",
+          "fc0f5e43e55bf731567e620e608bb9ab738b788e9ca22b43c5702075620f856a"
+        ],
+        "fields": 6,
+        "missing_fields": 3,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 1,
+      "paper_id_hashes": [
+        "f050bab650b4efe026ae839efe4f33ec98fff6716786e8ee702e006e22fdeff0",
+        "b5b5ce1db4aee1e68a5ee3c960935baf24472ffffbcffa429c2b526d449914c8"
+      ],
+      "baseline": {
+        "claims": 2,
+        "claim_hashes": [
+          "1a23960c6b9f8837f396aa4cca5ebb80ccf3b3491687bde80bb9b447864c45f6",
+          "2447d296db6ce91b40fc8684b9f4c0d676757dd690965a6282f05563c4513c6f"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 2,
+        "claim_hashes": [
+          "1a23960c6b9f8837f396aa4cca5ebb80ccf3b3491687bde80bb9b447864c45f6",
+          "2447d296db6ce91b40fc8684b9f4c0d676757dd690965a6282f05563c4513c6f"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 2,
+      "paper_id_hashes": [
+        "0115dd2f86a723b35d4490e175cf6c675d92d64cbbd60f144a23eb8ad878781c",
+        "038440698aed0af3c940ea793ee26544b85e3067eb94ea62b6a0717766eff02f"
+      ],
+      "baseline": {
+        "claims": 3,
+        "claim_hashes": [
+          "0443015b6b09fad85ba5c8c585b2b5b87b83d8542d5ecfc4bbb74cfe6aec48e5",
+          "9fc6bcf5d9d17aff4df35f951f81f3e66f68c99e8d76d54ddd72efd8771f0788",
+          "a3b59b94b89999676a583ce12584fc0ca3a1271b8d51ac4943f5c9261291fc43"
+        ],
+        "fields": 3,
+        "missing_fields": 6,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 3,
+        "claim_hashes": [
+          "0443015b6b09fad85ba5c8c585b2b5b87b83d8542d5ecfc4bbb74cfe6aec48e5",
+          "9fc6bcf5d9d17aff4df35f951f81f3e66f68c99e8d76d54ddd72efd8771f0788",
+          "a3b59b94b89999676a583ce12584fc0ca3a1271b8d51ac4943f5c9261291fc43"
+        ],
+        "fields": 3,
+        "missing_fields": 6,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 3,
+      "paper_id_hashes": [
+        "59a0f77e3baf3d5eeca53e1e3493151b38f81ea23f9c04059c47f7973a7a3bee",
+        "8aa80786e9490750a0c1b5b9e9013cc4e5413e7a9c88aabac6b4fc7aa72aa6c5"
+      ],
+      "baseline": {
+        "claims": 4,
+        "claim_hashes": [
+          "02b4dee22bcdb3c6e6f8c07f0c06f3c4f90a25a5e0e8cebf529dcc70ec18853d",
+          "02bc5c4a26dfa67569c8e926d2b957e96c5996ada86ec044222bd80021ca7314",
+          "85a306f58aa6d9c696d1f7aa75a44f634c9dd9eb21d004648b98a51be783c770",
+          "88a2b3d5ca483a71911cf6b5c2fdb9539da052f270bfc9992a794f450c629327"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 0,
+        "tools": 7,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 4,
+        "claim_hashes": [
+          "02b4dee22bcdb3c6e6f8c07f0c06f3c4f90a25a5e0e8cebf529dcc70ec18853d",
+          "02bc5c4a26dfa67569c8e926d2b957e96c5996ada86ec044222bd80021ca7314",
+          "85a306f58aa6d9c696d1f7aa75a44f634c9dd9eb21d004648b98a51be783c770",
+          "88a2b3d5ca483a71911cf6b5c2fdb9539da052f270bfc9992a794f450c629327"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 0,
+        "tools": 7,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 4,
+      "paper_id_hashes": [
+        "37fc18dedfe22f36c8181cec067d2ed532f5095d9202cd655aa3d1946b11df09",
+        "a16b485885a2abb32c89cb3eb22fa685557ab5dc2d0a00a77f6e730ba523ad66"
+      ],
+      "baseline": {
+        "claims": 4,
+        "claim_hashes": [
+          "7a9425fb5e37c077ff8d7084390b2756a99e2a7833d456ed665a192aa1e62b5d",
+          "94cbc587b7e3a0ba7813d497abeeb4984bf30a87d9e200aa62d1d2e3a97e4dc0",
+          "c690e540f5a832cf480a9ee0c8c52b931de2200662a396164abfc2d08a06dd3f",
+          "e861e97d465116a0e2c6c37bfad8ac5a03217458b6f434e1474cc887dcfb38a5"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 4,
+        "claim_hashes": [
+          "7a9425fb5e37c077ff8d7084390b2756a99e2a7833d456ed665a192aa1e62b5d",
+          "94cbc587b7e3a0ba7813d497abeeb4984bf30a87d9e200aa62d1d2e3a97e4dc0",
+          "c690e540f5a832cf480a9ee0c8c52b931de2200662a396164abfc2d08a06dd3f",
+          "e861e97d465116a0e2c6c37bfad8ac5a03217458b6f434e1474cc887dcfb38a5"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 5,
+      "paper_id_hashes": [
+        "4266ba89ece9c4985045ff148e048f2968ad92783dc2a4f10324829d05a58325",
+        "2cae8b1650bc208b0209423aef1bced6d30bd623e69a837c0c872825d712bbe1"
+      ],
+      "baseline": {
+        "claims": 3,
+        "claim_hashes": [
+          "162d41d7268b61b99c7437270eee9738601f3f2fc7f44206c0ef13c0510ec5e9",
+          "820e412d70389563dec2de8c4efc8b7fbcbeb61dee6013f23933d3bf688e0a92",
+          "faf7f00dbd05fb44fec7cbde78cb65b1e6c1bcc438e754e0a6bf4db5dfb63330"
+        ],
+        "fields": 4,
+        "missing_fields": 5,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 3,
+        "claim_hashes": [
+          "162d41d7268b61b99c7437270eee9738601f3f2fc7f44206c0ef13c0510ec5e9",
+          "820e412d70389563dec2de8c4efc8b7fbcbeb61dee6013f23933d3bf688e0a92",
+          "faf7f00dbd05fb44fec7cbde78cb65b1e6c1bcc438e754e0a6bf4db5dfb63330"
+        ],
+        "fields": 4,
+        "missing_fields": 5,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 6,
+      "paper_id_hashes": [
+        "04689de0aca074a8eeb79dd673ed420a1b9f591d0bf150b9cda16d32c0430b32",
+        "ce1809daae1d54f29a9138c31751b86ac7d1ca5cb218b6bfdcacc1d346e6ed7e"
+      ],
+      "baseline": {
+        "claims": 1,
+        "claim_hashes": [
+          "c327c7bb18bdd4eb7716bd343b4a39c1208b3a623be023bf0a499ee3c6b728ad"
+        ],
+        "fields": 2,
+        "missing_fields": 7,
+        "body_windows": 0,
+        "tools": 6,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 2,
+        "claim_hashes": [
+          "c327c7bb18bdd4eb7716bd343b4a39c1208b3a623be023bf0a499ee3c6b728ad",
+          "e44ef432ed591e8767d616a44fa8e7b3b013cb5e3dbd5d435b4face8a60dba43"
+        ],
+        "fields": 3,
+        "missing_fields": 6,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 7,
+      "paper_id_hashes": [
+        "dca80fbe5c145affaef462182bbfbe47f82b9282d39a5347b3bfa1ecfe10a433",
+        "2ab4ce09fa7264fb6021e0ffeef8fa8135b2d8aa174c0b0274e265123a4dd92d"
+      ],
+      "baseline": {
+        "claims": 3,
+        "claim_hashes": [
+          "1ce4beef1c1cf7f0d963a1fc924cb36aac38eac5fbf8ea48021a56f952eb2bbe",
+          "c8d521ec0f6fef8d2e34d8d2ba464eea6786701908cee6344b8f58d684fa3281",
+          "cf022fd4ea39123e4d2040ecf5b34402ed243d1f63a60746651adc93f76dbbb1"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 3,
+        "claim_hashes": [
+          "1ce4beef1c1cf7f0d963a1fc924cb36aac38eac5fbf8ea48021a56f952eb2bbe",
+          "c8d521ec0f6fef8d2e34d8d2ba464eea6786701908cee6344b8f58d684fa3281",
+          "cf022fd4ea39123e4d2040ecf5b34402ed243d1f63a60746651adc93f76dbbb1"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 8,
+      "paper_id_hashes": [
+        "8fa27a859cf64a2fecf88715cd6efb9dd75307291d27ba0f168e8ba6d8801bbf",
+        "00a7a7588189e60411099d3dda9b753254ec25460491d8f66e534bb00e4735ea"
+      ],
+      "baseline": {
+        "claims": 1,
+        "claim_hashes": [
+          "9d7328db9bdfa5d55cac052219e6ac93e5473f9514965164011243e72381f86a"
+        ],
+        "fields": 2,
+        "missing_fields": 7,
+        "body_windows": 0,
+        "tools": 6,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 1,
+        "claim_hashes": [
+          "9d7328db9bdfa5d55cac052219e6ac93e5473f9514965164011243e72381f86a"
+        ],
+        "fields": 2,
+        "missing_fields": 7,
+        "body_windows": 0,
+        "tools": 6,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 9,
+      "paper_id_hashes": [
+        "28109488d51773683777d49e44a333b996d93ec164652d73060e93ee5329f62e",
+        "93416e3973b725c7df93f95ceb5f0c54f2760f2265e179203cb3aa7479a31ba9"
+      ],
+      "baseline": {
+        "claims": 4,
+        "claim_hashes": [
+          "667c3c11a5836fa3311f304a290a417407158a222123e6d0a66f4ccc528df72a",
+          "6cf7be272b1a11e660ca5ba799257bf1e334c411ac9a691152f485e6282e6303",
+          "cfe7b9265cecd961fe438189b1abd69e65f2b36446164ccd6b913562716c3865",
+          "f5a824209ff2eaab2c377b35c02c5592b5e942d34f47aff35daff0abf21cfdc2"
+        ],
+        "fields": 4,
+        "missing_fields": 5,
+        "body_windows": 0,
+        "tools": 7,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 5,
+        "claim_hashes": [
+          "0a20de703633ed7a16f9989c718b7588276733cdccd1b4955edc0392205a9edc",
+          "667c3c11a5836fa3311f304a290a417407158a222123e6d0a66f4ccc528df72a",
+          "6cf7be272b1a11e660ca5ba799257bf1e334c411ac9a691152f485e6282e6303",
+          "cfe7b9265cecd961fe438189b1abd69e65f2b36446164ccd6b913562716c3865",
+          "f5a824209ff2eaab2c377b35c02c5592b5e942d34f47aff35daff0abf21cfdc2"
+        ],
+        "fields": 5,
+        "missing_fields": 4,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 10,
+      "paper_id_hashes": [
+        "e46103bfcd9694e74dafcc73e2e81007991cad768578fbcd143010856f0891bd",
+        "4636d9aca27d55f330bd4207fcfe5b416977bfdf75a4ede4bfb05de6dcd801bc"
+      ],
+      "baseline": {
+        "claims": 1,
+        "claim_hashes": [
+          "56d155eaeed61f8f2bb3c3ec220b9926a48389495c590036758fdb442b67f3b9"
+        ],
+        "fields": 3,
+        "missing_fields": 6,
+        "body_windows": 0,
+        "tools": 6,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 3,
+        "claim_hashes": [
+          "40fecab7403500f3745cf94aff4fab7f5d083f86ede6118fcab3e8fe2fcace25",
+          "56d155eaeed61f8f2bb3c3ec220b9926a48389495c590036758fdb442b67f3b9",
+          "f794830f915008800a4a4abc5cf2a711aebbe359de0b46e77a76c829c95a3f85"
+        ],
+        "fields": 4,
+        "missing_fields": 5,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 11,
+      "paper_id_hashes": [
+        "3458da58d3b64fc30ccd8ecd01380d6f282063b3eaaa052e0e515afb936b8811",
+        "b75d754a49d7004b78e8e4d0bd7a23603b2369b9822a3d9c9a067833590200c9"
+      ],
+      "baseline": {
+        "claims": 4,
+        "claim_hashes": [
+          "0f0922699231c3b6ec4361a6013c23998ce11784b8f40260fad2d83f64dc9c2d",
+          "94aee68de4150117f26155e55c2cd918fe7fdb3b8b95a46bdd4e6a5243a0d6e8",
+          "afc9778071e397ba70cdee56c523bda17b9221324b7eaa8bbd94cece157109b7",
+          "b12910dc208611e927f9ca8dbf76c0f272f494807a19ca77d80e317d5297c3cd"
+        ],
+        "fields": 4,
+        "missing_fields": 5,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 4,
+        "claim_hashes": [
+          "0f0922699231c3b6ec4361a6013c23998ce11784b8f40260fad2d83f64dc9c2d",
+          "94aee68de4150117f26155e55c2cd918fe7fdb3b8b95a46bdd4e6a5243a0d6e8",
+          "afc9778071e397ba70cdee56c523bda17b9221324b7eaa8bbd94cece157109b7",
+          "b12910dc208611e927f9ca8dbf76c0f272f494807a19ca77d80e317d5297c3cd"
+        ],
+        "fields": 4,
+        "missing_fields": 5,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 12,
+      "paper_id_hashes": [
+        "2fb0066e1af8806b66e7881d6452599ba7f6b64d01ffb31a063002b4ab6f3115",
+        "7580c3996d2e647bcb5d8cb098359bf2efaca4b7463db36171e329ca27d07d1c"
+      ],
+      "baseline": {
+        "claims": 5,
+        "claim_hashes": [
+          "0b2b66b9bcf1bbe487b12263bd9e8115c1af4eeaac321d98176eb49ae49e7987",
+          "22ac2fbff1b008ccd36633afacdacd98ee90568e99ef6ab45e07b95928cc0c91",
+          "58f11cf6a488928e65244665e1bce0e0a162a180be1fa8507150a67fa6b3e06d",
+          "749427235d6006b62a002f77ffaf3a1f0c9996fdcbc4fb81651906d1769275d2",
+          "7ee6f590ffb8ac158795f1e53a03b2312db52b25cc3afe4d5f15fb4d213f2c98"
+        ],
+        "fields": 6,
+        "missing_fields": 3,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 5,
+        "claim_hashes": [
+          "0b2b66b9bcf1bbe487b12263bd9e8115c1af4eeaac321d98176eb49ae49e7987",
+          "22ac2fbff1b008ccd36633afacdacd98ee90568e99ef6ab45e07b95928cc0c91",
+          "58f11cf6a488928e65244665e1bce0e0a162a180be1fa8507150a67fa6b3e06d",
+          "749427235d6006b62a002f77ffaf3a1f0c9996fdcbc4fb81651906d1769275d2",
+          "7ee6f590ffb8ac158795f1e53a03b2312db52b25cc3afe4d5f15fb4d213f2c98"
+        ],
+        "fields": 6,
+        "missing_fields": 3,
+        "body_windows": 1,
+        "tools": 8,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 13,
+      "paper_id_hashes": [
+        "c097a32f0cc95146610c432da29a0aa9b5b7f5b8ca8676df22892fbd6a9f2738",
+        "8d55c122c0e1b83f51e5c026b5f0d4962e2651e6e05f49d333ae0ce5e79da15d"
+      ],
+      "baseline": {
+        "claims": 2,
+        "claim_hashes": [
+          "0b70e86325484d7c83d60f9f4b3eafa48e1e29efda087ab7993823d75ed433ac",
+          "d16409ad718259aaffd4c54fbe8f7d21878db14b11732ecf3eed215607bccc4d"
+        ],
+        "fields": 3,
+        "missing_fields": 6,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 2,
+        "claim_hashes": [
+          "0b70e86325484d7c83d60f9f4b3eafa48e1e29efda087ab7993823d75ed433ac",
+          "d16409ad718259aaffd4c54fbe8f7d21878db14b11732ecf3eed215607bccc4d"
+        ],
+        "fields": 3,
+        "missing_fields": 6,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 14,
+      "paper_id_hashes": [
+        "859d39858d7015a3418d9efff9c8e7da34e7e12c077bc2d29f8e738901ee7815",
+        "5b0cec472b103d7b7e827067d9ff0fd17d101238ae8c53bd04ee47130cbd960c"
+      ],
+      "baseline": {
+        "claims": 3,
+        "claim_hashes": [
+          "50a811bacef476c1199903377ff9f111e046aa6ef91b9791db105eeaff4d0ad3",
+          "56b3db0217c75608ca01420c9f4dc446d53e159fe67d2244494c36fb37b8fafb",
+          "a245dc03d52a39e46725c8dec04e41b09e995264752ce954c57e4b28326b3ae9"
+        ],
+        "fields": 4,
+        "missing_fields": 5,
+        "body_windows": 2,
+        "tools": 10,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 6,
+        "claim_hashes": [
+          "120a6b3267bab856e1421a2fea8a3f268718a3b206532d10d7533a4d67717c27",
+          "482f304c7345d8035687d60d1867bdd1f2dbfa8ab15a7011071ff2403b14b1b3",
+          "50a811bacef476c1199903377ff9f111e046aa6ef91b9791db105eeaff4d0ad3",
+          "56b3db0217c75608ca01420c9f4dc446d53e159fe67d2244494c36fb37b8fafb",
+          "7716d48f80240cbe24049af6ab922b7ebcfaea2716f3b92381d7c934aed578fe",
+          "a245dc03d52a39e46725c8dec04e41b09e995264752ce954c57e4b28326b3ae9"
+        ],
+        "fields": 6,
+        "missing_fields": 3,
+        "body_windows": 2,
+        "tools": 9,
+        "task_complete": false,
+        "full_group": false
+      }
+    },
+    {
+      "group": 15,
+      "paper_id_hashes": [
+        "f01544a6fc3669ea174397bd25653e1bb934e07fa1c05c01b6457699bca5e4cd",
+        "01c107190a780826a6e6a7a5c2d24df2fb2a07d817e14a656bb7f387ac8b6fbe"
+      ],
+      "baseline": {
+        "claims": 0,
+        "claim_hashes": [],
+        "fields": 0,
+        "missing_fields": 9,
+        "body_windows": 0,
+        "tools": 6,
+        "task_complete": false,
+        "full_group": false
+      },
+      "candidate": {
+        "claims": 2,
+        "claim_hashes": [
+          "030c05f6ab71aa4dc49aba73c07dbd4d563e717e67fd759b19f70782ebea58c2",
+          "f54c76f693dc7e22b0e79bd0e22805daffa001f335c123fea806513f9c23e9de"
+        ],
+        "fields": 2,
+        "missing_fields": 7,
+        "body_windows": 2,
+        "tools": 9,
+        "task_complete": false,
+        "full_group": false
+      }
+    }
+  ],
+  "frozen_cases": [
+    {
+      "case": "transfer-00-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-00-overview",
+      "baseline": {
+        "fields": 5,
+        "claims": 3,
+        "body_windows": 0,
+        "tool_calls": 7,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 5,
+        "claims": 3,
+        "body_windows": 0,
+        "tool_calls": 7,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-01-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-01-overview",
+      "baseline": {
+        "fields": 5,
+        "claims": 5,
+        "body_windows": 1,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 5,
+        "claims": 5,
+        "body_windows": 1,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-02-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-02-overview",
+      "baseline": {
+        "fields": 2,
+        "claims": 1,
+        "body_windows": 0,
+        "tool_calls": 8,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 2,
+        "claims": 1,
+        "body_windows": 0,
+        "tool_calls": 8,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-03-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-03-overview",
+      "baseline": {
+        "fields": 5,
+        "claims": 3,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 5,
+        "claims": 3,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-04-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-04-overview",
+      "baseline": {
+        "fields": 3,
+        "claims": 3,
+        "body_windows": 1,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 3,
+        "claims": 3,
+        "body_windows": 1,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-05-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-05-overview",
+      "baseline": {
+        "fields": 5,
+        "claims": 5,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 5,
+        "claims": 5,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-06-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-06-overview",
+      "baseline": {
+        "fields": 7,
+        "claims": 8,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 7,
+        "claims": 8,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-07-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-07-overview",
+      "baseline": {
+        "fields": 7,
+        "claims": 5,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 7,
+        "claims": 5,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-08-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-08-overview",
+      "baseline": {
+        "fields": 7,
+        "claims": 4,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 8,
+        "claims": 5,
+        "body_windows": 1,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-09-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-09-overview",
+      "baseline": {
+        "fields": 8,
+        "claims": 6,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 8,
+        "claims": 6,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-10-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-10-overview",
+      "baseline": {
+        "fields": 8,
+        "claims": 5,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 8,
+        "claims": 5,
+        "body_windows": 0,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-11-layout",
+      "baseline": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 0,
+        "claims": 0,
+        "body_windows": 0,
+        "tool_calls": 0,
+        "full_group": null,
+        "false_layout": false,
+        "invalid_sources": 0
+      }
+    },
+    {
+      "case": "transfer-11-overview",
+      "baseline": {
+        "fields": 4,
+        "claims": 2,
+        "body_windows": 1,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      },
+      "candidate": {
+        "fields": 4,
+        "claims": 2,
+        "body_windows": 1,
+        "tool_calls": 9,
+        "full_group": false,
+        "false_layout": null,
+        "invalid_sources": 0
+      }
+    }
+  ]
+}
