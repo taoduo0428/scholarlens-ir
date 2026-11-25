@@ -1,12 +1,21 @@
 {
   "release_version": "v1.0.0",
   "release_status": "DRAFT_RELEASE_PENDING_SIGN_OFF",
+  "component_versions": {
+    "release_tag": "v1.0.0",
+    "frontend_package": "1.0.0",
+    "fastapi_openapi": "0.2.1",
+    "elasticsearch_compose": "8.19.26",
+    "elasticsearch_local_windows": "8.19.23"
+  },
   "date": "2026-11-25",
   "base_main_sha": "160b84e1305d99f4ac58036a9879f229022e03d8",
-  "branch": "gemini/final-release-closure",
-  "pr_number": 47,
-  "verified_ci_run_id": "45566748805",
-  "verified_ci_code_sha": "de7b58bc3e8284a5f0b7a1e819511a4497702fc9",
+  "merged_pr47_main_sha": "b9ae32ff17c7129bb2a4a1ed8c246d104a051b5f",
+  "main_ci_run_id_pr47": "45570157649",
+  "branch": "gemini/final-release-check",
+  "pr_number": 48,
+  "verified_ci_run_id": "45573050177",
+  "verified_ci_code_sha": "f18ce394ce8363bd288abfba9c613ab820844489",
   "algorithms_frozen": true,
   "default_pra_arm": "A",
   "local_full_backend_es_8_19_23": {
@@ -28,29 +37,29 @@
     }
   },
   "ci_verify": {
-    "tests": "446",
+    "tests": "448",
     "failures": "0",
     "errors": "0",
     "skipped": "0",
-    "time": "30.116",
-    "passed": "446"
+    "time": "30.222",
+    "passed": "448"
   },
   "ci_integration_es_8_19_26": {
     "python_version": "3.11.18",
     "elasticsearch_version": "8.19.26",
     "jaeger_verified": true,
-    "tests": 964,
-    "passed": 963,
+    "tests": 966,
+    "passed": 965,
     "failures": 0,
     "errors": 0,
     "skipped": 1,
-    "time": "74.988",
-    "ignored_reason": "6 files needing uncommitted local MiniLM ONNX model or Windows .ps1 launcher (verified 1028/1028 on local Windows ASCII runner)"
+    "time": "83.957",
+    "ignored_reason": "6 files needing uncommitted local MiniLM ONNX model or Windows .ps1 launcher (verified 1028/1028 on local Windows ASCII runner + 2/2 test_pra_arm_compose_config)"
   },
   "otel_jaeger_receipt": {
     "status": "PASS",
-    "task_id": "8d43748d-0215-4019-ac41-d52fcfcf402e",
-    "trace_id": "2d0cd2e48016afe37bd20210c69ba8d4",
+    "task_id": "cf161bc3-248a-41e1-a393-8ace82901fda",
+    "trace_id": "4660d4032851814804ec3897adf2e585",
     "span_count": 9,
     "operations": [
       "research.api",
@@ -64,11 +73,41 @@
     ]
   },
   "docker_images": {
-    "standard_id": "sha256:9cd9012322594f297ecd8f7c989281625d861d30661f4eb36733c1d8456a40d4",
-    "pdf_ocr_id": "sha256:19d820b959efe4549443ea19e04c663b13d6ebfbaea1da4be3ac548d77bb61f3",
+    "standard_id": "sha256:b6393791452cfc09af0330bfa114ad63e7bf55f853936cedba97e1d11c6a5272",
+    "pdf_ocr_id": "sha256:dee4f8418a1ac2e6c245e381c0b0cc5d49242975380bae7afaa5b0111340ac4d",
     "elasticsearch_id": "sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d",
     "sbom_standard_bytes": 3097584,
     "sbom_pdf_ocr_bytes": 3126670,
+    "pra_arm_compose_switch_rollback": {
+      "compose_default_pra_arm": "A",
+      "steps": [
+        {
+          "label": "default_A",
+          "task_id": "88ef475b-5cb7-49fa-bcaa-af3ffe5c4c27",
+          "status": "completed",
+          "pra_arm": "A"
+        },
+        {
+          "label": "switch_G",
+          "task_id": "0137c152-bf54-46f6-945e-354cdd9c6197",
+          "status": "completed",
+          "pra_arm": "G"
+        },
+        {
+          "label": "switch_R",
+          "task_id": "506f3d0f-6338-4e1e-8876-e3b672615c26",
+          "status": "completed",
+          "pra_arm": "R"
+        },
+        {
+          "label": "rollback_A",
+          "task_id": "09123b8f-aa97-4906-8fff-7ff7d3b95900",
+          "status": "completed",
+          "pra_arm": "A"
+        }
+      ],
+      "rollback_verified": true
+    },
     "pdf_ocr_compose_upgrade_rollback": {
       "standard_init": {
         "stage": "initialize",
@@ -116,6 +155,18 @@
     "gitleaks_allowlisted_false_positives": 5,
     "pip_audit_vulnerabilities": 0,
     "npm_audit_vulnerabilities": 0,
+    "elasticsearch_guava_recheck": {
+      "cve": "CVE-2026-102554",
+      "ghsa": "GHSA-xxph-c9ww-hj94",
+      "bundled_guava": "32.0.1-jre",
+      "guava_fixed_version": "33.7.2",
+      "registry_checked_at": "2026-11-25",
+      "latest_official_8_x_tag": "8.19.26",
+      "latest_official_9_x_tag": "9.5.7",
+      "compatible_8_19_upgrade_available": false,
+      "topology_reachable": false,
+      "disposition": "DRAFT_SIGN_OFF_REQUIRED"
+    },
     "grype_summary": {
       "standard": {
         "total": 232,

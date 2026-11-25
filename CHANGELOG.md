@@ -2,9 +2,14 @@
 
 All notable engineering and research milestones for **ScholarLens EvoResearch** are documented in this file.
 
-## [v1.0.0-rc.1] — 2026-11-25 (Final Engineering Closure & Release Candidate)
+## [v1.0.0] — 2026-11-25 (Final Engineering Closure & Draft Release)
 
-### Engineering & Infrastructure Closure
+### Final Release Checks (PR #48 on top of PR #47)
+- **Compose Strategy Control Fix (`infra/product.compose.yml`)**: Passed `SCHOLARLENS_PRA_ARM: ${SCHOLARLENS_PRA_ARM:-A}` to `services.api.environment` (strictly keeping `A` as default) and added unit + live Docker Compose **`A -> G -> R -> A` switch & rollback** acceptance (`backend/tests/research/test_pra_arm_compose_config.py`, `.github/workflows/agent-ci.yml`).
+- **Elasticsearch `8.19.26` Guava CVE Compatibility Audit**: Verified against `docker.elastic.co` that `8.19.26` is the newest official `8.19.x`/`8.x` patch release (`9.5.x` is an incompatible major bump); documented `CVE-2026-102554` (`GHSA-xxph-c9ww-hj94`) unreachability and retained explicit Draft Release sign-off status.
+- **Version & Evidence Alignment**: Documented explicit version mapping (`Release v1.0.0` Draft, `frontend 1.0.0`, `FastAPI OpenAPI 0.2.1`, `Elasticsearch 8.19.26` / local `8.19.23`, default `SCHOLARLENS_PRA_ARM=A`) across `README.md`, `CHANGELOG.md`, and `docs/release-v1/*`.
+
+### Engineering & Infrastructure Closure (PR #47)
 - **ASCII Worktree & Launcher Compatibility (`infra/start-backend1.ps1`)**: Added `.venv/Scripts/python.exe` fallback alongside `backend/.venv/Scripts/python.exe` so isolated ASCII worktree deployments and restart integration tests execute cleanly on Windows without Chinese-path JVM/GBK encoding issues.
 - **Elasticsearch 8.19.23 / 8.19.26 Parity**: Updated isolated ES version assertions in backend integration tests to validate pinned patch versions `8.19.23` and `8.19.26` uniformly.
 - **CI/CD Verification Expansion (`.github/workflows/agent-ci.yml`)**:

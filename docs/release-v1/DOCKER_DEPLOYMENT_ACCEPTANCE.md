@@ -1,8 +1,8 @@
 # Docker 容器构建、Compose 部署、PDF OCR 升级与回滚验收报告
 
 **验收日期**：2026-11-25  
-**验证环境**：GitHub Actions `ubuntu-latest`（Run [`45566748805`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45566748805)）  
-**状态**：**PASS**（`Standard` 与 `PDF OCR` 构建、加固、Compose 升级、OCR 提取与回滚全链路实测通过）
+**验证环境**：GitHub Actions `ubuntu-latest`（Run [`45566748805`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45566748805) · Run [`45573050177`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45573050177)）  
+**状态**：**PASS**（`Standard` 与 `PDF OCR` 构建、加固、Compose 升级、`SCHOLARLENS_PRA_ARM` `A/G/R` 切换与回滚、OCR 提取与回滚全链路实测通过）
 
 ---
 
@@ -10,8 +10,8 @@
 
 | 镜像目标 | 基准配置 ID (`scanned-image-id.txt`) | 打包加固检查（`--network none --read-only`） | Syft v1.57.2 SPDX SBOM |
 | --- | --- | --- | --- |
-| **`standard`** (`infra/ScholarLens.Dockerfile --target standard`) | `sha256:9cd9012322594f297ecd8f7c989281625d861d30661f4eb36733c1d8456a40d4` | `os.getuid() == 10001`、`pytest`/`ruff` 已从运行镜裁剪、SQLite/SSL/gzip/chart_registry 正常、OpenAPI `/api/research/tasks` & `/api/evolution-lab/governance` 路由存在 | `sbom-standard.spdx.json` (`3,097,584` B) |
-| **`pdf-ocr`** (`infra/ScholarLens.Dockerfile --target pdf-ocr`) | `sha256:19d820b959efe4549443ea19e04c663b13d6ebfbaea1da4be3ac548d77bb61f3` | 同上加固 + `ldd /opt/scholarlens-ocr/bin/tesseract` 验证零缺失依赖且无多余 `curl`/`tiff`/`xml2`/`archive` 链接 + `python -m backend.research.ocr_check` 通过 | `sbom-pdf-ocr.spdx.json` (`3,126,670` B) |
+| **`standard`** (`infra/ScholarLens.Dockerfile --target standard`) | `sha256:b6393791452cfc09af0330bfa114ad63e7bf55f853936cedba97e1d11c6a5272` | `os.getuid() == 10001`、`pytest`/`ruff` 已从运行镜裁剪、SQLite/SSL/gzip/chart_registry 正常、OpenAPI `/api/research/tasks` & `/api/evolution-lab/governance` 路由存在 | `sbom-standard.spdx.json` (Run `45573050177`) |
+| **`pdf-ocr`** (`infra/ScholarLens.Dockerfile --target pdf-ocr`) | `sha256:dee4f8418a1ac2e6c245e381c0b0cc5d49242975380bae7afaa5b0111340ac4d` | 同上加固 + `ldd /opt/scholarlens-ocr/bin/tesseract` 验证零缺失依赖且无多余 `curl`/`tiff`/`xml2`/`archive` 链接 + `python -m backend.research.ocr_check` 通过 | `sbom-pdf-ocr.spdx.json` (Run `45573050177`) |
 | **`elasticsearch:8.19.26`** | `sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d` | Compose 健康检查、单节点、只暴露内部 Docker 网络，不开放宿主机公网端口 | 与 `infra/product.compose.yml` digest 锁定一致 |
 
 ---
@@ -21,6 +21,7 @@
 执行栈：`infra/product.compose.yml`（`api` 只读根文件系统、`cap_drop: [ALL]`、`no-new-privileges:true`、命名卷 `research-data` 与 `search-data`）：
 1. **Elasticsearch 跨版本卷保留**：先以 `elasticsearch:8.19.23` 启动并创建带 `dense_vector` 映射的 `scholarlens-fixture` 索引，记录 `cluster_uuid` 并写入测试论文；随后升级到 `8.19.26` 确认同一 `cluster_uuid` 且 BM25 + kNN 查询仍精准命中该文档。
 2. **API 生命周期与重启持久性**：验证 `GET /readyz` 返回 `200 {"status": "ready"}`、`GET /` 返回构建前端页面、`GET /openapi.json` 包含 `/api/research/tasks`；通过 `/api/auth/register` 注册测试账户后强制重建 `api` 容器（`--force-recreate --no-deps`），确认重连后 `/api/auth/login` 与 `/readyz` 仍 200 通过。
+3. **`SCHOLARLENS_PRA_ARM` Compose 透传及 `A / G / R` 策略切换与回滚**：在同卷运行态的 `infra/product.compose.yml` 中验证未设置 `SCHOLARLENS_PRA_ARM` 时解析默认值为 `"A"`，并依次通过 `--force-recreate --no-deps` 完成 **`default_A` (`A`) → `switch_G` (`G`) → `switch_R` (`R`) → `rollback_A` (`A`)** 四轮完整任务创建、执行（`completed`）及历史任务 `state.pra_arm` 跨重启保真校验（回执 `output/release-v1/ci-check/application-image-findings-standard/pra-arm-compose-receipt.json`）。
 
 ---
 

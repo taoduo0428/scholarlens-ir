@@ -1,8 +1,8 @@
 # 安全审计与 CVE 逐条分级排查报告 (Security Triage)
 
 **审计日期**：2026-11-25  
-**CI 依据**：[GitHub Actions Run `45566748805`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45566748805)  
-**安全门禁总体结论**：**应用依赖与密钥扫描 100% PASS（`pip-audit=0`、`npm audit=0`、`Gitleaks=0`、`Critical=0`）**；但因 Debian Trixie 底座 OS 包（含 `openssl`/`libssl3t64`、`libc6` 及定制 OCR 包 `scholarlens-tesseract`）及官方 `elasticsearch:8.19.26` 模块 `guava` 存在上游尚未修补的 High CVE，按生产发布准则标注为 **CONDITIONAL / 需负责人签核后转正**，因此本轮仅创建 **Draft Release**。
+**CI 依据**：[GitHub Actions Run `45566748805`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45566748805) · [`main` 合入 Run `45570157649`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45570157649) · [终检复核 Run `45573050177`](https://github.com/taoduo0428/scholarlens-ir/actions/runs/45573050177)  
+**安全门禁总体结论**：**应用依赖与密钥扫描 100% PASS（`pip-audit=0`、`npm audit=0`、`Gitleaks=0`、`Critical=0`）**；但因 Debian Trixie 底座 OS 包（含 `openssl`/`libssl3t64`、`libc6` 及定制 OCR 包 `scholarlens-tesseract`）及官方 `elasticsearch:8.19.26` 模块 `guava` 存在在冻结栈内尚无兼容性官方补丁的高危（High）CVE，按生产发布准则标注为 **CONDITIONAL / 需负责人签核后转正**，因此继续保持 **Draft Release**。
 
 ---
 
@@ -14,9 +14,9 @@
 | **pip-audit 2.9.0** | `requirements-lock.txt` + `research` + `pdf-layout` 全量锁定 Python 依赖 | **0** 已知漏洞 | **PASS** | [pip-audit-report.json](../../output/release-v1/ci-final/security-gates-reports/pip-audit-report.json) |
 | **npm audit** | `frontend/package-lock.json` | **0** 漏洞（Low/Mod/High/Crit 全为 0） | **PASS** | [npm-audit-report.json](../../output/release-v1/ci-final/security-gates-reports/npm-audit-report.json) |
 | **Syft v1.57.2** | `standard` & `pdf-ocr` 应用镜像 | 生成 SPDX JSON SBOM（3.10 MB / 3.13 MB） | **PASS** | `sbom-standard.spdx.json` / `sbom-pdf-ocr.spdx.json` |
-| **Grype v0.122.1 (`standard`)** | `sha256:9cd9012322594f297ecd8f7c989281625d861d30661f4eb36733c1d8456a40d4` | Total `232`: **0 Critical / 82 High** (`27 not-fixed`, `55 wont-fix`, **0 可用升级**) | **TRIAGED (Sign-off)** | `application-image-findings-standard/image-findings.json` |
-| **Grype v0.122.1 (`pdf-ocr`)** | `sha256:19d820b959efe4549443ea19e04c663b13d6ebfbaea1da4be3ac548d77bb61f3` | Total `248`: **0 Critical / 87 High** (`28 not-fixed`, `59 wont-fix`, **0 可用升级**) | **TRIAGED (Sign-off)** | `application-image-findings-pdf-ocr/image-findings.json` |
-| **Grype v0.122.1 (`elasticsearch:8.19.26`)** | `sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d` | Total `174`: **0 Critical / 5 High**（全部 5 条命中 ES 内置 `guava 32.0.1-jre`） | **TRIAGED (Sign-off)** | `compose-elasticsearch-image-findings/es-image-findings.json` |
+| **Grype v0.122.1 (`standard`)** | `sha256:b6393791452cfc09af0330bfa114ad63e7bf55f853936cedba97e1d11c6a5272` | Total `232`: **0 Critical / 82 High** (`27 not-fixed`, `55 wont-fix`, **0 可用升级**) | **TRIAGED (Sign-off)** | `application-image-findings-standard/image-findings.json` (Run `45573050177`) |
+| **Grype v0.122.1 (`pdf-ocr`)** | `sha256:dee4f8418a1ac2e6c245e381c0b0cc5d49242975380bae7afaa5b0111340ac4d` | Total `248`: **0 Critical / 87 High** (`28 not-fixed`, `59 wont-fix`, **0 可用升级**) | **TRIAGED (Sign-off)** | `application-image-findings-pdf-ocr/image-findings.json` (Run `45573050177`) |
+| **Grype v0.122.1 (`elasticsearch:8.19.26`)** | `sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d` | Total `174`: **0 Critical / 5 High**（全部 5 条命中 ES 内置 `guava 32.0.1-jre`） | **TRIAGED (Sign-off)** | `compose-elasticsearch-image-findings/es-image-findings.json` (Run `45573050177`) |
 
 ### Gitleaks 历史 5 条已逐行核验的非密钥假阳性说明
 在初始扫描阶段，Gitleaks 针对历史提交命中 5 条 `generic-api-key` 模式，经逐行核对原文源码确认全部为非敏感内容并登记于 `.gitleaksignore`：
@@ -233,5 +233,11 @@
 <!-- rows=1 -->
 | CVE | Package | Installed | Fixed | Severity | Fix available? | Used in ScholarLens? | Reachable? | Attack surface | Mitigations | Disposition |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| GHSA-xxph-c9ww-hj94 | guava | 32.0.1-jre | 33.7.2 | High | Yes (33.7.2) | Yes (ES 8.19.26 x-pack/repository modules: /usr/share/elasticsearch/modules/repository-gcs/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-identity-provider/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-inference/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-security/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-watcher/guava-32.0.1-jre.jar) | Low / Unreachable in ScholarLens topology (x-pack security/ml/watcher/gcs disabled, ES on internal network only) | Internal Docker network / loopback only | Official Elastic digest pinned, 127.0.0.1/internal network isolation, no host port in product.compose, xpack.security/ml disabled | Upstream ES image dependency; do not mutate vendor JARs; monitor Elastic 8.19.x patch / sign-off |
+| GHSA-xxph-c9ww-hj94 (CVE-2026-102554) | guava | 32.0.1-jre | 33.7.2 | High | Upstream Guava fixed (`33.7.2`); **No compatible Elastic `8.19.x` image yet** | Yes (ES 8.19.26 x-pack/repository modules: /usr/share/elasticsearch/modules/repository-gcs/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-identity-provider/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-inference/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-security/guava-32.0.1-jre.jar, /usr/share/elasticsearch/modules/x-pack-watcher/guava-32.0.1-jre.jar) | Low / Unreachable in ScholarLens topology (x-pack security/ml/watcher/gcs disabled, ES on internal network only) | Untrusted Java native serialization stream (`CompactHashMap`/`CompactHashSet`/`MapMakerInternalMap`) via internal Docker network / loopback only | Official Elastic digest pinned, 127.0.0.1/internal network isolation, no host port in product.compose, xpack.security/ml disabled | Upstream ES 8.19.26 is latest `8.x`; do not mutate vendor JARs; monitor Elastic 8.19.27+ patch / owner sign-off |
+
+### Elasticsearch `Guava` High CVE (`CVE-2026-102554` / `GHSA-xxph-c9ww-hj94`) 升级可行性复核（2026-11-25）
+
+- **官方镜像标签实测结果**：于 `2026-11-25` 直接向官方镜像源 `https://docker.elastic.co/v2/elasticsearch/elasticsearch/tags/list` 查询认证标签，确认 **`8.19.26`（`sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d`）已是整个 `8.19.x` 与 `8.x` 分支的最新官方补丁版本**，当前不存在 `8.19.27+` 或 `8.20.x`；更晚的官方标签跨至 **`9.5.x`**（最新 `9.5.7`），与当前锁定的 Python `elasticsearch==8.19.x` 客户端及“不跨大版本更换技术栈”约束不兼容。
+- **漏洞机理与可达性复核**：`CVE-2026-102554` 源自 Google Guava `4.0–33.7.1` 在 Java 原生反序列化 `CompactHashMap`、`CompactHashSet`、`MapMakerInternalMap` 时未校验流中声明的元素容量，从而可能引发 JVM 堆内存耗尽 DoS（Guava `33.7.2` 已限制初始数组分配上限）。在 ScholarLens `product.compose.yml` 拓扑中，Elasticsearch 仅监听内部 Docker 网络、未映射宿主机公网端口，且禁用 `xpack.security`/`xpack.ml`，应用层仅通过官方 JSON REST API 与其交互，不存在向命中该 JAR 的 `x-pack-*`/`repository-gcs` 模块暴露不可信 Java 原生反序列化入口的路径。
+- **工程决策**：严禁手工拆包替换官方签名镜像中的供应商 JAR；保持当前官方 Digest 锁定并由项目负责人对该残留项履行风险签核，同时持续跟踪后续 `8.19.27+` 官方镜像发布。
 
