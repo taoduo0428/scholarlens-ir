@@ -125,7 +125,12 @@ def attribution(text, previous=""):
     return "authors", fields
 
 
-def sentence_spans(text, offset):
+def is_sentence_aligned(row: dict | None) -> bool:
+    """True when the passage window starts at a complete sentence boundary."""
+    return bool(row and str(row.get("chunk_id", "")).startswith("chunk:sw1-"))
+
+
+def sentence_spans(text, offset, *, aligned: bool = False):
     """Use positions from the parser, including repeated identical sentences."""
     start = 0
     for split in [*sentence_boundaries(text), None]:
@@ -133,8 +138,8 @@ def sentence_spans(text, offset):
         piece = text[start:end]
         sentence = piece.strip()
         left = start + len(piece) - len(piece.lstrip())
-        # A nonzero window may start halfway through a clause, even on a capital letter.
-        if (not offset or start) and 8 <= len(sentence) <= 480 and re.search(r"[.!?。！？][)」”\"']*$", sentence):
+        # A nonzero window may start halfway through a clause unless explicitly sentence-aligned.
+        if (aligned or not offset or start) and 8 <= len(sentence) <= 480 and re.search(r"[.!?。！？][)」”\"']*$", sentence):
             yield left, left + len(sentence), sentence
         else:
             yield None
@@ -179,7 +184,7 @@ def profiles(state, sources, candidates=()):
         discourse_mode = has_h1(arm)
         enhanced = has_profile_arm(arm)
         h5_mode = has_h5(arm)
-        for span in sentence_spans(row["quote"], cap.locator.start):
+        for span in sentence_spans(row["quote"], cap.locator.start, aligned=is_sentence_aligned(row)):
             if not span:
                 previous = ""
                 previous_id = None

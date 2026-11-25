@@ -215,13 +215,13 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
     if (has_full_pra(arm) and field.operation == "attribute" and len(field.paper_ids) == 1
             and field.facet is None and field.datatype == "text"):
         from backend.research.profile_frames import METRIC_NAMES_QUESTION, states_metric_use
-        from backend.research.research_profile import sentence_spans
+        from backend.research.research_profile import is_sentence_aligned, sentence_spans
         if METRIC_NAMES_QUESTION.fullmatch(field.request.strip()):
             evidence = set()
             for eid, row in sources.items():
                 offset = int(row["locator"].rsplit(":", 1)[1].split("-")[0])
                 previous = ""
-                for span in sentence_spans(row["quote"], offset):
+                for span in sentence_spans(row["quote"], offset, aligned=is_sentence_aligned(row)):
                     if span and states_metric_use(span[2], previous):
                         evidence.add((eid, span[2]))
                     previous = span[2] if span else ""

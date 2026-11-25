@@ -68,13 +68,13 @@ def body_profile_supports(statement, facet, *, discourse=False):
             bool((BODY_METHOD if facet == "method" else BODY_FINDING).match(statement)))
 
 
-def body_profile_score(text, offset):
+def body_profile_score(text, offset, *, aligned: bool = False):
     """Measure coverage across the independently extractable overview roles."""
     from backend.research.research_profile import attribution, sentence_spans
 
     available = set().union(*BODY_ROLES.values(), {"limitations", "future_work"})
     roles = []
-    for span in sentence_spans(text, offset):
+    for span in sentence_spans(text, offset, aligned=aligned):
         if span:
             origin, fields = attribution(span[2])
             if origin == "authors":
@@ -82,11 +82,11 @@ def body_profile_score(text, offset):
     return len(set().union(*roles)), sum(bool(group) for group in roles)
 
 
-def body_gap_score(text, offset, gaps):
+def body_gap_score(text, offset, gaps, *, aligned: bool = False):
     """Count self-contained statements bearing directly on the missing roles."""
     from backend.research.research_profile import sentence_spans
 
-    statements = [span[2] for span in sentence_spans(text, offset) if span]
+    statements = [span[2] for span in sentence_spans(text, offset, aligned=aligned) if span]
     counts = [sum(body_profile_supports(statement, facet) for statement in statements) for facet in gaps]
     return sum(bool(n) for n in counts), sum(counts)
 

@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 
 from backend.research.field_contract import TITLES, field_for
-from backend.research.research_profile import FUTURE, HYP, MAY, PRIOR, sentence_spans
+from backend.research.research_profile import FUTURE, HYP, MAY, PRIOR, is_sentence_aligned, sentence_spans
 from backend.research.workspace_relations import CAUSE, UNKNOWN
 
 ENTITY = r"[\w-]+(?: [\w-]+){0,20}"
@@ -97,7 +97,7 @@ def contradicted_edges(sources):
     denied = set()
     for observation in sources:
         offset = int(observation["locator"].rsplit(":", 1)[1].split("-")[0])
-        for span in sentence_spans(observation["quote"], offset):
+        for span in sentence_spans(observation["quote"], offset, aligned=is_sentence_aligned(observation)):
             if not span:
                 continue
             statement = span[2]
@@ -115,7 +115,7 @@ def missing_bridge_terms(field, sources):
     first, last = set(), set()
     start, target = endpoint(field.subject), endpoint(field.subject_context)
     for row in sources:
-        for span in sentence_spans(row["quote"], row["offset_start"]):
+        for span in sentence_spans(row["quote"], row["offset_start"], aligned=is_sentence_aligned(row)):
             edge = causal_edge(span[2]) if span else None
             if not edge or edge in denied:
                 continue
@@ -156,7 +156,11 @@ def causal_premises(field, claims, sources, *, max_hops=2, open_links: bool = Fa
     denied = contradicted_edges(sources.values()) if (max_hops == 3 or open_links) else set()
     original = {
         (eid, span[2]) for eid, row in sources.items()
-        for span in sentence_spans(row["quote"], int(row["locator"].rsplit(":", 1)[1].split("-")[0]))
+        for span in sentence_spans(
+            row["quote"],
+            int(row["locator"].rsplit(":", 1)[1].split("-")[0]),
+            aligned=is_sentence_aligned(row),
+        )
         if span
     }
     for c in claims:

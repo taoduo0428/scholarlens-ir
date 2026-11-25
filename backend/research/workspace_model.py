@@ -181,12 +181,16 @@ def publication_suggestions(store, state, sources, callback):
     catalog = {}
     if state.retrieval_policy == "E11" and callback and has_profile_arm(arm):
         from backend.research.field_gate import capability
-        from backend.research.research_profile import sentence_key, sentence_spans
+        from backend.research.research_profile import is_sentence_aligned, sentence_key, sentence_spans
         queues = []
         for eid, row in sources.items():
             cap = capability(row, state)
             if cap and "text" in cap.supported:
-                queues.append([(eid, span) for span in sentence_spans(row["quote"], cap.locator.start) if span])
+                queues.append([
+                    (eid, span)
+                    for span in sentence_spans(row["quote"], cap.locator.start, aligned=is_sentence_aligned(row))
+                    if span
+                ])
         # Rotate across passages so one long abstract cannot consume the whole context.
         remaining_chars = 8000
         for level in range(max(map(len, queues), default=0)):
