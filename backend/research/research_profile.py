@@ -258,9 +258,19 @@ def profiles(state, sources, candidates=()):
             previous_origin = origin
             for field in get_args(ProfileField):
                 if (pid, eid, left, right, text, field, origin) in proposals:
-                    if model_field_supported(field, origin, text) or (
-                        h5_mode and origin == "authors" and not GUARDS.search(text)
-                    ):
+                    h5_ok = False
+                    if h5_mode and origin == "authors" and not GUARDS.search(text) and not PRIOR.search(text):
+                        from backend.research.semantic_slots import has_predicate_negation
+
+                        h5_ok = (
+                            not has_predicate_negation(text)
+                            and field in {
+                                "methods", "reported_findings", "research_objective", "research_problem",
+                                "datasets", "metrics", "experiment_settings", "baselines", "limitations",
+                                "proposed_contributions",
+                            }
+                        )
+                    if model_field_supported(field, origin, text) or h5_ok:
                         fields.add(field)
             for field in sorted(fields):
                 key = (pid, eid, left, right, text, field, origin)
