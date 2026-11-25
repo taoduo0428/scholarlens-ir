@@ -1,0 +1,11 @@
+# Verified non-secret historical fingerprints inspected during Release v1 security triage:
+# 1. SHA-256 log checksum in RUN_RECEIPT.json ("ui-api.log")
+c1638cb3ceb70205ad2b5821de79390f1aa56505:docs/agent-v3/artifacts/RUN_RECEIPT.json:generic-api-key:429
+# 2. Explicitly synthetic unit-test canary in test_service_boundaries.py ("evo-private-canary-928734")
+5c8084498431d45c8227d739f6dfdc9081f59dda:backend/tests/research/test_service_boundaries.py:generic-api-key:44
+# 3-5. Formal paper PDF filenames + SHA-256 digests in frozen data/paper_jsonl/paper_source_manifest.csv
+46d27bc085bd1ac0ff30f28d9195f2094f417fca:data/paper_jsonl/paper_source_manifest.csv:generic-api-key:157
+46d27bc085bd1ac0ff30f28d9195f2094f417fca:data/paper_jsonl/paper_source_manifest.csv:generic-api-key:568
+46d27bc085bd1ac0ff30f28d9195f2094f417fca:data/paper_jsonl/paper_source_manifest.csv:generic-api-key:621
+# 6. Historical commit 0a9d7b5 quoting the same synthetic canary literal inside SECURITY_TRIAGE.md (redacted in subsequent commit)
+0a9d7b5b50c1414c5ec4b365fa6935135015b73b:docs/release-v1/SECURITY_TRIAGE.md:generic-api-key:24

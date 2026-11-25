@@ -1,6 +1,13 @@
 # ScholarLens — 学术论文检索与研究工作台
 
-## 最终工程交付
+## Release v1.0.0 工程闭环与交付入口
+
+- **版本变更记录**：[CHANGELOG.md](CHANGELOG.md)
+- **发布准入结论与门禁矩阵**：[发布准入与就绪评估](docs/release-v1/FINAL_RELEASE_READINESS.md) · [最终工程交付总结](docs/release-v1/FINAL_DELIVERY_REPORT.md) · [清单 JSON](docs/release-v1/RELEASE_MANIFEST.json)
+- **验收与安全文档**：[全量后端测试](docs/release-v1/FULL_BACKEND_ACCEPTANCE.md) · [Elasticsearch 集成](docs/release-v1/ELASTICSEARCH_ACCEPTANCE.md) · [Docker 部署与 PDF OCR](docs/release-v1/DOCKER_DEPLOYMENT_ACCEPTANCE.md) · [CVE 分级排查](docs/release-v1/SECURITY_TRIAGE.md) · [备份与恢复演练](docs/release-v1/BACKUP_RESTORE_ACCEPTANCE.md) · [模型工程验收](docs/release-v1/LIVE_MODEL_ACCEPTANCE.md)
+- **运维与用户手册**：[系统运维手册 (Runbook)](docs/release-v1/OPERATIONS_RUNBOOK.md) · [用户使用指南](docs/release-v1/USER_GUIDE.md)
+
+## 最终工程交付（历史基准）
 
 交付候选的运行、测试、安全与发布状态汇总在 [最终工程验收](docs/final/ENGINEERING_COMPLETION_REPORT.md)。深度研究在启用 E11 的环境使用默认 A 组，PRA 作为实验候选。
 

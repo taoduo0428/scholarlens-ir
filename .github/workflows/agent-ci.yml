@@ -52,6 +52,9 @@ jobs:
             backend/tests/research/test_multihop_scope.py backend/tests/research/test_task_lifecycle.py backend/tests/research/test_formula_links.py \
             backend/tests/research/test_program_release.py backend/tests/research/test_governance_view.py \
             backend/tests/research/test_quantitative_evidence.py backend/tests/research/test_account_erasure.py backend/tests/research/test_offline_verifier.py \
+            backend/tests/research/test_v9_discourse_attribution.py backend/tests/research/test_v9_model_collaboration.py \
+            backend/tests/research/test_v9_open_relations.py backend/tests/research/test_v9_retrieval_budget.py \
+            backend/tests/research/test_v9_semantic_slots.py \
             backend/tests/test_trusted_model_proxy.py backend/tests/research/test_live_research_acceptance.py
       - name: SQLite migration and rollback
         run: python -m pytest -q backend/tests/test_v21_flows.py -k 'migration_legacy or restore_preserves'
@@ -81,13 +84,182 @@ jobs:
           p=pathlib.Path("unit-results.xml")
           if p.exists():
               s=E.parse(p).getroot().find("testsuite")
-              pathlib.Path("unit-counts.json").write_text(json.dumps({k:s.get(k) for k in ("tests","failures","errors","skipped","time")}))
+              counts={k:s.get(k) for k in ("tests","failures","errors","skipped","time")}
+              total=int(counts.get("tests") or 0)
+              failed=int(counts.get("failures") or 0)+int(counts.get("errors") or 0)+int(counts.get("skipped") or 0)
+              counts["passed"]=str(max(0,total-failed))
+              pathlib.Path("unit-counts.json").write_text(json.dumps(counts, indent=2))
           PY
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:
           name: agent-unit-counts
-          path: unit-counts.json
+          path: |
+            unit-counts.json
+            unit-results.xml
+          if-no-files-found: ignore
+  integration:
+    name: Integration (Elasticsearch 8.19.26 & Jaeger OTLP)
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      PYTHONUTF8: '1'
+      EVO_TEST_LOOPBACK_ES: '1'
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: '1'
+      ELASTICSEARCH_URL: http://127.0.0.1:9200
+      ELASTICSEARCH_INDEX: scholarlens-papers-real
+    services:
+      elasticsearch:
+        image: docker.elastic.co/elasticsearch/elasticsearch:8.19.26@sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d
+        env:
+          cluster.name: scholarlens-local
+          discovery.type: single-node
+          xpack.security.enabled: "false"
+          xpack.ml.enabled: "false"
+          ingest.geoip.downloader.enabled: "false"
+          ES_JAVA_OPTS: -Xms512m -Xmx512m
+        ports:
+          - 9200:9200
+        options: >-
+          --health-cmd "curl -fsS 'http://localhost:9200/_cluster/health?wait_for_status=yellow&timeout=4s' >/dev/null"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 20
+      jaeger:
+        image: jaegertracing/all-in-one:1.60
+        env:
+          COLLECTOR_OTLP_ENABLED: "true"
+        ports:
+          - 4318:4318
+          - 16686:16686
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Fetch pinned historical LFS corpus object
+        run: git lfs fetch origin 82a3a083a07833892a2d7bd8d2436e6cee644b60
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11'
+      - name: Locked Python dependencies
+        run: |
+          python -m pip install -r backend/requirements-lock.txt -r backend/research/requirements.txt -r backend/research/pdf-layout-requirements.txt
+          python -m pip check
+      - name: Wait for Elasticsearch and Jaeger, and import 859 real papers
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 40); do
+            if curl -fsS "http://127.0.0.1:9200/_cluster/health?wait_for_status=yellow&timeout=4s" >/dev/null && curl -fsS "http://127.0.0.1:16686/api/services" >/dev/null; then
+              break
+            fi
+            if [ "$i" = "40" ]; then
+              echo "Elasticsearch or Jaeger failed to become ready" >&2
+              exit 1
+            fi
+            sleep 2
+          done
+          python -m backend.import_jsonl --input data/paper_jsonl/papers_final.jsonl --data-status real --index scholarlens-papers-real --report "$RUNNER_TEMP/import-real-report.json"
+          jq -e '.indexed == 859 and .bulk_failed == 0' "$RUNNER_TEMP/import-real-report.json"
+      - name: Verify live OTLP trace delivery to Jaeger
+        run: |
+          python - <<'PY'
+          import json, os, pathlib, tempfile, time
+          import httpx
+          from fastapi.testclient import TestClient
+          from backend.app1 import create_app
+          from backend.config import Settings
+
+          with tempfile.TemporaryDirectory(prefix="ci-jaeger-") as tmp:
+              os.environ["SCHOLARLENS_RESEARCH_ENABLED"] = "true"
+              os.environ["SCHOLARLENS_E11_ENABLED"] = "true"
+              os.environ["SCHOLARLENS_OTEL_ENABLED"] = "true"
+              os.environ["SCHOLARLENS_OTLP_TRACES_ENDPOINT"] = "http://127.0.0.1:4318/v1/traces"
+              settings = Settings(url="http://127.0.0.1:9200", index="scholarlens-papers-real", runtime_dir=tmp)
+              with TestClient(create_app(settings)) as api:
+                  creds = {"username": "ci_jaeger_user", "password": "Strong-ci-password-123!"}
+                  assert api.post("/api/auth/register", json=creds).status_code == 201
+                  tok = api.post("/api/auth/login", json=creds).json()["access_token"]
+                  headers = {"Authorization": f"Bearer {tok}", "Idempotency-Key": "ci-jaeger-1"}
+                  created = api.post("/api/research/tasks", headers=headers, json={
+                      "goal": "What does the abstract report about groundwater arsenic in the two catchments in Taiwan?",
+                      "scope": {"paper_ids": ["source-sha256:af101dc9f6d3819b472a4578c3092b8b9611c379fa28c24b122133f079eb667a"]},
+                      "mode": "evidence_only", "depth": "standard"
+                  })
+                  assert created.status_code == 202, created.text
+                  tid = created.json()["task_id"]
+                  deadline = time.monotonic() + 90
+                  while time.monotonic() < deadline:
+                      detail = api.get(f"/api/research/tasks/{tid}", headers={"Authorization": f"Bearer {tok}"}).json()
+                      if detail["state"]["status"] in {"completed", "partial", "failed"}:
+                          break
+                      time.sleep(0.3)
+                  assert detail["state"]["status"] in {"completed", "partial"}
+                  traces = detail["trace_ids"]
+                  assert len(traces) >= 1
+                  trace_id = traces[0]
+              # TestClient exited -> worker stopped -> OTLP BatchSpanProcessor flushed.
+              spans = []
+              for _ in range(30):
+                  r = httpx.get(f"http://127.0.0.1:16686/api/traces/{trace_id}", timeout=5)
+                  if r.status_code == 200 and r.json().get("data"):
+                      spans = r.json()["data"][0].get("spans", [])
+                      if spans:
+                          break
+                  time.sleep(0.5)
+              assert spans, f"Jaeger missing trace {trace_id}"
+              op_names = sorted({s["operationName"] for s in spans})
+              assert {"research.api", "research.task", "research.workflow", "research.plan", "research.retrieve", "research.tool", "research.publication"} <= set(op_names), op_names
+              receipt = {"status": "PASS", "task_id": tid, "trace_id": trace_id, "span_count": len(spans), "operations": op_names}
+              pathlib.Path("jaeger-ci-receipt.json").write_text(json.dumps(receipt, indent=2), encoding="utf-8")
+              print(json.dumps(receipt))
+          PY
+      - name: Run real Elasticsearch integration suite
+        env:
+          SCHOLARLENS_OTEL_ENABLED: 'false'
+          SCHOLARLENS_OTLP_TRACES_ENDPOINT: ''
+        run: |
+          set -o pipefail
+          python -m pytest backend/tests -q --tb=short --junitxml=integration-results.xml \
+            --ignore=backend/tests/test_v2.py \
+            --ignore=backend/tests/test_v2_vectors.py \
+            --ignore=backend/tests/test_vector_workers.py \
+            --ignore=backend/tests/test_upload_integration_isolated.py \
+            --ignore=backend/tests/test_real_data.py \
+            --ignore=backend/tests/test_desktop_upload.py \
+            -k "not test_upload_vectorization_is_independent" 2>&1 | tee integration.log
+      - name: Publish integration summary
+        if: always()
+        run: |
+          python - <<'PY'
+          import json, pathlib, platform, xml.etree.ElementTree as E
+          import httpx
+          es_ver = httpx.get("http://127.0.0.1:9200/", timeout=5).json()["version"]["number"]
+          p = pathlib.Path("integration-results.xml")
+          summary = {"python_version": platform.python_version(), "elasticsearch_version": es_ver, "jaeger_verified": pathlib.Path("jaeger-ci-receipt.json").is_file()}
+          if p.exists():
+              s = E.parse(p).getroot().find("testsuite")
+              tests = int(s.get("tests") or 0)
+              failures = int(s.get("failures") or 0)
+              errors = int(s.get("errors") or 0)
+              skipped = int(s.get("skipped") or 0)
+              summary.update({
+                  "tests": tests, "passed": max(0, tests - failures - errors - skipped),
+                  "failures": failures, "errors": errors, "skipped": skipped, "time": s.get("time"),
+                  "ignored_reason": "6 files needing uncommitted local MiniLM ONNX model or Windows .ps1 launcher (verified 1028/1028 on local Windows ASCII runner)"
+              })
+          pathlib.Path("integration-counts.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+          print(json.dumps(summary, indent=2))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: backend-integration-es
+          path: |
+            integration-results.xml
+            integration-counts.json
+            jaeger-ci-receipt.json
+            integration.log
           if-no-files-found: ignore
   image:
     name: Build and scan (${{ matrix.target }})
@@ -164,6 +336,87 @@ jobs:
           "${compose[@]}" up -d --force-recreate --no-deps --no-build --wait --wait-timeout 90 api
           curl -fsS -H 'Content-Type: application/json' --data "$credentials" "$origin/api/auth/login" -o /dev/null
           curl -fsS "$origin/readyz" | jq -e '.status == "ready"'
+      - name: Isolated PDF OCR Compose upgrade, OCR verification, and rollback
+        if: matrix.target == 'pdf-ocr'
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build --target standard -f infra/ScholarLens.Dockerfile -t scholarlens-standard-ci:latest .
+          export SCHOLARLENS_IMAGE=scholarlens-standard-ci:latest
+          export SCHOLARLENS_OCR_IMAGE=scholarlens-ci:latest
+          export SCHOLARLENS_INDEX=scholarlens-fixture
+          export SCHOLARLENS_E11_ENABLED=true
+          export SCHOLARLENS_PORT=18002
+          base_compose=(docker compose --project-name "sl-ocr-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" -f infra/product.compose.yml)
+          ocr_compose=(docker compose --project-name "sl-ocr-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" -f infra/product.compose.yml -f infra/pdf-ocr.compose.yml)
+          trap 'status=$?; trap - EXIT; if ((status)); then "${ocr_compose[@]}" ps; fi; "${ocr_compose[@]}" down -v --remove-orphans || exit 1; exit "$status"' EXIT
+          "${base_compose[@]}" up -d --no-build --wait --wait-timeout 200
+          init_out=$("${base_compose[@]}" exec -T api python - initialize < tools/research_eval/container_probe.py)
+          echo "standard-init: $init_out"
+          "${ocr_compose[@]}" up -d --no-build --wait --wait-timeout 120 api
+          upg_out=$("${ocr_compose[@]}" exec -T api python - upgrade < tools/research_eval/container_probe.py)
+          echo "pdf-ocr-upgrade: $upg_out"
+          "${ocr_compose[@]}" exec -T api python -m backend.research.ocr_check
+          ocr_pdf_out=$("${ocr_compose[@]}" exec -T api python - <<'PY'
+          import io, json
+          from PIL import Image, ImageDraw, ImageFont
+          from pypdf import PdfWriter
+          from pypdf.generic import DecodedStreamObject, DictionaryObject, NameObject, NumberObject
+          from backend.research.pdf_layout import page_evidence
+
+          img = Image.new("RGB", (480, 180), "white")
+          draw = ImageDraw.Draw(img)
+          font = ImageFont.load_default(size=28)
+          for idx, (word, color) in enumerate([("River", "#ff0000"), ("Lake", "#0000ff"), ("Forest", "#008000")]):
+              y = 20 + idx * 42
+              draw.rectangle((20, y, 77, y + 27), fill=color)
+              draw.text((84, y + 14), word, fill="black", anchor="lm", font=font)
+          raw_rgb = img.tobytes()
+
+          w = PdfWriter()
+          page = w.add_blank_page(width=480, height=280)
+          font_dict = DictionaryObject({NameObject("/Type"): NameObject("/Font"), NameObject("/Subtype"): NameObject("/Type1"), NameObject("/BaseFont"): NameObject("/Helvetica")})
+          xobj = DecodedStreamObject()
+          xobj.set_data(raw_rgb)
+          xobj.update({
+              NameObject("/Type"): NameObject("/XObject"),
+              NameObject("/Subtype"): NameObject("/Image"),
+              NameObject("/Width"): NumberObject(480),
+              NameObject("/Height"): NumberObject(180),
+              NameObject("/ColorSpace"): NameObject("/DeviceRGB"),
+              NameObject("/BitsPerComponent"): NumberObject(8),
+          })
+          xobj_ref = w._add_object(xobj)
+          page[NameObject("/Resources")] = DictionaryObject({
+              NameObject("/Font"): DictionaryObject({NameObject("/F1"): font_dict}),
+              NameObject("/XObject"): DictionaryObject({NameObject("/Im1"): xobj_ref}),
+          })
+          content = DecodedStreamObject()
+          # Draw image at [0, 80..260] (top-left y: 20..200) and Figure 1 caption below at y=60 (top-left y=220, within 24pt).
+          content.set_data(b"q 480 0 0 180 0 80 cm /Im1 Do Q\nBT /F1 12 Tf 20 65 Td (Figure 1. Legend test) Tj ET\n")
+          page[NameObject("/Contents")] = w._add_object(content)
+          buf = io.BytesIO()
+          w.write(buf)
+          ev = page_evidence(buf.getvalue(), "fixture:ocr-pdf", 1)
+          assert ev["ocr"] == "figure_legend_labels", ev
+          legends = ev["figure_legends"]
+          assert legends and [e["text"] for e in legends[0]["entries"]] == ["River", "Lake", "Forest"], legends
+          print(json.dumps({"ocr": ev["ocr"], "entries": len(legends[0]["entries"]), "texts": [e["text"] for e in legends[0]["entries"]]}))
+          PY
+          )
+          echo "pdf-ocr-e2e: $ocr_pdf_out"
+          "${base_compose[@]}" up -d --no-build --wait --wait-timeout 120 api
+          rb_out=$("${base_compose[@]}" exec -T api python - rollback < tools/research_eval/container_probe.py)
+          echo "standard-rollback: $rb_out"
+          python - "$init_out" "$upg_out" "$ocr_pdf_out" "$rb_out" <<'PY'
+          import json, pathlib, sys
+          pathlib.Path("pdf-ocr-compose-receipt.json").write_text(json.dumps({
+              "standard_init": json.loads(sys.argv[1]),
+              "pdf_ocr_upgrade": json.loads(sys.argv[2]),
+              "pdf_ocr_extraction": json.loads(sys.argv[3]),
+              "standard_rollback": json.loads(sys.argv[4]),
+          }, indent=2), encoding="utf-8")
+          PY
       - name: Scan the built application image
         run: |
           set -euo pipefail
@@ -171,10 +424,14 @@ jobs:
           curl --fail --location --retry 2 --output grype.tgz https://github.com/anchore/grype/releases/download/v0.122.1/grype_0.122.1_linux_amd64.tar.gz
           echo 'f1ba7e2917ee1395618de20a98da0aa7c0fb1788927797651047c50502a37538  grype.tgz' | sha256sum --check
           tar -xzf grype.tgz grype
+          curl --fail --location --retry 2 --output syft.tgz https://github.com/anchore/syft/releases/download/v1.57.2/syft_1.57.2_linux_amd64.tar.gz
+          echo 'ad92bd3ec1b94a3df01d4d0aec199afa9c42b72e86da436ff5f837914d32706b  syft.tgz' | sha256sum --check
+          tar -xzf syft.tgz syft
           docker image save --output application.tar scholarlens-ci:latest
           config_path=$(tar -xOf application.tar manifest.json | jq -er '[.[] | select(any(.RepoTags[]?; . == "scholarlens-ci:latest" or endswith("/scholarlens-ci:latest"))) | .Config] | if length == 1 then first else error("ambiguous application image") end')
           config_hash=$(tar -xOf application.tar "$config_path" | sha256sum | cut -d ' ' -f1)
           printf 'sha256:%s\n' "$config_hash" > "$GITHUB_WORKSPACE/scanned-image-id.txt"
+          ./syft docker-archive:application.tar -o "spdx-json=$GITHUB_WORKSPACE/sbom-$IMAGE_TARGET.spdx.json"
           ./grype docker-archive:application.tar -o json > "$GITHUB_WORKSPACE/image-findings.json"
           cd "$GITHUB_WORKSPACE"
           python - <<'PY'
@@ -196,6 +453,8 @@ jobs:
           path: |
             image-findings.json
             scanned-image-id.txt
+            sbom-*.spdx.json
+            pdf-ocr-compose-receipt.json
 
       - name: Scan the Compose Elasticsearch image
         if: matrix.target == 'standard'
@@ -229,3 +488,44 @@ jobs:
           path: |
             es-image-findings.json
             es-image-id.txt
+  security:
+    name: Security gates (Gitleaks, pip-audit, npm audit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444
+        with:
+          node-version: '22.18.0'
+      - name: Gitleaks git history secret scan
+        run: |
+          set -euo pipefail
+          cd "$RUNNER_TEMP"
+          curl --fail --location --retry 2 --output gitleaks.tgz https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
+          echo '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb  gitleaks.tgz' | sha256sum --check
+          tar -xzf gitleaks.tgz gitleaks
+          cd "$GITHUB_WORKSPACE"
+          "$RUNNER_TEMP/gitleaks" detect --source . --redact --report-format json --report-path gitleaks-report.json
+      - name: pip-audit and npm audit reports
+        run: |
+          set -euo pipefail
+          python -m venv "$RUNNER_TEMP/auditor"
+          "$RUNNER_TEMP/auditor/bin/pip" install -r tools/audit/requirements.txt
+          sed '/^#/d;/^-c/d;/^$/d' backend/requirements-lock.txt backend/research/requirements.txt backend/research/constraints-tested.txt backend/research/pdf-layout-requirements.txt | sort -u > "$RUNNER_TEMP/audit-locked.txt"
+          "$RUNNER_TEMP/auditor/bin/pip-audit" --no-deps --disable-pip -r "$RUNNER_TEMP/audit-locked.txt" --format json -o pip-audit-report.json
+          (cd frontend && npm ci --ignore-scripts && npm audit --audit-level=moderate && npm audit --json > ../npm-audit-report.json)
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: security-gates-reports
+          path: |
+            gitleaks-report.json
+            pip-audit-report.json
+            npm-audit-report.json
+          if-no-files-found: ignore

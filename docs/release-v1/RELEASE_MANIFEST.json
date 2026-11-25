@@ -1,0 +1,231 @@
+{
+  "release_version": "v1.0.0",
+  "release_status": "DRAFT_RELEASE_PENDING_SIGN_OFF",
+  "date": "2026-11-25",
+  "base_main_sha": "160b84e1305d99f4ac58036a9879f229022e03d8",
+  "branch": "gemini/final-release-closure",
+  "pr_number": 47,
+  "verified_ci_run_id": "45566748805",
+  "verified_ci_code_sha": "de7b58bc3e8284a5f0b7a1e819511a4497702fc9",
+  "algorithms_frozen": true,
+  "default_pra_arm": "A",
+  "local_full_backend_es_8_19_23": {
+    "counts": {
+      "tests": "1028",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0",
+      "time": "444.523",
+      "passed": "1028"
+    },
+    "result": {
+      "tests_exit": 0,
+      "scope": "offline copied fixture",
+      "source_unchanged": true,
+      "papers": 859,
+      "vectors": 49420,
+      "ports_closed": true
+    }
+  },
+  "ci_verify": {
+    "tests": "446",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "30.116",
+    "passed": "446"
+  },
+  "ci_integration_es_8_19_26": {
+    "python_version": "3.11.18",
+    "elasticsearch_version": "8.19.26",
+    "jaeger_verified": true,
+    "tests": 964,
+    "passed": 963,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 1,
+    "time": "74.988",
+    "ignored_reason": "6 files needing uncommitted local MiniLM ONNX model or Windows .ps1 launcher (verified 1028/1028 on local Windows ASCII runner)"
+  },
+  "otel_jaeger_receipt": {
+    "status": "PASS",
+    "task_id": "8d43748d-0215-4019-ac41-d52fcfcf402e",
+    "trace_id": "2d0cd2e48016afe37bd20210c69ba8d4",
+    "span_count": 9,
+    "operations": [
+      "research.api",
+      "research.critique",
+      "research.plan",
+      "research.publication",
+      "research.retrieve",
+      "research.task",
+      "research.tool",
+      "research.workflow"
+    ]
+  },
+  "docker_images": {
+    "standard_id": "sha256:9cd9012322594f297ecd8f7c989281625d861d30661f4eb36733c1d8456a40d4",
+    "pdf_ocr_id": "sha256:19d820b959efe4549443ea19e04c663b13d6ebfbaea1da4be3ac548d77bb61f3",
+    "elasticsearch_id": "sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d",
+    "sbom_standard_bytes": 3097584,
+    "sbom_pdf_ocr_bytes": 3126670,
+    "pdf_ocr_compose_upgrade_rollback": {
+      "standard_init": {
+        "stage": "initialize",
+        "uid": 10001,
+        "health": 200,
+        "ready": 200,
+        "frontend": 200,
+        "other_owner_report": 404,
+        "report_restored": true,
+        "verified_claims": 1
+      },
+      "pdf_ocr_upgrade": {
+        "stage": "upgrade",
+        "uid": 10001,
+        "health": 200,
+        "ready": 200,
+        "frontend": 200,
+        "other_owner_report": 404,
+        "report_restored": true,
+        "verified_claims": 1
+      },
+      "pdf_ocr_extraction": {
+        "ocr": "figure_legend_labels",
+        "entries": 3,
+        "texts": [
+          "River",
+          "Lake",
+          "Forest"
+        ]
+      },
+      "standard_rollback": {
+        "stage": "rollback",
+        "uid": 10001,
+        "health": 200,
+        "ready": 200,
+        "frontend": 200,
+        "other_owner_report": 404,
+        "report_restored": true,
+        "verified_claims": 1
+      }
+    }
+  },
+  "security": {
+    "gitleaks_findings": 0,
+    "gitleaks_allowlisted_false_positives": 5,
+    "pip_audit_vulnerabilities": 0,
+    "npm_audit_vulnerabilities": 0,
+    "grype_summary": {
+      "standard": {
+        "total": 232,
+        "severity": {
+          "High": 82,
+          "Medium": 80,
+          "Negligible": 51,
+          "Low": 13,
+          "Unknown": 6
+        },
+        "high_crit_fix": {
+          "High:not-fixed": 27,
+          "High:wont-fix": 55
+        }
+      },
+      "pdf-ocr": {
+        "total": 248,
+        "severity": {
+          "High": 87,
+          "Medium": 88,
+          "Negligible": 54,
+          "Low": 13,
+          "Unknown": 6
+        },
+        "high_crit_fix": {
+          "High:not-fixed": 28,
+          "High:wont-fix": 59
+        }
+      },
+      "elasticsearch": {
+        "total": 174,
+        "severity": {
+          "Medium": 160,
+          "High": 5,
+          "Low": 7,
+          "Negligible": 2
+        },
+        "high_crit_fix": {
+          "High:fixed": 5
+        }
+      }
+    }
+  },
+  "backup_restore_drill": {
+    "status": "PASS",
+    "account_schema_version": 4,
+    "pre_upgrade_backup_sha256": "d298de11af8f968a4c44d24a35700ebcdb1f3a66e54b795c69908387ced81f20",
+    "research_restore_cli": {
+      "restored": true,
+      "preserved_file": "before-restore-8d5e284b806b4ecf816e3275a0104697.sqlite3"
+    },
+    "research_rollback_verified": true,
+    "account_restore_rollback_verified": true,
+    "integrity_check": "ok"
+  },
+  "model_verification": {
+    "controlled_http_status": "PASS",
+    "controlled_http_gates": {
+      "worker": true,
+      "planning": true,
+      "decision": true,
+      "retrieval": true,
+      "semantic_review": true,
+      "synthesis": true,
+      "publication": true,
+      "no_fallback": true,
+      "provider_receipts": true
+    },
+    "live_model_retest_status": "BLOCKED",
+    "live_model_retest_reason": "AI_BASE_URL/AI_MODEL/AI_API_KEY unset in process environment",
+    "v9_historical_live_model": "deepseek-v4.1-flash PASS 9/9 (docs/agent-v9/LIVE_MODEL_ACCEPTANCE.md)"
+  },
+  "browser_e2e": {
+    "real_workbench_live": {
+      "task_id": "75fd7b5b-9d7f-4fad-adcc-a5ebd9de6760",
+      "indexed": 859,
+      "page_errors": 0,
+      "reader_opened": true,
+      "report_sha256": "0647272e80d669f2f248d09bf47bdd7b34386c7cd7d8280ff2f4859a8f2d4e33"
+    },
+    "stage7_release_e2e": {
+      "status": "PASS",
+      "checks": {
+        "unauthenticated_401": true,
+        "register_login_and_reload": true,
+        "empty_states_rendered": true,
+        "missing_paper_error_state": true,
+        "workspace_and_library_persisted": true,
+        "pdf_upload_workflow": true,
+        "research_reload_persisted": true,
+        "research_dag_profiles_report_export_trace_cost": true,
+        "non_admin_forbidden_403": true,
+        "mobile_responsive_layout": true,
+        "cross_user_isolation_404": true,
+        "admin_and_evolution_lab_views": true
+      },
+      "screenshots": [
+        "01-library-persisted.png",
+        "02-upload-pending.png",
+        "03-research-report-dag.png",
+        "04-mobile-research.png",
+        "05-admin-console.png",
+        "06-evolution-lab.png"
+      ],
+      "page_errors": []
+    }
+  },
+  "sign_off_blockers": [
+    "Debian Trixie upstream not-fixed / wont-fix OS High CVEs in standard (82 High) and pdf-ocr (87 High, incl. 5 scholarlens-tesseract), 0 Critical",
+    "Official elasticsearch:8.19.26 bundled guava 32.0.1-jre (GHSA-xxph-c9ww-hj94, 5 High matches in x-pack/repository modules), 0 Critical",
+    "Target environment live model credential injection & --live retest (current round BLOCKED; historical V9 deepseek-v4.1-flash PASS 9/9)"
+  ]
+}
