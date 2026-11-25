@@ -137,6 +137,8 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 0
+      - name: Fetch pinned historical LFS corpus object
+        run: git lfs fetch origin 82a3a083a07833892a2d7bd8d2436e6cee644b60
       - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
         with:
           python-version: '3.11'
