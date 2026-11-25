@@ -32,7 +32,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--policies", nargs="+", choices=POLICIES, default=POLICIES)
-    parser.add_argument("--pra-arm", choices=list("ABCDEFG"), default="A")
+    parser.add_argument("--pra-arm", choices=["A", "B", "C", "D", "E", "F", "G", "H1", "H2", "H3", "H4", "H5", "R"], default="A")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=True)
     digest = sha256(DEST.read_bytes()).hexdigest()

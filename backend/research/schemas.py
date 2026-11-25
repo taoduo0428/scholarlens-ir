@@ -7,6 +7,7 @@ from uuid import UUID
 
 from pydantic import AwareDatetime, BaseModel, ConfigDict, Field, StringConstraints, model_validator
 
+from backend.research.arms import PraArm
 from backend.research.questions import QuestionPlan
 from backend.research.answer_contract import AnswerContract
 from backend.research.field_contract import AnswerRequirement
@@ -235,7 +236,7 @@ class ResearchState(Contract):
     task: TaskInput
     corpus_generation: Id
     model_id: Id = "none"
-    pra_arm: Literal["A", "B", "C", "D", "E", "F", "G"] = "A"
+    pra_arm: PraArm = "A"
     skill_version: Id = "baseline-v1"
     harness_policy_version: Id = "bounded-v1"
     subtasks: list[Subtask] = Field(default_factory=list, max_length=6)

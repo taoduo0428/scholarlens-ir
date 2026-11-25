@@ -38,9 +38,17 @@ def plan_questions(settings, view, remaining, transport=None):
     if not settings.ai_personal or not settings.ai_api_key or remaining <= 0:
         raise ProviderError("awaiting_credentials")
     schema = TypeAdapter(Blueprint)
-    instruction = (PROMPT + " If a skeleton is supplied, preserve every ID, kind, dependency, min_papers and priority. "
-                   "Replace only the question, acceptance and failure with concise goal-specific text. "
-                   "Do not add nodes or prose. Schema: " + json.dumps(schema.json_schema(), separators=(",", ":")))
+    skeleton_rule = (
+        " CRITICAL: A 'skeleton' list is provided in the input. You MUST output the exact same number of nodes "
+        "in the exact same order, copying each skeleton item's 'id', 'dependencies', 'priority', "
+        "'requirement.kind', and 'requirement.min_papers' verbatim without altering min_papers, dependencies, or kind. "
+        "Write concise (<=120 chars), distinct, goal-specific values only for 'question', 'requirement.acceptance', and 'requirement.failure'."
+        if "skeleton" in view
+        else ""
+    )
+    instruction = (PROMPT + skeleton_rule +
+                   " Do not add nodes or prose. Compact JSON only. Schema: " +
+                   json.dumps(schema.json_schema(), separators=(",", ":")))
     return _structured(settings, view, remaining, transport, schema, instruction, 1900)
 
 

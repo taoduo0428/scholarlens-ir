@@ -1,0 +1,43 @@
+{
+  "schema": "v9-experiment-manifest/1",
+  "branch": "gemini/evoresearch-quality",
+  "git_sha": "0c8f966bf46aac1a88a6212543d66021115409ab",
+  "baseline_handoff_sha": "136763f76ec2c0bf4a3e1836721f952a0e0a4af8",
+  "historical_frozen_sha": "fe9932f",
+  "corpus_generation": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+  "online_default_pra_arm": "A",
+  "rollback_arms": [
+    "A",
+    "G"
+  ],
+  "candidate_arm": "R",
+  "budgets": {
+    "silver_111": {
+      "tool_budget": 10,
+      "model_budget": 0,
+      "policy": "E11"
+    },
+    "holdout_12": {
+      "tool_budget": 10,
+      "model_budget": 0,
+      "policy": "E11"
+    },
+    "qasper_32": {
+      "tool_budget": 10,
+      "model_budget": 0,
+      "policy": "E11"
+    },
+    "live_acceptance": {
+      "model_calls": 4,
+      "max_bytes_per_request": 48000,
+      "max_output_tokens": 1400
+    }
+  },
+  "sealed_manifests": {
+    "v8_holdout_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+    "v9_unseen_holdout_sha256": "08421ab5aecb02171165c8b3c5b8dcb26c4ed6299544c6407a8d6a8eb8581220",
+    "v9_unseen_qasper_sha256": "88d267f03a3d48faad1c2fea690fb7090534552cc2c63823de065754f3b1d4e1"
+  },
+  "blind_holdout_protocol": "V9 unseen holdout manifests were executed once after freezing R at commit 0c8f966 with zero post-holdout algorithm changes.",
+  "scorecard_sha256": "ac8bb966795bdc4a03092e800ce50046fb59062081776d313ad6fd52bdb176ec"
+}
