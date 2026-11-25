@@ -13,6 +13,7 @@ from langgraph.graph import END, START, StateGraph
 from langsmith import tracing_context
 from backend.research.telemetry import metering, span, traced
 
+from backend.research.arms import has_full_pra, has_gap_arm, has_h4
 from backend.research.context import working_context
 from backend.research import workspace_model
 from backend.research.harness import bounded_read, call_tool
@@ -240,7 +241,6 @@ class ResearchGraph:
                     if state.retrieval_policy in {"E9", "E9.1", "E10", "E11"}:
                         from backend.research.field_contract import requirements
                         if state.retrieval_policy in {"E9.1", "E10", "E11"}:
-                            from backend.research.arms import has_full_pra
                             from backend.research.node_fields import compile_fields
                             state.field_requirements = compile_fields(
                                 state.question_plan, state.answer_contract,
@@ -472,6 +472,7 @@ class ResearchGraph:
                 action = Search(
                     subtask_id=sub.id, query=query_for(state, slot), strategy=self.strategy
                 )
+            question_fields = next((r.fields for r in state.field_requirements if r.question_id == sub.id), [])
             if isinstance(action, Read):
                 ids = [action.paper_id]
                 rows = self._tool(
@@ -508,7 +509,6 @@ class ResearchGraph:
                         state.skill_steps = list(operations)
                 filters = action.filters.model_dump(exclude_none=True)
                 limit = min(4, self._tuning(state).evidence_per_subtask)
-                question_fields=next((r.fields for r in state.field_requirements if r.question_id==sub.id),[])
                 directed=bool(state.task.scope.paper_ids and any(f.operation in {"quote","layout"} for f in question_fields))
                 if state.retrieval_policy in {"E9.1", "E10", "E11"} and state.task.scope.paper_ids and len(state.subtasks) > 1:
                     directed = True
@@ -539,7 +539,6 @@ class ResearchGraph:
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:500]
                     focus = list(dict.fromkeys(
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:4]
-                    from backend.research.arms import has_full_pra
                     path = next((f for f in question_fields if f.facet == "causal_path"), None)
                     if has_full_pra(state.pra_arm) and len(ids) >= 3 and path and state.evidence_refs:
                         from backend.research.field_gate import capability
@@ -556,8 +555,6 @@ class ResearchGraph:
                 elif broad and state.candidate_papers:
                     ids = list(state.candidate_papers)
                 elif not targets:
-                    from backend.research.arms import has_h4
-
                     if has_h4(state.pra_arm) and len(state.task.scope.paper_ids) == 1:
                         ids = list(state.task.scope.paper_ids)
                         if broad:
@@ -589,7 +586,6 @@ class ResearchGraph:
                     query = " ".join(filter(None, [field.subject, field.subject_context,
                                        field.facet, field.requested_metric, field.request]))[:500]
                     directed, focus = False, []
-                from backend.research.arms import has_full_pra, has_gap_arm, has_h4
                 arm = state.pra_arm
                 use_sentence_windows = (
                     has_h4(arm)
