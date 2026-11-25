@@ -206,7 +206,7 @@ jobs:
                   time.sleep(0.5)
               assert spans, f"Jaeger missing trace {trace_id}"
               op_names = sorted({s["operationName"] for s in spans})
-              assert {"research.api", "research.task", "research.workflow", "research.plan", "research.retrieve", "research.verify", "research.publication"} <= set(op_names), op_names
+              assert {"research.api", "research.task", "research.workflow", "research.plan", "research.retrieve", "research.tool", "research.publication"} <= set(op_names), op_names
               receipt = {"status": "PASS", "task_id": tid, "trace_id": trace_id, "span_count": len(spans), "operations": op_names}
               pathlib.Path("jaeger-ci-receipt.json").write_text(json.dumps(receipt, indent=2), encoding="utf-8")
               print(json.dumps(receipt))
