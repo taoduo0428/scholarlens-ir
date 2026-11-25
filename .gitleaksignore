@@ -7,3 +7,5 @@ c1638cb3ceb70205ad2b5821de79390f1aa56505:docs/agent-v3/artifacts/RUN_RECEIPT.jso
 46d27bc085bd1ac0ff30f28d9195f2094f417fca:data/paper_jsonl/paper_source_manifest.csv:generic-api-key:157
 46d27bc085bd1ac0ff30f28d9195f2094f417fca:data/paper_jsonl/paper_source_manifest.csv:generic-api-key:568
 46d27bc085bd1ac0ff30f28d9195f2094f417fca:data/paper_jsonl/paper_source_manifest.csv:generic-api-key:621
+# 6. Historical commit 0a9d7b5 quoting the same synthetic canary literal inside SECURITY_TRIAGE.md (redacted in subsequent commit)
+0a9d7b5b50c1414c5ec4b365fa6935135015b73b:docs/release-v1/SECURITY_TRIAGE.md:generic-api-key:24

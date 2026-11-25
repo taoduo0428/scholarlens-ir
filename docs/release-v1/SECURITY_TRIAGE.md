@@ -21,7 +21,7 @@
 ### Gitleaks 历史 5 条已逐行核验的非密钥假阳性说明
 在初始扫描阶段，Gitleaks 针对历史提交命中 5 条 `generic-api-key` 模式，经逐行核对原文源码确认全部为非敏感内容并登记于 `.gitleaksignore`：
 1. `docs/agent-v3/artifacts/RUN_RECEIPT.json#L429`：JSON 字段 `"ui-api.log": "db761c9d...cb6"`（日志文件 SHA-256 校验和）。
-2. `backend/tests/research/test_service_boundaries.py#L44`：`key="evo-private-canary-928734"`（测试明确标记的合成 Canary 字符串）。
+2. `backend/tests/research/test_service_boundaries.py#L44`：测试内明确标记的合成 Canary 字符串（`evo-private-canary-...`）。
 3–5. `data/paper_jsonl/paper_source_manifest.csv` 第 `157`、`568`、`621` 行：含 `"key"`/`"papier"` 字样的公开论文 PDF 文件名与其后紧邻的 64 位 SHA-256 文件摘要。
 
 ---
