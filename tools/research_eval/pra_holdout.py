@@ -61,7 +61,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--manifest", type=Path, default=Path("docs/agent-v8/holdout.json"))
     parser.add_argument("--out", type=Path, required=True)
-    parser.add_argument("--arms", nargs="+", choices=list("ABCDEFG"), default=["A", "B", "G"])
+    parser.add_argument("--arms", nargs="+", choices=["A", "B", "C", "D", "E", "F", "G", "H1", "H2", "H3", "H4", "H5", "R"], default=["A", "B", "G"])
     parser.add_argument("--fulltext", action="store_true", help="Run a separate full-text comparison on the sealed IDs.")
     args = parser.parse_args()
     run(args.manifest, args.out, args.arms, fulltext=args.fulltext)

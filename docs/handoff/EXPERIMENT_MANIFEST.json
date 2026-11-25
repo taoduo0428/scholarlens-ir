@@ -1,0 +1,381 @@
+{
+  "schema": "scholarlens-handoff/1",
+  "engineering_baseline": "e5bda5f33bb52bcd3c15cc1bf37efb4791423ef4",
+  "null_semantics": "A null value indicates no recorded digest, provider model, separate baseline, seed or shared limit, or that the field does not apply. See each limitation. Git SHA anchors versioned evidence unless an exact historical execution SHA is named.",
+  "experiments": [
+    {
+      "experiment_id": "silver-111",
+      "git_commit_sha": "67088d028cb9b533011e14faee2c0ead75bd7a47",
+      "dataset": "Frozen AI Silver",
+      "dataset_hash": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
+      "dataset_hash_basis": "docs/agent-v6/e10/silver-labels.jsonl",
+      "corpus_version": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "label_type": "AI Silver; post-hoc single AI requirements review",
+      "policy": "E11 A/G",
+      "model": null,
+      "model_budget": 0,
+      "tool_budget": 10,
+      "timeout_seconds": 120,
+      "seed": null,
+      "scoring_version": "pra-scorecard/1",
+      "reproduction_command": "python -m tools.research_eval.v6_replay --policy E11 --pra-arm G --output output/handoff/G/diagnostic",
+      "result_file": "docs/agent-v8/PRA_SCORECARD.json",
+      "baseline": {
+        "partial_or_more": "15/70",
+        "full_original": "0/70",
+        "false_release": "0/41"
+      },
+      "result": {
+        "partial_or_more": "20/70",
+        "full_original": "0/70",
+        "false_release": "0/41"
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "SHA dates the report tree, exact A snapshot included local E11 quality edits.",
+        "No internal Human Gold."
+      ]
+    },
+    {
+      "experiment_id": "history-28",
+      "git_commit_sha": "67088d028cb9b533011e14faee2c0ead75bd7a47",
+      "dataset": "Historical 28 sealed groups",
+      "dataset_hash": "922a2445c2d8b276c2d6abed99ff6ad06bf0427c43623d5219cfc95fdf140ee5",
+      "dataset_hash_basis": "docs/agent-v7/holdout.json",
+      "corpus_version": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "label_type": "programmatic relation scope and source audit",
+      "policy": "E11 A/G",
+      "model": null,
+      "model_budget": 0,
+      "tool_budget": 10,
+      "timeout_seconds": 120,
+      "seed": null,
+      "scoring_version": "pra-scorecard/1",
+      "reproduction_command": "python -m tools.research_eval.v7_compare --policies E11 --pra-arm G --output output/handoff/history-G",
+      "result_file": "docs/agent-v8/FINAL_ENGINEERING_REPORT.md",
+      "baseline": {
+        "all_paper_synthesis": "1/28"
+      },
+      "result": {
+        "all_paper_synthesis": "1/28",
+        "tasks": 84
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "Historical development exposure. Original raw logs are local."
+      ]
+    },
+    {
+      "experiment_id": "pra-ablation",
+      "git_commit_sha": "67088d028cb9b533011e14faee2c0ead75bd7a47",
+      "dataset": "Frozen AI Silver",
+      "dataset_hash": "493aaed5794e8b5e80cb49665277ac8e11a84c5f6a4a4b1940a602ce0f9c37ec",
+      "dataset_hash_basis": "docs/agent-v6/e10/silver-labels.jsonl",
+      "corpus_version": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "label_type": "AI Silver",
+      "policy": "A–G",
+      "model": null,
+      "model_budget": 0,
+      "tool_budget": 10,
+      "timeout_seconds": 120,
+      "seed": null,
+      "scoring_version": "pra-scorecard/1",
+      "reproduction_command": "python -m tools.research_eval.v6_replay --policy E11 --pra-arm G --output output/handoff/G/diagnostic",
+      "result_file": "docs/agent-v8/ablation-final/metrics.json",
+      "baseline": {
+        "arm": "A",
+        "positive_direct": 15
+      },
+      "result": {
+        "direct_by_arm": {
+          "A": 15,
+          "B": 19,
+          "C": 15,
+          "D": 15,
+          "E": 15,
+          "F": 15,
+          "G": 20
+        },
+        "record_sha256": {
+          "A": "7995c3eadc23992d97d903e71aae9e8be7bfc6631da32a850d35ef3b98875ae9",
+          "B": "2ef63384321e44acb58610a0191aa699d6e011969f008a21d946f2cc15460346",
+          "C": "ae9f5c64acda394eaceb1656e4cf09cfcec4a7dcf184db779619f50494bdc9e6",
+          "D": "817c36e49a35da1c1c3140b98045e8ecf5be75952e1daae16864654100ead27e",
+          "E": "1ac23ee41cb88f012fda61cb26c2bdff07d7d18fe49cb315d4b4c63490e89dac",
+          "F": "61f9c5881494471326fce96892d92ea62d40a6638e7d016f5e325e604df685ad",
+          "G": "f6ffa12bc84d0769643b3556d2dc650011f1873b86bd76ff744f7eb09c8fc757"
+        }
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "Run each arm in separate directory and score with pra_summary. See runbook."
+      ]
+    },
+    {
+      "experiment_id": "holdout-12",
+      "git_commit_sha": "67088d028cb9b533011e14faee2c0ead75bd7a47",
+      "dataset": "Sealed 12 groups and missing-layout controls",
+      "dataset_hash": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+      "dataset_hash_basis": "docs/agent-v8/holdout.json",
+      "corpus_version": "local-jsonl-sha256:49c1062bd28ecb6a0216256d8aa0d02001e4ee174bfb2ce5e61c3d96ed46187c",
+      "label_type": "programmatic scope and citation checks",
+      "policy": "E11 A/B/G",
+      "model": null,
+      "model_budget": 0,
+      "tool_budget": 10,
+      "timeout_seconds": 120,
+      "seed": "scholarlens-pra-transfer-v1",
+      "scoring_version": "pra-scorecard/1",
+      "reproduction_command": "python -m tools.research_eval.pra_holdout --out output/handoff/holdout --arms A B G",
+      "result_file": "docs/agent-v8/holdout-results.json",
+      "baseline": {
+        "all_paper_synthesis": "0/12"
+      },
+      "result": {
+        "all_paper_synthesis": "0/12",
+        "false_layout_release": "0/12"
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "Separate fulltext run also 0/12."
+      ]
+    },
+    {
+      "experiment_id": "qasper-blind-and-reruns",
+      "git_commit_sha": "d511e5ecdfc8acb08fd0fece2e5409aaca7caa06",
+      "dataset": "QASPER v0.3 first two cohorts",
+      "dataset_hash": "72a52a41193e2838b8074f80ac074b94f956b84886c36a61c58a7df4171bdd72",
+      "dataset_hash_basis": "publisher archive",
+      "corpus_version": "qasper:72a52a41193e2838b8074f80ac074b94f956b84886c36a61c58a7df4171bdd72",
+      "label_type": "public human references",
+      "policy": "E11 A/G",
+      "model": null,
+      "model_budget": 0,
+      "tool_budget": 10,
+      "timeout_seconds": 120,
+      "seed": "scholarlens-qasper-v1:",
+      "scoring_version": "pra-scorecard/1",
+      "reproduction_command": "python -m tools.research_eval.pra_qasper --archive output/handoff/qasper-test-and-evaluator-v0.3.tgz --batch 1 --out output/handoff/qasper-first",
+      "result_file": "docs/agent-v8/qasper-human-results.json",
+      "baseline": {
+        "positive_direct": 0,
+        "negative_direct": 0,
+        "positive_retained_reference": 15,
+        "positive_direct_sentence_in_reference": 0,
+        "extractive_reference_cases": 20,
+        "all_extractive_spans_in_grounded_answer": 0,
+        "tools": 310
+      },
+      "result": {
+        "first_batch": {
+          "A": {
+            "positive_direct": 0,
+            "negative_direct": 0,
+            "positive_retained_reference": 15,
+            "positive_direct_sentence_in_reference": 0,
+            "extractive_reference_cases": 20,
+            "all_extractive_spans_in_grounded_answer": 0,
+            "tools": 310
+          },
+          "G_blind": {
+            "positive_direct": 0,
+            "negative_direct": 1,
+            "positive_retained_reference": 15,
+            "positive_direct_sentence_in_reference": 0,
+            "extractive_reference_cases": 20,
+            "all_extractive_spans_in_grounded_answer": 0,
+            "tools": 312
+          },
+          "G_regression": {
+            "positive_direct": 0,
+            "negative_direct": 0,
+            "positive_retained_reference": 15,
+            "positive_direct_sentence_in_reference": 0,
+            "extractive_reference_cases": 20,
+            "all_extractive_spans_in_grounded_answer": 0,
+            "tools": 312
+          },
+          "G_metric_regression": {
+            "positive_direct": 1,
+            "negative_direct": 0,
+            "positive_retained_reference": 15,
+            "positive_direct_sentence_in_reference": 1,
+            "extractive_reference_cases": 20,
+            "all_extractive_spans_in_grounded_answer": 1,
+            "tools": 312
+          }
+        },
+        "second_blind": {
+          "A": {
+            "positive_direct": 0,
+            "negative_direct": 1,
+            "positive_retained_reference": 11,
+            "positive_direct_sentence_in_reference": 0,
+            "extractive_reference_cases": 17,
+            "all_extractive_spans_in_grounded_answer": 0,
+            "tools": 308
+          },
+          "G": {
+            "positive_direct": 0,
+            "negative_direct": 1,
+            "positive_retained_reference": 11,
+            "positive_direct_sentence_in_reference": 0,
+            "extractive_reference_cases": 17,
+            "all_extractive_spans_in_grounded_answer": 0,
+            "tools": 307
+          }
+        }
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "First-batch pre-repair SHA given. Different repairs and cohorts have separate records. Re-running at current SHA produces same-case regression."
+      ]
+    },
+    {
+      "experiment_id": "qasper-independent",
+      "git_commit_sha": "c352436d4a92dd1b4e917c8d57d3c09f7a1856d0",
+      "dataset": "QASPER v0.3 32 new papers",
+      "dataset_hash": "72a52a41193e2838b8074f80ac074b94f956b84886c36a61c58a7df4171bdd72",
+      "dataset_hash_basis": "publisher archive",
+      "corpus_version": "qasper:72a52a41193e2838b8074f80ac074b94f956b84886c36a61c58a7df4171bdd72",
+      "label_type": "public human references",
+      "policy": "E11 A/G",
+      "model": null,
+      "model_budget": 0,
+      "tool_budget": 10,
+      "timeout_seconds": 120,
+      "seed": "pra-external-gate-v1:",
+      "scoring_version": "pra-scorecard/1",
+      "reproduction_command": "python -m tools.research_eval.pra_qasper --archive output/handoff/qasper-test-and-evaluator-v0.3.tgz --manifest output/handoff/qasper-manifest.json --out output/handoff/qasper-third",
+      "result_file": "docs/agent-v8/qasper-acceptance.json",
+      "baseline": {
+        "direct": "1/24",
+        "false_release": "0/8",
+        "tools": 315
+      },
+      "result": {
+        "direct": "1/24",
+        "false_release": "0/8",
+        "tools": 320
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "One question per paper."
+      ]
+    },
+    {
+      "experiment_id": "real-product",
+      "git_commit_sha": "e5bda5f33bb52bcd3c15cc1bf37efb4791423ef4",
+      "dataset": "859 indexed papers and browser journey",
+      "dataset_hash": null,
+      "dataset_hash_basis": null,
+      "corpus_version": null,
+      "label_type": "product assertions",
+      "policy": "E11 evidence-only",
+      "model": null,
+      "model_budget": 0,
+      "tool_budget": null,
+      "timeout_seconds": null,
+      "seed": null,
+      "scoring_version": "browser journey",
+      "reproduction_command": "python -m tools.research_eval.pra_product --identity output/handoff/isolated-identity.json --dist frontend/dist --out output/handoff/product",
+      "result_file": "docs/agent-v8/FINAL_ENGINEERING_REPORT.md",
+      "baseline": null,
+      "result": {
+        "register": 201,
+        "login": 200,
+        "source_locations": 5,
+        "report_bytes": 7050,
+        "anonymous_report": 401,
+        "exit": 0
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "Local ES snapshot provenance is reported without an exact export SHA. Local browser identity required."
+      ]
+    },
+    {
+      "experiment_id": "provider-controlled",
+      "git_commit_sha": "67088d028cb9b533011e14faee2c0ead75bd7a47",
+      "dataset": "research provider acceptance fixture",
+      "dataset_hash": null,
+      "dataset_hash_basis": null,
+      "corpus_version": null,
+      "label_type": "runtime receipts",
+      "policy": "E11",
+      "model": "controlled-http",
+      "model_budget": 4,
+      "tool_budget": null,
+      "timeout_seconds": null,
+      "seed": null,
+      "scoring_version": "run_case gates",
+      "reproduction_command": "python -m tools.research_eval.v7_live_research --controlled --output output/handoff/model-controlled.json",
+      "result_file": "docs/agent-v8/FINAL_ENGINEERING_REPORT.md",
+      "baseline": null,
+      "result": {
+        "requests": 4,
+        "exit": 0
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "In-process HTTP fixture. One execution, not vendor quality evidence."
+      ]
+    },
+    {
+      "experiment_id": "provider-live",
+      "git_commit_sha": "e5bda5f33bb52bcd3c15cc1bf37efb4791423ef4",
+      "dataset": "research provider acceptance fixture",
+      "dataset_hash": null,
+      "dataset_hash_basis": null,
+      "corpus_version": null,
+      "label_type": "runtime receipts",
+      "policy": "E11",
+      "model": null,
+      "model_budget": 4,
+      "tool_budget": null,
+      "timeout_seconds": null,
+      "seed": null,
+      "scoring_version": "run_case gates",
+      "reproduction_command": "python -m tools.research_eval.v7_live_research --live --output output/handoff/model-live.json",
+      "result_file": "docs/final/TEST_RESULTS.md",
+      "baseline": null,
+      "result": {
+        "requests": 0,
+        "exit": 2
+      },
+      "validation_status": "BLOCKED",
+      "known_limitations": [
+        "Credentials missing in tested shell."
+      ]
+    },
+    {
+      "experiment_id": "engineering-full",
+      "git_commit_sha": "e5bda5f33bb52bcd3c15cc1bf37efb4791423ef4",
+      "dataset": "Windows isolated ES backend and frontend suites",
+      "dataset_hash": null,
+      "dataset_hash_basis": null,
+      "corpus_version": null,
+      "label_type": "automated tests",
+      "policy": "mixed",
+      "model": null,
+      "model_budget": null,
+      "tool_budget": null,
+      "timeout_seconds": null,
+      "seed": null,
+      "scoring_version": "pytest and npm test",
+      "reproduction_command": "python -m tools.research_eval.v6_vector_fixture --es-home REPLACE_WITH_ES_8.19.23_HOME --offline-fixture infra/.runtime/elasticsearch-8.19.23/data --full-suite --delivery backend/.runtime/p0-delivery",
+      "result_file": "docs/final/TEST_RESULTS.md",
+      "baseline": null,
+      "result": {
+        "backend_passed": 985,
+        "frontend_passed": 47,
+        "backend_exit": 0,
+        "frontend_exit": 0
+      },
+      "validation_status": "HISTORICAL_PASS",
+      "known_limitations": [
+        "Real ES snapshot and delivery fixtures are local. Run the three frontend commands in the runbook."
+      ]
+    }
+  ]
+}

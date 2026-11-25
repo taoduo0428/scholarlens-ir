@@ -50,8 +50,11 @@ def propose(settings, phase, view, remaining, transport=None):
     if phase == "analysis" and "sentences" in view:
         model = SourceReview
     prompt = {
-        "analysis": ("Select up to three clearly assessable claims. Copy their IDs and the exact supporting "
-                     "substring verbatim. Omit unclear claims and use an empty array if none qualify."),
+        "analysis": ("Return 1 to 3 high-confidence labels (maximum 3). For each label, copy the exact claim_id "
+                     "and evidence_id from the claim's sources, set answer_relation to 'premise' or 'responsive' "
+                     "when supported (else 'background' or 'unsupported'), and copy a SHORT 4-12 word verbatim "
+                     "support_span that appears inside BOTH the claim text and the source text. "
+                     "Use compact single-line JSON only."),
         "synthesis": ("Return an ordered list of up to six supplied claim IDs. Copy IDs exactly, "
                       "and prioritize uncertainty when proof is incomplete."),
     }[phase]
@@ -59,8 +62,9 @@ def propose(settings, phase, view, remaining, transport=None):
         prompt += (" Optionally return up to two clearly attributable paper profile candidates. "
                    "Copy the complete sentence verbatim with zero-based offsets. Omit uncertain candidates.")
     if model is SourceReview:
-        prompt += (" Nominate relevant field roles using only supplied evidence_id and sentence_id pairs. "
-                   "Distinguish authors' work from prior work, predictions, hypotheses and background.")
+        prompt += (" Return at most 4 high-confidence selections using only supplied evidence_id and sentence_id pairs. "
+                   "Distinguish authors' work from prior_work, prediction, hypothesis, speculation and background. "
+                   "Keep total JSON output concise (<500 tokens).")
     schema = TypeAdapter(model)
     return _structured(
         settings,
@@ -169,21 +173,32 @@ def publication_suggestions(store, state, sources, callback):
             for c in reviewable[:10]
         ],
     }
-    if state.retrieval_policy == "E11" and callback and state.pra_arm not in {"B", "G"}:
+    from backend.research.arms import has_h5, has_profile_arm
+
+    arm = getattr(state, "pra_arm", "A")
+    if state.retrieval_policy == "E11" and callback and not has_profile_arm(arm):
         from backend.research.field_gate import capability
         payload["passages"] = [
             {"paper_id": r["paper_id"], "evidence_id": i, "text": r["quote"][:1000]}
             for i, r in sources.items() if capability(r, state)
         ][:10]
     catalog = {}
-    if state.retrieval_policy == "E11" and callback and state.pra_arm in {"B", "G"}:
+    if state.retrieval_policy == "E11" and callback and has_profile_arm(arm):
         from backend.research.field_gate import capability
-        from backend.research.research_profile import sentence_key, sentence_spans
+        from backend.research.research_profile import AUTHOR, is_sentence_aligned, sentence_key, sentence_spans
         queues = []
+        max_sentences = 24 if has_h5(arm) else 48
         for eid, row in sources.items():
             cap = capability(row, state)
             if cap and "text" in cap.supported:
-                queues.append([(eid, span) for span in sentence_spans(row["quote"], cap.locator.start) if span])
+                items = [
+                    (eid, span)
+                    for span in sentence_spans(row["quote"], cap.locator.start, aligned=is_sentence_aligned(row))
+                    if span
+                ]
+                if has_h5(arm):
+                    items.sort(key=lambda pair: (0 if AUTHOR.search(pair[1][2]) else 1, pair[1][0]))
+                queues.append(items)
         # Rotate across passages so one long abstract cannot consume the whole context.
         remaining_chars = 8000
         for level in range(max(map(len, queues), default=0)):
@@ -191,7 +206,7 @@ def publication_suggestions(store, state, sources, callback):
                 if level >= len(group):
                     continue
                 eid, (left, right, sentence) = group[level]
-                if len(sentence) > remaining_chars or len(catalog) >= 48:
+                if len(sentence) > remaining_chars or len(catalog) >= max_sentences:
                     continue
                 sid = sentence_key(eid, left, right)
                 catalog[eid, sid] = (left, right, sentence)

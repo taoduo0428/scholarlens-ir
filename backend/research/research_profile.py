@@ -125,7 +125,12 @@ def attribution(text, previous=""):
     return "authors", fields
 
 
-def sentence_spans(text, offset):
+def is_sentence_aligned(row: dict | None) -> bool:
+    """True when the passage window starts at a complete sentence boundary."""
+    return bool(row and str(row.get("chunk_id", "")).startswith("chunk:sw1-"))
+
+
+def sentence_spans(text, offset, *, aligned: bool = False):
     """Use positions from the parser, including repeated identical sentences."""
     start = 0
     for split in [*sentence_boundaries(text), None]:
@@ -133,8 +138,8 @@ def sentence_spans(text, offset):
         piece = text[start:end]
         sentence = piece.strip()
         left = start + len(piece) - len(piece.lstrip())
-        # A nonzero window may start halfway through a clause, even on a capital letter.
-        if (not offset or start) and 8 <= len(sentence) <= 480 and re.search(r"[.!?。！？][)」”\"']*$", sentence):
+        # A nonzero window may start halfway through a clause unless explicitly sentence-aligned.
+        if (aligned or not offset or start) and 8 <= len(sentence) <= 480 and re.search(r"[.!?。！？][)」”\"']*$", sentence):
             yield left, left + len(sentence), sentence
         else:
             yield None
@@ -171,14 +176,35 @@ def profiles(state, sources, candidates=()):
             fields={field: [] for field in get_args(ProfileField)}, evidence_bindings=[]))
         previous = ""
         previous_id = None
-        for span in sentence_spans(row["quote"], cap.locator.start):
+        previous_origin = None
+        author_anchor_id = None
+        anchor_distance = 0
+        arm = getattr(state, "pra_arm", "A")
+        from backend.research.arms import has_h1, has_h5, has_profile_arm
+        discourse_mode = has_h1(arm)
+        enhanced = has_profile_arm(arm)
+        h5_mode = has_h5(arm)
+        for span in sentence_spans(row["quote"], cap.locator.start, aligned=is_sentence_aligned(row)):
             if not span:
                 previous = ""
                 previous_id = None
+                previous_origin = None
+                author_anchor_id = None
+                anchor_distance = 0
                 continue
             left, right, text = span
-            origin, fields = attribution(text, previous)
-            enhanced = getattr(state, "pra_arm", "A") in {"B", "G"}
+            if previous and "\n\n" in row["quote"][max(0, left - 6):left]:
+                author_anchor_id = None
+                anchor_distance = 0
+            if discourse_mode:
+                from backend.research.discourse_attribution import analyze_clause_attribution
+                anchor_active = bool(author_anchor_id and anchor_distance <= 3)
+                origin, fields, keeps_anchor = analyze_clause_attribution(
+                    text, previous, author_anchor_active=anchor_active
+                )
+            else:
+                origin, fields = attribution(text, previous)
+                keeps_anchor = False
             if enhanced and cap.locator.field == "abstract" and origin in {"background", "authors"}:
                 from backend.research.profile_frames import abstract_method
                 if abstract_method(text):
@@ -197,7 +223,8 @@ def profiles(state, sources, candidates=()):
                     if port[0] == "requires":
                         fields.add("input_variables")
             antecedent = None
-            if enhanced and previous and previous_id and attribution(previous)[0] == "authors" and (
+            prev_is_author = (previous_origin == "authors") if discourse_mode else bool(previous and attribution(previous)[0] == "authors")
+            if enhanced and previous and previous_id and prev_is_author and (
                 re.match(r"^(?:the (?:aim|objective|purpose) (?:of this (?:work|study) )?is to "
                          r"|(?:研究目标|目的是)(?:在于)?)", text, re.I)
                 and not any(rx.search(text) for rx in (GUARDS, PRIOR, FUTURE, HYP, NEGATED))
@@ -205,14 +232,46 @@ def profiles(state, sources, candidates=()):
             ):
                 # A stated aim licenses only an objective, even if the intended outcome is speculative.
                 origin, fields, antecedent = "authors", {"research_objective"}, previous_id
-            if enhanced and not antecedent and ANAPHOR.match(text) and origin == "authors" and not AUTHOR.search(text):
-                antecedent = previous_id
+            if enhanced and not antecedent and origin == "authors" and not AUTHOR.search(text):
+                if ANAPHOR.match(text):
+                    antecedent = previous_id
+                elif discourse_mode and author_anchor_id:
+                    antecedent = author_anchor_id
+            sid = sentence_key(eid, left, right)
+            if discourse_mode:
+                if origin == "authors":
+                    if keeps_anchor and AUTHOR.search(text):
+                        author_anchor_id = sid
+                        anchor_distance = 1
+                    elif author_anchor_id:
+                        anchor_distance += 1
+                    else:
+                        author_anchor_id = sid
+                        anchor_distance = 1
+                elif origin in {"prior_work", "hypothesis", "prediction", "speculation", None}:
+                    author_anchor_id = None
+                    anchor_distance = 0
+                elif anchor_distance:
+                    anchor_distance += 1
             previous = text
-            previous_id = sentence_key(eid, left, right)
+            previous_id = sid
+            previous_origin = origin
             for field in get_args(ProfileField):
-                if ((pid, eid, left, right, text, field, origin) in proposals
-                        and model_field_supported(field, origin, text)):
-                    fields.add(field)
+                if (pid, eid, left, right, text, field, origin) in proposals:
+                    h5_ok = False
+                    if h5_mode and origin == "authors" and not GUARDS.search(text) and not PRIOR.search(text):
+                        from backend.research.semantic_slots import has_predicate_negation
+
+                        h5_ok = (
+                            not has_predicate_negation(text)
+                            and field in {
+                                "methods", "reported_findings", "research_objective", "research_problem",
+                                "datasets", "metrics", "experiment_settings", "baselines", "limitations",
+                                "proposed_contributions",
+                            }
+                        )
+                    if model_field_supported(field, origin, text) or h5_ok:
+                        fields.add(field)
             for field in sorted(fields):
                 key = (pid, eid, left, right, text, field, origin)
                 start, end = cap.locator.start + left, cap.locator.start + right

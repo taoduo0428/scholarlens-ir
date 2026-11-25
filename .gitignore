@@ -226,6 +226,7 @@ __marimo__/
 *.jsonl
 !data/sample/*.jsonl
 !docs/agent-v8/ablation-final/[A-G].jsonl
+!docs/agent-v9/ablation-v9/*.jsonl
 /data/raw/
 /data/processed/
 /data/index/

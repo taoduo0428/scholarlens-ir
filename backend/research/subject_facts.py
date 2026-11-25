@@ -3,7 +3,7 @@ import re
 from dataclasses import dataclass
 
 from backend.research.claim_verifier import GUARDS
-from backend.research.research_profile import FUTURE, HYP, MAY, PRIOR, sentence_spans
+from backend.research.research_profile import FUTURE, HYP, MAY, PRIOR, is_sentence_aligned, sentence_spans
 
 
 @dataclass(frozen=True)
@@ -155,7 +155,7 @@ def witnesses(field, claims, sources, *, study_context=False):
     for eid, row in sources.items():
         offset = int(row["locator"].rsplit(":", 1)[1].split("-")[0])
         previous = ""
-        for span in sentence_spans(row["quote"], offset):
+        for span in sentence_spans(row["quote"], offset, aligned=is_sentence_aligned(row)):
             statement = span[2] if span else ""
             transformation = bool(study_context and span and transformation_purpose(field, statement, previous))
             if span and (states_relation(field, statement) or transformation):
