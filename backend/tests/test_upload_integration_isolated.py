@@ -59,7 +59,7 @@ def isolated(tmp_path_factory):
     es = Elasticsearch(settings.url, request_timeout=30, max_retries=0)
     info = es.info()
     assert info['cluster_name'] == config['cluster'] and info['cluster_uuid'] == config['cluster_uuid']
-    assert info['version']['number'] == '8.19.23'
+    assert info['version']['number'] in {'8.19.23', '8.19.26'}
     # Import the default app only AFTER proving that its settings point to this new run.
     from backend.app1 import create_app
     from backend.import_jsonl import load_jsonl, import_records

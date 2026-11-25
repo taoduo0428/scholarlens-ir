@@ -19,7 +19,7 @@ pytestmark = pytest.mark.integration
 @pytest.fixture(scope="module")
 def papers_api(tmp_path_factory):
     client = Elasticsearch("http://127.0.0.1:9200", request_timeout=10)
-    assert client.info()["version"]["number"] == "8.19.23"
+    assert client.info()["version"]["number"] in {"8.19.23", "8.19.26"}
     alias = f"scholarlens-test-details-{uuid.uuid4().hex[:8]}-mock"
     original = Path("data/sample/mock_papers.jsonl")
     rows = [json.loads(line) for line in original.read_text(encoding="utf-8-sig").splitlines()]

@@ -77,7 +77,7 @@ def test_title_highlight_scope_uses_original_text_and_selected_field():
 def environment(tmp_path_factory):
     client = Elasticsearch("http://127.0.0.1:9200", request_timeout=10)
     # Fail explicitly when the dependency is absent; never substitute a fake search engine.
-    assert client.info()["version"]["number"] == "8.19.23"
+    assert client.info()["version"]["number"] in {"8.19.23", "8.19.26"}
     alias = f"scholarlens-test-{uuid.uuid4().hex[:8]}-mock"
     path = tmp_path_factory.mktemp("mock") / "papers.jsonl"
     rows = [

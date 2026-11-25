@@ -2,6 +2,7 @@ param([ValidateRange(1024,65535)][int]$Port = 8000, [string]$Index = '')
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path $PSScriptRoot -Parent
 $python = Join-Path $projectRoot 'backend/.venv/Scripts/python.exe'
+if (-not (Test-Path -LiteralPath $python)) { $python = Join-Path $projectRoot '.venv/Scripts/python.exe' }
 if (-not (Test-Path -LiteralPath $python)) { throw 'Install backend dependencies first.' }
 if (Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue) { throw "Port $Port is already in use." }
 $pidRoot = if ($env:SCHOLARLENS_LAUNCHER_DIR) { (Resolve-Path -LiteralPath $env:SCHOLARLENS_LAUNCHER_DIR).Path } else { Join-Path $projectRoot 'backend/.runtime' }

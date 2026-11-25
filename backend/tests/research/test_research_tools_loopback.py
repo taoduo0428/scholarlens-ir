@@ -17,7 +17,7 @@ from backend.research.tools import EsCorpus, ToolRegistry
 def test_real_readonly_keyword_and_original_passage():
     with Elasticsearch("http://127.0.0.1:9200", request_timeout=5, max_retries=0) as es:
         info = es.info()
-        assert info["version"]["number"] == "8.19.23"
+        assert info["version"]["number"] in {"8.19.23", "8.19.26"}
         if isolated := os.getenv("SCHOLARLENS_ISOLATED_UPLOAD_CONFIG"):
             path = Path(isolated).resolve(strict=True)
             assert path.is_relative_to(Path("tools/audit/reports").resolve(strict=True))
