@@ -248,9 +248,10 @@ def generate_report(state, store, registry, *, semantic=None):
         from backend.research.workspace_model import publication_suggestions, synthesis_order
         proposals, reviewable = publication_suggestions(store, state, verified, semantic)
         if state.field_requirements:
+            from backend.research.arms import has_full_pra
             from backend.research.field_gate import evaluate_with_profiles
             evaluation = evaluate_with_profiles(state, verified, proposals, warnings)
-            if state.pra_arm == "G" and state.retrieval_policy == "E11":
+            if has_full_pra(state.pra_arm) and state.retrieval_policy == "E11":
                 reviewable = list(evaluation[1].values())
         order = synthesis_order(store, state, reviewable, semantic)
         if registry is not None and state.budget.deadline and state.budget.deadline <= datetime.now(timezone.utc):

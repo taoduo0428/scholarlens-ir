@@ -148,8 +148,9 @@ def contract_for(state):
     if state.retrieval_policy in {"E9.1", "E10", "E11"} and re.search(r"综述|全景|概览|\b(?:overview|landscape|survey)\b", intent_text, re.I):
         intent = "landscape"
     if state.retrieval_policy == "E11":
+        from backend.research.arms import has_full_pra
         from backend.research.research_intent import plan_intent, research_intent
-        category = research_intent(intent_text, descriptive_subjects=state.pra_arm == "G")
+        category = research_intent(intent_text, descriptive_subjects=has_full_pra(state.pra_arm))
         intent = plan_intent(category, intent)
         if category == "description" and re.search(r"objectives?|research goals?|研究目标|研究目的", intent_text, re.I):
             intent = "fact"

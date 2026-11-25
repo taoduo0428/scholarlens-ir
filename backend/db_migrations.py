@@ -1,6 +1,7 @@
 """SQLite online backups and operator-only restoration with a preserved pre-restore copy."""
 
 import argparse
+from contextlib import closing
 import hashlib
 import json
 from pathlib import Path
@@ -14,7 +15,7 @@ VERSION = 4
 def backup_before_upgrade(path: Path):
     if not path.exists():
         return None
-    with sqlite3.connect(path) as source:
+    with closing(sqlite3.connect(path)) as source:
         exists = source.execute(
             "SELECT 1 FROM sqlite_master WHERE name='schema_version'"
         ).fetchone()
@@ -26,7 +27,7 @@ def backup_before_upgrade(path: Path):
         directory = path.parent / "db-backups"
         directory.mkdir(exist_ok=True)
         dest = directory / f"before-v{VERSION}-{uuid.uuid4().hex}.sqlite3"
-        with sqlite3.connect(dest) as target:
+        with closing(sqlite3.connect(dest)) as target:
             source.backup(target)
             assert target.execute("PRAGMA integrity_check").fetchone()[0] == "ok"
     digest = hashlib.sha256(dest.read_bytes()).hexdigest()
@@ -50,11 +51,11 @@ def restore(path: Path, backup: Path):
         raise ValueError("backup and destination must differ")
     if not backup.is_file():
         raise FileNotFoundError("backup not found")
-    with sqlite3.connect(backup) as source:
+    with closing(sqlite3.connect(backup)) as source:
         if source.execute("PRAGMA integrity_check").fetchone()[0] != "ok":
             raise ValueError("backup is not valid")
         preserved = path.with_name("before-restore-" + uuid.uuid4().hex + ".sqlite3")
-        with sqlite3.connect(path) as current, sqlite3.connect(preserved) as saved:
+        with closing(sqlite3.connect(path)) as current, closing(sqlite3.connect(preserved)) as saved:
             current.backup(saved)
             source.backup(current)
     return {"restored": True, "preserved_file": preserved.name}

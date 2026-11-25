@@ -258,6 +258,13 @@ def verify_claim(claim: Claim, sources: dict[str, dict]) -> Claim:
         if any(prop == text and REPRESENT.match(first) for first, _, text in
                contextual_fact_pairs(quote, reference=CONSTRAINT_CONTEXT)):
             return verdict("verified", "exact_adjacent_representation_context")
+        from backend.research.semantic_slots import adjacent_author_pairs
+
+        if any(
+            prop == text
+            for _, _, text in adjacent_author_pairs(quote, 0, aligned=True, discourse=True)
+        ):
+            return verdict("verified", "exact_adjacent_author_discourse_pair")
     if GUARDS.search(prop) or not match:
         return verdict("unverified", "proposition_not_entailed")
     return verdict("verified", "exact_extractive_proposition")

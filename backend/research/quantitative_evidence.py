@@ -3,7 +3,7 @@ import re
 
 from backend.research.claim_verifier import GUARDS
 from backend.research.field_contract import AnswerFieldType, RequiredSourceCapability, field_for
-from backend.research.research_profile import FUTURE, HYP, MAY, PRIOR, sentence_spans
+from backend.research.research_profile import FUTURE, HYP, MAY, PRIOR, is_sentence_aligned, sentence_spans
 
 
 _KIND = r"(?:quantitative (?:evidence|results?)|(?:evaluation )?measures?|(?:upper |lower )?bounds?|metrics?|definitions?)"
@@ -135,7 +135,7 @@ def witnesses(field, claims, sources):
     for eid, row in sources.items():
         offset = int(row["locator"].rsplit(":", 1)[1].split("-")[0])
         prev = ""
-        for span in sentence_spans(row["quote"], offset):
+        for span in sentence_spans(row["quote"], offset, aligned=is_sentence_aligned(row)):
             if not span:
                 prev = ""
                 continue

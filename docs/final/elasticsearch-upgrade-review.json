@@ -1,0 +1,345 @@
+{
+  "scanner": "Grype 0.122.1",
+  "source": "registry: linux/amd64",
+  "database_built": "2026-11-24T06:22:05Z",
+  "scans": [
+    {
+      "version": "8.19.23",
+      "reference": "docker.elastic.co/elasticsearch/elasticsearch:8.19.23@sha256:4d0724bb8d78d7a2330693623e26ca4d621079d062ecc8a30b3e1fc180ec14c1",
+      "config": "sha256:c8ec58306c7c7b426362a2feb04cc42652e71483b8601591132ef9d583e303b7",
+      "report_sha256": "b8d25a351e58c386e4c91d4ba14aef0e14606cd3e4d9d71807764d68e4c8ccae",
+      "severity": {
+        "High": 67,
+        "Critical": 16,
+        "Medium": 254,
+        "Low": 47,
+        "Negligible": 2
+      },
+      "scan_exit": 0
+    },
+    {
+      "version": "8.19.26",
+      "reference": "docker.elastic.co/elasticsearch/elasticsearch:8.19.26@sha256:d71769f4e1145dca3794a04ddcd67e12f1299048b3232025e55feda799904a5d",
+      "config": "sha256:09ec376b576e36c89f2dd2c7049aaaf6131f0fe5a006b7ad3dc183c82d7a291e",
+      "report_sha256": "4b4385fcbc4ad60c9c39f3cbdade4d5881b1f5bc14d67b3683133adf3d846037",
+      "severity": {
+        "Critical": 16,
+        "High": 56,
+        "Medium": 198,
+        "Low": 16,
+        "Negligible": 2
+      },
+      "scan_exit": 0
+    }
+  ],
+  "removed_high": [
+    {
+      "kind": "binary",
+      "package": "jdk",
+      "advisory": "CVE-2026-114938",
+      "matches": 1
+    },
+    {
+      "kind": "binary",
+      "package": "jdk",
+      "advisory": "CVE-2026-114939",
+      "matches": 1
+    },
+    {
+      "kind": "binary",
+      "package": "jdk",
+      "advisory": "CVE-2026-114940",
+      "matches": 1
+    },
+    {
+      "kind": "binary",
+      "package": "jdk",
+      "advisory": "CVE-2026-114941",
+      "matches": 1
+    },
+    {
+      "kind": "binary",
+      "package": "jdk",
+      "advisory": "CVE-2026-114942",
+      "matches": 1
+    },
+    {
+      "kind": "binary",
+      "package": "jdk",
+      "advisory": "CVE-2026-91415",
+      "matches": 1
+    },
+    {
+      "kind": "deb",
+      "package": "apt",
+      "advisory": "CVE-2026-109518",
+      "matches": 1
+    },
+    {
+      "kind": "deb",
+      "package": "libapt-pkg6.0t64",
+      "advisory": "CVE-2026-109518",
+      "matches": 1
+    },
+    {
+      "kind": "deb",
+      "package": "libbrotli1",
+      "advisory": "CVE-2026-111497",
+      "matches": 1
+    },
+    {
+      "kind": "java-archive",
+      "package": "jsoup",
+      "advisory": "GHSA-65r4-943x-97jj",
+      "matches": 1
+    },
+    {
+      "kind": "java-archive",
+      "package": "lz4-java",
+      "advisory": "GHSA-mcr4-qmvw-px4g",
+      "matches": 1
+    }
+  ],
+  "candidate_dpkg_versions": {
+    "libssl3t64": "3.0.13-0ubuntu3.16",
+    "curl": "8.5.0-2ubuntu10.16",
+    "libcurl4t64": "8.5.0-2ubuntu10.16",
+    "openssl": "3.0.13-0ubuntu3.16"
+  },
+  "ubuntu_noble_critical_review": [
+    {
+      "advisory": "CVE-2024-4741",
+      "package": "openssl",
+      "source": "https://ubuntu.com/security/cves/CVE-2024-4741.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "3.0.13-0ubuntu3.2",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "3.0.13-0ubuntu3.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2024-5535",
+      "package": "openssl",
+      "source": "https://ubuntu.com/security/cves/CVE-2024-5535.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "3.0.13-0ubuntu3.2",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "3.0.13-0ubuntu3.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2025-15467",
+      "package": "openssl",
+      "source": "https://ubuntu.com/security/cves/CVE-2025-15467.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "3.0.13-0ubuntu3.7",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "3.0.13-0ubuntu3.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2025-9230",
+      "package": "openssl",
+      "source": "https://ubuntu.com/security/cves/CVE-2025-9230.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "3.0.13-0ubuntu3.6",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "3.0.13-0ubuntu3.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-10536",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-10536.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "8.5.0-2ubuntu10.11",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-11856",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-11856.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "8.5.0-2ubuntu10.12",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-18924",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-18924.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "8.5.0-2ubuntu10.15",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-19931",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-19931.json",
+      "noble": [
+        {
+          "status": "not-affected",
+          "description": "see notes",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_not_affected"
+    },
+    {
+      "advisory": "CVE-2026-31789",
+      "package": "openssl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-31789.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "3.0.13-0ubuntu3.9",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "3.0.13-0ubuntu3.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-34182",
+      "package": "openssl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-34182.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "3.0.13-0ubuntu3.11",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "3.0.13-0ubuntu3.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-75803",
+      "package": "openssl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-75803.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "3.0.13-0ubuntu3.15",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "3.0.13-0ubuntu3.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-86414",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-86414.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "8.5.0-2ubuntu10.16",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-87866",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-87866.json",
+      "noble": [],
+      "lookup_exit": 28,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "unresolved"
+    },
+    {
+      "advisory": "CVE-2026-8924",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-8924.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "8.5.0-2ubuntu10.10",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-8927",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-8927.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "8.5.0-2ubuntu10.10",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_fix_present"
+    },
+    {
+      "advisory": "CVE-2026-92388",
+      "package": "curl",
+      "source": "https://ubuntu.com/security/cves/CVE-2026-92388.json",
+      "noble": [
+        {
+          "status": "released",
+          "description": "8.5.0-2ubuntu10.16",
+          "pocket": "security"
+        }
+      ],
+      "lookup_exit": 0,
+      "installed": "8.5.0-2ubuntu10.16",
+      "disposition": "vendor_fix_present"
+    }
+  ]
+}

@@ -41,6 +41,8 @@ def ranked_gaps(state, assessment):
 
 
 def next_gap(state):
-    if state.pra_arm not in {"E", "G"} or not state.workspace_trace:
+    from backend.research.arms import has_gap_arm
+
+    if not has_gap_arm(state.pra_arm) or not state.workspace_trace:
         return None
     return next((g for g in state.workspace_trace[-1].get("gaps", ()) if g["priority"]), None)

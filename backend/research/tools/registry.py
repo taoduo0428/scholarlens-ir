@@ -29,6 +29,7 @@ from .passages import (
     nearest_heading,
     passage,
     passages_for,
+    sentence_windows_for,
     tokens,
 )
 
@@ -48,6 +49,7 @@ class PassageRequest(SearchRequest):
     profile_body_fallback: bool = False
     profile_limitation_request: Summary | None = None
     preferred_section: Literal["methods", "results"] | None = None
+    sentence_complete: bool = False
     focus: list[Summary] = Field(default_factory=list, max_length=4)
 
 
@@ -184,7 +186,10 @@ class ToolRegistry:
         return [self._doc(pid) for pid in self._ids(discovery)]
 
     def _search_passages(self, req):
+        from backend.research.research_profile import attribution, is_sentence_aligned, sentence_spans
+
         query = req.query + " " + SLOT_TERMS.get(req.slot, "")
+        rows_fn = sentence_windows_for if req.sentence_complete else passages_for
         rows = {}
         for doc in self._candidates(req):
             year = doc.get("year")
@@ -192,19 +197,19 @@ class ToolRegistry:
                 req.year_to is not None and (year is None or year > req.year_to)
             ):
                 continue
-            for row in passages_for(doc):
+            for row in rows_fn(doc):
                 rows[row["chunk_id"]] = (doc, row)
         if req.abstract_profile:
             if not req.paper_ids or req.abstract_opening:
                 raise ToolError("explicit_paper_required")
             # Select a window per paper for each round, reserving space for
             # other papers before offering additional windows.
-            from backend.research.research_profile import attribution, sentence_spans
 
             by_paper = {}
             body_fallback = {}
             abstract_roles = {}
             for doc, row in rows.values():
+                aligned = is_sentence_aligned(row)
                 if row["field"] == "abstract":
                     if req.complete_method_opening and not row["offset_start"]:
                         from backend.research.pra_relations import method_name
@@ -212,7 +217,8 @@ class ToolRegistry:
                         completed = complete_abstract_opening(doc, row)
                         if completed and method_name(completed[1]):
                             row = completed[0]
-                    facets = [fields for span in sentence_spans(row["text"], row["offset_start"]) if span
+                            aligned = is_sentence_aligned(row)
+                    facets = [fields for span in sentence_spans(row["text"], row["offset_start"], aligned=aligned) if span
                               for origin, fields in [attribution(span[2])] if origin == "authors"]
                     score = (len(set().union(*facets)), sum(bool(f) for f in facets))
                     by_paper.setdefault(doc["paper_id"], []).append((score, row["offset_start"], doc, row))
@@ -235,8 +241,11 @@ class ToolRegistry:
                                 if not BODY_ROLES[facet] & abstract_roles[pid]]
                         if not gaps:
                             continue
-                        scores = [(body_gap_score(row["text"], row["offset_start"], gaps), row["offset_start"], doc, row)
-                                  for doc, row in windows]
+                        scores = [
+                            (body_gap_score(row["text"], row["offset_start"], gaps, aligned=is_sentence_aligned(row)),
+                             row["offset_start"], doc, row)
+                            for doc, row in windows
+                        ]
                         best = min(scores, key=lambda w: (-w[0][0], -w[0][1], w[1]))
                         if best[0][0]:
                             abstracts.insert(1, best)
@@ -245,7 +254,7 @@ class ToolRegistry:
                     ranks = {cid: i for i, cid in enumerate(lexical)}
                     scored = []
                     for doc, row in windows:
-                        score = body_profile_score(row["text"], row["offset_start"])
+                        score = body_profile_score(row["text"], row["offset_start"], aligned=is_sentence_aligned(row))
                         if score[0]:
                             scored.append((score, row["offset_start"], doc, row))
                     scored.sort(key=lambda w: (-w[0][0], -w[0][1], ranks.get(w[3]["chunk_id"], len(ranks)), w[1]))
@@ -255,14 +264,17 @@ class ToolRegistry:
                 from backend.research.profile_frames import scoped_limitation
 
                 def limitation_window(row):
-                    return any(scoped_limitation(span[2], req.profile_limitation_request)
-                               for span in sentence_spans(row["text"], row["offset_start"]) if span)
+                    return any(
+                        scoped_limitation(span[2], req.profile_limitation_request)
+                        for span in sentence_spans(row["text"], row["offset_start"], aligned=is_sentence_aligned(row))
+                        if span
+                    )
 
                 def observation_roles(row):
                     from backend.research.profile_frames import body_profile_supports
 
                     supported = set()
-                    for span in sentence_spans(row["text"], row["offset_start"]):
+                    for span in sentence_spans(row["text"], row["offset_start"], aligned=is_sentence_aligned(row)):
                         if not span:
                             continue
                         if row["field"] == "abstract":
@@ -316,7 +328,7 @@ class ToolRegistry:
             # Give each named subject an independent lexical ranking. A joined BM25
             # query can spend the entire result window on the more distinctive side.
             choices = [(cid, tokens(row["text"])) for cid, (_, row) in rows.items()
-                       if row["field"] != "title"]
+                       if req.sentence_complete or row["field"] != "title"]
             leaders = []
             for subject in req.focus:
                 lane = bm25(subject, choices)
@@ -325,9 +337,18 @@ class ToolRegistry:
                 selected = rows[lane[0]][1]
                 # Prefer a higher-ranked joint-query window on the same paper.
                 # This keeps facet terms and avoids evicting an already useful window.
-                leaders.append(next((cid for cid in ranked
-                                     if rows[cid][1]["paper_id"] == selected["paper_id"]
-                                     and rows[cid][1]["field"] != "title"), lane[0]))
+                leader = next(
+                    (cid for cid in ranked
+                     if rows[cid][1]["paper_id"] == selected["paper_id"] and rows[cid][1]["field"] != "title"),
+                    None,
+                )
+                if leader is None:
+                    leader = next(
+                        (cid for cid, (_, row) in rows.items()
+                         if row["paper_id"] == selected["paper_id"] and row["field"] != "title"),
+                        lane[0],
+                    )
+                leaders.append(leader)
             ranked = list(dict.fromkeys(leaders + ranked))
         if req.preferred_section and req.paper_ids:
             headings = ({"method", "methods", "methodology", "materials and methods", "方法", "研究方法"}
@@ -349,6 +370,8 @@ class ToolRegistry:
     def _read_paper_chunks(self, req):
         doc = self._doc(req.paper_id)
         by_id = {row["chunk_id"]: row for row in passages_for(doc)}
+        if any(cid not in by_id and str(cid).startswith("chunk:sw") for cid in req.chunk_ids):
+            by_id.update({row["chunk_id"]: row for row in sentence_windows_for(doc)})
         opening = next((row for row in by_id.values() if row["field"] == "abstract" and not row["offset_start"]), None)
         if opening and any(cid not in by_id for cid in req.chunk_ids):
             completed = complete_abstract_opening(doc, opening)
@@ -374,6 +397,8 @@ class ToolRegistry:
             return {"verified": False, "reason": error.code}
         rows = passages_for(doc)
         chunk = next((row for row in rows if row["chunk_id"] == req.chunk_id), None)
+        if not chunk and req.chunk_id.startswith("chunk:sw"):
+            chunk = next((row for row in sentence_windows_for(doc) if row["chunk_id"] == req.chunk_id), None)
         if not chunk and req.locator.startswith("abstract:chars:"):
             opening = next((row for row in rows if row["field"] == "abstract" and not row["offset_start"]), None)
             completed = complete_abstract_opening(doc, opening) if opening else None

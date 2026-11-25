@@ -3,7 +3,7 @@ on:
   push:
     branches: [main, zjl, codex/evo-full-product]
   pull_request:
-    branches: [main, zjl]
+    branches: [main, zjl, codex/pra-research-reasoning]
   workflow_dispatch:
 permissions:
   contents: read
@@ -53,6 +53,8 @@ jobs:
             backend/tests/research/test_program_release.py backend/tests/research/test_governance_view.py \
             backend/tests/research/test_quantitative_evidence.py backend/tests/research/test_account_erasure.py backend/tests/research/test_offline_verifier.py \
             backend/tests/test_trusted_model_proxy.py backend/tests/research/test_live_research_acceptance.py
+      - name: SQLite migration and rollback
+        run: python -m pytest -q backend/tests/test_v21_flows.py -k 'migration_legacy or restore_preserves'
       - name: Research scorecard
         run: |
           python -m pytest -q backend/tests/research/test_eval_p1.py -k pra_scorecard
@@ -103,12 +105,14 @@ jobs:
           persist-credentials: false
       - name: Validate local service packaging
         run: |
+          docker compose -f infra/elasticsearch.compose.yml config -q
           docker compose -f infra/product.compose.yml config -q
           docker compose -f infra/product.compose.yml -f infra/pdf-ocr.compose.yml config -q
           SCHOLARLENS_APPROVALS_DIR="$RUNNER_TEMP" SCHOLARLENS_LAB_SNAPSHOT_DIR="$RUNNER_TEMP" \
             docker compose -f infra/product.compose.yml -f infra/governance.compose.yml config -q
           docker build --target "$IMAGE_TARGET" -f infra/ScholarLens.Dockerfile -t scholarlens-ci .
           docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "import os, ssl, sqlite3, gzip; assert os.getuid() == 10001; ssl.create_default_context(); assert sqlite3.connect(':memory:').execute('select 6*7').fetchone() == (42,); assert gzip.decompress(gzip.compress(b'paper')) == b'paper'"
+          docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "from importlib.util import find_spec; assert find_spec('pytest') is None and find_spec('ruff') is None"
           docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -c "from backend.research.chart_registry import BUILTIN, read_registry; assert read_registry(BUILTIN).profiles"
           docker run --rm --network none --read-only --tmpfs /tmp --tmpfs /var/lib/scholarlens:uid=10001,gid=10001 \
             -e SCHOLARLENS_RESEARCH_ENABLED=true -e SCHOLARLENS_EVOLUTION_LAB=true scholarlens-ci \
@@ -116,6 +120,50 @@ jobs:
           if [ "$IMAGE_TARGET" = "pdf-ocr" ]; then
             docker run --rm --network none --read-only --tmpfs /tmp scholarlens-ci python -m backend.research.ocr_check
           fi
+      - name: Isolated Compose upgrade and volume retention
+        if: matrix.target == 'standard'
+        shell: bash
+        run: |
+          set -euo pipefail
+          export SCHOLARLENS_IMAGE=scholarlens-ci:latest SCHOLARLENS_INDEX=scholarlens-fixture
+          export SCHOLARLENS_E11_ENABLED=true SCHOLARLENS_PORT=18001
+          compose=(docker compose --project-name "sl-ci-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}" -f infra/product.compose.yml)
+          trap 'status=$?; trap - EXIT; if ((status)); then "${compose[@]}" ps; fi; "${compose[@]}" down -v --remove-orphans || exit 1; exit "$status"' EXIT
+          legacy_override="$RUNNER_TEMP/legacy-search.yml"
+          cat > "$legacy_override" <<'YAML'
+          services:
+            search:
+              image: docker.elastic.co/elasticsearch/elasticsearch:8.19.23@sha256:4d0724bb8d78d7a2330693623e26ca4d621079d062ecc8a30b3e1fc180ec14c1
+          YAML
+          "${compose[@]}" -f "$legacy_override" up -d --no-build --wait --wait-timeout 200 search
+          es=http://localhost:9200
+          legacy_status=$("${compose[@]}" exec -T search curl -fsS "$es/")
+          jq -e '.version.number == "8.19.23"' <<< "$legacy_status"
+          cluster_uuid=$(jq -er '.cluster_uuid | select(. != "_na_")' <<< "$legacy_status")
+          "${compose[@]}" exec -T search curl -fsS -X PUT -H 'Content-Type: application/json' \
+            -d '{"mappings":{"_meta":{"data_status":"mock","input_records":1},"properties":{"title":{"type":"text"},"embedding":{"type":"dense_vector","dims":3,"index":true,"similarity":"cosine"}}}}' \
+            "$es/scholarlens-fixture"
+          "${compose[@]}" exec -T search curl -fsS -X PUT -H 'Content-Type: application/json' \
+            -d '{"title":"ScholarLens upgrade fixture","embedding":[1,0,0]}' \
+            "$es/scholarlens-fixture/_doc/upgrade-fixture?refresh=wait_for"
+          "${compose[@]}" up -d --no-build --wait --wait-timeout 200
+          "${compose[@]}" exec -T search curl -fsS "$es/" | \
+            jq -e --arg uuid "$cluster_uuid" '.version.number == "8.19.26" and .cluster_uuid == $uuid'
+          "${compose[@]}" exec -T search curl -fsS -H 'Content-Type: application/json' \
+            -d '{"query":{"match":{"title":"upgrade"}}}' "$es/scholarlens-fixture/_search" | \
+            jq -e '.hits.hits[0]._id == "upgrade-fixture"'
+          "${compose[@]}" exec -T search curl -fsS -H 'Content-Type: application/json' \
+            -d '{"knn":{"field":"embedding","query_vector":[1,0,0],"k":1,"num_candidates":1}}' \
+            "$es/scholarlens-fixture/_search" | jq -e '.hits.hits[0]._id == "upgrade-fixture"'
+          origin=http://127.0.0.1:18001
+          curl -fsS "$origin/readyz" | jq -e '.status == "ready"'
+          curl -fsS "$origin/" | grep -i 'scholarlens'
+          curl -fsS "$origin/openapi.json" | jq -e '.paths["/api/research/tasks"] != null'
+          credentials=$(python -c 'import json, secrets; print(json.dumps({"username": "compose-check", "password": secrets.token_hex(24)}))')
+          curl -fsS -H 'Content-Type: application/json' --data "$credentials" "$origin/api/auth/register" | jq -e '.username == "compose-check"'
+          "${compose[@]}" up -d --force-recreate --no-deps --no-build --wait --wait-timeout 90 api
+          curl -fsS -H 'Content-Type: application/json' --data "$credentials" "$origin/api/auth/login" -o /dev/null
+          curl -fsS "$origin/readyz" | jq -e '.status == "ready"'
       - name: Scan the built application image
         run: |
           set -euo pipefail
@@ -148,3 +196,36 @@ jobs:
           path: |
             image-findings.json
             scanned-image-id.txt
+
+      - name: Scan the Compose Elasticsearch image
+        if: matrix.target == 'standard'
+        run: |
+          set -euo pipefail
+          image=$(docker compose -f infra/product.compose.yml config --format json | jq -er '.services.search.image')
+          docker image inspect --format '{{.Id}}' "$image" > es-image-id.txt
+          "$RUNNER_TEMP/grype" "registry:$image" --platform linux/amd64 -o json > es-image-findings.json
+          python - "$image" <<'PY'
+          import base64, collections, hashlib, json, pathlib, sys
+          scan = json.loads(pathlib.Path("es-image-findings.json").read_bytes())
+          target = scan["source"]["target"]
+          config_id = "sha256:" + hashlib.sha256(base64.b64decode(target["config"], validate=True)).hexdigest()
+          manifest = base64.b64decode(target["manifest"], validate=True)
+          manifest_id = "sha256:" + hashlib.sha256(manifest).hexdigest()
+          repository_tag, index_id = sys.argv[1].rsplit("@", 1)
+          repository = repository_tag.rsplit(":", 1)[0]
+          assert f"{repository}@{index_id}" in target["repoDigests"]
+          assert manifest_id == target["manifestDigest"]
+          assert config_id == target["imageID"] == json.loads(manifest)["config"]["digest"]
+          # Docker can expose the index, platform manifest, or config as its image ID.
+          docker_id = pathlib.Path("es-image-id.txt").read_text().strip()
+          assert docker_id in {index_id, manifest_id, config_id}, docker_id
+          counts = collections.Counter(m["vulnerability"]["severity"] for m in scan["matches"])
+          print(dict(counts))
+          PY
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: ${{ !cancelled() && hashFiles('es-image-findings.json') != '' }}
+        with:
+          name: compose-elasticsearch-image-findings
+          path: |
+            es-image-findings.json
+            es-image-id.txt

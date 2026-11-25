@@ -34,7 +34,9 @@ def inspect_round(state, texts):
             sub.status="satisfied" if done else "active"
         missing=[fid for fid,d in result["fields"].items() if d["status"]!="answerable"]
         proof = {"sufficient": not missing, "missing": missing}
-        if state.pra_arm in {"E", "G"}:
+        from backend.research.arms import has_gap_arm
+
+        if has_gap_arm(state.pra_arm):
             from backend.research.pra_gaps import ranked_gaps
             proof["gaps"] = ranked_gaps(state, result)
         return proof

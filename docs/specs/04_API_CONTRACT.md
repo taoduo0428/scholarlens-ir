@@ -1,5 +1,7 @@
 # 04 HTTP API 契约
 
+> 运维探针 GET /healthz 在应用存活时返回 200 与 alive。GET /readyz 在论文索引映射有效且 SQLite 用户表可读时返回 200 与 ready，依赖不可用时返回 503 与 unavailable。部署验证见 [部署验收](../final/DEPLOYMENT_ACCEPTANCE.md)。
+
 > 阅读口径：本文件保留原阶段的协议、命令与验收条件。当前实现、部署和外部服务状态见[项目总报告](../PROJECT_REPORT.md)与[当前状态](../operations/STATUS.md)。旧阶段的“待接通/待交付”不覆盖后续已完成内容。
 
 > 当前前缀 `/api`，本地端口8000、ES8.19.23、个人功能采用Bearer认证；公开搜索不需登录。V2实际接口以本页V2约定及backend/FRONTEND_API_GUIDE.md为准。下方早期Mock示例仅展示历史协议形状，不代表当前数据状态。

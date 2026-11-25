@@ -1,0 +1,170 @@
+{
+  "workflow_run": 45347880238,
+  "commit": "d4a1d8e",
+  "image": "sha256:c8ec58306c7c7b426362a2feb04cc42652e71483b8601591132ef9d583e303b7",
+  "scan_sha256": "053c0e1038bbbbab8042be47c29050775bfcba44507afeace2ce6326400b300e",
+  "severity": {
+    "High": 16,
+    "Medium": 214,
+    "Low": 38,
+    "Negligible": 2
+  },
+  "high": [
+    {
+      "package": "libbrotli1",
+      "version": "1.1.0-2build2",
+      "advisory": "CVE-2026-111497",
+      "fixed_versions": [
+        "1.1.0-2ubuntu0.1"
+      ]
+    },
+    {
+      "package": "jdk",
+      "version": "27+35-2325",
+      "advisory": "CVE-2026-114938",
+      "fixed_versions": [
+        "1.8.0_513",
+        "8.0.513",
+        "11.0.33",
+        "17.0.21.1",
+        "21.0.13.1",
+        "25.0.5.1",
+        "27.0.1.1"
+      ]
+    },
+    {
+      "package": "apt",
+      "version": "2.8.3",
+      "advisory": "CVE-2026-109518",
+      "fixed_versions": [
+        "2.8.4ubuntu0.1"
+      ]
+    },
+    {
+      "package": "libapt-pkg6.0t64",
+      "version": "2.8.3",
+      "advisory": "CVE-2026-109518",
+      "fixed_versions": [
+        "2.8.4ubuntu0.1"
+      ]
+    },
+    {
+      "package": "jsoup",
+      "version": "1.21.2",
+      "advisory": "GHSA-65r4-943x-97jj",
+      "fixed_versions": [
+        "1.23.2"
+      ]
+    },
+    {
+      "package": "guava",
+      "version": "32.0.1-jre",
+      "advisory": "GHSA-xxph-c9ww-hj94",
+      "fixed_versions": [
+        "33.7.2"
+      ]
+    },
+    {
+      "package": "guava",
+      "version": "32.0.1-jre",
+      "advisory": "GHSA-xxph-c9ww-hj94",
+      "fixed_versions": [
+        "33.7.2"
+      ]
+    },
+    {
+      "package": "guava",
+      "version": "32.0.1-jre",
+      "advisory": "GHSA-xxph-c9ww-hj94",
+      "fixed_versions": [
+        "33.7.2"
+      ]
+    },
+    {
+      "package": "guava",
+      "version": "32.0.1-jre",
+      "advisory": "GHSA-xxph-c9ww-hj94",
+      "fixed_versions": [
+        "33.7.2"
+      ]
+    },
+    {
+      "package": "guava",
+      "version": "32.0.1-jre",
+      "advisory": "GHSA-xxph-c9ww-hj94",
+      "fixed_versions": [
+        "33.7.2"
+      ]
+    },
+    {
+      "package": "jdk",
+      "version": "27+35-2325",
+      "advisory": "CVE-2026-114939",
+      "fixed_versions": [
+        "1.8.0_513",
+        "8.0.513",
+        "11.0.33.1",
+        "17.0.21.1",
+        "21.0.13.1",
+        "25.0.5.1",
+        "27.0.1.1"
+      ]
+    },
+    {
+      "package": "jdk",
+      "version": "27+35-2325",
+      "advisory": "CVE-2026-114940",
+      "fixed_versions": [
+        "1.8.0_513",
+        "8.0.513",
+        "11.0.33.1",
+        "17.0.21.1",
+        "21.0.13.1",
+        "25.0.5.1",
+        "27.0.1.1"
+      ]
+    },
+    {
+      "package": "jdk",
+      "version": "27+35-2325",
+      "advisory": "CVE-2026-91415",
+      "fixed_versions": [
+        "1.8.0_511",
+        "8.0.511",
+        "11.0.33",
+        "17.0.21",
+        "21.0.13",
+        "25.0.5",
+        "27.0.1"
+      ]
+    },
+    {
+      "package": "jdk",
+      "version": "27+35-2325",
+      "advisory": "CVE-2026-114941",
+      "fixed_versions": [
+        "21.0.13.1",
+        "25.0.5.1",
+        "27.0.1.1"
+      ]
+    },
+    {
+      "package": "jdk",
+      "version": "27+35-2325",
+      "advisory": "CVE-2026-114942",
+      "fixed_versions": [
+        "21.0.13.1",
+        "25.0.5.1",
+        "27.0.1.1"
+      ]
+    },
+    {
+      "package": "lz4-java",
+      "version": "1.11.1",
+      "advisory": "GHSA-mcr4-qmvw-px4g",
+      "fixed_versions": [
+        "1.11.4"
+      ]
+    }
+  ]
+}
