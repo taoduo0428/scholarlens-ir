@@ -1,7 +1,9 @@
 import httpx
 import pytest
+from dataclasses import replace
 
-from backend.research.provider_adapter import ProviderError
+from backend.config import Settings
+from backend.research.provider_adapter import ProviderError, choose_action
 from tools.research_eval.v7_live_research import CALLS, Limits, OUTPUT_TOKENS, REQUEST_BYTES
 
 
@@ -56,3 +58,24 @@ def test_public_transport_forwards_validated_stream_for_max_tokens(monkeypatch):
         assert transport.handle_request(request).status_code == 200
     assert seen == [("8.8.8.8", "provider.example", {"model": "fixture", "max_tokens": 41})]
     assert len(budget.receipts) == 1 and budget.receipts[0]["http_status"] == 200
+
+
+@pytest.mark.parametrize("trusted", [True, False])
+def test_structured_request_keeps_cap_and_rejects_truncation(monkeypatch, trusted):
+    monkeypatch.setenv("SCHOLARLENS_TRUSTED_AI_BASE_URL", "https://trusted.example/v1")
+    monkeypatch.setenv("SCHOLARLENS_AI_LOOPBACK_PROXY", "http://127.0.0.1:8800")
+    settings = replace(Settings(), ai_base_url="https://trusted.example/v1" if trusted else "https://other.example/v1",
+                       ai_personal=True, ai_api_key="local-test-placeholder", ai_model="deepseek-v4.1-flash",
+                       ai_max_tokens=99, ai_token_parameter="max_tokens")
+
+    def truncated(request):
+        import json
+        payload = json.loads(request.content)
+        assert payload["max_tokens"] == 99
+        assert payload.get("thinking") == ({"type": "disabled"} if trusted else None)
+        assert payload.get("response_format") == ({"type": "json_object"} if trusted else None)
+        return httpx.Response(200, json={"choices": [{"finish_reason": "length",
+                              "message": {"content": '{"kind":"finish","reason":"blocked"}'}}]})
+
+    with pytest.raises(ProviderError, match="^provider_output_limit$"):
+        choose_action(settings, {"current_target": "q1"}, 5, httpx.MockTransport(truncated))

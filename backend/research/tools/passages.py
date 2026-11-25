@@ -106,6 +106,116 @@ def passages_for(doc):
     return chunks(doc)
 
 
+def sentence_windows_for(doc: dict, max_chars: int = 980) -> list[dict]:
+    """Pack complete sentences up to max_chars while preserving exact source byte offsets."""
+    from backend.research.claim_verifier import sentence_boundaries
+
+    pid = doc["paper_id"]
+    title = doc.get("title", "")
+    year = doc.get("year")
+    result = chunks({"paper_id": pid, "title": title, "year": year}) if title else []
+
+    def emit(field: str, chunk_id: str, start: int, end: int, quote: str) -> dict:
+        return {
+            "chunk_id": chunk_id,
+            "paper_id": pid,
+            "title": title,
+            "field": field,
+            "offset_start": start,
+            "offset_end": end,
+            "locator": f"{field}:chars:{start}-{end}",
+            "text": quote,
+            "year": year,
+        }
+
+    for field in ("abstract", "fulltext"):
+        text = doc.get(field, "") or ""
+        if not text.strip():
+            continue
+        if field == "fulltext" and (
+            "\ufffd" in text or "unreadable_characters_in_fulltext" in doc.get("errors", [])
+        ):
+            continue
+        spans = []
+        cursor = 0
+        for split in [*sentence_boundaries(text), None]:
+            end = split.start() if split else len(text)
+            piece = text[cursor:end]
+            if piece.strip():
+                left = cursor + len(piece) - len(piece.lstrip())
+                right = end - (len(piece) - len(piece.rstrip()))
+                if left < right:
+                    spans.append((left, right))
+            if split:
+                cursor = split.end()
+        if not spans:
+            spans = [(0, len(text))]
+        idx = 0
+        while idx < len(spans):
+            s_start, s_end = spans[idx]
+            if s_end - s_start > max_chars:
+                pos = s_start
+                while pos < s_end:
+                    stop = min(s_end, pos + max_chars)
+                    if stop < s_end:
+                        ws = list(re.finditer(r"\s+", text[pos + max_chars // 2 : stop]))
+                        if ws:
+                            stop = pos + max_chars // 2 + ws[-1].start()
+                    quote = text[pos:stop]
+                    if quote.strip():
+                        cid = "chunk:swraw-" + hash_text(f"swraw:{pid}:{field}:{pos}:{stop}:{quote}")[:52]
+                        result.append(emit(field, cid, pos, stop, quote))
+                    if stop >= s_end:
+                        break
+                    pos = max(pos + 1, stop - 120)
+                idx += 1
+                continue
+            end_idx = idx + 1
+            while end_idx < len(spans) and spans[end_idx][1] - s_start <= max_chars:
+                end_idx += 1
+            w_end = spans[end_idx - 1][1]
+            quote = text[s_start:w_end]
+            if quote.strip():
+                cid = "chunk:sw1-" + hash_text(f"sw1:{pid}:{field}:{s_start}:{w_end}:{quote}")[:54]
+                result.append(emit(field, cid, s_start, w_end, quote))
+            if end_idx >= len(spans):
+                break
+            prev_len = spans[end_idx - 1][1] - spans[end_idx - 1][0]
+            if (
+                end_idx - idx > 1
+                and prev_len <= max_chars // 2
+                and spans[end_idx][1] - spans[end_idx - 1][0] <= max_chars
+            ):
+                idx = end_idx - 1
+            else:
+                idx = end_idx
+    return result
+
+
+def complete_abstract_opening(doc, row):
+    """Extend an initial abstract window to one complete sentence, up to 1000 characters."""
+    from backend.research.claim_verifier import sentence_boundaries
+
+    text = doc.get("abstract", "")
+    end = row["offset_end"]
+    if row["field"] != "abstract" or row["offset_start"] or end >= len(text) or end >= 1000:
+        return None
+    start = 0
+    for split in [*sentence_boundaries(text[:1002]), None]:
+        stop = split.start() if split else min(len(text), 1002)
+        if stop > end:
+            sentence = text[start:stop].strip()
+            if start < end < stop <= 1000 and 8 <= len(sentence) <= 480 and sentence[-1] in ".!?。！？":
+                quote = text[:stop]
+                chunk_id = "chunk:" + hash_text(f"research-abstract-opening/1:{row['chunk_id']}:{stop}:{quote}")
+                return {**row, "chunk_id": chunk_id, "offset_end": stop,
+                        "locator": f"abstract:chars:0-{stop}", "text": quote}, sentence
+            break
+        if split:
+            start = split.end()
+    return None
+
+
 def nearest_heading(doc, row):
     if row["field"] != "fulltext":
         return None

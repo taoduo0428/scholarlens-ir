@@ -1,0 +1,2127 @@
+{
+ "dataset": "QASPER v0.3 official test; Dasigi et al., 2021; CC BY 4.0",
+ "url": "https://qasper-dataset.s3.us-west-2.amazonaws.com/qasper-test-and-evaluator-v0.3.tgz",
+ "archive_sha256": "72a52a41193e2838b8074f80ac074b94f956b84886c36a61c58a7df4171bdd72",
+ "seed": "scholarlens-qasper-v1:",
+ "runtime_commit_before_repair": "d511e5ecdfc8acb08fd0fece2e5409aaca7caa06",
+ "scores": {
+  "A": {
+   "positive_direct": 0,
+   "negative_direct": 0,
+   "positive_retained_reference": 15,
+   "positive_direct_sentence_in_reference": 0,
+   "extractive_reference_cases": 20,
+   "all_extractive_spans_in_grounded_answer": 0,
+   "tools": 310
+  },
+  "G_blind": {
+   "positive_direct": 0,
+   "negative_direct": 1,
+   "positive_retained_reference": 15,
+   "positive_direct_sentence_in_reference": 0,
+   "extractive_reference_cases": 20,
+   "all_extractive_spans_in_grounded_answer": 0,
+   "tools": 312
+  },
+  "G_regression": {
+   "positive_direct": 0,
+   "negative_direct": 0,
+   "positive_retained_reference": 15,
+   "positive_direct_sentence_in_reference": 0,
+   "extractive_reference_cases": 20,
+   "all_extractive_spans_in_grounded_answer": 0,
+   "tools": 312
+  },
+  "G_metric_regression": {
+   "positive_direct": 1,
+   "negative_direct": 0,
+   "positive_retained_reference": 15,
+   "positive_direct_sentence_in_reference": 1,
+   "extractive_reference_cases": 20,
+   "all_extractive_spans_in_grounded_answer": 1,
+   "tools": 312
+  }
+ },
+ "cases": [
+  {
+   "paper": "1704.08390",
+   "question": "9a7aeecbecf5e30ffa595c233fca31719c9b429f",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1904.02954",
+   "question": "9dd8ce48a2a59a63ae6366ab8b2b8828e5ae7f35",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "2001.11316",
+   "question": "8a0e1a298716698a305153c524bf03d18969b1c6",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "2003.12660",
+   "question": "c8f8ecac23a991bceb8387e68b3b3f2a5d8cf029",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 1,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": true,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": true,
+    "published_ids": [
+     "c-76a29081b517ba04bc6d4ede"
+    ],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1911.11899",
+   "question": "9f1e60ee86a5c46abe75b67ef369bf92a5090568",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1911.12893",
+   "question": "4542b162a5be00206fd14570898a7925cb267599",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "2002.00175",
+   "question": "b424ad7f9214076b963a0077d7345d7bb5a7a205",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1908.09919",
+   "question": "e1f61500eb733f2b95692b6a9a53f8aaa6f1e1f6",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1906.06349",
+   "question": "0b5a505c1fca92258b9e83f53bb8cfeb81cb655a",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1909.06502",
+   "question": "7de0b2df60d3161dd581ed7915837d460020bc11",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1604.02038",
+   "question": "a0fd0c0fe042ad045b8d5095c81643ef3a352b81",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1906.01076",
+   "question": "b537832bba2eb6d34702a9d71138e661c05a7c3a",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1901.05415",
+   "question": "78f8dad0f1acf024f69b3218b2d204b8019bb0d2",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1709.09749",
+   "question": "5d4190403eb800bb17eec71e979788e11cf74e67",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 8
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 8
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 8
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 8
+   }
+  },
+  {
+   "paper": "1611.04234",
+   "question": "a71fb012631e6a8854d5945b6d0ab2ab8e7b7ee6",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1808.10006",
+   "question": "991ea04072b3412928be5e6e903cfa54eeac3951",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 5
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 4
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 4
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 4
+   }
+  },
+  {
+   "paper": "1909.06708",
+   "question": "a86758696926f2db71f982dc1a4fa4404988544e",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1605.04278",
+   "question": "576a3ed6e4faa4c3893db632e97a52ac6e864aac",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "2002.08902",
+   "question": "6683008e0a8c4583058d38e185e2e2e18ac6cf50",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1805.04833",
+   "question": "b783ec5cb9ad595da7db2c0ddf871152ae382c5f",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1902.06734",
+   "question": "fa800a21469a70fa6490bfc67cabdcc8bf086fb5",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1808.07231",
+   "question": "76e17e648a4d1f386eb6bf61b0c24f134af872be",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1805.00195",
+   "question": "d206f2cbcc3d2a6bd0ccaa3b57fece396159f609",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1909.02855",
+   "question": "34e9e54fa79e89ecacac35f97b33ef3ca3a00f85",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1804.09692",
+   "question": "afcd1806b931a97c0679f873a71b825e668f2b75",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1610.09722",
+   "question": "dfdd309e56b71589b25412ba85b0a5d79a467ceb",
+   "unanswerable": false,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": true,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": true,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1908.05925",
+   "question": "63279ecb2ba4e51c1225e63b81cb021abc10d0d1",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1706.08568",
+   "question": "0f9678e11079ee9ea1a1ce693f017177dd495ee5",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "2004.03090",
+   "question": "a97137318025a6642ed0634f7159255270ba3d4f",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1710.01789",
+   "question": "cc8f495cac0af12054c746a5b796e989ff0e5d5f",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1906.01010",
+   "question": "a926d71e6e58066d279d9f7dc3210cd43f410164",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_blind": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  },
+  {
+   "paper": "1910.09942",
+   "question": "58df55002fbcba76b9aeb2181d78378b8c01a827",
+   "unanswerable": true,
+   "A": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 7
+   },
+   "G_blind": {
+    "direct": 1,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [
+     "c-7d72475fbfa0413e6231069d"
+    ],
+    "tools": 10
+   },
+   "G_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   },
+   "G_metric_regression": {
+    "direct": 0,
+    "reference_passage_read": false,
+    "direct_sentence_in_reference": false,
+    "has_extractive_reference": false,
+    "all_spans_with_reference": false,
+    "published_ids": [],
+    "tools": 10
+   }
+  }
+ ],
+ "fresh_second_batch": {
+  "scores": {
+   "A": {
+    "positive_direct": 0,
+    "negative_direct": 1,
+    "positive_retained_reference": 11,
+    "positive_direct_sentence_in_reference": 0,
+    "extractive_reference_cases": 17,
+    "all_extractive_spans_in_grounded_answer": 0,
+    "tools": 308
+   },
+   "G": {
+    "positive_direct": 0,
+    "negative_direct": 1,
+    "positive_retained_reference": 11,
+    "positive_direct_sentence_in_reference": 0,
+    "extractive_reference_cases": 17,
+    "all_extractive_spans_in_grounded_answer": 0,
+    "tools": 307
+   }
+  },
+  "cases": [
+   {
+    "paper": "1708.07252",
+    "question": "9f065e787a0d40bb4550be1e0d64796925459005",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1911.04474",
+    "question": "aebd1f0d728d0de5f76238844da044a44109f76f",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1801.05617",
+    "question": "85ab5f773b297bcf48a274634d402a35e1d57446",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1612.03762",
+    "question": "71413505d7d6579e2a453a1f09f4efd20197ab4b",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1709.06365",
+    "question": "7d8cd7d6c86349ef0bd4fdbd84c8dc49c7678f46",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1708.07690",
+    "question": "7ba6330d105f49c7f71dba148bb73245a8ef2966",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1912.10162",
+    "question": "6cad6f074b0486210ffa4982c8d1632f5aa91d91",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1911.10742",
+    "question": "397a1e851aab41c455c2b284f5e4947500d797f0",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1805.11850",
+    "question": "df4895c6ae426006e75c511a304d56d37c42a1c7",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1811.04791",
+    "question": "e5f8d2fc1332e982a54ee4b4c1f7f55e900d0b86",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1605.05156",
+    "question": "8ddf78dbdc6ac964a7102ae84df18582841f2e3c",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.09283",
+    "question": "bfd55ae9630a08a9e287074fff3691dfbffc3258",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1603.00957",
+    "question": "1d9d7c96c5e826ac06741eb40e89fca6b4b022bd",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.10001",
+    "question": "c25014b7e57bb2949138d64d49f356d69838bc25",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1905.07562",
+    "question": "bcf222ad4bb537b01019ed354ea03cd6bf2c1f8e",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.06259",
+    "question": "fea9b4d136156f23a88e5c7841874a467f2ba86d",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1611.02378",
+    "question": "818c85ee26f10622c42ae7bcd0dfbdf84df3a5e0",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1805.11937",
+    "question": "dc23006d67f20f430f1483398de4a89c0be4efe2",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1911.00461",
+    "question": "3cc9a820c4a2cd2ff61da920c41ed09f3c0135be",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1912.00342",
+    "question": "c0120d339fcdb3833884622e532e7513d1b2c7dd",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1708.01065",
+    "question": "dfaeb8faf04505a4178945c933ba217e472979d8",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": true,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1809.08935",
+    "question": "c728fe6137f114c02e921f9be4a02a5bd83ae787",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1908.11046",
+    "question": "2929e92f9b4939297b4d0f799d464d46e8d52063",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 5
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 4
+    }
+   },
+   {
+    "paper": "1708.05521",
+    "question": "0ac6fbd81e2dd95b800283dc7e59ce969d45fc02",
+    "unanswerable": false,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": true,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1711.11118",
+    "question": "d5d4504f419862275a532b8e53d0ece16e0ae8d1",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1907.01339",
+    "question": "a913aa14d4e05cc9d658bf6697fe5b2652589b1b",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "2003.03728",
+    "question": "c626637ed14dee3049b87171ddf326115e59d9ee",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1905.08392",
+    "question": "98c8ed9019e43839ffb53a714bc37fbb1c28fe2c",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1907.00168",
+    "question": "ab95ca983240ad5289c123a2774f8e0db424f4a1",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1906.04287",
+    "question": "d427e9d181434078c78b7ee33a26b269f160f6d2",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   },
+   {
+    "paper": "1910.12477",
+    "question": "b0edb9023f35a5a02eb8fb968e880e36233e66b3",
+    "unanswerable": true,
+    "A": {
+     "direct": 1,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [
+      "c-9f4cf4d4e55495dace6de18d"
+     ],
+     "tools": 3
+    },
+    "G": {
+     "direct": 1,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [
+      "c-9f4cf4d4e55495dace6de18d"
+     ],
+     "tools": 3
+    }
+   },
+   {
+    "paper": "1803.08614",
+    "question": "21175d8853fd906266f884bced85c598c35b1cbc",
+    "unanswerable": true,
+    "A": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    },
+    "G": {
+     "direct": 0,
+     "reference_passage_read": false,
+     "direct_sentence_in_reference": false,
+     "has_extractive_reference": false,
+     "all_spans_with_reference": false,
+     "published_ids": [],
+     "tools": 10
+    }
+   }
+  ]
+ }
+}

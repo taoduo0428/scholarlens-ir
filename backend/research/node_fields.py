@@ -29,6 +29,15 @@ HINTS = {
     "finding": r"result|finding|outcome|conclusion|结果|发现|结论",
 }
 METRICS = re.compile(r"\b(?:accuracy|precision|recall|f1|ndcg|mrr|rmse|mae)\b|准确率|召回率|精确率", re.I)
+METHOD_OVERVIEW = re.compile(
+    r"(?:综合(?:这组|这些|所选)论文(?:各自|各篇|每篇)(?:的)?(?:研究)?方法"
+    r"|(?:synthesize|summarize) the (?:reported )?(?:research )?methods of "
+    r"each (?:of the selected )?(?:paper|study))(?:[。.!？?])?", re.I,
+)
+
+
+def method_only_overview(goal):
+    return METHOD_OVERVIEW.fullmatch(goal.strip()) is not None
 
 
 def dimensions(plan, node, contract):
@@ -57,15 +66,25 @@ def dimensions(plan, node, contract):
     return ["chain" if role == "mechanism" else "finding"]
 
 
-def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
+def compile_fields(plan, contract, *, profile_gaps=False, independent=False, pra=False):
     scope = list(dict.fromkeys(contract.scope["paper_ids"]))
     chinese = bool(re.search(r"[\u3400-\u9fff]", contract.goal))
     one = len(plan.graph.nodes) == 1
+    asks_limits = profile_gaps and contract.answer_type == "overview" and re.search(
+        r"open questions?|limitations?|future (?:work|research)|仍待|待解决|局限|不足", contract.goal, re.I
+    )
+    # Individual limitations are observations. Shared limitations still require group evidence.
+    individual_limits = bool(
+        asks_limits and pra and 1 < len(scope) <= 4 and not TITLES.search(contract.goal)
+        and re.search(r"各自|逐篇|每篇|每项研究|\beach (?:paper|study|article)\b|\bpaper.by.paper\b", contract.goal, re.I)
+        and not re.search(r"共同|共有|一致|\b(?:shared|common|across all)\b", contract.goal, re.I)
+        and any(n.requirement.kind == "source_fact" and not n.dependencies for n in plan.graph.nodes)
+    )
     result = []
     for node in plan.graph.nodes:
         fields = []
         from backend.research.research_intent import research_intent
-        research_type = research_intent(contract.goal) if independent else None
+        research_type = research_intent(contract.goal, descriptive_subjects=pra) if independent else None
         dimensions_by_intent = {
             "method_comparison": ["method"], "metric_comparison": ["metric"],
             "condition_comparison": ["dataset" if re.search(HINTS["dataset"], contract.goal, re.I) else "setting"],
@@ -73,10 +92,43 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
         }
         independent_facets = dimensions_by_intent.get(research_type)
         intent_goal = TITLES.sub(" ", contract.goal)
+        multiple_methods = bool(pra and research_type == "method_comparison" and 2 <= len(scope) <= 4
+                                and re.fullmatch(r"compare the (?:research )?methods (?:used in|of) "
+                                                 r"(?:the two|these|the selected) (?:papers|studies)[.?]?",
+                                                 intent_goal.strip(), re.I))
+        named_targets = []
+        if pra and one and len(scope) == 1 and research_type == "description" and not TITLES.search(contract.goal):
+            study = r"(?:the authors|this (?:study|paper)|the (?:study|paper))"
+            if re.fullmatch(
+                rf"(?:what|which) (?:research )?(?:methods?|approach(?:es)?|techniques?) "
+                rf"(?:(?:did|does|do) {study} (?:use|apply|adopt)|"
+                rf"(?:was|were) (?:used|applied|adopted) (?:in|by) {study})[?.]?|"
+                r"(?:本文|这篇论文|本研究|作者)(?:采用|使用)(?:了)?(?:什么|哪些|哪种)(?:研究)?方法[？?。]?",
+                intent_goal.strip(), re.I
+            ):
+                independent_facets = ["method"]
         if research_type == "description" and re.search(r"objectives?|research goals?|研究目标|研究目的", intent_goal, re.I):
             # Mixed objectives, representation and units still need independent proofs.
             if not re.search(r"unit of analysis|representation|分析单位|数据表示", intent_goal, re.I):
                 independent_facets = ["objective"]
+        if pra and one and scope and len(scope) <= 4 and research_type in {
+            "description", "method_comparison", "condition_comparison", "metric_comparison"
+        } and re.search(r"compar|contrast|比较|对比", intent_goal, re.I):
+            dimensions_requested = [k for k, rx in {
+                "objective": r"objectives?|research goals?|研究目标|研究目的",
+                "method": r"\bmethods?\b|研究方法|方法",
+                "decision_model": r"decision models?|决策模型",
+                "setting": r"experimental (?:conditions?|settings?)|实验条件|实验设置",
+                "finding": r"reported (?:findings?|results?)|研究结果|实验结果",
+                "metric": r"evaluation metrics?|评价指标",
+            }.items() if re.search(rx, intent_goal, re.I)]
+            # Named titles can denote a strict subset of the permitted library.
+            if (len(dimensions_requested) >= 2
+                    and not re.search(r"rank|caus|contradict|unit of analysis|representation|排名|因果|矛盾", intent_goal, re.I)):
+                titles = list(dict.fromkeys(match[0][1:-1].strip() for match in TITLES.finditer(contract.goal)))
+                if not titles or len(titles) <= 4 and all(0 < len(t) <= 500 for t in titles):
+                    independent_facets = dimensions_requested
+                    named_targets = titles
         from backend.research.descriptive_plan import comparison_subjects, requested_dimensions
         subjects = comparison_subjects(contract.goal) if independent and one and research_type == "description" else []
         typed = requested_dimensions(intent_goal)
@@ -117,13 +169,16 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
         elif one and independent_facets and len(scope) <= 4 and not any(
             field_for(node, contract, part, 1).operation in {"layout", "quote"} for part in requests(contract.goal)
         ):
-            for paper in scope or [None]:
+            targets = [(None, title) for title in named_targets] or [(p, None) for p in scope or [None]]
+            for paper, title in targets:
                 for facet in independent_facets:
                     f = field_for(node, contract, contract.goal, len(fields) + 1)
                     metric_names = list(dict.fromkeys(m.casefold() for m in METRICS.findall(intent_goal)))
                     for metric in metric_names if facet == "metric" and metric_names else [None]:
                         fields.append(f.model_copy(update={"field_id": f"{node.id}.f{len(fields)+1}",
                             "facet": facet, "paper_ids": [paper] if paper else [], "requested_metric": metric,
+                            **({"operation": "fact"} if facet == "method" and multiple_methods else {}),
+                            **({"required_title": title, "request": f"《{title}》 · {facet}"} if title else {}),
                             "min_evidence": 1, "min_papers": 1}))
         elif one:
             question = node.question if plan.origin == "personal_model" else contract.goal
@@ -132,6 +187,11 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
             for i, request in enumerate(requests(question), 1):
                 f = field_for(node, contract, request, i)
                 changes = {"min_evidence": 1}
+                if pra and one and len(scope) == 1 and research_type == "description":
+                    from backend.research.profile_frames import METRIC_NAMES_QUESTION
+                    if METRIC_NAMES_QUESTION.fullmatch(contract.goal.strip()):
+                        changes.update(operation="attribute", datatype=AnswerFieldType.text, paper_ids=scope,
+                                       capability=RequiredSourceCapability(requires="text"))
                 if independent and research_type == "description" and question == contract.goal:
                     previous_subject = parse_request(request, previous_subject)
                     if previous_subject:
@@ -141,12 +201,15 @@ def compile_fields(plan, contract, *, profile_gaps=False, independent=False):
                 fields.append(f.model_copy(update=changes))
         else:
             facets = dimensions(plan, node, contract)
-            if profile_gaps and contract.answer_type == "overview" and "overview" in facets and re.search(
-                r"open questions?|limitations?|future (?:work|research)|仍待|待解决|局限|不足", contract.goal, re.I
-            ):
+            if (pra and plan.contract.intent == "literature_synthesis"
+                    and node.requirement.kind == "source_fact" and method_only_overview(contract.goal)):
+                facets = ["method"]
+            if individual_limits and node.requirement.kind == "source_fact" and not node.dependencies:
+                facets = [*facets, "limitations"]
+            elif asks_limits and not individual_limits and "overview" in facets:
                 facets = [*facets, "limitations"]
             for facet in facets:
-                per_paper = facet in {"method", "dataset", "metric", "finding", "topic"}
+                per_paper = facet in {"method", "dataset", "metric", "finding", "topic"} or (individual_limits and facet == "limitations")
                 targets = [[p] for p in scope] if per_paper and 0 < len(scope) <= 4 else [scope]
                 metrics = list(dict.fromkeys(m.casefold() for m in METRICS.findall(TITLES.sub("", contract.goal))))
                 for papers in targets:

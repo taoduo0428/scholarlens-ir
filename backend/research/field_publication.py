@@ -1,10 +1,7 @@
 """Project externally rechecked per-field decisions into the existing report."""
 
-from backend.research.field_gate import evaluate
-
-
-def publish_fields(state, report, sources, suggestions, ordering, warnings):
-    gate, accepted = evaluate(state, sources, suggestions, warnings)
+def publish_fields(state, report, sources, evaluation, ordering, warnings):
+    gate, accepted, index = evaluation
     all_claims = {c.claim_id: c for c in state.claims}
     all_claims.update(accepted)
     if state.retrieval_policy in {"E9.1", "E10", "E11"}:
@@ -18,16 +15,18 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         direct = list(dict.fromkeys([i for i in ordering if i in accepted] + direct))
     dependency_ids = {d for q in state.field_requirements for d in q.dependencies}
     final_ids = {b["claim_id"] for b in gate["bindings"] if b["question_id"] not in dependency_ids}
-    index = None
     direct_ids = final_ids.copy()
     if state.retrieval_policy == "E11":
+        from backend.research.arms import has_full_pra, has_graph_arm, has_pairwise_arm
         from backend.research.research_intent import research_intent
-        from backend.research.research_profile import profiles
-        intent = research_intent(state.task.goal)
+        intent = research_intent(state.task.goal, descriptive_subjects=has_full_pra(state.pra_arm))
         report["research_intent"] = intent
-        index = {} if gate["status"] == "blocked_by_permission" else profiles(
-            state, sources, suggestions.get("_profile_candidates", []))
+        if gate["status"] == "blocked_by_permission":
+            index = {}
         report["research_profiles"] = [p.model_dump(mode="json") for p in index.values()]
+        if has_graph_arm(state.pra_arm):
+            from backend.research.pra_relations import source_graph
+            report["profile_relations"] = source_graph(accepted.values(), index, sources)
         report["evidence_matrix"] = [
             {"paper_id": p.paper_id, "fields": {k: list(dict.fromkeys(v.evidence_id for v in rows))
                                                for k, rows in p.fields.items()}}
@@ -68,11 +67,15 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         + list(warnings),
     )
     if state.retrieval_policy in {"E9.1", "E10", "E11"} and state.answer_contract.answer_type == "overview":
+        from backend.research.arms import has_full_pra, has_h1, has_h3, has_pairwise_arm
         from backend.research.overview import synthesize
 
         # Partial reports keep the paper profiles supported by completed nodes.
         # A cross-paper inference additionally requires the final DAG decision.
-        overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=index)
+        overview, _ = synthesize(list(accepted.values()), sources, state.task.scope.paper_ids,
+                                 attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=index,
+                                 pairwise=has_pairwise_arm(state.pra_arm),
+                                 open_relations=has_h3(state.pra_arm), discourse=has_h1(state.pra_arm))
         if state.retrieval_policy == "E11" and intent == "trend_analysis":
             overview["findings"] = [
                 {"kind": "reported_time_trend", "level": "supported_claim", "statement": accepted[cid].statement,
@@ -80,6 +83,8 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
                  "evidence_ids": accepted[cid].evidence_ids} for cid in sorted(final_ids)
             ]
         elif state.retrieval_policy == "E11":
+            from backend.research.node_fields import method_only_overview
+
             # Publish observations from accepted fields and reconstruct relations
             # solely from the bindings of the overview field that approved them.
             relations = []
@@ -88,7 +93,9 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
                     continue
                 ids = dict.fromkeys(b["claim_id"] for b in decisions[fid]["bindings"] if b["claim_id"] in kept)
                 bound, _ = synthesize([accepted[cid] for cid in ids], sources, field.paper_ids,
-                                      attributed=True, profile_index=index)
+                                      attributed=True, profile_index=index, pairwise=has_pairwise_arm(state.pra_arm),
+                                      compose_methods=has_full_pra(state.pra_arm) and method_only_overview(state.answer_contract.goal),
+                                      open_relations=has_h3(state.pra_arm), discourse=has_h1(state.pra_arm))
                 relations.extend(row for row in bound["findings"] if row["level"] == "derived_synthesis"
                                  and set(field.paper_ids) <= set(row["paper_ids"]))
             overview["findings"] = [row for row in overview["findings"] if row["level"] != "derived_synthesis"
@@ -148,6 +155,48 @@ def publish_fields(state, report, sources, suggestions, ordering, warnings):
         if conclusions
         else "现有证据不足以回答最终问题。"
     )
+    from backend.research.arms import has_compiler_arm, has_h1, has_h3, has_pairwise_arm
+    intent = report.get("research_intent")
+    if has_pairwise_arm(state.pra_arm) and intent in {"method_comparison", "literature_synthesis"}:
+        from backend.research.pra_relations import shared_relations
+        released = [accepted[cid] for cid in sections["verified"] if cid in accepted]
+        scope = set(state.task.scope.paper_ids)
+        rows = []
+        for kind, message, witnesses in shared_relations(released, index, sources, scope):
+            papers = sorted({pid for c in witnesses for pid in c.paper_ids})
+            subset = set(papers) < scope
+            if intent == "literature_synthesis" and not subset:
+                continue  # The overview field owns publication for the full group.
+            if subset:
+                titles = "、".join(f"《{index[p].title}》" for p in papers)
+                message = f"所选 {len(scope)} 篇中，以下关系仅由 {titles} 支持。{message}"
+            rows.append({"kind": kind, "level": "derived_synthesis", "statement": message,
+                         "scope": "subset" if subset else "full_group",
+                         "premise_claim_ids": [c.claim_id for c in witnesses],
+                         "evidence_ids": sorted({eid for c in witnesses for eid in c.evidence_ids}),
+                         "paper_ids": papers})
+        if not rows and has_h3(state.pra_arm) and intent == "method_comparison" and len(scope) >= 2:
+            from backend.research.open_relations import open_overview_relations
+
+            for kind, message, witnesses in open_overview_relations(
+                released,
+                index,
+                sources,
+                sorted(scope),
+                method_only=True,
+                discourse=has_h1(state.pra_arm),
+            ):
+                papers = sorted({pid for c in witnesses for pid in c.paper_ids})
+                rows.append({"kind": kind, "level": "derived_synthesis", "statement": message,
+                             "scope": "subset" if set(papers) < scope else "full_group",
+                             "premise_claim_ids": [c.claim_id for c in witnesses],
+                             "evidence_ids": sorted({eid for c in witnesses for eid in c.evidence_ids}),
+                             "paper_ids": papers})
+        if rows or intent == "method_comparison":
+            report["method_relations"] = rows
+    if has_compiler_arm(state.pra_arm):
+        from backend.research.answer_compiler import compile_answer
+        report["compiled_answer"] = compile_answer(report)
 
 
 def markdown(report, escape):
@@ -175,4 +224,7 @@ def markdown(report, escape):
         for entry in report["overview"]["findings"]:
             rows.append("- " + escape(entry["statement"]) + " [" + escape("逐篇观察" if entry["level"] == "paper_observation" else entry["level"]) + "] " +
                         ", ".join(escape(cid) for cid in entry["premise_claim_ids"]))
+    if "compiled_answer" in report:
+        from backend.research.answer_compiler import markdown as compiled_markdown
+        rows.append(compiled_markdown(report["compiled_answer"], escape))
     return "\n".join(rows) + "\n"

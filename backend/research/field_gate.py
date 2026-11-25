@@ -31,6 +31,13 @@ from backend.research.workspace_relations import attribute, joined_support
 from types import SimpleNamespace
 
 
+TWO_PAPER_METRIC = re.compile(
+    rf"(?:which (?:paper|study|method|model) (?:reports|reported|has|had) the (?:highest|lowest|higher|lower)"
+    rf"|compare the reported) ({METRIC})(?: of (?:the|these) two (?:papers|studies|methods|models))?[?.]?",
+    re.I,
+)
+
+
 def capability(row, state):
     ref = next((r for r in state.evidence_refs if r.evidence_id == row["evidence_id"]), None)
     if not ref or any(
@@ -91,17 +98,34 @@ def ancestors(requirements):
     return {q: visit(q) for q in by_id}
 
 
-def source_claims(field, sources):
+def source_claims(field, sources, *, arm="A"):
+    from backend.research.arms import has_h1, has_h2
+
     out = []
+    seen = set()
     for row in sources.values():
-        for sentence in sentences(publication_quote(row)):
+        quote = publication_quote(row)
+        for sentence in sentences(quote):
             measurement = contextual_conditions(sentence, row["quote"])
             kind = "metric" if measurement.metric_name else "fact"
             c = verify_claim(
                 new_claim(field.question_id, sentence, kind, [row], measurement), sources
             )
-            if c.support_status == "verified":
+            if c.support_status == "verified" and c.claim_id not in seen:
                 out.append(c)
+                seen.add(c.claim_id)
+        if has_h2(arm) and field.operation in {"attribute", "fact", "measure"}:
+            from backend.research.semantic_slots import adjacent_author_pairs
+
+            aligned = str(row.get("chunk_id", "")).startswith("chunk:sw1-")
+            offset = int(row["locator"].rsplit(":", 1)[1].split("-")[0])
+            for _, _, combined in adjacent_author_pairs(
+                quote, offset, aligned=aligned, discourse=has_h1(arm)
+            ):
+                c = verify_claim(new_claim(field.question_id, combined, "fact", [row]), sources)
+                if c.support_status == "verified" and c.claim_id not in seen:
+                    out.append(c)
+                    seen.add(c.claim_id)
     return out
 
 
@@ -158,23 +182,83 @@ def matches(field, claim, row, state, suggestions):
 
 
 def qualified(field, claims, sources, state, suggestions, profile_index=None):
+    from backend.research.arms import has_full_pra, has_h1, has_h2, has_h3, has_pairwise_arm, has_profile_arm
+
+    arm = state.pra_arm
     valid = [c for c in claims if suggestions.get(c.claim_id) not in {"unsupported", "background"}]
+    raw_valid = list(valid)
+    if (has_full_pra(arm) and field.operation == "attribute" and field.facet is None
+            and len(state.task.scope.paper_ids) == 1 and not state.task.constraints):
+        from backend.research.workspace_relations import SOFTWARE_QUESTION, software_support
+
+        question = SOFTWARE_QUESTION.fullmatch(field.request.strip())
+        if question:
+            return [c for c in valid if software_support(question, c.statement)], "insufficient_evidence"
+    # A source-bound measurement with complete conditions is itself a reported finding.
+    # Apply this only to an explicit metric comparison between two selected papers.
+    comparison_metric = None
+    if (has_full_pra(arm) and state.answer_contract.answer_type == "aligned_comparison"
+            and len(state.task.scope.paper_ids) == 2
+            and not state.task.constraints
+            and field.facet in {"finding", "metric", "conditions", "comparison"}):
+        match = TWO_PAPER_METRIC.fullmatch(state.answer_contract.goal.strip())
+        if match:
+            comparison_metric = match[1].casefold()
+    if comparison_metric:
+        from backend.research.research_profile import NEGATED, attribution
+        valid = [c for c in valid if c.claim_type == "metric"
+                 and (c.conditions.metric_name or "").casefold() == comparison_metric
+                 and c.conditions.unit and measurement_key(c.conditions)
+                 and not NEGATED.search(c.statement) and attribution(c.statement)[0] == "authors"]
+        if field.facet == "finding":
+            return valid, "insufficient_evidence"
+    if (has_full_pra(arm) and field.operation == "attribute" and len(field.paper_ids) == 1
+            and field.facet is None and field.datatype == "text"):
+        from backend.research.profile_frames import METRIC_NAMES_QUESTION, states_metric_use
+        from backend.research.research_profile import is_sentence_aligned, sentence_spans
+        if METRIC_NAMES_QUESTION.fullmatch(field.request.strip()):
+            evidence = set()
+            for eid, row in sources.items():
+                offset = int(row["locator"].rsplit(":", 1)[1].split("-")[0])
+                previous = ""
+                for span in sentence_spans(row["quote"], offset, aligned=is_sentence_aligned(row)):
+                    if span and states_metric_use(span[2], previous):
+                        evidence.add((eid, span[2]))
+                    previous = span[2] if span else ""
+            return [c for c in valid if any((eid, c.statement) in evidence for eid in c.evidence_ids)], "insufficient_evidence"
     if field.facet:
         if profile_index is not None and field.facet in {
             "reported_quantity", "quantity_unit", "quantity_comparator", "quantity_conditions"
         }:
             from backend.research.quantitative_evidence import witnesses
-            return witnesses(field, valid, sources), "insufficient_evidence"
+            proof = witnesses(field, valid, sources)
+            if not proof and has_h2(arm):
+                from backend.research.semantic_slots import quantity_witnesses
+                proof = quantity_witnesses(field, valid, sources)
+            return proof, "insufficient_evidence"
         if profile_index is not None and field.facet in {"causal_premise", "causal_path", "input_path"}:
             from backend.research.multihop_fields import causal_premises
-            return causal_premises(field, valid, sources), "insufficient_evidence"
+            return causal_premises(
+                field,
+                valid,
+                sources,
+                max_hops=3 if has_full_pra(arm) else 2,
+                open_links=has_h3(arm),
+            ), "insufficient_evidence"
         if profile_index is not None and field.facet in {"addressed_problem", "required_input"}:
             from backend.research.subject_facts import witnesses
-            proof = witnesses(field, valid, sources) if field.subject else []
+            proof = witnesses(field, valid, sources, study_context=has_profile_arm(arm)) if field.subject else []
+            if not proof and has_h2(arm) and field.subject:
+                from backend.research.semantic_slots import subject_relation_witnesses
+                proof = subject_relation_witnesses(field, valid, sources, state)
             return proof, "insufficient_evidence"
+        scoped_representation = []
+        if field.subject and field.facet == "representation" and has_full_pra(arm):
+            from backend.research.descriptive_plan import constraint_representation
+            scoped_representation = constraint_representation(field.subject, field.question_id, valid, sources)
         if field.subject:
             from backend.research.descriptive_plan import anchored
-            valid = [c for c in valid if anchored(field.subject, c, sources)]
+            valid = [c for c in valid if anchored(field.subject, c, sources, frames=has_profile_arm(arm))]
         if field.requested_metric:
             aliases = {"准确率": "accuracy", "召回率": "recall", "精确率": "precision"}
             metric = aliases.get(field.requested_metric, field.requested_metric).casefold()
@@ -190,23 +274,63 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
                         and re.search(r"increas|decreas|declin|grew|增长|下降|逐年", c.statement, re.I)]
             return temporal, "insufficient_evidence"
         if profile_index is not None and field.facet in {"unit", "representation"}:
-            from backend.research.research_profile import attribution
+            from backend.research.research_profile import attribution, NEGATED
             patterns = {
                 "unit": r"\b(?:unit of analysis|analytical unit|each (?:observation|sample|instance) (?:is|represents))\b|分析单位",
-                "representation": r"\b(?:represent(?:ed|s)?|encod(?:ed|es?))\b.{1,75}\b(?:as|by|using|with)\b|表示为|编码为",
+                "representation": (r"\b(?:model|models|represent|represents|encode|encodes)\b[^.;]{1,95}\bas\b|"
+                                   r"\b(?:represented|encoded)\b[^.;]{1,75}\b(?:as|by|using|with)\b|表示为|编码为"),
             }
-            hits = [c for c in valid if attribution(c.statement)[0] == "authors" and
+            hits = [c for c in valid if attribution(c.statement)[0] == "authors" and not NEGATED.search(c.statement) and
                     re.search(patterns[field.facet], c.statement, re.I)]
-            return hits, "insufficient_evidence"
+            if field.facet == "representation" and has_profile_arm(arm):
+                anchored = {(v.paper_id, v.evidence_id, v.quote) for p in profile_index.values()
+                            for v in p.fields.get("representations", ()) if v.origin == "authors"}
+                hits.extend(c for c in valid if c not in hits and len(c.paper_ids) == 1 and any(
+                    (c.paper_ids[0], eid, c.statement) in anchored for eid in c.evidence_ids))
+            combined_design = hits + scoped_representation
+            if not combined_design and has_h2(arm) and field.subject:
+                from backend.research.semantic_slots import design_facet_witnesses
+                combined_design = design_facet_witnesses(field, raw_valid, sources)
+            return combined_design, "insufficient_evidence"
         if profile_index is not None:
             from backend.research.research_profile import PROFILE_FACETS, responsive_claims
             if field.facet in PROFILE_FACETS:
-                return responsive_claims(field.facet, valid, profile_index), "insufficient_evidence"
+                proof = responsive_claims(field.facet, valid, profile_index)
+                if has_h2(arm) and field.facet == "problem" and not proof:
+                    from backend.research.semantic_slots import problem_witnesses
+                    proof = problem_witnesses(valid, profile_index, sources)
+                if (has_full_pra(arm) and state.answer_contract.answer_type == "overview"
+                        and field.facet in {"topic", "method", "finding"}):
+                    from backend.research.arms import has_h1
+                    from backend.research.profile_frames import body_profile_supports
+
+                    proof = [c for c in proof if any(sources[e]["field"] != "fulltext" for e in c.evidence_ids)
+                             or body_profile_supports(c.statement, field.facet, discourse=has_h1(arm))]
+                if (field.facet == "limitations" and has_full_pra(arm) and field.operation == "fact"
+                        and state.answer_contract.answer_type == "overview" and len(field.paper_ids) == 1):
+                    from backend.research.profile_frames import scoped_limitation
+                    proof = [c for c in proof if scoped_limitation(c.statement, state.answer_contract.goal)]
+                if field.facet == "method" and has_full_pra(arm) and len(field.paper_ids) == 1:
+                    from backend.research.profile_frames import abstract_method
+                    labelled = [c for c in proof if any(sources[e]["field"] == "abstract" for e in c.evidence_ids)
+                                and re.match(r"^(?:Methods?|研究方法|方法)\s*[:：]", c.statement, re.I)]
+                    if labelled:
+                        correction = any(re.search(
+                            r"\b(?:we (?:did not|never) (?:use|apply|adopt)|(?:we|our study) (?:used|uses) "
+                            r".{1,80} instead of|(?:correction|erratum)\s*:)|(?:更正|勘误)[：:]|我们并未采用",
+                            c.statement, re.I) for c in valid)
+                        proof = [] if correction else [c for c in labelled if abstract_method(c.statement)]
+                return proof, "insufficient_evidence"
         if field.facet == "limitations" and state.retrieval_policy in {"E10", "E11"}:
             from backend.research.overview import GAP
             return [c for c in valid if GAP.search(c.statement)], "insufficient_evidence"
         if field.facet == "overview":
-            overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"}, profile_index=profile_index)
+            from backend.research.node_fields import method_only_overview
+
+            overview, by_id = synthesize(valid, sources, field.paper_ids, attributed=state.retrieval_policy in {"E10", "E11"},
+                                         profile_index=profile_index, pairwise=has_pairwise_arm(arm),
+                                         compose_methods=has_full_pra(arm) and method_only_overview(state.answer_contract.goal),
+                                         open_relations=has_h3(arm), discourse=has_h1(arm))
             if profile_index is not None:
                 # Each relation must stand on its own across the requested scope.
                 ids = dict.fromkeys(cid for row in overview["findings"]
@@ -241,6 +365,14 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
             measures = [c for c in measures if c.conditions.metric_name.casefold() in requested]
         if field.operation == "condition":
             return measures, "insufficient_evidence"
+        if comparison_metric:
+            # This question does not select an experiment. Accept a unique
+            # reported measurement per paper, including repeated identical reports.
+            measured = {(c.paper_ids[0], measurement_key(c.conditions), c.conditions.metric_value): c
+                        for c in measures if len(c.paper_ids) == 1}
+            if len(measured) != 2 or {key[0] for key in measured} != set(state.task.scope.paper_ids):
+                return [], "not_comparable"
+            measures = list(measured.values())
         for a, b in combinations(measures, 2):
             if not set(a.paper_ids).isdisjoint(b.paper_ids):
                 continue
@@ -265,9 +397,22 @@ def qualified(field, claims, sources, state, suggestions, profile_index=None):
                 or []
             )
             return [c for c in valid if c.claim_id in ids], "insufficient_evidence"
-    return [
+    matched_claims = [
         c for c in valid if matches(field, c, sources[c.evidence_ids[0]], state, suggestions)
-    ], "insufficient_evidence"
+    ]
+    if (
+        not matched_claims
+        and has_h2(arm)
+        and field.facet is None
+        and field.operation in {"attribute", "measure", "fact"}
+        and len(state.field_requirements) == 1
+    ):
+        from backend.research.semantic_slots import slot_qa_witnesses
+
+        matched_claims = slot_qa_witnesses(
+            field, valid, sources, state, profile_index, suggestions
+        )
+    return matched_claims, "insufficient_evidence"
 
 
 def classify_gap(coverage, permitted, capable, fallback):
@@ -308,6 +453,11 @@ def status_for(statuses):
 
 
 def evaluate(state, sources, suggestions=None, warnings=()):
+    gate, selected, _ = evaluate_with_profiles(state, sources, suggestions, warnings)
+    return gate, selected
+
+
+def evaluate_with_profiles(state, sources, suggestions=None, warnings=()):
     suggestions = suggestions or {}
     owners = state.evidence_questions
     caps = {i: capability(r, state) for i, r in sources.items()}
@@ -363,7 +513,7 @@ def evaluate(state, sources, suggestions=None, warnings=()):
                 from backend.research.study_brief import named_source
                 target = named_source(visible, state.task.scope.paper_ids, f.required_title)
                 capable = {i: row for i, row in capable.items() if row["paper_id"] == target}
-            proposals = source_claims(f, capable)
+            proposals = source_claims(f, capable, arm=state.pra_arm)
             proof, fallback = qualified(f, proposals, capable, state, suggestions, profile_index)
             proof = [c for c in proof if f.facet or c.claim_id not in consumed]
             prereqs = all(per_question[d] == "answerable" for d in req.dependencies)
@@ -382,13 +532,42 @@ def evaluate(state, sources, suggestions=None, warnings=()):
             spans = {(capable[i]["paper_id"], capable[i]["quote_hash"]) for i in ids}
             conflict, _ = compare_premises(proposals, capable)
             conflict_ids = {i for item in conflict for i in item["claim_ids"]}
+            if conflict_ids and f.facet == "representation":
+                # A contextual quote cannot supersede a conflict in either component.
+                opposing = [c for c in proposals if c.claim_id in conflict_ids]
+                conflict_ids.update(c.claim_id for c in proof
+                                    if "exact_adjacent_representation_context" in c.check_notes
+                                    and any(p.statement in c.statement and set(p.evidence_ids) & set(c.evidence_ids)
+                                            for p in opposing))
             # Different asserted values for the same explicit attribute require review,
             # even without lexical negation markers.
             values = {c.statement.casefold().strip() for c in proof}
             multiple_values = f.operation == "attribute" and len(values) > 1
             if multiple_values and profile_index is not None:
+                from backend.research.arms import has_h1, has_h2
+                from backend.research.discourse_attribution import has_propositional_negation
+                from backend.research.semantic_slots import has_predicate_negation
                 from backend.research.study_brief import enumerated_objectives
-                multiple_values = not enumerated_objectives(f, proof)
+
+                exclusive_pattern = (
+                    r"\b(?:only|sole|instead of|except)\b|并非|不是|唯一|仅"
+                    if has_h2(state.pra_arm)
+                    else r"\b(?:only|sole|instead|except|rather than)\b|并非|不是|唯一|仅"
+                )
+                neg_fn = has_predicate_negation if has_h2(state.pra_arm) else has_propositional_negation
+                if (
+                    (has_h1(state.pra_arm) or has_h2(state.pra_arm))
+                    and f.facet in {"objective", "method", "problem", "topic", "finding", "limitations", "representation"}
+                    and len({p for c in proof for p in c.paper_ids}) == 1
+                    and not any(
+                        neg_fn(c.statement)
+                        or re.search(exclusive_pattern, c.statement, re.I)
+                        for c in proof
+                    )
+                ):
+                    multiple_values = False
+                else:
+                    multiple_values = not enumerated_objectives(f, proof)
             conflict_seen = multiple_values or (
                 f.operation not in {"disagreement", "synthesize"}
                 and any(c.claim_id in conflict_ids for c in proof)
@@ -458,4 +637,4 @@ def evaluate(state, sources, suggestions=None, warnings=()):
         "fields": decisions,
         "questions": per_question,
         "bindings": [b.model_dump(mode="json") for b in bindings],
-    }, selected
+    }, selected, profile_index

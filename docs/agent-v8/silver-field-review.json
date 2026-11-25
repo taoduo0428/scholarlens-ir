@@ -1,0 +1,2920 @@
+{
+ "A": {
+  "reviewer": "post-hoc single AI assessment of published direct claims",
+  "counts": {
+   "full": 4,
+   "partial": 19,
+   "absent": 186
+  },
+  "full_tasks": 0,
+  "rows": [
+   {
+    "id": "v3-quantum-compare",
+    "requirements": [
+     {
+      "requirement": "滤波处理的系统与理论产物",
+      "assessment": "partial",
+      "claims": [
+       "c-b219f2bdb98bfe6e91e77f6b"
+      ]
+     },
+     {
+      "requirement": "金融预测对象、模型和组合评估",
+      "assessment": "partial",
+      "claims": [
+       "c-5fe4e3d367e971eaa368799f"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "v3-quantum-multihop",
+    "requirements": [
+     {
+      "requirement": "预测问题",
+      "assessment": "full",
+      "claims": [
+       "c-5fe4e3d367e971eaa368799f"
+      ]
+     },
+     {
+      "requirement": "两种候选模型和经典对照",
+      "assessment": "full",
+      "claims": [
+       "c-5bbed7ab05a54cc1f0c2398d"
+      ]
+     },
+     {
+      "requirement": "组合评估和市场证据",
+      "assessment": "partial",
+      "claims": [
+       "c-919d35b2ec5ca9bbefa0a7db"
+      ]
+     },
+     {
+      "requirement": "跨论文链接的性质",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "v3-routing-compare",
+    "requirements": [
+     {
+      "requirement": "TCP 服务目标",
+      "assessment": "full",
+      "claims": [
+       "c-6f936f86244cbc701418b763"
+      ]
+     },
+     {
+      "requirement": "电气恢复目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自采用的手段",
+      "assessment": "partial",
+      "claims": [
+       "c-6f936f86244cbc701418b763"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "v3-routing-multihop",
+    "requirements": [
+     {
+      "requirement": "不完全损坏信息",
+      "assessment": "partial",
+      "claims": [
+       "c-aff2769434c488ffaf3a2fbb"
+      ]
+     },
+     {
+      "requirement": "POMDP 与现场行动",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "信念树搜索与评估",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨域推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "v3-privacy-compare",
+    "requirements": [
+     {
+      "requirement": "监控研究的问题与结论",
+      "assessment": "partial",
+      "claims": [
+       "c-93be5f84d1d177f80386612f"
+      ]
+     },
+     {
+      "requirement": "联邦学习的系统信任目标和框架",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "v3-privacy-multihop",
+    "requirements": [
+     {
+      "requirement": "隐私保证的局限",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "系统层信任要求",
+      "assessment": "partial",
+      "claims": [
+       "c-75424e164484f073046425c3"
+      ]
+     },
+     {
+      "requirement": "分类、协调与保证记录",
+      "assessment": "partial",
+      "claims": [
+       "c-00bea3d455fd6bbc500149a3"
+      ]
+     },
+     {
+      "requirement": "跨文献界限",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-01-fact",
+    "requirements": [
+     {
+      "requirement": "邻居选择的目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "所需输入",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "明确证据和未明示假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-01-comparison",
+    "requirements": [
+     {
+      "requirement": "选邻的单位、表示与目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "个体预测的单位、表示与目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "明示与推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-01-multihop",
+    "requirements": [
+     {
+      "requirement": "选邻输入到机制",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "预测者使用的数据",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文依赖",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-fact",
+    "requirements": [
+     {
+      "requirement": "电池约束造成的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "状态与候选路径输入",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-comparison",
+    "requirements": [
+     {
+      "requirement": "移动节点和路由表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "Dragonfly 分组与应用负载",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自优化目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-multihop",
+    "requirements": [
+     {
+      "requirement": "余量及多径的作用",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "应用特征对路由概率的作用",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨域类比",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-metrics",
+    "requirements": [
+     {
+      "requirement": "噪声和应用性能",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "规模与测试条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "基线、单位和效应大小",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-fact",
+    "requirements": [
+     {
+      "requirement": "粗粒度来源的失真",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模块描述、调用、输入及状态",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "访问条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-comparison",
+    "requirements": [
+     {
+      "requirement": "模块调用与来源图",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "写密集记录与单日志",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "查询来源及写吞吐目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-multihop",
+    "requirements": [
+     {
+      "requirement": "暴露内部依赖",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "调用图与细粒度查询",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "写负载和日志设计",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-metrics",
+    "requirements": [
+     {
+      "requirement": "写入吞吐、恢复和缓存外访问",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "实验比较对象",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值和单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-fact",
+    "requirements": [
+     {
+      "requirement": "仓库容量与响应问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "维度 XML 文档",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "推断的条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-comparison",
+    "requirements": [
+     {
+      "requirement": "XML 文档的单位、组织及目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "随机项集支持度的单位、表示及目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-multihop",
+    "requirements": [
+     {
+      "requirement": "维度文档如何进入分片",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "不确定性如何改变支持度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文映射",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-metrics",
+    "requirements": [
+     {
+      "requirement": "期望支持度与概率型支持度",
+      "assessment": "partial",
+      "claims": [
+       "c-f69d4634741fad731ede4dcf"
+      ]
+     },
+     {
+      "requirement": "比较条件和基准数量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值与单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-fact",
+    "requirements": [
+     {
+      "requirement": "检验最优划分的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "闭合基准、算法输出和评价量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "参考条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-comparison",
+    "requirements": [
+     {
+      "requirement": "划分及基准的用途",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "节点拓扑与元数据分组",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "最优性和组恢复的不同目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-multihop",
+    "requirements": [
+     {
+      "requirement": "闭合基准与划分比较",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "元数据恢复证据",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-metrics",
+    "requirements": [
+     {
+      "requirement": "外部参照是什么",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "评价对象与场景",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "评价量及数值",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-fact",
+    "requirements": [
+     {
+      "requirement": "资源约束调度问题",
+      "assessment": "full",
+      "claims": [
+       "c-ea5ed8978e3d74b34415fc10"
+      ]
+     },
+     {
+      "requirement": "算法使用的资源信息",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "实例输入细节",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-comparison",
+    "requirements": [
+     {
+      "requirement": "资源受限项目及搜索表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "多批次活动和可变工时",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "解质量与制造目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-multihop",
+    "requirements": [
+     {
+      "requirement": "资源容量怎样影响搜索",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "选活动和时长怎样进入模型",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文适配",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-metrics",
+    "requirements": [
+     {
+      "requirement": "评价目标及定义",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "基准和工业案例",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "值、单位和对照",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-fact",
+    "requirements": [
+     {
+      "requirement": "超像素合并解决的选择问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "图像与初始区域",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "相似性和顺序",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-comparison",
+    "requirements": [
+     {
+      "requirement": "超像素单位、表示和目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "多模态解剖因素、错位和分割",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "已明示条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-multihop",
+    "requirements": [
+     {
+      "requirement": "图像到区域合并",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模态到对齐融合",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-metrics",
+    "requirements": [
+     {
+      "requirement": "目标模态分割准确性",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "单输入对照",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "标注条件和应用",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值与单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-fact",
+    "requirements": [
+     {
+      "requirement": "编辑距离计算的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "两个字符串及其表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "评分条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-comparison",
+    "requirements": [
+     {
+      "requirement": "两个有序字符串及评分",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "有限非空对象多重集及压缩长度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "计算和度量目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-multihop",
+    "requirements": [
+     {
+      "requirement": "可压缩性质到算法界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "多重集表示到压缩度量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-metrics",
+    "requirements": [
+     {
+      "requirement": "NCD 的对象及度量性质",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "分类准确性与两两基线",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "实际应用条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-fact",
+    "requirements": [
+     {
+      "requirement": "提取结构的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "观测对象间的关系",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "图嵌入所需信息",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-comparison",
+    "requirements": [
+     {
+      "requirement": "关系数据、嵌入图和层次",
+      "assessment": "partial",
+      "claims": [
+       "c-401befea4919129196856863"
+      ]
+     },
+     {
+      "requirement": "有时间顺序的访问数据、分期摘要和漂移",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-multihop",
+    "requirements": [
+     {
+      "requirement": "重要关系到层次",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "按时段划分到漂移检测",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文桥接",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-metrics",
+    "requirements": [
+     {
+      "requirement": "实际评价量、对照和条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "单位及测值",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-10-fact",
+    "requirements": [
+     {
+      "requirement": "信息论所问的编码问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "随机图、节点和连边条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "渐近适用性",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-10-comparison",
+    "requirements": [
+     {
+      "requirement": "随机图的编码和测度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "室内节点传输、位置及控制设置",
+      "assessment": "partial",
+      "claims": [
+       "c-b7636643d1fb33bcd27c1f13"
+      ]
+     },
+     {
+      "requirement": "理论量和工程目标",
+      "assessment": "partial",
+      "claims": [
+       "c-c434d300240bb8ddc99072b2"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-10-multihop",
+    "requirements": [
+     {
+      "requirement": "随机图条件如何产生编码界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "室内传输和定位的用途",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-fact",
+    "requirements": [
+     {
+      "requirement": "量子查询的状态表述",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "有限维操作、初始向量与测量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "等价成立的条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-comparison",
+    "requirements": [
+     {
+      "requirement": "状态分解的单位和表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "布尔函数、多项式与查询界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "研究目的",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-multihop",
+    "requirements": [
+     {
+      "requirement": "酉操作到 Block Set",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "布尔函数近似到查询界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文关系",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-metrics",
+    "requirements": [
+     {
+      "requirement": "近似误差与次数定义",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "函数特定下界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "先前比较及单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-12-fact",
+    "requirements": [
+     {
+      "requirement": "要解的着色问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "图及三色约束",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "未指定的表示",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-12-comparison",
+    "requirements": [
+     {
+      "requirement": "三着色求解实例",
+      "assessment": "partial",
+      "claims": [
+       "c-9e824667f89c1efd92e606dc"
+      ]
+     },
+     {
+      "requirement": "解空间网络和方向",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "求解与解释转变的目标",
+      "assessment": "partial",
+      "claims": [
+       "c-9e824667f89c1efd92e606dc"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-12-multihop",
+    "requirements": [
+     {
+      "requirement": "图着色目标与启发式",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "解空间结构到转变解释",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-12-metrics",
+    "requirements": [
+     {
+      "requirement": "可通达性定义与方向",
+      "assessment": "partial",
+      "claims": [
+       "c-19ce91c6066eeb438272f473"
+      ]
+     },
+     {
+      "requirement": "比较对象和随机图序列",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值与单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-13-fact",
+    "requirements": [
+     {
+      "requirement": "推荐要解决的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "字幕内容与相似网络",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "未说明的输入条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-13-comparison",
+    "requirements": [
+     {
+      "requirement": "视频及字幕网络",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "仓库上下文、仓库图和用户序列",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自推荐对象",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-13-multihop",
+    "requirements": [
+     {
+      "requirement": "字幕到视频相似性",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "仓库上下文到嵌入及序列",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-14-fact",
+    "requirements": [
+     {
+      "requirement": "在稀疏情形恢复社群",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "有界平均度随机网络",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模型假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-14-comparison",
+    "requirements": [
+     {
+      "requirement": "稀疏随机图与半定规划",
+      "assessment": "partial",
+      "claims": [
+       "c-ba7539f23b300c189e5646a6"
+      ]
+     },
+     {
+      "requirement": "植入划分模型与分辨率参数",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "恢复误差和目标等价性",
+      "assessment": "partial",
+      "claims": [
+       "c-ba7539f23b300c189e5646a6"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-14-multihop",
+    "requirements": [
+     {
+      "requirement": "稀疏随机性与半定恢复",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模型假设与目标等价",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨文献条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-14-metrics",
+    "requirements": [
+     {
+      "requirement": "精确相等的对象",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模型与分辨率条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "最优参数及表示范围",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-15-fact",
+    "requirements": [
+     {
+      "requirement": "自由平面假设的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "轨迹与底层路网",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "聚类对象",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-15-comparison",
+    "requirements": [
+     {
+      "requirement": "轨迹、路段和共享关系",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "源顶点、目标顶点和时间",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "空间相似与时变结构",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-15-multihop",
+    "requirements": [
+     {
+      "requirement": "道路限制到相似图",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "边分布到时间切分",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文输入变换",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-16-fact",
+    "requirements": [
+     {
+      "requirement": "中断后的重调度问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "设施和行车约束",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "如何进入优化模型",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-16-comparison",
+    "requirements": [
+     {
+      "requirement": "列车基础设施、二进制约束与重调度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "车间状态动作、策略梯度和调度",
+      "assessment": "partial",
+      "claims": [
+       "c-b5620366daccea86f70b9b16"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-16-multihop",
+    "requirements": [
+     {
+      "requirement": "行车约束到二进制表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "可变状态到循环策略",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨域桥接",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-16-metrics",
+    "requirements": [
+     {
+      "requirement": "求解时间和完工跨度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "基线类型",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "测试实例与泛化条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-17-fact",
+    "requirements": [
+     {
+      "requirement": "时间序列分类要解决的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "训练序列与类别结构",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "特征和选择规则",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-17-comparison",
+    "requirements": [
+     {
+      "requirement": "时序输入、经选特征与分类",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "样本、先验加权密度与势向量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-17-multihop",
+    "requirements": [
+     {
+      "requirement": "序列到训练特征及筛选",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "样本到类势向量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "组合假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-17-metrics",
+    "requirements": [
+     {
+      "requirement": "势函数定义和一致性界限",
+      "assessment": "partial",
+      "claims": [
+       "c-618cb0e33680fe1ba72813a1"
+      ]
+     },
+     {
+      "requirement": "对照、验证条件及样本数",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "性能数值",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   }
+  ]
+ },
+ "G": {
+  "reviewer": "post-hoc single AI assessment of published direct claims",
+  "counts": {
+   "full": 5,
+   "partial": 25,
+   "absent": 179
+  },
+  "full_tasks": 0,
+  "rows": [
+   {
+    "id": "v3-quantum-compare",
+    "requirements": [
+     {
+      "requirement": "滤波处理的系统与理论产物",
+      "assessment": "partial",
+      "claims": [
+       "c-b219f2bdb98bfe6e91e77f6b"
+      ]
+     },
+     {
+      "requirement": "金融预测对象、模型和组合评估",
+      "assessment": "partial",
+      "claims": [
+       "c-5fe4e3d367e971eaa368799f"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "v3-quantum-multihop",
+    "requirements": [
+     {
+      "requirement": "预测问题",
+      "assessment": "full",
+      "claims": [
+       "c-5fe4e3d367e971eaa368799f"
+      ]
+     },
+     {
+      "requirement": "两种候选模型和经典对照",
+      "assessment": "full",
+      "claims": [
+       "c-5bbed7ab05a54cc1f0c2398d"
+      ]
+     },
+     {
+      "requirement": "组合评估和市场证据",
+      "assessment": "partial",
+      "claims": [
+       "c-919d35b2ec5ca9bbefa0a7db"
+      ]
+     },
+     {
+      "requirement": "跨论文链接的性质",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "v3-routing-compare",
+    "requirements": [
+     {
+      "requirement": "TCP 服务目标",
+      "assessment": "full",
+      "claims": [
+       "c-6f936f86244cbc701418b763"
+      ]
+     },
+     {
+      "requirement": "电气恢复目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自采用的手段",
+      "assessment": "partial",
+      "claims": [
+       "c-6f936f86244cbc701418b763"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "v3-routing-multihop",
+    "requirements": [
+     {
+      "requirement": "不完全损坏信息",
+      "assessment": "partial",
+      "claims": [
+       "c-aff2769434c488ffaf3a2fbb"
+      ]
+     },
+     {
+      "requirement": "POMDP 与现场行动",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "信念树搜索与评估",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨域推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "v3-privacy-compare",
+    "requirements": [
+     {
+      "requirement": "监控研究的问题与结论",
+      "assessment": "partial",
+      "claims": [
+       "c-93be5f84d1d177f80386612f"
+      ]
+     },
+     {
+      "requirement": "联邦学习的系统信任目标和框架",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "v3-privacy-multihop",
+    "requirements": [
+     {
+      "requirement": "隐私保证的局限",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "系统层信任要求",
+      "assessment": "partial",
+      "claims": [
+       "c-75424e164484f073046425c3"
+      ]
+     },
+     {
+      "requirement": "分类、协调与保证记录",
+      "assessment": "partial",
+      "claims": [
+       "c-00bea3d455fd6bbc500149a3"
+      ]
+     },
+     {
+      "requirement": "跨文献界限",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-01-fact",
+    "requirements": [
+     {
+      "requirement": "邻居选择的目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "所需输入",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "明确证据和未明示假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-01-comparison",
+    "requirements": [
+     {
+      "requirement": "选邻的单位、表示与目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "个体预测的单位、表示与目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "明示与推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-01-multihop",
+    "requirements": [
+     {
+      "requirement": "选邻输入到机制",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "预测者使用的数据",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文依赖",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-fact",
+    "requirements": [
+     {
+      "requirement": "电池约束造成的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "状态与候选路径输入",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-comparison",
+    "requirements": [
+     {
+      "requirement": "移动节点和路由表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "Dragonfly 分组与应用负载",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自优化目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-multihop",
+    "requirements": [
+     {
+      "requirement": "余量及多径的作用",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "应用特征对路由概率的作用",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨域类比",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-02-metrics",
+    "requirements": [
+     {
+      "requirement": "噪声和应用性能",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "规模与测试条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "基线、单位和效应大小",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-fact",
+    "requirements": [
+     {
+      "requirement": "粗粒度来源的失真",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模块描述、调用、输入及状态",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "访问条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-comparison",
+    "requirements": [
+     {
+      "requirement": "模块调用与来源图",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "写密集记录与单日志",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "查询来源及写吞吐目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-multihop",
+    "requirements": [
+     {
+      "requirement": "暴露内部依赖",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "调用图与细粒度查询",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "写负载和日志设计",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-03-metrics",
+    "requirements": [
+     {
+      "requirement": "写入吞吐、恢复和缓存外访问",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "实验比较对象",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值和单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-fact",
+    "requirements": [
+     {
+      "requirement": "仓库容量与响应问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "维度 XML 文档",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "推断的条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-comparison",
+    "requirements": [
+     {
+      "requirement": "XML 文档的单位、组织及目标",
+      "assessment": "partial",
+      "claims": [
+       "c-5ffd59ce104aeafcddaa6ad6"
+      ]
+     },
+     {
+      "requirement": "随机项集支持度的单位、表示及目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-multihop",
+    "requirements": [
+     {
+      "requirement": "维度文档如何进入分片",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "不确定性如何改变支持度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文映射",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-04-metrics",
+    "requirements": [
+     {
+      "requirement": "期望支持度与概率型支持度",
+      "assessment": "partial",
+      "claims": [
+       "c-f69d4634741fad731ede4dcf"
+      ]
+     },
+     {
+      "requirement": "比较条件和基准数量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值与单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-fact",
+    "requirements": [
+     {
+      "requirement": "检验最优划分的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "闭合基准、算法输出和评价量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "参考条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-comparison",
+    "requirements": [
+     {
+      "requirement": "划分及基准的用途",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "节点拓扑与元数据分组",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "最优性和组恢复的不同目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-multihop",
+    "requirements": [
+     {
+      "requirement": "闭合基准与划分比较",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "元数据恢复证据",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-05-metrics",
+    "requirements": [
+     {
+      "requirement": "外部参照是什么",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "评价对象与场景",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "评价量及数值",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-fact",
+    "requirements": [
+     {
+      "requirement": "资源约束调度问题",
+      "assessment": "full",
+      "claims": [
+       "c-ea5ed8978e3d74b34415fc10"
+      ]
+     },
+     {
+      "requirement": "算法使用的资源信息",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "实例输入细节",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-comparison",
+    "requirements": [
+     {
+      "requirement": "资源受限项目及搜索表示",
+      "assessment": "partial",
+      "claims": [
+       "c-ea5ed8978e3d74b34415fc10"
+      ]
+     },
+     {
+      "requirement": "多批次活动和可变工时",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "解质量与制造目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-multihop",
+    "requirements": [
+     {
+      "requirement": "资源容量怎样影响搜索",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "选活动和时长怎样进入模型",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文适配",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-06-metrics",
+    "requirements": [
+     {
+      "requirement": "评价目标及定义",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "基准和工业案例",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "值、单位和对照",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-fact",
+    "requirements": [
+     {
+      "requirement": "超像素合并解决的选择问题",
+      "assessment": "partial",
+      "claims": [
+       "c-4d06d570cb8f6056f0a88d81"
+      ]
+     },
+     {
+      "requirement": "图像与初始区域",
+      "assessment": "full",
+      "claims": [
+       "c-4d06d570cb8f6056f0a88d81"
+      ]
+     },
+     {
+      "requirement": "相似性和顺序",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-comparison",
+    "requirements": [
+     {
+      "requirement": "超像素单位、表示和目标",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "多模态解剖因素、错位和分割",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "已明示条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-multihop",
+    "requirements": [
+     {
+      "requirement": "图像到区域合并",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模态到对齐融合",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-07-metrics",
+    "requirements": [
+     {
+      "requirement": "目标模态分割准确性",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "单输入对照",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "标注条件和应用",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值与单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-fact",
+    "requirements": [
+     {
+      "requirement": "编辑距离计算的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "两个字符串及其表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "评分条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-comparison",
+    "requirements": [
+     {
+      "requirement": "两个有序字符串及评分",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "有限非空对象多重集及压缩长度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "计算和度量目标",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-multihop",
+    "requirements": [
+     {
+      "requirement": "可压缩性质到算法界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "多重集表示到压缩度量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-08-metrics",
+    "requirements": [
+     {
+      "requirement": "NCD 的对象及度量性质",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "分类准确性与两两基线",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "实际应用条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-fact",
+    "requirements": [
+     {
+      "requirement": "提取结构的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "观测对象间的关系",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "图嵌入所需信息",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-comparison",
+    "requirements": [
+     {
+      "requirement": "关系数据、嵌入图和层次",
+      "assessment": "partial",
+      "claims": [
+       "c-401befea4919129196856863"
+      ]
+     },
+     {
+      "requirement": "有时间顺序的访问数据、分期摘要和漂移",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-multihop",
+    "requirements": [
+     {
+      "requirement": "重要关系到层次",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "按时段划分到漂移检测",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文桥接",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-09-metrics",
+    "requirements": [
+     {
+      "requirement": "实际评价量、对照和条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "单位及测值",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-10-fact",
+    "requirements": [
+     {
+      "requirement": "信息论所问的编码问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "随机图、节点和连边条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "渐近适用性",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-10-comparison",
+    "requirements": [
+     {
+      "requirement": "随机图的编码和测度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "室内节点传输、位置及控制设置",
+      "assessment": "partial",
+      "claims": [
+       "c-b7636643d1fb33bcd27c1f13"
+      ]
+     },
+     {
+      "requirement": "理论量和工程目标",
+      "assessment": "partial",
+      "claims": [
+       "c-c434d300240bb8ddc99072b2"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-10-multihop",
+    "requirements": [
+     {
+      "requirement": "随机图条件如何产生编码界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "室内传输和定位的用途",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推断",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-fact",
+    "requirements": [
+     {
+      "requirement": "量子查询的状态表述",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "有限维操作、初始向量与测量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "等价成立的条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-comparison",
+    "requirements": [
+     {
+      "requirement": "状态分解的单位和表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "布尔函数、多项式与查询界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "研究目的",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-multihop",
+    "requirements": [
+     {
+      "requirement": "酉操作到 Block Set",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "布尔函数近似到查询界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文关系",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-11-metrics",
+    "requirements": [
+     {
+      "requirement": "近似误差与次数定义",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "函数特定下界",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "先前比较及单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-12-fact",
+    "requirements": [
+     {
+      "requirement": "要解的着色问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "图及三色约束",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "未指定的表示",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-12-comparison",
+    "requirements": [
+     {
+      "requirement": "三着色求解实例",
+      "assessment": "partial",
+      "claims": [
+       "c-9e824667f89c1efd92e606dc"
+      ]
+     },
+     {
+      "requirement": "解空间网络和方向",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "求解与解释转变的目标",
+      "assessment": "partial",
+      "claims": [
+       "c-9e824667f89c1efd92e606dc"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-12-multihop",
+    "requirements": [
+     {
+      "requirement": "图着色目标与启发式",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "解空间结构到转变解释",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-12-metrics",
+    "requirements": [
+     {
+      "requirement": "可通达性定义与方向",
+      "assessment": "partial",
+      "claims": [
+       "c-19ce91c6066eeb438272f473"
+      ]
+     },
+     {
+      "requirement": "比较对象和随机图序列",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "数值与单位",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-13-fact",
+    "requirements": [
+     {
+      "requirement": "推荐要解决的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "字幕内容与相似网络",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "未说明的输入条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-13-comparison",
+    "requirements": [
+     {
+      "requirement": "视频及字幕网络",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "仓库上下文、仓库图和用户序列",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自推荐对象",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-13-multihop",
+    "requirements": [
+     {
+      "requirement": "字幕到视频相似性",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "仓库上下文到嵌入及序列",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文推论",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-14-fact",
+    "requirements": [
+     {
+      "requirement": "在稀疏情形恢复社群",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "有界平均度随机网络",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模型假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-14-comparison",
+    "requirements": [
+     {
+      "requirement": "稀疏随机图与半定规划",
+      "assessment": "partial",
+      "claims": [
+       "c-ba7539f23b300c189e5646a6"
+      ]
+     },
+     {
+      "requirement": "植入划分模型与分辨率参数",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "恢复误差和目标等价性",
+      "assessment": "partial",
+      "claims": [
+       "c-ba7539f23b300c189e5646a6"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-14-multihop",
+    "requirements": [
+     {
+      "requirement": "稀疏随机性与半定恢复",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模型假设与目标等价",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨文献条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-14-metrics",
+    "requirements": [
+     {
+      "requirement": "精确相等的对象",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "模型与分辨率条件",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "最优参数及表示范围",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-15-fact",
+    "requirements": [
+     {
+      "requirement": "自由平面假设的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "轨迹与底层路网",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "聚类对象",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-15-comparison",
+    "requirements": [
+     {
+      "requirement": "轨迹、路段和共享关系",
+      "assessment": "partial",
+      "claims": [
+       "c-3527b40c3d649b263620c752"
+      ]
+     },
+     {
+      "requirement": "源顶点、目标顶点和时间",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "空间相似与时变结构",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-15-multihop",
+    "requirements": [
+     {
+      "requirement": "道路限制到相似图",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "边分布到时间切分",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨论文输入变换",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-16-fact",
+    "requirements": [
+     {
+      "requirement": "中断后的重调度问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "设施和行车约束",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "如何进入优化模型",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-16-comparison",
+    "requirements": [
+     {
+      "requirement": "列车基础设施、二进制约束与重调度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "车间状态动作、策略梯度和调度",
+      "assessment": "partial",
+      "claims": [
+       "c-b5620366daccea86f70b9b16"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-16-multihop",
+    "requirements": [
+     {
+      "requirement": "行车约束到二进制表示",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "可变状态到循环策略",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "跨域桥接",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-16-metrics",
+    "requirements": [
+     {
+      "requirement": "求解时间和完工跨度",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "基线类型",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "测试实例与泛化条件",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-17-fact",
+    "requirements": [
+     {
+      "requirement": "时间序列分类要解决的问题",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "训练序列与类别结构",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "特征和选择规则",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-17-comparison",
+    "requirements": [
+     {
+      "requirement": "时序输入、经选特征与分类",
+      "assessment": "partial",
+      "claims": [
+       "c-72f944263331fdb5f0d56d8e"
+      ]
+     },
+     {
+      "requirement": "样本、先验加权密度与势向量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "各自目标",
+      "assessment": "partial",
+      "claims": [
+       "c-72f944263331fdb5f0d56d8e"
+      ]
+     }
+    ]
+   },
+   {
+    "id": "review-17-multihop",
+    "requirements": [
+     {
+      "requirement": "序列到训练特征及筛选",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "样本到类势向量",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "组合假设",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   },
+   {
+    "id": "review-17-metrics",
+    "requirements": [
+     {
+      "requirement": "势函数定义和一致性界限",
+      "assessment": "partial",
+      "claims": [
+       "c-618cb0e33680fe1ba72813a1"
+      ]
+     },
+     {
+      "requirement": "对照、验证条件及样本数",
+      "assessment": "absent",
+      "claims": []
+     },
+     {
+      "requirement": "性能数值",
+      "assessment": "absent",
+      "claims": []
+     }
+    ]
+   }
+  ]
+ }
+}

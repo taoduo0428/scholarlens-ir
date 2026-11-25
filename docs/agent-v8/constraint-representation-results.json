@@ -1,0 +1,41 @@
+{
+  "baseline_commit": "fe9932f",
+  "cases": 111,
+  "tool_calls_before": 991,
+  "tool_calls_after": 991,
+  "changes": [
+    {
+      "task_id": "review-16-comparison",
+      "changes": {
+        "direct_count": [
+          2,
+          3
+        ],
+        "field_status": [
+          [
+            "insufficient_evidence",
+            "insufficient_evidence",
+            "insufficient_evidence",
+            "insufficient_evidence",
+            "answerable",
+            "answerable"
+          ],
+          [
+            "insufficient_evidence",
+            "answerable",
+            "insufficient_evidence",
+            "insufficient_evidence",
+            "answerable",
+            "answerable"
+          ]
+        ]
+      }
+    }
+  ],
+  "new_claim": {
+    "id": "c-88440d5fcd5e60eeed032608",
+    "locator": "abstract:chars:0-897",
+    "paper_id": "source-sha256:1e704aaeedef4af8f6f9cd56841c221d55760d413468ef0a447651d85937952a",
+    "quote_sha256": "51d3afd806dad923081c463e674aecdeb04d6aabe2a72af201d14fadd46f7fdb"
+  }
+}

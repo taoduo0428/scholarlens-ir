@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import re
+from typing import Literal
 from pydantic import Field, ValidationError
 
 from backend.research.schemas import (
@@ -22,10 +23,13 @@ from .passages import (
     ToolError,
     bm25,
     combine,
+    complete_abstract_opening,
     dense_rank,
     hash_text,
+    nearest_heading,
     passage,
     passages_for,
+    sentence_windows_for,
     tokens,
 )
 
@@ -41,6 +45,12 @@ class PassageRequest(SearchRequest):
     slot: Slot | None = None
     abstract_opening: bool = False
     abstract_profile: bool = False
+    complete_method_opening: bool = False
+    profile_body_fallback: bool = False
+    profile_limitation_request: Summary | None = None
+    preferred_section: Literal["methods", "results"] | None = None
+    sentence_complete: bool = False
+    focus: list[Summary] = Field(default_factory=list, max_length=4)
 
 
 class PaperRequest(Contract):
@@ -176,7 +186,10 @@ class ToolRegistry:
         return [self._doc(pid) for pid in self._ids(discovery)]
 
     def _search_passages(self, req):
+        from backend.research.research_profile import attribution, is_sentence_aligned, sentence_spans
+
         query = req.query + " " + SLOT_TERMS.get(req.slot, "")
+        rows_fn = sentence_windows_for if req.sentence_complete else passages_for
         rows = {}
         for doc in self._candidates(req):
             year = doc.get("year")
@@ -184,24 +197,110 @@ class ToolRegistry:
                 req.year_to is not None and (year is None or year > req.year_to)
             ):
                 continue
-            for row in passages_for(doc):
+            for row in rows_fn(doc):
                 rows[row["chunk_id"]] = (doc, row)
         if req.abstract_profile:
             if not req.paper_ids or req.abstract_opening:
                 raise ToolError("explicit_paper_required")
             # Select a window per paper for each round, reserving space for
             # other papers before offering additional windows.
-            from backend.research.paper_findings import roles
-            from backend.research.claim_verifier import sentences
 
             by_paper = {}
+            body_fallback = {}
+            abstract_roles = {}
             for doc, row in rows.values():
+                aligned = is_sentence_aligned(row)
                 if row["field"] == "abstract":
-                    facets = [roles(sentence) for sentence in sentences(row["text"])]
+                    if req.complete_method_opening and not row["offset_start"]:
+                        from backend.research.pra_relations import method_name
+
+                        completed = complete_abstract_opening(doc, row)
+                        if completed and method_name(completed[1]):
+                            row = completed[0]
+                            aligned = is_sentence_aligned(row)
+                    facets = [fields for span in sentence_spans(row["text"], row["offset_start"], aligned=aligned) if span
+                              for origin, fields in [attribution(span[2])] if origin == "authors"]
                     score = (len(set().union(*facets)), sum(bool(f) for f in facets))
                     by_paper.setdefault(doc["paper_id"], []).append((score, row["offset_start"], doc, row))
-            lists = [sorted(windows, key=lambda w: (-w[0][0], -w[0][1], w[1]))
-                     for windows in by_paper.values()]
+                    if req.profile_body_fallback:
+                        abstract_roles.setdefault(doc["paper_id"], set()).update(*facets)
+                elif (req.profile_body_fallback or req.profile_limitation_request) and row["field"] == "fulltext":
+                    body_fallback.setdefault(doc["paper_id"], []).append((doc, row))
+            for windows in by_paper.values():
+                windows.sort(key=lambda w: (-w[0][0], -w[0][1], w[1]))
+            if body_fallback and req.profile_body_fallback:
+                from backend.research.profile_frames import BODY_ROLES, body_gap_score, body_profile_score
+
+                for pid, windows in body_fallback.items():
+                    windows = windows[:256]
+                    if pid in by_paper:
+                        abstracts = by_paper[pid]
+                        if len(req.paper_ids) not in range(2, 5):
+                            continue
+                        gaps = [facet for facet in ("method", "finding")
+                                if not BODY_ROLES[facet] & abstract_roles[pid]]
+                        if not gaps:
+                            continue
+                        scores = [
+                            (body_gap_score(row["text"], row["offset_start"], gaps, aligned=is_sentence_aligned(row)),
+                             row["offset_start"], doc, row)
+                            for doc, row in windows
+                        ]
+                        best = min(scores, key=lambda w: (-w[0][0], -w[0][1], w[1]))
+                        if best[0][0]:
+                            abstracts.insert(1, best)
+                        continue
+                    lexical = bm25(query, [(row["chunk_id"], tokens(row["text"])) for _, row in windows])
+                    ranks = {cid: i for i, cid in enumerate(lexical)}
+                    scored = []
+                    for doc, row in windows:
+                        score = body_profile_score(row["text"], row["offset_start"], aligned=is_sentence_aligned(row))
+                        if score[0]:
+                            scored.append((score, row["offset_start"], doc, row))
+                    scored.sort(key=lambda w: (-w[0][0], -w[0][1], ranks.get(w[3]["chunk_id"], len(ranks)), w[1]))
+                    if scored:
+                        by_paper[pid] = scored[:4]
+            if req.profile_limitation_request:
+                from backend.research.profile_frames import scoped_limitation
+
+                def limitation_window(row):
+                    return any(
+                        scoped_limitation(span[2], req.profile_limitation_request)
+                        for span in sentence_spans(row["text"], row["offset_start"], aligned=is_sentence_aligned(row))
+                        if span
+                    )
+
+                def observation_roles(row):
+                    from backend.research.profile_frames import body_profile_supports
+
+                    supported = set()
+                    for span in sentence_spans(row["text"], row["offset_start"], aligned=is_sentence_aligned(row)):
+                        if not span:
+                            continue
+                        if row["field"] == "abstract":
+                            origin, fields = attribution(span[2])
+                            if origin == "authors":
+                                supported.update(fields & {"methods", "reported_findings"})
+                        else:
+                            for facet, role in (("method", "methods"), ("finding", "reported_findings")):
+                                if body_profile_supports(span[2], facet):
+                                    supported.add(role)
+                    return supported
+
+                for pid, candidates in body_fallback.items():
+                    windows = by_paper.get(pid, [])
+                    if any(limitation_window(window[3]) for window in windows):
+                        continue
+                    for doc, row in candidates[:256]:
+                        if limitation_window(row):
+                            priority = 1
+                            if len(windows) > 1:
+                                uncovered = observation_roles(windows[1][3]) - observation_roles(windows[0][3])
+                                if uncovered - observation_roles(row):
+                                    priority = 2
+                            by_paper.setdefault(pid, []).insert(priority, ((0, 0), row["offset_start"], doc, row))
+                            break
+            lists = list(by_paper.values())
             ranked = [group[i] for i in range(max(map(len, lists), default=0))
                       for group in lists if i < len(group)]
             return {"passages": [passage(doc, row, self.generation) for _, _, doc, row in ranked[:req.limit]]}
@@ -225,11 +324,60 @@ class ToolRegistry:
             if len(reordered) != len(window) or set(reordered) != set(window):
                 raise ToolError("invalid_rerank_result")
             ranked = reordered + tail
+        if req.focus and req.strategy != "semantic":
+            # Give each named subject an independent lexical ranking. A joined BM25
+            # query can spend the entire result window on the more distinctive side.
+            choices = [(cid, tokens(row["text"])) for cid, (_, row) in rows.items()
+                       if req.sentence_complete or row["field"] != "title"]
+            leaders = []
+            for subject in req.focus:
+                lane = bm25(subject, choices)
+                if not lane:
+                    continue
+                selected = rows[lane[0]][1]
+                # Prefer a higher-ranked joint-query window on the same paper.
+                # This keeps facet terms and avoids evicting an already useful window.
+                leader = next(
+                    (cid for cid in ranked
+                     if rows[cid][1]["paper_id"] == selected["paper_id"] and rows[cid][1]["field"] != "title"),
+                    None,
+                )
+                if leader is None:
+                    leader = next(
+                        (cid for cid, (_, row) in rows.items()
+                         if row["paper_id"] == selected["paper_id"] and row["field"] != "title"),
+                        lane[0],
+                    )
+                leaders.append(leader)
+            ranked = list(dict.fromkeys(leaders + ranked))
+        if req.preferred_section and req.paper_ids:
+            headings = ({"method", "methods", "methodology", "materials and methods", "方法", "研究方法"}
+                        if req.preferred_section == "methods" else
+                        {"results", "experimental results", "results and discussion", "结果", "实验结果"})
+            # A validated heading is a retrieval hint. The returned text still goes through source verification.
+            candidates = dict.fromkeys([*ranked, *rows])
+            leaders = {}
+            for cid in candidates:
+                doc, row = rows[cid]
+                if row["paper_id"] in leaders or row["field"] != "fulltext":
+                    continue
+                heading = nearest_heading(doc, row)
+                if heading and re.sub(r"^\d+(?:\.\d+)*\.?\s+", "", heading.strip().casefold()) in headings:
+                    leaders[row["paper_id"]] = cid
+            ranked = list(dict.fromkeys([*leaders.values(), *ranked]))
         return {"passages": [passage(*rows[cid], self.generation) for cid in ranked[: req.limit]]}
 
     def _read_paper_chunks(self, req):
         doc = self._doc(req.paper_id)
         by_id = {row["chunk_id"]: row for row in passages_for(doc)}
+        if any(cid not in by_id and str(cid).startswith("chunk:sw") for cid in req.chunk_ids):
+            by_id.update({row["chunk_id"]: row for row in sentence_windows_for(doc)})
+        opening = next((row for row in by_id.values() if row["field"] == "abstract" and not row["offset_start"]), None)
+        if opening and any(cid not in by_id for cid in req.chunk_ids):
+            completed = complete_abstract_opening(doc, opening)
+            if completed:
+                row, _ = completed
+                by_id[row["chunk_id"]] = row
         if any(cid not in by_id for cid in req.chunk_ids):
             raise ToolError("chunk_not_found")
         return {
@@ -247,7 +395,15 @@ class ToolRegistry:
             if error.code != "paper_not_found":
                 raise
             return {"verified": False, "reason": error.code}
-        chunk = next((row for row in passages_for(doc) if row["chunk_id"] == req.chunk_id), None)
+        rows = passages_for(doc)
+        chunk = next((row for row in rows if row["chunk_id"] == req.chunk_id), None)
+        if not chunk and req.chunk_id.startswith("chunk:sw"):
+            chunk = next((row for row in sentence_windows_for(doc) if row["chunk_id"] == req.chunk_id), None)
+        if not chunk and req.locator.startswith("abstract:chars:"):
+            opening = next((row for row in rows if row["field"] == "abstract" and not row["offset_start"]), None)
+            completed = complete_abstract_opening(doc, opening) if opening else None
+            if completed and completed[0]["chunk_id"] == req.chunk_id:
+                chunk = completed[0]
         if not chunk:
             return {"verified": False, "reason": "chunk_not_found"}
         match = re.fullmatch(r"(title|abstract|fulltext):chars:(\d{1,12})-(\d{1,12})", req.locator)

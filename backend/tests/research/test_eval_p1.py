@@ -6,6 +6,7 @@ import pytest
 from tools.research_eval.build_seed import build_smoke
 from tools.research_eval.compare import compare
 from tools.research_eval.inputs import BENCH
+from tools.research_eval.pra_qasper import ARCHIVE, score
 from tools.research_eval.run import benchmark, run_case
 from tools.research_eval.validate_dataset import validate
 
@@ -112,3 +113,90 @@ def test_explicit_judgments_require_labeler_and_cover_entire_scope(tmp_path, mon
     row["paper_qrels"].pop("fixture:birch")
     with pytest.raises(ValueError, match="review"):
         validate(saved(tmp_path, [row]))
+
+
+@pytest.mark.parametrize("start_at_end", [False, True])
+def test_qasper_counts_complete_reference_sentences_at_the_located_occurrence(start_at_end):
+    from hashlib import sha256
+
+    paragraph = "We used corpus X with fixed experimental settings for the baseline evaluation."
+    document_text = f"{paragraph}\nUnrelated text.\n{paragraph}"
+    doc = {"paper_id": "p", "fulltext": document_text}
+    origin = document_text.rindex(paragraph)
+    start = origin
+    end = len(document_text)
+    if start_at_end:
+        end -= len(" evaluation.")
+    quote = document_text[start:end]
+    row = {"evidence_id": "e", "field": "fulltext", "paper_id": "p",
+           "locator": f"fulltext:chars:{start}-{end}", "quote": quote,
+           "quote_hash": sha256(quote.encode()).hexdigest(), "corpus_generation": "qasper:" + ARCHIVE}
+    report = {"sources": [row], "claims": [], "sections": {"verified": []}}
+    annotated = {"answer": {"evidence": [paragraph], "extractive_spans": ["corpus X"]}}
+    result = score(report, doc, [annotated])
+    assert result["all_spans_in_retained_reference_sentences"] is not start_at_end
+    assert result["direct"] == 0
+    row["quote_hash"] = "0" * 64
+    with pytest.raises(ValueError, match="retained source mismatch"):
+        score(report, doc, [annotated])
+
+
+def test_pra_scorecard_rebuilds_pinned_results_and_rejects_mismatched_cohort(tmp_path):
+    from hashlib import sha256
+    from pathlib import Path
+
+    from tools.research_eval.pra_scorecard import build, matches_recorded_digest
+
+    records = Path(__file__).resolve().parents[3] / "docs" / "agent-v8"
+    scorecard = build(records)
+    assert scorecard == json.loads((records / "PRA_SCORECARD.json").read_bytes())
+    lf = (records / "holdout.json").read_bytes().replace(b"\r\n", b"\n")
+    digest = sha256(lf.replace(b"\n", b"\r\n")).hexdigest()
+    assert matches_recorded_digest(lf, digest)
+    assert not matches_recorded_digest(lf + b" ", digest)
+    assert scorecard["silver_single_ai_review"]["G"]["full_original_task"]["count"] == 0
+    assert scorecard["silver_single_ai_review"]["G"]["any_direct"]["count"] == 20
+    assert scorecard["default_policy_gate"]["status"] == "keep_current"
+    paired = scorecard["paired_changes"]
+    assert len(paired["silver_any_direct"]["gained"]) == 5
+    assert not paired["silver_any_direct"]["lost"]
+    assert len(paired["silver_original_requirements_changed"]) == 7
+    assert paired["fresh_qasper_reference_hits"] == {"gained": [], "lost": [], "retained": 1}
+    batch_a, batch_b = json.loads((records / "qasper-same-case-reruns.json").read_bytes())
+    a, b = tmp_path / "a.json", tmp_path / "b.json"
+    batch_a[0]["question"] = "other-cohort"
+    a.write_text(json.dumps(batch_a), encoding="utf-8")
+    b.write_text(json.dumps(batch_b), encoding="utf-8")
+    with pytest.raises(ValueError, match="differs from its blind cohort"):
+        build(records, [a, b])
+
+
+def test_qasper_manifest_rejects_relabeling_of_public_annotations():
+    from tools.research_eval.pra_qasper import frozen_cases
+
+    dataset = {"p": {"title": "Original paper", "qas": [{"question_id": "q", "answers": [
+        {"worker_id": "one", "answer": {"unanswerable": False}},
+        {"worker_id": "two", "answer": {"unanswerable": False}},
+    ]}]}}
+    with pytest.raises(ValueError, match="disagrees with published annotations"):
+        frozen_cases(dataset, [{"paper": "p", "question": "q", "unanswerable": True}])
+
+
+def test_pra_scorecard_rejects_new_false_answer_even_when_total_is_unchanged(tmp_path):
+    from pathlib import Path
+    from shutil import copytree
+
+    from tools.research_eval.pra_scorecard import build
+
+    records = Path(__file__).resolve().parents[3] / "docs" / "agent-v8"
+    copytree(records, tmp_path / "records")
+    candidate = tmp_path / "records" / "qasper-acceptance.json"
+    acceptance = json.loads(candidate.read_bytes())
+    a, g = ([r for r in acceptance["results"][arm] if r["unanswerable"]] for arm in ("A", "G"))
+    a[0]["direct"] = 1
+    g[1]["direct"] = 1
+    candidate.write_text(json.dumps(acceptance), encoding="utf8")
+    report = build(candidate.parent)
+    negatives = report["paired_changes"]["fresh_qasper_negative_direct"]
+    assert negatives == {"gained": [g[1]["question"]], "lost": [a[0]["question"]], "retained": 0}
+    assert "qasper_negative_regression" in report["default_policy_gate"]["reasons"]

@@ -160,7 +160,7 @@ class ResearchStore:
         """Return (state, revision, created). The owner comes from trusted authentication."""
         if not isinstance(idem, str) or not idem.strip() or len(idem) > 120:
             raise ValueError("invalid idempotency key")
-        if set(versions) - {"model_id", "skill_version", "harness_policy_version", "retrieval_policy"}:
+        if set(versions) - {"model_id", "skill_version", "harness_policy_version", "retrieval_policy", "pra_arm"}:
             raise ValueError("invalid version field")
         hashed = digest(canonical(task.model_dump(mode="json")))
         with self._db(write=True) as db:

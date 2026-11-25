@@ -29,13 +29,31 @@ GUARDS = re.compile(
     r"(?:ignore (?:all |the )?(?:previous|prior)|system prompt|call (?:the )?tool|忽略.*指令|调用.*工具)",
     re.I,
 )
-SPLIT = re.compile(r"(?<=[.!?。！？])\s+|(?<=。)|\n+")
+SPLIT = re.compile(
+    r"(?<=[。！？])\s*|(?<=[.!?])\s+|\n+|(?<=[a-z]{3}\.)(?=(?:We |Our |This study |This paper ))"
+)
+
+
+def sentence_boundaries(text):
+    """Keep the explanation following i.e. or e.g. inside a labelled abstract sentence."""
+    start = 0
+    for split in SPLIT.finditer(text):
+        if (text[max(0, split.start()-4):split.start()].lower() in {"i.e.", "e.g."}
+                and re.match(r"\s*(?:methods?|results?|objectives?)\s*:", text[start:split.start()], re.I)
+                and text[split.end():split.end()+1].islower()):
+            continue
+        yield split
+        start = split.end()
 
 
 def sentences(text: str) -> list[str]:
-    return [
-        v.strip() for v in SPLIT.split(text) if 8 <= len(v.strip()) <= 480 and not GUARDS.search(v)
-    ]
+    start = 0
+    rows = []
+    for split in sentence_boundaries(text):
+        rows.append(text[start:split.start()].strip())
+        start = split.end()
+    rows.append(text[start:].strip())
+    return [s for s in rows if 8 <= len(s) <= 480 and not GUARDS.search(s)]
 
 
 REFERENTIAL = re.compile(
@@ -45,7 +63,13 @@ REFERENTIAL = re.compile(
 )
 
 
-def contextual_fact_pairs(quote: str):
+CONSTRAINT_CONTEXT = re.compile(
+    r"^This (?:new |proposed )?(?:representation|formulation|approach|model) "
+    r"(?:takes into account|accounts for|incorporates) [^;!?]{8,250}\.$", re.I,
+)
+
+
+def contextual_fact_pairs(quote: str, *, reference=REFERENTIAL):
     """Yield verbatim, adjacent sentences when the latter refers to named antecedents."""
     previous = None
     start = 0
@@ -56,7 +80,7 @@ def contextual_fact_pairs(quote: str):
         left = start + len(raw) - len(raw.lstrip())
         right = left + len(sentence)
         if 8 <= len(sentence) <= 480 and not GUARDS.search(sentence):
-            if previous and REFERENTIAL.search(sentence):
+            if previous and reference.search(sentence):
                 prev_left, prev_right = previous
                 gap = quote[prev_right:left]
                 if right - prev_left <= 480 and not re.search(r"\n\s*\n", gap):
@@ -226,8 +250,21 @@ def verify_claim(claim: Claim, sources: dict[str, dict]) -> Claim:
                 return verdict("verified", "exact_metric_sentence_and_binding")
         return verdict("unverified", "metric_proposition_not_entailed")
     if claim.claim_type == "fact" and not match and len(refs) == 1:
-        if any(prop == text for _, _, text in contextual_fact_pairs(refs[0]["quote"])):
+        quote = refs[0]["quote"]
+        if any(prop == text for _, _, text in contextual_fact_pairs(quote)):
             return verdict("verified", "exact_adjacent_extractive_propositions")
+        from backend.research.profile_frames import REPRESENT
+
+        if any(prop == text and REPRESENT.match(first) for first, _, text in
+               contextual_fact_pairs(quote, reference=CONSTRAINT_CONTEXT)):
+            return verdict("verified", "exact_adjacent_representation_context")
+        from backend.research.semantic_slots import adjacent_author_pairs
+
+        if any(
+            prop == text
+            for _, _, text in adjacent_author_pairs(quote, 0, aligned=True, discourse=True)
+        ):
+            return verdict("verified", "exact_adjacent_author_discourse_pair")
     if GUARDS.search(prop) or not match:
         return verdict("unverified", "proposition_not_entailed")
     return verdict("verified", "exact_extractive_proposition")

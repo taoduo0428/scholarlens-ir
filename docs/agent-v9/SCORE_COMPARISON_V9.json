@@ -1,0 +1,3009 @@
+{
+  "schema": "v9-scorecard/1",
+  "evidence_distinction": {
+    "silver_111": "AI-assisted Silver labels; post-hoc 209 original requirements frozen for A & G in docs/agent-v8/silver-field-review.json; V9 arms verified via deterministic provenance, independent verification, and system-field/claim metrics without post-hoc AI relabeling.",
+    "internal_transfer": "Deterministic structural/grounding/link metrics on sealed multi-paper cohorts (History 28, v8 Holdout 12, V9 Unseen Holdout 12).",
+    "human_gold": "Human-annotated QASPER v0.3 batches (dev batches 1-3: 72 pos / 24 neg; unseen V9 QASPER: 24 pos / 8 neg)."
+  },
+  "historical_frozen_fe9932f_silver": {
+    "A": {
+      "at_least_one": 15,
+      "positive_system_fields_published": 16,
+      "direct_claims": 20,
+      "case_file_sha256": "7995c3eadc23992d97d903e71aae9e8be7bfc6631da32a850d35ef3b98875ae9",
+      "v8_scorecard_original_fields_209": {
+        "full": 4,
+        "partial": 19
+      }
+    },
+    "G": {
+      "at_least_one": 20,
+      "positive_system_fields_published": 22,
+      "direct_claims": 27,
+      "case_file_sha256": "f6ffa12bc84d0769643b3556d2dc650011f1873b86bd76ff744f7eb09c8fc757",
+      "v8_scorecard_original_fields_209": {
+        "full": 5,
+        "partial": 25
+      }
+    }
+  },
+  "silver_111": {
+    "arms": {
+      "A": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 15,
+          "total": 70,
+          "wilson95": [
+            0.1344,
+            0.3239
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 55,
+          "total": 70,
+          "wilson95": [
+            0.6761,
+            0.8656
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 1,
+          "total": 70,
+          "wilson95": [
+            0.0025,
+            0.0766
+          ]
+        },
+        "published_system_field": {
+          "count": 16,
+          "total": 271,
+          "wilson95": [
+            0.0367,
+            0.0937
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 20,
+        "filled_profile_field_cells": 648,
+        "tool_calls": 994,
+        "model_calls": 0,
+        "case_file_sha256": "7538cb5df0a420f10e872e60c987746be13ccfff9cda73f4a1c7b12455981e9d",
+        "p50_ms": 369.42,
+        "p95_ms": 752.39,
+        "independent_source_verification": {
+          "reviewed_claims": 20,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "96c91bcf2ba669574f3e40ae2356f89a12b048512d13ff81a166761b752e360e"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 192,
+          "read": 7,
+          "extraction": 3,
+          "binding": 6
+        },
+        "retrieval_calls": 294,
+        "source_readbacks": 700
+      },
+      "G": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 20,
+          "total": 70,
+          "wilson95": [
+            0.1932,
+            0.4005
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 50,
+          "total": 70,
+          "wilson95": [
+            0.5995,
+            0.8068
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 1,
+          "total": 70,
+          "wilson95": [
+            0.0025,
+            0.0766
+          ]
+        },
+        "published_system_field": {
+          "count": 23,
+          "total": 273,
+          "wilson95": [
+            0.0568,
+            0.1232
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 28,
+        "filled_profile_field_cells": 736,
+        "tool_calls": 991,
+        "model_calls": 0,
+        "case_file_sha256": "a379b91339af46eabcec51fe88a790c9f6d75612447ba1cff655e474ea53eb4a",
+        "p50_ms": 496.38,
+        "p95_ms": 1008.71,
+        "independent_source_verification": {
+          "reviewed_claims": 28,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "56fa599f38eaffe51ae9b28abeae2c7ab6f730f91db910836383080be1f78659"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 170,
+          "read": 7,
+          "extraction": 3,
+          "binding": 3
+        },
+        "retrieval_calls": 291,
+        "source_readbacks": 700
+      },
+      "H1": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 21,
+          "total": 70,
+          "wilson95": [
+            0.2054,
+            0.4154
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 49,
+          "total": 70,
+          "wilson95": [
+            0.5846,
+            0.7946
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 2,
+          "total": 70,
+          "wilson95": [
+            0.0079,
+            0.0983
+          ]
+        },
+        "published_system_field": {
+          "count": 27,
+          "total": 273,
+          "wilson95": [
+            0.0689,
+            0.1401
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 40,
+        "filled_profile_field_cells": 1086,
+        "tool_calls": 991,
+        "model_calls": 0,
+        "case_file_sha256": "838d1bfc551048548e00f27582a615ebd222bfa7acbcbde6b83ec87772a58343",
+        "p50_ms": 332.42,
+        "p95_ms": 835.55,
+        "independent_source_verification": {
+          "reviewed_claims": 40,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "49956b50d78846fa3a4bad43c6a4f77b89509ea283bf43281925a24d56e25632"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 165,
+          "read": 7,
+          "extraction": 3,
+          "binding": 2
+        },
+        "retrieval_calls": 291,
+        "source_readbacks": 700
+      },
+      "H2": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 27,
+          "total": 70,
+          "wilson95": [
+            0.2805,
+            0.5028
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 43,
+          "total": 70,
+          "wilson95": [
+            0.4972,
+            0.7195
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 1,
+          "total": 70,
+          "wilson95": [
+            0.0025,
+            0.0766
+          ]
+        },
+        "published_system_field": {
+          "count": 35,
+          "total": 273,
+          "wilson95": [
+            0.0936,
+            0.1731
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 41,
+        "filled_profile_field_cells": 751,
+        "tool_calls": 1004,
+        "model_calls": 0,
+        "case_file_sha256": "322db8923e49814491a9132dae47cf5438e188158e274d899a2f273222abad60",
+        "p50_ms": 782.18,
+        "p95_ms": 1416.2,
+        "independent_source_verification": {
+          "reviewed_claims": 41,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "55a11142e72c0cc0e78ac8c078c950a7af1aa104dab2d62ebcfc102231b8396c"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 145,
+          "read": 7,
+          "extraction": 3,
+          "binding": 3
+        },
+        "retrieval_calls": 288,
+        "source_readbacks": 716
+      },
+      "H3": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 20,
+          "total": 70,
+          "wilson95": [
+            0.1932,
+            0.4005
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 50,
+          "total": 70,
+          "wilson95": [
+            0.5995,
+            0.8068
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 1,
+          "total": 70,
+          "wilson95": [
+            0.0025,
+            0.0766
+          ]
+        },
+        "published_system_field": {
+          "count": 23,
+          "total": 273,
+          "wilson95": [
+            0.0568,
+            0.1232
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 28,
+        "filled_profile_field_cells": 736,
+        "tool_calls": 991,
+        "model_calls": 0,
+        "case_file_sha256": "68a84cb2634caae86627a9f1c27a6d60eeb0bc4379c106a269c12152ff9ff538",
+        "p50_ms": 661.88,
+        "p95_ms": 1120.19,
+        "independent_source_verification": {
+          "reviewed_claims": 28,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "14dbb83eb57997f1c1e54d633108fdcc03735bfe783a01f92616ad00a0082747"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 170,
+          "read": 7,
+          "extraction": 3,
+          "binding": 3
+        },
+        "retrieval_calls": 291,
+        "source_readbacks": 700
+      },
+      "H4": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 20,
+          "total": 70,
+          "wilson95": [
+            0.1932,
+            0.4005
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 50,
+          "total": 70,
+          "wilson95": [
+            0.5995,
+            0.8068
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 1,
+          "total": 70,
+          "wilson95": [
+            0.0025,
+            0.0766
+          ]
+        },
+        "published_system_field": {
+          "count": 23,
+          "total": 273,
+          "wilson95": [
+            0.0568,
+            0.1232
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 28,
+        "filled_profile_field_cells": 778,
+        "tool_calls": 990,
+        "model_calls": 0,
+        "case_file_sha256": "6ecb9066c1c38b90cb3346be3738c04e49cd0b0a5ece37d63fc60154202d37be",
+        "p50_ms": 518.14,
+        "p95_ms": 1059.73,
+        "independent_source_verification": {
+          "reviewed_claims": 28,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "44b8a1d8162196d4d21a4a31789d23919ec930d1cf2bc05bf9a86f43f2079ac7"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 176,
+          "read": 4,
+          "binding": 3
+        },
+        "retrieval_calls": 294,
+        "source_readbacks": 696
+      },
+      "H5": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 20,
+          "total": 70,
+          "wilson95": [
+            0.1932,
+            0.4005
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 50,
+          "total": 70,
+          "wilson95": [
+            0.5995,
+            0.8068
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 1,
+          "total": 70,
+          "wilson95": [
+            0.0025,
+            0.0766
+          ]
+        },
+        "published_system_field": {
+          "count": 23,
+          "total": 273,
+          "wilson95": [
+            0.0568,
+            0.1232
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 28,
+        "filled_profile_field_cells": 736,
+        "tool_calls": 991,
+        "model_calls": 0,
+        "case_file_sha256": "3875c0625dd4dd4d1791276593c0865173f56a83ac7682a7c7d93244f5370c56",
+        "p50_ms": 467.57,
+        "p95_ms": 950.42,
+        "independent_source_verification": {
+          "reviewed_claims": 28,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "334363d6aee51236da87d9fef0479771d4ec139c144f4c6f5abe6d563d44fd5d"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 170,
+          "read": 7,
+          "extraction": 3,
+          "binding": 3
+        },
+        "retrieval_calls": 291,
+        "source_readbacks": 700
+      },
+      "R": {
+        "tasks": 111,
+        "positives": 70,
+        "negatives": 41,
+        "any_direct": {
+          "count": 28,
+          "total": 70,
+          "wilson95": [
+            0.2933,
+            0.5171
+          ]
+        },
+        "no_direct_on_answerable": {
+          "count": 42,
+          "total": 70,
+          "wilson95": [
+            0.4829,
+            0.7067
+          ]
+        },
+        "all_positive_system_fields_published": {
+          "count": 3,
+          "total": 70,
+          "wilson95": [
+            0.0147,
+            0.1186
+          ]
+        },
+        "published_system_field": {
+          "count": 42,
+          "total": 273,
+          "wilson95": [
+            0.1159,
+            0.2014
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 41,
+          "wilson95": [
+            0,
+            0.0857
+          ]
+        },
+        "direct_claims": 60,
+        "filled_profile_field_cells": 1193,
+        "tool_calls": 1005,
+        "model_calls": 0,
+        "case_file_sha256": "a53e8beab5d2cb8319266fdd5d63c9f106f92d476e876cf38aff165aa25cf9d3",
+        "p50_ms": 691.08,
+        "p95_ms": 1453.68,
+        "independent_source_verification": {
+          "reviewed_claims": 60,
+          "removed_claims": 0,
+          "trace_manifest_sha256": "ae61e686e624deb572534ab50607907142286510a43add0718c6c6376e4e31f5"
+        },
+        "loss_on_unanswered_positives": {
+          "attribution_or_responsiveness": 146,
+          "read": 4,
+          "binding": 2
+        },
+        "retrieval_calls": 291,
+        "source_readbacks": 714
+      }
+    },
+    "paired_vs_A": {
+      "G": {
+        "gained": [
+          "review-04-comparison",
+          "review-06-comparison",
+          "review-07-fact",
+          "review-15-comparison",
+          "review-17-comparison"
+        ],
+        "lost": [],
+        "retained": 15
+      },
+      "H1": {
+        "gained": [
+          "review-04-comparison",
+          "review-06-comparison",
+          "review-07-fact",
+          "review-11-comparison",
+          "review-15-comparison",
+          "review-17-comparison"
+        ],
+        "lost": [],
+        "retained": 15
+      },
+      "H2": {
+        "gained": [
+          "review-04-comparison",
+          "review-06-comparison",
+          "review-06-multihop",
+          "review-07-fact",
+          "review-07-multihop",
+          "review-09-multihop",
+          "review-11-metrics",
+          "review-13-comparison",
+          "review-14-multihop",
+          "review-15-comparison",
+          "review-17-comparison",
+          "review-17-multihop"
+        ],
+        "lost": [],
+        "retained": 15
+      },
+      "H3": {
+        "gained": [
+          "review-04-comparison",
+          "review-06-comparison",
+          "review-07-fact",
+          "review-15-comparison",
+          "review-17-comparison"
+        ],
+        "lost": [],
+        "retained": 15
+      },
+      "H4": {
+        "gained": [
+          "review-04-comparison",
+          "review-06-comparison",
+          "review-07-fact",
+          "review-15-comparison",
+          "review-17-comparison"
+        ],
+        "lost": [],
+        "retained": 15
+      },
+      "H5": {
+        "gained": [
+          "review-04-comparison",
+          "review-06-comparison",
+          "review-07-fact",
+          "review-15-comparison",
+          "review-17-comparison"
+        ],
+        "lost": [],
+        "retained": 15
+      },
+      "R": {
+        "gained": [
+          "review-04-comparison",
+          "review-06-comparison",
+          "review-06-multihop",
+          "review-07-fact",
+          "review-07-multihop",
+          "review-09-multihop",
+          "review-11-comparison",
+          "review-11-metrics",
+          "review-13-comparison",
+          "review-14-multihop",
+          "review-15-comparison",
+          "review-17-comparison",
+          "review-17-multihop"
+        ],
+        "lost": [],
+        "retained": 15
+      }
+    },
+    "paired_vs_G": {
+      "H1": {
+        "gained": [
+          "review-11-comparison"
+        ],
+        "lost": [],
+        "retained": 20
+      },
+      "H2": {
+        "gained": [
+          "review-06-multihop",
+          "review-07-multihop",
+          "review-09-multihop",
+          "review-11-metrics",
+          "review-13-comparison",
+          "review-14-multihop",
+          "review-17-multihop"
+        ],
+        "lost": [],
+        "retained": 20
+      },
+      "H3": {
+        "gained": [],
+        "lost": [],
+        "retained": 20
+      },
+      "H4": {
+        "gained": [],
+        "lost": [],
+        "retained": 20
+      },
+      "H5": {
+        "gained": [],
+        "lost": [],
+        "retained": 20
+      },
+      "R": {
+        "gained": [
+          "review-06-multihop",
+          "review-07-multihop",
+          "review-09-multihop",
+          "review-11-comparison",
+          "review-11-metrics",
+          "review-13-comparison",
+          "review-14-multihop",
+          "review-17-multihop"
+        ],
+        "lost": [],
+        "retained": 20
+      }
+    }
+  },
+  "sealed_internal_transfer": {
+    "history_28": {
+      "A": {
+        "arm": "A",
+        "overview_total": 28,
+        "full_group_synthesis": {
+          "count": 1,
+          "total": 28,
+          "wilson95": [
+            0.0063,
+            0.1771
+          ]
+        },
+        "overview_any_claims": {
+          "count": 27,
+          "total": 28,
+          "wilson95": [
+            0.8229,
+            0.9937
+          ]
+        },
+        "overview_total_claims": 75,
+        "quote_exact": {
+          "count": 27,
+          "total": 28,
+          "wilson95": [
+            0.8229,
+            0.9937
+          ]
+        },
+        "unsupported_layout": {
+          "count": 0,
+          "total": 28,
+          "wilson95": [
+            0,
+            0.1206
+          ]
+        },
+        "tool_calls": 383
+      },
+      "G": {
+        "arm": "G",
+        "overview_total": 28,
+        "full_group_synthesis": {
+          "count": 1,
+          "total": 28,
+          "wilson95": [
+            0.0063,
+            0.1771
+          ]
+        },
+        "overview_any_claims": {
+          "count": 27,
+          "total": 28,
+          "wilson95": [
+            0.8229,
+            0.9937
+          ]
+        },
+        "overview_total_claims": 81,
+        "quote_exact": {
+          "count": 27,
+          "total": 28,
+          "wilson95": [
+            0.8229,
+            0.9937
+          ]
+        },
+        "unsupported_layout": {
+          "count": 0,
+          "total": 28,
+          "wilson95": [
+            0,
+            0.1206
+          ]
+        },
+        "tool_calls": 378
+      },
+      "H3": {
+        "arm": "H3",
+        "overview_total": 28,
+        "full_group_synthesis": {
+          "count": 10,
+          "total": 28,
+          "wilson95": [
+            0.2071,
+            0.5417
+          ]
+        },
+        "overview_any_claims": {
+          "count": 27,
+          "total": 28,
+          "wilson95": [
+            0.8229,
+            0.9937
+          ]
+        },
+        "overview_total_claims": 101,
+        "quote_exact": {
+          "count": 27,
+          "total": 28,
+          "wilson95": [
+            0.8229,
+            0.9937
+          ]
+        },
+        "unsupported_layout": {
+          "count": 0,
+          "total": 28,
+          "wilson95": [
+            0,
+            0.1206
+          ]
+        },
+        "tool_calls": 378
+      },
+      "R": {
+        "arm": "R",
+        "overview_total": 28,
+        "full_group_synthesis": {
+          "count": 13,
+          "total": 28,
+          "wilson95": [
+            0.2953,
+            0.6419
+          ]
+        },
+        "overview_any_claims": {
+          "count": 28,
+          "total": 28,
+          "wilson95": [
+            0.8794,
+            1
+          ]
+        },
+        "overview_total_claims": 151,
+        "quote_exact": {
+          "count": 27,
+          "total": 28,
+          "wilson95": [
+            0.8229,
+            0.9937
+          ]
+        },
+        "unsupported_layout": {
+          "count": 0,
+          "total": 28,
+          "wilson95": [
+            0,
+            0.1206
+          ]
+        },
+        "tool_calls": 377
+      }
+    },
+    "v8_holdout_12_abstract": {
+      "A": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 11,
+          "total": 12,
+          "wilson95": [
+            0.6461,
+            0.9851
+          ]
+        },
+        "total_claims": 43,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      },
+      "G": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 47,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      },
+      "H3": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 5,
+          "total": 12,
+          "wilson95": [
+            0.1933,
+            0.6805
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 59,
+        "derived_synthesis_count": 5,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      },
+      "R": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 5,
+          "total": 12,
+          "wilson95": [
+            0.1933,
+            0.6805
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 72,
+        "derived_synthesis_count": 5,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 102
+      }
+    },
+    "v8_holdout_12_fulltext": {
+      "A": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 11,
+          "total": 12,
+          "wilson95": [
+            0.6461,
+            0.9851
+          ]
+        },
+        "total_claims": 43,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      },
+      "G": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 51,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 4,
+        "tool_calls": 105
+      },
+      "H3": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 6,
+          "total": 12,
+          "wilson95": [
+            0.2538,
+            0.7462
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 65,
+        "derived_synthesis_count": 6,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 4,
+        "tool_calls": 105
+      },
+      "H4": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 50,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 2,
+        "tool_calls": 104
+      },
+      "R": {
+        "manifest_sha256": "5963667f1d00dc4c57ff917d9cb5bce699c05cfacf1ab3e8c315af4661487040",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 5,
+          "total": 12,
+          "wilson95": [
+            0.1933,
+            0.6805
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 73,
+        "derived_synthesis_count": 5,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 2,
+        "tool_calls": 104
+      }
+    },
+    "v9_unseen_holdout_12_abstract": {
+      "A": {
+        "manifest_sha256": "08421ab5aecb02171165c8b3c5b8dcb26c4ed6299544c6407a8d6a8eb8581220",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 38,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      },
+      "G": {
+        "manifest_sha256": "08421ab5aecb02171165c8b3c5b8dcb26c4ed6299544c6407a8d6a8eb8581220",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 39,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      },
+      "R": {
+        "manifest_sha256": "08421ab5aecb02171165c8b3c5b8dcb26c4ed6299544c6407a8d6a8eb8581220",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 3,
+          "total": 12,
+          "wilson95": [
+            0.0889,
+            0.5323
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 61,
+        "derived_synthesis_count": 3,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      }
+    },
+    "v9_unseen_holdout_12_fulltext": {
+      "A": {
+        "manifest_sha256": "08421ab5aecb02171165c8b3c5b8dcb26c4ed6299544c6407a8d6a8eb8581220",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 38,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 0,
+        "tool_calls": 105
+      },
+      "G": {
+        "manifest_sha256": "08421ab5aecb02171165c8b3c5b8dcb26c4ed6299544c6407a8d6a8eb8581220",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 44,
+        "derived_synthesis_count": 0,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 8,
+        "tool_calls": 109
+      },
+      "R": {
+        "manifest_sha256": "08421ab5aecb02171165c8b3c5b8dcb26c4ed6299544c6407a8d6a8eb8581220",
+        "overview_total": 12,
+        "full_group_synthesis": {
+          "count": 4,
+          "total": 12,
+          "wilson95": [
+            0.1381,
+            0.6094
+          ]
+        },
+        "any_claims": {
+          "count": 12,
+          "total": 12,
+          "wilson95": [
+            0.7575,
+            1
+          ]
+        },
+        "total_claims": 69,
+        "derived_synthesis_count": 4,
+        "unsupported_layout": {
+          "count": 0,
+          "total": 12,
+          "wilson95": [
+            0,
+            0.2425
+          ]
+        },
+        "source_failures": 0,
+        "retained_body_chunks": 6,
+        "tool_calls": 111
+      }
+    }
+  },
+  "human_gold_qasper": {
+    "dev_batches": {
+      "batch_1": {
+        "A": {
+          "any_direct": {
+            "count": 0,
+            "total": 24,
+            "wilson95": [
+              0,
+              0.138
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 20,
+            "wilson95": [
+              0.0,
+              0.1611
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 10,
+            "total": 20,
+            "wilson95": [
+              0.2993,
+              0.7007
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 310
+        },
+        "G": {
+          "any_direct": {
+            "count": 2,
+            "total": 24,
+            "wilson95": [
+              0.0232,
+              0.2585
+            ]
+          },
+          "all_reference_spans": {
+            "count": 2,
+            "total": 20,
+            "wilson95": [
+              0.0279,
+              0.301
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 10,
+            "total": 20,
+            "wilson95": [
+              0.2993,
+              0.7007
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 312
+        },
+        "H1": {
+          "any_direct": {
+            "count": 2,
+            "total": 24,
+            "wilson95": [
+              0.0232,
+              0.2585
+            ]
+          },
+          "all_reference_spans": {
+            "count": 2,
+            "total": 20,
+            "wilson95": [
+              0.0279,
+              0.301
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 10,
+            "total": 20,
+            "wilson95": [
+              0.2993,
+              0.7007
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 312
+        },
+        "H2": {
+          "any_direct": {
+            "count": 9,
+            "total": 24,
+            "wilson95": [
+              0.2116,
+              0.5729
+            ]
+          },
+          "all_reference_spans": {
+            "count": 6,
+            "total": 20,
+            "wilson95": [
+              0.1455,
+              0.519
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 10,
+            "total": 20,
+            "wilson95": [
+              0.2993,
+              0.7007
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 312
+        },
+        "H4": {
+          "any_direct": {
+            "count": 2,
+            "total": 24,
+            "wilson95": [
+              0.0232,
+              0.2585
+            ]
+          },
+          "all_reference_spans": {
+            "count": 2,
+            "total": 20,
+            "wilson95": [
+              0.0279,
+              0.301
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 12,
+            "total": 24,
+            "wilson95": [
+              0.3143,
+              0.6857
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 9,
+            "total": 20,
+            "wilson95": [
+              0.2582,
+              0.6579
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 308
+        },
+        "R": {
+          "any_direct": {
+            "count": 10,
+            "total": 24,
+            "wilson95": [
+              0.2447,
+              0.6117
+            ]
+          },
+          "all_reference_spans": {
+            "count": 5,
+            "total": 20,
+            "wilson95": [
+              0.1119,
+              0.4687
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 12,
+            "total": 24,
+            "wilson95": [
+              0.3143,
+              0.6857
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 9,
+            "total": 20,
+            "wilson95": [
+              0.2582,
+              0.6579
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 284
+        }
+      },
+      "batch_2": {
+        "A": {
+          "any_direct": {
+            "count": 0,
+            "total": 24,
+            "wilson95": [
+              0,
+              0.138
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 17,
+            "wilson95": [
+              0,
+              0.1843
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 11,
+            "total": 24,
+            "wilson95": [
+              0.2789,
+              0.6493
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 2,
+            "total": 17,
+            "wilson95": [
+              0.0329,
+              0.3434
+            ]
+          },
+          "negative_direct": {
+            "count": 1,
+            "total": 8,
+            "wilson95": [
+              0.0224,
+              0.4709
+            ]
+          },
+          "tool_calls": 308
+        },
+        "G": {
+          "any_direct": {
+            "count": 0,
+            "total": 24,
+            "wilson95": [
+              0,
+              0.138
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 17,
+            "wilson95": [
+              0,
+              0.1843
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 11,
+            "total": 24,
+            "wilson95": [
+              0.2789,
+              0.6493
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 2,
+            "total": 17,
+            "wilson95": [
+              0.0329,
+              0.3434
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 314
+        },
+        "H1": {
+          "any_direct": {
+            "count": 0,
+            "total": 24,
+            "wilson95": [
+              0,
+              0.138
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 17,
+            "wilson95": [
+              0,
+              0.1843
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 11,
+            "total": 24,
+            "wilson95": [
+              0.2789,
+              0.6493
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 2,
+            "total": 17,
+            "wilson95": [
+              0.0329,
+              0.3434
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 314
+        },
+        "H2": {
+          "any_direct": {
+            "count": 9,
+            "total": 24,
+            "wilson95": [
+              0.2116,
+              0.5729
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 17,
+            "wilson95": [
+              0,
+              0.1843
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 11,
+            "total": 24,
+            "wilson95": [
+              0.2789,
+              0.6493
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 2,
+            "total": 17,
+            "wilson95": [
+              0.0329,
+              0.3434
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 314
+        },
+        "H4": {
+          "any_direct": {
+            "count": 0,
+            "total": 24,
+            "wilson95": [
+              0,
+              0.138
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 17,
+            "wilson95": [
+              0,
+              0.1843
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 7,
+            "total": 17,
+            "wilson95": [
+              0.2161,
+              0.6399
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 314
+        },
+        "R": {
+          "any_direct": {
+            "count": 9,
+            "total": 24,
+            "wilson95": [
+              0.2116,
+              0.5729
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 17,
+            "wilson95": [
+              0,
+              0.1843
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 7,
+            "total": 17,
+            "wilson95": [
+              0.2161,
+              0.6399
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 290
+        }
+      },
+      "batch_3": {
+        "A": {
+          "any_direct": {
+            "count": 1,
+            "total": 24,
+            "wilson95": [
+              0.0074,
+              0.2024
+            ]
+          },
+          "all_reference_spans": {
+            "count": 1,
+            "total": 17,
+            "wilson95": [
+              0.0105,
+              0.2698
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 6,
+            "total": 17,
+            "wilson95": [
+              0.1731,
+              0.587
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 315
+        },
+        "G": {
+          "any_direct": {
+            "count": 1,
+            "total": 24,
+            "wilson95": [
+              0.0074,
+              0.2024
+            ]
+          },
+          "all_reference_spans": {
+            "count": 1,
+            "total": 17,
+            "wilson95": [
+              0.0105,
+              0.2698
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 6,
+            "total": 17,
+            "wilson95": [
+              0.1731,
+              0.587
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 320
+        },
+        "H1": {
+          "any_direct": {
+            "count": 1,
+            "total": 24,
+            "wilson95": [
+              0.0074,
+              0.2024
+            ]
+          },
+          "all_reference_spans": {
+            "count": 1,
+            "total": 17,
+            "wilson95": [
+              0.0105,
+              0.2698
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 6,
+            "total": 17,
+            "wilson95": [
+              0.1731,
+              0.587
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 320
+        },
+        "H2": {
+          "any_direct": {
+            "count": 7,
+            "total": 24,
+            "wilson95": [
+              0.1491,
+              0.4917
+            ]
+          },
+          "all_reference_spans": {
+            "count": 1,
+            "total": 17,
+            "wilson95": [
+              0.0105,
+              0.2698
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 15,
+            "total": 24,
+            "wilson95": [
+              0.4271,
+              0.7884
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 6,
+            "total": 17,
+            "wilson95": [
+              0.1731,
+              0.587
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 320
+        },
+        "H4": {
+          "any_direct": {
+            "count": 1,
+            "total": 24,
+            "wilson95": [
+              0.0074,
+              0.2024
+            ]
+          },
+          "all_reference_spans": {
+            "count": 1,
+            "total": 17,
+            "wilson95": [
+              0.0105,
+              0.2698
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 13,
+            "total": 24,
+            "wilson95": [
+              0.3507,
+              0.7211
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 7,
+            "total": 17,
+            "wilson95": [
+              0.2161,
+              0.6399
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 317
+        },
+        "R": {
+          "any_direct": {
+            "count": 7,
+            "total": 24,
+            "wilson95": [
+              0.1491,
+              0.4917
+            ]
+          },
+          "all_reference_spans": {
+            "count": 1,
+            "total": 17,
+            "wilson95": [
+              0.0105,
+              0.2698
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 12,
+            "total": 24,
+            "wilson95": [
+              0.3143,
+              0.6857
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 7,
+            "total": 17,
+            "wilson95": [
+              0.2161,
+              0.6399
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 299
+        }
+      }
+    },
+    "dev_total_72pos_24neg": {
+      "A": {
+        "batches": 3,
+        "positives": 72,
+        "negatives": 24,
+        "any_direct": {
+          "count": 1,
+          "total": 72,
+          "wilson95": [
+            0.0025,
+            0.0746
+          ]
+        },
+        "all_reference_spans": {
+          "count": 1,
+          "total": 54,
+          "wilson95": [
+            0.0033,
+            0.0977
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 41,
+          "total": 72,
+          "wilson95": [
+            0.4544,
+            0.6774
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 18,
+          "total": 54,
+          "wilson95": [
+            0.2224,
+            0.4664
+          ]
+        },
+        "negative_direct": {
+          "count": 1,
+          "total": 24,
+          "wilson95": [
+            0.0074,
+            0.2024
+          ]
+        },
+        "tool_calls": 933
+      },
+      "G": {
+        "batches": 3,
+        "positives": 72,
+        "negatives": 24,
+        "any_direct": {
+          "count": 3,
+          "total": 72,
+          "wilson95": [
+            0.0143,
+            0.1155
+          ]
+        },
+        "all_reference_spans": {
+          "count": 3,
+          "total": 54,
+          "wilson95": [
+            0.0191,
+            0.1511
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 41,
+          "total": 72,
+          "wilson95": [
+            0.4544,
+            0.6774
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 18,
+          "total": 54,
+          "wilson95": [
+            0.2224,
+            0.4664
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 24,
+          "wilson95": [
+            0,
+            0.138
+          ]
+        },
+        "tool_calls": 946
+      },
+      "H1": {
+        "batches": 3,
+        "positives": 72,
+        "negatives": 24,
+        "any_direct": {
+          "count": 3,
+          "total": 72,
+          "wilson95": [
+            0.0143,
+            0.1155
+          ]
+        },
+        "all_reference_spans": {
+          "count": 3,
+          "total": 54,
+          "wilson95": [
+            0.0191,
+            0.1511
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 41,
+          "total": 72,
+          "wilson95": [
+            0.4544,
+            0.6774
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 18,
+          "total": 54,
+          "wilson95": [
+            0.2224,
+            0.4664
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 24,
+          "wilson95": [
+            0,
+            0.138
+          ]
+        },
+        "tool_calls": 946
+      },
+      "H2": {
+        "batches": 3,
+        "positives": 72,
+        "negatives": 24,
+        "any_direct": {
+          "count": 25,
+          "total": 72,
+          "wilson95": [
+            0.2475,
+            0.4624
+          ]
+        },
+        "all_reference_spans": {
+          "count": 7,
+          "total": 54,
+          "wilson95": [
+            0.0642,
+            0.2442
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 41,
+          "total": 72,
+          "wilson95": [
+            0.4544,
+            0.6774
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 18,
+          "total": 54,
+          "wilson95": [
+            0.2224,
+            0.4664
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 24,
+          "wilson95": [
+            0,
+            0.138
+          ]
+        },
+        "tool_calls": 946
+      },
+      "H4": {
+        "batches": 3,
+        "positives": 72,
+        "negatives": 24,
+        "any_direct": {
+          "count": 3,
+          "total": 72,
+          "wilson95": [
+            0.0143,
+            0.1155
+          ]
+        },
+        "all_reference_spans": {
+          "count": 3,
+          "total": 54,
+          "wilson95": [
+            0.0191,
+            0.1511
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 40,
+          "total": 72,
+          "wilson95": [
+            0.4409,
+            0.6646
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 23,
+          "total": 54,
+          "wilson95": [
+            0.3033,
+            0.5584
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 24,
+          "wilson95": [
+            0,
+            0.138
+          ]
+        },
+        "tool_calls": 939
+      },
+      "R": {
+        "batches": 3,
+        "positives": 72,
+        "negatives": 24,
+        "any_direct": {
+          "count": 26,
+          "total": 72,
+          "wilson95": [
+            0.2598,
+            0.4765
+          ]
+        },
+        "all_reference_spans": {
+          "count": 6,
+          "total": 54,
+          "wilson95": [
+            0.0519,
+            0.2219
+          ]
+        },
+        "annotated_passage_read": {
+          "count": 39,
+          "total": 72,
+          "wilson95": [
+            0.4274,
+            0.6517
+          ]
+        },
+        "all_reference_sentences_read": {
+          "count": 23,
+          "total": 54,
+          "wilson95": [
+            0.3033,
+            0.5584
+          ]
+        },
+        "negative_direct": {
+          "count": 0,
+          "total": 24,
+          "wilson95": [
+            0,
+            0.138
+          ]
+        },
+        "tool_calls": 873
+      }
+    },
+    "v9_unseen_32": {
+      "manifest_sha256": "88d267f03a3d48faad1c2fea690fb7090534552cc2c63823de065754f3b1d4e1",
+      "arms": {
+        "A": {
+          "any_direct": {
+            "count": 0,
+            "total": 24,
+            "wilson95": [
+              0,
+              0.138
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 15,
+            "wilson95": [
+              0,
+              0.2039
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 10,
+            "total": 24,
+            "wilson95": [
+              0.2447,
+              0.6117
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 7,
+            "total": 15,
+            "wilson95": [
+              0.2481,
+              0.6988
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 302
+        },
+        "G": {
+          "any_direct": {
+            "count": 0,
+            "total": 24,
+            "wilson95": [
+              0,
+              0.138
+            ]
+          },
+          "all_reference_spans": {
+            "count": 0,
+            "total": 15,
+            "wilson95": [
+              0,
+              0.2039
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 11,
+            "total": 24,
+            "wilson95": [
+              0.2789,
+              0.6493
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 7,
+            "total": 15,
+            "wilson95": [
+              0.2481,
+              0.6988
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 320
+        },
+        "R": {
+          "any_direct": {
+            "count": 5,
+            "total": 24,
+            "wilson95": [
+              0.0924,
+              0.4047
+            ]
+          },
+          "all_reference_spans": {
+            "count": 1,
+            "total": 15,
+            "wilson95": [
+              0.0119,
+              0.2982
+            ]
+          },
+          "annotated_passage_read": {
+            "count": 12,
+            "total": 24,
+            "wilson95": [
+              0.3143,
+              0.6857
+            ]
+          },
+          "all_reference_sentences_read": {
+            "count": 7,
+            "total": 15,
+            "wilson95": [
+              0.2481,
+              0.6988
+            ]
+          },
+          "negative_direct": {
+            "count": 0,
+            "total": 8,
+            "wilson95": [
+              0,
+              0.3244
+            ]
+          },
+          "tool_calls": 306
+        }
+      }
+    }
+  },
+  "live_model_acceptance": {
+    "controlled_http": {
+      "A": {
+        "status": "PASS",
+        "mode": "controlled_http",
+        "model": "controlled-http",
+        "workflow_state": "completed",
+        "gates": {
+          "worker": true,
+          "planning": true,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": true,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": true,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 7,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 0,
+        "missing_fields": 0,
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 10,
+          "proposed_profiles": 0,
+          "valid_order_ids": 11
+        },
+        "warnings": [],
+        "usage": [
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 16
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          }
+        ],
+        "elapsed_ms": 4469,
+        "attempts": 4
+      },
+      "G": {
+        "status": "PASS",
+        "mode": "controlled_http",
+        "model": "controlled-http",
+        "workflow_state": "completed",
+        "gates": {
+          "worker": true,
+          "planning": true,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": true,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": true,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 7,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 1,
+        "missing_fields": 0,
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 10,
+          "proposed_profiles": 1,
+          "valid_order_ids": 7
+        },
+        "warnings": [],
+        "usage": [
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 15
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          }
+        ],
+        "elapsed_ms": 3984,
+        "attempts": 4
+      },
+      "H5": {
+        "status": "PASS",
+        "mode": "controlled_http",
+        "model": "controlled-http",
+        "workflow_state": "completed",
+        "gates": {
+          "worker": true,
+          "planning": true,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": true,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": true,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 7,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 1,
+        "missing_fields": 0,
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 10,
+          "proposed_profiles": 1,
+          "valid_order_ids": 7
+        },
+        "warnings": [],
+        "usage": [
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 16
+          }
+        ],
+        "elapsed_ms": 4781,
+        "attempts": 4
+      },
+      "R": {
+        "status": "PASS",
+        "mode": "controlled_http",
+        "model": "controlled-http",
+        "workflow_state": "partial",
+        "gates": {
+          "worker": true,
+          "planning": true,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": true,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": true,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 6,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 1,
+        "missing_fields": 1,
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 10,
+          "proposed_profiles": 1,
+          "valid_order_ids": 6
+        },
+        "warnings": [],
+        "usage": [
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 16
+          },
+          {
+            "input_tokens": 35,
+            "output_tokens": 20,
+            "cached_tokens": null,
+            "latency_ms": 0
+          }
+        ],
+        "elapsed_ms": 7000,
+        "attempts": 4
+      }
+    },
+    "live_deepseek_v4_1_flash": {
+      "A": {
+        "status": "PARTIAL",
+        "mode": "live",
+        "model": "deepseek-v4.1-flash",
+        "workflow_state": "completed",
+        "gates": {
+          "worker": true,
+          "planning": false,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": false,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": false,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 7,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 0,
+        "missing_fields": 0,
+        "stage_observations": {
+          "chosen": "search",
+          "valid_order_ids": 6
+        },
+        "warnings": [
+          "workspace_analysis_fallback",
+          "workspace_analysis_provider_output_limit"
+        ],
+        "usage": [
+          {
+            "input_tokens": 917,
+            "output_tokens": 245,
+            "cached_tokens": 0,
+            "latency_ms": 4469
+          },
+          {
+            "input_tokens": 1258,
+            "output_tokens": 61,
+            "cached_tokens": 0,
+            "latency_ms": 2578
+          },
+          {
+            "input_tokens": 3150,
+            "output_tokens": 1400,
+            "cached_tokens": 0,
+            "latency_ms": 8750
+          },
+          {
+            "input_tokens": 684,
+            "output_tokens": 118,
+            "cached_tokens": 0,
+            "latency_ms": 3422
+          }
+        ],
+        "elapsed_ms": 23500,
+        "attempts": 4
+      },
+      "G": {
+        "status": "PARTIAL",
+        "mode": "live",
+        "model": "deepseek-v4.1-flash",
+        "workflow_state": "completed",
+        "gates": {
+          "worker": true,
+          "planning": false,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": false,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": false,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 7,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 0,
+        "missing_fields": 0,
+        "stage_observations": {
+          "chosen": "search",
+          "valid_order_ids": 6
+        },
+        "warnings": [
+          "workspace_analysis_fallback",
+          "workspace_analysis_provider_output_limit"
+        ],
+        "usage": [
+          {
+            "input_tokens": 917,
+            "output_tokens": 236,
+            "cached_tokens": 768,
+            "latency_ms": 5266
+          },
+          {
+            "input_tokens": 1258,
+            "output_tokens": 61,
+            "cached_tokens": 1024,
+            "latency_ms": 3640
+          },
+          {
+            "input_tokens": 4219,
+            "output_tokens": 1400,
+            "cached_tokens": 0,
+            "latency_ms": 9015
+          },
+          {
+            "input_tokens": 490,
+            "output_tokens": 116,
+            "cached_tokens": 0,
+            "latency_ms": 3250
+          }
+        ],
+        "elapsed_ms": 25765,
+        "attempts": 4
+      },
+      "H5": {
+        "status": "PASS",
+        "mode": "live",
+        "model": "deepseek-v4.1-flash",
+        "workflow_state": "completed",
+        "gates": {
+          "worker": true,
+          "planning": true,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": true,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": true,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 8,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 4,
+        "missing_fields": 0,
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 4,
+          "proposed_profiles": 4,
+          "valid_order_ids": 6
+        },
+        "warnings": [],
+        "usage": [
+          {
+            "input_tokens": 991,
+            "output_tokens": 192,
+            "cached_tokens": 0,
+            "latency_ms": 4094
+          },
+          {
+            "input_tokens": 1203,
+            "output_tokens": 61,
+            "cached_tokens": 0,
+            "latency_ms": 3672
+          },
+          {
+            "input_tokens": 4294,
+            "output_tokens": 674,
+            "cached_tokens": 0,
+            "latency_ms": 5250
+          },
+          {
+            "input_tokens": 547,
+            "output_tokens": 118,
+            "cached_tokens": 0,
+            "latency_ms": 3797
+          }
+        ],
+        "elapsed_ms": 20766,
+        "attempts": 4
+      },
+      "R": {
+        "status": "PASS",
+        "mode": "live",
+        "model": "deepseek-v4.1-flash",
+        "workflow_state": "partial",
+        "gates": {
+          "worker": true,
+          "planning": true,
+          "decision": true,
+          "retrieval": true,
+          "semantic_review": true,
+          "synthesis": true,
+          "publication": true,
+          "no_fallback": true,
+          "provider_receipts": true
+        },
+        "verified_direct_count": 7,
+        "two_paper_relations": 1,
+        "source_checked_model_fields": 5,
+        "missing_fields": 1,
+        "stage_observations": {
+          "chosen": "search",
+          "grounded_labels": 6,
+          "proposed_profiles": 6,
+          "valid_order_ids": 6
+        },
+        "warnings": [],
+        "usage": [
+          {
+            "input_tokens": 991,
+            "output_tokens": 209,
+            "cached_tokens": 768,
+            "latency_ms": 4141
+          },
+          {
+            "input_tokens": 1204,
+            "output_tokens": 61,
+            "cached_tokens": 896,
+            "latency_ms": 2922
+          },
+          {
+            "input_tokens": 4407,
+            "output_tokens": 1003,
+            "cached_tokens": 0,
+            "latency_ms": 5328
+          },
+          {
+            "input_tokens": 507,
+            "output_tokens": 119,
+            "cached_tokens": 0,
+            "latency_ms": 2891
+          }
+        ],
+        "elapsed_ms": 22890,
+        "attempts": 4
+      }
+    }
+  }
+}

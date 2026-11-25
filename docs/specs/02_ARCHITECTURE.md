@@ -1,5 +1,7 @@
 # 02 技术架构与数据流程
 
+> 最终工程边界与交付验证见 [工程验收](../final/ENGINEERING_COMPLETION_REPORT.md)。运行时仍由 FastAPI、LangGraph、SQLite、Elasticsearch、React、Docker 和 OpenTelemetry 组成。
+
 > 阅读口径：本文件保留原阶段的协议、命令与验收条件。当前实现、部署和外部服务状态见[项目总报告](../PROJECT_REPORT.md)与[当前状态](../operations/STATUS.md)。旧阶段的“待接通/待交付”不覆盖后续已完成内容。
 
 > 2026-10-26：后端 P0 已放行，使用 Elasticsearch 8.19.23 Windows ZIP（自带 JDK）+ Python 3.11 + FastAPI + Elasticsearch Python 8.19 客户端；本机无 Docker，使用本地进程、loopback 和 512 MB JVM 堆。实际验证见 backend/archive/20261026-27/VERIFICATION.md。历史P0时这些事项待确认；V2已选择MiniLM CPU向量模型，大模型供应商、Java Lucene直接调用与Docker编排仍待会议确认。

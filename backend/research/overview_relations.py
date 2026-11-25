@@ -26,7 +26,7 @@ ZH = re.compile(r"(?:我们|本研究|本文)(?:采用|使用)(?:了)?" + NAME +
 TASK_REFERENCE = re.compile(r"\b(?:the|this|that|our|its|their|these|those|not|no|except|only|if|and|or|but)\b|该|上述|此|本次|仅|除外")
 DESIGNS = {
     "形式证明": r"(?:we (?:also )?prove (?:that |the existence of |a theorem\b)|(?:本文|我们)证明了)",
-    "数值模拟": r"(?:we (?:use|present|perform|conduct) (?:numerical|Monte Carlo) simulations?\b|(?:本文|我们)(?:采用|进行)了?数值模拟)",
+    "数值模拟": r"(?:we (?:use|used|present|perform(?:ed)?|conduct(?:ed)?|carried out) (?:numerical|Monte Carlo) simulations?\b|(?:本文|我们)(?:采用|进行)了?数值模拟)",
     "案例研究": r"(?:we (?:present|conduct|report) (?:a case study|case studies) (?:of|on) |(?:本文|我们)(?:开展|进行)了案例研究)",
     "解析推导": r"(?:we derive (?:a closed.form (?:expression|solution)|an analytical (?:expression|solution))\b|(?:本文|我们)推导出.{0,12}(?:闭式解|解析表达式))",
 }
@@ -84,7 +84,7 @@ def method_relations(claims, index, requested):
         if describes_model_construction(claim.statement):
             model_builders.setdefault(pid, claim)
         for design, pattern in DESIGN_PATTERNS.items():
-            if pattern.match(claim.statement):
+            if pattern.match(claim.statement) and not MODEL_QUALIFIER.search(claim.statement):
                 by_design[design].setdefault(pid, claim)
         match = EN.fullmatch(claim.statement) or ZH.fullmatch(claim.statement)
         if not match or re.search(r"\b(?:neither|nor|never|not|no|unless|except|without|if|only)\b|并非|除外|仅当|而非",

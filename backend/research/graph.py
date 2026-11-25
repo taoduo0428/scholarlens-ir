@@ -13,12 +13,13 @@ from langgraph.graph import END, START, StateGraph
 from langsmith import tracing_context
 from backend.research.telemetry import metering, span, traced
 
+from backend.research.arms import has_full_pra, has_gap_arm, has_h4
 from backend.research.context import working_context
 from backend.research import workspace_model
 from backend.research.harness import bounded_read, call_tool
 from backend.research.broad_recall import eligible, fair_rows, free_calls, grounded_query
 from backend.research.planner import covers, plan, query_for
-from backend.research.provider_adapter import ProviderError
+from backend.research.provider_adapter import MODEL_STAGE_SECONDS, ProviderError
 from backend.research.schemas import (
     ActionRecord,
     Coverage,
@@ -50,6 +51,40 @@ def _uncovered_papers(state):
         return []
     covered = {ref.paper_id for ref in state.evidence_refs}
     return [pid for pid in dict.fromkeys(state.task.scope.paper_ids) if pid not in covered]
+
+
+def _voi_rank_rows(state, rows, question_fields):
+    """Reorder windows within each paper by VoI while preserving cross-paper BM25/focus order."""
+    from backend.research.planner import words
+
+    subjects = [(f.subject.casefold(), set(words(f.subject))) for f in question_fields if f.subject]
+    contexts = [(f.subject_context.casefold(), set(words(f.subject_context))) for f in question_fields if f.subject_context]
+    terms = set(words(state.task.goal))
+    groups = {}
+    for idx, row in enumerate(rows):
+        text = row.get("quote", "")
+        folded = text.casefold()
+        row_words = set(words(text))
+        non_meta = int(row.get("source_kind") != "metadata" and row.get("field") != "title")
+        subject_hits = sum(1 for s, sw in subjects if s in folded or (bool(sw) and sw <= row_words))
+        context_hits = sum(1 for c, cw in contexts if c in folded or (bool(cw) and cw <= row_words))
+        term_hits = len(terms & row_words)
+        author_cue = int(any(cue in folded for cue in ("we ", "our ", "this study", "this paper", "proposed")))
+        score = (
+            non_meta,
+            subject_hits,
+            context_hits,
+            author_cue,
+            term_hits,
+            row.get("field") == "abstract",
+            row.get("offset_start", 1) == 0,
+        )
+        groups.setdefault(row["paper_id"], []).append((score, -idx, row))
+    ordered = []
+    for pid, items in groups.items():
+        items.sort(key=lambda item: (item[0], item[1]), reverse=True)
+        ordered.extend(item[2] for item in items)
+    return ordered
 
 
 class Halt(Exception):
@@ -164,15 +199,28 @@ class ResearchGraph:
                         state.budget.model_calls_used += 1
                     state.planning_calls += 1
                     view = {"task": contract, "validation_errors": list(errors)}
+                    if state.retrieval_policy == "E11":
+                        from backend.research.questions import PATHS
+                        view["skeleton"] = [
+                            {"id": f"q{i}", "kind": kind, "dependencies": [f"q{d}" for d in deps],
+                             "priority": i, "min_papers": 2 if kind == "comparison" else 1}
+                            for i, (kind, deps) in enumerate(PATHS[contract["intent"]], 1)
+                        ]
                     try:
                         graph = bounded_read(self.question_planner, view, self._remaining(state),
-                                             deadline=state.budget.deadline)
+                                             deadline=state.budget.deadline, limit=MODEL_STAGE_SECONDS)
                     except ToolError:
                         raise ValueError("provider_timeout") from None
                     result = graph.model_dump() if hasattr(graph, "model_dump") else graph
                     if state.retrieval_policy in {"W4","E9","E9.1", "E10", "E11"}:
                         from backend.research.questions import Blueprint, PATHS
                         parsed = Blueprint.model_validate(result)
+                        if "skeleton" in view and [
+                            {"id": n.id, "kind": n.requirement.kind, "dependencies": n.dependencies,
+                             "priority": n.priority, "min_papers": n.requirement.min_papers}
+                            for n in parsed.nodes
+                        ] != view["skeleton"]:
+                            raise ValueError("invalid_plan")
                         required = PATHS[contract["intent"]]
                         by_kind = {n.requirement.kind:n for n in parsed.nodes}
                         if len(parsed.nodes)!=len(required) or any(
@@ -198,6 +246,7 @@ class ResearchGraph:
                                 state.question_plan, state.answer_contract,
                                 profile_gaps=state.retrieval_policy in {"E10", "E11"},
                                 independent=state.retrieval_policy == "E11",
+                                pra=has_full_pra(state.pra_arm),
                             )
                         else:
                             state.field_requirements = requirements(state.question_plan, state.answer_contract)
@@ -269,6 +318,8 @@ class ResearchGraph:
         action = Search(subtask_id=sub.id, query=query, strategy=strategy)
         targets = set(_uncovered_papers(state)) if state.queries else set()
         view = working_context(state)
+        if state.retrieval_policy == "E11":
+            view["current_target"] = sub.id
         can_choose = not state.answer_contract or workspace_model.allowed(state,"decision")
         if self.choose is not None and state.task.mode == "personal_model" and can_choose:
             if state.budget.model_calls_used >= state.budget.max_model_calls:
@@ -284,12 +335,14 @@ class ResearchGraph:
                     view,
                     self._remaining(state),
                     deadline=state.budget.deadline,
-                    limit=20,
+                    limit=MODEL_STAGE_SECONDS,
                 )
-            except ProviderError:
+            except ProviderError as exc:
                 if not state.answer_contract:
                     raise
                 state.warnings.append("workspace_decision_fallback")
+                if str(exc) in {"provider_output_limit", "provider_timeout", "provider_unavailable", "provider_rate_limited"}:
+                    state.warnings.append("workspace_decision_" + str(exc))
                 return action
             except ToolError as exc:
                 if state.answer_contract and self._remaining(state)>0:
@@ -377,6 +430,10 @@ class ResearchGraph:
         if self._control(state, rev):
             return {"route": "end"}
         sub = next((s for s in state.subtasks if s.missing_slots), None)
+        from backend.research.pra_gaps import next_gap
+        gap = next_gap(state)
+        if gap:
+            sub = next((s for s in state.subtasks if s.id == gap["question_id"] and s.missing_slots), sub)
         budget = state.budget
         if sub is None or budget.rounds_used >= budget.max_rounds:
             state.stop_reason = "complete" if sub is None else "budget"
@@ -396,6 +453,9 @@ class ResearchGraph:
         # Initial discovery keeps ordinary relevance ranking. Later rounds fill explicit source gaps.
         targets = _uncovered_papers(state) if state.queries else []
         budget.rounds_used += 1
+        search_key = None
+        returned_passages = []
+        repeated_search = False
         try:
             registry = self._get_registry(state)
             action = self._action(state, slot, sub)
@@ -412,6 +472,7 @@ class ResearchGraph:
                 action = Search(
                     subtask_id=sub.id, query=query_for(state, slot), strategy=self.strategy
                 )
+            question_fields = next((r.fields for r in state.field_requirements if r.question_id == sub.id), [])
             if isinstance(action, Read):
                 ids = [action.paper_id]
                 rows = self._tool(
@@ -448,7 +509,6 @@ class ResearchGraph:
                         state.skill_steps = list(operations)
                 filters = action.filters.model_dump(exclude_none=True)
                 limit = min(4, self._tuning(state).evidence_per_subtask)
-                question_fields=next((r.fields for r in state.field_requirements if r.question_id==sub.id),[])
                 directed=bool(state.task.scope.paper_ids and any(f.operation in {"quote","layout"} for f in question_fields))
                 if state.retrieval_policy in {"E9.1", "E10", "E11"} and state.task.scope.paper_ids and len(state.subtasks) > 1:
                     directed = True
@@ -456,11 +516,15 @@ class ResearchGraph:
                     f.facet in {"objective", "topic", "method", "finding", "setting", "metric", "dataset", "limitations"}
                     for f in question_fields
                 )
-                if any(f.subject for f in question_fields):
+                subjects = list(dict.fromkeys(f.subject for f in question_fields if f.subject))
+                focus = []
+                if subjects:
                     # The allowlist can contain distractors. Rank by study subject rather than
                     # awarding one abstract window per permitted paper in arbitrary ID order.
                     profile_read = False
-                    query = " ".join(dict.fromkeys(f.subject for f in question_fields if f.subject))[:500]
+                    query = " ".join(subjects)[:500]
+                    if state.retrieval_policy == "E11" and len(subjects) > 1:
+                        focus = subjects[:4]
                 directed = directed or bool(profile_read and state.task.scope.paper_ids)
                 scoped_links = (state.retrieval_policy == "E11" and state.task.scope.paper_ids
                                 and state.answer_contract.answer_type == "causal_chain" and any(
@@ -473,25 +537,62 @@ class ResearchGraph:
                     targets, directed = [], False
                     query = " ".join(dict.fromkeys(
                         name for f in question_fields for name in (f.subject, f.subject_context) if name))[:500]
+                    focus = list(dict.fromkeys(
+                        name for f in question_fields for name in (f.subject, f.subject_context) if name))[:4]
+                    path = next((f for f in question_fields if f.facet == "causal_path"), None)
+                    if has_full_pra(state.pra_arm) and len(ids) >= 3 and path and state.evidence_refs:
+                        from backend.research.field_gate import capability
+                        from backend.research.multihop_fields import missing_bridge_terms
+
+                        rows = (json.loads(self.store.artifact(state.user_id, state.run_id, aid)["content"])
+                                for aid in state.artifact_refs if aid.startswith("evidence-"))
+                        bridge = missing_bridge_terms(path, (row for row in rows if capability(row, state)))
+                        if bridge:
+                            query, focus = " ".join(bridge), []
                 elif directed:
                     ids=list(state.task.scope.paper_ids)
                     targets=[]
                 elif broad and state.candidate_papers:
                     ids = list(state.candidate_papers)
                 elif not targets:
-                    papers = self._tool(
-                        state,
-                        registry,
-                        "search_papers",
-                        {"query": query, "strategy": strategy, "limit": 6, **filters},
-                    )["papers"]
-                    ids = [p["paper_id"] for p in papers]
-                    if broad:
-                        state.candidate_papers = list(dict.fromkeys(ids))[:40]
-                        ids = list(state.candidate_papers)
-                    if not ids:
-                        targets = _uncovered_papers(state)
-                        ids = state.task.scope.paper_ids[:6]
+                    if has_h4(state.pra_arm) and len(state.task.scope.paper_ids) == 1:
+                        ids = list(state.task.scope.paper_ids)
+                        if broad:
+                            state.candidate_papers = list(ids)
+                    else:
+                        papers = self._tool(
+                            state,
+                            registry,
+                            "search_papers",
+                            {"query": query, "strategy": strategy, "limit": 6, **filters},
+                        )["papers"]
+                        ids = [p["paper_id"] for p in papers]
+                        if broad:
+                            state.candidate_papers = list(dict.fromkeys(ids))[:40]
+                            ids = list(state.candidate_papers)
+                        if not ids:
+                            targets = _uncovered_papers(state)
+                            ids = state.task.scope.paper_ids[:6]
+                section_hint = None
+                if (gap and sub.id == gap["question_id"] and isinstance(action, Search)
+                        and (gap["kind"] == "missing_paper" or gap["action"] in {
+                            "read_method_section", "read_results_section", "align_conditions"})):
+                    field = next(f for f in question_fields if f.field_id == gap["field_id"])
+                    requested = set(gap["paper_ids"])
+                    if requested and state.task.scope.paper_ids:
+                        ids = [p for p in state.task.scope.paper_ids if p in requested]
+                        targets = []
+                        section_hint = {"read_method_section": "methods", "read_results_section": "results"}.get(gap["action"])
+                    query = " ".join(filter(None, [field.subject, field.subject_context,
+                                       field.facet, field.requested_metric, field.request]))[:500]
+                    directed, focus = False, []
+                arm = state.pra_arm
+                use_sentence_windows = (
+                    has_h4(arm)
+                    and state.retrieval_policy == "E11"
+                    and all(f.operation not in {"quote", "layout"} for f in question_fields)
+                    and (not state.answer_contract or state.answer_contract.answer_type != "quoted_text")
+                )
                 if targets:
                     # Separate reads keep one top hit or unavailable source from hiding the other papers.
                     misses = sum(
@@ -513,6 +614,7 @@ class ResearchGraph:
                                     "paper_ids": [paper],
                                     "slot": slot,
                                     "limit": limit,
+                                    **({"sentence_complete": True} if use_sentence_windows else {}),
                                     **filters,
                                 },
                             )["passages"]
@@ -522,27 +624,39 @@ class ResearchGraph:
                             continue
                         rows.extend(found)
                 else:
-                    rows = (
-                        self._tool(
-                            state,
-                            registry,
-                            "search_passages",
-                            {
-                                "query": query,
-                                "strategy": strategy,
-                                "paper_ids": ids,
-                                "slot": slot,
-                                "limit": 12 if state.retrieval_policy in {"E10", "E11"} and directed and (profile_read or state.answer_contract.answer_type == "overview")
-                                else min(20, 3 * limit) if broad else limit,
-                                **({"abstract_profile": True} if directed and state.retrieval_policy in {"E10", "E11"}
-                                    and (profile_read or state.answer_contract.answer_type == "overview")
-                                   else {"abstract_opening": True} if directed else {}),
-                                **filters,
-                            },
-                        )["passages"]
-                        if ids
-                        else []
-                    )
+                    search_args = {
+                        "query": query,
+                        "strategy": strategy,
+                        "paper_ids": ids,
+                        "slot": slot,
+                        "limit": 12 if state.retrieval_policy in {"E10", "E11"} and directed and (profile_read or state.answer_contract.answer_type == "overview")
+                        else min(20, 3 * limit) if broad else limit,
+                        **({"abstract_profile": True} if directed and state.retrieval_policy in {"E10", "E11"}
+                            and (profile_read or state.answer_contract.answer_type == "overview")
+                           else {"abstract_opening": True} if directed else {}),
+                        **({"complete_method_opening": True} if directed and state.retrieval_policy == "E11"
+                           and has_full_pra(arm) and any(f.facet == "method" for f in question_fields)
+                           and all(f.operation not in {"quote", "layout"} for f in question_fields) else {}),
+                        **({"profile_body_fallback": True} if directed and state.retrieval_policy == "E11"
+                            and has_full_pra(arm) and state.answer_contract.answer_type == "overview"
+                            and any(f.facet in {"topic", "method", "finding"} for f in question_fields)
+                            and all(f.operation not in {"quote", "layout"} for f in question_fields) else {}),
+                        **({"profile_limitation_request": state.answer_contract.goal[:500]}
+                           if directed and state.retrieval_policy == "E11" and has_full_pra(arm)
+                           and state.answer_contract.answer_type == "overview"
+                           and any(f.facet == "limitations" and len(f.paper_ids) == 1 for f in question_fields)
+                           else {}),
+                        **({"sentence_complete": True} if use_sentence_windows else {}),
+                        **({"focus": focus} if focus and not directed else {}),
+                        **({"preferred_section": section_hint} if section_hint else {}),
+                        **filters,
+                    }
+                    if ids and has_gap_arm(arm) and not state.task.scope.include_own_uploads:
+                        search_key = digest(canonical([state.corpus_generation, sub.id, search_args]))
+                        repeated_search = bool(state.queries and state.queries[-1].exhausted_search == search_key)
+                    rows = self._tool(state, registry, "search_passages", search_args)["passages"] if ids and not repeated_search else []
+                    if search_key:
+                        returned_passages = [(r["evidence_id"], r["quote_hash"]) for r in rows]
             if state.answer_contract and len(state.subtasks) == 1 and state.answer_contract.answer_type == "quoted_text":
                 from backend.research.workspace_proof import opening
                 rows = sorted(rows, key=lambda r: not opening(r, state.task.scope.paper_ids))
@@ -555,10 +669,27 @@ class ResearchGraph:
                 if state.field_requirements:
                     seen=set(state.question_reads.get(sub.id,[]))
                     prior=[r for r in prior if r.evidence_id in seen]
+                if has_h4(state.pra_arm) and rows and state.answer_contract and state.answer_contract.answer_type != "quoted_text":
+                    rows = _voi_rank_rows(state, rows, question_fields)
                 rows = fair_rows(rows, prior)
+            reserve_floor = (
+                3
+                if (
+                    has_h4(state.pra_arm)
+                    and state.budget.rounds_used == 1
+                    and len(state.task.scope.paper_ids) == 1
+                )
+                else 2
+            )
             for row in rows:
                 if state.retrieval_policy != "V1":
                     if free_calls(state) < 2:
+                        break
+                    if (
+                        reserve_floor == 3
+                        and len(state.evidence_refs) - old_count >= 2
+                        and free_calls(state) <= 3
+                    ):
                         break
                     if row["source_kind"] != "metadata" and (
                         (bool(state.field_requirements) and row["paper_id"] in state.task.scope.paper_ids)
@@ -582,13 +713,20 @@ class ResearchGraph:
                 ):
                     self._record_evidence(state, registry, row)
             gained = len(state.evidence_refs) - old_count
+            if search_key and not repeated_search:
+                owned = set(state.question_reads.get(sub.id, []))
+                verified = {(r.evidence_id, r.quote_hash) for r in state.evidence_refs if r.evidence_id in owned}
+                if not returned_passages or not verified.issuperset(returned_passages):
+                    search_key = None
             state.queries.append(
                 Query(
                     subtask_id=sub.id,
                     query=query,
                     mode=strategy,
-                    attempted=True,
-                    result_summary=f"{len(ids)} papers, {gained} new verified passages",
+                    attempted=not repeated_search,
+                    result_summary=("previously verified passages, 0 new verified passages" if repeated_search
+                                    else f"{len(ids)} papers, {gained} new verified passages"),
+                    exhausted_search=search_key,
                 )
             )
         except (Halt, ToolError, ProviderError) as exc:

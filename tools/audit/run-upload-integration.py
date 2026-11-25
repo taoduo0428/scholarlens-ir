@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import platform
+import re
 import shutil
 import signal
 import socket
@@ -100,6 +101,26 @@ def kill_owned_tree(process):
                                 capture_output=True, creationflags=subprocess.CREATE_NO_WINDOW)
         if result.returncode and process.poll() is None:
             raise RuntimeError('Failed to stop this run\'s owned process tree')
+        # TerminateProcess is asynchronous. taskkill reports one line per target,
+        # naming the terminated PID before its parent. Only wait on these PIDs.
+        import _winapi
+        deadline = time.monotonic() + 15
+        for line in result.stdout.splitlines():
+            match = re.search(rb'\bPID\s+(\d+)\b', line, re.I)
+            if not match:
+                continue
+            try:
+                handle = _winapi.OpenProcess(_winapi.SYNCHRONIZE, False, int(match[1]))
+            except OSError as exc:
+                if exc.winerror == 87:  # A process which has already exited.
+                    continue
+                raise
+            try:
+                wait_ms = max(0, int(1000 * (deadline - time.monotonic())))
+                if _winapi.WaitForSingleObject(handle, wait_ms) != _winapi.WAIT_OBJECT_0:
+                    raise RuntimeError("Owned process termination did not finish")
+            finally:
+                _winapi.CloseHandle(handle)
     else:
         os.killpg(process.pid, signal.SIGKILL)
     process.wait(timeout=15)
